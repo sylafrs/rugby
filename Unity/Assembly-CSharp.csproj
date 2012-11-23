@@ -44,9 +44,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GoTo.cs" />
+     <Compile Include="Assets\Scripts\GoTo.cs" />
      <Compile Include="Assets\Scripts\Tests\TestBehaviour.cs" />
-     <Compile Include="Assets\rotateMe.cs" />
+     <Compile Include="Assets\Scripts\rotateMe.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

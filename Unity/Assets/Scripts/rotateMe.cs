@@ -9,8 +9,11 @@ public class rotateMe : MonoBehaviour {
 
     public void rotate(Vector3 axis, float angle)
     {
-        this.axis = axis;
-        this.stillToRotate = angle/180*Mathf.PI;
+        if (stillToRotate == 0)
+        {
+            this.axis = axis;
+            this.stillToRotate = angle / 180 * Mathf.PI;
+        }
     }
 
 	// Update is called once per frame
