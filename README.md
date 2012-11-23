@@ -1,5 +1,9 @@
-Rugby Arcade Game's Scripts
+Rugby Arcade Game
 ===========================
 
-This directory is linked to an Git repositery :
-- git@bitbucket.org:sylafrs/rugby_scripts
+This repository is splited into three parts :
+* The Unity project
+* The Document
+* The Builds
+
+See documents for more details.
