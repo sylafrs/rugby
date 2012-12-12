@@ -15,6 +15,9 @@
 
 \usepackage{hyperref}
 
+\definecolor{table_header_color}{rgb}{1,1,1}%{rgb}{0.85, 0.95, 1}
+\definecolor{couleur_liens}{rgb}{0, 0, 0.5}
+
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
     unicode=false,          % non-Latin characters in Acrobat’s bookmarks
@@ -31,7 +34,7 @@
     pdfnewwindow=true,      								% links in new window
     colorlinks=true,       	% false: boxed links; true: colored links
     %hidelinks,
-    urlcolor=blue,           % color of external links
+    urlcolor=couleur_liens, % color of external links
     linkcolor=black,        % color of internal links
     citecolor=green,        % color of links to bibliography
     filecolor=magenta,      % color of file links
@@ -45,8 +48,9 @@
 \acrodef{gd}[GD]{Game Design}
 \acrodef{ia}[IA]{Intelligence Artificielle}
 
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-\definecolor{table_header_color}{rgb}{1,1,1}%{rgb}{0.85, 0.95, 1}
 \title{Technical design document}
 \author{Arcade sport game project}
 

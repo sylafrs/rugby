@@ -31,10 +31,10 @@ public class GoTo : MonoBehaviour {
         }
 	}
 
-    public void sendTo(Transform target, callback whenArrived) {
-        sent = true;
+    public void sendTo(Transform target, callback whenArrived) {        
         this.whenArrived = whenArrived;
         this.target = target;
         this.transform.parent = null;
+        sent = true;
     }
 }
