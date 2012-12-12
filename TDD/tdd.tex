@@ -1,0 +1,65 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{dirtree}
+
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+
+\usepackage{color}
+\usepackage{colortbl}
+
+\usepackage{multirow}
+
+\usepackage{hyperref}
+
+\definecolor{table_header_color}{rgb}{1,1,1}%{rgb}{0.85, 0.95, 1}
+\definecolor{couleur_liens}{rgb}{0, 0, 0.5}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={TDD},    										% title
+    pdfauthor={Arcade sport game project},    				% author
+    pdfsubject={Technical design document},   				% subject of the document
+    pdfcreator={Latex},  									% creator of the document
+    pdfproducer={Texmaker}, 								% producer of the document
+    pdfkeywords={tdd} {camera} {ia} {sport} {rugby} {game}, % list of keywords
+    pdfnewwindow=true,      								% links in new window
+    colorlinks=true,       	% false: boxed links; true: colored links
+    %hidelinks,
+    urlcolor=couleur_liens, % color of external links
+    linkcolor=black,        % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+}
+
+\usepackage[footnote]{acronym}
+\acrodef{sdl}[SDL]{Simple DirectMedia Layer}
+\acrodef{tdd}[TDD]{Technical Design Document}
+\acrodef{gp}[GP]{Game Programmer}
+\acrodef{gder}[GD]{Game Designer}
+\acrodef{gd}[GD]{Game Design}
+\acrodef{ia}[IA]{Intelligence Artificielle}
+
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\title{Technical design document}
+\author{Arcade sport game project}
+
+\begin{document}
+	\maketitle				
+	\tableofcontents
+	\newpage	
+	\include{revisions}
+	\include{introduction}
+	\include{challenges}
+	
+\end{document}
