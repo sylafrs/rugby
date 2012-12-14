@@ -39,7 +39,7 @@ public abstract class State
         return this.GetType().Name;
     }
 
-    public virtual string ToString()
+    public override string ToString()
     {
         return this.GetName();
     }
