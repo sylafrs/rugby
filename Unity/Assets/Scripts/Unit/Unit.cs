@@ -7,6 +7,30 @@ public class Unit : MonoBehaviour {
     public StateMachine sm;
     private NavMeshAgent nma;
     private Order currentOrder;
+    private Team team;
+
+    public Team Team {
+        get
+        {
+            return GetTeam();
+        }
+        set
+        {
+            ChangeTeam(value);
+        }
+    }
+
+    public Order Order
+    {
+        get
+        {
+            return GetOrder();    
+        }
+        set
+        {
+            ChangeOrder(value);
+        }
+    }
 
 	void Start () 
     {
@@ -14,9 +38,26 @@ public class Unit : MonoBehaviour {
         sm.SetFirstState(new MainState(sm, this));
 	}
 
-    void Update()
-    {
+    //void Update()
+    //{
 
+    //}
+
+    public Team GetTeam()
+    {
+        return team;
+    }
+
+    public void ChangeTeam(Team t)
+    {
+        if (!t.Contains(this))
+        {
+            if (!t.isFilled())
+            {
+                team = t;
+                team.AddUnit(this);
+            }
+        }
     }
 
     public NavMeshAgent GetNMA()

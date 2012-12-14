@@ -7,7 +7,16 @@ public class TEST : MonoBehaviour {
     public Unit agent2;
     public float epsilon;
 
-	// Update is called once per frame
+    void Start()
+    {
+        Team rouge = new Team("Rouges", Color.red);
+        Team bleue = new Team("Bleus", Color.blue);
+
+        agent1.Team = rouge;
+        agent2.Team = bleue;
+    }
+
+
 	void Update () {
         if (agent1 && Input.GetMouseButtonUp(0))
         {
