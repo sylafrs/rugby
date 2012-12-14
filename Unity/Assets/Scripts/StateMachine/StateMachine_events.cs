@@ -14,4 +14,13 @@ public partial class StateMachine {
         }
     }
 
+    public void event_ballChanged()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnBallChanged())
+                return;
+        }
+    }
+
 }

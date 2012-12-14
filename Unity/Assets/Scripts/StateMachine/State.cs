@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class State
+public abstract partial class State
 {
     protected StateMachine sm;
 
@@ -19,11 +19,6 @@ public abstract class State
 
     public virtual void OnUpdate()
     {
-    }
-
-    public virtual bool OnNewOrder()
-    {
-        return (false);
     }
 
     public virtual void OnChildLeaved()
