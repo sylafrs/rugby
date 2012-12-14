@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[System.Serializable]
+[System.Serializable, AddComponentMenu("Scripts/Models/Unit")]
 public class Unit : MonoBehaviour {
 
     public StateMachine sm;

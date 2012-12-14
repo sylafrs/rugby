@@ -1,15 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Physic/PhysicObject")]
 public class PhysicObject : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

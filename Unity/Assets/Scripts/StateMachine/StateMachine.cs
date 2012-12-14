@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/AI/StateMachine")]
 public partial class StateMachine : MonoBehaviour{
 
     private System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();

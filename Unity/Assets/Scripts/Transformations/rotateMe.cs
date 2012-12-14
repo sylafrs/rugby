@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Transformations/rotateMe")]
 public class rotateMe : MonoBehaviour {
 
     float stillToRotate = 0;

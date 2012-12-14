@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/AI/Debug/StateMachine Debugger")]
 public class StateMachine_debugger : MonoBehaviour {
 
     public StateMachine sm;
