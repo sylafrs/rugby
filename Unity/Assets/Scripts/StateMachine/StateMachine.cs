@@ -3,9 +3,21 @@ using System.Collections;
 
 public partial class StateMachine : MonoBehaviour{
 
-    System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
-
+    private System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
     public State BaseState;
+
+    public int GetStackLength()
+    {
+        return list.Count;
+    }
+
+    public string GetStateName(int i)
+    {
+        if (i < list.Count && i >= 0) 
+          return list[i].GetName();
+       
+        return null;
+    }
  
     public void SetFirstState(State first)
     {
@@ -25,15 +37,6 @@ public partial class StateMachine : MonoBehaviour{
         {
             if (list.Contains(tmp))
                 tmp.OnUpdate();
-        }
-    }
-
-    public void event_neworder()
-    {
-        foreach (State tmp in list)
-        {
-            if (tmp.OnNewOrder())
-                return;
         }
     }
 

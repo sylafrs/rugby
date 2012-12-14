@@ -4,14 +4,21 @@ using System.Collections;
 [System.Serializable]
 public class Unit : MonoBehaviour {
 
-    public Order firstOrder;
+    public StateMachine sm;
     private Order currentOrder;
 
-	void Start () {
-        currentOrder = firstOrder;
+	void Start () 
+    {
+        sm.SetFirstState(new MainState(sm, this));
 	}
-	
-	void Update () {
-	
-	}
+
+    void Update()
+    {
+
+    }
+
+    public Order GetOrder()
+    {
+        return currentOrder;
+    }
 }

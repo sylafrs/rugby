@@ -5,5 +5,13 @@ using System.Collections;
 
 public partial class StateMachine {
 
+    public void event_neworder()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnNewOrder())
+                return;
+        }
+    }
 
 }

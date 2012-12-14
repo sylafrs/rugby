@@ -1,15 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class IdleState : MonoBehaviour {
+public class IdleState : UnitState {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public IdleState(StateMachine sm, Unit unit) : base(sm, unit) { }
+
+    public override bool OnNewOrder()
+    {
+        if (unit.GetOrder().type != Order.TYPE.RIEN)
+        {
+            sm.state_kill_me(this);
+        }
+
+        return true;
+    }
+
+
 }
