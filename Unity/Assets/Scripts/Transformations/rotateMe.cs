@@ -5,7 +5,7 @@ public class rotateMe : MonoBehaviour {
 
     float stillToRotate = 0;
     Vector3 axis;
-    public float rotateAmount = 1;
+    float rotateAmount = 1;
 
     public void rotate(Vector3 axis, float angle)
     {
