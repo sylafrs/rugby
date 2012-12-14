@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class StateMachine : MonoBehaviour{
+public partial class StateMachine : MonoBehaviour{
 
     System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
 
