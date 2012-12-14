@@ -7,6 +7,7 @@ public class FollowState : UnitState {
 
     public override void OnUpdate()
     {
+        unit.GetNMA().stoppingDistance = 2;
         unit.GetNMA().SetDestination(unit.GetOrder().target.transform.position);
     }
 
