@@ -10,19 +10,32 @@ public class MainState : UnitState {
         decide();
     }
 
-    public override void OnChildLeaved()
+    public override bool OnNewOrder()
     {
-        decide();    
+        decide();
+        return true;
     }
 
-    public void decide() {
+    public void decide()
+    {
         switch (this.unit.GetOrder().type)
         {
             case Order.TYPE.RIEN:
                 sm.state_change_son(this, new IdleState(sm, unit));
-            break;
+                break;
+
+            case Order.TYPE.DEPLACER:
+                sm.state_change_son(this, new MoveState(sm, unit));
+                break;
+
+            case Order.TYPE.SUIVRE:
+                sm.state_change_son(this, new FollowState(sm, unit));
+                break;
+                
+            default:
+                sm.state_change_son(this, new IdleState(sm, unit));
+                break;
 
         }
-    }
-	
+    }	
 }

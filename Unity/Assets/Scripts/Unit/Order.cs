@@ -26,4 +26,29 @@ public struct Order  {
     public TYPE_DEPLACEMENT deplacement;
     public Unit target;
     public float power;
+    public Vector3 point;
+
+    public static Order OrderNothing() {
+        Order o = new Order();
+        o.type = TYPE.RIEN;
+        return o;
+    }
+
+    public static Order OrderMove(Vector3 point, TYPE_DEPLACEMENT type)
+    {
+        Order o = new Order();
+        o.type = TYPE.DEPLACER;
+        o.point = point;
+        o.deplacement = type;
+        return o;
+    }
+
+    public static Order OrderFollow(Unit unit, TYPE_DEPLACEMENT type)
+    {
+        Order o = new Order();
+        o.type = TYPE.SUIVRE;
+        o.target = unit;
+        o.deplacement = type;
+        return o;
+    }
 }
