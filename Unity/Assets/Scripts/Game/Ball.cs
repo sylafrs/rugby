@@ -5,13 +5,21 @@ using System.Collections;
 public class Ball : MonoBehaviour {
     public Unit Owner;
 
+    public void Update()
+    {
+        if (Owner != null)
+        {
+            this.transform.position = Owner.BallPlaceHolder.transform.position;
+            this.transform.localRotation = Quaternion.identity;
+        }       
+    }
   
     public void ShootTarget(Unit u)
     {
         Unit shooter = Owner;
 
         Vector3 pos = u.transform.position;
-      //  Owner = null;
+        Owner = null;
 
         this.transform.parent = null;
 

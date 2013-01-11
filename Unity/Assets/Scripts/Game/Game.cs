@@ -48,6 +48,10 @@ public class Game : MonoBehaviour {
             ecart.y * Camera.mainCamera.transform.forward.y,
             -ecart.z * Camera.mainCamera.transform.forward.z
         );
-        Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
+
+        if(Ball.Owner)
+            Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
+        else
+            Camera.mainCamera.transform.position = Ball.transform.position - test;
     }
 }

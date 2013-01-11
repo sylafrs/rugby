@@ -7,6 +7,10 @@ public class Team : MonoBehaviour {
     public Game Game;
     public Color Color;
     public string Name;
+    public But But;
+
+    public int nbPoints = 0;
+
     private Unit [] units;
 
     public Unit this[int index]
@@ -28,6 +32,11 @@ public class Team : MonoBehaviour {
     public GameObject Prefab_model;
     
     public int nbUnits;
+
+    public void Start()
+    {
+        But.Owner = this;
+    }
 
     public void CreateUnits()
     {
