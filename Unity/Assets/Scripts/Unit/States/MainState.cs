@@ -34,7 +34,7 @@ public class MainState : UnitState {
 
             case Order.TYPE.PASSER:
                 if (unit.Team.Game.Ball.Owner == unit)
-                    unit.Team.Game.Ball.ChangeOwner(unit.GetOrder().target);
+                    unit.Team.Game.Ball.ShootTarget(unit.GetOrder().target);
                 break;
                 
             default:

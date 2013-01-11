@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91abe38ba2410ce448f6d0e14fe39b6c, type: 3}
   m_Name: 
   sm: {fileID: 11400000}
+  BallPlaceHolder: {fileID: 100000}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

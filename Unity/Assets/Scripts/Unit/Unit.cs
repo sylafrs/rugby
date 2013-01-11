@@ -5,6 +5,7 @@ using System.Collections;
 public class Unit : MonoBehaviour {
 
     public StateMachine sm;
+    public GameObject BallPlaceHolder; 
     private NavMeshAgent nma;
     private Order currentOrder;
     private Team team;

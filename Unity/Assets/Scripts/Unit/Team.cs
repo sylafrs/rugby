@@ -9,6 +9,22 @@ public class Team : MonoBehaviour {
     public string Name;
     private Unit [] units;
 
+    public Unit this[int index]
+    {
+        get
+        {
+            if (index < 0 || index >= units.Length)
+                return null;
+
+            return units[index];
+        }
+
+        private set
+        {
+
+        }
+    }
+
     public GameObject Prefab_model;
     
     public int nbUnits;
