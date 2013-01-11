@@ -51,4 +51,12 @@ public struct Order  {
         o.deplacement = type;
         return o;
     }
+
+    public static Order OrderGiveBall(Unit unit)
+    {
+        Order o = new Order();
+        o.type = TYPE.PASSER;
+        o.target = unit;
+        return o;
+    }
 }

@@ -14,9 +14,8 @@ public class Unit : MonoBehaviour {
         {
             return GetTeam();
         }
-        set
-        {
-            ChangeTeam(value);
+        set {
+            if (team == null) team = value;
         }
     }
 
@@ -38,26 +37,9 @@ public class Unit : MonoBehaviour {
         sm.SetFirstState(new MainState(sm, this));
 	}
 
-    //void Update()
-    //{
-
-    //}
-
     public Team GetTeam()
     {
         return team;
-    }
-
-    public void ChangeTeam(Team t)
-    {
-        if (!t.Contains(this))
-        {
-            if (!t.isFilled())
-            {
-                team = t;
-                team.AddUnit(this);
-            }
-        }
     }
 
     public NavMeshAgent GetNMA()
