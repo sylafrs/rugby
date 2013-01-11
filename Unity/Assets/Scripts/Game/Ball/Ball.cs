@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
-public class Ball : MonoBehaviour {
+public class Ball : TriggeringTriggered {
     private Unit _owner;
     public Unit Owner
     {
@@ -58,5 +58,27 @@ public class Ball : MonoBehaviour {
 
         // TODO : patch
         Owner.Team.Game.p1.controlled = u;
+    }
+
+    public void setPosition(Vector3 v)
+    {
+        this.Owner = null;        
+        this.transform.parent = null;
+        this.transform.position = v;
+        this.rigidbody.useGravity = true;
+        this.rigidbody.velocity = Vector3.zero;       
+        this.transform.rotation = Quaternion.identity;     
+    }
+
+    public override void Entered(Triggered o, Trigger t)
+    {
+        Unit u = o.GetComponent<Unit>();
+        if (u != null)
+        {
+            if (this.Owner == null)
+            {
+                this.Taken(u);
+            }
+        }
     }
 }

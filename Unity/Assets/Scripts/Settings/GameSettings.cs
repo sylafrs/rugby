@@ -16,6 +16,7 @@ public class InputSettings
     public KeyCode right = KeyCode.D;
 }
 
+[AddComponentMenu("Settings/GameSettings")]
 public class GameSettings : MonoBehaviour {
 
     public ScoreSettings score;

@@ -23,7 +23,7 @@ public partial class StateMachine : MonoBehaviour{
     public void SetFirstState(State first)
     {
         if (list.Count > 0)
-            throw new System.ApplicationException("SetFirstState(" + first + ") : " + list[0] + " était déjà là ! ");
+            throw new System.ApplicationException("SetFirstState(" + first + ") : " + list[0] + " ï¿½tait dï¿½jï¿½ lï¿½ ! ");
         list.Add(first);
         list[0].OnEnter();
     }
@@ -58,7 +58,7 @@ public partial class StateMachine : MonoBehaviour{
         index = list.IndexOf(current);
         if (index == -1)
         {
-            Debug.LogError("state_change_son(" + current + ", " + newstate + ") : " + current + ".OnLeave() ne doit pas changer l'état !");
+            Debug.LogError("state_change_son(" + current + ", " + newstate + ") : " + current + ".OnLeave() ne doit pas changer l'ï¿½tat !");
             return;
         }
         list.RemoveRange(0, index + 1);
@@ -86,7 +86,7 @@ public partial class StateMachine : MonoBehaviour{
         index = list.IndexOf(current);
         if (index == -1)
         {
-            Debug.LogError("state_change_son(" + current + ", " + newstate + ") : " + current + ".OnLeave() ne doit pas changer l'état !");
+            Debug.LogError("state_change_son(" + current + ", " + newstate + ") : " + current + ".OnLeave() ne doit pas changer l'ï¿½tat !");
             return;
         }
         list.RemoveRange(0, index);
@@ -111,7 +111,7 @@ public partial class StateMachine : MonoBehaviour{
         index = list.IndexOf(current);
         if (index == -1)
         {
-            Debug.LogError("state_kill_me(" + current + ") : " + current + ".OnLeave() ne doit pas changer l'état !");
+            Debug.LogError("state_kill_me(" + current + ") : " + current + ".OnLeave() ne doit pas changer l'ï¿½tat !");
             return;
         }
         list.RemoveRange(0, index + 1);

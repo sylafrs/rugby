@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Game/Player")]
 public class Player : MonoBehaviour {
 
     public Team team;

@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
-public class Unit : MonoBehaviour {
+public class Unit : TriggeringTriggered
+{
 
     public StateMachine sm;
     public GameObject BallPlaceHolder; 
@@ -32,10 +33,11 @@ public class Unit : MonoBehaviour {
         }
     }
 
-	void Start () 
+	public override void Start () 
     {
         nma = this.GetComponent<NavMeshAgent>();
         sm.SetFirstState(new MainState(sm, this));
+        base.Start();
 	}
 
     public Team GetTeam()
@@ -64,3 +66,4 @@ public class Unit : MonoBehaviour {
         return currentOrder;
     }
 }
+
