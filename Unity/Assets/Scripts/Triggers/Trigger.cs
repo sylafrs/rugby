@@ -25,17 +25,12 @@ public abstract class Trigger : MonoBehaviour
 
     void OnTriggerEnter(Collider otherOne)
     {
-        
+        if (triggering == null)
+            return;
 
         Triggered t = otherOne.GetComponent<Triggered>();
         if (t != null)
-        {
-            if (triggering == null)
-            {
-                Debug.LogWarning("erreur : " + t.name + " à déclenché le trigger " + this.GetType().Name + " mais la cible est null");
-                return;
-            }
-            Debug.Log(t.name + " à déclenché le trigger " + this.GetType().Name + " de " + (triggering as MonoBehaviour).name);
+        {            
             triggering.Entered(t, this);
         }
     }

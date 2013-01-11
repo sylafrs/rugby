@@ -64,5 +64,18 @@ public class Unit : TriggeringTriggered
     {
         return currentOrder;
     }
+
+    public override void Inside(Triggered o, Trigger t)
+    {
+        Unit other = o.GetComponent<Unit>();
+        if (other != null)
+        {
+            if (t.GetType() == typeof(NearUnit))
+            {
+                if(other.Team != this.Team)
+                    Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
+            }
+        }
+    }
 }
 
