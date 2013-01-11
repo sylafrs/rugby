@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/**
+ * @class State
+ * @brief Etat (partie globale)
+ * @author Sylvain Lafon
+ */
 public abstract partial class State
 {
     protected StateMachine sm;

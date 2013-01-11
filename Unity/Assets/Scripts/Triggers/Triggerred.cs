@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Triggered
+ * @brief Représente un objet déclencheur
+ * @author Sylvain Lafon
+ */
 public abstract class Triggered : MonoBehaviour
 {
     public virtual void Start()
@@ -22,21 +27,41 @@ public abstract class Triggered : MonoBehaviour
     }
 }
 
+/**
+ * @class TriggeringTriggered
+ * @brief Représente un objet déclencheur qui gère des déclenchements
+ * @author Sylvain Lafon
+ */
 public abstract class TriggeringTriggered : Triggered, Triggering
 {
 
-    public virtual void Entered(Triggered o, Trigger t)
+    public virtual void Entered(Trigger t)
     {
 
+    }
+
+    public virtual void Inside(Trigger t)
+    {
+
+    }
+
+    public virtual void Left(Trigger t)
+    {
+
+    }
+
+    public virtual void Entered(Triggered o, Trigger t)
+    {
+        if (o == this) Entered(t);
     }
 
     public virtual void Inside(Triggered o, Trigger t)
     {
-
+        if (o == this) Inside(t);
     }
 
     public virtual void Left(Triggered o, Trigger t)
     {
-
+        if (o == this) Left(t);
     }
 }

@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class But
+ * @brief Trigger entre les deux potaux
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Triggers/Game/But")]
 public class But : TriggeringTrigger
 {

@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Game
+ * @brief Classe principale du jeu
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : MonoBehaviour {
 

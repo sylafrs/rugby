@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class StateMachine
+ * @brief Machine d'états finis (partie globale)
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/AI/StateMachine")]
-public partial class StateMachine : MonoBehaviour{
+public partial class StateMachine : MonoBehaviour {
 
-    private System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
+    protected System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
     public State BaseState;
 
     public int GetStackLength()

@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Ball
+ * @brief Composant faisant de l'objet, une balle de rugby utilisable.
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
 public class Ball : TriggeringTriggered {
     private Unit _owner;

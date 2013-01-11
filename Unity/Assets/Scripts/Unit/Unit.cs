@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Unit
+ * @brief Une unité
+ * @author Sylvain Lafon
+ */
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
 public class Unit : TriggeringTriggered
 {

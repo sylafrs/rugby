@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Order
+ * @brief Un ordre (unite)
+ * @author Sylvain Lafon
+ */
 [System.Serializable]
 public struct Order  {
     public enum TYPE

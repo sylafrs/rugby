@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class MainState
+ * @brief Etat principal : Etat parent d'une unité
+ * @author Sylvain Lafon
+ */
 public class MainState : UnitState {
 
     public MainState(StateMachine sm, Unit unit) : base(sm, unit) { }

@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class StateMachine_debugger
+ * @brief Affiche les différents états d'une StateMachine dans le GUI
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/AI/Debug/StateMachine Debugger")]
 public class StateMachine_debugger : MonoBehaviour {
 

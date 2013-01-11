@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Unit_debugger
+ * @brief Débugge une unité et affiche son ordre
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/Models/Debug/Unit Debugger")]
 public class Unit_debugger : MonoBehaviour {
     public Unit unit;

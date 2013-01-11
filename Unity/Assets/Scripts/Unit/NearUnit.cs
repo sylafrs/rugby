@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class NearUnit
+ * @brief Trigger d'unite : proche 
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Triggers/Unit/Near")]
 public class NearUnit : Trigger {
 

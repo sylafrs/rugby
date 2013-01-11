@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Trigger
+ * @brief Représente un trigger (zone déclenchement)
+ * @author Sylvain Lafon
+ */
 public abstract class Trigger : MonoBehaviour
 {
     public Triggering triggering;
@@ -60,6 +65,11 @@ public abstract class Trigger : MonoBehaviour
     }
 }
 
+/**
+ * @class TriggeringTriggered
+ * @brief Représente une zone de déclenchement qui gère des déclenchements
+ * @author Sylvain Lafon
+ */
 public abstract class TriggeringTrigger : Trigger, Triggering
 {
     public virtual void Entered(Triggered o)

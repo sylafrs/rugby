@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class ScoreSettings
+ * @brief Reglages des points
+ * @author Sylvain Lafon
+ */
 [System.Serializable]
 public class ScoreSettings
 {
@@ -8,6 +13,11 @@ public class ScoreSettings
     public int points_essai = 5;
 }
 
+/**
+ * @class InputSettings
+ * @brief Reglages des entrées pour un Gamer
+ * @author Sylvain Lafon
+ */
 [System.Serializable]
 public class InputSettings
 {
@@ -17,13 +27,19 @@ public class InputSettings
     public KeyCode right = KeyCode.D;
 }
 
+/**
+ * @class GameSettings
+ * @brief Classe de reglages
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Settings/GameSettings")]
 public class GameSettings : MonoBehaviour {
 
-    public ScoreSettings score;
-    public InputSettings inputs;   
+    public ScoreSettings score;     // Attribution des Points
+    public InputSettings inputs;    // Controles J1
+    public InputSettings inputs2;   // Controles J2
 
-    public static GameSettings settings = null;
+    public static GameSettings settings = null; // Derniere instance
 
     void Start()
     {

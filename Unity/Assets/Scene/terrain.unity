@@ -869,6 +869,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e61089a25806565438747f103be04629, type: 3}
   m_Name: 
+  seconds: 1
 --- !u!1 &1763318296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1169,11 @@ MonoBehaviour:
     points_drop: 5
     points_essai: 5
   inputs:
+    up: 122
+    down: 115
+    left: 113
+    right: 100
+  inputs2:
     up: 122
     down: 115
     left: 113

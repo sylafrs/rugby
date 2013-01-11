@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class MoveState
+ * @brief Etat déplacement : déplace une unité à une position donnée
+ * @author Sylvain Lafon
+ */
 public class MoveState : UnitState {
 
     const float epsilon = 0.1f;

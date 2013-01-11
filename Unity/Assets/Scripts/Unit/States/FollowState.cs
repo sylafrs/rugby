@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class FollowState
+ * @brief Etat suivre : fait suivre une unité par une autre
+ * @author Sylvain Lafon
+ */
 public class FollowState : UnitState {
 
     public FollowState(StateMachine sm, Unit unit) : base(sm, unit) { }

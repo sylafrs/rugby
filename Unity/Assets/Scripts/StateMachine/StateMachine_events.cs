@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-/* Ici : events de la StateMachine */
-
+/**
+ * @class StateMachine
+ * @brief Machine d'états finis (partie jeu)
+ * @author Sylvain Lafon
+ */
 public partial class StateMachine {
 
     public void event_neworder()

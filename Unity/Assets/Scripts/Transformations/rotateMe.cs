@@ -1,34 +1,43 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class rotateMe
+ * @brief Fait une rotation sur un axe donné
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Scripts/Transformations/rotateMe")]
 public class rotateMe : MonoBehaviour {
 
-    float stillToRotate = 0;
-    Vector3 axis;
-    float rotateAmount = 1;
+    float remainingDegres = 0;
+    Vector3 axis;    
+    float degresPerSecond;
 
-    public void rotate(Vector3 axis, float angle)
+    public float seconds = 1;
+
+    public void rotate(Vector3 axis, float radians)
     {
-        if (stillToRotate == 0)
+        if (remainingDegres == 0)
         {
+            float degres = radians / 180 * Mathf.PI;
+                   
             this.axis = axis;
-            this.stillToRotate = angle / 180 * Mathf.PI;
+            this.remainingDegres = degres;
+            this.degresPerSecond = degres / seconds;
         }
     }
 
-	// Update is called once per frame
 	void Update () {
-        if (stillToRotate > 0)
+        if (remainingDegres > 0)
         {
-            float toRotate = rotateAmount;
-            if (stillToRotate <= rotateAmount)
+            float degres = degresPerSecond * Time.deltaTime;
+            if (remainingDegres <= degres)
             {
-                toRotate = stillToRotate;
+                degres = remainingDegres;
             }
 
-            this.transform.RotateAround(axis, toRotate);
-            stillToRotate -= toRotate;
+            this.transform.RotateAround(axis, degres);
+            remainingDegres -= degres;
         }
 	}
 }

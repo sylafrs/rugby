@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Team
+ * @brief Une equipe (unite)
+ * @author Sylvain Lafon
+ */
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : MonoBehaviour {
 

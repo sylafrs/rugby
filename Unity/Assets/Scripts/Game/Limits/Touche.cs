@@ -1,6 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+/**
+ * @class Game
+ * @brief Trigger des lignes de touche
+ * @author Sylvain Lafon
+ */
 [AddComponentMenu("Triggers/Game/Touche")]
 public class Touche : TriggeringTrigger
 {
