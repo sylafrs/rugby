@@ -17,6 +17,7 @@ public abstract class Triggered : MonoBehaviour
 
         if (this.rigidbody == null)
         {
+            // IsKinematic = true && UseGravity = false permet de laisser l'objet 'libre'
             throw new UnityException("Cet objet a besoin d'un rigidbody..");
         }
     }
