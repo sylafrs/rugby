@@ -31,6 +31,11 @@ public class MainState : UnitState {
             case Order.TYPE.SUIVRE:
                 sm.state_change_son(this, new FollowState(sm, unit));
                 break;
+
+            case Order.TYPE.PASSER:
+                if (unit.Team.Game.Ball.Owner == unit)
+                    unit.Team.Game.Ball.ChangeOwner(unit.GetOrder().target);
+                break;
                 
             default:
                 sm.state_change_son(this, new IdleState(sm, unit));
