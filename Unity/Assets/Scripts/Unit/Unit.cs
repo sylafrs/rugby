@@ -4,7 +4,6 @@ using System.Collections;
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
 public class Unit : TriggeringTriggered
 {
-
     public StateMachine sm;
     public GameObject BallPlaceHolder; 
     private NavMeshAgent nma;

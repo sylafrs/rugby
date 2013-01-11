@@ -10,7 +10,7 @@ public class Game : MonoBehaviour {
     public Team right;
     public Team left;
        
-    public Player p1, p2;
+    public Gamer p1, p2;
 
     public Ball Ball;
     
@@ -21,7 +21,7 @@ public class Game : MonoBehaviour {
         right.CreateUnits();
         left.CreateUnits();
 
-        p1 = right.gameObject.AddComponent<Player>();
+        p1 = right.gameObject.AddComponent<Gamer>();
         p1.game = this;
         p1.team = right;
         p1.controlled = right[0];

@@ -14,6 +14,11 @@ public abstract class Triggered : MonoBehaviour
         {
             throw new UnityException("Cet objet n'est pourtant pas un trigger !");
         }
+
+        if (this.rigidbody == null)
+        {
+            throw new UnityException("Cet objet a besoin d'un rigidbody..");
+        }
     }
 }
 
