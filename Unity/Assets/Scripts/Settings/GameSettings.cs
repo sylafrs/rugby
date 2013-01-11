@@ -1,12 +1,30 @@
 using UnityEngine;
 using System.Collections;
 
-public static class GameSettings {
+[System.Serializable]
+public class ScoreSettings
+{
+    public int points_drop = 5;
+}
 
-    public static int points_drop = 5;
+[System.Serializable]
+public class InputSettings
+{
+    public KeyCode up = KeyCode.Z;
+    public KeyCode down = KeyCode.S;
+    public KeyCode left = KeyCode.Q;
+    public KeyCode right = KeyCode.D;
+}
 
-    public static KeyCode up = KeyCode.UpArrow;
-    public static KeyCode down = KeyCode.DownArrow;
-    public static KeyCode left = KeyCode.LeftArrow;
-    public static KeyCode right = KeyCode.RightArrow;
+public class GameSettings : MonoBehaviour {
+
+    public ScoreSettings score;
+    public InputSettings inputs;   
+
+    public static GameSettings settings = null;
+
+    void Start()
+    {
+        settings = this;
+    }
 }

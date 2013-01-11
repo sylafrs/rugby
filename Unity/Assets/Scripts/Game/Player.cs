@@ -15,19 +15,19 @@ public class Player : MonoBehaviour {
 	void Update () {
         Vector3 direction = Vector3.zero;
 
-        if (Input.GetKey(GameSettings.up))
+        if (Input.GetKey(GameSettings.settings.inputs.up))
         {
             direction += (Camera.main.transform.forward);
         }
-        if (Input.GetKey(GameSettings.down))
+        if (Input.GetKey(GameSettings.settings.inputs.down))
         {
             direction -= (Camera.main.transform.forward);
         }
-        if (Input.GetKey(GameSettings.left))
+        if (Input.GetKey(GameSettings.settings.inputs.left))
         {
             direction -= (Camera.main.transform.right);
         }
-        if (Input.GetKey(GameSettings.right))
+        if (Input.GetKey(GameSettings.settings.inputs.right))
         {
             direction += (Camera.main.transform.right);
         }
