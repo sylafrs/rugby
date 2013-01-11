@@ -5,6 +5,7 @@ using System.Collections;
 public class ScoreSettings
 {
     public int points_drop = 5;
+    public int points_essai = 5;
 }
 
 [System.Serializable]

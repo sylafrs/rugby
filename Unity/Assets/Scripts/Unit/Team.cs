@@ -7,7 +7,9 @@ public class Team : MonoBehaviour {
     public Game Game;
     public Color Color;
     public string Name;
+
     public But But;
+    public Zone Zone;
 
     public int nbPoints = 0;
 
@@ -36,6 +38,7 @@ public class Team : MonoBehaviour {
     public void Start()
     {
         But.Owner = this;
+        Zone.Owner = this;
     }
 
     public void CreateUnits()

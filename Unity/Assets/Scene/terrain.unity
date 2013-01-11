@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 23915007}
   - 65: {fileID: 23915008}
-  - 114: {fileID: 23915009}
+  - 114: {fileID: 23915010}
   m_Layer: 0
   m_Name: Zone
   m_TagString: Untagged
@@ -114,7 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 56, y: 60, z: 6.5999999}
   m_Center: {x: 0, y: 35.5, z: 0}
---- !u!114 &23915009
+--- !u!114 &23915010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 23915006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f638fb15fa9958b44a1cec0e7a0dbb1c, type: 3}
+  m_Script: {fileID: 11500000, guid: f2f770d86a173c748a4bda77e0dda731, type: 3}
   m_Name: 
 --- !u!1 &56833422
 GameObject:
@@ -279,6 +279,7 @@ MonoBehaviour:
   Color: {r: 0, g: 0, b: 1, a: 0}
   Name: Bleu
   But: {fileID: 716606686}
+  Zone: {fileID: 1416207911}
   nbPoints: 0
   Prefab_model: {fileID: 100002, guid: 5aac47f56ba9eb747ac8b470b8549979, type: 2}
   nbUnits: 5
@@ -687,7 +688,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1416207908}
   - 65: {fileID: 1416207909}
-  - 114: {fileID: 1416207910}
+  - 114: {fileID: 1416207911}
   m_Layer: 0
   m_Name: Zone
   m_TagString: Untagged
@@ -718,7 +719,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 56, y: 60, z: 6.5999999}
   m_Center: {x: 0, y: 35.5, z: 0}
---- !u!114 &1416207910
+--- !u!114 &1416207911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -726,7 +727,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416207907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f638fb15fa9958b44a1cec0e7a0dbb1c, type: 3}
+  m_Script: {fileID: 11500000, guid: f2f770d86a173c748a4bda77e0dda731, type: 3}
   m_Name: 
 --- !u!1 &1538911428
 GameObject:
@@ -1165,6 +1166,7 @@ MonoBehaviour:
   m_Name: 
   score:
     points_drop: 5
+    points_essai: 5
   inputs:
     up: 122
     down: 115
@@ -1213,6 +1215,7 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge
   But: {fileID: 1538911430}
+  Zone: {fileID: 23915010}
   nbPoints: 0
   Prefab_model: {fileID: 100002, guid: 5aac47f56ba9eb747ac8b470b8549979, type: 2}
   nbUnits: 5
