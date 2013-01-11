@@ -1,1 +1,0 @@
-tdd : add meta/force text fixé
