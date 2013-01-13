@@ -10,6 +10,7 @@ public class DebugWindow : EditorWindow {
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
     Dictionary<GameObject, System.Boolean> registeredGO = new Dictionary<GameObject, System.Boolean>();
+    Dictionary<Debugable, System.Boolean> registeredD = new Dictionary<Debugable, System.Boolean>();
 
     [MenuItem("Component/Scripts/Debug Window")]
     public static void Init()
@@ -125,7 +126,11 @@ public class DebugWindow : EditorWindow {
 
     void Print()
     {
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Trier par : ", GUILayout.Width(65));    
         sort = (SORT)EditorGUILayout.EnumPopup(sort);
+        GUILayout.EndHorizontal();
+
         switch (sort)
         {
             case SORT.COMPONENTS:
@@ -158,8 +163,14 @@ public class DebugWindow : EditorWindow {
                 Debugable d = c as Debugable;
 
                 EditorGUI.indentLevel++;
-                d.setToogled(!EditorGUILayout.Foldout(!d.getToogled(), c.gameObject.name));
-                if (!d.getToogled())
+
+                if (!registeredD.ContainsKey(d))
+                {
+                    registeredD.Add(d, true);
+                }
+
+                registeredD[d] = EditorGUILayout.Foldout(registeredD[d], c.gameObject.name);
+                if (registeredD[d])
                 {
                     EditorGUI.indentLevel++;
                     d.ForDebugWindow();
@@ -192,9 +203,14 @@ public class DebugWindow : EditorWindow {
                 Debugable d = c as Debugable;
 
                 EditorGUI.indentLevel++;
-                d.setToogled(!EditorGUILayout.Foldout(!d.getToogled(), c.GetType().Name));
-                if (!d.getToogled())
+                if (!registeredD.ContainsKey(d))
                 {
+                    registeredD.Add(d, true);
+                }
+
+                registeredD[d] = EditorGUILayout.Foldout(registeredD[d], c.GetType().Name);
+                if (registeredD[d])
+                {               
                     EditorGUI.indentLevel++;
                     d.ForDebugWindow();
                     EditorGUI.indentLevel--;

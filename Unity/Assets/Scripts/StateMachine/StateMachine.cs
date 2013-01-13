@@ -142,14 +142,4 @@ public partial class StateMachine : MonoBehaviour, Debugable {
         }     
 #endif
     }
-
-    bool toogled = false;
-    public bool getToogled()
-    {
-        return toogled;
-    }
-    public void setToogled(bool t)
-    {
-        toogled = t;
-    }
 }
