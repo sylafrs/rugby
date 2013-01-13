@@ -3,9 +3,13 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
+/**
+  * @class DebugWindow 
+  * @brief Fenetre de debug
+  * @see Debugable
+  * @author Sylvain Lafon 
+  */
 public class DebugWindow : EditorWindow {
-
-    //static DebugWindow w;
 
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
@@ -15,7 +19,7 @@ public class DebugWindow : EditorWindow {
     [MenuItem("Component/Scripts/Debug Window")]
     public static void Init()
     {
-        /*w = */ EditorWindow.GetWindow(typeof(DebugWindow)) /* as DebugWindow*/;
+        EditorWindow.GetWindow(typeof(DebugWindow));
     }
 
     Vector2 scrollPosition = Vector2.zero;
