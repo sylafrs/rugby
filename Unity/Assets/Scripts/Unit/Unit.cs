@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.Collections;
 
 /**
@@ -7,7 +10,7 @@ using System.Collections;
  * @author Sylvain Lafon
  */
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
-public class Unit : TriggeringTriggered
+public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
     public GameObject BallPlaceHolder; 
@@ -81,6 +84,34 @@ public class Unit : TriggeringTriggered
                     Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
             }
         }
+    }
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        Order o = this.GetOrder();
+        EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
+        switch (o.type)
+        {
+            case Order.TYPE.DEPLACER:
+                EditorGUILayout.LabelField("Point : " + o.point.ToString());
+                break;
+
+            case Order.TYPE.SUIVRE:
+                EditorGUILayout.LabelField("Cible : " + o.target.name);               
+                break;
+        }        
+#endif
+    }
+
+    bool toogled = true;
+    public bool getToogled()
+    {
+        return toogled;
+    }
+    public void setToogled(bool t)
+    {
+        toogled = t;
     }
 }
 

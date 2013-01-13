@@ -59,14 +59,6 @@ public class Team : MonoBehaviour {
             units[i].transform.parent = this.transform;
             units[i].Team = this;
             units[i].renderer.material.color = Color;
-
-            // PATCH
-            StateMachine_debugger d = o.GetComponent<StateMachine_debugger>();
-            if (d != null)
-            {
-                d.r.x = Name.Equals("Bleu") ? 10 : 500;
-                d.r.y = i * 100;
-            }
         }
     }
 

@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /**
  * @class StateMachine
  * @brief Machine d'états finis (partie globale)
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Scripts/AI/StateMachine")]
-public partial class StateMachine : MonoBehaviour {
+public partial class StateMachine : MonoBehaviour, Debugable {
 
     protected System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
     public State BaseState;
@@ -124,5 +128,28 @@ public partial class StateMachine : MonoBehaviour {
             list[0].OnChildLeaved();
         else
             Debug.LogError("state_kill_me(" + current + ") : Attends, la liste est vide !!! AAAAAAAAAHHH !!!!!!!!!!");
+    }
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        int i = 0;
+        string str = this.GetStateName(i);
+        while (str != null)
+        {
+            EditorGUILayout.LabelField(str);       
+            str = this.GetStateName(++i);
+        }     
+#endif
+    }
+
+    bool toogled = true;
+    public bool getToogled()
+    {
+        return toogled;
+    }
+    public void setToogled(bool t)
+    {
+        toogled = t;
     }
 }
