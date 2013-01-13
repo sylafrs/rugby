@@ -5,19 +5,24 @@ using System.Collections.Generic;
 
 public class DebugWindow : EditorWindow {
 
-    static DebugWindow w;
+    //static DebugWindow w;
 
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
+    Dictionary<GameObject, System.Boolean> registeredGO = new Dictionary<GameObject, System.Boolean>();
 
     [MenuItem("Component/Scripts/Debug Window")]
     public static void Init()
     {
-        w = EditorWindow.GetWindow(typeof(DebugWindow)) as DebugWindow;
+        /*w = */ EditorWindow.GetWindow(typeof(DebugWindow)) /* as DebugWindow*/;
     }
 
+    Vector2 scrollPosition = Vector2.zero;
+
     void OnGUI()
-    {       
+    {
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
         toDebug.Clear();
         GameObject root = GameObject.Find("Scene");
         if (root != null)
@@ -29,6 +34,8 @@ public class DebugWindow : EditorWindow {
         {
             EditorGUILayout.LabelField("Aucun GameObject detecte");
         }
+
+        EditorGUILayout.EndScrollView();
     }
 
     List<Component> Search(GameObject o)
@@ -68,7 +75,7 @@ public class DebugWindow : EditorWindow {
         return (a.Name.CompareTo(b.Name));
     }
 
-    private static int CompareComponent(Component a, Component b)
+    private static int CompareComponentByTypeThenGameObject(Component a, Component b)
     {
         if (a == b)
             return 0;
@@ -88,9 +95,50 @@ public class DebugWindow : EditorWindow {
         return a.gameObject.name.CompareTo(b.gameObject.name);
     }
 
+    private static int CompareComponentByGameObjectThenType(Component a, Component b)
+    {
+        if (a == b)
+            return 0;
+
+        if (a == null)
+            return 1;
+
+        if (b == null)
+            return -1;
+
+        {
+            int val = a.gameObject.name.CompareTo(b.gameObject.name);
+            if (val != 0)
+                return val;
+        }
+
+        return CompareTypes(a.GetType(), b.GetType());
+    }
+
+    enum SORT
+    {
+        COMPONENTS,
+        GAMEOBJECTS
+    }
+
+    SORT sort = SORT.COMPONENTS;
+
     void Print()
     {
-        toDebug.Sort(CompareComponent);
+        sort = (SORT)EditorGUILayout.EnumPopup(sort);
+        switch (sort)
+        {
+            case SORT.COMPONENTS:
+                PrintCompos();
+                break;
+            case SORT.GAMEOBJECTS:
+                PrintGO();
+                break;
+        }
+    }
+    void PrintCompos() {
+
+        toDebug.Sort(CompareComponentByTypeThenGameObject);
         System.Type t = null;
 
         foreach(var c in toDebug)
@@ -119,6 +167,40 @@ public class DebugWindow : EditorWindow {
                 }
                 EditorGUI.indentLevel--;
             }            
+        }
+    }
+
+    void PrintGO()
+    {
+        toDebug.Sort(CompareComponentByGameObjectThenType);
+        GameObject go = null;
+
+        foreach (var c in toDebug)
+        {
+            if (go != c.gameObject)
+            {
+                go = c.gameObject;
+                if (!registeredGO.ContainsKey(go))
+                {
+                    registeredGO.Add(go, false);
+                }
+                registeredGO[go] = EditorGUILayout.Foldout(registeredGO[go], go.name);
+            }
+
+            if (registeredGO[go])
+            {
+                Debugable d = c as Debugable;
+
+                EditorGUI.indentLevel++;
+                d.setToogled(!EditorGUILayout.Foldout(!d.getToogled(), c.GetType().Name));
+                if (!d.getToogled())
+                {
+                    EditorGUI.indentLevel++;
+                    d.ForDebugWindow();
+                    EditorGUI.indentLevel--;
+                }
+                EditorGUI.indentLevel--;
+            }
         }
     }
 

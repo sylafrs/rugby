@@ -38,7 +38,7 @@ public class Ball : TriggeringTriggered {
     {
         Unit shooter = Owner;
 
-        Vector3 pos = u.transform.position;
+        //Vector3 pos = u.transform.position;
         Owner = null;
 
         this.transform.parent = null;

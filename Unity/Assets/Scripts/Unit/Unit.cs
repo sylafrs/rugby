@@ -80,8 +80,8 @@ public class Unit : TriggeringTriggered, Debugable
         {
             if (t.GetType() == typeof(NearUnit))
             {
-                if(other.Team != this.Team)
-                    Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
+                if (other.Team != this.Team)
+                    ;// Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
             }
         }
     }
@@ -104,7 +104,7 @@ public class Unit : TriggeringTriggered, Debugable
 #endif
     }
 
-    bool toogled = true;
+    bool toogled = false;
     public bool getToogled()
     {
         return toogled;
