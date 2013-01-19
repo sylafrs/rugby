@@ -125,7 +125,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400000}
   BallPlaceHolder: {fileID: 100000}
+  Game: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,7 +196,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_Radius: .500000179
   m_Speed: 10
-  m_Acceleration: 10
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3000
   m_StoppingDistance: 0

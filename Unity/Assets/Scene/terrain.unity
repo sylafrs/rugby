@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  opponent: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: 0, g: 0, b: 1, a: 0}
   Name: Bleu
@@ -1312,6 +1313,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  opponent: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge
