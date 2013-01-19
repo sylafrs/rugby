@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/**
+  * @class TriangleFormationState 
+  * @brief Etat se met en triangle
+  * @author Sylvain Lafon
+  */
 class TriangleFormationState : UnitState
 {
     public TriangleFormationState(StateMachine sm, Unit unit) : base(sm, unit) { }

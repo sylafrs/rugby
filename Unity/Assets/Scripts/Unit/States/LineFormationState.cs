@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/**
+ * @class LineFormationState
+ * @brief Etat se met en ligne
+ * @author Sylvain Lafon
+ */
 class LineFormationState : UnitState
 {
     public LineFormationState(StateMachine sm, Unit unit) : base(sm, unit) { }

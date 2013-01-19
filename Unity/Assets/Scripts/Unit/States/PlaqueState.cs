@@ -1,4 +1,9 @@
-﻿class PlaqueState : UnitState
+﻿/**
+  * @class PlaqueState 
+  * @brief Etat d'une unité plaquée
+  * @author Sylvain Lafon
+  */
+class PlaqueState : UnitState
 {
     public PlaqueState(StateMachine sm, Unit u) : base(sm, u) { }
 

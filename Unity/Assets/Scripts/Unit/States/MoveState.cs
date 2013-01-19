@@ -1,6 +1,3 @@
-using UnityEngine;
-using System.Collections;
-
 /**
  * @class MoveState
  * @brief Etat déplacement : déplace une unité à une position donnée
