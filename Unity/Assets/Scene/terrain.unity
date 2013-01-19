@@ -323,6 +323,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   Color: {r: 0, g: 0, b: 1, a: 0}
   Name: Bleu
+  right: 0
   But: {fileID: 716606686}
   Zone: {fileID: 1416207911}
   nbPoints: 0
@@ -533,7 +534,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
-  TeamOwner: {fileID: 0}
+  Game: {fileID: 0}
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1238,6 +1239,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
+  settings: {fileID: 2004071852}
   limiteTerrainNordEst: {fileID: 1829991012}
   limiteTerrainSudOuest: {fileID: 1852343968}
   right: {fileID: 293398129}
@@ -1263,11 +1265,14 @@ MonoBehaviour:
     down: 115
     left: 113
     right: 100
+    change: 32
   inputs2:
-    up: 122
-    down: 115
-    left: 113
-    right: 100
+    up: 116
+    down: 103
+    left: 102
+    right: 104
+    change: 13
+  timePlaque: 3
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1315,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge
+  right: 0
   But: {fileID: 1538911430}
   Zone: {fileID: 23915010}
   nbPoints: 0

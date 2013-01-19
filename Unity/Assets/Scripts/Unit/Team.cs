@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * @class Team
@@ -12,6 +13,7 @@ public class Team : MonoBehaviour {
     public Game Game;
     public Color Color;
     public string Name;
+    public bool right;
 
     public But But;
     public Zone Zone;
@@ -58,7 +60,8 @@ public class Team : MonoBehaviour {
             units[i].name = Name + " " + (i+1).ToString("D2");
             units[i].transform.parent = this.transform;
             units[i].Team = this;
-            units[i].renderer.material.color = Color;
+            units[i].Game = Game;
+            units[i].renderer.material.color = Color;           
         }
     }
 
@@ -73,5 +76,139 @@ public class Team : MonoBehaviour {
         }
 
         return trouve;
+    }
+
+    public void OwnerChanged()
+    {
+        if (Game.Ball.Owner == null)
+        {
+            OwnerChangedBallFree();
+        }
+        else if (Game.Ball.Owner.Team == this)
+        {
+            OwnerChangedOurs();
+        }
+        else
+        {
+            OwnerChangedOpponents();
+        }
+    }
+
+    void OwnerChangedBallFree()
+    {
+        foreach (Unit u in units)
+        {
+            if (u != Game.p1.controlled && u != Game.p2.controlled)
+            {
+                u.Order = Order.OrderFollowBall();
+            }
+        }
+    }
+
+    public static int sortLeft(Unit a, Unit b)
+    {
+        if (a.transform.position.x > b.transform.position.x)
+        {
+            return -1;
+        }
+
+        return 1;
+    }
+
+    public static int sortRight(Unit a, Unit b)
+    {
+        if (a.transform.position.x > b.transform.position.x)
+        {
+            return 1;
+        }
+
+        return -1;
+    }
+
+    public int GetLineNumber(Unit unit, Unit target)
+    {
+        if (unit == target) return 0;
+
+        List<Unit> right = new List<Unit>();
+        List<Unit> left = new List<Unit>();
+
+        foreach (Unit u in units)
+        {
+            if (u != target)
+            {
+                if ((u.transform.position.x - target.transform.position.x) > 0)
+                {
+                    right.Add(u);
+                }
+                else
+                {
+                    left.Add(u);
+                }
+            }
+        }
+
+        int i;
+
+        if (left.Contains(unit))
+        {
+            left.Sort(sortLeft);
+            i = -left.IndexOf(unit) - 1;
+        }
+        else
+        {
+            right.Sort(sortRight);
+            i = right.IndexOf(unit) + 1;
+        }
+
+        return i;
+    }
+
+    void OwnerChangedOurs()
+    {      
+        Unit owner = Game.Ball.Owner;
+        owner.Order = Order.OrderNothing();
+
+        foreach (Unit u in units)
+        {
+            if (u != Game.p1.controlled && u != Game.p2.controlled)
+            {
+                u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(3, 0, 2), right);
+            }
+        } 
+    }
+
+    void OwnerChangedOpponents()
+    {
+        Unit a;
+        if (Game.p1.controlled != null && Game.p1.controlled.Team == this)
+        {
+            a = Game.p1.controlled;
+        }
+        else if (Game.p2.controlled != null && Game.p2.controlled.Team == this)
+        {
+            a = Game.p2.controlled;
+        }
+        else
+        {
+            a = units[0];
+            float d = Vector3.Distance(a.transform.position, Game.Ball.Owner.transform.position);
+            for (int i = 0; i < units.Length; i++)
+            {
+                float d2 = Vector3.Distance(units[i].transform.position, Game.Ball.Owner.transform.position);
+                if (d > d2)
+                {
+                    a = units[i];
+                    d = d2;
+                }
+            }
+        }
+
+        foreach (Unit u in units)
+        {
+            if (u != a)
+            {
+                u.Order = Order.OrderAttack(a, 3, right);
+            }
+        }
     }
 }

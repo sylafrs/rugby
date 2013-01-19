@@ -31,7 +31,7 @@ public class Zone : TriggeringTrigger {
                 if (b.Owner.Team != this.Owner)
                 {
                     Debug.Log("Essai de la part des " + b.Owner.Team.Name + " !");
-                    b.Owner.Team.nbPoints += GameSettings.settings.score.points_essai;
+                    b.Owner.Team.nbPoints += b.Game.settings.score.points_essai;
                     b.setPosition(Vector3.zero);
                 }
             }

@@ -16,9 +16,9 @@ public struct Order  {
         SHOOTER,
         PLAQUER,
         SUIVRE,
-        ATTAQUER,
-        PRESSER,
-        ASSISTER
+        TRIANGLE,   // ASSISTER
+        LIGNE,      // PRESSER
+        CHERCHER
     }
     public enum TYPE_DEPLACEMENT
     {
@@ -62,6 +62,39 @@ public struct Order  {
         Order o = new Order();
         o.type = TYPE.PASSER;
         o.target = unit;
+        return o;
+    }
+
+    public static Order OrderSupport(Unit unit, Vector3 distance, bool right)
+    {
+        Order o = new Order();
+        o.type = TYPE.TRIANGLE;
+        o.target = unit;
+        o.point = new Vector3(distance.x, 0, distance.z * (right ? -1 : 1));
+        return o;
+    }
+
+    public static Order OrderAttack(Unit unit, float distance, bool right)
+    {
+        Order o = new Order();
+        o.type = TYPE.LIGNE;
+        o.target = unit;
+        o.power = distance;
+        return o;
+    }
+
+    public static Order OrderFollowBall()
+    {
+        Order o = new Order();
+        o.type = TYPE.CHERCHER;
+        return o;
+    }
+
+    public static Order OrderPlaquer(Unit u)
+    {
+        Order o = new Order();
+        o.type = TYPE.PLAQUER;
+        o.target = u;
         return o;
     }
 }

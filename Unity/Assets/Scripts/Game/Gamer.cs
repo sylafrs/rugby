@@ -12,40 +12,39 @@ public class Gamer : MonoBehaviour
     public Team team;
     public Unit controlled;
     public Game game;
+
+    public InputSettings inputs;
 	
 	void Update () {
         Vector3 direction = Vector3.zero;
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Camera.main.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
-        }
+        if (inputs == null) return;
 
-        if (Input.GetKey(GameSettings.settings.inputs.up))
+        if (Input.GetKey(inputs.up))
         {
             direction += (Camera.main.transform.forward);
         }
-        if (Input.GetKey(GameSettings.settings.inputs.down))
+        if (Input.GetKey(inputs.down))
         {
             direction -= (Camera.main.transform.forward);
         }
-        if (Input.GetKey(GameSettings.settings.inputs.left))
+        if (Input.GetKey(inputs.left))
         {
             direction -= (Camera.main.transform.right);
         }
-        if (Input.GetKey(GameSettings.settings.inputs.right))
+        if (Input.GetKey(inputs.right))
         {
             direction += (Camera.main.transform.right);
         }
 
         if (direction != Vector3.zero)
         {
-            controlled.ChangeOrder(Order.OrderMove(controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE));
+            controlled.Order = Order.OrderMove(controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
+       
+        if (Input.GetKeyDown(inputs.change))
         {
-            controlled.ChangeOrder(Order.OrderGiveBall(game.left[0]));
+            controlled.Order = Order.OrderGiveBall(game.left[0]);
         }
 	}
 }

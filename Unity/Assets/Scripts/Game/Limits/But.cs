@@ -25,7 +25,7 @@ public class But : TriggeringTrigger
         if (b != null)
         {
             Debug.Log(Owner.name + " viens de se prendre un but dans sa face");
-            Owner.nbPoints += GameSettings.settings.score.points_drop;
+            Owner.nbPoints += b.Game.settings.score.points_drop;
             b.setPosition(Vector3.zero);
         }
     }

@@ -25,6 +25,7 @@ public class InputSettings
     public KeyCode down = KeyCode.S;
     public KeyCode left = KeyCode.Q;
     public KeyCode right = KeyCode.D;
+    public KeyCode change = KeyCode.Space;
 }
 
 /**
@@ -39,10 +40,5 @@ public class GameSettings : MonoBehaviour {
     public InputSettings inputs;    // Controles J1
     public InputSettings inputs2;   // Controles J2
 
-    public static GameSettings settings = null; // Derniere instance
-
-    void Start()
-    {
-        settings = this;
-    }
+    public float timePlaque = 3;
 }

@@ -17,11 +17,12 @@ public class Unit : TriggeringTriggered, Debugable
     private NavMeshAgent nma;
     private Order currentOrder;
     private Team team;
-
+    public Game Game;
+   
     public Team Team {
         get
         {
-            return GetTeam();
+            return team;
         }
         set {
             if (team == null) team = value;
@@ -32,11 +33,12 @@ public class Unit : TriggeringTriggered, Debugable
     {
         get
         {
-            return GetOrder();    
+            return currentOrder;    
         }
         set
         {
-            ChangeOrder(value);
+            ChangeOrderSilency(value);
+            sm.event_neworder();
         }
     }
 
@@ -47,32 +49,16 @@ public class Unit : TriggeringTriggered, Debugable
         base.Start();
 	}
 
-    public Team GetTeam()
-    {
-        return team;
-    }
-
     public NavMeshAgent GetNMA()
     {
         return nma;
     }
-
-    public void ChangeOrder(Order o)
-    {
-        ChangeOrderSilency(o);
-        sm.event_neworder();
-    }
-
+    
     public void ChangeOrderSilency(Order o)
     {
         this.currentOrder = o;
     }
-
-    public Order GetOrder()
-    {
-        return currentOrder;
-    }
-
+    
     public override void Inside(Triggered o, Trigger t)
     {
         Unit other = o.GetComponent<Unit>();
@@ -80,8 +66,8 @@ public class Unit : TriggeringTriggered, Debugable
         {
             if (t.GetType() == typeof(NearUnit))
             {
-                if (other.Team != this.Team)
-                    ;// Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
+                if (other.Team != this.Team)  
+                    this.sm.event_NearUnit(other);// Debug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
             }
         }
     }
@@ -89,7 +75,7 @@ public class Unit : TriggeringTriggered, Debugable
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
-        Order o = this.GetOrder();
+        Order o = this.Order;
         EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
         switch (o.type)
         {

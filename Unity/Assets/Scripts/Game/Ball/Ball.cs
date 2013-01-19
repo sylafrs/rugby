@@ -8,6 +8,8 @@ using System.Collections;
  */
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
 public class Ball : TriggeringTriggered {
+    public Game Game;
+
     private Unit _owner;
     public Unit Owner
     {
@@ -17,14 +19,18 @@ public class Ball : TriggeringTriggered {
         }
         set
         {
-            _owner = value;
-            if(_owner != null)
-                TeamOwner = _owner.Team;
+            if (_owner != value)
+            {
+                _owner = value;
+                Game.OwnerChanged(_owner, value);
+            }
+            else
+            {
+                _owner = value;
+            }
         }
     }
-
-    public Team TeamOwner;
-
+   
     public void Update()
     {
         if (Owner != null)
@@ -35,16 +41,18 @@ public class Ball : TriggeringTriggered {
     }
   
     public void ShootTarget(Unit u)
-    {
-        Unit shooter = Owner;
-
-        //Vector3 pos = u.transform.position;
-        Owner = null;
+    {        
+        //Vector3 pos = u.transform.position;        
 
         this.transform.parent = null;
-
         this.rigidbody.useGravity = true;
-        this.rigidbody.AddForce(shooter.transform.forward * 50 + shooter.transform.up * 70);
+        this.rigidbody.AddForce(Owner.transform.forward * 50 + Owner.transform.up * 70);
+        Owner = null;
+    }
+
+    public void OwnerPlaque()
+    {
+        setPosition(this.transform.position);    
     }
 
     public void Taken(Unit u)
@@ -54,25 +62,20 @@ public class Ball : TriggeringTriggered {
         this.transform.parent = u.BallPlaceHolder.transform;
         this.transform.localPosition = Vector3.zero;
 
-        if (TeamOwner != u.Team)
+        if (Owner != u)
         {
-            Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
+            Owner = u;            
         }
-
-        Owner = u;
-
-        // TODO : patch
-        Owner.Team.Game.p1.controlled = u;
     }
 
     public void setPosition(Vector3 v)
     {
-        this.Owner = null;        
         this.transform.parent = null;
         this.transform.position = v;
         this.rigidbody.useGravity = true;
         this.rigidbody.velocity = Vector3.zero;       
-        this.transform.rotation = Quaternion.identity;     
+        this.transform.rotation = Quaternion.identity;
+        this.Owner = null;         
     }
 
     public override void Entered(Triggered o, Trigger t)
@@ -80,10 +83,7 @@ public class Ball : TriggeringTriggered {
         Unit u = o.GetComponent<Unit>();
         if (u != null)
         {
-            if (this.Owner == null)
-            {
-                this.Taken(u);
-            }
+            u.sm.event_NearBall();
         }
     }
 }
