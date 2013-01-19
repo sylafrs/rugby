@@ -86,6 +86,25 @@ public class Unit : TriggeringTriggered, Debugable
             case Order.TYPE.SUIVRE:
                 EditorGUILayout.LabelField("Cible : " + o.target.name);               
                 break;
+
+            case Order.TYPE.LIGNE:
+                EditorGUILayout.LabelField("Repere : " + o.target.name);
+                EditorGUILayout.LabelField("Espace : " + o.power);
+                break;
+
+            case Order.TYPE.TRIANGLE:
+                EditorGUILayout.LabelField("Sommet : " + o.target.name);
+                EditorGUILayout.LabelField("Espace : " + o.point.ToString());
+                break;
+
+            case Order.TYPE.CHERCHER:
+                EditorGUILayout.LabelField("Cours sur la balle");
+                break;
+
+            case Order.TYPE.PLAQUER:
+                EditorGUILayout.LabelField("Plaque " + o.target.name);
+                break;
+
         }        
 #endif
     }

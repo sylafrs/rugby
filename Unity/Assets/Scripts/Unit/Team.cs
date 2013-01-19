@@ -10,6 +10,8 @@ using System.Collections.Generic;
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : MonoBehaviour {
 
+    public Team opponent;
+
     public Game Game;
     public Color Color;
     public string Name;
@@ -98,7 +100,7 @@ public class Team : MonoBehaviour {
     {
         foreach (Unit u in units)
         {
-            if (u != Game.p1.controlled && u != Game.p2.controlled)
+            if (u != Game.p1.controlled && (Game.p2 == null || u != Game.p2.controlled))
             {
                 u.Order = Order.OrderFollowBall();
             }
@@ -166,11 +168,15 @@ public class Team : MonoBehaviour {
     void OwnerChangedOurs()
     {      
         Unit owner = Game.Ball.Owner;
-        owner.Order = Order.OrderNothing();
 
+        if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
+        {
+            owner.Order = Order.OrderMove(new Vector3(0, 0, 30 * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
+        }
+       
         foreach (Unit u in units)
         {
-            if (u != Game.p1.controlled && u != Game.p2.controlled)
+            if (u != Game.p1.controlled && (Game.p2 == null || u != Game.p2.controlled))
             {
                 u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(3, 0, 2), right);
             }
@@ -184,7 +190,7 @@ public class Team : MonoBehaviour {
         {
             a = Game.p1.controlled;
         }
-        else if (Game.p2.controlled != null && Game.p2.controlled.Team == this)
+        else if (Game.p2 != null && Game.p2.controlled.Team == this)
         {
             a = Game.p2.controlled;
         }
@@ -201,7 +207,9 @@ public class Team : MonoBehaviour {
                     d = d2;
                 }
             }
-        }
+
+            a.Order = Order.OrderFollow(Game.Ball.Owner, Order.TYPE_DEPLACEMENT.COURSE);
+        } 
 
         foreach (Unit u in units)
         {

@@ -32,17 +32,20 @@ public class Game : MonoBehaviour {
         right.CreateUnits();
         left.CreateUnits();
 
+        right.opponent = left;
+        left.opponent = right;
+
         p1 = right.gameObject.AddComponent<Gamer>();
         p1.game = this;
         p1.team = right;
         p1.controlled = right[0];
         p1.inputs = settings.inputs;
 
-        p2 = left.gameObject.AddComponent<Gamer>();
+       /* p2 = left.gameObject.AddComponent<Gamer>();
         p2.game = this;
         p2.team = left;
         p2.controlled = left[0];
-        p2.inputs = settings.inputs2;
+        p2.inputs = settings.inputs2;*/
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;
@@ -88,7 +91,7 @@ public class Game : MonoBehaviour {
             // PATCH
             // p1.controlled = after;
             if (after.Team == right) p1.controlled = after;
-            else p2.controlled = after;
+            else if(p2 != null) p2.controlled = after;
         }
         
         this.left.OwnerChanged();
