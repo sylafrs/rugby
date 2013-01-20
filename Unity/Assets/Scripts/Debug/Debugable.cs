@@ -3,18 +3,18 @@ using System.Collections;
 
 /**
   * @interface Debugable
-  * @brief Interface à faire implémenter par les Components qui veulent être affichés dans DebugWindow
+  * @brief Interface Ã  faire implÃ©menter par les Components qui veulent Ãªtre affichÃ©s dans DebugWindow
   * @see DebugWindow
   * @author Sylvain Lafon  
   */
 public interface Debugable
 {
-    /// Ce qui sera affiché dans la DebugWindow.
+    /// Ce qui sera affichÃ© dans la DebugWindow.
     void ForDebugWindow();
 
     /*
      *  Vous pourrez ainsi afficher des informations et faire
-     *  des entrées utilisateurs pour débugger sans vous prendre la tête !
+     *  des entrÃ©es utilisateurs pour dÃ©bugger sans vous prendre la tÃªte !
      */
 
     /*

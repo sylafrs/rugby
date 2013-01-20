@@ -20,11 +20,14 @@ public class Game : MonoBehaviour {
     public Gamer p1, p2;
 
     public Ball Ball;
-
+    public GameLog Log;
+    
     private Team Owner;
     
 	void Start ()
     {
+        this.Log = this.gameObject.AddComponent<GameLog>();
+
         right.Game = this;
         left.Game = this;
         right.right = true;
@@ -53,8 +56,8 @@ public class Game : MonoBehaviour {
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.controlled;        
        
-        Camera.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(28.57f, 0f, 0f));                
-	}
+        Camera.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(28.57f, 0f, 0f));
+    }
 
     void Update()
     {
@@ -92,6 +95,8 @@ public class Game : MonoBehaviour {
             // p1.controlled = after;
             if (after.Team == right) p1.controlled = after;
             else if(p2 != null) p2.controlled = after;
+
+            Log.Add("La balle est attrapée par l'équipe " + after.Team.Name);
         }
         
         this.left.OwnerChanged();
