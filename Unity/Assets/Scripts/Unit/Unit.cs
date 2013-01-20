@@ -6,7 +6,7 @@ using System.Collections;
 
 /**
  * @class Unit
- * @brief Une unité
+ * @brief Une unitÃ©
  * @author Sylvain Lafon
  */
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]

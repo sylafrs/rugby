@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * @interface Triggering
- * @brief Interface de la classe qui gèrera le déclenchement
+ * @brief Interface de la classe qui gÃ¨rera le dÃ©clenchement
  * @author Sylvain Lafon
  */
 public interface Triggering

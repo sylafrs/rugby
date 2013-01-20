@@ -2,7 +2,7 @@ using UnityEngine;
 
 /**
  * @class FollowState
- * @brief Etat suivre : fait suivre une unité par une autre
+ * @brief Etat suivre : fait suivre une unitÃ© par une autre
  * @author Sylvain Lafon
  */
 public class FollowState : UnitState {

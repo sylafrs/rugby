@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * @class rotateMe
- * @brief Fait une rotation sur un axe donné
+ * @brief Fait une rotation sur un axe donnÃ©
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Scripts/Transformations/rotateMe")]

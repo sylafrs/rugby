@@ -28,7 +28,7 @@ public abstract partial class State
 
 /**
  * @class StateMachine
- * @brief Machine d'états finis (partie jeu)
+ * @brief Machine d'Ã©tats finis (partie jeu)
  * @author Sylvain Lafon
  */
 public partial class StateMachine

@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * @class Trigger
- * @brief Représente un trigger (zone déclenchement)
+ * @brief ReprÃ©sente un trigger (zone dÃ©clenchement)
  * @author Sylvain Lafon
  */
 public abstract class Trigger : MonoBehaviour
@@ -67,7 +67,7 @@ public abstract class Trigger : MonoBehaviour
 
 /**
  * @class TriggeringTriggered
- * @brief Représente une zone de déclenchement qui gère des déclenchements
+ * @brief ReprÃ©sente une zone de dÃ©clenchement qui gÃ¨re des dÃ©clenchements
  * @author Sylvain Lafon
  */
 public abstract class TriggeringTrigger : Trigger, Triggering

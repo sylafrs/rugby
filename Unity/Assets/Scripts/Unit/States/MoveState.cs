@@ -1,6 +1,6 @@
 /**
  * @class MoveState
- * @brief Etat déplacement : déplace une unité à une position donnée
+ * @brief Etat dÃ©placement : dÃ©place une unitÃ© Ã  une position donnÃ©e
  * @author Sylvain Lafon
  */
 public class MoveState : UnitState {

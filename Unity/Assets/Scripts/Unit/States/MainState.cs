@@ -1,6 +1,6 @@
 /**
  * @class OrderState
- * @brief Etat qui gère l'unité
+ * @brief Etat qui gÃ¨re l'unitÃ©
  * @author Sylvain Lafon
  */
 public class MainState : UnitState

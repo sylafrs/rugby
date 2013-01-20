@@ -15,7 +15,7 @@ public class ScoreSettings
 
 /**
  * @class InputSettings
- * @brief Reglages des entrées pour un Gamer
+ * @brief Reglages des entrÃ©es pour un Gamer
  * @author Sylvain Lafon
  */
 [System.Serializable]

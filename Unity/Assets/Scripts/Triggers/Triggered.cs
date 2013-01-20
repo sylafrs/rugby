@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * @class Triggered
- * @brief Représente un objet déclencheur
+ * @brief ReprÃ©sente un objet dÃ©clencheur
  * @author Sylvain Lafon
  */
 public abstract class Triggered : MonoBehaviour
@@ -30,7 +30,7 @@ public abstract class Triggered : MonoBehaviour
 
 /**
  * @class TriggeringTriggered
- * @brief Représente un objet déclencheur qui gère des déclenchements
+ * @brief ReprÃ©sente un objet dÃ©clencheur qui gÃ¨re des dÃ©clenchements
  * @author Sylvain Lafon
  */
 public abstract class TriggeringTriggered : Triggered, Triggering

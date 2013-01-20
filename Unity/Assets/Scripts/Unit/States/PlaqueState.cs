@@ -1,4 +1,4 @@
-﻿/**
+/**
   * @class PlaqueState 
   * @brief Etat d'une unité plaquée
   * @author Sylvain Lafon

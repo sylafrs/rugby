@@ -1,6 +1,6 @@
 /**
  * @class UnitState
- * @brief Etat d'unité : patron de l'état pour une unité
+ * @brief Etat d'unitÃ© : patron de l'Ã©tat pour une unitÃ©
  * @author Sylvain Lafon
  */
 public abstract class UnitState : State {

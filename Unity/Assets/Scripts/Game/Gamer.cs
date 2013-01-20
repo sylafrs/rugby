@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * @class Gamer
- * @brief Représente un Joueur
+ * @brief ReprÃ©sente un Joueur
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Scripts/Game/Gamer")]
