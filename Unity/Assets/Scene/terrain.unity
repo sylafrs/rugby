@@ -992,7 +992,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1763318296}
   m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
-  m_LocalPosition: {x: -3.64857769, y: 6.27788097e-08, z: -2.10650754}
+  m_LocalPosition: {x: -3.63387036, y: 6.25257499e-08, z: -2.09801626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2004071850}
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   p1: {fileID: 0}
   p2: {fileID: 0}
   Ball: {fileID: 661539566}
+  Log: {fileID: 0}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
