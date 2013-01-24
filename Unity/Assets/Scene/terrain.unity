@@ -386,7 +386,7 @@ Transform:
   m_Children:
   - {fileID: 1558661790}
   - {fileID: 1122160063}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794707686}
 --- !u!23 &358973887
 Renderer:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ Transform:
   m_Children:
   - {fileID: 1598828519}
   - {fileID: 1311161830}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794707686}
 --- !u!23 &612892294
 Renderer:
   m_ObjectHideFlags: 0
@@ -1464,6 +1464,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 612892293}
+  - {fileID: 358973886}
   - {fileID: 1312558694}
   - {fileID: 518774970}
   - {fileID: 1829991013}
