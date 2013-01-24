@@ -178,7 +178,7 @@ public class Team : MonoBehaviour {
         {
             if (u != Game.p1.controlled && (Game.p2 == null || u != Game.p2.controlled))
             {
-                u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(3, 0, 2), right);
+                u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
             }
         } 
     }
@@ -215,7 +215,7 @@ public class Team : MonoBehaviour {
         {
             if (u != a)
             {
-                u.Order = Order.OrderAttack(a, 3, right);
+                u.Order = Order.OrderAttack(a, Game.settings.LineSpace, right);
             }
         }
     }

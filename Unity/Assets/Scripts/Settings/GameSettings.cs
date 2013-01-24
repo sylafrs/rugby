@@ -41,4 +41,8 @@ public class GameSettings : MonoBehaviour {
     public InputSettings inputs2;   // Controles J2
 
     public float timePlaque = 3;
+
+    public float Vheight = 1;
+    public float Vwidth = 1;
+    public float LineSpace = 1;
 }

@@ -1683,6 +1683,9 @@ MonoBehaviour:
     right: 104
     change: 13
   timePlaque: 3
+  Vheight: 2
+  Vwidth: 2
+  LineSpace: 3
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
