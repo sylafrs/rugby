@@ -96,7 +96,7 @@ public class Game : MonoBehaviour {
             if (after.Team == right) p1.controlled = after;
             else if(p2 != null) p2.controlled = after;
 
-            Log.Add("La balle est attrapée par l'équipe " + after.Team.Name);
+            Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);
         }
         
         this.left.OwnerChanged();
