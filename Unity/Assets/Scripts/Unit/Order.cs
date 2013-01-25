@@ -5,6 +5,7 @@ using System.Collections;
  * @class Order
  * @brief Un ordre (unite)
  * @author Sylvain Lafon
+ * @author Guilleminot Florian
  */
 [System.Serializable]
 public struct Order  {
@@ -12,8 +13,8 @@ public struct Order  {
     {
         RIEN,
         DEPLACER,
-        PASSER,
-        SHOOTER,
+        PASS,
+        DROP,
         PLAQUER,
         SUIVRE,
         TRIANGLE,   // ASSISTER
@@ -29,6 +30,8 @@ public struct Order  {
 
     public TYPE type;
     public TYPE_DEPLACEMENT deplacement;
+	public float pressionCapture;
+	public Vector3 passDirection;
     public Unit target;
     public float power;
     public Vector3 point;
@@ -57,13 +60,24 @@ public struct Order  {
         return o;
     }
 
-    public static Order OrderGiveBall(Unit unit)
+    public static Order OrderDrop(Unit unit, float pressionCapture = 1.0f)
     {
         Order o = new Order();
-        o.type = TYPE.PASSER;
+        o.type = TYPE.DROP;
         o.target = unit;
+		o.pressionCapture = pressionCapture;
         return o;
     }
+
+	public static Order OrderPass(Unit unit, Vector3 direction, float pressionCapture = 1.0f)
+	{
+		Order o = new Order();
+		o.type = TYPE.PASS;
+		o.target = unit;
+		o.passDirection = direction;
+		o.pressionCapture = pressionCapture;
+		return o;
+	}
 
     public static Order OrderSupport(Unit unit, Vector3 distance, bool right)
     {

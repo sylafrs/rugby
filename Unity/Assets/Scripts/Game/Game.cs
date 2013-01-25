@@ -5,6 +5,7 @@ using System.Collections;
  * @class Game
  * @brief Classe principale du jeu
  * @author Sylvain Lafon
+ * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : MonoBehaviour {
@@ -44,11 +45,11 @@ public class Game : MonoBehaviour {
         p1.controlled = right[0];
         p1.inputs = settings.inputs;
 
-       /* p2 = left.gameObject.AddComponent<Gamer>();
+        p2 = left.gameObject.AddComponent<Gamer>();
         p2.game = this;
         p2.team = left;
         p2.controlled = left[0];
-        p2.inputs = settings.inputs2;*/
+        p2.inputs = settings.inputs2;
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;

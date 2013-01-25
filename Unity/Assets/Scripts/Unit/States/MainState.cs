@@ -2,6 +2,7 @@
  * @class OrderState
  * @brief Etat qui gère l'unité
  * @author Sylvain Lafon
+ * @author Guilleminot Florian
  */
 public class MainState : UnitState
 {
@@ -41,10 +42,15 @@ public class MainState : UnitState
                 sm.state_change_son(this, new FollowState(sm, unit));
                 break;
 
-            case Order.TYPE.PASSER:
+            case Order.TYPE.DROP:
                 if (unit.Team.Game.Ball.Owner == unit)
 					unit.Team.Game.Ball.Drop();
                 break;
+
+			case Order.TYPE.PASS:
+				if (unit.Team.Game.Ball.Owner == unit)
+					unit.Team.Game.Ball.Pass(unit.Order.passDirection, unit.Order.pressionCapture);
+				break;
 
             case Order.TYPE.TRIANGLE:
                 sm.state_change_son(this, new TriangleFormationState(sm, unit));
