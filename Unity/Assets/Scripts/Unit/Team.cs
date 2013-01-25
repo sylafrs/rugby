@@ -63,7 +63,7 @@ public class Team : MonoBehaviour {
             units[i].transform.parent = this.transform;
             units[i].Team = this;
             units[i].Game = Game;
-            units[i].renderer.material.color = Color;           
+            //units[i].renderer.material.color = Color;           
         }
     }
 
