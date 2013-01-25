@@ -40,17 +40,24 @@ public class Ball : TriggeringTriggered {
         }       
     }
   
-    public void ShootTarget(Unit u)
-    {        
-        //Vector3 pos = u.transform.position;        
-
+	//Drop
+	/**
+	 * TODO
+	 * Passer un vector3 résultant du capteur de pression en paramètre
+	 * et dotProduct avec Owner.transform
+	 */
+    public void Drop()
+    {              
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
         this.rigidbody.AddForce(Owner.transform.forward * 50 + Owner.transform.up * 70);
         Owner = null;
     }
 
-    public void OwnerPlaque()
+	//Passe
+
+	//Poser la balle
+    public void Put()
     {
         setPosition(this.transform.position);    
     }

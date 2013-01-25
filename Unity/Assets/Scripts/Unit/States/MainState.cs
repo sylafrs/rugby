@@ -43,7 +43,7 @@ public class MainState : UnitState
 
             case Order.TYPE.PASSER:
                 if (unit.Team.Game.Ball.Owner == unit)
-                    unit.Team.Game.Ball.ShootTarget(unit.Order.target);
+					unit.Team.Game.Ball.Drop();
                 break;
 
             case Order.TYPE.TRIANGLE:
@@ -59,7 +59,7 @@ public class MainState : UnitState
                 unit.sm.event_plaque();
                 if (unit.Order.target == unit.Game.Ball.Owner)
                 {
-                    unit.Game.Ball.OwnerPlaque();
+                    unit.Game.Ball.Put();
                 }
                 break;
 
