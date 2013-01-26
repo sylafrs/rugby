@@ -44,11 +44,11 @@ public class Game : MonoBehaviour {
         p1.controlled = right[0];
         p1.inputs = settings.inputs;
 
-       /* p2 = left.gameObject.AddComponent<Gamer>();
+        p2 = left.gameObject.AddComponent<Gamer>();
         p2.game = this;
         p2.team = left;
         p2.controlled = left[0];
-        p2.inputs = settings.inputs2;*/
+        p2.inputs = settings.inputs2;
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;
@@ -67,8 +67,8 @@ public class Game : MonoBehaviour {
     void positionneCamera()
     {
         // TODO : Changer de place, rendre customizable.
-        // Synopsis : Positionne la cam�ra derri�re le joueur s�lectionn� par le joueur courant.
-        Vector3 ecart = new Vector3(1.32f, 16.91f, -9.73f);
+        // Synopsis : Positionne la caméra derrière le joueur sélectionné par le joueur courant.
+        Vector3 ecart = new Vector3(0f, 250f, -150f);
         Vector3 test = new Vector3(
             ecart.x * Camera.mainCamera.transform.forward.x,
             ecart.y * Camera.mainCamera.transform.forward.y,

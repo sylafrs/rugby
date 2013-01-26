@@ -82,6 +82,7 @@ public class Team : MonoBehaviour {
 
     public void OwnerChanged()
     {
+        /*
         if (Game.Ball.Owner == null)
         {
             OwnerChangedBallFree();
@@ -94,6 +95,7 @@ public class Team : MonoBehaviour {
         {
             OwnerChangedOpponents();
         }
+        */
     }
 
     void OwnerChangedBallFree()

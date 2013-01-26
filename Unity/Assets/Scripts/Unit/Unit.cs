@@ -18,6 +18,7 @@ public class Unit : TriggeringTriggered, Debugable
     private Order currentOrder;
     private Team team;
     public Game Game;
+    public float speed;
    
     public Team Team {
         get
