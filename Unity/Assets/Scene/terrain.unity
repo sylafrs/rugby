@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
   m_Name: 
-  gameTime: 10
+  gameTime: 100
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
