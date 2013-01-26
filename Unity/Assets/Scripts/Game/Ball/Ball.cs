@@ -52,6 +52,7 @@ public class Ball : TriggeringTriggered {
         Owner = null;
 
         this.rigidbody.AddForce(prev.transform.forward * 50 + prev.transform.up * 70);
+      //  Debug.DrawLine(prev.transform.position, prev.transform.position + prev.transform.forward * 50 + prev.transform.up * 70, Color.red, 100);
     }
 
     public void OwnerPlaque()
