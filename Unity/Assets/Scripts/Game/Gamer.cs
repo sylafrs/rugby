@@ -52,7 +52,7 @@ public class Gamer : MonoBehaviour
 	void Update () {
         Vector3 direction = Vector3.zero;
 		
-		if(!canMove) return;		
+		if (!canMove) return;		
         if (inputs == null) return;
 
         if (Input.GetKey(inputs.up))
@@ -82,9 +82,9 @@ public class Gamer : MonoBehaviour
             controlled.Order = Order.OrderDrop(game.left[0]);
         }
 
-		if (Input.GetKeyDown(inputs.plaquer))
+		if (Input.GetKeyDown(inputs.plaquer) && controlled.NearUnits.Count > 0)
 		{
-			controlled.Order = Order.OrderPlaquer(game.left[0]);
+			controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
 		}
 
 		if (Input.GetKeyDown(inputs.pass))
@@ -103,12 +103,19 @@ public class Gamer : MonoBehaviour
 		}
 		else if (Input.GetKeyUp(inputs.pass))
 		{
-			onActionCapture = false;
-			if (timeOnActionCapture > delayMaxOnCapture)
-				timeOnActionCapture = delayMaxOnCapture;
-			//Debug.DrawRay(this.transform.position, passDirection, Color.red);
-			controlled.Order = Order.OrderPass(game.left[0], passDirection, timeOnActionCapture * coefficientPressionCapture);
-			passDirection = Vector3.zero;
+            if (controlled == game.Ball.Owner)
+            {
+                onActionCapture = false;
+                if (timeOnActionCapture > delayMaxOnCapture)
+                    timeOnActionCapture = delayMaxOnCapture;
+                //Debug.DrawRay(this.transform.position, passDirection, Color.red);
+                controlled.Order = Order.OrderPass(game.left[0], passDirection, timeOnActionCapture * coefficientPressionCapture);
+                passDirection = Vector3.zero;
+            }
+            else
+            {
+                // Changer de perso.
+            }			
 		}
 
 		if (onActionCapture)

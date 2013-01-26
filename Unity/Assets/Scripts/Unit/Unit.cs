@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * @class Unit
@@ -58,7 +59,39 @@ public class Unit : TriggeringTriggered, Debugable
     {
         this.currentOrder = o;
     }
-    
+
+    public List<Unit> NearUnits;
+
+    public override void Entered(Triggered o, Trigger t)
+    {
+        Unit other = o.GetComponent<Unit>();
+        if (other != null)
+        {
+            if (t.GetType() == typeof(NearUnit))
+            {
+                if (other.Team != this.Team)
+                {
+                    if (!NearUnits.Contains(other))
+                    {
+                        NearUnits.Add(other);
+                    }
+                }
+            }
+        }
+    }
+
+    public override void Left(Triggered o, Trigger t)
+    {
+        Unit other = o.GetComponent<Unit>();
+        if (other != null)
+        {
+            if (NearUnits.Contains(other))
+            {
+                NearUnits.Remove(other);
+            }
+        }
+    }
+
     public override void Inside(Triggered o, Trigger t)
     {
         Unit other = o.GetComponent<Unit>();

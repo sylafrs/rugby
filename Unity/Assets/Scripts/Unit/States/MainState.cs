@@ -62,11 +62,7 @@ public class MainState : UnitState
                 
             case Order.TYPE.PLAQUER:
                 unit.Order.target.sm.event_plaque();
-                unit.sm.event_plaque();
-                if (unit.Order.target == unit.Game.Ball.Owner)
-                {
-                    unit.Game.Ball.Put();
-                }
+                unit.sm.event_plaque();                
                 break;
 
             default:
