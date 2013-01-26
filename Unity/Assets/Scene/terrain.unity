@@ -1079,6 +1079,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2f770d86a173c748a4bda77e0dda731, type: 3}
   m_Name: 
+--- !u!1 &1509918179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1509918180}
+  m_Layer: 0
+  m_Name: ScrumCamPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509918180
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1509918179}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -31.1799393, y: 6.13230419, z: .120518684}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2004071850}
 --- !u!1 &1538911428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1620,7 @@ GameObject:
   - 4: {fileID: 2004071850}
   - 114: {fileID: 2004071851}
   - 114: {fileID: 2004071852}
+  - 114: {fileID: 2004071853}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -1612,8 +1639,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 661539565}
-  - {fileID: 423563788}
   - {fileID: 1694633024}
+  - {fileID: 423563788}
+  - {fileID: 1509918180}
   - {fileID: 1763318297}
   - {fileID: 1794707686}
   m_Father: {fileID: 0}
@@ -1665,6 +1693,21 @@ MonoBehaviour:
   Vheight: 2
   Vwidth: 2
   LineSpace: 3
+--- !u!114 &2004071853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
+  m_Name: 
+  camPos: {fileID: 1509918179}
+  scoreTarget: 1000
+  playerUp: 15
+  specialLuck: 20
+  playerSpecialUp: 80
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
