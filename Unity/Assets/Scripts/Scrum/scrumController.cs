@@ -20,7 +20,7 @@ public class scrumController : MonoBehaviour {
 	public int playerUp	   		= 15;
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
-	
+		
 	/*
  	 *@author Maxens Dubois 
  	 */
@@ -41,9 +41,7 @@ public class scrumController : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.M))
 			{
 				inScrum = true;
-				//Debug.Log("lock : "+_game.getCameraLocked());
 				_game.unlockCamera();
-				//delock la caméra, puis la positionner
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
 				Camera.mainCamera.transform.Rotate(new Vector3(0,90,0),Space.World);
