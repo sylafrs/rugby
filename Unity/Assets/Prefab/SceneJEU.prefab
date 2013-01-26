@@ -1242,7 +1242,7 @@ MonoBehaviour:
   Zone: {fileID: 11400018}
   nbPoints: 0
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
-  nbUnits: 1
+  nbUnits: 7
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1332,9 +1332,9 @@ MonoBehaviour:
     right: 104
     change: 13
   timePlaque: 3
-  Vheight: 2
-  Vwidth: 2
-  LineSpace: 3
+  Vheight: 50
+  Vwidth: 50
+  LineSpace: 75
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   Zone: {fileID: 11400004}
   nbPoints: 0
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
-  nbUnits: 0
+  nbUnits: 7
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

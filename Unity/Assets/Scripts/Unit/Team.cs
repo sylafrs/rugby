@@ -55,7 +55,7 @@ public class Team : MonoBehaviour {
         units = new Unit[nbUnits];
         for (int i = 0; i < nbUnits; i++)
         {
-            Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
+            Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 50, 0, 0);
 
             GameObject o = GameObject.Instantiate(Prefab_model, pos, Quaternion.identity) as GameObject;
             units[i] = o.GetComponent<Unit>();
@@ -82,7 +82,6 @@ public class Team : MonoBehaviour {
 
     public void OwnerChanged()
     {
-        /*
         if (Game.Ball.Owner == null)
         {
             OwnerChangedBallFree();
@@ -95,7 +94,6 @@ public class Team : MonoBehaviour {
         {
             OwnerChangedOpponents();
         }
-        */
     }
 
     void OwnerChangedBallFree()
