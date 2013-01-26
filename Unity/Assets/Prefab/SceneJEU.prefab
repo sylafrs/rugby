@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  camPos: {fileID: 0}
+  camPos: {fileID: 100058}
   scoreTarget: 1000
   playerUp: 15
   specialLuck: 20
