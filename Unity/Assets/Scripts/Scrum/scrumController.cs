@@ -24,13 +24,19 @@ public class scrumController : MonoBehaviour {
 	/*
  	 *@author Maxens Dubois 
  	 */
-	void Start(){
-		playerScore  = 0;
-		cpuScore	 = 0;
-		inScrum		 = false;
-		playerSpecial = false;
+	void Start()
+    {		
 		_game = gameObject.GetComponent<Game>();
+        Init();
 	}
+
+    void Init()
+    {
+        playerScore = 0;
+        cpuScore = 0;
+        inScrum = false;
+        playerSpecial = false;
+    }
 	
     /*
  	 *@author Maxens Dubois 
@@ -86,6 +92,7 @@ public class scrumController : MonoBehaviour {
 		_game.lockCamera();
 		Camera.mainCamera.transform.Translate(new Vector3(-5,0,0),Space.World);
 		Camera.mainCamera.transform.Rotate(new Vector3(0,-90,0),Space.World);
+        Init();
 	}
 	
 	void OnGUI(){
