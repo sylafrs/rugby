@@ -23,6 +23,9 @@ public class Game : MonoBehaviour {
     public GameLog Log;
     
     private Team Owner;
+	
+
+	private bool cameraLocked;
     
 	void Start ()
     {
@@ -44,11 +47,13 @@ public class Game : MonoBehaviour {
         p1.controlled = right[0];
         p1.inputs = settings.inputs;
 
+        //* 
         p2 = left.gameObject.AddComponent<Gamer>();
         p2.game = this;
         p2.team = left;
         p2.controlled = left[0];
         p2.inputs = settings.inputs2;
+        // */
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;
@@ -57,13 +62,36 @@ public class Game : MonoBehaviour {
         Ball.Owner = p1.controlled;        
        
         Camera.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(28.57f, 0f, 0f));
+		
+		this.cameraLocked = true;
     }
 
     void Update()
     {
-        positionneCamera();       
+        if(this.cameraLocked)positionneCamera();       
 	}
-
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	public void unlockCamera(){
+		this.cameraLocked = false;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	public bool getCameraLocked(){
+		return this.cameraLocked;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	public void lockCamera(){
+		this.cameraLocked = true;
+	}
+	
     void positionneCamera()
     {
         // TODO : Changer de place, rendre customizable.
