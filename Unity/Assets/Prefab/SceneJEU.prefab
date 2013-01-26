@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_Name: 
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
-  multiplierPass: {x: 20, y: 70, z: 20}
+  multiplierPass: {x: 20, y: 70, z: 50}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1466,9 +1466,9 @@ MonoBehaviour:
     drop: 50
     plaquer: 51
   timePlaque: 3
-  Vheight: 3
+  Vheight: 7.5
   Vwidth: 3
-  LineSpace: 5
+  LineSpace: 3
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
