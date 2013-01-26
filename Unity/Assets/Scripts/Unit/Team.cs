@@ -63,7 +63,7 @@ public class Team : MonoBehaviour {
             units[i].transform.parent = this.transform;
             units[i].Team = this;
             units[i].Game = Game;
-            units[i].renderer.material.color = Color;           
+            //units[i].renderer.material.color = Color;           
         }
     }
 
@@ -171,12 +171,12 @@ public class Team : MonoBehaviour {
 
         if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
         {
-            owner.Order = Order.OrderMove(new Vector3(0, 0, 30 * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
+            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, 35 * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
         }
        
         foreach (Unit u in units)
         {
-            if (u != Game.p1.controlled && (Game.p2 == null || u != Game.p2.controlled))
+            if (u != owner)
             {
                 u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
             }

@@ -12,6 +12,12 @@ class PlaqueState : UnitState
     public override void OnEnter()
     {
         t = 0;
+        unit.GetNMA().Stop();
+
+        if (unit == unit.Game.Ball.Owner)
+        {
+            unit.Game.Ball.Put();
+        }
     }
 
     public override void OnUpdate()

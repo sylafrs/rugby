@@ -5,10 +5,13 @@ using System.Collections;
  * @class Ball
  * @brief Composant faisant de l'objet, une balle de rugby utilisable.
  * @author Sylvain Lafon
+ * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
 public class Ball : TriggeringTriggered {
     public Game Game;
+	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
+	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
 
     private Unit _owner;
     public Unit Owner
@@ -40,25 +43,41 @@ public class Ball : TriggeringTriggered {
         }       
     }
   
-    public void ShootTarget(Unit u)
-    {        
-        //Vector3 pos = u.transform.position;        
-
+	//Drop
+	/**
+	 * TODO
+	 * Passer un vector3 résultant du capteur de pression en paramètre
+	 */
+    public void Drop()
+    {              
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
-        this.rigidbody.AddForce(Owner.transform.forward * 50 + Owner.transform.up * 70);
+		this.rigidbody.isKinematic = false;
+        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z); // 750 1050 0
         Owner = null;
     }
 
-    public void OwnerPlaque()
+	//Passe
+	public void Pass(Vector3 direction, float pressionCapture = 1.0f)
+	{
+		Debug.Log("On Pass pression : " + pressionCapture + " direction : " + direction);
+		this.transform.parent = null;
+		this.rigidbody.useGravity = true;
+		this.rigidbody.AddForce(new Vector3(direction.x * multiplierPass.x * pressionCapture, direction.y * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture));
+		Owner = null;
+	}
+
+	//Poser la balle
+    public void Put()
     {
         setPosition(this.transform.position);    
     }
 
     public void Taken(Unit u)
     {
-        this.rigidbody.useGravity = false;
+        this.rigidbody.useGravity = false;        
         this.rigidbody.velocity = Vector3.zero;
+        this.rigidbody.isKinematic = true;
         this.transform.parent = u.BallPlaceHolder.transform;
         this.transform.localPosition = Vector3.zero;
 
@@ -70,9 +89,15 @@ public class Ball : TriggeringTriggered {
 
     public void setPosition(Vector3 v)
     {
+        if (v.y == 0)
+        {
+            v.y = 0.5f;
+        }
+
         this.transform.parent = null;
         this.transform.position = v;
         this.rigidbody.useGravity = true;
+        this.rigidbody.isKinematic = false;
         this.rigidbody.velocity = Vector3.zero;       
         this.transform.rotation = Quaternion.identity;
         this.Owner = null;         

@@ -17,15 +17,18 @@ public class ScoreSettings
  * @class InputSettings
  * @brief Reglages des entrées pour un Gamer
  * @author Sylvain Lafon
+ * @author Guilleminot Florian
  */
 [System.Serializable]
 public class InputSettings
 {
-    public KeyCode up = KeyCode.Z;
-    public KeyCode down = KeyCode.S;
-    public KeyCode left = KeyCode.Q;
-    public KeyCode right = KeyCode.D;
-    public KeyCode change = KeyCode.Space;
+    public KeyCode up = KeyCode.UpArrow;
+    public KeyCode down = KeyCode.DownArrow;
+    public KeyCode left = KeyCode.RightArrow;
+    public KeyCode right = KeyCode.LeftArrow;
+	public KeyCode pass = KeyCode.Alpha1;
+    public KeyCode drop = KeyCode.Alpha2;
+	public KeyCode plaquer = KeyCode.Alpha3;
 }
 
 /**
