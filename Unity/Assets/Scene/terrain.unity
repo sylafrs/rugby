@@ -607,6 +607,30 @@ Prefab:
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: Vheight
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: Vwidth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: LineSpace
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierPass.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierPass.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierPass.x
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -871,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
-  multiplierPass: {x: 20, y: 70, z: 20}
+  multiplierPass: {x: 20, y: 70, z: 50}
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2187,9 +2211,9 @@ MonoBehaviour:
     drop: 50
     plaquer: 51
   timePlaque: 3
-  Vheight: 3
+  Vheight: 7.5
   Vwidth: 3
-  LineSpace: 5
+  LineSpace: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
