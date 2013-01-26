@@ -40,7 +40,7 @@ public class Gamer : MonoBehaviour
         if (direction != Vector3.zero)
         {
             direction.y = 0;
-            controlled.Order = Order.OrderMove(controlled.transform.position + (direction.normalized*5), Order.TYPE_DEPLACEMENT.COURSE);
+            controlled.Order = Order.OrderMove(controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
         }
        
         if (Input.GetKeyDown(inputs.change))

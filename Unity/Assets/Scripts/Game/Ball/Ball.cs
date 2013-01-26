@@ -47,8 +47,11 @@ public class Ball : TriggeringTriggered {
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
         this.rigidbody.isKinematic = false;
-        this.rigidbody.AddForce(Owner.transform.forward * 50 + Owner.transform.up * 70);
+
+        Unit prev = Owner;
         Owner = null;
+
+        this.rigidbody.AddForce(prev.transform.forward * 50 + prev.transform.up * 70);
     }
 
     public void OwnerPlaque()

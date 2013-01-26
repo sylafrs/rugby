@@ -68,7 +68,7 @@ public class Game : MonoBehaviour {
     {
         // TODO : Changer de place, rendre customizable.
         // Synopsis : Positionne la caméra derrière le joueur sélectionné par le joueur courant.
-        Vector3 ecart = new Vector3(0f, 250f, -150f);
+        Vector3 ecart = new Vector3(1.32f, 16.91f, -9.73f);
         Vector3 test = new Vector3(
             ecart.x * Camera.mainCamera.transform.forward.x,
             ecart.y * Camera.mainCamera.transform.forward.y,
