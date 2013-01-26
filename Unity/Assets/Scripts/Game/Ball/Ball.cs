@@ -76,7 +76,7 @@ public class Ball : TriggeringTriggered {
     public void Taken(Unit u)
     {
         this.rigidbody.useGravity = false;        
-        this.rigidbody.velocity = Vector3.zero;
+       // this.rigidbody.velocity = Vector3.zero;
         this.rigidbody.isKinematic = true;
         this.transform.parent = u.BallPlaceHolder.transform;
         this.transform.localPosition = Vector3.zero;

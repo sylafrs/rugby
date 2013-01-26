@@ -209,7 +209,6 @@ GameObject:
   - 114: {fileID: 11400012}
   - 54: {fileID: 5400000}
   - 136: {fileID: 13600000}
-  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: BallScaled
   m_TagString: Untagged
@@ -1374,17 +1373,6 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
   multiplierPass: {x: 20, y: 70, z: 20}
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100024}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8e0e5ba763c3844bc7218bf2aae25a, type: 3}
-  m_Name: 
-  force: {x: 10000, y: 20000, z: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
