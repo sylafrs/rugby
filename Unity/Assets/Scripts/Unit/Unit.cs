@@ -105,6 +105,36 @@ public class Unit : TriggeringTriggered, Debugable
         }
     }
 
+    public Unit ClosestAlly()
+    {
+        if (Team.nbUnits < 2)
+            return null;
+
+        int i = 0;
+        Unit u = Team[i];
+        if(u == this) {
+            i++;
+            u = Team[i];
+        }
+
+        float minDist = Vector3.Distance(this.transform.position, u.transform.position);
+        while(i < Team.nbUnits)
+        {
+            if (Team[i] != this)
+            {
+                float thisDist = Vector3.Distance(this.transform.position, Team[i].transform.position);
+                if(thisDist < minDist) {
+                    minDist = thisDist;
+                    u = Team[i];
+                }              
+            }
+
+            i++;
+        }
+        
+        return u;
+    }
+
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

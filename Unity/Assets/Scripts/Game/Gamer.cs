@@ -109,7 +109,7 @@ public class Gamer : MonoBehaviour
                 if (timeOnActionCapture > delayMaxOnCapture)
                     timeOnActionCapture = delayMaxOnCapture;
                 //Debug.DrawRay(this.transform.position, passDirection, Color.red);
-                controlled.Order = Order.OrderPass(game.left[0], passDirection, timeOnActionCapture * coefficientPressionCapture);
+                controlled.Order = Order.OrderPass(controlled.ClosestAlly(), passDirection, timeOnActionCapture * coefficientPressionCapture);
                 passDirection = Vector3.zero;
             }
             else
