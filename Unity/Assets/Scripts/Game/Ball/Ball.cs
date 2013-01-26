@@ -51,7 +51,7 @@ public class Ball : TriggeringTriggered {
         Unit prev = Owner;
         Owner = null;
 
-        this.rigidbody.AddForce(prev.transform.forward * 50 + prev.transform.up * 70);
+        this.rigidbody.AddForce((prev.transform.forward * 5 + prev.transform.up * 7) * 150);
       //  Debug.DrawLine(prev.transform.position, prev.transform.position + prev.transform.forward * 50 + prev.transform.up * 70, Color.red, 100);
     }
 
@@ -76,6 +76,11 @@ public class Ball : TriggeringTriggered {
 
     public void setPosition(Vector3 v)
     {
+        if (v.y == 0)
+        {
+            v.y = 0.5f;
+        }
+
         this.transform.parent = null;
         this.transform.position = v;
         this.rigidbody.useGravity = true;

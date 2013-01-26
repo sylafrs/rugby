@@ -47,7 +47,7 @@ public class Game : MonoBehaviour {
         p1.controlled = right[0];
         p1.inputs = settings.inputs;
 
-        //* 
+        /* 
         p2 = left.gameObject.AddComponent<Gamer>();
         p2.game = this;
         p2.team = left;

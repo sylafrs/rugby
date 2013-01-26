@@ -463,6 +463,8 @@ GameObject:
   - 4: {fileID: 400054}
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400026}
+  - 114: {fileID: 11400034}
+  - 114: {fileID: 11400032}
   m_Layer: 0
   m_Name: SceneJEU
   m_TagString: Untagged
@@ -481,6 +483,21 @@ GameObject:
   - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: Rouges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400058}
+  m_Layer: 0
+  m_Name: ScrumCamPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,6 +834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
+  - {fileID: 400058}
   - {fileID: 400016}
   - {fileID: 400042}
   - {fileID: 400044}
@@ -833,6 +851,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400016}
+--- !u!4 &400058
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100058}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -31.1843643, y: 6.13094139, z: .11366272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400054}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1464,7 +1493,7 @@ MonoBehaviour:
   But: {fileID: 11400002}
   Zone: {fileID: 11400004}
   nbPoints: 0
-  Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
+  Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   nbUnits: 7
 --- !u!114 &11400030
 MonoBehaviour:
@@ -1477,6 +1506,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5290f759387d64418315f918bc32d87, type: 3}
   m_Name: 
   theBall: {fileID: 11400012}
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
+  m_Name: 
+  gameTime: 100
+--- !u!114 &11400034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
+  m_Name: 
+  camPos: {fileID: 0}
+  scoreTarget: 1000
+  playerUp: 15
+  specialLuck: 20
+  playerSpecialUp: 80
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

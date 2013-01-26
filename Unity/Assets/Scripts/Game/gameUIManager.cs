@@ -3,29 +3,27 @@ using System.Collections;
 
 
 /*
- *@author Maxens Dubois 
+ *@author Maxens Dubois, Lafon Sylvain
  */
+[RequireComponent(typeof(Game))]
 public class gameUIManager : MonoBehaviour {
 	
-	
 	private Game _game;
-	private Team red;
-	private Team blue;
 	
 	public float gameTime;
 	
 	private float  timeElapsed;
 	private bool   over;
 
-	void Start () {
+	void Start () 
+    {
 		_game 		= gameObject.GetComponent<Game>();
-		red 		= GameObject.FindGameObjectWithTag("redTeam").GetComponent<Team>();
-		blue 		= GameObject.FindGameObjectWithTag("blueTeam").GetComponent<Team>();
-		timeElapsed = 0f;
+        timeElapsed = 0f;
 		over		= false;
 	}
 	
-	void Update(){
+	void Update()
+    {
 		timeElapsed += Time.deltaTime;
 		
 		if(timeElapsed > gameTime){
@@ -36,19 +34,28 @@ public class gameUIManager : MonoBehaviour {
 		}
 	}
 	
-	void OnGUI(){
+	void OnGUI()
+    {
 		int offset = 200;
-		if(!over){
-			GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  "Blue : "+blue.nbPoints);
+		if(!over)
+        {
+			GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  _game.right.Name + " : " + _game.right.nbPoints);
 			GUI.Label(new Rect(150+offset, 0, 150+offset, 150),  "Time : "+timeElapsed);
-			GUI.Label(new Rect(300+offset, 0, 150+offset, 150), "Red    : "+red.nbPoints);
-		}else{
+            GUI.Label(new Rect(300 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
+		}
+        else
+        {
 			string result = "";
-			if(blue.nbPoints > red.nbPoints){
+            if (_game.right.nbPoints < _game.left.nbPoints)
+            {
 				result = "You loose ...";
-			}else if (red.nbPoints > blue.nbPoints){
+            }
+            else if (_game.left.nbPoints < _game.right.nbPoints)
+            {
 				result = "You win !";
-			}else{
+			}
+            else
+            {
 				result = "Draw !";
 			}
 			GUI.Label(new Rect(0+offset, 0+offset, 150+offset, 150+offset), result);
