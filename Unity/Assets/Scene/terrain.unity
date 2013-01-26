@@ -292,7 +292,7 @@ GameObject:
   - 114: {fileID: 293398129}
   m_Layer: 0
   m_Name: Bleus
-  m_TagString: Untagged
+  m_TagString: blueTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1621,6 +1621,7 @@ GameObject:
   - 114: {fileID: 2004071851}
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
+  - 114: {fileID: 2004071854}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -1708,6 +1709,17 @@ MonoBehaviour:
   playerUp: 15
   specialLuck: 20
   playerSpecialUp: 80
+--- !u!114 &2004071854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
+  m_Name: 
+  gameTime: 10
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1731,7 @@ GameObject:
   - 114: {fileID: 2078013331}
   m_Layer: 0
   m_Name: Rouges
-  m_TagString: Untagged
+  m_TagString: redTeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
