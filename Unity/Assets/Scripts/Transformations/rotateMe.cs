@@ -17,12 +17,12 @@ public class rotateMe : MonoBehaviour {
 
     public void rotate(Vector3 axis, float radians)
     {
-        if (remainingDegres == 0)
+        if (remainingDegres == 0 || axis == this.axis)
         {
             float degres = radians / 180 * Mathf.PI;
                    
             this.axis = axis;
-            this.remainingDegres = degres;
+            this.remainingDegres += degres;
             this.degresPerSecond = degres / seconds;
         }
     }

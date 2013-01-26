@@ -12,6 +12,7 @@ class PlaqueState : UnitState
     public override void OnEnter()
     {
         t = 0;
+        unit.GetNMA().Stop();
     }
 
     public override void OnUpdate()

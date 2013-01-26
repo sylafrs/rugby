@@ -22,9 +22,37 @@ public class Gamer : MonoBehaviour
 	private bool onActionCapture = false;
 	private float timeOnActionCapture = 0.0f;
 	
+	private bool canMove;
+	
+	void Start(){
+		canMove = true;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	void stopMove(){
+		canMove = false;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	void enableMove(){
+		canMove = true;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	bool getMoveStatus(){
+		return canMove;
+	}
+	
 	void Update () {
         Vector3 direction = Vector3.zero;
 		
+		if(!canMove) return;		
         if (inputs == null) return;
 
         if (Input.GetKey(inputs.up))

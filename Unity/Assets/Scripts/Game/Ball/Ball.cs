@@ -52,7 +52,8 @@ public class Ball : TriggeringTriggered {
     {              
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
-        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
+		this.rigidbody.isKinematic = false;
+        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z); // 750 1050 0
         Owner = null;
     }
 
@@ -74,8 +75,9 @@ public class Ball : TriggeringTriggered {
 
     public void Taken(Unit u)
     {
-        this.rigidbody.useGravity = false;
+        this.rigidbody.useGravity = false;        
         this.rigidbody.velocity = Vector3.zero;
+        this.rigidbody.isKinematic = true;
         this.transform.parent = u.BallPlaceHolder.transform;
         this.transform.localPosition = Vector3.zero;
 
@@ -87,9 +89,15 @@ public class Ball : TriggeringTriggered {
 
     public void setPosition(Vector3 v)
     {
+        if (v.y == 0)
+        {
+            v.y = 0.5f;
+        }
+
         this.transform.parent = null;
         this.transform.position = v;
         this.rigidbody.useGravity = true;
+        this.rigidbody.isKinematic = false;
         this.rigidbody.velocity = Vector3.zero;       
         this.transform.rotation = Quaternion.identity;
         this.Owner = null;         

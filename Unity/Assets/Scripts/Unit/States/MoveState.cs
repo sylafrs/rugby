@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /**
  * @class MoveState
  * @brief Etat déplacement : déplace une unité à une position donnée
@@ -16,11 +18,11 @@ public class MoveState : UnitState {
     }
 
     public override void OnUpdate()
-    {
+    {       
         if (unit.GetNMA().remainingDistance < epsilon)
         {
             unit.GetNMA().Stop();
             unit.Order = Order.OrderNothing();
         }
-    }
+     }
 }
