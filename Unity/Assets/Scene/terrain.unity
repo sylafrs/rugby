@@ -1640,6 +1640,10 @@ Prefab:
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: frameStart
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2379,7 +2383,7 @@ MonoBehaviour:
   playerUp: 15
   specialLuck: 20
   playerSpecialUp: 80
-  frameStart: 30
+  frameStart: 200
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
