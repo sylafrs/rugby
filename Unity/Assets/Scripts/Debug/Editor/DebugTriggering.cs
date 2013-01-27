@@ -4,6 +4,12 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
+/** 
+  * @class DebugTriggering
+  * @brief Affiche les rayons d'action
+  * @see TriggeringDebugger 
+  * @author Sylvain LAFON
+  */
 [CustomEditor(typeof(TriggeringDebugger))]
 public class DebugTriggering : Editor {
 

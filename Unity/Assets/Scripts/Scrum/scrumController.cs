@@ -4,6 +4,7 @@ using System.Collections;
 /*
  *@author Maxens Dubois 
  */
+[AddComponentMenu("Scripts/Game/Scrum Controller")]
 public class scrumController : MonoBehaviour {
 
 	public GameObject camPos;

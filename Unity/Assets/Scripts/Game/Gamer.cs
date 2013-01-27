@@ -48,7 +48,8 @@ public class Gamer : MonoBehaviour
 	bool getMoveStatus(){
 		return canMove;
 	}
-	
+
+   
 	void Update () {
         Vector3 direction = Vector3.zero;
 		
@@ -87,36 +88,40 @@ public class Gamer : MonoBehaviour
 			controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
 		}
 
-		if (Input.GetKeyDown(inputs.pass))
-		{
-			onActionCapture = true;
-
-			if (Input.GetKey(inputs.right))
-				passDirection += this.transform.right;
-			else if (Input.GetKey(inputs.left))
-				passDirection -= this.transform.right;
-			if (Input.GetKey(inputs.down))
-				passDirection -= this.transform.forward;
-			else if (Input.GetKey(inputs.up))
-				Debug.LogError("PASSE DEVANT INTERDITE TOCARD");
-
-		}
-		else if (Input.GetKeyUp(inputs.pass))
-		{
-            if (controlled == game.Ball.Owner)
+        if (game.Ball.Owner == controlled)
+        {
+            if (Input.GetKeyDown(inputs.passRight))
             {
-                onActionCapture = false;
-                if (timeOnActionCapture > delayMaxOnCapture)
-                    timeOnActionCapture = delayMaxOnCapture;
-                //Debug.DrawRay(this.transform.position, passDirection, Color.red);
-                controlled.Order = Order.OrderPass(controlled.ClosestAlly(), passDirection, timeOnActionCapture * coefficientPressionCapture);
-                passDirection = Vector3.zero;
+                onActionCapture = true;
+                passDirection = this.transform.right;
+                game.Ball.transform.position = controlled.BallPlaceHolderRight.transform.position;
             }
-            else
+
+            else if (Input.GetKeyDown(inputs.passLeft))
             {
-                // Changer de perso.
-            }			
-		}
+                onActionCapture = true;
+                passDirection = -this.transform.right;
+                game.Ball.transform.position = controlled.BallPlaceHolderLeft.transform.position;
+            }
+
+            else if (Input.GetKeyUp(inputs.passRight) || Input.GetKeyUp(inputs.passLeft))
+            {
+                if (controlled == game.Ball.Owner)
+                {
+                    onActionCapture = false;
+                    if (timeOnActionCapture > delayMaxOnCapture)
+                        timeOnActionCapture = delayMaxOnCapture;
+                    //Debug.DrawRay(this.transform.position, passDirection, Color.red);
+
+                    controlled.Order = Order.OrderPass(controlled.ClosestAlly(), passDirection, timeOnActionCapture * coefficientPressionCapture);
+                    passDirection = Vector3.zero;
+                }
+                else
+                {
+                    // Changer de perso.
+                }
+            }
+        }
 
 		if (onActionCapture)
 		{

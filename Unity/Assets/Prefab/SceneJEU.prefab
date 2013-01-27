@@ -1124,8 +1124,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_Name: 
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
-  multiplierPass: {x: 20, y: 70, z: 50}
+  multiplierPass: {x: 200, y: 70, z: 500}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1454,17 +1454,19 @@ MonoBehaviour:
     down: 115
     left: 113
     right: 100
-    pass: 49
+    passLeft: 49
     drop: 50
     plaquer: 51
+    passRight: 52
   inputs2:
     up: 116
     down: 103
     left: 102
     right: 104
-    pass: 52
+    passLeft: 49
     drop: 53
     plaquer: 54
+    passRight: 52
   timePlaque: 3
   Vheight: 7.5
   Vwidth: 3

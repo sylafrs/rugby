@@ -32,7 +32,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   m_Layer: 0
-  m_Name: BallPlaceHolder
+  m_Name: BallPlaceHolderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +72,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400008}
+  m_Layer: 0
+  m_Name: BallPlaceHolderRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -82,6 +97,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .0399999991, y: .0399999991, z: .0399999991}
   m_Children:
+  - {fileID: 400008}
   - {fileID: 400004}
   - {fileID: 400006}
   - {fileID: 400002}
@@ -104,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.3049698, y: 52.1212578, z: -2.97472334}
+  m_LocalPosition: {x: -28.3049793, y: 52.1212502, z: -2.97472501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -117,6 +133,17 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.128269196, y: 3.35712433, z: 1.19491816}
   m_LocalScale: {x: 7.50000048, y: 7.50000048, z: 7.50000048}
+  m_Children: []
+  m_Father: {fileID: 400000}
+--- !u!4 &400008
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.3049698, y: 52.1212578, z: -2.97472334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!23 &2300000
@@ -232,7 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91abe38ba2410ce448f6d0e14fe39b6c, type: 3}
   m_Name: 
   sm: {fileID: 11400000}
-  BallPlaceHolder: {fileID: 100002}
+  BallPlaceHolderRight: {fileID: 100008}
+  BallPlaceHolderLeft: {fileID: 100002}
   Game: {fileID: 0}
   selectedIndicators:
   - {fileID: 100006}

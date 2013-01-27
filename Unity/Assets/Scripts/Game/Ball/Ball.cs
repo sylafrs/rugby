@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * @class Ball
@@ -24,13 +25,23 @@ public class Ball : TriggeringTriggered {
         {
             if (_owner != value)
             {
+                PreviousOwner = _owner;
                 _owner = value;
                 Game.OwnerChanged(_owner, value);
-            }
-            else
-            {
-                _owner = value;
-            }
+            }         
+        }
+    }
+
+    private Unit _previousOwner;
+    public Unit PreviousOwner
+    {
+        get
+        {
+            return _previousOwner;
+        }
+        private set
+        {
+            _previousOwner = value;
         }
     }
    
@@ -38,9 +49,16 @@ public class Ball : TriggeringTriggered {
     {
         if (Owner != null)
         {
-            this.transform.position = Owner.BallPlaceHolder.transform.position;
+            if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
+                this.transform.position != Owner.BallPlaceHolderLeft.transform.position)
+            {
+                this.transform.position = Owner.BallPlaceHolderRight.transform.position;
+            }
+                       
             this.transform.localRotation = Quaternion.identity;
-        }       
+        }
+
+        UpdateTackle();
     }
   
 	//Drop
@@ -57,13 +75,17 @@ public class Ball : TriggeringTriggered {
         Owner = null;
     }
 
-	//Passe
+	// Passe
 	public void Pass(Vector3 direction, float pressionCapture = 1.0f)
 	{
 		Debug.Log("On Pass pression : " + pressionCapture + " direction : " + direction);
-		this.transform.parent = null;
+        Vector3 force = new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture);
+        Debug.Log("--> force : " + force);
+
+        this.transform.parent = null;
+        this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
-		this.rigidbody.AddForce(new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture));
+		this.rigidbody.AddForce(force);
 		Owner = null;
 	}
 
@@ -78,7 +100,7 @@ public class Ball : TriggeringTriggered {
         this.rigidbody.useGravity = false;        
        // this.rigidbody.velocity = Vector3.zero;
         this.rigidbody.isKinematic = true;
-        this.transform.parent = u.BallPlaceHolder.transform;
+        this.transform.parent = u.BallPlaceHolderRight.transform;
         this.transform.localPosition = Vector3.zero;
 
         if (Owner != u)
@@ -103,12 +125,72 @@ public class Ball : TriggeringTriggered {
         this.Owner = null;         
     }
 
+    List<Unit> scrumFieldUnits = new List<Unit>();
     public override void Entered(Triggered o, Trigger t)
     {
-        Unit u = o.GetComponent<Unit>();
-        if (u != null)
+        if (t.GetType() == typeof(NearBall))
         {
-            u.sm.event_NearBall();
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                u.sm.event_NearBall();
+            }
+        }
+
+        if (t.GetType() == typeof(ScrumField))
+        {
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                if(!scrumFieldUnits.Contains(u))
+                    scrumFieldUnits.Add(u);
+            }
         }
     }
+
+    public override void Left(Triggered o, Trigger t)
+    {
+        if (t.GetType() == typeof(ScrumField))
+        {
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                if (scrumFieldUnits.Contains(u))
+                    scrumFieldUnits.Remove(u);
+            }
+        }
+    }
+
+    public float lastTackle = -1;
+    public void EventTackle(Unit tackler, Unit tackled)
+    {
+        lastTackle = Time.deltaTime;
+    }
+
+    public void UpdateTackle()
+    {
+        if (lastTackle >= 0)
+        {
+            // TODO cte : 2 -> temps pour checker
+            if (Time.deltaTime - lastTackle < 2)
+            {
+                lastTackle = -1;
+                int right = 0, left = 0;
+                foreach (Unit u in scrumFieldUnits)
+                {
+                    if (u.Team == Game.right)
+                        right++;
+                    else
+                        left++;
+                }
+
+                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
+                if (right >= 3 && left >= 3)
+                {
+                    Debug.Log("SCRUUUUUUMMM !!!");
+                }
+            }
+        }
+    }
+
 }

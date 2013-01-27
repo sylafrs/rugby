@@ -59,7 +59,7 @@ public class Game : MonoBehaviour {
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;
-        Ball.transform.parent = p1.controlled.BallPlaceHolder.transform;
+        Ball.transform.parent = p1.controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.controlled;        
        
@@ -139,5 +139,14 @@ public class Game : MonoBehaviour {
         
         this.left.OwnerChanged();
         this.right.OwnerChanged();       
+    }
+
+    /**
+     * @author Sylvain Lafon
+     * @brief Se déclenche quand il y a plaquage
+     */
+    public void EventTackle(Unit tackler, Unit tackled)
+    {
+        Ball.EventTackle(tackler, tackled);
     }
 }
