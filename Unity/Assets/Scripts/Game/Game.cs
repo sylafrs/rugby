@@ -59,7 +59,7 @@ public class Game : MonoBehaviour {
 
         this.Owner = p1.controlled.Team;
         Ball.Game = this;
-        Ball.transform.parent = p1.controlled.BallPlaceHolder.transform;
+        Ball.transform.parent = p1.controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.controlled;        
        

@@ -14,7 +14,8 @@ using System.Collections.Generic;
 public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
-    public GameObject BallPlaceHolder; 
+    public GameObject BallPlaceHolderRight;
+    public GameObject BallPlaceHolderLeft; 
     private NavMeshAgent nma;
     private Order currentOrder;
     private Team team;

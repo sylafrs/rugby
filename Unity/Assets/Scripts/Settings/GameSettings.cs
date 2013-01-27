@@ -26,9 +26,10 @@ public class InputSettings
     public KeyCode down = KeyCode.DownArrow;
     public KeyCode left = KeyCode.RightArrow;
     public KeyCode right = KeyCode.LeftArrow;
-	public KeyCode pass = KeyCode.Alpha1;
+	public KeyCode passLeft = KeyCode.Alpha1;
     public KeyCode drop = KeyCode.Alpha2;
 	public KeyCode plaquer = KeyCode.Alpha3;
+    public KeyCode passRight = KeyCode.Alpha4;
 }
 
 /**

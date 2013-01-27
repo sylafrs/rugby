@@ -24,13 +24,23 @@ public class Ball : TriggeringTriggered {
         {
             if (_owner != value)
             {
+                PreviousOwner = _owner;
                 _owner = value;
                 Game.OwnerChanged(_owner, value);
-            }
-            else
-            {
-                _owner = value;
-            }
+            }         
+        }
+    }
+
+    private Unit _previousOwner;
+    public Unit PreviousOwner
+    {
+        get
+        {
+            return _previousOwner;
+        }
+        private set
+        {
+            _previousOwner = value;
         }
     }
    
@@ -38,7 +48,12 @@ public class Ball : TriggeringTriggered {
     {
         if (Owner != null)
         {
-            this.transform.position = Owner.BallPlaceHolder.transform.position;
+            if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
+                this.transform.position != Owner.BallPlaceHolderLeft.transform.position)
+            {
+                this.transform.position = Owner.BallPlaceHolderRight.transform.position;
+            }
+                       
             this.transform.localRotation = Quaternion.identity;
         }       
     }
@@ -57,14 +72,17 @@ public class Ball : TriggeringTriggered {
         Owner = null;
     }
 
-	//Passe
+	// Passe
 	public void Pass(Vector3 direction, float pressionCapture = 1.0f)
 	{
 		Debug.Log("On Pass pression : " + pressionCapture + " direction : " + direction);
-		this.transform.parent = null;
+        Vector3 force = new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture);
+        Debug.Log("--> force : " + force);
+
+        this.transform.parent = null;
         this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
-		this.rigidbody.AddForce(new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture));
+		this.rigidbody.AddForce(force);
 		Owner = null;
 	}
 
@@ -79,7 +97,7 @@ public class Ball : TriggeringTriggered {
         this.rigidbody.useGravity = false;        
        // this.rigidbody.velocity = Vector3.zero;
         this.rigidbody.isKinematic = true;
-        this.transform.parent = u.BallPlaceHolder.transform;
+        this.transform.parent = u.BallPlaceHolderRight.transform;
         this.transform.localPosition = Vector3.zero;
 
         if (Owner != u)
