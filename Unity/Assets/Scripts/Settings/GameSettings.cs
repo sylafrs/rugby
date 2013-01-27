@@ -57,7 +57,7 @@ public class InputSettingsXBOX
         }
     }
 
-    public Direction getDirection(XBOX_DIRECTION direction, GamePadState pad)
+    public static Direction getDirection(XBOX_DIRECTION direction, GamePadState pad)
     {
         Direction d = new Direction(0, 0);
         switch (direction)
@@ -85,7 +85,7 @@ public class InputSettingsXBOX
         return d;
     }
 
-    public bool GetButton(XBOX_BUTTONS button, GamePadState pad)
+    public static bool GetButton(XBOX_BUTTONS button, GamePadState pad)
     {
         switch (button)
         {
