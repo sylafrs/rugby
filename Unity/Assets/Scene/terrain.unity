@@ -1644,6 +1644,10 @@ Prefab:
       propertyPath: frameStart
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 11400028, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: nbUnits
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2331,6 +2335,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
+  iaEnnemie: 0
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2496,4 +2501,4 @@ MonoBehaviour:
   Zone: {fileID: 23915010}
   nbPoints: 0
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
-  nbUnits: 1
+  nbUnits: 7
