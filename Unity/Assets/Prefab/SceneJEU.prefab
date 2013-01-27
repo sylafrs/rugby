@@ -502,6 +502,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100060
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400060}
+  - 135: {fileID: 13500002}
+  m_Layer: 0
+  m_Name: ScrumField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -653,6 +669,7 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 400026}
+  - {fileID: 400060}
   m_Father: {fileID: 400054}
 --- !u!4 &400026
 Transform:
@@ -861,6 +878,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400054}
+--- !u!4 &400060
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400024}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1372,7 +1400,8 @@ MonoBehaviour:
   m_Name: 
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
-  multiplierPass: {x: 200, y: 70, z: 500}
+  multiplierPass: {x: 20, y: 20, z: 50}
+  lastTackle: -1
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1528,6 +1557,7 @@ MonoBehaviour:
   playerUp: 15
   specialLuck: 20
   playerSpecialUp: 80
+  frameStart: 30
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1546,6 +1576,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13500002
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 18
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
