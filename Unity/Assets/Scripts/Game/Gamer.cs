@@ -176,11 +176,17 @@ public class Gamer : MonoBehaviour
                             timeOnActionCapture = game.settings.maxTimeHoldingPassButton;
                         //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 
-                        int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
-                        Unit u = unitsSide[unit];
+                        if (unitsSide.Count != 0)
+                        {
+                            int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
+                            Debug.Log(unit);
 
-                        controlled.Order = Order.OrderPass(u);
-                        passDirection = Vector3.zero;
+                            if (unit == unitsSide.Count) unit--;
+                            Unit u = unitsSide[unit];
+
+                            controlled.Order = Order.OrderPass(u);
+                            passDirection = Vector3.zero;
+                        }
                     }
                     else
                     {
@@ -216,6 +222,8 @@ public class Gamer : MonoBehaviour
                         //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 
                         int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
+                        Debug.Log(unit);
+                        if (unit == unitsSide.Count) unit--;
                         Unit u = unitsSide[unit];
 
                         controlled.Order = Order.OrderPass(u);

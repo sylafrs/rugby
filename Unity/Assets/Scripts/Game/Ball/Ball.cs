@@ -85,20 +85,28 @@ public class Ball : TriggeringTriggered {
         Owner = null;
     }
 
+    public float ballSpeed = 3;
+
 	// Passe
-	public void Pass(Unit target)
+	public void Pass(Unit to)
 	{
-        Vector3 force = (target.transform.position - this.Owner.transform.position + new Vector3(0, 5, 0)) * 100;
-        Debug.Log("--> force : " + force);
-        
+        /*Unit from = this.Owner;
 
-        Debug.Log("i pass to " + target.name);
+        Debug.Log("i pass to " + to.name);
 
+        Vector3 force = (to.transform.position - from.transform.position) / ballSpeed - (ballSpeed * Physics.gravity / 2f) * 10f;
+
+        Debug.Log("--> force : " + force);*/
+
+            
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
-        this.rigidbody.AddForce(force);
+        //this.rigidbody.AddForce(force);
 		Owner = null;
+        
+
+        Taken(to);
 	}
 
 	//Poser la balle
