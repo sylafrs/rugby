@@ -127,7 +127,7 @@ public class Ball : TriggeringTriggered {
 
     List<Unit> scrumFieldUnits = new List<Unit>();
     public override void Entered(Triggered o, Trigger t)
-    {
+    {       
         if (t.GetType() == typeof(NearBall))
         {
             Unit u = o.GetComponent<Unit>();
@@ -136,8 +136,7 @@ public class Ball : TriggeringTriggered {
                 u.sm.event_NearBall();
             }
         }
-
-        if (t.GetType() == typeof(ScrumField))
+        else if (t.GetType() == typeof(ScrumField))
         {
             Unit u = o.GetComponent<Unit>();
             if (u != null)
@@ -165,21 +164,21 @@ public class Ball : TriggeringTriggered {
     public void EventTackle(Unit tackler, Unit tackled)
     {
         if(lastTackle == -1)
-            lastTackle = Time.deltaTime;
+            lastTackle = Time.time;
     }
 
     public void UpdateTackle()
-    {
-        if (lastTackle >= 0)
+    {       
+        if (lastTackle != -1)
         {
             // TODO cte : 2 -> temps pour checker
-            if (Time.deltaTime - lastTackle < 2)
+            if (Time.time - lastTackle > 2)
             {
                 lastTackle = -1;
                 int right = 0, left = 0;
-                foreach (Unit u in scrumFieldUnits)
+                for (int i = 0; i < scrumFieldUnits.Count; i++)
                 {
-                    if (u.Team == Game.right)
+                    if (scrumFieldUnits[i].Team == Game.right)
                         right++;
                     else
                         left++;
