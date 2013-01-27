@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 /**
  * @class Gamer
@@ -10,6 +11,9 @@ using System.Collections;
 [AddComponentMenu("Scripts/Game/Gamer")]
 public class Gamer : MonoBehaviour
 {
+    private static int NextGamerId = 1;
+    private int id;
+
     public Team team;
     public Unit controlled;
     public Game game;
@@ -23,9 +27,12 @@ public class Gamer : MonoBehaviour
 	private float timeOnActionCapture = 0.0f;
 	
 	private bool canMove;
+    PlayerIndex playerIndex;
 	
 	void Start(){
-		canMove = true;
+        canMove = true;
+
+        playerIndex = (PlayerIndex)id;        
 	}
 	
 	/*
@@ -48,7 +55,6 @@ public class Gamer : MonoBehaviour
 	bool getMoveStatus(){
 		return canMove;
 	}
-
    
 	void Update () {
         Vector3 direction = Vector3.zero;
@@ -56,23 +62,33 @@ public class Gamer : MonoBehaviour
 		if (!canMove) return;		
         if (inputs == null) return;
 
-        if (Input.GetKey(inputs.up))
+        GamePadState pad = GamePad.GetState(playerIndex);
+        if (pad.IsConnected)
         {
-            direction += (Camera.main.transform.forward);
+            InputSettingsXBOX.Direction d = InputSettingsXBOX.getDirection(game.settings.XboxController.move, pad);
+            direction += Camera.main.transform.forward * d.y;
+            direction += Camera.main.transform.right * d.x;
         }
-        if (Input.GetKey(inputs.down))
+        else
         {
-            direction -= (Camera.main.transform.forward);
+            if (Input.GetKey(inputs.up))
+            {
+                direction += (Camera.main.transform.forward);
+            }
+            if (Input.GetKey(inputs.down))
+            {
+                direction -= (Camera.main.transform.forward);
+            }
+            if (Input.GetKey(inputs.left))
+            {
+                direction -= (Camera.main.transform.right);
+            }
+            if (Input.GetKey(inputs.right))
+            {
+                direction += (Camera.main.transform.right);
+            }
         }
-        if (Input.GetKey(inputs.left))
-        {
-            direction -= (Camera.main.transform.right);
-        }
-        if (Input.GetKey(inputs.right))
-        {
-            direction += (Camera.main.transform.right);
-        }
-
+        
         if (direction != Vector3.zero)
         {
             controlled.Order = Order.OrderMove(controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
