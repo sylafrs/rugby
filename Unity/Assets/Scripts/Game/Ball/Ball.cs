@@ -13,7 +13,12 @@ public class Ball : TriggeringTriggered {
     public Game Game;
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
-
+	
+	/*
+	 * @ahtor Maxens Dubois 
+	 */
+	private bool goScrum;
+	
     private Unit _owner;
     public Unit Owner
     {
@@ -45,6 +50,11 @@ public class Ball : TriggeringTriggered {
         }
     }
    
+	
+	void Start(){
+		goScrum = false;
+	}
+	
     public void Update()
     {
         if (Owner != null)
@@ -166,13 +176,21 @@ public class Ball : TriggeringTriggered {
     {
         lastTackle = Time.deltaTime;
     }
-
+	
+	public bool getGoScrum(){
+		return goScrum;
+	}
+	
+	public void setGoScrum(bool state){
+		goScrum = state;
+	}
+	
     public void UpdateTackle()
     {
         if (lastTackle >= 0)
         {
             // TODO cte : 2 -> temps pour checker
-            if (Time.deltaTime - lastTackle < 2)
+            if (Time.deltaTime - lastTackle < 0.00f)
             {
                 lastTackle = -1;
                 int right = 0, left = 0;
@@ -187,8 +205,11 @@ public class Ball : TriggeringTriggered {
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
                 if (right >= 3 && left >= 3)
                 {
-                    Debug.Log("SCRUUUUUUMMM !!!");
-                }
+                    //goScrum = true;
+					Debug.Log("Scruuum");
+                }else{
+					//goScrum = false;
+				}
             }
         }
     }

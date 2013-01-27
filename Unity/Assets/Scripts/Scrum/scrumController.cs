@@ -55,9 +55,10 @@ public class scrumController : MonoBehaviour {
 	void Update () {
 		
 		if(!inScrum){
-			if (Input.GetKeyDown(KeyCode.M))
+			if (_ball.getGoScrum())
 			{
 				inScrum = true;
+				_ball.setGoScrum(false);
 				_game.unlockCamera();
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);

@@ -25,6 +25,9 @@ public class Game : MonoBehaviour {
     
     private Team Owner;
 	
+	//camera tweaks
+	public Vector3 cameraGap;
+	
 
 	private bool cameraLocked;
     
@@ -96,19 +99,26 @@ public class Game : MonoBehaviour {
 	
     void positionneCamera()
     {
-        // TODO : Changer de place, rendre customizable.
         // Synopsis : Positionne la caméra derrière le joueur sélectionné par le joueur courant.
-        Vector3 ecart = new Vector3(1.32f, 16.91f, -9.73f);
         Vector3 test = new Vector3(
-            ecart.x * Camera.mainCamera.transform.forward.x,
-            ecart.y * Camera.mainCamera.transform.forward.y,
-            -ecart.z * Camera.mainCamera.transform.forward.z
+            cameraGap.x * Camera.mainCamera.transform.forward.x,
+            cameraGap.y * Camera.mainCamera.transform.forward.y,
+            -cameraGap.z * Camera.mainCamera.transform.forward.z
         );
 
-        if(Ball.Owner)
-            Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
+        if(Ball.Owner){
+           // Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
+			Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
+			Camera.mainCamera.transform.LookAt(Ball.Owner.transform);
+		}
         else
-            Camera.mainCamera.transform.position = Ball.transform.position - test;
+		{
+           // Camera.mainCamera.transform.position = Ball.transform.position - test;
+			Camera.mainCamera.transform.position = Ball.transform.position - cameraGap;
+			Camera.mainCamera.transform.LookAt(Ball.transform);
+		}
+		
+		
     }
 
     public void OwnerChanged(Unit before, Unit after)

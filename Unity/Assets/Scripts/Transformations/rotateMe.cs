@@ -28,6 +28,7 @@ public class rotateMe : MonoBehaviour {
     }
 
 	void Update () {
+		
         if (remainingDegres > 0)
         {
             float degres = degresPerSecond * Time.deltaTime;
