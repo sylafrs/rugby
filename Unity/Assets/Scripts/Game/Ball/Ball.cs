@@ -62,6 +62,7 @@ public class Ball : TriggeringTriggered {
 	{
 		Debug.Log("On Pass pression : " + pressionCapture + " direction : " + direction);
 		this.transform.parent = null;
+        this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
 		this.rigidbody.AddForce(new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture));
 		Owner = null;
