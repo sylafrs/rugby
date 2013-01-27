@@ -127,38 +127,57 @@ public class Team : MonoBehaviour {
         return -1;
     }
 
-    public int GetLineNumber(Unit unit, Unit target)
+    public List<Unit> GetRight(Unit unit)
     {
-        if (unit == target) return 0;
-
         List<Unit> right = new List<Unit>();
-        List<Unit> left = new List<Unit>();
-
         foreach (Unit u in units)
         {
-            if (u != target)
+            if (u != unit)
             {
-                if ((u.transform.position.x - target.transform.position.x) > 0)
+                if ((u.transform.position.x - unit.transform.position.x) > 0)
                 {
                     right.Add(u);
                 }
-                else
+            }
+        }
+
+        right.Sort(sortRight);
+        return right;
+    }
+
+    public List<Unit> GetLeft(Unit unit)
+    {
+        List<Unit> left = new List<Unit>();
+        foreach (Unit u in units)
+        {
+            if (u != unit)
+            {
+                if ((u.transform.position.x - unit.transform.position.x) <= 0)
                 {
                     left.Add(u);
                 }
             }
         }
 
+        left.Sort(sortLeft);
+        return left;
+    }
+
+    public int GetLineNumber(Unit unit, Unit target)
+    {
+        if (unit == target) return 0;
+
+        List<Unit> right = GetRight(target);
+        List<Unit> left = GetLeft(target);
+
         int i;
 
         if (left.Contains(unit))
         {
-            left.Sort(sortLeft);
             i = -left.IndexOf(unit) - 1;
         }
         else
         {
-            right.Sort(sortRight);
             i = right.IndexOf(unit) + 1;
         }
 
