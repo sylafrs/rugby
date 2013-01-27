@@ -61,8 +61,12 @@ public class MainState : UnitState
                 break;
                 
             case Order.TYPE.PLAQUER:
-                unit.Order.target.sm.event_plaque();
-                unit.sm.event_plaque();                
+                Unit target = unit.Order.target;
+
+                target.sm.event_plaque();
+                unit.sm.event_plaque();
+
+                unit.Game.EventTackle(unit, target);
                 break;
 
             default:

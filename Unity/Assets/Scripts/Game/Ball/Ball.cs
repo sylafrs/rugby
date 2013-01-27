@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /**
  * @class Ball
@@ -55,7 +56,9 @@ public class Ball : TriggeringTriggered {
             }
                        
             this.transform.localRotation = Quaternion.identity;
-        }       
+        }
+
+        UpdateTackle();
     }
   
 	//Drop
@@ -122,12 +125,72 @@ public class Ball : TriggeringTriggered {
         this.Owner = null;         
     }
 
+    List<Unit> scrumFieldUnits = new List<Unit>();
     public override void Entered(Triggered o, Trigger t)
     {
-        Unit u = o.GetComponent<Unit>();
-        if (u != null)
+        if (t.GetType() == typeof(NearBall))
         {
-            u.sm.event_NearBall();
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                u.sm.event_NearBall();
+            }
+        }
+
+        if (t.GetType() == typeof(ScrumField))
+        {
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                if(!scrumFieldUnits.Contains(u))
+                    scrumFieldUnits.Add(u);
+            }
         }
     }
+
+    public override void Left(Triggered o, Trigger t)
+    {
+        if (t.GetType() == typeof(ScrumField))
+        {
+            Unit u = o.GetComponent<Unit>();
+            if (u != null)
+            {
+                if (scrumFieldUnits.Contains(u))
+                    scrumFieldUnits.Remove(u);
+            }
+        }
+    }
+
+    public float lastTackle = -1;
+    public void EventTackle(Unit tackler, Unit tackled)
+    {
+        lastTackle = Time.deltaTime;
+    }
+
+    public void UpdateTackle()
+    {
+        if (lastTackle >= 0)
+        {
+            // TODO cte : 2 -> temps pour checker
+            if (Time.deltaTime - lastTackle < 2)
+            {
+                lastTackle = -1;
+                int right = 0, left = 0;
+                foreach (Unit u in scrumFieldUnits)
+                {
+                    if (u.Team == Game.right)
+                        right++;
+                    else
+                        left++;
+                }
+
+                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
+                if (right >= 3 && left >= 3)
+                {
+                    Debug.Log("SCRUUUUUUMMM !!!");
+                }
+            }
+        }
+    }
+
 }

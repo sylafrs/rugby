@@ -140,4 +140,13 @@ public class Game : MonoBehaviour {
         this.left.OwnerChanged();
         this.right.OwnerChanged();       
     }
+
+    /**
+     * @author Sylvain Lafon
+     * @brief Se déclenche quand il y a plaquage
+     */
+    public void EventTackle(Unit tackler, Unit tackled)
+    {
+        Ball.EventTackle(tackler, tackled);
+    }
 }
