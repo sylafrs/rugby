@@ -11,7 +11,7 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/Game/Gamer")]
 public class Gamer : MonoBehaviour
 {
-    private static int NextGamerId = 1;
+    private static int NextGamerId = 0;
     private int id;
 
     public Team team;
