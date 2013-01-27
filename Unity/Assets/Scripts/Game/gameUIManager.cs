@@ -11,9 +11,12 @@ public class gameUIManager : MonoBehaviour {
 	private Game _game;
 	
 	public float gameTime;
+	public KeyCode resetKey;
 	
 	private float  timeElapsed;
 	private bool   over;
+	
+	
 
 	void Start () 
     {
@@ -31,6 +34,10 @@ public class gameUIManager : MonoBehaviour {
 			Debug.Log("Time out !");
 			_game.unlockCamera();
 			//stuff sur la caméra
+		}
+		
+		if(Input.GetKeyDown(resetKey)){
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 	
@@ -58,7 +65,9 @@ public class gameUIManager : MonoBehaviour {
             {
 				result = "Draw !";
 			}
-			GUI.Label(new Rect(0+offset, 0+offset, 150+offset, 150+offset), result);
+			GUI.Label(new Rect(0+offset, 0+offset, 150+offset, 150), result);
+			if(GUI.Button(new Rect(0+offset, 150+offset, 300+offset, 300),"restart"))
+				Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 }
