@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+/**
+ * @clasee GameLog
+ * @brief un log dans la fenetre de debug
+ * @author Lafon Sylvain
+ */
+[AddComponentMenu("Scripts/Debug/Game Log")]
 public class GameLog : MonoBehaviour, Debugable
 {
     Queue<string> log;

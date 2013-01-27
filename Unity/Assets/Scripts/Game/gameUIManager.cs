@@ -5,7 +5,7 @@ using System.Collections;
 /*
  *@author Maxens Dubois, Lafon Sylvain
  */
-[RequireComponent(typeof(Game))]
+[AddComponentMenu("Scripts/Game/UI Manager"), RequireComponent(typeof(Game))]
 public class gameUIManager : MonoBehaviour {
 	
 	private Game _game;

@@ -6,6 +6,7 @@ using System.Collections;
  * @brief Trigger des zones d'essai
  * @author Sylvain Lafon
  */
+[AddComponentMenu("Triggers/Zone")]
 public class Zone : TriggeringTrigger {
 
     private Team owner;
