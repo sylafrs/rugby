@@ -69,13 +69,11 @@ public struct Order  {
         return o;
     }
 
-	public static Order OrderPass(Unit unit, Vector3 direction, float pressionCapture = 1.0f)
+	public static Order OrderPass(Unit unit)
 	{
 		Order o = new Order();
 		o.type = TYPE.PASS;
 		o.target = unit;
-		o.passDirection = direction;
-		o.pressionCapture = pressionCapture;
 		return o;
 	}
 

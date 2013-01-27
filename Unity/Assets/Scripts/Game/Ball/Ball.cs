@@ -86,16 +86,18 @@ public class Ball : TriggeringTriggered {
     }
 
 	// Passe
-	public void Pass(Vector3 direction, float pressionCapture = 1.0f)
+	public void Pass(Unit target)
 	{
-		Debug.Log("On Pass pression : " + pressionCapture + " direction : " + direction);
-        Vector3 force = new Vector3(direction.x * multiplierPass.x * pressionCapture, 1 * multiplierPass.y * pressionCapture, direction.z * multiplierPass.z * pressionCapture);
+        Vector3 force = (target.transform.position - this.Owner.transform.position + new Vector3(0, 5, 0)) * 100;
         Debug.Log("--> force : " + force);
+        
+
+        Debug.Log("i pass to " + target.name);
 
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
-		this.rigidbody.AddForce(force);
+        this.rigidbody.AddForce(force);
 		Owner = null;
 	}
 
@@ -107,6 +109,8 @@ public class Ball : TriggeringTriggered {
 
     public void Taken(Unit u)
     {
+        Debug.Log("i take the ball " + u.name);
+
         this.rigidbody.useGravity = false;        
        // this.rigidbody.velocity = Vector3.zero;
         this.rigidbody.isKinematic = true;

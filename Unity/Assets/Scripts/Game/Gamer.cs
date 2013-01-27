@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using XInputDotNetPure;
 
 /**
@@ -18,9 +19,7 @@ public class Gamer : MonoBehaviour
     public Unit controlled;
     public Game game;
 	public Vector3 passDirection;
-	public float coefficientPressionCapture = 10.0f;
-	public float delayMaxOnCapture = 0.5f;
-
+	
     public InputSettings inputs;
 
 	private bool onActionCapture = false;
@@ -61,6 +60,8 @@ public class Gamer : MonoBehaviour
     bool btnDropReleased = true, btnPlaquerReleased = true;
     bool btnPassReleased = true;
 
+    List<Unit> unitsSide;
+    
 	void Update () {
         Vector3 direction = Vector3.zero;
 		
@@ -153,6 +154,7 @@ public class Gamer : MonoBehaviour
                     onActionCapture = true;
                     passDirection = this.transform.right;
                     game.Ball.transform.position = controlled.BallPlaceHolderRight.transform.position;
+                    unitsSide = controlled.Team.GetRight(controlled);
                 }
                 else if (btnPassReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
                 {
@@ -161,6 +163,7 @@ public class Gamer : MonoBehaviour
                     onActionCapture = true;
                     passDirection = -this.transform.right;
                     game.Ball.transform.position = controlled.BallPlaceHolderLeft.transform.position;
+                    unitsSide = controlled.Team.GetLeft(controlled);
                 }
                 else if (!btnPassReleased && !InputSettingsXBOX.GetButton(game.settings.XboxController.passRight, pad) && InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
                 {
@@ -169,11 +172,14 @@ public class Gamer : MonoBehaviour
                     if (controlled == game.Ball.Owner)
                     {
                         onActionCapture = false;
-                        if (timeOnActionCapture > delayMaxOnCapture)
-                            timeOnActionCapture = delayMaxOnCapture;
+                        if (timeOnActionCapture > game.settings.maxTimeHoldingPassButton)
+                            timeOnActionCapture = game.settings.maxTimeHoldingPassButton;
                         //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 
-                        controlled.Order = Order.OrderPass(controlled.ClosestAlly(), passDirection, timeOnActionCapture * coefficientPressionCapture);
+                        int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
+                        Unit u = unitsSide[unit];
+
+                        controlled.Order = Order.OrderPass(u);
                         passDirection = Vector3.zero;
                     }
                     else
@@ -189,6 +195,7 @@ public class Gamer : MonoBehaviour
                     onActionCapture = true;
                     passDirection = this.transform.right;
                     game.Ball.transform.position = controlled.BallPlaceHolderRight.transform.position;
+                    unitsSide = controlled.Team.GetRight(controlled);
                 }
 
                 else if (Input.GetKeyDown(inputs.passLeft))
@@ -196,6 +203,7 @@ public class Gamer : MonoBehaviour
                     onActionCapture = true;
                     passDirection = -this.transform.right;
                     game.Ball.transform.position = controlled.BallPlaceHolderLeft.transform.position;
+                    unitsSide = controlled.Team.GetLeft(controlled);
                 }
 
                 else if (Input.GetKeyUp(inputs.passRight) || Input.GetKeyUp(inputs.passLeft))
@@ -203,11 +211,14 @@ public class Gamer : MonoBehaviour
                     if (controlled == game.Ball.Owner)
                     {
                         onActionCapture = false;
-                        if (timeOnActionCapture > delayMaxOnCapture)
-                            timeOnActionCapture = delayMaxOnCapture;
+                        if (timeOnActionCapture > game.settings.maxTimeHoldingPassButton)
+                            timeOnActionCapture = game.settings.maxTimeHoldingPassButton;
                         //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 
-                        controlled.Order = Order.OrderPass(controlled.ClosestAlly(), passDirection, timeOnActionCapture * coefficientPressionCapture);
+                        int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
+                        Unit u = unitsSide[unit];
+
+                        controlled.Order = Order.OrderPass(u);
                         passDirection = Vector3.zero;
                     }
                     else
