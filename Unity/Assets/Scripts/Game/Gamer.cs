@@ -32,6 +32,8 @@ public class Gamer : MonoBehaviour
 	void Start(){
         canMove = true;
 
+        id = NextGamerId;
+        NextGamerId++;
         playerIndex = (PlayerIndex)id;        
 	}
 	
