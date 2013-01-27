@@ -1103,6 +1103,26 @@ Prefab:
       propertyPath: cameraGap.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.move
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.passLeft
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.passRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.drop
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.plaquer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2375,11 +2395,11 @@ MonoBehaviour:
     plaquer: 54
     passRight: 52
   XboxController:
-    move: 0
-    passLeft: 10
-    passRight: 11
-    drop: 0
-    plaquer: 1
+    move: 1
+    passLeft: 8
+    passRight: 1
+    drop: 9
+    plaquer: 0
   timePlaque: 3
   Vheight: 7.5
   Vwidth: 3
