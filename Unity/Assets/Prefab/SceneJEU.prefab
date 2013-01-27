@@ -1462,9 +1462,9 @@ MonoBehaviour:
     down: 103
     left: 102
     right: 104
-    pass: 49
-    drop: 50
-    plaquer: 51
+    pass: 52
+    drop: 53
+    plaquer: 54
   timePlaque: 3
   Vheight: 7.5
   Vwidth: 3

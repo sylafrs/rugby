@@ -46,6 +46,7 @@ public class Game : MonoBehaviour {
         p1.game = this;
         p1.team = right;
         p1.controlled = right[p1.team.nbUnits/2];
+        p1.controlled.IndicateSelected(true);
         p1.inputs = settings.inputs;
 
         //* 
@@ -122,8 +123,16 @@ public class Game : MonoBehaviour {
 
             // PATCH
             // p1.controlled = after;
-            if (after.Team == right) p1.controlled = after;
-            else if(p2 != null) p2.controlled = after;
+            if (after.Team == right)
+            {
+                p1.controlled.IndicateSelected(false);
+                p1.controlled = after;
+                p1.controlled.IndicateSelected(true);
+            }
+            else if (p2 != null)
+            {
+                p2.controlled = after;
+            }
 
             Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);
         }

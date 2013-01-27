@@ -191,6 +191,9 @@ MonoBehaviour:
   sm: {fileID: 11400002}
   BallPlaceHolder: {fileID: 100002}
   Game: {fileID: 0}
+  selectedIndicators: []
+  plaqueIndicators: []
+  NearUnits: []
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

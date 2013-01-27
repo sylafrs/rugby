@@ -19,8 +19,19 @@ public class Unit : TriggeringTriggered, Debugable
     private Order currentOrder;
     private Team team;
     public Game Game;
-      
-    public Team Team {
+    public GameObject[] selectedIndicators;
+    public GameObject[] plaqueIndicators;
+
+    public void IndicateSelected(bool enabled)
+    {
+        for (int i = 0; i < selectedIndicators.Length; i++)
+        {
+            selectedIndicators[i].renderer.enabled = enabled;
+        }
+    }
+
+    public Team Team
+    {
         get
         {
             return team;
