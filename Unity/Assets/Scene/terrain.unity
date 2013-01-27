@@ -1048,6 +1048,10 @@ Prefab:
       value: Scene
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: cameraGap.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: cameraGap.y
       value: -10
       objectReference: {fileID: 0}
