@@ -164,7 +164,8 @@ public class Ball : TriggeringTriggered {
     public float lastTackle = -1;
     public void EventTackle(Unit tackler, Unit tackled)
     {
-        lastTackle = Time.deltaTime;
+        if(lastTackle == -1)
+            lastTackle = Time.deltaTime;
     }
 
     public void UpdateTackle()
