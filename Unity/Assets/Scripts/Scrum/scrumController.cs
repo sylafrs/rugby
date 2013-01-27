@@ -9,17 +9,21 @@ public class scrumController : MonoBehaviour {
 	public GameObject camPos;
 	
 	private Game _game;
+	private Ball _ball;
 	
 	private int  playerScore;
 	private bool playerSpecial;
 	private int cpuScore;
 	private bool inScrum;
+	private	int currentFrameWait;
+	private int frameToGo;
 	
-	/** a tweaker **/
+	/**  **/
 	public int scoreTarget 		= 1000;
 	public int playerUp	   		= 15;
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
+	public int frameStart		= 30;
 		
 	/*
  	 *@author Maxens Dubois 
@@ -27,15 +31,21 @@ public class scrumController : MonoBehaviour {
 	void Start()
     {		
 		_game = gameObject.GetComponent<Game>();
+		_ball = _game.Ball;
         Init();
 	}
-
+	
+	/*
+ 	 *@author Sylvain Lafon
+ 	 */
     void Init()
     {
         playerScore = 0;
         cpuScore = 0;
+		currentFrameWait = 0;
         inScrum = false;
         playerSpecial = false;
+		frameToGo = frameStart;
     }
 	
     /*
@@ -54,30 +64,41 @@ public class scrumController : MonoBehaviour {
 		    }
 		}
 		
-		if(inScrum){	
-			if (Input.GetKeyDown(KeyCode.RightControl))
+		if(inScrum){
+			
+			currentFrameWait ++;
+			
+			if(currentFrameWait > frameStart)
 			{
-				playerUpScore(playerUp);
-				if(Random.Range(1,specialLuck) == 1){
-					playerSpecial = true;
+				if (Input.GetKeyDown(KeyCode.RightControl))
+				{
+					playerUpScore(playerUp);
+					if(Random.Range(1,specialLuck) == 1){
+						playerSpecial = true;
+					}
+			    }
+				if (Input.GetKeyDown(KeyCode.LeftControl))
+				{
+					if(playerSpecial){
+						playerUpScore(playerSpecialUp);
+						playerSpecial = false;
+					}
+			    }
+				cpuScore += Random.Range(0,4);
+				if(cpuScore > scoreTarget){
+					//cpu win
+					Debug.Log("cpu win");
+					endScrum();
 				}
-		    }
-			if (Input.GetKeyDown(KeyCode.LeftControl))
-			{
-				if(playerSpecial){
-					playerUpScore(playerSpecialUp);
-					playerSpecial = false;
-				}
-		    }
-			cpuScore += Random.Range(0,4);
-			if(cpuScore > scoreTarget){
-				//cpu win
-				Debug.Log("cpu win");
-				endScrum();
+			}else{
+				frameToGo --;
 			}
 		}
 	}
 	
+	/*
+ 	 *@author Maxens Dubois 
+ 	 */
 	void playerUpScore(int up){
 		playerScore += up;
 		if(playerScore > scoreTarget){
@@ -87,6 +108,9 @@ public class scrumController : MonoBehaviour {
 		}
 	}
 	
+	/*
+ 	 *@author Maxens Dubois 
+ 	 */
 	void endScrum(){
 		inScrum = false;
 		_game.lockCamera();
@@ -95,11 +119,15 @@ public class scrumController : MonoBehaviour {
         Init();
 	}
 	
+	/*
+ 	 *@author Maxens Dubois 
+ 	 */
 	void OnGUI(){
 		if(inScrum){
 			GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
 			GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+playerSpecial);
 			GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
+			GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
 		}
 	}
 }

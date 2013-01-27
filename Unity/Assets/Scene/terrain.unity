@@ -853,6 +853,18 @@ Prefab:
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: gameTime
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: frameStart
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2223,6 +2235,7 @@ MonoBehaviour:
   playerUp: 15
   specialLuck: 20
   playerSpecialUp: 80
+  frameStart: 200
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2234,7 +2247,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
   m_Name: 
-  gameTime: 100
+  gameTime: 10000
 --- !u!1 &2076462791
 GameObject:
   m_ObjectHideFlags: 0
