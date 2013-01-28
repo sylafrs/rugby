@@ -72,7 +72,6 @@ public class Ball : TriggeringTriggered {
         UpdateTackle();
     }
   
-	//Drop
     public void Drop()
     {              
         this.transform.parent = null;
@@ -82,9 +81,6 @@ public class Ball : TriggeringTriggered {
         Owner = null;
     }
 
-    public float ballSpeed = 3;
-
-	// Passe
 	public void Pass(Unit to)
 	{
         Unit from = this.Owner;
