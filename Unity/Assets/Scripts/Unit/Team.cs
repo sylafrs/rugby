@@ -204,7 +204,7 @@ public class Team : MonoBehaviour {
 
         if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
         {
-            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, 35 * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
+            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, Zone.transform.position.z * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
         }
        
         foreach (Unit u in units)
