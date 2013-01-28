@@ -34,6 +34,10 @@ public class scrumController : MonoBehaviour {
 	public float leftGap = 10f;
 	
 	private float zGap = 0f;
+	private float offset = 0f;
+	
+	public float IAoffset = -0.05f;
+	public float playerOffset = 0.5f;
 		
 	/*
  	 *@author Maxens Dubois 
@@ -59,6 +63,7 @@ public class scrumController : MonoBehaviour {
 		currentFrameWait = 0;
         inScrum = false;
         playerSpecial = false;
+		offset = 0f;
 		frameToGo = frameStart;
     }
 	
@@ -81,6 +86,8 @@ public class scrumController : MonoBehaviour {
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
 				
+				
+				
 				/*
 				Vector3 pos = camPos.transform.position;
 				pos.z = _ball.transform.position.z;
@@ -97,7 +104,7 @@ public class scrumController : MonoBehaviour {
 			
 			currentFrameWait ++;
 			
-			playersInline();
+			playersInline(offset);
 			
 			/*
 			Vector3 ballPos = new Vector3(_ball.transform.position.x,6f, transform.position.z);
@@ -123,6 +130,7 @@ public class scrumController : MonoBehaviour {
 					}
 			    }
 				cpuScore += Random.Range(0,4);
+				offset += IAoffset;
 				if(cpuScore > scoreTarget){
 					//cpu win
 					Debug.Log("cpu win");
@@ -157,9 +165,13 @@ public class scrumController : MonoBehaviour {
 		if(playerScore > scoreTarget){
 			//player Win !
 			Debug.Log("player win");
-			Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
+			//Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
 			endScrum();
 		}
+		offset += playerOffset;
+		//_t1.transform.Translate(new Vector3(0f,0f,1f));
+		//_t2.transform.Translate(new Vector3(0f,0f,1f));
+		//_ball.transform.Translate(new Vector3(0f,0f,0.5f));
 	}
 	
 	/*
@@ -178,7 +190,7 @@ public class scrumController : MonoBehaviour {
 	/*
  	 *@author Maxens Dubois 
  	 */
-	void playersInline(){
+	void playersInline(float offset){
 			
 		//Debug.Log("ligne !");
 		
@@ -196,7 +208,7 @@ public class scrumController : MonoBehaviour {
                 float x = 3 * dif;
 
                 u1.GetNMA().stoppingDistance = 0;
-                u1.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
+                u1.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 			
 			if(cap2 != u2){
@@ -206,7 +218,7 @@ public class scrumController : MonoBehaviour {
                 float x = 3 * dif;
 
                 u2.GetNMA().stoppingDistance = 0;
-                u2.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
+                u2.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 		}       
 	}
