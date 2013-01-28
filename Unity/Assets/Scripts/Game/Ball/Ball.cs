@@ -205,8 +205,8 @@ public class Ball : TriggeringTriggered {
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
                 if (right >= 3 && left >= 3)
                 {
-                    //goScrum = true;
-					Debug.Log("Scruuum");
+                    goScrum = true;
+					//Debug.Log("Scruuum");
                 }else{
 					//goScrum = false;
 				}

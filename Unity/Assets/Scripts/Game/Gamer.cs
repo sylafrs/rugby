@@ -31,14 +31,14 @@ public class Gamer : MonoBehaviour
 	/*
 	 * @ author Maxens Dubois
 	 */
-	void stopMove(){
+	public void stopMove(){
 		canMove = false;
 	}
 	
 	/*
 	 * @ author Maxens Dubois
 	 */
-	void enableMove(){
+	public void enableMove(){
 		canMove = true;
 	}
 	

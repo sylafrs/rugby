@@ -9,8 +9,12 @@ public class scrumController : MonoBehaviour {
 
 	public GameObject camPos;
 	
-	private Game _game;
-	private Ball _ball;
+	private Game 	_game;
+	private Ball 	_ball;
+	private Gamer 	_p1;
+	private Gamer 	_p2;
+	private Team	_t1;
+	private Team	_t2;
 	
 	private int  playerScore;
 	private bool playerSpecial;
@@ -25,14 +29,23 @@ public class scrumController : MonoBehaviour {
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
 	public int frameStart		= 30;
+	
+	public float rightGap = -27f;
+	public float leftGap = 10f;
+	
+	private float zGap = 0f;
 		
 	/*
  	 *@author Maxens Dubois 
  	 */
 	void Start()
     {		
-		_game = gameObject.GetComponent<Game>();
-		_ball = _game.Ball;
+		_game 	= gameObject.GetComponent<Game>();
+		_ball 	= _game.Ball;
+		_p1 	= _game.p1;
+		_p2	 	= _game.p2;
+		_t1		= _game.left;
+		_t2		= _game.right;
         Init();
 	}
 	
@@ -54,21 +67,44 @@ public class scrumController : MonoBehaviour {
  	 */
 	void Update () {
 		
+		
 		if(!inScrum){
 			if (_ball.getGoScrum())
 			{
 				inScrum = true;
 				_ball.setGoScrum(false);
 				_game.unlockCamera();
+				
+				_p1.stopMove();
+				_p2.stopMove();
+				
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
-				Camera.mainCamera.transform.Rotate(new Vector3(0,90,0),Space.World);
+				
+				/*
+				Vector3 pos = camPos.transform.position;
+				pos.z = _ball.transform.position.z;
+				camPos.transform.position = pos;
+				*/
+				
+				//changeZpos(0f, 0f);
 		    }
 		}
 		
 		if(inScrum){
 			
+			//changeZpos(5f, 5f);
+			
 			currentFrameWait ++;
+			
+			playersInline();
+			
+			/*
+			Vector3 ballPos = new Vector3(_ball.transform.position.x,6f, transform.position.z);
+			_ball.transform.position = ballPos;
+			*/
+			
+			Camera.mainCamera.transform.LookAt(_ball.transform);
 			
 			if(currentFrameWait > frameStart)
 			{
@@ -101,11 +137,27 @@ public class scrumController : MonoBehaviour {
 	/*
  	 *@author Maxens Dubois 
  	 */
+	void changeZpos(float rightGap, float leftGap){
+		
+		
+		Vector3 pos = _t2.transform.position;
+		pos.z = _ball.transform.position.z + rightGap;
+		_t2.transform.position = pos;
+		
+		pos = _t1.transform.position;
+		pos.z = _ball.transform.position.z + leftGap;
+		_t1.transform.position = pos;
+	}
+	
+	/*
+ 	 *@author Maxens Dubois 
+ 	 */
 	void playerUpScore(int up){
 		playerScore += up;
 		if(playerScore > scoreTarget){
 			//player Win !
 			Debug.Log("player win");
+			Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
 			endScrum();
 		}
 	}
@@ -118,8 +170,46 @@ public class scrumController : MonoBehaviour {
 		_game.lockCamera();
 		Camera.mainCamera.transform.Translate(new Vector3(-5,0,0),Space.World);
 		Camera.mainCamera.transform.Rotate(new Vector3(0,-90,0),Space.World);
+		_p1.enableMove();
+		_p2.enableMove();
         Init();
 	}
+	
+	/*
+ 	 *@author Maxens Dubois 
+ 	 */
+	void playersInline(){
+			
+		Debug.Log("ligne !");
+		
+		Unit cap1 = _t1[0];
+		Unit cap2 = _t2[0];
+		
+		cap1.Order = Order.OrderNothing();
+		cap2.Order = Order.OrderNothing();
+		
+		for(int i = 0; i < _t1.nbUnits; i++){
+			Unit u1 = _t1[i];
+			Unit u2 = _t2[i];
+			
+			if(cap1 != u1){
+				Order o 	= new Order();
+        		o.type 		= Order.TYPE.LIGNE;
+        		o.target 	= cap1;
+        		o.power 	= 3;
+				cap1.Order 	= o;
+			}
+			
+			if(cap2 != u2){
+				Order o 	= new Order();
+        		o.type 		= Order.TYPE.LIGNE;
+        		o.target 	= cap2;
+        		o.power 	= 3;
+				cap2.Order 	= o;
+			}
+		}
+	}
+	
 	
 	/*
  	 *@author Maxens Dubois 
