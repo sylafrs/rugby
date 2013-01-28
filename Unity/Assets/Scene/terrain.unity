@@ -1028,6 +1028,14 @@ Prefab:
       propertyPath: disableIAKey
       value: 105
       objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: minigameButton
+      value: 305
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400034, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: minigameSpecialButton
+      value: 306
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2627,6 +2635,8 @@ MonoBehaviour:
   specialLuck: 20
   playerSpecialUp: 80
   frameStart: 200
+  minigameButton: 305
+  minigameSpecialButton: 306
   rightGap: -27
   leftGap: 10
 --- !u!114 &2004071854

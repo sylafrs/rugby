@@ -29,6 +29,8 @@ public class scrumController : MonoBehaviour {
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
 	public int frameStart		= 30;
+	public KeyCode minigameButton;
+	public KeyCode minigameSpecialButton;
 	
 	public float rightGap = -27f;
 	public float leftGap = 10f;
@@ -78,21 +80,18 @@ public class scrumController : MonoBehaviour {
 				_p1.stopMove();
 				_game.disableIA = true;
 				
-				Camera.mainCamera.transform.position = camPos.transform.position;
-				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
-				
-				/*
 				Vector3 pos = camPos.transform.position;
 				pos.z = _ball.transform.position.z;
 				camPos.transform.position = pos;
-				*/
 				
+				Camera.mainCamera.transform.position = camPos.transform.position;
+				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
+							
 				//changeZpos(0f, 0f);
 		    }
 		}
-		
-		if(inScrum){
-			
+		else
+		{
 			//changeZpos(5f, 5f);
 			
 			currentFrameWait ++;
@@ -108,14 +107,14 @@ public class scrumController : MonoBehaviour {
 			
 			if(currentFrameWait > frameStart)
 			{
-				if (Input.GetKeyDown(KeyCode.RightControl))
+				if (Input.GetKeyDown(minigameButton))
 				{
 					playerUpScore(playerUp);
 					if(Random.Range(1,specialLuck) == 1){
 						playerSpecial = true;
 					}
 			    }
-				if (Input.GetKeyDown(KeyCode.LeftControl))
+				if (Input.GetKeyDown(minigameSpecialButton))
 				{
 					if(playerSpecial){
 						playerUpScore(playerSpecialUp);
