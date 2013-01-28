@@ -1022,7 +1022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: cpu
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: disableIAKey
@@ -1046,7 +1046,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400028, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: nbUnits
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: Vheight
@@ -1067,6 +1067,10 @@ Prefab:
     - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: XboxController.passRight
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: gameTime
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
@@ -2606,7 +2610,7 @@ MonoBehaviour:
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cameraGap: {x: 0, y: -10, z: 10}
-  cpu: 0
+  cpu: 1
   disableIAKey: 105
 --- !u!114 &2004071852
 MonoBehaviour:
@@ -2787,4 +2791,4 @@ MonoBehaviour:
   Zone: {fileID: 23915010}
   nbPoints: 0
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
-  nbUnits: 1
+  nbUnits: 7

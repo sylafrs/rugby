@@ -27,13 +27,20 @@ public class Gamer : MonoBehaviour
 	
 	private bool canMove;
     PlayerIndex playerIndex;
+
+    public static void initGamerId()
+    {
+        NextGamerId = 0;
+    }
 	
 	void Start(){
         canMove = true;
 
         id = NextGamerId;
         NextGamerId++;
-        playerIndex = (PlayerIndex)id;        
+        playerIndex = (PlayerIndex)id;
+
+        Debug.Log(playerIndex.ToString());
 	}
 	
 	/*

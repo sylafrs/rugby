@@ -55,7 +55,7 @@ public class Game : MonoBehaviour {
    	
     private bool cameraLocked;
     
-	void Start ()
+	public void Start ()
     {
         this.Log = this.gameObject.AddComponent<GameLog>();
 

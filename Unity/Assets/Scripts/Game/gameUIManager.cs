@@ -35,9 +35,11 @@ public class gameUIManager : MonoBehaviour {
 			_game.unlockCamera();
 			//stuff sur la caméra
 		}
+
+        Gamer.initGamerId();
 		
 		if(Input.GetKeyDown(resetKey)){
-			Application.LoadLevel(Application.loadedLevel);
+           	Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 	
