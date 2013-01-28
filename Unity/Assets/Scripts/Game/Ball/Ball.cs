@@ -13,6 +13,8 @@ public class Ball : TriggeringTriggered {
     public Game Game;
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
+	public float passSpeed = 40.0f;
+	public float passOffsetY = 15.0f;
 	
 	/*
 	 * @ahtor Maxens Dubois 
@@ -90,23 +92,21 @@ public class Ball : TriggeringTriggered {
 	// Passe
 	public void Pass(Unit to)
 	{
-        /*Unit from = this.Owner;
+        Unit from = this.Owner;
 
         Debug.Log("i pass to " + to.name);
-
-        Vector3 force = (to.transform.position - from.transform.position) / ballSpeed - (ballSpeed * Physics.gravity / 2f) * 10f;
-
-        Debug.Log("--> force : " + force);
-		*/
+		float distance = (to.transform.position - from.transform.position).magnitude;
+		Debug.Log(to.transform.position.z - from.transform.position.z);
+		Vector3 direction = (to.transform.position - from.transform.position);
+		direction.y += Mathf.Abs(to.Team.GetLineNumber(to, from)) * distance/2;
             
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
-        //this.rigidbody.AddForce(force);
+        this.rigidbody.AddForce(direction * passSpeed);
 		Owner = null;
         
-
-        Taken(to);
+        //Taken(to);
 	}
 
 	//Poser la balle
