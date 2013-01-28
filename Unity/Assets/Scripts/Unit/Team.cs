@@ -98,7 +98,19 @@ public class Team : MonoBehaviour {
 
         if (Game.Ball.Owner == null)
         {
-            OwnerChangedBallFree();
+            if (Game.Ball.PreviousOwner.Team != this)
+            {
+                OwnerChangedBallFree();
+            }
+            else if (Game.Ball.PreviousOwner.Team == Game.right)
+            {
+                OwnerChangedOurs();
+            }
+            else
+            {
+                OwnerChangedBallFree();
+            }
+
         }
         else if (Game.Ball.Owner.Team == this)
         {
@@ -199,8 +211,12 @@ public class Team : MonoBehaviour {
     }
 
     void OwnerChangedOurs()
-    {      
+    {
         Unit owner = Game.Ball.Owner;
+        if (owner == null)
+        {
+            owner = Game.Ball.PreviousOwner;
+        }
 
         if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
         {
@@ -211,7 +227,7 @@ public class Team : MonoBehaviour {
         {
             if (u != owner)
             {
-                u.Order = Order.OrderSupport(Game.Ball.Owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
+                u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
             }
         } 
     }

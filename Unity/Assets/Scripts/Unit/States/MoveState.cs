@@ -24,5 +24,5 @@ public class MoveState : UnitState {
             unit.GetNMA().Stop();
             unit.Order = Order.OrderNothing();
         }
-     }
+    }
 }

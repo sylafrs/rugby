@@ -941,7 +941,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
   multiplierPass: {x: 20, y: 20, z: 50}
-  passSpeed: 20
+  passSpeed: 40
   passOffsetY: 15
   ballSpeed: 3
   lastTackle: -1
@@ -1057,6 +1057,18 @@ Prefab:
     - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: Vwidth
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.move
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.passLeft
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.passRight
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
@@ -2631,9 +2643,9 @@ MonoBehaviour:
     plaquer: 54
     passRight: 52
   XboxController:
-    move: 1
-    passLeft: 8
-    passRight: 1
+    move: 2
+    passLeft: 10
+    passRight: 11
     drop: 9
     plaquer: 0
   timePlaque: 3
