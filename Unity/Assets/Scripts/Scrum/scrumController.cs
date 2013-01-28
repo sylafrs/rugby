@@ -76,7 +76,7 @@ public class scrumController : MonoBehaviour {
 				_game.unlockCamera();
 				
 				_p1.stopMove();
-				_p2.stopMove();
+				_game.disableIA = true;
 				
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
@@ -171,7 +171,7 @@ public class scrumController : MonoBehaviour {
 		Camera.mainCamera.transform.Translate(new Vector3(-5,0,0),Space.World);
 		Camera.mainCamera.transform.Rotate(new Vector3(0,-90,0),Space.World);
 		_p1.enableMove();
-		_p2.enableMove();
+		_game.disableIA = false;
         Init();
 	}
 	
@@ -180,7 +180,7 @@ public class scrumController : MonoBehaviour {
  	 */
 	void playersInline(){
 			
-		Debug.Log("ligne !");
+		//Debug.Log("ligne !");
 		
 		Unit cap1 = _t1[0];
 		Unit cap2 = _t2[0];
