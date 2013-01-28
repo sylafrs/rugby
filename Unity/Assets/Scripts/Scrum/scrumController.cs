@@ -38,6 +38,9 @@ public class scrumController : MonoBehaviour {
 	
 	public float IAoffset = -0.05f;
 	public float playerOffset = 0.5f;
+	
+	public KeyCode minigameButton;
+	public KeyCode minigameSpecialButton;
 		
 	/*
  	 *@author Maxens Dubois 
@@ -115,14 +118,14 @@ public class scrumController : MonoBehaviour {
 			
 			if(currentFrameWait > frameStart)
 			{
-				if (Input.GetKeyDown(KeyCode.RightControl))
+				if (Input.GetKeyDown(minigameButton))
 				{
 					playerUpScore(playerUp);
 					if(Random.Range(1,specialLuck) == 1){
 						playerSpecial = true;
 					}
 			    }
-				if (Input.GetKeyDown(KeyCode.LeftControl))
+				if (Input.GetKeyDown(minigameSpecialButton))
 				{
 					if(playerSpecial){
 						playerUpScore(playerSpecialUp);
