@@ -65,8 +65,11 @@ public class gameUIManager : MonoBehaviour {
             {
 				result = "Draw !";
 			}
-			GUI.Label(new Rect(0+offset, 0+offset, 150+offset, 150), result);
-			if(GUI.Button(new Rect(0+offset, 150+offset, 300+offset, 300),"restart"))
+			result += " Press the button to restart !";
+			GUIStyle style = new GUIStyle();
+			style.fontSize = 30;
+			GUI.Label(new Rect(200+offset, 0+offset, 150+offset, 150), result, style);
+			if(GUI.Button(new Rect(200+offset, 50+offset, 250+offset, 100),"restart"))
 				Application.LoadLevel(Application.loadedLevel);
 		}
 	}
