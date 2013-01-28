@@ -25,8 +25,23 @@ public class MainState : UnitState
         return true;
     }
 
+    public override void OnUpdate()
+    {
+        if (unit.Game.disableIA)
+        {
+            sm.state_change_son(this, new IdleState(sm, unit));
+            return;
+        }   
+    }
+
     public void decide()
     {
+        if (unit.Game.disableIA)
+        {
+            sm.state_change_son(this, new IdleState(sm, unit));
+            return;
+        }         
+
         switch (this.unit.Order.type)
         {
             case Order.TYPE.RIEN:

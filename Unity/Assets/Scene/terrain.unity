@@ -1016,6 +1016,18 @@ Prefab:
       propertyPath: iaEnnemie
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: disableIa
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: cpu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: disableIAKey
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2552,8 +2564,9 @@ MonoBehaviour:
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cameraGap: {x: 0, y: -10, z: 10}
-  iaEnnemie: 1
-  disableIa: 0
+  disableIA: 0
+  cpu: 1
+  disableIAKey: 105
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0

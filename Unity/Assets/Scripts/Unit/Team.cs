@@ -91,6 +91,11 @@ public class Team : MonoBehaviour {
 
     public void OwnerChanged()
     {
+        if (Game.disableIA)
+        {
+            return;
+        }
+
         if (Game.Ball.Owner == null)
         {
             OwnerChangedBallFree();

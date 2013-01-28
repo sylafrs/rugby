@@ -27,9 +27,10 @@ public class Game : MonoBehaviour {
 	
 	//camera tweaks
 	public Vector3 cameraGap;
-	
-	public bool iaEnnemie = false;
-	public KeyCode disableIa;
+
+    public bool disableIA = false;
+	public bool cpu = false;
+	public KeyCode disableIAKey;
    	
     private bool cameraLocked;
     
@@ -54,7 +55,7 @@ public class Game : MonoBehaviour {
         p1.controlled.IndicateSelected(true);
         p1.inputs = settings.inputs;
 
-        if (!iaEnnemie)
+        if (!cpu)
         {
             p2 = left.gameObject.AddComponent<Gamer>();
             p2.game = this;
@@ -76,10 +77,11 @@ public class Game : MonoBehaviour {
 
     void Update()
     {
-        if(this.cameraLocked)positionneCamera();       
-		
-		if(Input.GetKeyDown(disableIa)){
-			iaEnnemie = !iaEnnemie;
+        if(this.cameraLocked)positionneCamera();
+
+        if (Input.GetKeyDown(disableIAKey))
+        {
+            disableIA = !disableIA;
 		}
 	}
 	
