@@ -73,6 +73,7 @@ public class Gamer : MonoBehaviour
         UpdateMOVE(pad);
         UpdateTACKLE(pad);
         UpdatePASS(pad);
+        UpdateDROP(pad);
 	}
 
     void UpdatePASS(GamePadState pad)
