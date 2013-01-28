@@ -230,10 +230,14 @@ public class Team : MonoBehaviour {
        
         foreach (Unit u in units)
         {
-            if (u != owner)
+            // FIX. (TODO)
+            if (u.Order.type != Order.TYPE.CHERCHER)
             {
-                u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
-            }
+                if (u != owner)
+                {
+                    u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
+                }
+            }            
         } 
     }
 

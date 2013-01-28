@@ -164,7 +164,7 @@ public class Gamer : MonoBehaviour
                 if (unit == unitsSide.Count) unit--;
                 Unit u = unitsSide[unit];
 
-                controlled.Order = Order.OrderPass(u);
+                controlled.Order = Order.OrderPass(u);                
                 passDirection = Vector3.zero;
             }
         }

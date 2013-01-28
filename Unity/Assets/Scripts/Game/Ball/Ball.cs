@@ -91,6 +91,10 @@ public class Ball : TriggeringTriggered {
 		Vector3 direction = (positionEstimed - from.transform.position);
 		direction.y += distance / 2;
 
+        // FIX. (TODO)
+        to.Order = /* Order.OrderMove(positionEstimed, Order.TYPE_DEPLACEMENT.SPRINT); */
+                   Order.OrderFollowBall();
+
 		Debug.Log("position de to : " + to.transform.position + " position estimé après la passe : " + positionEstimed);
 
         this.transform.parent = null;

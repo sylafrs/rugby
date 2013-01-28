@@ -942,8 +942,6 @@ MonoBehaviour:
   multiplierDrop: {x: 900, y: 1050, z: 0}
   multiplierPass: {x: 20, y: 20, z: 50}
   passSpeed: 40
-  passOffsetY: 15
-  ballSpeed: 3
   lastTackle: -1
 --- !u!136 &661539567
 CapsuleCollider:

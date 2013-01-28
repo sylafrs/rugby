@@ -15,6 +15,12 @@ public class MainState : UnitState
 
     public override bool OnNearBall()
     {
+        // FIX. (TODO)
+        if (unit.Order.type == Order.TYPE.TRIANGLE)
+        {
+            return false;
+        }
+
         if (unit.Game.Ball.Owner == null)
         {
             unit.Game.Ball.Taken(unit);
