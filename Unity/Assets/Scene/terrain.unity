@@ -1044,6 +1044,18 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 11400028, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: nbUnits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: Vheight
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: Vwidth
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2623,8 +2635,8 @@ MonoBehaviour:
     drop: 9
     plaquer: 0
   timePlaque: 3
-  Vheight: 7.5
-  Vwidth: 3
+  Vheight: 12
+  Vwidth: 2
   LineSpace: 3
   maxTimeHoldingPassButton: 3
 --- !u!114 &2004071853
@@ -2763,4 +2775,4 @@ MonoBehaviour:
   Zone: {fileID: 23915010}
   nbPoints: 0
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
-  nbUnits: 7
+  nbUnits: 1
