@@ -29,8 +29,6 @@ public class scrumController : MonoBehaviour {
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
 	public int frameStart		= 30;
-	public KeyCode minigameButton;
-	public KeyCode minigameSpecialButton;
 	
 	public float rightGap = -27f;
 	public float leftGap = 10f;
@@ -80,18 +78,21 @@ public class scrumController : MonoBehaviour {
 				_p1.stopMove();
 				_game.disableIA = true;
 				
+				Camera.mainCamera.transform.position = camPos.transform.position;
+				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
+				
+				/*
 				Vector3 pos = camPos.transform.position;
 				pos.z = _ball.transform.position.z;
 				camPos.transform.position = pos;
+				*/
 				
-				Camera.mainCamera.transform.position = camPos.transform.position;
-				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
-							
 				//changeZpos(0f, 0f);
 		    }
 		}
-		else
-		{
+		
+		if(inScrum){
+			
 			//changeZpos(5f, 5f);
 			
 			currentFrameWait ++;
@@ -107,14 +108,14 @@ public class scrumController : MonoBehaviour {
 			
 			if(currentFrameWait > frameStart)
 			{
-				if (Input.GetKeyDown(minigameButton))
+				if (Input.GetKeyDown(KeyCode.RightControl))
 				{
 					playerUpScore(playerUp);
 					if(Random.Range(1,specialLuck) == 1){
 						playerSpecial = true;
 					}
 			    }
-				if (Input.GetKeyDown(minigameSpecialButton))
+				if (Input.GetKeyDown(KeyCode.LeftControl))
 				{
 					if(playerSpecial){
 						playerUpScore(playerSpecialUp);
@@ -183,33 +184,33 @@ public class scrumController : MonoBehaviour {
 		
 		Unit cap1 = _t1[0];
 		Unit cap2 = _t2[0];
-		
-		cap1.Order = Order.OrderNothing();
-		cap2.Order = Order.OrderNothing();
-		
+				
 		for(int i = 0; i < _t1.nbUnits; i++){
 			Unit u1 = _t1[i];
 			Unit u2 = _t2[i];
 			
 			if(cap1 != u1){
-				Order o 	= new Order();
-        		o.type 		= Order.TYPE.LIGNE;
-        		o.target 	= cap1;
-        		o.power 	= 3;
-				cap1.Order 	= o;
+                Vector3 tPos = cap1.transform.position;
+
+                int dif = u1.Team.GetLineNumber(u1, cap1);
+                float x = 3 * dif;
+
+                u1.GetNMA().stoppingDistance = 0;
+                u1.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
 			}
 			
 			if(cap2 != u2){
-				Order o 	= new Order();
-        		o.type 		= Order.TYPE.LIGNE;
-        		o.target 	= cap2;
-        		o.power 	= 3;
-				cap2.Order 	= o;
+                Vector3 tPos = cap2.transform.position;
+
+                int dif = u2.Team.GetLineNumber(u2, cap2);
+                float x = 3 * dif;
+
+                u2.GetNMA().stoppingDistance = 0;
+                u2.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
 			}
-		}
+		}       
 	}
-	
-	
+		
 	/*
  	 *@author Maxens Dubois 
  	 */
