@@ -941,7 +941,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  passSpeed: 110
+  passSpeed: 40
   lastTackle: -1
 --- !u!136 &661539567
 CapsuleCollider:
@@ -1022,7 +1022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: cpu
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: disableIAKey
@@ -1078,7 +1078,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: passSpeed
-      value: 110
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: multiplierDrop.x
@@ -2626,7 +2626,7 @@ MonoBehaviour:
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cameraGap: {x: 0, y: -10, z: 10}
-  cpu: 1
+  cpu: 0
   disableIAKey: 105
 --- !u!114 &2004071852
 MonoBehaviour:

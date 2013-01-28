@@ -145,7 +145,7 @@ public class Game : MonoBehaviour {
 		{
            // Camera.mainCamera.transform.position = Ball.transform.position - test;
 			Camera.mainCamera.transform.position = Ball.transform.position - cameraGap;
-			Camera.mainCamera.transform.LookAt(Ball.transform);
+		    Camera.mainCamera.transform.LookAt(Ball.transform);
 		}
 		
 		

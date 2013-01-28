@@ -187,6 +187,7 @@ public class scrumController : MonoBehaviour {
 		_game.lockCamera();
 		Camera.mainCamera.transform.Translate(new Vector3(-5,0,0),Space.World);
 		Camera.mainCamera.transform.Rotate(new Vector3(0,-90,0),Space.World);
+
 		_p1.enableMove();
 		_game.disableIA = false;
         Init();
