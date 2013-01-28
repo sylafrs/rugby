@@ -82,6 +82,8 @@ public class Game : MonoBehaviour {
         if (Input.GetKeyDown(disableIAKey))
         {
             disableIA = !disableIA;
+            this.left.OwnerChanged();
+            this.right.OwnerChanged();  
 		}
 	}
 	
