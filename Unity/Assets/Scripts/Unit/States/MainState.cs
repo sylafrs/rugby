@@ -13,6 +13,17 @@ public class MainState : UnitState
         decide();
     }
 
+    public override bool OnNearBall()
+    {
+        if (unit.Game.Ball.Owner == null)
+        {
+            unit.Game.Ball.Taken(unit);
+            return true;
+        }
+
+        return false;
+    }
+
     public override bool OnNewOrder()
     {
         decide();

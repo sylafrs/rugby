@@ -133,8 +133,11 @@ public class Gamer : MonoBehaviour
         {
             if (btnPlaquerReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.plaquer, pad))
             {
-                btnPlaquerReleased = false;
-                controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
+                btnPlaquerReleased = false;                
+                if (controlled.NearUnits.Count > 0)
+                {
+                    controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
+                }               
             }
         }
 		else if (Input.GetKeyDown(inputs.plaquer) && controlled.NearUnits.Count > 0)
@@ -165,7 +168,7 @@ public class Gamer : MonoBehaviour
                     game.Ball.transform.position = controlled.BallPlaceHolderLeft.transform.position;
                     unitsSide = controlled.Team.GetLeft(controlled);
                 }
-                else if (!btnPassReleased && !InputSettingsXBOX.GetButton(game.settings.XboxController.passRight, pad) && InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
+                else if (!btnPassReleased && !InputSettingsXBOX.GetButton(game.settings.XboxController.passRight, pad) && !InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
                 {
                     btnPassReleased = true;
 

@@ -11,17 +11,6 @@ public class FollowState : UnitState {
 
     GameObject target;
 
-    public override bool OnNearBall()
-    {
-        if (unit.Game.Ball.Owner == null)
-        {
-            unit.Game.Ball.Taken(unit);
-            return true;
-        }
-
-        return false;
-    }
-
     public override void OnEnter()
     {
         Order o = unit.Order;
