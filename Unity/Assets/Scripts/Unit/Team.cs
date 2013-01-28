@@ -67,6 +67,15 @@ public class Team : MonoBehaviour {
         }
     }
 
+    public void initPos()
+    {
+        for (int i = 0; i < nbUnits; i++)
+        {
+            Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
+            units[i].transform.position = pos;     
+        }
+    }
+
     public bool Contains(Unit unit)
     {
         bool trouve = false;
