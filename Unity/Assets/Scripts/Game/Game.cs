@@ -17,6 +17,13 @@ public class Game : MonoBehaviour {
 
     public Team right;
     public Team left;
+
+    public Team opponent(Team t)
+    {
+        if (t == right) return left;
+        if (t == left) return right;
+        return null;
+    }
        
     public Gamer p1, p2;
 

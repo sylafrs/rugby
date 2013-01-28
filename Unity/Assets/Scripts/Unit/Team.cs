@@ -220,7 +220,12 @@ public class Team : MonoBehaviour {
 
         if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
         {
-            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, Zone.transform.position.z * (right ? 1 : -1)), Order.TYPE_DEPLACEMENT.SPRINT);
+            Zone z = Game.opponent(this).Zone;
+            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z * -1), Order.TYPE_DEPLACEMENT.SPRINT);
+        }
+        else
+        {
+            owner.Order = Order.OrderNothing();
         }
        
         foreach (Unit u in units)
