@@ -86,15 +86,17 @@ public class scrumController : MonoBehaviour {
 				_p1.stopMove();
 				_game.disableIA = true;
 				
+				Vector3 pos = camPos.transform.position;
+				pos.z = _ball.transform.position.z;
+				camPos.transform.position = pos;
+				
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
 				
 				
 				
 				/*
-				Vector3 pos = camPos.transform.position;
-				pos.z = _ball.transform.position.z;
-				camPos.transform.position = pos;
+				
 				*/
 				
 				//changeZpos(0f, 0f);
