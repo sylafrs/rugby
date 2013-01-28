@@ -96,8 +96,8 @@ public class Ball : TriggeringTriggered {
 
         Vector3 force = (to.transform.position - from.transform.position) / ballSpeed - (ballSpeed * Physics.gravity / 2f) * 10f;
 
-        Debug.Log("--> force : " + force);*/
-
+        Debug.Log("--> force : " + force);
+		*/
             
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
