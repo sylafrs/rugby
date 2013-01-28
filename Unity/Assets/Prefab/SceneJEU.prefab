@@ -1402,6 +1402,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
   multiplierPass: {x: 20, y: 20, z: 50}
+  ballSpeed: 3
   lastTackle: -1
 --- !u!114 &11400014
 MonoBehaviour:
@@ -1477,6 +1478,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 11400012}
   Log: {fileID: 0}
+  cameraGap: {x: 0, y: -10, z: 10}
   iaEnnemie: 0
 --- !u!114 &11400026
 MonoBehaviour:
@@ -1509,10 +1511,17 @@ MonoBehaviour:
     drop: 53
     plaquer: 54
     passRight: 52
+  XboxController:
+    move: 1
+    passLeft: 8
+    passRight: 1
+    drop: 9
+    plaquer: 0
   timePlaque: 3
   Vheight: 7.5
   Vwidth: 3
   LineSpace: 3
+  maxTimeHoldingPassButton: 3
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1

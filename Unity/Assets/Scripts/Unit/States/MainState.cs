@@ -49,7 +49,7 @@ public class MainState : UnitState
 
 			case Order.TYPE.PASS:
 				if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Pass(unit.Order.passDirection, unit.Order.pressionCapture);
+					unit.Team.Game.Ball.Pass(unit.Order.target);
 				break;
 
             case Order.TYPE.TRIANGLE:
