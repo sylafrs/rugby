@@ -14,7 +14,6 @@ public class Ball : TriggeringTriggered {
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
 	public float passSpeed = 40.0f;
-	public float passOffsetY = 15.0f;
 	
 	/*
 	 * @ahtor Maxens Dubois 
@@ -74,16 +73,12 @@ public class Ball : TriggeringTriggered {
     }
   
 	//Drop
-	/**
-	 * TODO
-	 * Passer un vector3 résultant du capteur de pression en paramètre
-	 */
     public void Drop()
     {              
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
 		this.rigidbody.isKinematic = false;
-        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z); // 750 1050 0
+        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
         Owner = null;
     }
 
@@ -94,19 +89,20 @@ public class Ball : TriggeringTriggered {
 	{
         Unit from = this.Owner;
 
-        Debug.Log("i pass to " + to.name);
 		float distance = (to.transform.position - from.transform.position).magnitude;
-		Debug.Log(to.transform.position.z - from.transform.position.z);
-		Vector3 direction = (to.transform.position - from.transform.position);
-		direction.y +=  distance;
-            
+		float timeEstimed = distance / passSpeed;
+		Vector3 positionEstimed = to.transform.position + to.transform.forward * to.GetNMA().speed * timeEstimed;
+		Vector3 direction = (positionEstimed - from.transform.position);
+		direction.y += distance / 2;
+
+		Debug.Log("position de to : " + to.transform.position + " position estimé après la passe : " + positionEstimed);
+
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
 		this.rigidbody.useGravity = true;
         this.rigidbody.AddForce(direction * passSpeed);
 		Owner = null;
-        
-        //Taken(to);
+
 	}
 
 	//Poser la balle
@@ -120,7 +116,6 @@ public class Ball : TriggeringTriggered {
         Debug.Log("i take the ball " + u.name);
 
         this.rigidbody.useGravity = false;        
-       // this.rigidbody.velocity = Vector3.zero;
         this.rigidbody.isKinematic = true;
         this.transform.parent = u.BallPlaceHolderRight.transform;
         this.transform.localPosition = Vector3.zero;
