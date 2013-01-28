@@ -939,9 +939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 0}
-  multiplierDrop: {x: 900, y: 1050, z: 0}
-  multiplierPass: {x: 20, y: 20, z: 50}
-  passSpeed: 40
+  multiplierDrop: {x: 500, y: 1100, z: 0}
+  multiplierPass: {x: 20, y: 20, z: 200}
+  passSpeed: 110
   lastTackle: -1
 --- !u!136 &661539567
 CapsuleCollider:
@@ -1071,6 +1071,22 @@ Prefab:
     - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: gameTime
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierPass.z
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: passSpeed
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierDrop.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400012, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: multiplierDrop.y
+      value: 1100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
