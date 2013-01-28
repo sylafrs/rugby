@@ -28,7 +28,21 @@ public class Game : MonoBehaviour {
 	//camera tweaks
 	public Vector3 cameraGap;
 
-    public bool disableIA = false;
+    private bool _disableIA = false;
+    public bool disableIA
+    {
+        get
+        {
+            return _disableIA;
+        }
+        set
+        {
+            _disableIA = value;
+            this.left.OwnerChanged();
+            this.right.OwnerChanged(); 
+        }
+    }
+
 	public bool cpu = false;
 	public KeyCode disableIAKey;
    	
@@ -81,9 +95,7 @@ public class Game : MonoBehaviour {
 
         if (Input.GetKeyDown(disableIAKey))
         {
-            disableIA = !disableIA;
-            this.left.OwnerChanged();
-            this.right.OwnerChanged();  
+            disableIA = !disableIA;             
 		}
 	}
 	
