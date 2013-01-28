@@ -98,7 +98,7 @@ public class Ball : TriggeringTriggered {
 		float distance = (to.transform.position - from.transform.position).magnitude;
 		Debug.Log(to.transform.position.z - from.transform.position.z);
 		Vector3 direction = (to.transform.position - from.transform.position);
-		direction.y += Mathf.Abs(to.Team.GetLineNumber(to, from)) * distance/2;
+		direction.y +=  distance;
             
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;

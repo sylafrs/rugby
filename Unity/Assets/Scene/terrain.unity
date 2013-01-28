@@ -941,7 +941,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 900, y: 1050, z: 0}
   multiplierPass: {x: 20, y: 20, z: 50}
-  passSpeed: 40
+  passSpeed: 20
   passOffsetY: 15
   ballSpeed: 3
   lastTackle: -1
@@ -1024,7 +1024,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: cpu
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: disableIAKey
@@ -2596,7 +2596,7 @@ MonoBehaviour:
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cameraGap: {x: 0, y: -10, z: 10}
-  cpu: 1
+  cpu: 0
   disableIAKey: 105
 --- !u!114 &2004071852
 MonoBehaviour:
