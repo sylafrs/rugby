@@ -29,6 +29,7 @@ public class Game : MonoBehaviour {
 	public Vector3 cameraGap;
 	
 	public bool iaEnnemie = false;
+	public KeyCode disableIa;
    	
     private bool cameraLocked;
     
@@ -76,6 +77,10 @@ public class Game : MonoBehaviour {
     void Update()
     {
         if(this.cameraLocked)positionneCamera();       
+		
+		if(Input.GetKeyDown(disableIa)){
+			iaEnnemie = !iaEnnemie;
+		}
 	}
 	
 	/*
