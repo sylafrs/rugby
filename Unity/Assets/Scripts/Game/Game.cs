@@ -158,7 +158,7 @@ public class Game : MonoBehaviour {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-                Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
+                //Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
             }
 
             // PATCH

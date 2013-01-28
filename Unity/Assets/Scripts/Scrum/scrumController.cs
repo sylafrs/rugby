@@ -92,6 +92,7 @@ public class scrumController : MonoBehaviour {
 				
 				Camera.mainCamera.transform.position = camPos.transform.position;
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
+				Camera.mainCamera.transform.LookAt(_ball.transform);
 				
 				
 				
@@ -116,7 +117,7 @@ public class scrumController : MonoBehaviour {
 			_ball.transform.position = ballPos;
 			*/
 			
-			Camera.mainCamera.transform.LookAt(_ball.transform);
+			
 			
 			if(currentFrameWait > frameStart)
 			{
