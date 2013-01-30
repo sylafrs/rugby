@@ -8,7 +8,7 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/Game/Scrum Controller")]
 public class scrumController : MonoBehaviour {
 
-	public GameObject camPos;
+	public Camera cam;
 	
 	private Game 	_game;
 	private Ball 	_ball;
@@ -99,18 +99,17 @@ public class scrumController : MonoBehaviour {
 			{
 				inScrum = true;
 				_ball.setGoScrum(false);
-				_game.unlockCamera();
+				
 				
 				_p1.stopMove();
 				_game.disableIA = true;
 				
-				Vector3 pos = camPos.transform.position;
+				Vector3 pos = cam.transform.position;
 				pos.z = _ball.transform.position.z;
-				camPos.transform.position = pos;
-				
-				Camera.mainCamera.transform.position = camPos.transform.position;
-				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
-				Camera.mainCamera.transform.LookAt(_ball.transform);
+				cam.transform.position = pos;
+
+				cam.gameObject.SetActiveRecursively(true);
+				cam.transform.LookAt(_ball.transform);
 				
 				//changeZpos(0f, 0f);
 		    }
@@ -214,12 +213,10 @@ public class scrumController : MonoBehaviour {
  	 */
 	void endScrum(){
 		inScrum = false;
-		_game.lockCamera();
-		Camera.mainCamera.transform.Translate(new Vector3(-5,0,0),Space.World);
-		Camera.mainCamera.transform.Rotate(new Vector3(0,-90,0),Space.World);
-
+		
 		_p1.enableMove();
 		_game.disableIA = false;
+		cam.gameObject.SetActiveRecursively(false);
         Init();
 	}
 	
