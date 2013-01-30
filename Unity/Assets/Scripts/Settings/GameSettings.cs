@@ -41,15 +41,15 @@ public class InputSettings
 [System.Serializable]
 public class InputSettingsXBOX
 {
-    public XBOX_DIRECTION move = XBOX_DIRECTION.Pad;
-    public XBOX_BUTTONS passLeft = XBOX_BUTTONS.TriggerL;
-    public XBOX_BUTTONS passRight = XBOX_BUTTONS.TriggerR;
-    public XBOX_BUTTONS drop = XBOX_BUTTONS.A;
-    public XBOX_BUTTONS plaquer = XBOX_BUTTONS.B;
-	public XBOX_BUTTONS reset = XBOX_BUTTONS.Start;
-	public XBOX_BUTTONS enableIA = XBOX_BUTTONS.Back;
-	public XBOX_BUTTONS scrumNormal = XBOX_BUTTONS.LeftShoulder;
-	public XBOX_BUTTONS scrumExtra = XBOX_BUTTONS.RightShoulder;
+    public XBOX_DIRECTION move ;
+    public XBOX_BUTTONS passLeft;
+    public XBOX_BUTTONS passRight;
+    public XBOX_BUTTONS drop;
+    public XBOX_BUTTONS plaquer;
+	public XBOX_BUTTONS reset;
+	public XBOX_BUTTONS enableIA;
+	public XBOX_BUTTONS scrumNormal;
+	public XBOX_BUTTONS scrumExtra;
 
     public struct Direction
     {

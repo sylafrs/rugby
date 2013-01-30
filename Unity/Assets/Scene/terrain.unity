@@ -1062,11 +1062,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: XboxController.passLeft
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: XboxController.passRight
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: gameTime
@@ -1099,6 +1099,22 @@ Prefab:
     - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: resetKey
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.plaquer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.reset
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.enableIA
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: XboxController.scrumExtra
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
@@ -1750,7 +1766,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1549520874}
   m_Enabled: 1
   m_Radius: 15.1999998
-  m_Speed: 10
+  m_Speed: 8.5
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -2441,7 +2457,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1930335567}
   m_Enabled: 1
   m_Radius: 15.1999998
-  m_Speed: 10
+  m_Speed: 13
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -2674,13 +2690,13 @@ MonoBehaviour:
     passRight: 52
   XboxController:
     move: 2
-    passLeft: 10
-    passRight: 11
+    passLeft: 8
+    passRight: 1
     drop: 9
-    plaquer: 0
+    plaquer: 3
     reset: 7
     enableIA: 2
-    scrumNormal: 3
+    scrumNormal: 0
     scrumExtra: 5
   timePlaque: 3
   Vheight: 12
