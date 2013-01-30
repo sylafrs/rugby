@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using XInputDotNetPure;
 
 /*
  *@author Maxens Dubois, Lafon Sylvain
@@ -16,7 +16,7 @@ public class gameUIManager : MonoBehaviour {
 	private float  timeElapsed;
 	private bool   over;
 	
-	
+	private bool btnResetReleased = true;
 
 	void Start () 
     {
@@ -27,6 +27,21 @@ public class gameUIManager : MonoBehaviour {
 	
 	void Update()
     {
+		
+		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
+		
+        if (pad.IsConnected)
+        {
+            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
+            {
+                btnResetReleased = true;
+            }
+            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
+            {
+                btnResetReleased = true;
+            }
+        }
+		
 		timeElapsed += Time.deltaTime;
 		
 		if(timeElapsed > gameTime){
@@ -38,7 +53,14 @@ public class gameUIManager : MonoBehaviour {
 
         Gamer.initGamerId();
 		
-		if(Input.GetKeyDown(resetKey)){
+		
+		if(pad.IsConnected){
+			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){
+				btnResetReleased = false;
+				Application.LoadLevel(Application.loadedLevel);
+			}
+		}
+		else if(Input.GetKeyDown(resetKey)){
            	Application.LoadLevel(Application.loadedLevel);
 		}
 	}

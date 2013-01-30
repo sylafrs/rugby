@@ -42,13 +42,17 @@ public class MainState : UnitState
         return true;
     }
 
+	bool first = true;
     public override void OnUpdate()
     {
-        if (unit.Game.disableIA)
+        if (first && unit.Game.disableIA)
         {
+			first = false;
             sm.state_change_son(this, new IdleState(sm, unit));
             return;
         }   
+		if(!unit.Game.disableIA)
+			first = true;
     }
 
     public void decide()
