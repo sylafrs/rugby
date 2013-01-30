@@ -231,13 +231,13 @@ public class Team : MonoBehaviour {
         foreach (Unit u in units)
         {
             // FIX. (TODO)
-            //if (u.Order.type != Order.TYPE.CHERCHER)
-            //{
+            if (u.Order.type != Order.TYPE.CHERCHER)
+            {
                 if (u != owner)
                 {
                     u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
                 }
-            //}            
+            }            
         } 
     }
 
