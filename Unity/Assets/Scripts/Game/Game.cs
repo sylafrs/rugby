@@ -26,12 +26,22 @@ public class Game : MonoBehaviour {
         if (t == left) return right;
         return null;
     }
-       
+    
+	//a state for the camera
+	enum gameState{
+		NORMAL,
+		SCRUMING,
+		THROW_IN,
+		PASSING
+	}
+	
+	
     public Gamer p1, p2;
 
     public Ball Ball;
     public GameLog Log;
     
+	private gameState _gameState;
     private Team Owner;
 	private bool btnIaReleased = true;
 	
