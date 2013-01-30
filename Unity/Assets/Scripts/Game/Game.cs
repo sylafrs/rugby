@@ -13,6 +13,7 @@ using XInputDotNetPure;
 public class Game : MonoBehaviour {
 
     public GameSettings settings;
+	public CameraManager cameraManager;
 
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
@@ -45,10 +46,6 @@ public class Game : MonoBehaviour {
     private Team Owner;
 	private bool btnIaReleased = true;
 	
-	//camera tweaks
-	public Vector3 cameraGap;
-	public Vector3 cameraRotation;
-
     private bool _disableIA = false;
     public bool disableIA
     {
@@ -105,20 +102,12 @@ public class Game : MonoBehaviour {
         Ball.transform.parent = p1.controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.controlled;        
-       
-        Camera.mainCamera.transform.rotation = Quaternion.Euler(cameraRotation);
-		Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
-
+      
 		this.cameraLocked = true;
     }
 
     void Update()
-    {
-		if(tweakMode){
-			Camera.mainCamera.transform.rotation = Quaternion.Euler(cameraRotation);
-			Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
-		}
-		
+    {		
 		GamePadState pad = GamePad.GetState(p1.playerIndex); 
 		if (pad.IsConnected)
         {			
@@ -165,14 +154,13 @@ public class Game : MonoBehaviour {
 	
 
     public void OwnerChanged(Unit before, Unit after)
-    {
-        if (after != null)
+    {		
+		if (after != null)
         {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-				Camera.mainCamera.transform.position = Ball.Owner.transform.position + cameraGap;
-                Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
+				cameraManager.OwnerChanged();
             }
 
             // PATCH

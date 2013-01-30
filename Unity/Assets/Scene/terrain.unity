@@ -675,7 +675,7 @@ Renderer:
   m_GameObject: {fileID: 518774969}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
@@ -1164,15 +1164,59 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400036, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: offset.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400036, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: offset.y
-      value: 20
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 11400036, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: offset.z
-      value: 10
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: .246477053
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .0499865487
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -.0127307959
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .967774928
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: rotation.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.62228012
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .129661873
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalScale.z
+      value: .150470257
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: .150470257
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -9.6739254
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
@@ -2028,9 +2072,9 @@ Transform:
   m_PrefabParentObject: {fileID: 400042, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 1086098494}
   m_GameObject: {fileID: 1694633019}
-  m_LocalRotation: {x: .246805623, y: 0, z: 0, w: .969065011}
-  m_LocalPosition: {x: 0, y: 16.9099998, z: -9.72999954}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .246477053, y: .0499865487, z: -.0127307959, w: .967774928}
+  m_LocalPosition: {x: 0, y: 3.62228012, z: -9.6739254}
+  m_LocalScale: {x: .150470257, y: .129661873, z: .150470257}
   m_Children: []
   m_Father: {fileID: 2004071850}
 --- !u!114 &1694633025
@@ -2056,8 +2100,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
   m_Name: 
-  offset: {x: 20, y: 20, z: 10}
-  rotation: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -25, z: 13}
+  rotation: {x: 30, y: 0, z: 0}
   tweakMode: 0
 --- !u!1 &1763318296
 GameObject:
@@ -2558,6 +2602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
   settings: {fileID: 2004071852}
+  cameraManager: {fileID: 0}
   limiteTerrainNordEst: {fileID: 1829991012}
   limiteTerrainSudOuest: {fileID: 1852343968}
   right: {fileID: 293398129}
@@ -2566,8 +2611,6 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
-  cameraGap: {x: 0, y: -20, z: 10}
-  cameraRotation: {x: 0, y: 0, z: 0}
   cpu: 1
   disableIAKey: 105
   tweakMode: 0

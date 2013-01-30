@@ -26,7 +26,7 @@ public class scrumController : MonoBehaviour {
 	
 	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
-	/**  **/
+	/** tweak session **/
 	public int scoreTarget 		= 1000;
 	public int playerUp	   		= 15;
 	public int specialLuck 		= 20;
@@ -64,13 +64,13 @@ public class scrumController : MonoBehaviour {
  	 */
     void Init()
     {
-        playerScore = 0;
-        cpuScore = 0;
+        playerScore		 = 0;
+        cpuScore 		 = 0;
 		currentFrameWait = 0;
-        inScrum = false;
-        playerSpecial = false;
-		offset = 0f;
-		frameToGo = frameStart;
+        inScrum 		 = false;
+        playerSpecial    = false;
+		offset           = 0f;
+		frameToGo 		 = frameStart;
     }
 	
 	

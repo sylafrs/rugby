@@ -16,16 +16,34 @@ public class GameCamera : MonoBehaviour {
 	public Vector3 	rotation;
 	public bool		tweakMode;
 	
+	public Ball Ball {
+		get{
+			return cameraManager.game.Ball;	
+		}
+		set {}
+	}
+	
+	public Unit BallOwner {
+		get{
+			return Ball.Owner;	
+		}
+		set {}
+	}
 	
 	void Start() {
 		if(cameraManager == null) return;
 		
+		this.transform.rotation = Quaternion.Euler(rotation);
+		this.transform.position = BallOwner.transform.position - offset;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(cameraManager == null) return;
-			
+		
+		if(tweakMode){
+			this.transform.rotation = Quaternion.Euler(rotation);
+		}
 	 	Vector3 realCameraGap = new Vector3(
             offset.x * this.transform.forward.x,
             offset.y * this.transform.forward.y,
@@ -35,7 +53,7 @@ public class GameCamera : MonoBehaviour {
 		Vector3 cam = this.transform.position;
 
         if(cameraManager.game.Ball.Owner){
-          this.transform.position = cameraManager.game.Ball.Owner.transform.position + realCameraGap;
+          this.transform.position = BallOwner.transform.position + realCameraGap;
 			//Camera.mainCamera.transform.LookAt(Ball.Owner.transform);
 		}
         else
@@ -45,5 +63,10 @@ public class GameCamera : MonoBehaviour {
 		}
 
 		Debug.DrawLine(cam, this.transform.position, Color.red, 100);
+	}
+	
+	public void OwnerChanged() {	
+		Camera.mainCamera.transform.position = BallOwner.transform.position + offset;
+        Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);	
 	}
 }

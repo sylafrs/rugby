@@ -17,4 +17,9 @@ public class CameraManager : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	public void OwnerChanged()
+    {	
+		gameCamera.OwnerChanged();
+	}
 }
