@@ -37,6 +37,7 @@ public class Game : MonoBehaviour {
 	
 	//camera tweaks
 	public Vector3 cameraGap;
+	public Vector3 cameraRotation;
 
     private bool _disableIA = false;
     public bool disableIA
@@ -55,6 +56,7 @@ public class Game : MonoBehaviour {
 
 	public bool cpu = false;
 	public KeyCode disableIAKey;
+	public bool tweakMode;
    	
     private bool cameraLocked;
     
@@ -94,7 +96,7 @@ public class Game : MonoBehaviour {
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.controlled;        
        
-        Camera.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(28.57f, 0f, 0f));
+        Camera.mainCamera.transform.rotation = Quaternion.Euler(cameraRotation);
 		Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
 
 		this.cameraLocked = true;
@@ -102,6 +104,11 @@ public class Game : MonoBehaviour {
 
     void Update()
     {
+		if(tweakMode){
+			Camera.mainCamera.transform.rotation = Quaternion.Euler(cameraRotation);
+			Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
+		}
+		
 		GamePadState pad = GamePad.GetState(p1.playerIndex); 
 		if (pad.IsConnected)
         {			
