@@ -64,7 +64,8 @@ public class Gamer : MonoBehaviour
 		return canMove;
 	}
 
-    bool btnDropReleased = true, btnPlaquerReleased = true;
+    bool btnDropReleased = true;
+	bool btnPlaquerReleased = true;
     bool btnPassReleased = true;
 
     List<Unit> unitsSide;
