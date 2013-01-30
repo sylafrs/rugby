@@ -889,7 +889,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .332199097, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
@@ -1658,7 +1658,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 11400012}
   Log: {fileID: 0}
-  cameraGap: {x: 0, y: -10, z: 10}
+  cameraGap: {x: 0, y: -20, z: 10}
   cpu: 1
   disableIAKey: 105
 --- !u!114 &11400026
