@@ -365,7 +365,6 @@ GameObject:
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400020}
-  - 114: {fileID: 11400036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -465,7 +464,6 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400034}
   - 114: {fileID: 11400032}
-  - 114: {fileID: 11400038}
   m_Layer: 0
   m_Name: SceneJEU
   m_TagString: Untagged
@@ -501,7 +499,6 @@ GameObject:
   - 124: {fileID: 12400002}
   - 92: {fileID: 9200002}
   - 81: {fileID: 8100002}
-  - 114: {fileID: 11400040}
   m_Layer: 0
   m_Name: Scrum Camera
   m_TagString: Untagged
@@ -1661,9 +1658,9 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 11400012}
   Log: {fileID: 0}
-  cameraGap: {x: 0, y: -20, z: 10}
-  cameraRotation: {x: 0, y: 0, z: 0}
-  cpu: 1
+  cameraGap: {x: 0, y: -15, z: 11}
+  cameraRotation: {x: 25, y: 0, z: 0}
+  cpu: 0
   disableIAKey: 105
   tweakMode: 0
 --- !u!114 &11400026
@@ -1777,39 +1774,6 @@ MonoBehaviour:
   playerOffset: .5
   minigameButton: 305
   minigameSpecialButton: 306
---- !u!114 &11400036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
-  m_Name: 
---- !u!114 &11400038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}
-  m_Name: 
-  game: {fileID: 11400024}
-  gameCamera: {fileID: 11400036}
-  scrumCamera: {fileID: 11400040}
---- !u!114 &11400040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec5efc74d5ee75e4c96aca61bf2eec11, type: 3}
-  m_Name: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
