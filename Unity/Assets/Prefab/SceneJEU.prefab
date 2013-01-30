@@ -1787,6 +1787,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
   m_Name: 
+  offset: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  tweakMode: 0
 --- !u!114 &11400038
 MonoBehaviour:
   m_ObjectHideFlags: 1

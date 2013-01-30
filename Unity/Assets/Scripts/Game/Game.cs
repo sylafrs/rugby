@@ -127,10 +127,7 @@ public class Game : MonoBehaviour {
 				 btnIaReleased = true;
             }
         }
-		
-	
-        if(this.cameraLocked)positionneCamera();
-		
+			
 		if(pad.IsConnected) {
 			if(btnIaReleased && InputSettingsXBOX.GetButton(this.settings.XboxController.enableIA, pad)) {
 				btnIaReleased = false;				
@@ -165,28 +162,7 @@ public class Game : MonoBehaviour {
 		this.cameraLocked = true;
 	}
 	
-    void positionneCamera()
-    {
-        Vector3 realCameraGap = new Vector3(
-            cameraGap.x * Camera.mainCamera.transform.forward.x,
-            cameraGap.y * Camera.mainCamera.transform.forward.y,
-            -cameraGap.z * Camera.mainCamera.transform.forward.z
-        );
-
-		Vector3 cam = Camera.mainCamera.transform.position;
-
-        if(Ball.Owner){
-          Camera.mainCamera.transform.position = Ball.Owner.transform.position + realCameraGap;
-			//Camera.mainCamera.transform.LookAt(Ball.Owner.transform);
-		}
-        else
-		{
-          Camera.mainCamera.transform.position = Ball.transform.position + realCameraGap;
-		    //Camera.mainCamera.transform.LookAt(Ball.transform);
-		}
-
-		Debug.DrawLine(cam, Camera.mainCamera.transform.position, Color.red, 100);
-    }
+	
 
     public void OwnerChanged(Unit before, Unit after)
     {

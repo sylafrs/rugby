@@ -58,11 +58,11 @@ public class Team : MonoBehaviour {
             Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
 
             GameObject o = GameObject.Instantiate(Prefab_model, pos, Quaternion.identity) as GameObject;
-            units[i] = o.GetComponent<Unit>();
+            units[i] = o.GetComponent<Unit>();			
+            units[i].Game = Game;
             units[i].name = Name + " " + (i+1).ToString("D2");
             units[i].transform.parent = this.transform;
             units[i].Team = this;
-            units[i].Game = Game;
             //units[i].renderer.material.color = Color;           
         }
     }

@@ -20,6 +20,7 @@ public class rotateMe : MonoBehaviour {
 
 	float remainingDegres = 0;
 	Vector3 axis;
+	//Vector2
 	float degresPerSecond;
 	//Vector3 center;
 

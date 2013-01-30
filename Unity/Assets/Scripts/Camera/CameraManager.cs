@@ -9,7 +9,8 @@ public class CameraManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		gameCamera.cameraManager = this;
+		
 	}
 	
 	// Update is called once per frame
