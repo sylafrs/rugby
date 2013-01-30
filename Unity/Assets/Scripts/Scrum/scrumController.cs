@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 /*
  *@author Maxens Dubois 
@@ -22,6 +23,8 @@ public class scrumController : MonoBehaviour {
 	private bool inScrum;
 	private	int currentFrameWait;
 	private int frameToGo;
+	
+	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
 	/**  **/
 	public int scoreTarget 		= 1000;
@@ -70,11 +73,26 @@ public class scrumController : MonoBehaviour {
 		frameToGo = frameStart;
     }
 	
+	
     /*
  	 *@author Maxens Dubois 
  	 */
 	void Update () {
 		
+		GamePadState pad = GamePad.GetState(_p1.playerIndex); 
+		
+        if (pad.IsConnected)
+        {
+            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumNormal, pad))
+            {
+                btnScrumNormalReleased = true;
+            }
+            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumExtra, pad))
+            {
+                btnScrumSpecialReleased = true;
+            }
+        }
+    		
 		
 		if(!inScrum){
 			if (_ball.getGoScrum())
@@ -94,12 +112,6 @@ public class scrumController : MonoBehaviour {
 				Camera.mainCamera.transform.Translate(new Vector3(5,0,0),Space.World);
 				Camera.mainCamera.transform.LookAt(_ball.transform);
 				
-				
-				
-				/*
-				
-				*/
-				
 				//changeZpos(0f, 0f);
 		    }
 		}
@@ -109,26 +121,39 @@ public class scrumController : MonoBehaviour {
 			//changeZpos(5f, 5f);
 			
 			currentFrameWait ++;
-			
-			playersInline(offset);
-			
-			/*
-			Vector3 ballPos = new Vector3(_ball.transform.position.x,6f, transform.position.z);
-			_ball.transform.position = ballPos;
-			*/
-			
-			
-			
+			playersInline(offset);	
 			if(currentFrameWait > frameStart)
 			{
-				if (Input.GetKeyDown(minigameButton))
+				if(pad.IsConnected) {
+					if(btnScrumNormalReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumNormal, pad)) {
+						btnScrumNormalReleased = false;
+						
+						playerUpScore(playerUp);
+						if(Random.Range(1,specialLuck) == 1){
+							playerSpecial = true;
+						}
+					}
+				}
+				else if (Input.GetKeyDown(minigameButton))
 				{
 					playerUpScore(playerUp);
 					if(Random.Range(1,specialLuck) == 1){
 						playerSpecial = true;
 					}
 			    }
-				if (Input.GetKeyDown(minigameSpecialButton))
+				
+				
+				if(pad.IsConnected) {
+					if(btnScrumSpecialReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumExtra, pad)) {
+						btnScrumSpecialReleased = false;
+						
+						if(playerSpecial){
+							playerUpScore(playerSpecialUp);
+							playerSpecial = false;
+						}
+					}
+				}
+				else if (Input.GetKeyDown(minigameSpecialButton))
 				{
 					if(playerSpecial){
 						playerUpScore(playerSpecialUp);
@@ -146,6 +171,10 @@ public class scrumController : MonoBehaviour {
 				frameToGo --;
 			}
 		}
+	}
+	
+	public bool isInScrum() {
+		return inScrum;
 	}
 	
 	/*

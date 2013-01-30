@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
+
 
 /**
  * @class Game
@@ -31,6 +33,7 @@ public class Game : MonoBehaviour {
     public GameLog Log;
     
     private Team Owner;
+	private bool btnIaReleased = true;
 	
 	//camera tweaks
 	public Vector3 cameraGap;
@@ -98,9 +101,26 @@ public class Game : MonoBehaviour {
 
     void Update()
     {
+		GamePadState pad = GamePad.GetState(p1.playerIndex); 
+		if (pad.IsConnected)
+        {			
+            if (!btnIaReleased && !InputSettingsXBOX.GetButton(this.settings.XboxController.enableIA, pad))
+            {
+				 btnIaReleased = true;
+            }
+        }
+		
+	
         if(this.cameraLocked)positionneCamera();
-
-        if (Input.GetKeyDown(disableIAKey))
+		
+		if(pad.IsConnected) {
+			if(btnIaReleased && InputSettingsXBOX.GetButton(this.settings.XboxController.enableIA, pad)) {
+				btnIaReleased = false;				
+				disableIA = !disableIA; 
+			}
+		} 
+		
+		else if (Input.GetKeyDown(disableIAKey))
         {
             disableIA = !disableIA;             
 		}
@@ -129,13 +149,6 @@ public class Game : MonoBehaviour {
 	
     void positionneCamera()
     {
-        // Synopsis : Positionne la caméra derrière le joueur sélectionné par le joueur courant.
-        Vector3 test = new Vector3(
-            cameraGap.x * Camera.mainCamera.transform.forward.x,
-            cameraGap.y * Camera.mainCamera.transform.forward.y,
-            -cameraGap.z * Camera.mainCamera.transform.forward.z
-        );
-
         if(Ball.Owner){
            // Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
 			Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;

@@ -26,7 +26,7 @@ public class Gamer : MonoBehaviour
 	private float timeOnActionCapture = 0.0f;
 	
 	private bool canMove;
-    PlayerIndex playerIndex;
+    public PlayerIndex playerIndex;
 
     public static void initGamerId()
     {

@@ -9,7 +9,7 @@ public class IdleState : UnitState {
 
     public override void OnEnter()
     {
-        //unit.GetNMA().Stop();
+		unit.GetNMA().Stop();
     }
     
 }

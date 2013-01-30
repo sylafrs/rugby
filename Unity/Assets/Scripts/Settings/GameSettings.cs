@@ -46,6 +46,10 @@ public class InputSettingsXBOX
     public XBOX_BUTTONS passRight = XBOX_BUTTONS.TriggerR;
     public XBOX_BUTTONS drop = XBOX_BUTTONS.A;
     public XBOX_BUTTONS plaquer = XBOX_BUTTONS.B;
+	public XBOX_BUTTONS reset = XBOX_BUTTONS.Start;
+	public XBOX_BUTTONS enableIA = XBOX_BUTTONS.Back;
+	public XBOX_BUTTONS scrumNormal = XBOX_BUTTONS.LeftShoulder;
+	public XBOX_BUTTONS scrumExtra = XBOX_BUTTONS.RightShoulder;
 
     public struct Direction
     {

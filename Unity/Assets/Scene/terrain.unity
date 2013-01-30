@@ -1022,7 +1022,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: cpu
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400024, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: disableIAKey
@@ -1095,6 +1095,10 @@ Prefab:
     - target: {fileID: 400058, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
       propertyPath: m_LocalPosition.x
       value: -4.86128235
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: resetKey
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
@@ -2634,7 +2638,7 @@ MonoBehaviour:
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cameraGap: {x: 0, y: -10, z: 10}
-  cpu: 0
+  cpu: 1
   disableIAKey: 105
 --- !u!114 &2004071852
 MonoBehaviour:
@@ -2674,6 +2678,10 @@ MonoBehaviour:
     passRight: 11
     drop: 9
     plaquer: 0
+    reset: 7
+    enableIA: 2
+    scrumNormal: 3
+    scrumExtra: 5
   timePlaque: 3
   Vheight: 12
   Vwidth: 2
@@ -2714,7 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
   m_Name: 
   gameTime: 100
-  resetKey: 0
+  resetKey: 32
 --- !u!1 &2076462791
 GameObject:
   m_ObjectHideFlags: 0

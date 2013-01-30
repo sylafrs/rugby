@@ -59,8 +59,13 @@ public struct Order  {
         o.deplacement = type;
         return o;
     }
+	
+	public static Order OrderDrop(Unit unit)
+    {
+		return OrderDrop(unit, 1.0f);
+	}
 
-    public static Order OrderDrop(Unit unit, float pressionCapture = 1.0f)
+    public static Order OrderDrop(Unit unit, float pressionCapture)
     {
         Order o = new Order();
         o.type = TYPE.DROP;
