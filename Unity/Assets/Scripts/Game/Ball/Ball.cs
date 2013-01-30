@@ -112,19 +112,19 @@ public class Ball : TriggeringTriggered {
     }
 
     public void Taken(Unit u)
-    {
-        Debug.Log("i take the ball " + u.name);
+    {	
+		Debug.Log("i take the ball " + u.name);
 
-        this.rigidbody.useGravity = false;        
-        this.rigidbody.isKinematic = true;
-        this.transform.parent = u.BallPlaceHolderRight.transform;
-        this.transform.localPosition = Vector3.zero;
+		this.rigidbody.useGravity = false;
+		this.rigidbody.isKinematic = true;
+		this.transform.parent = u.BallPlaceHolderRight.transform;
+		this.transform.localPosition = Vector3.zero;
 
-        if (Owner != u)
-        {
-            Owner = u;            
-        }
-    }
+		if (Owner != u)
+		{
+			Owner = u;
+		}
+	}
 
     public void setPosition(Vector3 v)
     {
@@ -137,9 +137,9 @@ public class Ball : TriggeringTriggered {
         this.transform.position = v;
         this.rigidbody.useGravity = true;
         this.rigidbody.isKinematic = false;
-        this.rigidbody.velocity = Vector3.zero;       
+        this.rigidbody.velocity = Vector3.zero;
         this.transform.rotation = Quaternion.identity;
-        this.Owner = null;         
+        this.Owner = null;
     }
 
     List<Unit> scrumFieldUnits = new List<Unit>();

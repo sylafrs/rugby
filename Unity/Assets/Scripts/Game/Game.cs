@@ -92,7 +92,8 @@ public class Game : MonoBehaviour {
         Ball.Owner = p1.controlled;        
        
         Camera.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(28.57f, 0f, 0f));
-		
+		Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
+
 		this.cameraLocked = true;
     }
 
@@ -130,25 +131,25 @@ public class Game : MonoBehaviour {
     void positionneCamera()
     {
         // Synopsis : Positionne la caméra derrière le joueur sélectionné par le joueur courant.
-        Vector3 test = new Vector3(
+		Vector3 realCameraGap = new Vector3(
             cameraGap.x * Camera.mainCamera.transform.forward.x,
             cameraGap.y * Camera.mainCamera.transform.forward.y,
             -cameraGap.z * Camera.mainCamera.transform.forward.z
         );
 
+		Vector3 cam = Camera.mainCamera.transform.position;
+
         if(Ball.Owner){
-           // Camera.mainCamera.transform.position = Ball.Owner.transform.position - test;
-			Camera.mainCamera.transform.position = Ball.Owner.transform.position - cameraGap;
-			Camera.mainCamera.transform.LookAt(Ball.Owner.transform);
+          Camera.mainCamera.transform.position = Ball.Owner.transform.position + realCameraGap;
+			//Camera.mainCamera.transform.LookAt(Ball.Owner.transform);
 		}
         else
 		{
-           // Camera.mainCamera.transform.position = Ball.transform.position - test;
-			Camera.mainCamera.transform.position = Ball.transform.position - cameraGap;
-		    Camera.mainCamera.transform.LookAt(Ball.transform);
+          Camera.mainCamera.transform.position = Ball.transform.position + realCameraGap;
+		    //Camera.mainCamera.transform.LookAt(Ball.transform);
 		}
-		
-		
+
+		Debug.DrawLine(cam, Camera.mainCamera.transform.position, Color.red, 100);
     }
 
     public void OwnerChanged(Unit before, Unit after)
@@ -158,7 +159,8 @@ public class Game : MonoBehaviour {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-                //Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
+				Camera.mainCamera.transform.position = Ball.Owner.transform.position + cameraGap;
+                Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
             }
 
             // PATCH
