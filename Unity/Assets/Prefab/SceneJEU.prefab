@@ -1658,9 +1658,11 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 11400012}
   Log: {fileID: 0}
-  cameraGap: {x: 0, y: -20, z: 10}
-  cpu: 1
+  cameraGap: {x: 0, y: -15, z: 11}
+  cameraRotation: {x: 25, y: 0, z: 0}
+  cpu: 0
   disableIAKey: 105
+  tweakMode: 0
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
