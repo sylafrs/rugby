@@ -208,6 +208,9 @@ public class Game : MonoBehaviour {
      */
     public void EventTackle(Unit tackler, Unit tackled)
     {
-        Ball.EventTackle(tackler, tackled);
+		if (tackled != Ball.Owner)
+		{			
+			Ball.EventTackle(tackler, tackled);
+		}
     }
 }

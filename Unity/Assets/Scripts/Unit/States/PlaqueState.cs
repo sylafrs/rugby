@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /**
   * @class PlaqueState 
   * @brief Etat d'une unité plaquée
@@ -18,6 +20,12 @@ class PlaqueState : UnitState
         {
             unit.Game.Ball.Put();
         }
+
+		if(unit.Team == unit.Game.left)
+		foreach (var mat in unit.renderer.materials)
+		{
+			mat.color = Color.yellow;
+		}
     }
 
     public override void OnUpdate()
@@ -28,5 +36,14 @@ class PlaqueState : UnitState
             sm.state_change_me(this, new MainState(sm, unit));
         }
     }
+
+	public override void OnLeave()
+	{
+		if (unit.Team == unit.Game.left)
+		foreach (var mat in unit.renderer.materials)
+		{
+			mat.color = Color.red;
+		}
+	}
 }
 
