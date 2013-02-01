@@ -45,7 +45,7 @@ public class MainState : UnitState
 	bool first = true;
     public override void OnUpdate()
     {
-        if (first && unit.Game.disableIA)
+	    if (first && unit.Game.disableIA)
         {
 			first = false;
             sm.state_change_son(this, new IdleState(sm, unit));

@@ -48,6 +48,7 @@ public class Game : MonoBehaviour {
 	//camera tweaks
 	public Vector3 cameraGap;
 	public Vector3 cameraRotation;
+	public CameraManager cameraManager;
 
     private bool _disableIA = false;
     public bool disableIA
@@ -171,8 +172,7 @@ public class Game : MonoBehaviour {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-				Camera.mainCamera.transform.position = Ball.Owner.transform.position + cameraGap;
-                Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);
+				cameraManager.OnOwnerChange();
             }
 
             // PATCH
