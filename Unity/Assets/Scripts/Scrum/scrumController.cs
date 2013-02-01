@@ -26,7 +26,7 @@ public class scrumController : MonoBehaviour {
 	
 	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
-	/**  **/
+	/** tweak session **/
 	public int scoreTarget 		= 1000;
 	public int playerUp	   		= 15;
 	public int specialLuck 		= 20;
@@ -64,13 +64,13 @@ public class scrumController : MonoBehaviour {
  	 */
     void Init()
     {
-        playerScore = 0;
-        cpuScore = 0;
+        playerScore		 = 0;
+        cpuScore 		 = 0;
 		currentFrameWait = 0;
-        inScrum = false;
-        playerSpecial = false;
-		offset = 0f;
-		frameToGo = frameStart;
+        inScrum 		 = false;
+        playerSpecial    = false;
+		offset           = 0f;
+		frameToGo 		 = frameStart;
     }
 	
 	
@@ -103,21 +103,11 @@ public class scrumController : MonoBehaviour {
 				
 				_p1.stopMove();
 				_game.disableIA = true;
-				
-				Vector3 pos = cam.transform.position;
-				pos.z = _ball.transform.position.z;
-				cam.transform.position = pos;
-
-				cam.gameObject.SetActiveRecursively(true);
-				cam.transform.LookAt(_ball.transform);
-				
-				//changeZpos(0f, 0f);
+				_game.cameraManager.OnScrum(true);
 		    }
 		}
 		
 		if(inScrum){
-			
-			//changeZpos(5f, 5f);
 			
 			currentFrameWait ++;
 			playersInline(offset);	
@@ -216,8 +206,8 @@ public class scrumController : MonoBehaviour {
 		
 		_p1.enableMove();
 		_game.disableIA = false;
-		cam.gameObject.SetActiveRecursively(false);
-        Init();
+		_game.cameraManager.OnScrum(false);
+		Init();
 	}
 	
 	/*

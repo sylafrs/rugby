@@ -33,7 +33,7 @@ public class Ball : TriggeringTriggered {
             {
                 PreviousOwner = _owner;
                 _owner = value;
-                Game.OwnerChanged(_owner, value);
+                Game.OnOwnerChanged(_owner, value);
             }         
         }
     }
@@ -95,7 +95,7 @@ public class Ball : TriggeringTriggered {
         to.Order = /* Order.OrderMove(positionEstimed, Order.TYPE_DEPLACEMENT.SPRINT); */
                    Order.OrderFollowBall();
 
-		Debug.Log("position de to : " + to.transform.position + " position estimé après la passe : " + positionEstimed);
+		Debug.Log("position de to : " + to.transform.position + " position estimï¿½ aprï¿½s la passe : " + positionEstimed);
 
         this.transform.parent = null;
         this.rigidbody.isKinematic = false;
