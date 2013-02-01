@@ -20,12 +20,12 @@ public class ScrumCamera : MonoBehaviour {
 	}
 	
 	public void Activate() {
-		/*
+		
+		
 		Vector3 pos = this.transform.position;
-		pos.z = _ball.transform.position.z;
-		cam.transform.position = pos;
-		cam.gameObject.SetActiveRecursively(true);
-		cam.transform.LookAt(_ball.transform);
-		*/
+		pos.z = _cm.game.Ball.transform.position.z;
+		this.transform.position = pos;
+		
+		this.transform.LookAt(_cm.game.Ball.transform);
 	}
 }
