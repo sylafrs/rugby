@@ -24,8 +24,10 @@ public class CameraManager : MonoBehaviour {
 	}
 	
 	public void OnScrum(bool active) {
+		/*
 		scrumCamera.gameObject.SetActive(active);
 		if(active)
 			scrumCamera.Activate();
+			*/
 	}
 }

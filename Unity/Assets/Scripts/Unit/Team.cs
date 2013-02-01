@@ -89,7 +89,7 @@ public class Team : MonoBehaviour {
         return trouve;
     }
 
-    public void OwnerChanged()
+    public void OnOwnerChanged()
     {
         if (Game.disableIA)
         {

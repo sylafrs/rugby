@@ -12,14 +12,19 @@ public class rotateMe : MonoBehaviour {
 	Vector3 axis;
 	float angle;
 	float t;
-	public float seconds = 1;
+	public  float seconds = 1;
+	private float lastAngle;
+	
 	
 	public void BeginRotation(Vector3 axis, float angle)
 	{
 		this.axis = axis;
-		this.angle += Mathf.Deg2Rad * angle;
+		this.angle = Mathf.Deg2Rad * angle;
 		t = 0;
+		lastAngle = 0;
 	}
+	
+	
 
 	void Update () 
 	{		
@@ -27,6 +32,8 @@ public class rotateMe : MonoBehaviour {
 		if(t > seconds)
 			t = seconds;
 		
-		this.transform.RotateAround(axis, Mathf.LerpAngle(0, angle, t/seconds));	
+		float angleFromZero = Mathf.LerpAngle(0, angle, t/seconds);
+		this.transform.RotateAround(axis, angleFromZero - lastAngle);	
+		lastAngle = angleFromZero;
 	}
 }

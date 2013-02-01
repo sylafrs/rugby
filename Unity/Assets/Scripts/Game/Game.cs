@@ -56,8 +56,8 @@ public class Game : MonoBehaviour {
         set
         {
             _disableIA = value;
-            this.left.OwnerChanged();
-            this.right.OwnerChanged(); 
+            this.left.OnOwnerChanged();
+            this.right.OnOwnerChanged(); 
         }
     }
 
@@ -153,7 +153,7 @@ public class Game : MonoBehaviour {
 	
 	
 
-    public void OwnerChanged(Unit before, Unit after)
+    public void OnOwnerChanged(Unit before, Unit after)
     {		
 		if (after != null)
         {
@@ -179,8 +179,8 @@ public class Game : MonoBehaviour {
             Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);
         }
         
-        this.left.OwnerChanged();
-        this.right.OwnerChanged();       
+        this.left.OnOwnerChanged();
+        this.right.OnOwnerChanged();       
     }
 
     /**

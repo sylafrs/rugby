@@ -9,12 +9,6 @@ public class ScrumCamera : MonoBehaviour {
 		set { _cm = value; Start(); } 
 	}
 
-	private CameraManager _cm;
-	public CameraManager cameraManager { 
-		get { return _cm; }
-		set { _cm = value; Start(); } 
-	}
-	
 	// Use this for initialization
 	void Start () {
 	
