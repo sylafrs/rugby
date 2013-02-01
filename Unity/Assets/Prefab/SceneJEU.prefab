@@ -354,7 +354,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100042
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -465,6 +465,7 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400034}
   - 114: {fileID: 11400032}
+  - 114: {fileID: 11400038}
   m_Layer: 0
   m_Name: SceneJEU
   m_TagString: Untagged
@@ -490,7 +491,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100058
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -556,22 +557,6 @@ GameObject:
   - 23: {fileID: 2300020}
   m_Layer: 0
   m_Name: border1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400066}
-  - 114: {fileID: 11400038}
-  m_Layer: 0
-  m_Name: Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -828,11 +813,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
-  m_LocalRotation: {x: .246805623, y: 0, z: 0, w: .969065011}
-  m_LocalPosition: {x: -1.23182297, y: 15.3252449, z: -9.78596115}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .246477053, y: .0499865487, z: -.0127307959, w: .967774928}
+  m_LocalPosition: {x: 0, y: 3.62228012, z: -9.6739254}
+  m_LocalScale: {x: .150470257, y: .129661873, z: .150470257}
   m_Children: []
-  m_Father: {fileID: 400066}
+  m_Father: {fileID: 400054}
 --- !u!4 &400044
 Transform:
   m_ObjectHideFlags: 1
@@ -911,8 +896,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
-  - {fileID: 400066}
+  - {fileID: 400058}
   - {fileID: 400016}
+  - {fileID: 400042}
   - {fileID: 400044}
   - {fileID: 400046}
   m_Father: {fileID: 0}
@@ -934,10 +920,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100058}
   m_LocalRotation: {x: .5, y: .5, z: -.5, w: .5}
-  m_LocalPosition: {x: -6.09310532, y: 22.3483067, z: .0577011108}
+  m_LocalPosition: {x: -4.86128235, y: 23.9330616, z: .11366272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400066}
+  m_Father: {fileID: 400054}
 --- !u!4 &400060
 Transform:
   m_ObjectHideFlags: 1
@@ -971,19 +957,6 @@ Transform:
   m_LocalScale: {x: 3.73564363, y: 1, z: 79.5946426}
   m_Children: []
   m_Father: {fileID: 400046}
---- !u!4 &400066
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.23182297, y: 1.58475494, z: .0559616089}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400042}
-  - {fileID: 400058}
-  m_Father: {fileID: 400054}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1066,7 +1039,7 @@ Renderer:
   m_GameObject: {fileID: 100020}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
@@ -1651,7 +1624,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100042}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e61089a25806565438747f103be04629, type: 3}
   m_Name: 
@@ -1680,6 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
   settings: {fileID: 11400026}
+  cameraManager: {fileID: 11400038}
   limiteTerrainNordEst: {fileID: 100048}
   limiteTerrainSudOuest: {fileID: 100050}
   right: {fileID: 11400010}
@@ -1688,9 +1662,6 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 11400012}
   Log: {fileID: 0}
-  cameraGap: {x: 0, y: 0, z: 0}
-  cameraRotation: {x: 0, y: 0, z: 0}
-  cameraManager: {fileID: 11400038}
   cpu: 1
   disableIAKey: 105
   tweakMode: 0
@@ -1815,15 +1786,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
   m_Name: 
-  offset: {x: 20, y: 20, z: 10}
-  rotation: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -25, z: 13}
+  rotation: {x: 30, y: 0, z: 0}
   tweakMode: 0
 --- !u!114 &11400038
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100066}
+  m_GameObject: {fileID: 100054}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}

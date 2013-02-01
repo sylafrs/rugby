@@ -18,11 +18,14 @@ public class CameraManager : MonoBehaviour {
 	
 	}
 	
-	public void OnOwnerChange() {
-		gameCamera.OnOwnerChange();
+	public void OnOwnerChanged()
+    {	
+		gameCamera.OnOwnerChanged();
 	}
 	
-	void OnScrum(bool active) {
-		
+	public void OnScrum(bool active) {
+		scrumCamera.gameObject.SetActive(active);
+		if(active)
+			scrumCamera.Activate();
 	}
 }
