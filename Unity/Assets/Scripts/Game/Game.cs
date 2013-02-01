@@ -160,7 +160,7 @@ public class Game : MonoBehaviour {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-				cameraManager.OwnerChanged();
+				cameraManager.OnOwnerChanged();
             }
 
             // PATCH

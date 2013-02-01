@@ -103,21 +103,11 @@ public class scrumController : MonoBehaviour {
 				
 				_p1.stopMove();
 				_game.disableIA = true;
-				
-				Vector3 pos = cam.transform.position;
-				pos.z = _ball.transform.position.z;
-				cam.transform.position = pos;
-
-				cam.gameObject.SetActiveRecursively(true);
-				cam.transform.LookAt(_ball.transform);
-				
-				//changeZpos(0f, 0f);
+				_game.cameraManager.OnScrum(true);
 		    }
 		}
 		
 		if(inScrum){
-			
-			//changeZpos(5f, 5f);
 			
 			currentFrameWait ++;
 			playersInline(offset);	
@@ -216,8 +206,8 @@ public class scrumController : MonoBehaviour {
 		
 		_p1.enableMove();
 		_game.disableIA = false;
-		cam.gameObject.SetActiveRecursively(false);
-        Init();
+		_game.cameraManager.OnScrum(false);
+		Init();
 	}
 	
 	/*

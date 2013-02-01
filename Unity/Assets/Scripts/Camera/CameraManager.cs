@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameCamera.cameraManager = this;
-		
+		scrumCamera.cameraManager = this;
 	}
 	
 	// Update is called once per frame
@@ -18,8 +18,14 @@ public class CameraManager : MonoBehaviour {
 	
 	}
 	
-	public void OwnerChanged()
+	public void OnOwnerChanged()
     {	
-		gameCamera.OwnerChanged();
+		gameCamera.OnOwnerChanged();
+	}
+	
+	public void OnScrum(bool active) {
+		scrumCamera.gameObject.SetActive(active);
+		if(active)
+			scrumCamera.Activate();
 	}
 }

@@ -65,7 +65,7 @@ public class GameCamera : MonoBehaviour {
 		Debug.DrawLine(cam, this.transform.position, Color.red, 100);
 	}
 	
-	public void OwnerChanged() {	
+	public void OnOwnerChanged() {	
 		Camera.mainCamera.transform.position = BallOwner.transform.position + offset;
         Camera.mainCamera.GetComponent<rotateMe>().rotate(new Vector3(0, 1, 0), 180);	
 	}
