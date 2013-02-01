@@ -11,15 +11,15 @@ using System.Collections;
 public struct Order  {
     public enum TYPE
     {
-        RIEN,
-        DEPLACER,
+        NOTHING,
+        MOVE,
         PASS,
         DROP,
-        PLAQUER,
-        SUIVRE,
+        TACKLE,
+        FOLLOW,
         TRIANGLE,   // ASSISTER
-        LIGNE,      // PRESSER
-        CHERCHER
+        LANE,      // PRESSER
+        SEARCH,
     }
     public enum TYPE_DEPLACEMENT
     {
@@ -38,14 +38,14 @@ public struct Order  {
 
     public static Order OrderNothing() {
         Order o = new Order();
-        o.type = TYPE.RIEN;
+        o.type = TYPE.NOTHING;
         return o;
     }
 
     public static Order OrderMove(Vector3 point, TYPE_DEPLACEMENT type)
     {
         Order o = new Order();
-        o.type = TYPE.DEPLACER;
+        o.type = TYPE.MOVE;
         o.point = point;
         o.deplacement = type;
         return o;
@@ -54,7 +54,7 @@ public struct Order  {
     public static Order OrderFollow(Unit unit, TYPE_DEPLACEMENT type)
     {
         Order o = new Order();
-        o.type = TYPE.SUIVRE;
+        o.type = TYPE.FOLLOW;
         o.target = unit;
         o.deplacement = type;
         return o;
@@ -94,7 +94,7 @@ public struct Order  {
     public static Order OrderAttack(Unit unit, float distance, bool right)
     {
         Order o = new Order();
-        o.type = TYPE.LIGNE;
+        o.type = TYPE.LANE;
         o.target = unit;
         o.power = distance;
         return o;
@@ -103,14 +103,14 @@ public struct Order  {
     public static Order OrderFollowBall()
     {
         Order o = new Order();
-        o.type = TYPE.CHERCHER;
+        o.type = TYPE.SEARCH;
         return o;
     }
 
     public static Order OrderPlaquer(Unit u)
     {
         Order o = new Order();
-        o.type = TYPE.PLAQUER;
+        o.type = TYPE.TACKLE;
         o.target = u;
         return o;
     }

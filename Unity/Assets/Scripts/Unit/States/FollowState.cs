@@ -14,11 +14,11 @@ public class FollowState : UnitState {
     public override void OnEnter()
     {
         Order o = unit.Order;
-        if (o.type == Order.TYPE.SUIVRE)
+        if (o.type == Order.TYPE.FOLLOW)
         {
             target = unit.Order.target.gameObject;
         }
-        if (o.type == Order.TYPE.CHERCHER)
+        if (o.type == Order.TYPE.SEARCH)
         {
             target = unit.Game.Ball.gameObject;
         }

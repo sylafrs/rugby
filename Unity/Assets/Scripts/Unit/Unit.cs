@@ -154,15 +154,15 @@ public class Unit : TriggeringTriggered, Debugable
         EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
         switch (o.type)
         {
-            case Order.TYPE.DEPLACER:
+            case Order.TYPE.MOVE:
                 EditorGUILayout.LabelField("Point : " + o.point.ToString());
                 break;
 
-            case Order.TYPE.SUIVRE:
+            case Order.TYPE.FOLLOW:
                 EditorGUILayout.LabelField("Cible : " + o.target.name);               
                 break;
 
-            case Order.TYPE.LIGNE:
+            case Order.TYPE.LANE:
                 EditorGUILayout.LabelField("Repere : " + o.target.name);
                 EditorGUILayout.LabelField("Espace : " + o.power);
                 break;
@@ -172,11 +172,11 @@ public class Unit : TriggeringTriggered, Debugable
                 EditorGUILayout.LabelField("Espace : " + o.point.ToString());
                 break;
 
-            case Order.TYPE.CHERCHER:
+            case Order.TYPE.SEARCH:
                 EditorGUILayout.LabelField("Cours sur la balle");
                 break;
 
-            case Order.TYPE.PLAQUER:
+            case Order.TYPE.TACKLE:
                 EditorGUILayout.LabelField("Plaque " + o.target.name);
                 break;
 

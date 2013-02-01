@@ -231,7 +231,7 @@ public class Team : MonoBehaviour {
         foreach (Unit u in units)
         {
             // FIX. (TODO)
-            if (u.Order.type != Order.TYPE.CHERCHER)
+            if (u.Order.type != Order.TYPE.SEARCH)
             {
                 if (u != owner)
                 {

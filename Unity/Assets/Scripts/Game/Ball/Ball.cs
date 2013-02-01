@@ -83,26 +83,8 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-        Unit from = this.Owner;
-
-		float distance = (to.transform.position - from.transform.position).magnitude;
-		float timeEstimed = distance / passSpeed;
-		Vector3 positionEstimed = to.transform.position + to.transform.forward * to.GetNMA().speed * timeEstimed;
-		Vector3 direction = (positionEstimed - from.transform.position);
-		direction.y += distance / 2;
-
-        // FIX. (TODO)
-        to.Order = /* Order.OrderMove(positionEstimed, Order.TYPE_DEPLACEMENT.SPRINT); */
-                   Order.OrderFollowBall();
-
-		Debug.Log("position de to : " + to.transform.position + " position estimé après la passe : " + positionEstimed);
-
-        this.transform.parent = null;
-        this.rigidbody.isKinematic = false;
-		this.rigidbody.useGravity = true;
-        this.rigidbody.AddForce(direction * passSpeed);
-		Owner = null;
-
+		PassSystem p = new PassSystem(this.Owner, to, this);
+		p.DoPass();
 	}
 
 	//Poser la balle
