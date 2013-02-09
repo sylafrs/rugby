@@ -13,14 +13,20 @@ public class Ball : TriggeringTriggered {
     public Game Game;
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
-	public float passSpeed = 40.0f;
+	public float passSpeed = 20.0f;
+
+	private Unit _previousOwner;
+	private bool goScrum;
+	private Unit _owner;
+
+	public float lastTackle = -1;
+
+	public float timeOnPass = -1;
+	private PassSystem p;
 	
 	/*
-	 * @ahtor Maxens Dubois 
+	 * @author Maxens Dubois 
 	 */
-	private bool goScrum;
-	
-    private Unit _owner;
     public Unit Owner
     {
         get
@@ -33,12 +39,11 @@ public class Ball : TriggeringTriggered {
             {
                 PreviousOwner = _owner;
                 _owner = value;
-                Game.OwnerChanged(_owner, value);
+                Game.OnOwnerChanged(_owner, value);
             }         
         }
     }
 
-    private Unit _previousOwner;
     public Unit PreviousOwner
     {
         get
@@ -51,7 +56,6 @@ public class Ball : TriggeringTriggered {
         }
     }
    
-	
 	void Start(){
 		goScrum = false;
 	}
@@ -70,6 +74,7 @@ public class Ball : TriggeringTriggered {
         }
 
         UpdateTackle();
+		UpdatePass();
     }
   
     public void Drop()
@@ -83,8 +88,27 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		PassSystem p = new PassSystem(this.Owner, to, this);
-		p.DoPass();
+		p = new PassSystem(this.Owner, to, this);
+		p.CalculatePass();
+		timeOnPass = 0;
+	}
+
+	public void UpdatePass()
+	{
+		if (timeOnPass != -1)
+		{
+			if (this.transform.position.y > 0.6f)
+			{
+				p.DoPass(timeOnPass);
+				timeOnPass += Time.deltaTime;
+			}
+			else
+			{
+				timeOnPass = -1;
+			}
+		}
+		if (this.Owner != null && timeOnPass != -1)
+			timeOnPass = -1;
 	}
 
 	//Poser la balle
@@ -159,7 +183,6 @@ public class Ball : TriggeringTriggered {
         }
     }
 
-    public float lastTackle = -1;
     public void EventTackle(Unit tackler, Unit tackled)
     {
         if(lastTackle == -1)
