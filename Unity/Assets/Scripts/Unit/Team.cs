@@ -8,7 +8,7 @@ using System.Collections.Generic;
  * @author Sylvain Lafon
  */
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
-public class Team : MonoBehaviour {
+public class Team : myMonoBehaviour {
 
     public Team opponent;
 

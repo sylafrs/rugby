@@ -10,7 +10,7 @@ using XInputDotNetPure;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Gamer")]
-public class Gamer : MonoBehaviour
+public class Gamer : myMonoBehaviour
 {
     private static int NextGamerId = 0;
     private int id;

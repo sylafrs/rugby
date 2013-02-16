@@ -8,6 +8,6 @@ using System.Collections;
   * @author Sylvain LAFON
   */
 [AddComponentMenu("Triggers/Triggering Debugger")]
-public class TriggeringDebugger : MonoBehaviour {
+public class TriggeringDebugger : myMonoBehaviour {
     
 }

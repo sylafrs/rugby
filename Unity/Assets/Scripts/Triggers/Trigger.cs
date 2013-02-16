@@ -6,7 +6,7 @@ using System.Collections;
  * @brief Représente un trigger (zone déclenchement)
  * @author Sylvain Lafon
  */
-public abstract class Trigger : MonoBehaviour
+public abstract class Trigger : myMonoBehaviour
 {
     public Triggering triggering;
     

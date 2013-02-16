@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraManager : MonoBehaviour {
+public class CameraManager : myMonoBehaviour {
 	
 	public Game game;
 	public GameCamera gameCamera;
