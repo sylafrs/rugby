@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ScrumCamera : MonoBehaviour {
+public class ScrumCamera : myMonoBehaviour {
 	
 	private CameraManager _cm;
 	public CameraManager cameraManager { 

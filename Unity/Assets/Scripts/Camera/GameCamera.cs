@@ -4,7 +4,7 @@ using System.Collections;
 /*
  * @author Sylvain Lafon
  */
-public class GameCamera : MonoBehaviour {
+public class GameCamera : myMonoBehaviour {
 	
 	private CameraManager _cm;
 	public CameraManager cameraManager { 

@@ -6,7 +6,7 @@ using XInputDotNetPure;
  *@author Maxens Dubois, Lafon Sylvain
  */
 [AddComponentMenu("Scripts/Game/UI Manager"), RequireComponent(typeof(Game))]
-public class gameUIManager : MonoBehaviour {
+public class gameUIManager : myMonoBehaviour {
 	
 	private Game _game;
 	
