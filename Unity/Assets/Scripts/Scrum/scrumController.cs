@@ -6,7 +6,7 @@ using XInputDotNetPure;
  *@author Maxens Dubois 
  */
 [AddComponentMenu("Scripts/Game/Scrum Controller")]
-public class scrumController : MonoBehaviour {
+public class scrumController : myMonoBehaviour {
 
 	public Camera cam;
 	

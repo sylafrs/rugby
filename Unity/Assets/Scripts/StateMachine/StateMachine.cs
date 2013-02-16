@@ -11,7 +11,7 @@ using UnityEditor;
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Scripts/AI/StateMachine")]
-public partial class StateMachine : MonoBehaviour, Debugable {
+public partial class StateMachine : myMonoBehaviour, Debugable {
 
     protected System.Collections.Generic.List<State> list = new System.Collections.Generic.List<State>();
     public State BaseState;

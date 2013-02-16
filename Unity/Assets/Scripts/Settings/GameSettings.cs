@@ -137,7 +137,7 @@ public class InputSettingsXBOX
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Settings/GameSettings")]
-public class GameSettings : MonoBehaviour {
+public class GameSettings : myMonoBehaviour {
 
     public ScoreSettings score;     // Attribution des Points
     public InputSettings inputs;    // Controles J1

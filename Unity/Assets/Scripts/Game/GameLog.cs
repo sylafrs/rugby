@@ -11,7 +11,7 @@ using UnityEditor;
  * @author Lafon Sylvain
  */
 [AddComponentMenu("Scripts/Debug/Game Log")]
-public class GameLog : MonoBehaviour, Debugable
+public class GameLog : myMonoBehaviour, Debugable
 {
     Queue<string> log;
 

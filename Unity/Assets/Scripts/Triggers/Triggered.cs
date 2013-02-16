@@ -6,7 +6,7 @@ using System.Collections;
  * @brief Représente un objet déclencheur
  * @author Sylvain Lafon
  */
-public abstract class Triggered : MonoBehaviour
+public abstract class Triggered : myMonoBehaviour
 {
     public virtual void Start()
     {

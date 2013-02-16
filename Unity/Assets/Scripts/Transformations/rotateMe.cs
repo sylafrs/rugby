@@ -7,7 +7,7 @@ using System.Collections;
  * @author Sylvain Lafon
  */
 [AddComponentMenu("Scripts/Transformations/rotateMe")]
-public class rotateMe : MonoBehaviour {
+public class rotateMe : myMonoBehaviour {
 
 	Vector3 axis;
 	float angle;

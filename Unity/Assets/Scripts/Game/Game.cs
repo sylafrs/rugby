@@ -10,7 +10,7 @@ using XInputDotNetPure;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Game")]
-public class Game : MonoBehaviour {
+public class Game : myMonoBehaviour {
 
     public GameSettings settings;
 	public CameraManager cameraManager;
