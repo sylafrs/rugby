@@ -30,17 +30,20 @@ public class Zone : TriggeringTrigger {
             if (b.Owner != null)
             {
                 if (b.Owner.Team != this.Owner)
-                {
-                    /*
-                    Debug.Log("Essai de la part des " + b.Owner.Team.Name + " !");
-                    b.Owner.Team.nbPoints += b.Game.settings.score.points_essai;
-                    b.setPosition(Vector3.zero);
+                {                   
+                    if (b.Owner.Team.Player != null)
+                    {
+                        b.Owner.ShowTouch(b.Owner.Team.Player.Inputs.put);
+                    }
+                    else
+                    {
+                        Debug.Log("Essai de la part des " + b.Owner.Team.Name + " !");
+                        b.Owner.Team.nbPoints += b.Game.settings.score.points_essai;
+                        b.setPosition(Vector3.zero);
 
-                    b.Game.right.initPos();
-                    b.Game.left.initPos();
-                    */
-
-                    b.Owner.ShowTouch(b.Owner.Team.Player.Inputs.put);
+                        b.Game.right.initPos();
+                        b.Game.left.initPos();
+                    }
                 }
             }
         }

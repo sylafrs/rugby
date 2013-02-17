@@ -364,10 +364,8 @@ GameObject:
   - 92: {fileID: 9200000}
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
-  - 114: {fileID: 11400020}
-  - 114: {fileID: 11400036}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Game Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,6 +570,23 @@ GameObject:
   - 114: {fileID: 11400042}
   m_Layer: 0
   m_Name: Cameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100068
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400068}
+  - 114: {fileID: 11400020}
+  - 114: {fileID: 11400036}
+  m_Layer: 0
+  m_Name: Game Camera Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,7 +847,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400066}
+  m_Father: {fileID: 400068}
 --- !u!4 &400044
 Transform:
   m_ObjectHideFlags: 1
@@ -981,9 +996,21 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400042}
+  - {fileID: 400068}
   - {fileID: 400058}
   m_Father: {fileID: 400054}
+--- !u!4 &400068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400042}
+  m_Father: {fileID: 400066}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1590,6 +1617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
   opponent: {fileID: 0}
+  Player: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   Name: Bleu
@@ -1650,12 +1678,15 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100042}
+  m_GameObject: {fileID: 100068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61089a25806565438747f103be04629, type: 3}
+  m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
   m_Name: 
-  seconds: 1
+  offset: {x: 0, y: 7, z: -20}
+  rotation: {x: 0, y: 0, z: 0}
+  tweakMode: 0
+  gameCamera: {fileID: 100042}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1679,6 +1710,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
+  xboxInputs: {fileID: 0}
   settings: {fileID: 11400026}
   cameraManager: {fileID: 11400042}
   limiteTerrainNordEst: {fileID: 100048}
@@ -1706,33 +1738,75 @@ MonoBehaviour:
     points_drop: 5
     points_essai: 5
   inputs:
-    up: 122
-    down: 115
-    left: 113
-    right: 100
-    passLeft: 49
-    drop: 50
-    plaquer: 51
-    passRight: 52
+    passLeft:
+      keyboard: 49
+      xbox: 10
+    passRight:
+      keyboard: 52
+      xbox: 11
+    drop:
+      keyboard: 50
+      xbox: 9
+    tackle:
+      keyboard: 51
+      xbox: 8
+    reset:
+      keyboard: 114
+      xbox: 7
+    enableIA:
+      keyboard: 105
+      xbox: 2
+    scrumNormal:
+      keyboard: 119
+      xbox: 0
+    scrumExtra:
+      keyboard: 120
+      xbox: 1
+    put:
+      keyboard: 52
+      xbox: 1
+    move:
+      keyboard:
+        up: 122
+        down: 115
+        right: 100
+        left: 113
+      xbox: 1
   inputs2:
-    up: 116
-    down: 103
-    left: 102
-    right: 104
-    passLeft: 49
-    drop: 53
-    plaquer: 54
-    passRight: 52
-  XboxController:
-    move: 2
-    passLeft: 8
-    passRight: 1
-    drop: 9
-    plaquer: 3
-    reset: 7
-    enableIA: 2
-    scrumNormal: 0
-    scrumExtra: 5
+    passLeft:
+      keyboard: 0
+      xbox: 0
+    passRight:
+      keyboard: 0
+      xbox: 0
+    drop:
+      keyboard: 0
+      xbox: 0
+    tackle:
+      keyboard: 0
+      xbox: 0
+    reset:
+      keyboard: 0
+      xbox: 0
+    enableIA:
+      keyboard: 0
+      xbox: 0
+    scrumNormal:
+      keyboard: 0
+      xbox: 0
+    scrumExtra:
+      keyboard: 0
+      xbox: 0
+    put:
+      keyboard: 0
+      xbox: 0
+    move:
+      keyboard:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      xbox: 0
   timePlaque: 3
   Vheight: 12
   Vwidth: 2
@@ -1749,6 +1823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
   opponent: {fileID: 0}
+  Player: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge
@@ -1808,15 +1883,13 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100042}
+  m_GameObject: {fileID: 100068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
+  m_Script: {fileID: 11500000, guid: e61089a25806565438747f103be04629, type: 3}
   m_Name: 
-  offset: {x: 0, y: 7, z: -10}
-  rotation: {x: 0, y: 0, z: 0}
-  tweakMode: 0
-  gameCamera: {fileID: 0}
+  duration: 1.20000005
+  delay: 30
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,7 +1911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}
   m_Name: 
   game: {fileID: 11400024}
-  gameCamera: {fileID: 11400036}
+  gameCamera: {fileID: 11400020}
   scrumCamera: {fileID: 11400040}
 --- !u!124 &12400000
 Behaviour:
