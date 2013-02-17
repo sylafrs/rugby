@@ -26,22 +26,7 @@ public class gameUIManager : myMonoBehaviour {
 	}
 	
 	void Update()
-    {
-		
-		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
-		
-        if (pad.IsConnected)
-        {
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
-        }
-		
+    {		      		
 		timeElapsed += Time.deltaTime;
 		
 		if(timeElapsed > gameTime){
@@ -51,18 +36,12 @@ public class gameUIManager : myMonoBehaviour {
 			//stuff sur la caméra
 		}
 
-        Gamer.initGamerId();
+        Gamer.initGamerId();		
 		
-		
-		if(pad.IsConnected){
-			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){
-				btnResetReleased = false;
-				Application.LoadLevel(Application.loadedLevel);
-			}
-		}
-		else if(Input.GetKeyDown(resetKey)){
-           	Application.LoadLevel(Application.loadedLevel);
-		}
+	    if(Input.GetKeyDown(_game.p1.Inputs.reset.keyboard) && _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.reset.xbox)){
+		    btnResetReleased = false;
+		    Application.LoadLevel(Application.loadedLevel);
+	    }		
 	}
 	
 	void OnGUI()

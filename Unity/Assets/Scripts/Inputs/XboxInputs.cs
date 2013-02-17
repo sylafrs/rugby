@@ -12,23 +12,13 @@ public enum XBOX_BUTTONS
     A, B, Back, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, TriggerL, TriggerR, PAD_up, PAD_down, PAD_left, PAD_right
 }
 
-public class XboxInputs {
+public class XboxInputs : myMonoBehaviour{
 
     public const int NB_DIRECTION = 3;
 
-    public struct Direction
+    public static InputDirection.Direction GetDirection(XBOX_DIRECTION direction, GamePadState pad)
     {
-        public float x, y;
-        public Direction(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    public static Direction GetDirection(XBOX_DIRECTION direction, GamePadState pad)
-    {
-        Direction d = new Direction(0, 0);
+        InputDirection.Direction d = new InputDirection.Direction(0, 0);
         
         if (!pad.IsConnected)
         {
@@ -113,6 +103,15 @@ public class XboxInputs {
     public class Controller {
         private bool[] prevState;
         private PlayerIndex index;
+
+        public bool IsConnected
+        {
+            get
+            {
+                return pad.IsConnected;
+            }
+            private set { }
+        }
         
         public Controller(int i)
         {
@@ -130,7 +129,8 @@ public class XboxInputs {
             private set { }
         }
 
-        public Direction GetDirection(XBOX_DIRECTION dir) {
+        public InputDirection.Direction GetDirection(XBOX_DIRECTION dir)
+        {
             return XboxInputs.GetDirection(dir, pad);
         }
 
@@ -162,7 +162,7 @@ public class XboxInputs {
     const int MAX_CONTROLLERS = 4;
     public Controller [] controllers; 
    
-    public XboxInputs()
+    void Start()
     {
         controllers = new Controller[MAX_CONTROLLERS];
         for (int i = 0; i < MAX_CONTROLLERS; i++)
@@ -171,7 +171,7 @@ public class XboxInputs {
         }
     }
 
-    public void UpdateButtons()
+    void Update()
     {
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {

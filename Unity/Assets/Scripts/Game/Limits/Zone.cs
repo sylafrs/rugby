@@ -40,7 +40,7 @@ public class Zone : TriggeringTrigger {
                     b.Game.left.initPos();
                     */
 
-                    b.Owner.ShowTouch(b.Owner.Team.Player.inputs.);
+                    b.Owner.ShowTouch(b.Owner.Team.Player.Inputs.put);
                 }
             }
         }

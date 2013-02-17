@@ -78,22 +78,7 @@ public class scrumController : myMonoBehaviour {
  	 *@author Maxens Dubois 
  	 */
 	void Update () {
-		
-		GamePadState pad = GamePad.GetState(_p1.playerIndex); 
-		
-        if (pad.IsConnected)
-        {
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumNormal, pad))
-            {
-                btnScrumNormalReleased = true;
-            }
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumExtra, pad))
-            {
-                btnScrumSpecialReleased = true;
-            }
-        }
-    		
-		
+				
 		if(!inScrum){
 			if (_ball.getGoScrum())
 			{
@@ -113,42 +98,24 @@ public class scrumController : myMonoBehaviour {
 			playersInline(offset);	
 			if(currentFrameWait > frameStart)
 			{
-				if(pad.IsConnected) {
-					if(btnScrumNormalReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumNormal, pad)) {
-						btnScrumNormalReleased = false;
-						
-						playerUpScore(playerUp);
-						if(Random.Range(1,specialLuck) == 1){
-							playerSpecial = true;
-						}
-					}
-				}
-				else if (Input.GetKeyDown(minigameButton))
-				{
-					playerUpScore(playerUp);
-					if(Random.Range(1,specialLuck) == 1){
-						playerSpecial = true;
-					}
-			    }
+                if (Input.GetKeyDown(_game.p1.Inputs.scrumNormal.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumNormal.xbox))
+                {
+                    playerUpScore(playerUp);
+                    if (Random.Range(1, specialLuck) == 1)
+                    {
+                        playerSpecial = true;
+                    }
+                }
+
+                if (Input.GetKeyDown(_game.p1.Inputs.scrumExtra.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumExtra.xbox))
+                {
+                    if (playerSpecial)
+                    {
+                        playerUpScore(playerSpecialUp);
+                        playerSpecial = false;
+                    }
+                }
 				
-				
-				if(pad.IsConnected) {
-					if(btnScrumSpecialReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.scrumExtra, pad)) {
-						btnScrumSpecialReleased = false;
-						
-						if(playerSpecial){
-							playerUpScore(playerSpecialUp);
-							playerSpecial = false;
-						}
-					}
-				}
-				else if (Input.GetKeyDown(minigameSpecialButton))
-				{
-					if(playerSpecial){
-						playerUpScore(playerSpecialUp);
-						playerSpecial = false;
-					}
-			    }
 				cpuScore += Random.Range(0,4);
 				offset += IAoffset;
 				if(cpuScore > scoreTarget){
