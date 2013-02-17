@@ -12,6 +12,7 @@ public class Team : myMonoBehaviour {
 
     public Team opponent;
 
+    public Gamer Player;
     public Game Game;
     public Color Color;
     public string Name;

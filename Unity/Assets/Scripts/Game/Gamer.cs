@@ -15,7 +15,20 @@ public class Gamer : myMonoBehaviour
     private static int NextGamerId = 0;
     private int id;
 
-    public Team team;
+    private Team _team;
+    public Team team
+    {
+        get
+        {
+            return _team;
+        }
+        set
+        {
+            _team = value;
+            _team.Player = this;
+        }
+    }
+
     public Unit controlled;
     public Game game;
 	public Vector3 passDirection;

@@ -128,6 +128,13 @@ public class Game : myMonoBehaviour {
         {
             disableIA = !disableIA;             
 		}
+
+
+
+
+
+
+
 	}
 	
 	/*
