@@ -72,7 +72,7 @@ public class PassSystem {
 			{
 				CorrectTrajectory();
 			}
-
+			
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
