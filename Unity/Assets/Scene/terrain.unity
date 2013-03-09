@@ -362,7 +362,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 1471003704}
   m_GameObject: {fileID: 278997175}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!92 &278997178
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1004,10 +1004,8 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  butBleu: {fileID: 612892292}
-  butRouge: {fileID: 358973885}
-  passSpeed: 14
-  AngleOfFOV: 30
+  passSpeed: 40
+  AngleOfFOV: 0
   lastTackle: -1
   timeOnPass: -1
 --- !u!136 &661539567
@@ -1064,7 +1062,7 @@ Transform:
   m_PrefabInternal: {fileID: 1471003704}
   m_GameObject: {fileID: 840478216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.42049026, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1694633024}
@@ -1519,6 +1517,18 @@ Prefab:
       propertyPath: xboxInputs
       value: 
       objectReference: {fileID: 219502520}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: inputs.move.keyboard.down
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: inputs.move.keyboard.right
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
+      propertyPath: inputs.move.keyboard.left
+      value: 113
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_RootGameObject: {fileID: 2004071849}
@@ -2054,7 +2064,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
-  cpu: 0
+  cpu: 1
   disableIAKey: 105
   tweakMode: 0
 --- !u!114 &2004071852
@@ -2102,9 +2112,9 @@ MonoBehaviour:
     move:
       keyboard:
         up: 122
-        down: 113
-        right: 115
-        left: 100
+        down: 115
+        right: 100
+        left: 113
       xbox: 0
   inputs2:
     passLeft:
