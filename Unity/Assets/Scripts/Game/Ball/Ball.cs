@@ -57,6 +57,7 @@ public class Ball : TriggeringTriggered {
     }
    
 	new void Start(){
+
 		goScrum = false;
         base.Start();
 	}
