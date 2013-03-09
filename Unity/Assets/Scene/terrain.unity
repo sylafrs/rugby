@@ -969,6 +969,7 @@ MonoBehaviour:
   butBleu: {fileID: 612892292}
   butRouge: {fileID: 358973885}
   passSpeed: 14
+  AngleOfFOV: 30
   lastTackle: -1
   timeOnPass: -1
 --- !u!136 &661539567

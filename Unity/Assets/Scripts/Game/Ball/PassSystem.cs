@@ -6,8 +6,8 @@ using System.Collections;
  * @brief Doing a pass
  * @author Guilleminot Florian
  */
-public class PassSystem : Ball {
-
+public class PassSystem {
+	
 	// Variables
 	private Unit from;
 	private Unit target;
@@ -36,11 +36,6 @@ public class PassSystem : Ball {
 		this.initialPosition = ball.transform.position;
 		this.butBleu = b1;
 		this.butRouge = b2;
-	}
-
-	public void Start()
-	{
-		TimeUpdate = Time.time;
 	}
 
 	// Getter/Setter
