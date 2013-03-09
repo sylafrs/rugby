@@ -1004,10 +1004,12 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  passSpeed: 40
+  passSpeed: 13
   AngleOfFOV: 0
   lastTackle: -1
   timeOnPass: -1
+  DiscTackle: {r: 0, g: 0, b: 255, a: 33}
+  sizeOfTackleArea: 2
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2064,7 +2066,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
-  cpu: 1
+  cpu: 0
   disableIAKey: 105
   tweakMode: 0
 --- !u!114 &2004071852
