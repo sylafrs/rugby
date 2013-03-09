@@ -22,7 +22,13 @@ public class ScoreSettings
 [System.Serializable]
 public class SuperSettings
 {
-    public int superGaugeLimitBreak   = 200;
+    public int superGaugeLimitBreak   	= 200;
+	//for the effect
+	//Duration in ms
+	public float OffensiveSuperDurationTime	= 1000f;
+	public float DefensiveSuperDurationTime	= 1000f;
+	public float superSpeedScale           = 1.5f;
+	public bool  superUnbloacke             = true;
 	//passe
     public int passWinSuperPoints  		= 10;
 	public int passLooseSuperPoints  	= 5;

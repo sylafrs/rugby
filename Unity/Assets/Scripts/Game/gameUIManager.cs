@@ -13,9 +13,13 @@ public class gameUIManager : myMonoBehaviour {
 	public float gameTime;
 	public KeyCode resetKey;
 	
+	//for super bars
 	public Texture2D emptyBar;
 	public Texture2D blueBar;
 	public Texture2D redBar;
+	private float blueProgress;
+	private float redProgress;
+	
 	
 	public GUIStyle superOkTextStyle;
 	
@@ -29,6 +33,9 @@ public class gameUIManager : myMonoBehaviour {
 		_game 		= gameObject.GetComponent<Game>();
         timeElapsed = 0f;
 		over		= false;
+		
+		blueProgress = 0f;
+		redProgress  = 0f;
 	}
 	
 	void Update()
@@ -69,15 +76,22 @@ public class gameUIManager : myMonoBehaviour {
 		else if(Input.GetKeyDown(resetKey)){
            	Application.LoadLevel(Application.loadedLevel);
 		}
+		
+		UpdateSuperProgress();
+	}
+	
+	void UpdateSuperProgress(){
+
+		float blueCurrent = (float)_game.right.SuperGaugeValue;
+		float redCurrent  = (float)_game.left.SuperGaugeValue;
+		float max		  = (float)_game.settings.super.superGaugeLimitBreak;
+		blueProgress = Mathf.Clamp01(blueCurrent/max);
+		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}
 	
 	void OnGUI()
     {
 		int offset		 = 100;
-		
-		//in [0,1]
-		float blueProgress  = 1f;
-		float redProgress   = 1f;
 		
 		if(!over)
         {
