@@ -12,6 +12,7 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : myMonoBehaviour {
 
+    public XboxInputs xboxInputs;
     public GameSettings settings;
 	public CameraManager cameraManager;
 
@@ -82,53 +83,37 @@ public class Game : myMonoBehaviour {
         left.opponent = right;
 
         p1 = right.gameObject.AddComponent<Gamer>();
-        p1.game = this;
-        p1.team = right;
-        p1.controlled = right[p1.team.nbUnits/2];
-        p1.controlled.IndicateSelected(true);
-        p1.inputs = settings.inputs;
+        p1.Game = this;
+        p1.Team = right;
+        p1.Controlled = right[p1.Team.nbUnits/2];
+        p1.Controlled.IndicateSelected(true);
+        p1.Inputs = settings.inputs;
 
         if (!cpu)
         {
             p2 = left.gameObject.AddComponent<Gamer>();
-            p2.game = this;
-            p2.team = left;
-            p2.controlled = left[0];
-            p2.inputs = settings.inputs2;
+            p2.Game = this;
+            p2.Team = left;
+            p2.Controlled = left[0];
+            p2.Inputs = settings.inputs2;
         }
 
-        this.Owner = p1.controlled.Team;
+        this.Owner = p1.Controlled.Team;
         Ball.Game = this;
-        Ball.transform.parent = p1.controlled.BallPlaceHolderRight.transform;
+        Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
-        Ball.Owner = p1.controlled;        
+        Ball.Owner = p1.Controlled;        
       
 		this.cameraLocked = true;
     }
 
     void Update()
-    {		
-		GamePadState pad = GamePad.GetState(p1.playerIndex); 
-		if (pad.IsConnected)
-        {			
-            if (!btnIaReleased && !InputSettingsXBOX.GetButton(this.settings.XboxController.enableIA, pad))
-            {
-				 btnIaReleased = true;
-            }
-        }
-			
-		if(pad.IsConnected) {
-			if(btnIaReleased && InputSettingsXBOX.GetButton(this.settings.XboxController.enableIA, pad)) {
-				btnIaReleased = false;				
-				disableIA = !disableIA; 
-			}
-		} 
-		
-		else if (Input.GetKeyDown(disableIAKey))
+    {
+        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
         {
-            disableIA = !disableIA;             
-		}
-	}
+            disableIA = !disableIA;   
+        }
+    }
 	
 	/*
 	 * @ author Maxens Dubois
@@ -167,13 +152,13 @@ public class Game : myMonoBehaviour {
             // p1.controlled = after;
             if (after.Team == right)
             {
-                p1.controlled.IndicateSelected(false);
-                p1.controlled = after;
-                p1.controlled.IndicateSelected(true);
+                p1.Controlled.IndicateSelected(false);
+                p1.Controlled = after;
+                p1.Controlled.IndicateSelected(true);
             }
             else if (p2 != null)
             {
-                p2.controlled = after;
+                p2.Controlled = after;
             }
 
             Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);

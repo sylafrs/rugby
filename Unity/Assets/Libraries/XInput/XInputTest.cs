@@ -1,16 +1,6 @@
 using UnityEngine;
 using XInputDotNetPure; // Required in C#
 
-public enum XBOX_BUTTONS
-{
-    A, B, Back, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, TriggerL, TriggerR, PAD_up, PAD_down, PAD_left, PAD_right
-}
-
-public enum XBOX_DIRECTION
-{
-    Pad, StickRight, StickLeft
-}
-
 public class XInputTest : MonoBehaviour
 {
     bool playerIndexSet = false;
