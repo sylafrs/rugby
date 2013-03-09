@@ -10,12 +10,11 @@ public class TackleSystem {
 	private float angleOfFOV;
 	private float distanceOfTackle;
 
-	public TackleSystem(Unit tackled = null, Unit tackler = null, Ball b = null, float teta = 0.0f, float d = 0.0f)
+	public TackleSystem(Unit tackled = null, Unit tackler = null, Ball b = null, float teta = 0.0f)
 	{
 		this.tackled = tackled;
 		this.tackler = tackler;
 		this.angleOfFOV = teta;
-		this.distanceOfTackle = d;
 		this.ball = b;
 	}
 	
@@ -43,7 +42,7 @@ public class TackleSystem {
 	
 	private bool canTackle()
 	{
-		return tackled == ball.Owner;
+		return tackled == ball.Owner && tackled.Team != tackler.Team;
 	}
 	
 	private bool IsCrit()
@@ -53,7 +52,7 @@ public class TackleSystem {
 	
 	private bool IsInRange()
 	{
-		return (tackled.transform.position - tackler.transform.position).magnitude <= distanceOfTackle;
+		return tackler.NearUnits.Contains(tackled);
 	}
-	
+
 }

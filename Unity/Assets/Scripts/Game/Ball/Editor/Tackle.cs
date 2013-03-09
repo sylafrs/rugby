@@ -29,7 +29,8 @@ public class Tackle : Editor
 		if (ball && ball.Owner)
 		{
 			Handles.color = EditorGUILayout.ColorField(ball.DiscTackle, GUILayout.Width(200));
-			Handles.DrawSolidDisc(ball.Owner.transform.position, Vector3.up, ball.sizeOfTackleArea);
+			Handles.DrawSolidDisc(ball.Owner.transform.position, Vector3.up, /*ball.sizeOfTackleArea*/ 
+				ball.Owner.transform.FindChild("Trigger").GetComponent<SphereCollider>().radius / 25f);
 		}
 	}
 	
