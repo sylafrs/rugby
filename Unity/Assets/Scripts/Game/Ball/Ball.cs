@@ -13,6 +13,8 @@ public class Ball : TriggeringTriggered {
     public Game Game;
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
+	public GameObject butBleu;
+	public GameObject butRouge;
 	public float passSpeed = 20.0f;
 
 	private Unit _previousOwner;
@@ -90,7 +92,8 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		p = new PassSystem(this.Owner, to, this);
+		Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
+		p = new PassSystem(butBleu.transform.position, butRouge.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
 	}

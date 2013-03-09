@@ -966,6 +966,8 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
+  butBleu: {fileID: 612892292}
+  butRouge: {fileID: 358973885}
   passSpeed: 14
   lastTackle: -1
   timeOnPass: -1

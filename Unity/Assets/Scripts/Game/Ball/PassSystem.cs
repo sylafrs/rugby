@@ -6,7 +6,7 @@ using System.Collections;
  * @brief Doing a pass
  * @author Guilleminot Florian
  */
-public class PassSystem {
+public class PassSystem : Ball {
 
 	// Variables
 	private Unit from;
@@ -24,14 +24,18 @@ public class PassSystem {
 	private float angle;
 	private float initialVelocity;
 	private float fromVelocity;
+	private Vector3 butBleu;
+	private Vector3 butRouge;
 
 	// Constructor
-	public PassSystem(Unit from = null, Unit target = null, Ball ball = null)
+	public PassSystem(Vector3 b1, Vector3 b2, Unit from = null, Unit target = null, Ball ball = null)
 	{
 		this.from = from;
 		this.target = target;
 		this.ball = ball;
 		this.initialPosition = ball.transform.position;
+		this.butBleu = b1;
+		this.butRouge = b2;
 	}
 
 	public void Start()
@@ -69,7 +73,10 @@ public class PassSystem {
 			calculateRelativePosition();
 			calculateRelativeDirection();
 			
-			target.Order = Order.OrderMove(target.transform.position, Order.TYPE_DEPLACEMENT.SPRINT);
+			if (!passValidity())
+			{
+				CorrectTrajectory();
+			}
 
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
@@ -78,8 +85,8 @@ public class PassSystem {
 			
 			Vector3 tmp = new Vector3(target.transform.position.x, 1.0f, target.transform.position.z);
 			Vector3 tmp2 = new Vector3(relativePosition.x, 5.0f, relativePosition.z);
-			Debug.DrawLine(ball.transform.position, relativePosition, Color.cyan, 100);
-			Debug.DrawRay(ball.transform.position, relativeDirection, Color.yellow, 100);
+			//Debug.DrawLine(ball.transform.position, relativePosition, Color.cyan, 100);
+			//Debug.DrawRay(ball.transform.position, relativeDirection, Color.yellow, 100);
 
 			BetaAngle = Vector3.Angle(Vector3.right, relativeDirection) * Mathf.PI / 180;
 			GammaAngle = Vector3.Angle(Vector3.right, from.transform.forward) * Mathf.PI / 180;
@@ -88,15 +95,30 @@ public class PassSystem {
 			angle = 25.0f * Mathf.PI / 180;
 		}
 	}
-
+	
+	/*
+	 * TODO : keep in mind that the curve on Y in the pass depends of the passSpeed or the NMA velocity
+	 */
 	public void DoPass(float t)
 	{
-		Debug.Log(t);
-		Debug.Log(initialVelocity);
+		//Debug.Log(t);
+		//Debug.Log(initialVelocity);
 
 		ball.transform.position = new Vector3(relativeDirection.x * t + initialPosition.x,
-			-0.5f * 9.81f * t * t + from.GetNMA().velocity.magnitude * Mathf.Sin(angle) * t + initialPosition.y, 
+			-0.5f * 9.81f * t * t + /*from.GetNMA().velocity.magnitude*/ velocityPass * Mathf.Sin(angle) * t + initialPosition.y, 
 			relativeDirection.z * t + initialPosition.z);
+	}
+	
+	/*
+	 * Correct the relativeDirection to send at the initial position of the target
+	 * TODO : Tweak the passSpeed or the NMA velocity max if this case is too much present;
+	 * */
+	public void CorrectTrajectory()
+	{
+		Debug.LogWarning("CorrectTrajectory : Tweak the passSpeed or the NMA velocity max if this case is too much present");
+		relativePosition = target.transform.position;
+		calculateRelativeDirection();
+		target.Order = Order.OrderMove(relativeDirection, Order.TYPE_DEPLACEMENT.SPRINT);
 	}
 
 	/*
@@ -137,9 +159,10 @@ public class PassSystem {
 	 */
 	private bool passValidity()
 	{
-		//Debug.Log("direction : " + relativeDirection + " par rapport à : " + Vector3.forward + " donne le scalaire : " + Vector3.Dot(relativeDirection, Vector3.forward));
-		//return Vector3.Dot(relativeDirection, Vector3.forward) < 0 ? true : false;
-		return false;
+		Vector3 tmpDir = butBleu - butRouge;
+		Debug.Log("direction : " + relativeDirection + " par rapport à : " + tmpDir +
+			" donne le scalaire : " + Vector3.Dot(relativeDirection, tmpDir));
+		return Vector3.Dot(relativeDirection, tmpDir) > 0 ? true : false;
 	}
 
 }
