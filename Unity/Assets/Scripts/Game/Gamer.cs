@@ -112,7 +112,7 @@ public class Gamer : myMonoBehaviour
             }
             else if (Input.GetKeyDown(Inputs.passLeft.keyboard) || XboxController.GetButtonDown(Inputs.passLeft.xbox))
             {
-                UpdatePASS_OnPress(true);
+                UpdatePASS_OnPress(false);
             }
             else if (
                 Input.GetKeyUp(Inputs.passRight.keyboard) ||
