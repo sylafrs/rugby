@@ -15,6 +15,38 @@ public class ScoreSettings
 }
 
 /**
+ * @class SuperSettings
+ * @brief Variab les for settings
+ * @author Maxens Dubois
+ */
+[System.Serializable]
+public class SuperSettings
+{
+    public int superGaugeLimitBreak   = 200;
+	//passe
+    public int passWinSuperPoints  		= 10;
+	public int passLooseSuperPoints  	= 5;
+	//drop
+	public int dropWinSuperPoints  		= 20;
+	public int dropLooseSuperPoints  	= 10;
+	//try = essais
+	public int tryWinSuperPoints  		= 30;
+	public int tryLooseSuperPoints  	= 20;
+	//conversion = transformation
+	public int conversionWinSuperPoints    = 10;
+	public int conversionLooseSuperPoints  = 5;
+	//touche = touch
+	public int touchWinSuperPoints  	= 20;
+	public int touchLooseSuperPoints  	= 10;
+	//tackle = plaquage
+	public int tackleWinSuperPoints    = 20;
+	public int tackleLooseSuperPoints  = 5;
+	//scrum = melee
+	public int scrumWinSuperPoints  	= 30;
+	public int scrumLooseSuperPoints  	= 10;
+}
+
+/**
  * @class InputSettings
  * @brief Reglages des entrées pour un Gamer
  * @author Sylvain Lafon
@@ -140,6 +172,7 @@ public class InputSettingsXBOX
 public class GameSettings : myMonoBehaviour {
 
     public ScoreSettings score;     // Attribution des Points
+	public SuperSettings super;     // for super settings
     public InputSettings inputs;    // Controles J1
     public InputSettings inputs2;   // Controles J2
 

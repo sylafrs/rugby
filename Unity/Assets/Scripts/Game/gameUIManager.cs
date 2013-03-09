@@ -13,6 +13,12 @@ public class gameUIManager : myMonoBehaviour {
 	public float gameTime;
 	public KeyCode resetKey;
 	
+	public Texture2D emptyBar;
+	public Texture2D blueBar;
+	public Texture2D redBar;
+	
+	public GUIStyle superOkTextStyle;
+	
 	private float  timeElapsed;
 	private bool   over;
 	
@@ -67,12 +73,31 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void OnGUI()
     {
-		int offset = 200;
+		int offset		 = 100;
+		
+		//in [0,1]
+		float blueProgress  = 1f;
+		float redProgress   = 1f;
+		
 		if(!over)
         {
+			//blue 
 			GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  _game.right.Name + " : " + _game.right.nbPoints);
-			GUI.Label(new Rect(150+offset, 0, 150+offset, 150),  "Time : "+timeElapsed);
-            GUI.Label(new Rect(300 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
+			GUI.DrawTexture(new Rect(0+offset, 20, 150+offset, 50), emptyBar);
+			GUI.DrawTexture(new Rect(0+offset, 20, (150+offset)* blueProgress, 50), blueBar);
+			if(blueProgress == 1f)GUI.Label(new Rect(20+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
+			
+			
+			//red
+			GUI.Label(new Rect(400 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
+			GUI.DrawTexture(new Rect(400 + offset, 20, 150 + offset, 50), emptyBar);
+			GUI.DrawTexture(new Rect(400+offset, 20, (150+offset)* redProgress, 50), redBar);
+			if(redProgress == 1f)GUI.Label(new Rect(420+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
+			
+			
+			//time
+			GUI.Label(new Rect(270+offset, 0, 150+offset, 150),  "Time : "+timeElapsed);
+			
 		}
         else
         {
