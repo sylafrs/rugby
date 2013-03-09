@@ -27,17 +27,15 @@ public class TackleSystem {
 			{
 				if (IsCrit())
 				{
-				//	ball.Owner = tackler;
-			//		ball.transform.parent = tackler;
+					ball.Owner = tackler;
 				}
 				else
 				{
 					//TODO : Launch CutScene
-				/*	if (System.range(0,1) > 0.5f)
+					if (Random.Range(0,1) > 0.5f)
 					{
-						//ball.Owner = tackler;
-						//ball.transform.parent = tackler;
-					}*/
+						ball.Owner = tackler;
+					}
 				}
 			}
 		}

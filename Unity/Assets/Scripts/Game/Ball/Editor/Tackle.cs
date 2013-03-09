@@ -11,7 +11,8 @@ public class Tackle : Editor
 	
 	void OnEnable()
 	{
-		ball = (Ball)target;
+		if (target)
+			ball = (Ball)target;
 	}
 	
 	
@@ -25,10 +26,11 @@ public class Tackle : Editor
 		Handles.color = Color.blue;
 		Handles.ConeCap (0, ball.Owner.transform.position + new Vector3 (0, 0, -5), ball.Owner.transform.rotation, coneSize);
 		*/
-		
-		Handles.color = EditorGUILayout.ColorField(ball.DiscTackle, GUILayout.Width(200));
-		Handles.DrawSolidDisc(ball.Owner.transform.position, Vector3.up, ball.sizeOfTackleArea);
-		
+		if (ball && ball.Owner)
+		{
+			Handles.color = EditorGUILayout.ColorField(ball.DiscTackle, GUILayout.Width(200));
+			Handles.DrawSolidDisc(ball.Owner.transform.position, Vector3.up, ball.sizeOfTackleArea);
+		}
 	}
 	
 }
