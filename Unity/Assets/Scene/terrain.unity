@@ -966,12 +966,12 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  butBleu: {fileID: 612892292}
-  butRouge: {fileID: 358973885}
   passSpeed: 14
   AngleOfFOV: 30
   lastTackle: -1
   timeOnPass: -1
+  DiscTackle: {r: 0, g: 0, b: 1, a: .129411772}
+  sizeOfTackleArea: 2
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
