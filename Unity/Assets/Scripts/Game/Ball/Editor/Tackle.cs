@@ -13,6 +13,7 @@ public class Tackle : Editor
 		ball = (Ball)target;
 	}
 	
+	/*
 	void OnSceneGUI ()
 	{
 		Handles.color = Color.red;
@@ -26,5 +27,5 @@ public class Tackle : Editor
 		//Handles.color = GUILayout.
 		Handles.DrawSolidDisc(ball.Owner.transform.position, Vector3.up, 1f);
 	}
-	
+	*/
 }
