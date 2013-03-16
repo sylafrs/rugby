@@ -287,6 +287,43 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f638fb15fa9958b44a1cec0e7a0dbb1c, type: 3}
   m_Name: 
+--- !u!1 &219502518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 219502519}
+  - 114: {fileID: 219502520}
+  m_Layer: 0
+  m_Name: XboxInputsUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &219502519
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 219502518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.0153351, y: 26.427002, z: 7.64892578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &219502520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 219502518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b931afe6e8968c46871ea700a2db461, type: 3}
+  m_Name: 
 --- !u!1 &278997175
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +362,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278997175}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!92 &278997178
 Behaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
   opponent: {fileID: 0}
+  Player: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   Name: Bleu
@@ -982,11 +1020,12 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  butBleu: {fileID: 612892292}
-  butRouge: {fileID: 358973885}
-  passSpeed: 14
+  passSpeed: 13
+  AngleOfFOV: 0
   lastTackle: -1
   timeOnPass: -1
+  DiscTackle: {r: 0, g: 0, b: 255, a: 33}
+  sizeOfTackleArea: 2
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1020,7 +1059,7 @@ Rigidbody:
 --- !u!1 &840478216
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100068, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
@@ -1037,11 +1076,11 @@ GameObject:
 --- !u!4 &840478217
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400068, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840478216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.42049026, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1694633024}
@@ -1049,7 +1088,8 @@ Transform:
 --- !u!114 &840478219
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400020, guid: 8270225a641f2934b8948aa3749c6e7a,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840478216}
   m_Enabled: 1
@@ -1063,7 +1103,8 @@ MonoBehaviour:
 --- !u!114 &840478220
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400036, guid: 8270225a641f2934b8948aa3749c6e7a,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840478216}
   m_Enabled: 1
@@ -1950,7 +1991,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2004071849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .332199097, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 661539565}
@@ -1970,6 +2011,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
+  xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
   limiteTerrainNordEst: {fileID: 1829991012}
@@ -2020,33 +2062,75 @@ MonoBehaviour:
     scrumWinSuperPoints: 30
     scrumLooseSuperPoints: 10
   inputs:
-    up: 122
-    down: 115
-    left: 113
-    right: 100
-    passLeft: 49
-    drop: 50
-    plaquer: 51
-    passRight: 52
+    passLeft:
+      keyboard: 49
+      xbox: 0
+    passRight:
+      keyboard: 53
+      xbox: 0
+    drop:
+      keyboard: 50
+      xbox: 0
+    tackle:
+      keyboard: 51
+      xbox: 0
+    reset:
+      keyboard: 48
+      xbox: 0
+    enableIA:
+      keyboard: 57
+      xbox: 0
+    scrumNormal:
+      keyboard: 119
+      xbox: 0
+    scrumExtra:
+      keyboard: 120
+      xbox: 0
+    put:
+      keyboard: 52
+      xbox: 0
+    move:
+      keyboard:
+        up: 122
+        down: 115
+        right: 100
+        left: 113
+      xbox: 0
   inputs2:
-    up: 116
-    down: 103
-    left: 102
-    right: 104
-    passLeft: 49
-    drop: 53
-    plaquer: 54
-    passRight: 52
-  XboxController:
-    move: 2
-    passLeft: 8
-    passRight: 1
-    drop: 9
-    plaquer: 3
-    reset: 7
-    enableIA: 2
-    scrumNormal: 0
-    scrumExtra: 5
+    passLeft:
+      keyboard: 0
+      xbox: 0
+    passRight:
+      keyboard: 0
+      xbox: 0
+    drop:
+      keyboard: 0
+      xbox: 0
+    tackle:
+      keyboard: 0
+      xbox: 0
+    reset:
+      keyboard: 0
+      xbox: 0
+    enableIA:
+      keyboard: 0
+      xbox: 0
+    scrumNormal:
+      keyboard: 0
+      xbox: 0
+    scrumExtra:
+      keyboard: 0
+      xbox: 0
+    put:
+      keyboard: 0
+      xbox: 0
+    move:
+      keyboard:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      xbox: 0
   timePlaque: 3
   Vheight: 12
   Vwidth: 2
@@ -2190,6 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
   opponent: {fileID: 0}
+  Player: {fileID: 0}
   Game: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge

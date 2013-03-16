@@ -62,113 +62,9 @@ public class SuperSettings
  */
 [System.Serializable]
 public class InputSettings
-{
-    public KeyCode up = KeyCode.UpArrow;
-    public KeyCode down = KeyCode.DownArrow;
-    public KeyCode left = KeyCode.RightArrow;
-    public KeyCode right = KeyCode.LeftArrow;
-	public KeyCode passLeft = KeyCode.Alpha1;
-    public KeyCode drop = KeyCode.Alpha2;
-	public KeyCode plaquer = KeyCode.Alpha3;
-    public KeyCode passRight = KeyCode.Alpha4;
-}
-
-/** 
- * @class InputSettingsXBOX
- * @brief Reglages des entrées pour un Gamer (manette xBox)
- * @author LAFON Sylvain
- */
-[System.Serializable]
-public class InputSettingsXBOX
-{
-    public XBOX_DIRECTION move ;
-    public XBOX_BUTTONS passLeft;
-    public XBOX_BUTTONS passRight;
-    public XBOX_BUTTONS drop;
-    public XBOX_BUTTONS plaquer;
-	public XBOX_BUTTONS reset;
-	public XBOX_BUTTONS enableIA;
-	public XBOX_BUTTONS scrumNormal;
-	public XBOX_BUTTONS scrumExtra;
-
-    public struct Direction
-    {
-        public float x, y;
-        public Direction(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    public static Direction getDirection(XBOX_DIRECTION direction, GamePadState pad)
-    {
-        Direction d = new Direction(0, 0);
-        switch (direction)
-        {
-            case XBOX_DIRECTION.Pad:
-                if (pad.DPad.Down == ButtonState.Pressed)
-                    d.y--;
-                if (pad.DPad.Up == ButtonState.Pressed)
-                    d.y++;
-                if (pad.DPad.Right == ButtonState.Pressed)
-                    d.x++;
-                if (pad.DPad.Left == ButtonState.Pressed)
-                    d.x--;
-                break;
-            case XBOX_DIRECTION.StickLeft:
-                d.x = pad.ThumbSticks.Left.X;
-                d.y = pad.ThumbSticks.Left.Y;
-                break;
-            case XBOX_DIRECTION.StickRight:
-                d.x = pad.ThumbSticks.Right.X;
-                d.y = pad.ThumbSticks.Right.Y;
-                break;
-        }
-
-        return d;
-    }
-
-    public static bool GetButton(XBOX_BUTTONS button, GamePadState pad)
-    {
-        switch (button)
-        {
-            case XBOX_BUTTONS.A:
-                return pad.Buttons.A == ButtonState.Pressed;
-            case XBOX_BUTTONS.B:
-                return pad.Buttons.B == ButtonState.Pressed;
-            case XBOX_BUTTONS.Back:
-                return pad.Buttons.Back == ButtonState.Pressed;
-            case XBOX_BUTTONS.LeftShoulder:
-                return pad.Buttons.LeftShoulder == ButtonState.Pressed;
-            case XBOX_BUTTONS.LeftStick:
-                return pad.Buttons.LeftStick == ButtonState.Pressed;
-            case XBOX_BUTTONS.RightShoulder:
-                return pad.Buttons.RightShoulder == ButtonState.Pressed;
-            case XBOX_BUTTONS.RightStick:
-                return pad.Buttons.RightStick == ButtonState.Pressed;
-            case XBOX_BUTTONS.Start:
-                return pad.Buttons.Start == ButtonState.Pressed;
-            case XBOX_BUTTONS.X:
-                return pad.Buttons.X == ButtonState.Pressed;
-            case XBOX_BUTTONS.Y:
-                return pad.Buttons.Y == ButtonState.Pressed;
-            case XBOX_BUTTONS.TriggerL:
-                return (pad.Triggers.Left > 0.5f);
-            case XBOX_BUTTONS.TriggerR:
-                return (pad.Triggers.Right > 0.5f);
-            case XBOX_BUTTONS.PAD_up:
-                return pad.DPad.Up == ButtonState.Pressed;
-            case XBOX_BUTTONS.PAD_down:
-                return pad.DPad.Down == ButtonState.Pressed;
-            case XBOX_BUTTONS.PAD_left:
-                return pad.DPad.Left == ButtonState.Pressed;
-            case XBOX_BUTTONS.PAD_right:
-                return pad.DPad.Right == ButtonState.Pressed;
-        }
-
-        return false;
-    }
+{    
+    public InputTouch passLeft, passRight, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put;
+    public InputDirection move;
 }
 
 /**
@@ -183,8 +79,6 @@ public class GameSettings : myMonoBehaviour {
 	public SuperSettings super;     // for super settings
     public InputSettings inputs;    // Controles J1
     public InputSettings inputs2;   // Controles J2
-
-    public InputSettingsXBOX XboxController;
 
     public float timePlaque = 3;
 

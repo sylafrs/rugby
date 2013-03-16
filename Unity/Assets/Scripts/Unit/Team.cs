@@ -12,6 +12,7 @@ public class Team : myMonoBehaviour {
 
     public Team opponent;
 
+    public Gamer Player;
     public Game Game;
     public Color Color;
     public string Name;
@@ -134,7 +135,7 @@ public class Team : myMonoBehaviour {
     {
         foreach (Unit u in units)
         {
-            if (u != Game.p1.controlled && (Game.p2 == null || u != Game.p2.controlled))
+            if (u != Game.p1.Controlled && (Game.p2 == null || u != Game.p2.Controlled))
             {
                 u.Order = Order.OrderFollowBall();
             }
@@ -226,7 +227,7 @@ public class Team : myMonoBehaviour {
             owner = Game.Ball.PreviousOwner;
         }
 
-        if (owner != Game.p1.controlled && (Game.p2 == null || owner != Game.p2.controlled))
+        if (owner != Game.p1.Controlled && (Game.p2 == null || owner != Game.p2.Controlled))
         {
             Zone z = Game.opponent(this).Zone;
             owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z), Order.TYPE_DEPLACEMENT.SPRINT);
@@ -252,13 +253,13 @@ public class Team : myMonoBehaviour {
     void OwnerChangedOpponents()
     {
         Unit a;
-        if (Game.p1.controlled != null && Game.p1.controlled.Team == this)
+        if (Game.p1.Controlled != null && Game.p1.Controlled.Team == this)
         {
-            a = Game.p1.controlled;
+            a = Game.p1.Controlled;
         }
-        else if (Game.p2 != null && Game.p2.controlled.Team == this)
+        else if (Game.p2 != null && Game.p2.Controlled.Team == this)
         {
-            a = Game.p2.controlled;
+            a = Game.p2.Controlled;
         }
         else
         {

@@ -15,32 +15,49 @@ public class Gamer : myMonoBehaviour
     private static int NextGamerId = 0;
     private int id;
 
-    public Team team;
-    public Unit controlled;
-    public Game game;
-	public Vector3 passDirection;
-	
-    public InputSettings inputs;
+    private Team _team;
+    public Team Team
+    {
+        get
+        {
+            return _team;
+        }
+        set
+        {
+            _team = value;
+            _team.Player = this;
+        }
+    }
 
-	private bool onActionCapture = false;
-	private float timeOnActionCapture = 0.0f;
-	
-	private bool canMove;
+    public Unit Controlled;
+    public Game Game;
+    public Vector3 PassDirection;
+
+    public InputSettings Inputs;
+
+    private bool onActionCapture = false;
+    private float timeOnActionCapture = 0.0f;
+
+    private bool canMove;
     public PlayerIndex playerIndex;
+
+    public XboxInputs.Controller XboxController;
 
     public static void initGamerId()
     {
         NextGamerId = 0;
     }
-	
-	void Start(){
+
+    void Start()
+    {
         canMove = true;
 
         id = NextGamerId;
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
-        //Debug.Log(playerIndex.ToString());
+        //Debug.Log(playerIndex.ToString());		
+		XboxController = Game.xboxInputs.controllers[id];
 	}
 	
 	/*
@@ -65,65 +82,41 @@ public class Gamer : myMonoBehaviour
 	}
 
     bool btnDropReleased = true;
-	bool btnPlaquerReleased = true;
+    bool btnPlaquerReleased = true;
     bool btnPassReleased = true;
 
     List<Unit> unitsSide;
-    
-	void Update () {
-       
-        if (inputs == null) return;
-        
-        GamePadState pad = GamePad.GetState(playerIndex);
-        
-        CheckReleased(pad);
-        UpdateMOVE(pad);
-        UpdateMOVE(pad);
-        UpdateTACKLE(pad);
-        UpdatePASS(pad);
-        UpdateDROP(pad);
-	}
 
-    void UpdatePASS(GamePadState pad)
+    void Update()
     {
-        if (game.Ball.Owner == controlled)
+
+        if (Inputs == null) return;
+
+        UpdateMOVE();
+        UpdateTACKLE();
+        UpdatePASS();
+        UpdateDROP();
+    }
+
+    void UpdatePASS()
+    {
+        if (Game.Ball.Owner == Controlled)
         {
-            if (pad.IsConnected)
+            if (Input.GetKeyDown(Inputs.passRight.keyboard) || XboxController.GetButtonDown(Inputs.passRight.xbox))
             {
-                if (btnPassReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.passRight, pad))
-                {
-                    btnPassReleased = false;
-                    UpdatePASS_OnPress(true);                    
-                }
-                else if (btnPassReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
-                {
-                    btnPassReleased = false;
-                    UpdatePASS_OnPress(false);
-                }
-                else if (      !btnPassReleased 
-                            && !InputSettingsXBOX.GetButton(game.settings.XboxController.passRight, pad) 
-                            && !InputSettingsXBOX.GetButton(game.settings.XboxController.passLeft, pad))
-                {
-                    btnPassReleased = true;
-                    UpdatePASS_OnRelease();
-                }
+                UpdatePASS_OnPress(true);
             }
-            else
+            else if (Input.GetKeyDown(Inputs.passLeft.keyboard) || XboxController.GetButtonDown(Inputs.passLeft.xbox))
             {
-                if (Input.GetKeyDown(inputs.passRight))
-                {
-                    UpdatePASS_OnPress(true);
-                }
-
-                else if (Input.GetKeyDown(inputs.passLeft))
-                {
-                    UpdatePASS_OnPress(false);
-                }
-
-                else if (Input.GetKeyUp(inputs.passRight) || Input.GetKeyUp(inputs.passLeft))
-                {
-                    UpdatePASS_OnRelease();
-                }
+                UpdatePASS_OnPress(false);
+            }
+            else if (
+                Input.GetKeyUp(Inputs.passRight.keyboard) ||
+                Input.GetKeyUp(Inputs.passLeft.keyboard) ||
+                XboxController.GetButtonUp(Inputs.passLeft.xbox) ||
+                XboxController.GetButtonUp(Inputs.passRight.xbox))
+            {
+                UpdatePASS_OnRelease();
             }
         }
 
@@ -143,37 +136,37 @@ public class Gamer : myMonoBehaviour
 
         if (right)
         {
-            passDirection = this.transform.right;
-            game.Ball.transform.position = controlled.BallPlaceHolderRight.transform.position;
-            unitsSide = controlled.Team.GetRight(controlled);
+            PassDirection = this.transform.right;
+            Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
+            unitsSide = Controlled.Team.GetRight(Controlled);
         }
         else
         {
-            passDirection = -this.transform.right;
-            game.Ball.transform.position = controlled.BallPlaceHolderLeft.transform.position;
-            unitsSide = controlled.Team.GetLeft(controlled);
-        }       
-    }  
+            PassDirection = -this.transform.right;
+            Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
+            unitsSide = Controlled.Team.GetLeft(Controlled);
+        }
+    }
 
     void UpdatePASS_OnRelease()
     {
-        if (controlled == game.Ball.Owner)
+        if (Controlled == Game.Ball.Owner)
         {
             onActionCapture = false;
-            if (timeOnActionCapture > game.settings.maxTimeHoldingPassButton)
-                timeOnActionCapture = game.settings.maxTimeHoldingPassButton;
+            if (timeOnActionCapture > Game.settings.maxTimeHoldingPassButton)
+                timeOnActionCapture = Game.settings.maxTimeHoldingPassButton;
             //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 
             if (unitsSide.Count != 0)
             {
-                int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / game.settings.maxTimeHoldingPassButton);
+                int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / Game.settings.maxTimeHoldingPassButton);
                 Debug.Log(unit);
 
                 if (unit == unitsSide.Count) unit--;
                 Unit u = unitsSide[unit];
 
-                controlled.Order = Order.OrderPass(u);                
-                passDirection = Vector3.zero;
+                Controlled.Order = Order.OrderPass(u);
+                PassDirection = Vector3.zero;
             }
         }
         else
@@ -182,91 +175,46 @@ public class Gamer : myMonoBehaviour
         }
     }
 
-    void UpdateTACKLE(GamePadState pad)
+    void UpdateTACKLE()
     {
-       if (pad.IsConnected)
+        if (Input.GetKeyDown(Inputs.tackle.keyboard) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
-            if (btnPlaquerReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.plaquer, pad))
+            if (Controlled.NearUnits.Count > 0)
             {
-                btnPlaquerReleased = false;
-                if (controlled.NearUnits.Count > 0)
-                {
-                    controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
-                }
+                Controlled.Order = Order.OrderPlaquer(Controlled.NearUnits[0]);
             }
-        }
-        else if (Input.GetKeyDown(inputs.plaquer) && controlled.NearUnits.Count > 0)
-        {
-            controlled.Order = Order.OrderPlaquer(controlled.NearUnits[0]);
         }
     }
 
-    void UpdateMOVE(GamePadState pad)
-    {        
+    void UpdateMOVE()
+    {
         if (!canMove) return;
         Vector3 direction = Vector3.zero;
 
-        if (pad.IsConnected)
+        InputDirection.Direction d;
+        if (XboxController.IsConnected)
         {
-            InputSettingsXBOX.Direction d = InputSettingsXBOX.getDirection(game.settings.XboxController.move, pad);
-            direction += Camera.main.transform.forward * d.y;
-            direction += Camera.main.transform.right * d.x;
+            d = XboxController.GetDirection(Inputs.move.xbox);
         }
         else
         {
-            if (Input.GetKey(inputs.up))
-            {
-                direction += (Camera.main.transform.forward);
-            }
-            if (Input.GetKey(inputs.down))
-            {
-                direction -= (Camera.main.transform.forward);
-            }
-            if (Input.GetKey(inputs.left))
-            {
-                direction -= (Camera.main.transform.right);
-            }
-            if (Input.GetKey(inputs.right))
-            {
-                direction += (Camera.main.transform.right);
-            }
+            d = Inputs.move.keyboard.GetDirection();
         }
+
+        direction += Camera.main.transform.forward * d.y;
+        direction += Camera.main.transform.right * d.x;
 
         if (direction != Vector3.zero)
         {
-            controlled.Order = Order.OrderMove(controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
+            Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
         }
     }
 
-    void UpdateDROP(GamePadState pad)
+    void UpdateDROP()
     {
-        if (pad.IsConnected)
+        if (Input.GetKeyDown(Inputs.drop.keyboard) || XboxController.GetButtonDown(Inputs.drop.xbox))
         {
-            if (btnDropReleased && InputSettingsXBOX.GetButton(game.settings.XboxController.drop, pad))
-            {
-                btnDropReleased = false;
-                controlled.Order = Order.OrderDrop(game.left[0]);
-            }
-        }
-        else if (Input.GetKeyDown(inputs.drop))
-        {
-            controlled.Order = Order.OrderDrop(game.left[0]);
+            Controlled.Order = Order.OrderDrop(Game.left[0]);
         }
     }
-
-    void CheckReleased(GamePadState pad)
-    {
-        if (pad.IsConnected)
-        {
-            if (!InputSettingsXBOX.GetButton(game.settings.XboxController.drop, pad))
-            {
-                btnDropReleased = true;
-            }
-            if (!InputSettingsXBOX.GetButton(game.settings.XboxController.plaquer, pad))
-            {
-                btnPlaquerReleased = true;
-            }
-        }
-    }
-
 }

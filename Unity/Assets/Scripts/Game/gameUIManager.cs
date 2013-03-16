@@ -63,8 +63,7 @@ public class gameUIManager : myMonoBehaviour {
 			//stuff sur la caméra
 		}
 
-        Gamer.initGamerId();
-		
+        Gamer.initGamerId();		
 		
 		if(pad.IsConnected){
 			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){

@@ -13,9 +13,8 @@ public class Ball : TriggeringTriggered {
     public Game Game;
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
-	public GameObject butBleu;
-	public GameObject butRouge;
 	public float passSpeed = 20.0f;
+	public float AngleOfFOV = 0.0f;
 
 	private Unit _previousOwner;
 	private bool goScrum;
@@ -25,6 +24,9 @@ public class Ball : TriggeringTriggered {
 
 	public float timeOnPass = -1;
 	private PassSystem p;
+	
+	public Color DiscTackle = new Color(0f, 0f, 255f, 33f);
+	public float sizeOfTackleArea = 2f;
 	
 	/*
 	 * @author Maxens Dubois 
@@ -79,8 +81,10 @@ public class Ball : TriggeringTriggered {
 
         UpdateTackle();
 		UpdatePass();
+		
+		drawCone();
     }
-  
+
     public void Drop()
     {              
         this.transform.parent = null;
@@ -92,8 +96,10 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
+		//Game.right.But
+		
 		Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
-		p = new PassSystem(butBleu.transform.position, butRouge.transform.position, this.Owner, to, this);
+		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
 	}
@@ -230,5 +236,24 @@ public class Ball : TriggeringTriggered {
             }
         }
     }
-
+	
+	public void drawCone()
+	{
+		/*
+		float newAngle = AngleOfFOV * Mathf.PI / 180f;
+		Vector3 source = this.Owner.transform.position;
+		source.y = 1f;
+		float tmp = Vector3.Angle( Vector3.forward, this.Owner.transform.forward) * Mathf.PI / 180f;
+		//float alpha = Mathf.Acos( Vector3.Dot(Vector3.forward, this.Owner.transform.forward) / (Vector3.forward.magnitude * this.Owner.transform.forward.magnitude) );
+		Vector3 tmp2 = new Vector3( 10f * Mathf.Sin(tmp + newAngle), 1f, 10f * Mathf.Cos(tmp + newAngle) );
+		Vector3 destination = 10f * this.Owner.transform.forward;
+		Debug.Log("Angle entre x et x' = " + tmp);
+		//destination.y = 1f;
+		Vector3 tmp3 = new Vector3( 10f * this.Owner.transform.forward.x / Mathf.Sin(newAngle) , 1f, 10f * this.Owner.transform.forward.z / Mathf.Cos(newAngle) );
+		Debug.Log(this.Owner.transform.forward);
+		Debug.DrawRay(source, destination, Color.yellow, 10f);
+		Debug.DrawRay(source, tmp2 - source, Color.cyan, 10f);
+		*/
+	}
+	
 }
