@@ -40,7 +40,7 @@ public class Gamer : myMonoBehaviour
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
-        Debug.Log(playerIndex.ToString());
+        //Debug.Log(playerIndex.ToString());
 	}
 	
 	/*

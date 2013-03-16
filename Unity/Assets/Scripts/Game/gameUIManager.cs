@@ -40,7 +40,6 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void Update()
     {
-		
 		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
 		
         if (pad.IsConnected)
@@ -84,7 +83,7 @@ public class gameUIManager : myMonoBehaviour {
 
 		float blueCurrent = (float)_game.right.SuperGaugeValue;
 		float redCurrent  = (float)_game.left.SuperGaugeValue;
-		float max		  = (float)_game.settings.super.superGaugeLimitBreak;
+		float max		  = (float)_game.settings.super.superGaugeMaximum;
 		blueProgress = Mathf.Clamp01(blueCurrent/max);
 		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}

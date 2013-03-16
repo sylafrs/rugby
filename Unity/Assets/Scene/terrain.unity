@@ -391,6 +391,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 293398128}
   - 114: {fileID: 293398129}
+  - 114: {fileID: 293398130}
   m_Layer: 0
   m_Name: Bleus
   m_TagString: Untagged
@@ -431,6 +432,20 @@ MonoBehaviour:
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
+--- !u!114 &293398130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293398127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
+  m_Name: 
+  OffensiveSuperButton: 102
+  DefensiveSuperButton: 103
+  OffensiveSuper: 1
+  DefensiveSuper: 2
 --- !u!1 &306850723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1936,6 @@ GameObject:
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
   - 114: {fileID: 2004071854}
-  - 114: {fileID: 2004071855}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -1984,11 +1998,13 @@ MonoBehaviour:
     points_drop: 5
     points_essai: 5
   super:
-    superGaugeLimitBreak: 200
-    OffensiveSuperDurationTime: 1000
-    DefensiveSuperDurationTime: 1000
+    superGaugeOffensiveLimitBreak: 200
+    superGaugeDefensiveLimitBreak: 200
+    superGaugeMaximum: 200
+    OffensiveSuperDurationTime: 10
+    DefensiveSuperDurationTime: 10
     superSpeedScale: 1.5
-    superUnbloacke: 1
+    superUnblockable: 1
     passWinSuperPoints: 10
     passLooseSuperPoints: 5
     dropWinSuperPoints: 20
@@ -2121,7 +2137,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 0
@@ -2134,18 +2150,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
---- !u!114 &2004071855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004071849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
-  m_Name: 
-  OffensiveSuperButton: 102
-  DefensiveSuperButton: 103
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2159,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2078013330}
   - 114: {fileID: 2078013331}
+  - 114: {fileID: 2078013332}
   m_Layer: 0
   m_Name: Rouges
   m_TagString: Untagged
@@ -2195,3 +2200,17 @@ MonoBehaviour:
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
+--- !u!114 &2078013332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2078013329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
+  m_Name: 
+  OffensiveSuperButton: 0
+  DefensiveSuperButton: 0
+  OffensiveSuper: 0
+  DefensiveSuper: 0
