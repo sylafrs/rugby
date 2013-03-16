@@ -23,12 +23,15 @@ public class Team : myMonoBehaviour {
 
     public int nbPoints = 0;
 
-    private Unit [] units;
+    public Unit [] units {get; set;}
 	
 	//
 	public float speedFactor;
 	public float tackleFactor;
-
+		
+	public float unitSpeed;
+	public float unitTackleRange;
+	
     public Unit this[int index]
     {
         get
@@ -44,7 +47,6 @@ public class Team : myMonoBehaviour {
 
         }
     }
-
     public GameObject Prefab_model;
 	
 	//maxens dubois
