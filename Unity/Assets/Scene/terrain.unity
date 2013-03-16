@@ -428,6 +428,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 293398128}
   - 114: {fileID: 293398129}
+  - 114: {fileID: 293398130}
   m_Layer: 0
   m_Name: Bleus
   m_TagString: Untagged
@@ -467,7 +468,22 @@ MonoBehaviour:
   Zone: {fileID: 1416207911}
   nbPoints: 0
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
+  SuperGaugeValue: 0
   nbUnits: 7
+--- !u!114 &293398130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293398127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
+  m_Name: 
+  OffensiveSuperButton: 102
+  DefensiveSuperButton: 103
+  OffensiveSuper: 1
+  DefensiveSuper: 2
 --- !u!1 &306850723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +1977,6 @@ GameObject:
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
   - 114: {fileID: 2004071854}
-  - 114: {fileID: 2004071855}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -1996,7 +2011,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
-  xboxInputs: {fileID: 0}
+  xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
   limiteTerrainNordEst: {fileID: 1829991012}
@@ -2010,7 +2025,6 @@ MonoBehaviour:
   cpu: 0
   disableIAKey: 105
   tweakMode: 0
-  arbiter: {fileID: 2004071855}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2025,40 +2039,62 @@ MonoBehaviour:
   score:
     points_drop: 5
     points_essai: 5
+  super:
+    superGaugeOffensiveLimitBreak: 200
+    superGaugeDefensiveLimitBreak: 200
+    superGaugeMaximum: 200
+    OffensiveSuperDurationTime: 10
+    DefensiveSuperDurationTime: 10
+    superSpeedScale: 1.5
+    superUnblockable: 1
+    passWinSuperPoints: 10
+    passLooseSuperPoints: 5
+    dropWinSuperPoints: 20
+    dropLooseSuperPoints: 10
+    tryWinSuperPoints: 30
+    tryLooseSuperPoints: 20
+    conversionWinSuperPoints: 10
+    conversionLooseSuperPoints: 5
+    touchWinSuperPoints: 20
+    touchLooseSuperPoints: 10
+    tackleWinSuperPoints: 20
+    tackleLooseSuperPoints: 5
+    scrumWinSuperPoints: 30
+    scrumLooseSuperPoints: 10
   inputs:
     passLeft:
-      keyboard: 0
+      keyboard: 49
       xbox: 0
     passRight:
-      keyboard: 0
+      keyboard: 53
       xbox: 0
     drop:
-      keyboard: 0
+      keyboard: 50
       xbox: 0
     tackle:
-      keyboard: 0
+      keyboard: 51
       xbox: 0
     reset:
-      keyboard: 0
+      keyboard: 48
       xbox: 0
     enableIA:
-      keyboard: 0
+      keyboard: 57
       xbox: 0
     scrumNormal:
-      keyboard: 0
+      keyboard: 119
       xbox: 0
     scrumExtra:
-      keyboard: 0
+      keyboard: 120
       xbox: 0
     put:
-      keyboard: 0
+      keyboard: 52
       xbox: 0
     move:
       keyboard:
-        up: 0
-        down: 0
-        right: 0
-        left: 0
+        up: 122
+        down: 115
+        right: 100
+        left: 113
       xbox: 0
   inputs2:
     passLeft:
@@ -2136,16 +2172,68 @@ MonoBehaviour:
   m_Name: 
   gameTime: 100
   resetKey: 32
---- !u!114 &2004071855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004071849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
-  m_Name: 
+  emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+  blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+  redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+  superOkTextStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2243,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2078013330}
   - 114: {fileID: 2078013331}
+  - 114: {fileID: 2078013332}
   m_Layer: 0
   m_Name: Rouges
   m_TagString: Untagged
@@ -2194,4 +2283,19 @@ MonoBehaviour:
   Zone: {fileID: 23915010}
   nbPoints: 0
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
+  SuperGaugeValue: 0
   nbUnits: 7
+--- !u!114 &2078013332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2078013329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
+  m_Name: 
+  OffensiveSuperButton: 0
+  DefensiveSuperButton: 0
+  OffensiveSuper: 0
+  DefensiveSuper: 0

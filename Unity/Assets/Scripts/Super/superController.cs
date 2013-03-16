@@ -1,0 +1,133 @@
+using UnityEngine;
+using System.Collections;
+
+public enum SuperList{
+	//null is the base status
+	superNull,
+	superTackle,
+	superDash,
+	superWall
+};
+
+public class superController : MonoBehaviour {
+	
+	public KeyCode OffensiveSuperButton;
+	public KeyCode DefensiveSuperButton;
+	
+	public SuperList OffensiveSuper;
+	public SuperList DefensiveSuper;
+	
+	private Game _game;
+	private Team _team;
+	private SuperList currentSuper;
+	
+	//time management for supers
+	private float OffensiveSuperTimeAmount;
+	private float DefensiveSuperTimeAmount;
+	private float SuperTimeLeft;
+	
+	
+	void Start () {
+		_game 	        = GameObject.Find("Scene").GetComponent<Game>();
+		_team			= gameObject.GetComponent<Team>();
+		currentSuper    = SuperList.superNull;
+		
+		OffensiveSuperTimeAmount = _game.settings.super.OffensiveSuperDurationTime;
+		DefensiveSuperTimeAmount = _game.settings.super.DefensiveSuperDurationTime;
+		
+		SuperTimeLeft = 0f;
+	}
+	
+	void Update () {
+		updateSuperValue();
+		updateSuperInput();
+		updateSuperStatus();
+	}
+	
+	void updateSuperValue(){
+		if( (Random.Range(1,20) == 1) && (currentSuper == SuperList.superNull) ){
+			_team.increaseSuperGauge(5);
+		}
+	}
+	
+	void updateSuperInput(){
+		
+		//offense
+		if(Input.GetKeyDown(OffensiveSuperButton)){
+			if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
+				Debug.Log("Offensive Super attack !");
+				launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
+				_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
+			}else{
+				Debug.Log("Need more Power to lauch the offensive super");
+				Debug.Log("Current Power : "+_team.SuperGaugeValue);
+				Debug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
+			}
+		}
+		
+		//defense
+		if(Input.GetKeyDown(DefensiveSuperButton)){
+			if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
+				Debug.Log("Defensive Super attack !");
+					launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
+					_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
+			}else{
+				Debug.Log("Need more Power to lauch the defensive super");
+				Debug.Log("Current Power : "+_team.SuperGaugeValue);
+				Debug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
+			}
+		}
+	}
+	
+	void updateSuperStatus(){
+		if(currentSuper != SuperList.superNull){
+			//maj super time
+			SuperTimeLeft -= Time.deltaTime;
+			Debug.Log("Super Time left  : "+SuperTimeLeft);
+			if(SuperTimeLeft > 0f){
+				switch(currentSuper){
+					case SuperList.superDash:{
+						break;
+					}
+					case SuperList.superTackle:{
+						break;
+					}
+					case SuperList.superWall:{
+						break;
+					}
+					default:{
+						break;
+					}
+				}
+			}else{
+				Debug.Log("Super Over");
+				currentSuper = SuperList.superNull;
+			}
+		}
+	}
+	
+	void launchSuper(SuperList super, float duration){
+		SuperTimeLeft = duration;
+		currentSuper  = super;
+		switch (super){
+			case SuperList.superDash:{
+				Debug.Log("Dash Super attack !");
+				//dash
+			break;
+			}
+			case SuperList.superTackle:{
+				Debug.Log("Tackle Super attack !");
+				//tackle
+			break;
+			}
+			case SuperList.superWall:{
+				Debug.Log("Wall Super attack !");
+				//wall
+			break;
+			}
+			default:{
+				break;
+			}
+		}
+	}
+}

@@ -56,34 +56,30 @@ public class Gamer : myMonoBehaviour
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
-        Debug.Log(playerIndex.ToString());
-
-        XboxController = Game.xboxInputs.controllers[id];
-    }
-
-    /*
-     * @ author Maxens Dubois
-     */
-    public void stopMove()
-    {
-        canMove = false;
-    }
-
-    /*
-     * @ author Maxens Dubois
-     */
-    public void enableMove()
-    {
-        canMove = true;
-    }
-
-    /*
-     * @ author Maxens Dubois
-     */
-    bool getMoveStatus()
-    {
-        return canMove;
-    }
+        //Debug.Log(playerIndex.ToString());		
+		XboxController = Game.xboxInputs.controllers[id];
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	public void stopMove(){
+		canMove = false;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	public void enableMove(){
+		canMove = true;
+	}
+	
+	/*
+	 * @ author Maxens Dubois
+	 */
+	bool getMoveStatus(){
+		return canMove;
+	}
 
     bool btnDropReleased = true;
     bool btnPlaquerReleased = true;

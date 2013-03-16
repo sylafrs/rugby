@@ -42,6 +42,9 @@ public class Team : myMonoBehaviour {
     }
 
     public GameObject Prefab_model;
+	
+	//maxens dubois
+	public int SuperGaugeValue;
     
     public int nbUnits;
 
@@ -50,7 +53,12 @@ public class Team : myMonoBehaviour {
         But.Owner = this;
         Zone.Owner = this;
     }
-
+	
+	//maxens dubois
+	public void increaseSuperGauge(int value){
+		if((SuperGaugeValue += value) > Game.settings.super.superGaugeMaximum) SuperGaugeValue = Game.settings.super.superGaugeMaximum;
+	}
+	
     public void CreateUnits()
     {
         units = new Unit[nbUnits];
