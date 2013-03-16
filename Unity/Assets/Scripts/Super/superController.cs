@@ -57,7 +57,7 @@ public class superController : MonoBehaviour {
 			if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
 				Debug.Log("Offensive Super attack !");
 				launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
-				_team.SuperGaugeValue = 0;
+				_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
 			}else{
 				Debug.Log("Need more Power to lauch the offensive super");
 				Debug.Log("Current Power : "+_team.SuperGaugeValue);
@@ -70,7 +70,7 @@ public class superController : MonoBehaviour {
 			if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
 				Debug.Log("Defensive Super attack !");
 					launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
-					_team.SuperGaugeValue = 0;
+					_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
 			}else{
 				Debug.Log("Need more Power to lauch the defensive super");
 				Debug.Log("Current Power : "+_team.SuperGaugeValue);
