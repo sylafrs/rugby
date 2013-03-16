@@ -2019,8 +2019,6 @@ MonoBehaviour:
   limiteTerrainSudOuest: {fileID: 1852343968}
   right: {fileID: 293398129}
   left: {fileID: 2078013331}
-  p1: {fileID: 0}
-  p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cpu: 0

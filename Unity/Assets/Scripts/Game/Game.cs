@@ -38,7 +38,8 @@ public class Game : myMonoBehaviour {
 	}
 	
 	
-    public Gamer p1, p2;
+    public Gamer p1 {get; private set;}
+	public Gamer p2 {get; private set;}
 
     public Ball Ball;
     public GameLog Log;
