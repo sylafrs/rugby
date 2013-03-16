@@ -22,6 +22,13 @@ public class Unit : TriggeringTriggered, Debugable
     public Game Game;
     public GameObject[] selectedIndicators;
     public GameObject[] plaqueIndicators;
+	
+	public NearUnit triggerTackle {get; set;}
+	
+	void Update() {
+		nma.speed = team.unitSpeed * team.speedFactor;
+		triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
+	}
 
     public void IndicateSelected(bool enabled)
     {
