@@ -24,6 +24,10 @@ public class Team : myMonoBehaviour {
     public int nbPoints = 0;
 
     private Unit [] units;
+	
+	//
+	public float speedFactor;
+	public float tackleFactor;
 
     public Unit this[int index]
     {
@@ -52,6 +56,9 @@ public class Team : myMonoBehaviour {
     {
         But.Owner = this;
         Zone.Owner = this;
+		
+		speedFactor  = 1f;
+		tackleFactor = 1f;
     }
 	
 	//maxens dubois

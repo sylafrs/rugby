@@ -30,6 +30,7 @@ public class SuperSettings
 	public float OffensiveSuperDurationTime	= 10f;
 	public float DefensiveSuperDurationTime	= 10f;
 	public float superSpeedScale            = 1.5f;
+	public float superTackleBoxScale        = 1.5f;
 	public bool  superUnblockable           = true;
 	//passe
     public int passWinSuperPoints  		= 10;

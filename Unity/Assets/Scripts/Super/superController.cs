@@ -83,7 +83,7 @@ public class superController : MonoBehaviour {
 		if(currentSuper != SuperList.superNull){
 			//maj super time
 			SuperTimeLeft -= Time.deltaTime;
-			Debug.Log("Super Time left  : "+SuperTimeLeft);
+			//Debug.Log("Super Time left  : "+SuperTimeLeft);
 			if(SuperTimeLeft > 0f){
 				switch(currentSuper){
 					case SuperList.superDash:{
@@ -102,6 +102,8 @@ public class superController : MonoBehaviour {
 			}else{
 				Debug.Log("Super Over");
 				currentSuper = SuperList.superNull;
+				_team.speedFactor 	= 1f;
+				_team.tackleFactor 	= 1f;
 			}
 		}
 	}
@@ -112,11 +114,13 @@ public class superController : MonoBehaviour {
 		switch (super){
 			case SuperList.superDash:{
 				Debug.Log("Dash Super attack !");
+				_team.speedFactor = _game.settings.super.superSpeedScale;
 				//dash
 			break;
 			}
 			case SuperList.superTackle:{
 				Debug.Log("Tackle Super attack !");
+				_team.tackleFactor = _game.settings.super.superTackleBoxScale;
 				//tackle
 			break;
 			}
