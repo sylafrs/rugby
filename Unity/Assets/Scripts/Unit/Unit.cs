@@ -22,6 +22,10 @@ public class Unit : TriggeringTriggered, Debugable
     public Game Game;
     public GameObject[] selectedIndicators;
     public GameObject[] plaqueIndicators;
+	
+	//particles sytems
+	public ParticleSystem superDashParticles;
+	public ParticleSystem superTackleParticles;
 
     public void IndicateSelected(bool enabled)
     {

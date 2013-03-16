@@ -467,6 +467,8 @@ MonoBehaviour:
   But: {fileID: 612892297}
   Zone: {fileID: 1416207911}
   nbPoints: 0
+  speedFactor: 1
+  tackleFactor: 1
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
@@ -482,8 +484,10 @@ MonoBehaviour:
   m_Name: 
   OffensiveSuperButton: 102
   DefensiveSuperButton: 103
-  OffensiveSuper: 1
+  OffensiveSuper: 2
   DefensiveSuper: 2
+  superTackleColor: {r: 0, g: 0, b: 0, a: 0}
+  superDashColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &306850723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,7 +2050,8 @@ MonoBehaviour:
     OffensiveSuperDurationTime: 10
     DefensiveSuperDurationTime: 10
     superSpeedScale: 1.5
-    superUnblockable: 1
+    superTackleBoxScale: 1.5
+    superUnblockable: 0
     passWinSuperPoints: 10
     passLooseSuperPoints: 5
     dropWinSuperPoints: 20
@@ -2282,6 +2287,8 @@ MonoBehaviour:
   But: {fileID: 358973890}
   Zone: {fileID: 23915010}
   nbPoints: 0
+  speedFactor: 1
+  tackleFactor: 1
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
@@ -2299,3 +2306,5 @@ MonoBehaviour:
   DefensiveSuperButton: 0
   OffensiveSuper: 0
   DefensiveSuper: 0
+  superTackleColor: {r: 0, g: 0, b: 0, a: 0}
+  superDashColor: {r: 0, g: 0, b: 0, a: 0}

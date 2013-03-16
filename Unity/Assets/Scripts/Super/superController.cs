@@ -20,6 +20,11 @@ public class superController : MonoBehaviour {
 	private Game _game;
 	private Team _team;
 	private SuperList currentSuper;
+	private Color colorSave;
+	
+	//super color
+	public Color superTackleColor;
+	public Color superDashColor;
 	
 	//time management for supers
 	private float OffensiveSuperTimeAmount;
@@ -100,26 +105,36 @@ public class superController : MonoBehaviour {
 					}
 				}
 			}else{
-				Debug.Log("Super Over");
-				currentSuper = SuperList.superNull;
-				_team.speedFactor 	= 1f;
-				_team.tackleFactor 	= 1f;
+				endSuper();
 			}
 		}
 	}
 	
+	void endSuper(){
+		Debug.Log("Super Over");
+		currentSuper = SuperList.superNull;
+		_team.speedFactor 	= 1f;
+		_team.tackleFactor 	= 1f;
+		_team.ChangePlayersColor(colorSave);
+		stopDashAttackFeedback();
+		stopTackleAttackFeedback();
+	}
+	
 	void launchSuper(SuperList super, float duration){
+		colorSave = _team.GetPlayerColor();
 		SuperTimeLeft = duration;
 		currentSuper  = super;
 		switch (super){
 			case SuperList.superDash:{
 				Debug.Log("Dash Super attack !");
+				launchDashAttackFeedback();
 				_team.speedFactor = _game.settings.super.superSpeedScale;
 				//dash
 			break;
 			}
 			case SuperList.superTackle:{
 				Debug.Log("Tackle Super attack !");
+				launchTackleAttackFeedback();
 				_team.tackleFactor = _game.settings.super.superTackleBoxScale;
 				//tackle
 			break;
@@ -133,5 +148,27 @@ public class superController : MonoBehaviour {
 				break;
 			}
 		}
+	}
+	
+	
+	
+	void launchDashAttackFeedback(){		
+		_team.ChangePlayersColor(superDashColor);
+		_team.PlaySuperParticleSystem(SuperList.superDash, true);
+	}
+	
+	void launchTackleAttackFeedback(){
+		_team.ChangePlayersColor(superTackleColor);
+		_team.PlaySuperParticleSystem(SuperList.superTackle, true);
+	}
+	
+	void stopDashAttackFeedback(){
+		_team.ChangePlayersColor(colorSave);
+		_team.PlaySuperParticleSystem(SuperList.superDash, false);
+	}
+	
+	void stopTackleAttackFeedback(){
+		_team.ChangePlayersColor(colorSave);
+		_team.PlaySuperParticleSystem(SuperList.superTackle, false);
 	}
 }
