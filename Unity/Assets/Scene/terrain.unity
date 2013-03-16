@@ -1961,6 +1961,7 @@ GameObject:
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
   - 114: {fileID: 2004071854}
+  - 114: {fileID: 2004071855}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -2009,6 +2010,7 @@ MonoBehaviour:
   cpu: 0
   disableIAKey: 105
   tweakMode: 0
+  arbiter: {fileID: 2004071855}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,6 +2136,16 @@ MonoBehaviour:
   m_Name: 
   gameTime: 100
   resetKey: 32
+--- !u!114 &2004071855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
+  m_Name: 
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
