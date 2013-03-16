@@ -42,6 +42,7 @@ public class gameUIManager : myMonoBehaviour {
     {
 		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
 		
+		/*
         if (pad.IsConnected)
         {
             if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
@@ -53,6 +54,7 @@ public class gameUIManager : myMonoBehaviour {
                 btnResetReleased = true;
             }
         }
+        */
 		
 		timeElapsed += Time.deltaTime;
 		
@@ -65,6 +67,7 @@ public class gameUIManager : myMonoBehaviour {
 
         Gamer.initGamerId();		
 		
+		/*
 		if(pad.IsConnected){
 			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){
 				btnResetReleased = false;
@@ -74,6 +77,7 @@ public class gameUIManager : myMonoBehaviour {
 		else if(Input.GetKeyDown(resetKey)){
            	Application.LoadLevel(Application.loadedLevel);
 		}
+		*/
 		
 		UpdateSuperProgress();
 	}
