@@ -517,9 +517,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
-  opponent: {fileID: 0}
-  Player: {fileID: 0}
-  Game: {fileID: 0}
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   Name: Bleu
   right: 0
@@ -1641,6 +1638,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1400166212}
+  - 114: {fileID: 1400166213}
   m_Layer: 0
   m_Name: Arbiter
   m_TagString: Untagged
@@ -1659,7 +1657,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1694044362}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2004071850}
+--- !u!114 &1400166213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1400166211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
+  m_Name: 
 --- !u!1 &1416207907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,6 +2303,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1400166212}
   - {fileID: 661539565}
   - {fileID: 1693924982}
   - {fileID: 423563788}
@@ -2319,13 +2328,12 @@ MonoBehaviour:
   limiteTerrainSudOuest: {fileID: 1852343968}
   right: {fileID: 293398129}
   left: {fileID: 2078013331}
-  p1: {fileID: 0}
-  p2: {fileID: 0}
   Ball: {fileID: 661539566}
   Log: {fileID: 0}
   cpu: 0
   disableIAKey: 105
   tweakMode: 0
+  arbiter: {fileID: 1400166213}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,9 +2583,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
-  opponent: {fileID: 0}
-  Player: {fileID: 0}
-  Game: {fileID: 0}
   Color: {r: 1, g: 0, b: 0, a: 0}
   Name: Rouge
   right: 0
