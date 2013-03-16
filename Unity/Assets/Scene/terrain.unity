@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
-  xboxInputs: {fileID: 219502520}
+  xboxInputs: {fileID: 0}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
   limiteTerrainNordEst: {fileID: 1829991012}
@@ -2027,38 +2027,38 @@ MonoBehaviour:
     points_essai: 5
   inputs:
     passLeft:
-      keyboard: 49
+      keyboard: 0
       xbox: 0
     passRight:
-      keyboard: 53
+      keyboard: 0
       xbox: 0
     drop:
-      keyboard: 50
+      keyboard: 0
       xbox: 0
     tackle:
-      keyboard: 51
+      keyboard: 0
       xbox: 0
     reset:
-      keyboard: 48
+      keyboard: 0
       xbox: 0
     enableIA:
-      keyboard: 57
+      keyboard: 0
       xbox: 0
     scrumNormal:
-      keyboard: 119
+      keyboard: 0
       xbox: 0
     scrumExtra:
-      keyboard: 120
+      keyboard: 0
       xbox: 0
     put:
-      keyboard: 52
+      keyboard: 0
       xbox: 0
     move:
       keyboard:
-        up: 122
-        down: 115
-        right: 100
-        left: 113
+        up: 0
+        down: 0
+        right: 0
+        left: 0
       xbox: 0
   inputs2:
     passLeft:
