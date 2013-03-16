@@ -10,10 +10,9 @@ using System.Collections.Generic;
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : myMonoBehaviour {
 
-    public Team opponent;
-
-    public Gamer Player;
-    public Game Game;
+    public Team opponent {get; set;}
+    public Gamer Player {get; set;}
+    public Game Game {get; set;}
     public Color Color;
     public string Name;
     public bool right;
