@@ -26,6 +26,15 @@ public class Unit : TriggeringTriggered, Debugable
 	//particles sytems
 	public ParticleSystem superDashParticles;
 	public ParticleSystem superTackleParticles;
+	
+	
+	public NearUnit triggerTackle {get; set;}
+	
+	//maxens : c'est très bourrin xD
+	void Update() {
+		nma.speed = team.unitSpeed * team.speedFactor;
+		triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
+	}
 
     public void IndicateSelected(bool enabled)
     {
