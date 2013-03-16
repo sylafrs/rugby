@@ -68,6 +68,8 @@ public class Game : myMonoBehaviour {
    	
     private bool cameraLocked;
     
+	public Arbiter arbiter;
+	
 	public void Start ()
     {
         this.Log = this.gameObject.AddComponent<GameLog>();
