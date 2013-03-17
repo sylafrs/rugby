@@ -11,28 +11,12 @@ public class Touche : TriggeringTrigger
 {
     public Transform a, b;
 
-    public bool remiseAuCentre = false;
-
     public override void Entered(Triggered t)
     {
         Ball ball = t.GetComponent<Ball>();
         if (ball != null)
         {
-            if (a == null || b == null)
-            {
-                Debug.Log("Touche : [Replace au centre]");
-                ball.setPosition(Vector3.zero);
-            }
-            else
-            {
-                Debug.Log("Touche : [Replace au centre, sur la ligne]");
-
-                Vector3 pos = Vector3.Project(ball.transform.position - a.position, b.position - a.position) + a.position;
-                pos.x = remiseAuCentre ? 0 : pos.y; // Au centre
-                pos.y = 0; // A terre
-                ball.setPosition(pos);
-
-            }           
+			this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
         }
     }
     void OnDrawGizmos()

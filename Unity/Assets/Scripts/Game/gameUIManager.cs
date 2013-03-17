@@ -91,8 +91,33 @@ public class gameUIManager : myMonoBehaviour {
 		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}
 	
+	/**
+	  * @brief Fabrique un rectangle en fonction des dimensions de l'écran.
+	  * @param x, y
+	  * 	Position du rectangle (pourcentage)
+	  * @param w, h
+	  * 	Taille du rectangle (pourcentage)
+	  * @return Rectangle contenant la position et la taille en pixels.
+	  * @author Sylvain LAFON
+	  */
+	public static Rect screenRelativeRect(float x, float y, float w, float h) {
+		
+		float H = Screen.height / 100f;
+		float W = Screen.width / 100f;
+		
+		return new Rect(x * W, y * H, w * W, h * H);	
+	}
+	
 	void OnGUI()
     {
+		
+		/*
+		 * Note pour Maxens :
+		 * Lorsque l'on utilise le GUI D'Unity sans Layout, ou dès lors que l'on doit
+		 * donner une taille ou une position, il est plus judicieux d'utiliser un pourcentage
+		 * comparé à la taille de l'écran.
+		 */		
+		
 		int offset		 = 100;
 		
 		if(!over)
