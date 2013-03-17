@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   a: {fileID: 40126847}
   b: {fileID: 306850724}
-  remiseAuCentre: 1
+  remiseAuCentre: 0
 --- !u!1 &158492073
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +469,8 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
+  unitSpeed: 13
+  unitTackleRange: 50
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
@@ -1968,7 +1970,7 @@ MonoBehaviour:
   m_Name: 
   a: {fileID: 490359495}
   b: {fileID: 158492074}
-  remiseAuCentre: 1
+  remiseAuCentre: 0
 --- !u!1 &2004071849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2291,8 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
+  unitSpeed: 13
+  unitTackleRange: 50
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
   nbUnits: 7
