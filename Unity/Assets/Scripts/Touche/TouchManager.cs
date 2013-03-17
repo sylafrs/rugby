@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using XInputDotNetPure;
 
 /**
   * @class TouchManager
@@ -9,21 +10,30 @@ using System.Collections.Generic;
   */
 public class TouchManager : MonoBehaviour {
 	
-	private int choixJ1;
-	private int choixJ2;
+	public Gamer gamerTouch;
+	public Gamer gamerIntercept;
 	
-	public int nChoix;
+	private int choixTouche;
+	private int choixInter;
+
+	public InputTouch [] touche;
+	public InputTouch [] interception;
+	private int n;
 	
 	private float timeLeft;
 	public float minTime;
 	
 	public void OnEnable() {
-		choixJ1 = 0;
-		choixJ2 = 0;
+		choixTouche = 0;
+		choixInter = 0;
 		timeLeft = minTime;
+		n = Mathf.Min (touche.Length, interception.Length);
 	}
-	
+		
 	public void OnGUI() {
+		
+		Color c = GUI.color;
+				
 		if(timeLeft > 0)
 			GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
 		else
@@ -32,41 +42,58 @@ public class TouchManager : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 			GUILayout.Label("J1 : ");
 		
-			for(int i = 0; i < nChoix; i++) {
-				if(GUILayout.Button (i.ToString("D2"))) {
-					choixJ1 = i+1;
+			for(int i = 0; i < n; i++) {
+				GUI.color = (choixTouche == i+1) ? Color.red : c;
+				if(GUILayout.Button (touche[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+					choixTouche = i+1;
 				}
 			}
 		GUILayout.EndHorizontal();
+		
+		GUI.color = c;
 		
 		GUILayout.BeginHorizontal();
 			GUILayout.Label("J2 : ");
 		
-			for(int i = 0; i < nChoix; i++) {
-				if(GUILayout.Button (i.ToString("D2"))) {
-					choixJ2 = i+1;
+			for(int i = 0; i < n; i++) {
+				GUI.color = (choixInter == i+1) ? Color.red : c;
+				if(GUILayout.Button (interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+					choixInter = i+1;
 				}
 			}
 		GUILayout.EndHorizontal();
+		
+		GUI.color = c;
 	}
 	
 	public void Update() {
 		timeLeft -= Time.deltaTime;
 		
-		if(choixJ1 != 0 && timeLeft < 0) {
+		for(int i = 0; i < n; i++) {
+			if(Input.GetKeyDown(touche[i].keyboard) || (gamerTouch && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
+				choixTouche = i+1;
+			}
+			if(Input.GetKeyDown(interception[i].keyboard) || (gamerIntercept && gamerIntercept.XboxController.GetButtonDown(interception[i].xbox))) {
+				choixInter = i+1;
+			}
+		}
+		
+		if(choixTouche != 0 && timeLeft < 0) {
 			DoTouch();	
 		}
 	}
 	
 	public void DoTouch() {
 		
-		Debug.Log ("j1 : " + choixJ1 + " -- j2 : " + choixJ2);
+		Debug.Log ("touche : " + choixTouche + " -- inter : " + choixInter);
 		
-		if(choixJ1 == choixJ2) {
-			Debug.Log ("J2 intercepte");	
+		if(choixTouche == choixInter) {
+			Debug.Log ("interception");	
 		}
 		else {
-			Debug.Log ("J1 gagne la balle");	
+			Debug.Log ("reussite");	
 		}
+		
+		this.enabled = false;
 	}
 }

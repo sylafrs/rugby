@@ -111,5 +111,20 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
-  nChoix: 3
+  gamerTouch: {fileID: 0}
+  gamerIntercept: {fileID: 0}
+  touche:
+  - keyboard: 97
+    xbox: 0
+  - keyboard: 122
+    xbox: 8
+  - keyboard: 101
+    xbox: 9
+  interception:
+  - keyboard: 113
+    xbox: 0
+  - keyboard: 115
+    xbox: 8
+  - keyboard: 100
+    xbox: 9
   minTime: 3
