@@ -47,7 +47,7 @@ public class GameCamera : myMonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(cameraManager == null) return;
+		if(cameraManager == null || cameraManager.game == null) return;
 		
 		if(tweakMode){
 			this.transform.rotation = Quaternion.Euler(rotation);

@@ -84,6 +84,7 @@ public class Game : myMonoBehaviour {
         this.Log = this.gameObject.AddComponent<GameLog>();
 		
 		arbiter.Game = this;
+		cameraManager.game = this;
 
         right.Game = this;
         left.Game = this;

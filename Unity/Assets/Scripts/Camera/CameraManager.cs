@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CameraManager : myMonoBehaviour {
 	
-	public Game game;
+	public Game game {get; set;}
+	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
 	public ScrumCamera scrumCamera;
 

@@ -26,15 +26,16 @@ public class Arbiter : MonoBehaviour {
         }
         else
         {
-			Game.state = Game.State.TOUCH;
-			
+			// Indique que le jeu passe en mode "Touche"
+			Game.state = Game.State.TOUCH;			
             Debug.Log("Touche : [Replace au centre, sur la ligne]");
 
-            Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
+            
+			// Placement dans la scène de la touche.
+			Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
             pos.y = 0; // A terre
-            //Game.Ball.setPosition(pos);
+           
 			
-			// Placement de la touche.
 			if(TouchPlacement == null) {
 				throw new UnityException("I need to know how place the players when a touch occurs");
 			}			
@@ -51,6 +52,7 @@ public class Arbiter : MonoBehaviour {
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
 			
+			// Fixe et place les unités (relatif à la touche déjà placée)			
 			interceptTeam.fixUnits = touchTeam.fixUnits = true;
 			
 			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
@@ -64,6 +66,7 @@ public class Arbiter : MonoBehaviour {
 			
 			Game.Ball.Owner = touchTeam[0];
 			
+			// Bouttons pour la touche.			
 			interceptTeam[0].buttonIndicator.ApplyTexture("A");
 			interceptTeam[1].buttonIndicator.ApplyTexture("B");
 			interceptTeam[2].buttonIndicator.ApplyTexture("X");
@@ -75,6 +78,7 @@ public class Arbiter : MonoBehaviour {
 			interceptTeam[0].buttonIndicator.target.renderer.enabled = true;
 			interceptTeam[1].buttonIndicator.target.renderer.enabled = true;
 			interceptTeam[2].buttonIndicator.target.renderer.enabled = true;
+			
 			touchTeam[1].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
