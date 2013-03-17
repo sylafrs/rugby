@@ -16,12 +16,19 @@ public class Unit : TriggeringTriggered, Debugable
     public StateMachine sm;
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft; 
+	
+	public TextureCollectionner buttonIndicator;
+	
     private NavMeshAgent nma;
     private Order currentOrder;
     private Team team;
-    public Game Game;
+	
+    public Game Game {get; set;}	
     public GameObject[] selectedIndicators;
-    public GameObject[] plaqueIndicators;
+	
+	public Unit() {
+		NearUnits = new List<Unit>();	
+	}
 	
 	public NearUnit triggerTackle {get; set;}
 	
@@ -79,7 +86,7 @@ public class Unit : TriggeringTriggered, Debugable
         this.currentOrder = o;
     }
 
-    public List<Unit> NearUnits;
+    public List<Unit> NearUnits {get; set;}
 
     public override void Entered(Triggered o, Trigger t)
     {
