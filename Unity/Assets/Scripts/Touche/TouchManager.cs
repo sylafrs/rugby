@@ -27,11 +27,20 @@ public class TouchManager : MonoBehaviour {
 	private float timeLeft;
 	public float minTime;
 	
+	public bool randomTouch {get; set;}
+	public bool randomIntercept {get; set;}
+	
 	public void OnEnable() {
 		choixTouche = 0;
 		choixInter = 0;
 		timeLeft = minTime;
 		n = Mathf.Min (touche.Length, interception.Length);
+		
+		if(randomTouch)
+			choixTouche = Random.Range(0, n) + 1;
+			
+		if(randomIntercept)
+			choixInter = Random.Range(0, n) + 1;
 	}
 		
 	public void OnGUI() {

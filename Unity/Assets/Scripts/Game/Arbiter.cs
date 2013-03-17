@@ -85,11 +85,17 @@ public class Arbiter : MonoBehaviour {
 			
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
+			tm.gamerIntercept = interceptTeam.Player;
+			tm.gamerTouch = touchTeam.Player;
+			
+			tm.randomTouch = (tm.gamerTouch == null);
+			tm.randomIntercept = (tm.gamerIntercept == null);
+			
 			tm.CallBack = delegate(TouchManager.Result result, int id) {
 				if(result == TouchManager.Result.INTERCEPTION)
 					Game.Ball.Owner = interceptTeam[id];
 				else
-					Game.Ball.Owner = touchTeam[id];
+					Game.Ball.Owner = touchTeam[id+1];
 				
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
