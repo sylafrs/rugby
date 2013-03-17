@@ -222,7 +222,7 @@ public class Ball : TriggeringTriggered {
 	}
 	
 	public void setGoScrum(bool state){
-		goScrum = state;
+		goScrum = state && (Game.state == Game.State.PLAYING);
 	}
 	
     public void UpdateTackle()

@@ -13,9 +13,9 @@ public class Arbiter : MonoBehaviour {
 	
 	public bool ToucheRemiseAuCentre = false;
 	public Transform TouchPlacement = null;
-	
+		
 	public void OnTouch(Touche t) {
-		if(t == null) {
+		if(t == null || Game.state != Game.State.PLAYING) {
 			return;	
 		}		
 		
@@ -26,6 +26,8 @@ public class Arbiter : MonoBehaviour {
         }
         else
         {
+			Game.state = Game.State.TOUCH;
+			
             Debug.Log("Touche : [Replace au centre, sur la ligne]");
 
             Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
@@ -48,6 +50,8 @@ public class Arbiter : MonoBehaviour {
 			
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
+			
+			interceptTeam.fixUnits = touchTeam.fixUnits = true;
 			
 			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
 			interceptTeam.placeUnits(interceptConfiguration);

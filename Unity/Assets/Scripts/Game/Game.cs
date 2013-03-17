@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
 
-
 /**
  * @class Game
  * @brief Classe principale du jeu
@@ -11,6 +10,15 @@ using XInputDotNetPure;
  */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : myMonoBehaviour {
+	
+	public enum State {
+		PAUSED,
+		PLAYING,
+		TOUCH,
+		SCRUM
+	}
+	
+	public State state = State.PAUSED;
 
     public XboxInputs xboxInputs;
     public GameSettings settings;
@@ -110,6 +118,9 @@ public class Game : myMonoBehaviour {
         Ball.Owner = p1.Controlled;        
       
 		this.cameraLocked = true;
+		
+		// Must be done by Arbiter
+		state = State.PLAYING;
     }
 
     void Update()

@@ -26,7 +26,7 @@ public class Unit : TriggeringTriggered, Debugable
 	public NearUnit triggerTackle {get; set;}
 	
 	void Update() {
-		nma.speed = team.unitSpeed * team.speedFactor;
+		nma.speed = team.fixUnits ? 0 : team.unitSpeed * team.speedFactor;
 		triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 	}
 

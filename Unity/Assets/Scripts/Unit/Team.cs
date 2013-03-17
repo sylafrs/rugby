@@ -19,6 +19,8 @@ public class Team : myMonoBehaviour {
 
     public But But;
     public Zone Zone;
+	
+	public bool fixUnits;
 
     public int nbPoints = 0;
 

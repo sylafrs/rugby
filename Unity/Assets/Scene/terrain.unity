@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
   m_Name: 
   ToucheRemiseAuCentre: 0
+  TouchPlacement: {fileID: 1789735245}
 --- !u!1 &40126846
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40126846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 32.7834091}
+  m_LocalPosition: {x: 4.99792957, y: 0, z: 32.7834091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 56833423}
@@ -294,7 +295,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 56833422}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 14.515358, y: 6.23830032, z: 3.23373795}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -510,7 +511,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278997175}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &278997178
 Behaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +656,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 306850723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: -33.0984154}
+  m_LocalPosition: {x: 4.99791718, y: 0, z: -33.0984154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 56833423}
@@ -1151,7 +1152,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 619964038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.97523499, y: -.868066788, z: .127197266}
+  m_LocalPosition: {x: 2.9193449, y: -.868066788, z: .127197757}
   m_LocalScale: {x: 3.73564386, y: 1, z: 79.5946426}
   m_Children: []
   m_Father: {fileID: 56833423}
@@ -2139,7 +2140,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1789735244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
   m_LocalPosition: {x: -41.8955231, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2302,6 +2303,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
+  state: 0
   xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}

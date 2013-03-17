@@ -83,6 +83,7 @@ public class scrumController : myMonoBehaviour {
 			if (_ball.getGoScrum())
 			{
 				inScrum = true;
+				_game.state = Game.State.SCRUM;
 				_ball.setGoScrum(false);
 				
 				
@@ -170,6 +171,7 @@ public class scrumController : myMonoBehaviour {
  	 */
 	void endScrum(){
 		inScrum = false;
+		_game.state = Game.State.PLAYING;
 		
 		_p1.enableMove();
 		_game.disableIA = false;
