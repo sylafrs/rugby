@@ -258,7 +258,7 @@ public class Team : myMonoBehaviour {
             }            
         } 
     }
-
+	
     void OwnerChangedOpponents()
     {
         Unit a;
@@ -332,5 +332,42 @@ public class Team : myMonoBehaviour {
 		
 		units[index].transform.position = t.position;
 		units[index].transform.rotation = t.rotation;
+	}
+	
+	//maxens dubois
+	public void ChangePlayersColor(Color _color){
+		foreach(Unit u in units){
+			u.renderer.material.color = _color;
+		}
+	}
+	
+	public Color GetPlayerColor(){
+		return units[0].renderer.material.color;
+	}
+	
+	//maxens dubois
+	public void PlaySuperParticleSystem(SuperList _super, bool play){
+		switch (_super){
+		case SuperList.superDash:
+			foreach(Unit u in units){
+				if(play == true){
+					u.superDashParticles.Play();
+				}else{
+					u.superDashParticles.Stop();
+				}
+			}
+			break;
+		case SuperList.superTackle:
+			foreach(Unit u in units){
+				if(play == true){
+					u.superTackleParticles.Play();
+				}else{
+					u.superTackleParticles.Stop();
+				}
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
