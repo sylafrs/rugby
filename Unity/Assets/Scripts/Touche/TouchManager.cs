@@ -37,6 +37,8 @@ public class TouchManager : MonoBehaviour {
 	public void OnGUI() {
 		
 		Color c = GUI.color;
+		
+		GUILayout.Space(300);
 				
 		if(timeLeft > 0)
 			GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
