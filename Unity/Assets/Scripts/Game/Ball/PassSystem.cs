@@ -26,10 +26,26 @@ public class PassSystem {
 	private float fromVelocity;
 	private Vector3 butBleu;
 	private Vector3 butRouge;
+	
+	public PassSystem(Vector3 b1, Vector3 b2) {
+		Init(b1, b2, null, null, null);	
+	}
+	
+	public PassSystem(Vector3 b1, Vector3 b2, Unit from) {
+		Init(b1, b2, from, null, null);	
+	}
+	
+	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target) {
+		Init(b1, b2, from, target, null);	
+	}
 
 	// Constructor
-	public PassSystem(Vector3 b1, Vector3 b2, Unit from = null, Unit target = null, Ball ball = null)
+	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball)
 	{
+		Init(b1, b2, from, target, ball);	
+	}
+		
+	private void Init(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball) {
 		this.from = from;
 		this.target = target;
 		this.ball = ball;

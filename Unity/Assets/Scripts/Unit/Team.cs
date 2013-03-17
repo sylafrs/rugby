@@ -24,7 +24,6 @@ public class Team : myMonoBehaviour {
 
     public Unit [] units {get; set;}
 	
-	//
 	public float speedFactor;
 	public float tackleFactor;
 		
@@ -294,4 +293,42 @@ public class Team : myMonoBehaviour {
             }
         }
     }
+
+	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to) {
+		
+		int i = 0;
+		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
+		while(t != null && (i + from) < nbUnits && (i + from) < to) {
+			
+			this.placeUnit(t, i + from);
+			
+			i++;
+			t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
+		}			
+	}
+	
+	public void placeUnits(Transform configuration, string pattern) {
+		this.placeUnits(configuration, pattern, "#", 0, nbUnits);
+	}
+	
+	public void placeUnits(Transform configuration, int from, int to) {
+		this.placeUnits(configuration, "Player_#", "#", from, to);
+	}
+	
+	public void placeUnits(Transform configuration, int from) {
+		this.placeUnits(configuration, "Player_#", "#", from, nbUnits);
+	}
+	
+	public void placeUnits(Transform configuration) {
+		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits);
+	}
+	
+	public void placeUnit(Transform t, int index) {
+		if( t == null || index < 0 || index >= nbUnits ) {
+			throw new System.ArgumentException();
+		}
+		
+		units[index].transform.position = t.position;
+		units[index].transform.rotation = t.rotation;
+	}
 }

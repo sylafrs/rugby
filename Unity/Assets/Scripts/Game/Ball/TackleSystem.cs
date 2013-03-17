@@ -9,9 +9,38 @@ public class TackleSystem {
 	
 	private float angleOfFOV;
 	private float distanceOfTackle;
-
-	public TackleSystem(Unit tackled = null, Unit tackler = null, Ball b = null, float teta = 0.0f, float d = 0.0f)
+	
+	public TackleSystem()
 	{
+		Init(null, null, null, 0, 0);
+	}
+		
+	public TackleSystem(Unit tackled)
+	{
+		Init(tackled, null, null, 0, 0);
+	}
+			
+	public TackleSystem(Unit tackled, Unit tackler)
+	{
+		Init(tackled, tackler, null, 0, 0);
+	}
+	
+	public TackleSystem(Unit tackled, Unit tackler, Ball b)
+	{
+		Init(tackled, tackler, b, 0, 0);
+	}
+	
+	public TackleSystem(Unit tackled, Unit tackler, Ball b, float teta)
+	{
+		Init(tackled, tackler, b, teta, 0);
+	}
+
+	public TackleSystem(Unit tackled, Unit tackler, Ball b, float teta, float d)
+	{
+		Init(tackled, tackler, b, teta, d);
+	}
+		
+	private void Init(Unit tackled, Unit tackler, Ball b, float teta, float d) {
 		this.tackled = tackled;
 		this.tackler = tackler;
 		this.angleOfFOV = teta;
