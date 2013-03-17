@@ -2255,6 +2255,7 @@ GameObject:
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
   - 114: {fileID: 2004071854}
+  - 114: {fileID: 2004071855}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -2512,6 +2513,31 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!114 &2004071855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
+  m_Name: 
+  touche:
+  - keyboard: 97
+    xbox: 0
+  - keyboard: 122
+    xbox: 1
+  - keyboard: 101
+    xbox: 8
+  interception:
+  - keyboard: 113
+    xbox: 0
+  - keyboard: 115
+    xbox: 1
+  - keyboard: 100
+    xbox: 8
+  minTime: 3
 --- !u!1 &2018489758
 GameObject:
   m_ObjectHideFlags: 0

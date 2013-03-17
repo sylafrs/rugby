@@ -27,7 +27,7 @@ public class Arbiter : MonoBehaviour {
         else
         {
 			// Indique que le jeu passe en mode "Touche"
-			Game.state = Game.State.TOUCH;			
+			Game.state = Game.State.TOUCH;		
             Debug.Log("Touche : [Replace au centre, sur la ligne]");
 
             
@@ -82,6 +82,28 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[1].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
+			
+			TouchManager tm = this.Game.GetComponent<TouchManager>();
+			
+			tm.CallBack = delegate(TouchManager.Result result, int id) {
+				if(result == TouchManager.Result.INTERCEPTION)
+					Game.Ball.Owner = interceptTeam[id];
+				else
+					Game.Ball.Owner = touchTeam[id];
+				
+				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
+				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
+				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;
+				
+				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
+				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
+				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
+				
+				Game.state = Game.State.PLAYING;
+				interceptTeam.fixUnits = touchTeam.fixUnits = false;				
+			};			
+			
+			tm.enabled = true;
         }           
 	}
 	

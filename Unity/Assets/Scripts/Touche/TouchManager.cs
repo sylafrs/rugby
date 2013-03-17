@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using XInputDotNetPure;
 
+public delegate void CallBack(TouchManager.Result result, int id);
+
 /**
   * @class TouchManager
   * @brief Mini jeu de la touche.
@@ -10,8 +12,10 @@ using XInputDotNetPure;
   */
 public class TouchManager : MonoBehaviour {
 	
-	public Gamer gamerTouch;
-	public Gamer gamerIntercept;
+	public CallBack CallBack;
+	
+	public Gamer gamerTouch {get; set;}
+	public Gamer gamerIntercept {get; set;}
 	
 	private int choixTouche;
 	private int choixInter;
@@ -82,6 +86,22 @@ public class TouchManager : MonoBehaviour {
 			DoTouch();	
 		}
 	}
+		
+	public enum Result {
+		TOUCH,
+		INTERCEPTION,
+		PLAYING
+	}
+	
+	public Result GetResult() {
+		if(this.enabled) {
+			return Result.PLAYING;	
+		}
+		if(choixTouche == choixInter){
+			return Result.INTERCEPTION;	
+		}
+		return Result.TOUCH;
+	}
 	
 	public void DoTouch() {
 		
@@ -95,5 +115,8 @@ public class TouchManager : MonoBehaviour {
 		}
 		
 		this.enabled = false;
+		
+		if(CallBack != null)
+			CallBack(this.GetResult(), choixTouche - 1);
 	}
 }
