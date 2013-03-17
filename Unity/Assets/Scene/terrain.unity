@@ -2333,7 +2333,7 @@ MonoBehaviour:
   cpu: 0
   disableIAKey: 105
   tweakMode: 0
-  arbiter: {fileID: 0}
+  arbiter: {fileID: 37318412}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
