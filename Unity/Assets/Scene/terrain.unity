@@ -550,7 +550,7 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 13
+  unitSpeed: 14
   unitTackleRange: 50
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
@@ -2754,7 +2754,7 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 13
+  unitSpeed: 14
   unitTackleRange: 50
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
