@@ -39,8 +39,14 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	//maxens : c'est très bourrin xD
 	void Update() {
-		nma.speed = team.fixUnits ? 0 : team.unitSpeed * team.speedFactor;
-		triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
+		if(team == null)
+			return;
+		
+		if(nma)
+			nma.speed = team.fixUnits ? 0 : team.unitSpeed * team.speedFactor;
+		
+		if(triggerTackle)
+			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 	}
 
     public void IndicateSelected(bool enabled)
