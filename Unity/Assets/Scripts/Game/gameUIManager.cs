@@ -20,8 +20,19 @@ public class gameUIManager : myMonoBehaviour {
 	private float blueProgress;
 	private float redProgress;
 	
-	
+	//GUI custom
 	public GUIStyle superOkTextStyle;
+	
+	public float timeBoxWidthPercentage   = 10;
+	public float timeBoxHeightPercentage  = 5;
+	public float timeBoxXPercentage		= 50;
+	public float timeBoxYPercentage		= 10;
+	
+	
+	public float scoreBoxWidthPercentage  = 20;
+	public float scoreBoxHeightPercentage = 15;
+	public float scoreBoxXPercentage = 50;
+	public float scoreBoxYPercentage = 0;
 	
 	private float  timeElapsed;
 	private bool   over;
@@ -91,28 +102,64 @@ public class gameUIManager : myMonoBehaviour {
 		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}
 	
+	/**
+	 * @brief Fabrique un rectangle en fonction des dimensions de l'écran. 
+	 * @param x, y 
+		  * 	Position du rectangle (pourcentage)
+	 * @param w, h 
+		  * 	Taille du rectangle (pourcentage)
+	 * @return Rectangle contenant la position et la taille en pixels. 
+	 * @author Sylvain LAFON 
+	 */
+	public static Rect screenRelativeRect(float x, float y, float w, float h) {
+
+		float H = Screen.height / 100f;
+		float W = Screen.width / 100f;
+
+		return new Rect(x * W, y * H, w * W, h * H);	
+	}
+	
 	void OnGUI()
     {
 		int offset		 = 100;
 		
+		//we need 4 boxes
+		//time box
+		Rect timeBox = screenRelativeRect(timeBoxXPercentage- timeBoxWidthPercentage/2, 
+			timeBoxYPercentage + timeBoxHeightPercentage/2, 
+			timeBoxWidthPercentage, timeBoxHeightPercentage);
+		
+		//score box
+		Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage/2,
+			scoreBoxYPercentage + scoreBoxHeightPercentage/2, 
+			scoreBoxWidthPercentage, scoreBoxHeightPercentage);
+		
+		//player on left Box
+		float playerLeftBoxWidth  = 25;
+		float playerLeftBoxHeight = 10;	
+		Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
+		
 		if(!over)
         {
 			//blue 
-			GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  _game.right.Name + " : " + _game.right.nbPoints);
+			//GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  _game.right.Name + " : " + _game.right.nbPoints);
 			GUI.DrawTexture(new Rect(0+offset, 20, 150+offset, 50), emptyBar);
 			GUI.DrawTexture(new Rect(0+offset, 20, (150+offset)* blueProgress, 50), blueBar);
 			if(blueProgress == 1f)GUI.Label(new Rect(20+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
 			
 			
 			//red
-			GUI.Label(new Rect(400 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
+			//GUI.Label(new Rect(400 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
 			GUI.DrawTexture(new Rect(400 + offset, 20, 150 + offset, 50), emptyBar);
 			GUI.DrawTexture(new Rect(400+offset, 20, (150+offset)* redProgress, 50), redBar);
 			if(redProgress == 1f)GUI.Label(new Rect(420+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
 			
 			
+			//score
+			GUI.Label(scoreBox, _game.right.nbPoints+" - "+_game.left.nbPoints);
+			
 			//time
-			GUI.Label(new Rect(270+offset, 0, 150+offset, 150),  "Time : "+timeElapsed);
+			GUI.Label(timeBox,  "Time : "+(int)timeElapsed);
 			
 		}
         else
