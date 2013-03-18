@@ -37,8 +37,6 @@ public class gameUIManager : myMonoBehaviour {
 	private float  timeElapsed;
 	private bool   over;
 	
-	private bool btnResetReleased = true;
-
 	void Start () 
     {
 		_game 		= gameObject.GetComponent<Game>();

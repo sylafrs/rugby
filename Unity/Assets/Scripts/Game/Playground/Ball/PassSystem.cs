@@ -175,5 +175,4 @@ public class PassSystem {
 			" donne le scalaire : " + Vector3.Dot(relativeDirection, tmpDir));
 		return Vector3.Dot(relativeDirection, tmpDir) > 0 ? true : false;
 	}
-
 }
