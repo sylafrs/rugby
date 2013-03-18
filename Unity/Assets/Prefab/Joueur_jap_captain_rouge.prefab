@@ -361,8 +361,8 @@ MonoBehaviour:
   BallPlaceHolderLeft: {fileID: 100006}
   buttonIndicator: {fileID: 11400008}
   selectedIndicators: []
-  superDashParticles: {fileID: 0}
-  superTackleParticles: {fileID: 0}
+  superDashParticles: {fileID: 19800000}
+  superTackleParticles: {fileID: 19800002}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

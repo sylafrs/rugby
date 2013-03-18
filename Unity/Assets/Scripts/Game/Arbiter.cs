@@ -52,9 +52,12 @@ public class Arbiter : MonoBehaviour {
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
 			
-			// Fixe et place les unités (relatif à la touche déjà placée)			
-			interceptTeam.fixUnits = touchTeam.fixUnits = true;
+			// Fixe et place les unités (relatif à la touche déjà placée)	
 			
+			interceptTeam.fixUnits = touchTeam.fixUnits = true;			
+			if(interceptTeam.Player) interceptTeam.Player.stopMove();
+			if(touchTeam.Player) touchTeam.Player.stopMove();
+						
 			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
 			interceptTeam.placeUnits(interceptConfiguration);
 			
@@ -83,9 +86,12 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 			
-			Game.cameraManager.gameCamera.enabled = false;
-			Game.cameraManager.touchCamera.enabled = true;
-			Game.cameraManager.touchCamera.transform.position = TouchPlacement.FindChild("CameraPlaceHolder").transform.position;
+			Game.cameraManager.gameCamera.gameObject.SetActive(false);
+			Game.cameraManager.touchCamera.gameObject.SetActive(true);
+			
+			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
+			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
+			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
 			
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
@@ -109,11 +115,13 @@ public class Arbiter : MonoBehaviour {
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
 				
-				Game.cameraManager.gameCamera.enabled = true;
-				Game.cameraManager.touchCamera.enabled = false;
+				Game.cameraManager.gameCamera.gameObject.SetActive(true);
+				Game.cameraManager.touchCamera.gameObject.SetActive(false);
 				
 				Game.state = Game.State.PLAYING;
-				interceptTeam.fixUnits = touchTeam.fixUnits = false;				
+				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
+				if(interceptTeam.Player) interceptTeam.Player.enableMove();
+				if(touchTeam.Player) touchTeam.Player.enableMove();
 			};			
 			
 			tm.enabled = true;

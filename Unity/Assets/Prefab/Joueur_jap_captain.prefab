@@ -405,8 +405,8 @@ MonoBehaviour:
   buttonIndicator: {fileID: 11400006}
   selectedIndicators:
   - {fileID: 100006}
-  superDashParticles: {fileID: 0}
-  superTackleParticles: {fileID: 0}
+  superDashParticles: {fileID: 19800000}
+  superTackleParticles: {fileID: 19800002}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
