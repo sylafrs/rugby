@@ -13,9 +13,16 @@ public class GameCamera : myMonoBehaviour {
 		set { _cm = value; Start(); } 
 	}
 	
+	public Game Game {
+		get {
+			return cameraManager.game;	
+		}
+		set {}
+	}
+	
 	public Ball Ball {
 		get{
-			return cameraManager.game.Ball;	
+			return Game.Ball;	
 		}
 		set {}
 	}
@@ -33,13 +40,12 @@ public class GameCamera : myMonoBehaviour {
 	
 	public GameObject gameCamera;
 	
-	
 	void Start() {
 		if(cameraManager == null) {
 			return;
 		}
 		
-		this.transform.rotation = Quaternion.Euler(rotation);
+		ResetRotation();
 		
 		//déplacer la transfor de ce GO en Local selon l'offset
 		this.gameCamera.transform.localPosition = offset;
@@ -48,10 +54,10 @@ public class GameCamera : myMonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(cameraManager == null || cameraManager.game == null) return;
-		
+		if(cameraManager == null || Game == null) return;
+				
 		if(tweakMode){
-			this.transform.rotation = Quaternion.Euler(rotation);
+			ResetRotation();
 		}
 
 		Vector3 cam = this.transform.position;
@@ -66,12 +72,20 @@ public class GameCamera : myMonoBehaviour {
      		this.transform.position = cameraManager.game.Ball.transform.position;
 		}
 		
-		Debug.DrawLine(cam, this.transform.position, Color.red, 100);
+		// Debug.DrawLine(cam, this.transform.position, Color.red, 100);
 	}
 	
 	public void OnOwnerChanged() {
 		//lancer la rotation du pivot
 		//this.transform.position = cameraManager.game.Ball.Owner.transform.position;
+		
+		if(Game.state != Game.State.PLAYING) 
+			return;
+		
         this.GetComponent<rotateMe>().BeginRotation(new Vector3(0, 1, 0), 180);
+	}
+	
+	public void ResetRotation() {
+		this.transform.rotation = Quaternion.Euler(rotation);
 	}
 }

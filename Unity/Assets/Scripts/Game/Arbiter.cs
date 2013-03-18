@@ -87,27 +87,41 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 			
+			// Switch de caméra
 			Game.cameraManager.gameCamera.gameObject.SetActive(false);
 			Game.cameraManager.touchCamera.gameObject.SetActive(true);
 			
+			// Placement de la caméra
 			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
 			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
 			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
 			
+			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
+			// On indique les équipes
 			tm.gamerIntercept = interceptTeam.Player;
 			tm.gamerTouch = touchTeam.Player;
 			
+			// On indique si l'un ou l'autre sera fait au pif
 			tm.randomTouch = (tm.gamerTouch == null);
 			tm.randomIntercept = (tm.gamerIntercept == null);
 						
+			// Fonction à appeller à la fin de la touche
 			tm.CallBack = delegate(TouchManager.Result result, int id) {
+				
+				// On remet la caméra à sa rotation d'origine
+				Game.cameraManager.gameCamera.ResetRotation();
+								
 				if(result == TouchManager.Result.INTERCEPTION)
 					Game.Ball.Owner = interceptTeam[id];
 				else
 					Game.Ball.Owner = touchTeam[id+1];
 				
+				if(Game.Ball.Owner.Team == Game.left) {
+					Game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
+				}
+								
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;

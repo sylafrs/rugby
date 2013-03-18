@@ -15,11 +15,6 @@ public class CameraManager : myMonoBehaviour {
 		scrumCamera.cameraManager = this;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	public void OnOwnerChanged()
     {	
 		gameCamera.OnOwnerChanged();

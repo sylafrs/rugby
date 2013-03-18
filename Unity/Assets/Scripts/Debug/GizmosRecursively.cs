@@ -16,7 +16,8 @@ public class GizmosRecursively : MonoBehaviour {
 		Color.green	
 	};
 	
-	public float size;
+	public float sizePoint = 1;
+	public float lengthForward = 5;
 	
 	public void OnDrawGizmos() {		
 		DrawRecursively(this.transform, 0);
@@ -35,6 +36,7 @@ public class GizmosRecursively : MonoBehaviour {
 	private void DrawGizmos(Transform t, int level) {
 		Color c = colorPattern[level % colorPattern.Length];
 		Gizmos.color = c;
-		Gizmos.DrawCube(t.transform.position, Vector3.one * size);
+		Gizmos.DrawCube(t.transform.position, Vector3.one * sizePoint);
+		Gizmos.DrawLine(t.transform.position, t.transform.position + t.transform.forward * lengthForward);
 	}
 }

@@ -29,11 +29,9 @@ public class rotateMe : myMonoBehaviour {
 		waiting = 0;
 		counter = 0;
 	}
-	
-	
-	
+		
 	void Update () 
-	{		
+	{				
 		waiting += Time.deltaTime;
 		counter ++;
 		if(waiting >= delay/100){
@@ -42,7 +40,7 @@ public class rotateMe : myMonoBehaviour {
 				t = duration;
 			
 			float angleFromZero = Mathf.LerpAngle(0, angle, t/duration);
-			this.transform.RotateAround(axis, angleFromZero- lastAngle);	
+			this.transform.RotateAround(axis, angleFromZero - lastAngle);	
 			lastAngle = angleFromZero;
 		}
 	}
