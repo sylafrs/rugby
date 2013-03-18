@@ -166,12 +166,12 @@ public class Unit : TriggeringTriggered, Debugable
         
         return u;
     }
-
+/*
     public void ShowTouch(InputTouch touch)
     {
 
     }
-
+*/
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
