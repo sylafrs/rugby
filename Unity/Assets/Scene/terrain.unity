@@ -469,11 +469,11 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 13
+  unitSpeed: 14
   unitTackleRange: 50
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
-  nbUnits: 7
+  nbUnits: 5
 --- !u!114 &293398130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   Game: {fileID: 0}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
-  passSpeed: 13
+  passSpeed: 14
   AngleOfFOV: 0
   lastTackle: -1
   timeOnPass: -1
@@ -2241,6 +2241,14 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  timeBoxWidthPercentage: 10
+  timeBoxHeightPercentage: 5
+  timeBoxXPercentage: 50
+  timeBoxYPercentage: 10
+  scoreBoxWidthPercentage: 20
+  scoreBoxHeightPercentage: 15
+  scoreBoxXPercentage: 50
+  scoreBoxYPercentage: 0
 --- !u!1 &2078013329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,11 +2299,11 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 13
+  unitSpeed: 20
   unitTackleRange: 50
   Prefab_model: {fileID: 100004, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
-  nbUnits: 7
+  nbUnits: 5
 --- !u!114 &2078013332
 MonoBehaviour:
   m_ObjectHideFlags: 0
