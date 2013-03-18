@@ -487,9 +487,9 @@ MonoBehaviour:
   OffensiveSuperButton: 102
   DefensiveSuperButton: 103
   OffensiveSuper: 2
-  DefensiveSuper: 2
-  superTackleColor: {r: 0, g: 0, b: 0, a: 0}
-  superDashColor: {r: 0, g: 0, b: 0, a: 0}
+  DefensiveSuper: 1
+  superTackleColor: {r: .0882156268, g: .985074639, b: .307726592, a: 0}
+  superDashColor: {r: .447761178, g: .791462421, b: 1, a: 0}
 --- !u!1 &306850723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,7 +2102,7 @@ MonoBehaviour:
         down: 115
         right: 100
         left: 113
-      xbox: 0
+      xbox: 2
   inputs2:
     passLeft:
       keyboard: 0
