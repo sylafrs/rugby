@@ -7,6 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/Game/Arbiter")]
 public class Arbiter : MonoBehaviour {
 		
 	public Game Game {get;set;}

@@ -13,6 +13,7 @@ public class NamedTexture {
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/Textures/Collectionner")]
 public class TextureCollectionner : MonoBehaviour {
 		
 	public NamedTexture [] collection;

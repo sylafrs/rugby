@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Camera/CameraManager")]
 public class CameraManager : myMonoBehaviour {
 	
 	public Game game {get; set;}

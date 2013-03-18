@@ -1,6 +1,7 @@
 using UnityEngine;
 using XInputDotNetPure; // Required in C#
 
+[AddComponentMenu("Test/XInput")]
 public class XInputTest : MonoBehaviour
 {
     bool playerIndexSet = false;

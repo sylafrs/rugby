@@ -4,6 +4,7 @@ using System.Collections;
 /*
  * @author Sylvain Lafon
  */
+[AddComponentMenu("Scripts/Camera/Game camera (main)")]
 public class GameCamera : myMonoBehaviour {
 	
 	private CameraManager _cm;

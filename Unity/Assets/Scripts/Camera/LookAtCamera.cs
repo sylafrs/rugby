@@ -7,6 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/Camera/Look At Camera")]
 public class LookAtCamera : MonoBehaviour {
 	
 	public Camera fixedCamera;

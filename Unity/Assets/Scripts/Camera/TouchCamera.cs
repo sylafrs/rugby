@@ -7,6 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/Camera/Touch Camera")]
 public class TouchCamera : MonoBehaviour {
 
 }

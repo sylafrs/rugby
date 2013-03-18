@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Scripts/Camera/Scrum Camera")]
 public class ScrumCamera : myMonoBehaviour {
 	
 	private CameraManager _cm;

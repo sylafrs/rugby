@@ -12,6 +12,7 @@ public enum XBOX_BUTTONS
     A, B, Back, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, TriggerL, TriggerR, PAD_up, PAD_down, PAD_left, PAD_right
 }
 
+[AddComponentMenu("Inputs/XboxInputs")]
 public class XboxInputs : myMonoBehaviour{
 
     public const int NB_DIRECTION = 3;

@@ -7,6 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/Debug/Gizmos (recursively)")]
 public class GizmosRecursively : MonoBehaviour {
 	public Color [] colorPattern = {
 		Color.white,
