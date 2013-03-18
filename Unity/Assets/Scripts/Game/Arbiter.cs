@@ -83,6 +83,10 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 			
+			Game.cameraManager.gameCamera.enabled = false;
+			Game.cameraManager.touchCamera.enabled = true;
+			Game.cameraManager.touchCamera.transform.position = TouchPlacement.FindChild("CameraPlaceHolder").transform.position;
+			
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
 			tm.gamerIntercept = interceptTeam.Player;
@@ -90,7 +94,7 @@ public class Arbiter : MonoBehaviour {
 			
 			tm.randomTouch = (tm.gamerTouch == null);
 			tm.randomIntercept = (tm.gamerIntercept == null);
-			
+						
 			tm.CallBack = delegate(TouchManager.Result result, int id) {
 				if(result == TouchManager.Result.INTERCEPTION)
 					Game.Ball.Owner = interceptTeam[id];
@@ -104,6 +108,9 @@ public class Arbiter : MonoBehaviour {
 				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
+				
+				Game.cameraManager.gameCamera.enabled = true;
+				Game.cameraManager.touchCamera.enabled = false;
 				
 				Game.state = Game.State.PLAYING;
 				interceptTeam.fixUnits = touchTeam.fixUnits = false;				
