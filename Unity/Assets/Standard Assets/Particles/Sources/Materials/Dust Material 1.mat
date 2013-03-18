@@ -22,12 +22,12 @@ Material:
     m_Colors:
       data:
         first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
           name: _TintColor
         second: {r: .461538434, g: .461538434, b: .461538434, a: .286274523}
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6
