@@ -41,9 +41,6 @@ public class scrumController : myMonoBehaviour {
 	
 	public float IAoffset = -0.05f;
 	public float playerOffset = 0.5f;
-	
-	public KeyCode minigameButton;
-	public KeyCode minigameSpecialButton;
 		
 	/*
  	 *@author Maxens Dubois 

@@ -119,14 +119,7 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void OnGUI()
     {
-		
-		/*
-		 * Note pour Maxens :
-		 * Lorsque l'on utilise le GUI D'Unity sans Layout, ou dès lors que l'on doit
-		 * donner une taille ou une position, il est plus judicieux d'utiliser un pourcentage
-		 * comparé à la taille de l'écran.
-		 */		
-		
+			
 		int offset		 = 100;
 		
 		//we need 4 boxes

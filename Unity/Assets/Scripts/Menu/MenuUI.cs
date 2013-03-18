@@ -25,9 +25,12 @@ public class MenuUI : MonoBehaviour {
 		
 		
 		GUI.Label(titleBox,  "Roar Raging Rugby");
-		GUI.Label(patchNoteBox,  "Notes !\n-Super Available !\n-Super Available !\n-Super Available !\n-Super Available !" +
-			"\n-Super Available !\n-Super Available !\n-Super Available !\n-Super Available !" +
-			"\n-Super Available !\n-Super Available !\n-Super Available !");
+		GUI.Label(patchNoteBox,  "Notes :\n" +
+			"-Super Available !\n" +
+			"-Super Available !\n" +
+			"-Super Available !\n" +
+			"-Super Available !");
+		
 		if(GUI.Button(buttonBox,"Launch")){
 				Application.LoadLevel("terrain");
 		}
