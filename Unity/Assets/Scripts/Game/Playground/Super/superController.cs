@@ -11,8 +11,8 @@ public enum SuperList{
 
 public class superController : MonoBehaviour {
 	
-	public KeyCode OffensiveSuperButton;
-	public KeyCode DefensiveSuperButton;
+	//public KeyCode OffensiveSuperButton;
+	//public KeyCode DefensiveSuperButton;
 	
 	public SuperList OffensiveSuper;
 	public SuperList DefensiveSuper;
@@ -57,8 +57,11 @@ public class superController : MonoBehaviour {
 	
 	void updateSuperInput(){
 		
+		InputTouch superOff = _game.settings.inputs.superOff;
+		InputTouch superDef = _game.settings.inputs.superDef;
+		
 		//offense
-		if(Input.GetKeyDown(OffensiveSuperButton)){
+		if(Input.GetKeyDown(superOff.keyboard) || _team.Player.XboxController.GetButtonDown(superOff.xbox)){
 			if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
 				Debug.Log("Offensive Super attack !");
 				launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
@@ -71,7 +74,7 @@ public class superController : MonoBehaviour {
 		}
 		
 		//defense
-		if(Input.GetKeyDown(DefensiveSuperButton)){
+		if(Input.GetKeyDown(superDef.keyboard) || _team.Player.XboxController.GetButtonDown(superDef.xbox)){
 			if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
 				Debug.Log("Defensive Super attack !");
 					launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);

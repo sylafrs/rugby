@@ -721,8 +721,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuperButton: 102
-  DefensiveSuperButton: 103
   OffensiveSuper: 2
   DefensiveSuper: 1
   superTackleColor: {r: 0, g: 0, b: 0, a: 0}
@@ -2895,10 +2893,10 @@ MonoBehaviour:
   inputs:
     passLeft:
       keyboard: 49
-      xbox: 0
+      xbox: 10
     passRight:
       keyboard: 53
-      xbox: 0
+      xbox: 11
     drop:
       keyboard: 50
       xbox: 0
@@ -2920,6 +2918,12 @@ MonoBehaviour:
     put:
       keyboard: 52
       xbox: 0
+    superOff:
+      keyboard: 102
+      xbox: 3
+    superDef:
+      keyboard: 103
+      xbox: 5
     move:
       keyboard:
         up: 122
@@ -2955,6 +2959,12 @@ MonoBehaviour:
     put:
       keyboard: 0
       xbox: 0
+    superOff:
+      keyboard: 0
+      xbox: 3
+    superDef:
+      keyboard: 0
+      xbox: 5
     move:
       keyboard:
         up: 0
@@ -3543,8 +3553,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuperButton: 0
-  DefensiveSuperButton: 0
   OffensiveSuper: 0
   DefensiveSuper: 0
   superTackleColor: {r: 0, g: 0, b: 0, a: 0}
