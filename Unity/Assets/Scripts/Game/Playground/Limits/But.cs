@@ -26,9 +26,15 @@ public class But : TriggeringTrigger
         Ball b = t.GetComponent<Ball>();
         if (b != null)
         {
-            Debug.Log(Owner.name + " viens de se prendre un but dans sa face");
-            Owner.nbPoints += b.Game.settings.score.points_drop;
-            b.setPosition(Vector3.zero);
+			if(b.Game.state == Game.State.PLAYING) {
+	            Debug.Log(Owner.name + " viens de se prendre un but dans sa face");
+	            Owner.nbPoints += b.Game.settings.score.points_drop;
+	            b.setPosition(Vector3.zero);
+			}
+			else if(b.Game.state == Game.State.TRANSFORMATION) {
+				TransformationManager tm = b.Game.GetComponent<TransformationManager>();
+				tm.But();
+			}
         }
     }
 }

@@ -3316,6 +3316,9 @@ MonoBehaviour:
     xbox: 0
   angleSpeedKeyBoard: 1
   angleSpeedReleasedKeyBoard: .800000012
+  powerSpeed: 1.20000005
+  maxPower: {x: 500, y: 1100, z: 0}
+  maxAngle: 45
 --- !u!1 &2018489758
 GameObject:
   m_ObjectHideFlags: 0

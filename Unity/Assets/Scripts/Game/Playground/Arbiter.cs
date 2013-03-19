@@ -190,7 +190,11 @@ public class Arbiter : MonoBehaviour {
 		Game.cameraManager.transfoCamera.transform.rotation = cameraPlaceHolder.rotation;
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
-		tm.gamer = t.Player;
+		tm.ball = Game.Ball;
+		tm.gamer = t.Player;		
+		if(t.Player) 
+			tm.direction = t.Player.Inputs.move;
+		
 		tm.CallBack = delegate(bool transformed) {						
 			Game.cameraManager.gameCamera.ResetRotation();
 			Game.Ball.setPosition(Vector3.zero);

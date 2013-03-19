@@ -106,6 +106,11 @@ public class Ball : TriggeringTriggered {
 
     public void Drop()
     {              
+		Drop (this.multiplierDrop);
+    }
+	
+	public void Drop(Vector3 multiplierDrop)
+    {              
         this.transform.parent = null;
         this.rigidbody.useGravity = true;
 		this.rigidbody.isKinematic = false;
