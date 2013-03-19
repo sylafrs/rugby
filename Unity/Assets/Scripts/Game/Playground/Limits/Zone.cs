@@ -31,22 +31,58 @@ public class Zone : TriggeringTrigger {
             {
                 if (b.Owner.Team != this.Owner)
                 {                   
-                    /*if (b.Owner.Team.Player != null)
-                    {
-                        b.Owner.ShowTouch(b.Owner.Team.Player.Inputs.put);
-                    }
-                    else
-                    {*/
-                        Debug.Log("Essai de la part des " + b.Owner.Team.Name + " !");
-                        b.Owner.Team.nbPoints += b.Game.settings.score.points_essai;
-                        b.setPosition(Vector3.zero);
-
-                        b.Game.right.initPos();
-                        b.Game.left.initPos();
-                   /* } */
+                    if (b.Owner.Team.Player == null)
+					{				
+                        b.Game.OnEssai();
+					}
                 }
             }
         }
     }
+	
+	public override void Entered (Triggered o)
+	{
+		Ball b = o.GetComponent<Ball>();
+        if (b != null)
+        {
+			b.inZone = this;
+            if (b.Owner != null)
+            {
+                if (b.Owner.Team != this.Owner)
+                {                   
+                    if (b.Owner.Team.Player != null) {
+						b.Owner.buttonIndicator.ApplyTexture("A");
+						b.Owner.buttonIndicator.target.renderer.enabled = true;
+					}
+				}
+			}
+		}
+	}
+	
+	public override void Left (Triggered o)
+	{
+		Ball b = o.GetComponent<Ball>();
+        if (b != null)
+        {
+			b.inZone = null;
+            if (b.Owner != null)
+            {
+                if (b.Owner.Team != this.Owner)
+                {                   
+                    if (b.Owner.Team.Player != null) {
+						b.Owner.buttonIndicator.target.renderer.enabled = false;							
+					}
+				}
+			}
+			else if(b.PreviousOwner != null) {
+				if (b.PreviousOwner.Team != this.Owner)
+                {                   
+                    if (b.PreviousOwner.Team.Player != null) {
+						b.PreviousOwner.buttonIndicator.target.renderer.enabled = false;							
+					}
+				}				
+			}
+		}
+	}
 
 }

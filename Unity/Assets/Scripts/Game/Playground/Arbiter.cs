@@ -14,7 +14,8 @@ public class Arbiter : MonoBehaviour {
 	
 	public bool ToucheRemiseAuCentre = false;
 	public Transform TouchPlacement = null;
-		
+	public Transform TransfoPlacement = null;	
+	
 	public void OnTouch(Touche t) {
 		if(t == null || Game.state != Game.State.PLAYING) {
 			return;	
@@ -155,7 +156,41 @@ public class Arbiter : MonoBehaviour {
 		
 	}
 	
-	public void OnBut() {
+	public void OnEssai() {
+		if(Game.state != Game.State.PLAYING) {
+			return;	
+		}	
 		
+		Team t = Game.Ball.Owner.Team;
+		
+		t.fixUnits = t.opponent.fixUnits = true;			
+		if(t.Player) t.Player.stopMove();
+		if(t.opponent.Player) t.opponent.Player.stopMove();		
+				
+		Debug.Log("Essai de la part des " + t.Name + " !");
+        t.nbPoints += Game.settings.score.points_essai;
+        //Game.Ball.setPosition(Vector3.zero);
+
+        //Game.right.initPos();
+        //Game.left.initPos();
+			
+		Game.state = Game.State.TRANSFORMATION;
+		
+		Transform point = t.opponent.But.transformationPoint;
+		TransfoPlacement.transform.position = point.position;
+		TransfoPlacement.transform.rotation = point.rotation;
+				
+		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1);
+		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
+		Team.switchPlaces(t[0], Game.Ball.Owner);
+		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
+		
+		// Switch de caméra
+		Game.cameraManager.gameCamera.gameObject.SetActive(false);
+		Game.cameraManager.transfoCamera.gameObject.SetActive(true);
+		
+		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
+		Game.cameraManager.transfoCamera.transform.position = cameraPlaceHolder.position;
+		Game.cameraManager.transfoCamera.transform.rotation = cameraPlaceHolder.rotation;
 	}
 }

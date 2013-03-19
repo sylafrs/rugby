@@ -18,6 +18,8 @@ public class But : TriggeringTrigger
             _Owner = value;
         }
     }
+	
+	public Transform transformationPoint;
 
     public override void Entered(Triggered t)
     {

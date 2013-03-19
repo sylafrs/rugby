@@ -25,7 +25,7 @@ public class Unit : TriggeringTriggered, Debugable
 	
     public Game Game {get; set;}	
     public GameObject[] selectedIndicators;
-	
+		
 	public Unit() {
 		NearUnits = new List<Unit>();	
 	}

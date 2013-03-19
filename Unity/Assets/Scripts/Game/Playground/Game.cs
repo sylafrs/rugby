@@ -15,7 +15,8 @@ public class Game : myMonoBehaviour {
 		PAUSED,
 		PLAYING,
 		TOUCH,
-		SCRUM
+		SCRUM,
+		TRANSFORMATION
 	}
 	
 	public State state = State.PAUSED;
@@ -153,6 +154,9 @@ public class Game : myMonoBehaviour {
 		this.cameraLocked = true;
 	}
 	
+	public void OnEssai() {
+		arbiter.OnEssai();
+	}
 	
 
     public void OnOwnerChanged(Unit before, Unit after)

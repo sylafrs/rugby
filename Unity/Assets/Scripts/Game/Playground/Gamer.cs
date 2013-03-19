@@ -91,11 +91,13 @@ public class Gamer : myMonoBehaviour
     {
 
         if (Inputs == null) return;
+		if (Game.state != Game.State.PLAYING) return;
 
         UpdateMOVE();
         UpdateTACKLE();
         UpdatePASS();
         UpdateDROP();
+		UpdateESSAI();
     }
 
     void UpdatePASS()
@@ -217,4 +219,21 @@ public class Gamer : myMonoBehaviour
             Controlled.Order = Order.OrderDrop(Game.left[0]);
         }
     }
+	
+	void UpdateESSAI() {
+		if(Input.GetKeyDown(Inputs.put.keyboard) || XboxController.GetButtonDown(Inputs.put.xbox)) {
+			if(this.Game.Ball.Owner == this.Controlled) {
+				if(this.Game.Ball.inZone == this.Team.opponent.Zone) {
+					this.Game.OnEssai();
+				}
+				else {
+					Debug.Log ("Pas la bonne zone !");	
+				}
+			}
+			else {
+				// Debug inutile si la touche est utilisée autre part ^^
+				Debug.Log ("Sans la balle c'est chaud ^^");	
+			}
+		}
+	}
 }

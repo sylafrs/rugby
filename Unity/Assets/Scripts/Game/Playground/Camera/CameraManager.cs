@@ -8,6 +8,7 @@ public class CameraManager : myMonoBehaviour {
 	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
 	public ScrumCamera scrumCamera;
+	public TransfoCamera transfoCamera;
 
 	// Use this for initialization
 	void Start () {

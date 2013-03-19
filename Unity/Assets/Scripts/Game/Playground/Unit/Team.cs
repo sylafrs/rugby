@@ -295,7 +295,35 @@ public class Team : myMonoBehaviour {
             }
         }
     }
-
+	
+	public void switchPlaces(int a, int b) {
+		if(a == b)
+			return;
+		
+		if(a < 0 || b < 0 || a >= nbUnits || b >= nbUnits)
+			return;
+		
+		Unit A, B;
+		A = units[a];
+		B = units[b];
+		
+		switchPlaces(A, B);
+	}
+	
+	public static void switchPlaces(Unit A, Unit B) {
+		if(!A || !B)
+			return;
+		
+		Vector3 pos = A.transform.position;
+		Quaternion rot = A.transform.rotation;
+		
+		A.transform.position = B.transform.position;
+		A.transform.rotation = B.transform.rotation;
+		
+		B.transform.position = pos;
+		B.transform.rotation = rot;
+	}
+		
 	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to) {
 		
 		int i = 0;
