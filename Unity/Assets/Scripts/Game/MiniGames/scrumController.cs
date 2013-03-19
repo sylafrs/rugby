@@ -61,8 +61,8 @@ public class scrumController : myMonoBehaviour {
  	 */
     void Init()
     {
-        playerScore		 = 0;
-        cpuScore 		 = 0;
+        playerScore		 = 1;
+        cpuScore 		 = 1;
 		currentFrameWait = 0;
         inScrum 		 = false;
         playerSpecial    = false;
@@ -212,15 +212,24 @@ public class scrumController : myMonoBehaviour {
 		}       
 	}
 		
+	
 	/*
- 	 *@author Maxens Dubois 
- 	 */
-	void OnGUI(){
-		if(inScrum){
-			GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
-			GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+playerSpecial);
-			GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
-			GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
-		}
+	 * Needed for GUI
+	 * maxens dubois
+	 */
+	public int GetPlayerScore(){
+		return playerScore;
+	}
+	
+	public int GetCpuScore(){
+		return cpuScore;
+	}
+	
+	public bool HasPlayerSpecial(){
+		return playerSpecial;
+	}
+	
+	public int GetFrameToGo(){
+		return frameToGo;
 	}
 }

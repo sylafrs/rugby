@@ -9,30 +9,64 @@ using XInputDotNetPure;
 public class gameUIManager : myMonoBehaviour {
 	
 	private Game _game;
+	private scrumController _scrumController;
 	
 	public float gameTime;
 	public KeyCode resetKey;
 	
-	//for super bars
+	//for super bars and th scrum bar
 	public Texture2D emptyBar;
 	public Texture2D blueBar;
 	public Texture2D redBar;
+	public Texture2D LBButton;
+	
 	private float blueProgress;
 	private float redProgress;
 	
+
+	
 	//GUI custom
 	public GUIStyle superOkTextStyle;
+	public GUIStyle gameTimeTextStyle;
+	public GUIStyle gameScoreTextStyle;
+	public GUIStyle timeBeforeScrumStyle;
+	
+	public float ScrumBarMaxDelta = 1.5f;
 	
 	public float timeBoxWidthPercentage   = 10;
 	public float timeBoxHeightPercentage  = 5;
 	public float timeBoxXPercentage		= 50;
 	public float timeBoxYPercentage		= 10;
 	
+	public float blueGaugeBoxWidthPercentage   = 25;
+	public float blueGaugeBoxHeightPercentage  = 10;
+	public float blueGaugeBoxXPercentage		= 22.5f;
+	public float blueGaugeBoxYPercentage		= 10;
+	
+	public float redGaugeBoxWidthPercentage   = 25;
+	public float redGaugeBoxHeightPercentage  = 10;
+	public float redGaugeBoxXPercentage		= 77.5f;
+	public float redGaugeBoxYPercentage		= 10;
 	
 	public float scoreBoxWidthPercentage  = 20;
 	public float scoreBoxHeightPercentage = 15;
 	public float scoreBoxXPercentage = 50;
-	public float scoreBoxYPercentage = 0;
+	public float scoreBoxYPercentage = 10;
+	
+	public float scrumBarBoxWidthPercentage = 50;
+	public float scrumBarBoxHeightPercentage = 16;
+	public float scrumBarBoxXPercentage = 50;
+	public float scrumBarBoxYPercentage = 50;
+	
+	public float scrumSpecialBoxWidthPercentage = 50;
+	public float scrumSpecialBoxHeightPercentage = 16;
+	public float scrumSpecialBoxXPercentage = 50;
+	public float scrumSpecialBoxYPercentage = 66;
+	
+	public float scrumTimeBoxWidthPercentage = 50;
+	public float scrumTimeBoxHeightPercentage = 16;
+	public float scrumTimeBoxXPercentage = 50;
+	public float scrumTimeBoxYPercentage = 34;
 	
 	private float  timeElapsed;
 	private bool   over;
@@ -40,6 +74,7 @@ public class gameUIManager : myMonoBehaviour {
 	void Start () 
     {
 		_game 		= gameObject.GetComponent<Game>();
+		_scrumController = gameObject.GetComponent<scrumController>();
         timeElapsed = 0f;
 		over		= false;
 		
@@ -119,19 +154,51 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void OnGUI()
     {
-			
-		int offset		 = 100;
+		int offset = 200;
 		
-		//we need 4 boxes
 		//time box
 		Rect timeBox = screenRelativeRect(timeBoxXPercentage- timeBoxWidthPercentage/2, 
-			timeBoxYPercentage + timeBoxHeightPercentage/2, 
+			timeBoxYPercentage - timeBoxHeightPercentage/2, 
 			timeBoxWidthPercentage, timeBoxHeightPercentage);
 		
 		//score box
 		Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage/2,
-			scoreBoxYPercentage + scoreBoxHeightPercentage/2, 
+			scoreBoxYPercentage - scoreBoxHeightPercentage/2, 
 			scoreBoxWidthPercentage, scoreBoxHeightPercentage);
+		
+		//super gauges
+		Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
+			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
+			blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+		Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
+			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
+			blueGaugeBoxWidthPercentage * blueProgress,
+			blueGaugeBoxHeightPercentage);
+		Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
+			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
+			redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
+		Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
+			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
+			redGaugeBoxWidthPercentage * redProgress, 
+			redGaugeBoxHeightPercentage);
+		
+		//scrum bars
+		Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
+			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
+			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+		Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
+			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
+			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+		
+		//scrum special
+		Rect scrumSpecialBox = screenRelativeRect(scrumSpecialBoxXPercentage - scrumSpecialBoxWidthPercentage/2,
+			scrumSpecialBoxYPercentage - scrumSpecialBoxHeightPercentage/2, 
+			scrumSpecialBoxWidthPercentage, scrumSpecialBoxHeightPercentage);
+		
+		//Time before Scrum
+		Rect scrumTimeBox = screenRelativeRect(scrumTimeBoxXPercentage - scrumTimeBoxWidthPercentage/2,
+			scrumTimeBoxYPercentage - scrumTimeBoxHeightPercentage/2, 
+			scrumTimeBoxWidthPercentage, scrumTimeBoxHeightPercentage);
 		
 		//player on left Box
 		float playerLeftBoxWidth  = 25;
@@ -140,25 +207,70 @@ public class gameUIManager : myMonoBehaviour {
 		
 		if(!over)
         {
+			
+			//superbars
 			//blue 
-			//GUI.Label(new Rect(0+offset, 0, 150+offset, 150),  _game.right.Name + " : " + _game.right.nbPoints);
-			GUI.DrawTexture(new Rect(0+offset, 20, 150+offset, 50), emptyBar);
-			GUI.DrawTexture(new Rect(0+offset, 20, (150+offset)* blueProgress, 50), blueBar);
-			if(blueProgress == 1f)GUI.Label(new Rect(20+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
+			GUI.DrawTexture(blueGaugeBox, emptyBar);
+			GUI.DrawTexture(blueProgressGaugeBox, blueBar);
+			if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",superOkTextStyle);
 			
 			
 			//red
-			//GUI.Label(new Rect(400 + offset, 0, 150 + offset, 150), _game.left.Name + " : " + _game.left.nbPoints);
-			GUI.DrawTexture(new Rect(400 + offset, 20, 150 + offset, 50), emptyBar);
-			GUI.DrawTexture(new Rect(400+offset, 20, (150+offset)* redProgress, 50), redBar);
-			if(redProgress == 1f)GUI.Label(new Rect(420+offset, 33, 150+offset, 150), "OK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",superOkTextStyle);
+			GUI.DrawTexture(redGaugeBox, emptyBar);
+			GUI.DrawTexture(redprogressGaugeBox, redBar);
+			if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",superOkTextStyle);
 			
 			
 			//score
-			GUI.Label(scoreBox, _game.right.nbPoints+" - "+_game.left.nbPoints);
+			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
 			
 			//time
-			GUI.Label(timeBox,  "Time : "+(int)timeElapsed);
+			GUI.Label(timeBox,  "Time : "+(int)timeElapsed, gameTimeTextStyle);
+			
+			
+			//Gui du scrum
+			if(_scrumController.isInScrum()){
+				float playerScore = (float)_scrumController.GetPlayerScore();
+				float cpuScore 	  = (float)_scrumController.GetCpuScore();
+				int frameToGo	  = _scrumController.GetFrameToGo();
+				bool hasSpecial   = _scrumController.HasPlayerSpecial();
+			
+				
+				//chrono
+				string toGo;
+				if(frameToGo > 0){
+					toGo = frameToGo+" to go ...";
+				}else{
+					toGo = "--- GO ---";
+				}
+				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
+				
+				//bar
+				float quotient = playerScore/cpuScore;
+				if(quotient < 0.5f) quotient = 0.5f;
+				if(quotient > 1.5f) quotient = 1.5f;
+				float blueScrumProgress = quotient - 0.5f; 
+				
+				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
+					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
+					scrumBarBoxWidthPercentage*blueScrumProgress, 
+					scrumBarBoxHeightPercentage);
+				GUI.DrawTexture(scrumBarBox, emptyBar);
+				GUI.DrawTexture(scrumRedBarBox, redBar);
+				GUI.DrawTexture(scrumBlueBarBox,blueBar);
+				
+				//special
+				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton);
+				
+				//debug
+				/*
+				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
+				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
+				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
+				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
+				*/
+			}
+			
 			
 		}
         else
