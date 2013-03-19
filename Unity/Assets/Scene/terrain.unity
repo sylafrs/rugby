@@ -2868,6 +2868,7 @@ MonoBehaviour:
   score:
     points_drop: 5
     points_essai: 5
+    points_transfo: 3
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
@@ -3317,7 +3318,7 @@ MonoBehaviour:
   angleSpeedKeyBoard: 1
   angleSpeedReleasedKeyBoard: .800000012
   powerSpeed: 1.20000005
-  maxPower: {x: 500, y: 1100, z: 0}
+  maxPower: {x: 700, y: 1100, z: 0}
   maxAngle: 45
 --- !u!1 &2018489758
 GameObject:
