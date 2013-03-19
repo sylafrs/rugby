@@ -161,6 +161,8 @@ public class Arbiter : MonoBehaviour {
 			return;	
 		}	
 		
+		float x = Game.Ball.transform.position.x;
+		
 		Team t = Game.Ball.Owner.Team;
 		
 		t.fixUnits = t.opponent.fixUnits = true;			
@@ -171,8 +173,10 @@ public class Arbiter : MonoBehaviour {
         t.nbPoints += Game.settings.score.points_essai;
         			
 		Game.state = Game.State.TRANSFORMATION;
-		
+				
 		Transform point = t.opponent.But.transformationPoint;
+		point.transform.position = new Vector3(x, 0, point.transform.position.z);
+		
 		TransfoPlacement.transform.position = point.position;
 		TransfoPlacement.transform.rotation = point.rotation;
 				
