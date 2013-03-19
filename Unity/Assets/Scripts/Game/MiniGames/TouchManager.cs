@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using XInputDotNetPure;
 
-public delegate void CallBack(TouchManager.Result result, int id);
+public delegate void CallBack_touch(TouchManager.Result result, int id);
 
 /**
   * @class TouchManager
@@ -12,7 +12,7 @@ public delegate void CallBack(TouchManager.Result result, int id);
   */
 public class TouchManager : MonoBehaviour {
 	
-	public CallBack CallBack;
+	public CallBack_touch CallBack;
 	
 	public Gamer gamerTouch {get; set;}
 	public Gamer gamerIntercept {get; set;}

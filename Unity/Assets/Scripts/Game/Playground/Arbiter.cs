@@ -169,11 +169,7 @@ public class Arbiter : MonoBehaviour {
 				
 		Debug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
-        //Game.Ball.setPosition(Vector3.zero);
-
-        //Game.right.initPos();
-        //Game.left.initPos();
-			
+        			
 		Game.state = Game.State.TRANSFORMATION;
 		
 		Transform point = t.opponent.But.transformationPoint;
@@ -192,5 +188,28 @@ public class Arbiter : MonoBehaviour {
 		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
 		Game.cameraManager.transfoCamera.transform.position = cameraPlaceHolder.position;
 		Game.cameraManager.transfoCamera.transform.rotation = cameraPlaceHolder.rotation;
+		
+		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
+		tm.gamer = t.Player;
+		tm.CallBack = delegate(bool transformed) {						
+			Game.cameraManager.gameCamera.ResetRotation();
+			Game.Ball.setPosition(Vector3.zero);
+
+       		Game.right.initPos();
+        	Game.left.initPos();
+			
+			Game.cameraManager.gameCamera.gameObject.SetActive(true);
+			Game.cameraManager.transfoCamera.gameObject.SetActive(false);
+			
+			Game.state = Game.State.PLAYING;
+			t.fixUnits = t.opponent.fixUnits = false;	
+			if(t.Player) t.Player.enableMove();
+			if(t.opponent.Player) t.opponent.Player.enableMove();
+		};
+		
+		
+		tm.enabled = true;
+		
+		
 	}
 }
