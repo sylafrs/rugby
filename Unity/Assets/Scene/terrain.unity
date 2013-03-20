@@ -9199,7 +9199,7 @@ MonoBehaviour:
   angleSpeedReleasedKeyBoard: .800000012
   powerSpeed: 1.20000005
   maxPower: {x: 1200, y: 1500, z: 0}
-  maxAngle: 50
+  maxAngle: 70
 --- !u!1 &2018489758
 GameObject:
   m_ObjectHideFlags: 0
