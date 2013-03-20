@@ -43,45 +43,45 @@ public class TouchManager : MonoBehaviour {
 			choixInter = Random.Range(0, n) + 1;
 	}
 	
-	/*
+	public bool hideGui = true;
 	public void OnGUI() {
-		
-		Color c = GUI.color;
-		
-		GUILayout.Space(300);
-				
-		if(timeLeft > 0)
-			GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
-		else
-			GUILayout.Label("Choisissez une touche");
+		if(hideGui) {
+			Color c = GUI.color;
 			
-		GUILayout.BeginHorizontal();
-			GUILayout.Label("J1 : ");
-		
-			for(int i = 0; i < n; i++) {
-				GUI.color = (choixTouche == i+1) ? Color.red : c;
-				if(GUILayout.Button (touche[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-					choixTouche = i+1;
+			GUILayout.Space(300);
+					
+			if(timeLeft > 0)
+				GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
+			else
+				GUILayout.Label("Choisissez une touche");
+				
+			GUILayout.BeginHorizontal();
+				GUILayout.Label("J1 : ");
+			
+				for(int i = 0; i < n; i++) {
+					GUI.color = (choixTouche == i+1) ? Color.red : c;
+					if(GUILayout.Button (touche[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+						choixTouche = i+1;
+					}
 				}
-			}
-		GUILayout.EndHorizontal();
-		
-		GUI.color = c;
-		
-		GUILayout.BeginHorizontal();
-			GUILayout.Label("J2 : ");
-		
-			for(int i = 0; i < n; i++) {
-				GUI.color = (choixInter == i+1) ? Color.red : c;
-				if(GUILayout.Button (interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-					choixInter = i+1;
+			GUILayout.EndHorizontal();
+			
+			GUI.color = c;
+			
+			GUILayout.BeginHorizontal();
+				GUILayout.Label("J2 : ");
+			
+				for(int i = 0; i < n; i++) {
+					GUI.color = (choixInter == i+1) ? Color.red : c;
+					if(GUILayout.Button (interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+						choixInter = i+1;
+					}
 				}
-			}
-		GUILayout.EndHorizontal();
-		
-		GUI.color = c;
+			GUILayout.EndHorizontal();
+			
+			GUI.color = c;
+		}
 	}
-	*/
 	
 	public void Update() {
 		timeLeft -= Time.deltaTime;
