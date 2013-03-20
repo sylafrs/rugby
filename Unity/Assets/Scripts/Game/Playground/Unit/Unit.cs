@@ -214,5 +214,32 @@ public class Unit : TriggeringTriggered, Debugable
         }        
 #endif
     }
+	
+	public bool ButtonVisible {
+		get {
+			return this.buttonIndicator.target.renderer.enabled;
+		}
+		set {
+			this.buttonIndicator.target.renderer.enabled = value;
+		}		
+	}
+	
+	public string CurrentButton {
+		get {
+			return this.buttonIndicator.target.renderer.material.mainTexture.name;	
+		}
+		set {
+			this.buttonIndicator.ApplyTexture(value);	
+		}
+	}
+	
+	public void HideButton() {
+		ButtonVisible = false;
+	}
+	
+	public void ShowButton(string str) {
+		CurrentButton = str;
+		ButtonVisible = true;
+	}
 }
 

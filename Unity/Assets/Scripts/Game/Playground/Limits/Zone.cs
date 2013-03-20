@@ -35,6 +35,15 @@ public class Zone : TriggeringTrigger {
 					{				
                         b.Game.OnEssai();
 					}
+					else {
+						foreach(Unit u in b.Owner.Team) {
+							u.HideButton();
+						}
+						
+						if(!b.Owner.ButtonVisible) {
+							b.Owner.ShowButton("A");
+						}								
+					}
                 }
             }
         }
@@ -45,17 +54,7 @@ public class Zone : TriggeringTrigger {
 		Ball b = o.GetComponent<Ball>();
         if (b != null)
         {
-			b.inZone = this;
-            if (b.Owner != null)
-            {
-                if (b.Owner.Team != this.Owner)
-                {                   
-                    if (b.Owner.Team.Player != null) {
-						b.Owner.buttonIndicator.ApplyTexture("A");
-						b.Owner.buttonIndicator.target.renderer.enabled = true;
-					}
-				}
-			}
+			b.inZone = this;            
 		}
 	}
 	
