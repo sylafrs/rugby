@@ -4,13 +4,167 @@ ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
+    100002: polySurface8
+    100004: polySurface9
+    100006: pPlane10
+    100008: pPlane11
+    100010: pPlane12
+    100012: pPlane13
+    100014: pPlane14
+    100016: pPlane15
+    100018: pPlane16
+    100020: pPlane17
+    100022: pPlane18
+    100024: pPlane19
+    100026: pPlane2
+    100028: pPlane20
+    100030: pPlane21
+    100032: pPlane22
+    100034: pPlane23
+    100036: pPlane24
+    100038: pPlane25
+    100040: pPlane26
+    100042: pPlane27
+    100044: pPlane28
+    100046: pPlane29
+    100048: pPlane3
+    100050: pPlane30
+    100052: pPlane31
+    100054: pPlane32
+    100056: pPlane33
+    100058: pPlane34
+    100060: pPlane35
+    100062: pPlane4
+    100064: pPlane5
+    100066: pPlane6
+    100068: pPlane7
+    100070: pPlane8
+    100072: pPlane9
+    100074: pSphere1
+    100076: pSphere2
+    100078: transform1
+    100080: transform10
+    100082: transform11
+    100084: transform12
+    100086: transform13
+    100088: transform14
+    100090: transform15
+    100092: transform16
+    100094: transform17
+    100096: transform18
+    100098: transform19
+    100100: transform2
+    100102: transform20
+    100104: transform21
+    100106: transform22
+    100108: transform23
+    100110: transform24
+    100112: transform25
+    100114: transform26
+    100116: transform27
+    100118: transform28
+    100120: transform29
+    100122: transform3
+    100124: transform30
+    100126: transform31
+    100128: transform32
+    100130: transform33
+    100132: transform34
+    100134: transform35
+    100136: transform36
+    100138: transform37
+    100140: transform4
+    100142: transform5
+    100144: transform6
+    100146: transform7
+    100148: transform8
+    100150: transform9
     400000: //RootNode
+    400002: polySurface8
+    400004: polySurface9
+    400006: pPlane10
+    400008: pPlane11
+    400010: pPlane12
+    400012: pPlane13
+    400014: pPlane14
+    400016: pPlane15
+    400018: pPlane16
+    400020: pPlane17
+    400022: pPlane18
+    400024: pPlane19
+    400026: pPlane2
+    400028: pPlane20
+    400030: pPlane21
+    400032: pPlane22
+    400034: pPlane23
+    400036: pPlane24
+    400038: pPlane25
+    400040: pPlane26
+    400042: pPlane27
+    400044: pPlane28
+    400046: pPlane29
+    400048: pPlane3
+    400050: pPlane30
+    400052: pPlane31
+    400054: pPlane32
+    400056: pPlane33
+    400058: pPlane34
+    400060: pPlane35
+    400062: pPlane4
+    400064: pPlane5
+    400066: pPlane6
+    400068: pPlane7
+    400070: pPlane8
+    400072: pPlane9
+    400074: pSphere1
+    400076: pSphere2
+    400078: transform1
+    400080: transform10
+    400082: transform11
+    400084: transform12
+    400086: transform13
+    400088: transform14
+    400090: transform15
+    400092: transform16
+    400094: transform17
+    400096: transform18
+    400098: transform19
+    400100: transform2
+    400102: transform20
+    400104: transform21
+    400106: transform22
+    400108: transform23
+    400110: transform24
+    400112: transform25
+    400114: transform26
+    400116: transform27
+    400118: transform28
+    400120: transform29
+    400122: transform3
+    400124: transform30
+    400126: transform31
+    400128: transform32
+    400130: transform33
+    400132: transform34
+    400134: transform35
+    400136: transform36
+    400138: transform37
+    400140: transform4
+    400142: transform5
+    400144: transform6
+    400146: transform7
+    400148: transform8
+    400150: transform9
     2300000: //RootNode
+    2300002: polySurface9
     3300000: //RootNode
+    3300002: polySurface9
     4300000: jap_captain
+    4300002: polySurface9
+    4300004: polySurface59
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -29,7 +183,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     secondaryUVAngleDistortion: 8
@@ -41,11 +195,36 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    human: []
-    skeleton: []
+    human:
+    - boneName: jap_captain
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        preQ: {x: 0, y: 0, z: 0, w: 0}
+        postQ: {x: 0, y: 0, z: 0, w: 0}
+        length: 0
+        modified: 0
+    - boneName: None
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        preQ: {x: 0, y: 0, z: 0, w: 0}
+        postQ: {x: 0, y: 0, z: 0, w: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: jap_captain
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
     handles: []
     armTwist: .5
     foreArmTwist: .5
@@ -56,6 +235,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  additionalBone: 1
-  animationType: 2
+  additionalBone: 0
+  animationType: 3
   userData: 

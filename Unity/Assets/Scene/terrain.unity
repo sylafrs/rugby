@@ -20,7 +20,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 53412155bc1016547b1a77b2333c0380, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_HaloTexture: {fileID: 0}
@@ -706,7 +706,7 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 14
+  unitSpeed: 15
   unitTackleRange: 50
   Prefab_model: {fileID: 100000, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   SuperGaugeValue: 0
@@ -1082,8 +1082,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 682816633}
-  m_LocalRotation: {x: .224310651, y: 0, z: -3.1610135e-08, w: .974517703}
-  m_LocalPosition: {x: 0, y: 20.2809486, z: -13.2858105}
+  m_LocalRotation: {x: .2079117, y: 0, z: 0, w: .978147626}
+  m_LocalPosition: {x: 1.11322879e-06, y: 11.1756392, z: -10.8046541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 843848053}
@@ -1442,9 +1442,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 684b4b8bd346167479c8e3c9cdf49df7, type: 3}
   m_Name: 
-  offset: {x: 0, y: 7, z: -20}
-  rotation: {x: 0, y: 0, z: 0}
-  tweakMode: 0
+  offset: {x: 0, y: 6.5, z: -18}
+  rotation: {x: 18, y: 0, z: 0}
+  tweakMode: 1
   gameCamera: {fileID: 1694633019}
 --- !u!114 &840478220
 MonoBehaviour:

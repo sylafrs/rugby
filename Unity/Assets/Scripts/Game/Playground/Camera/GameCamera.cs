@@ -58,6 +58,7 @@ public class GameCamera : myMonoBehaviour {
 				
 		if(tweakMode){
 			ResetRotation();
+			this.gameCamera.transform.localPosition = offset;
 		}
 
 		Vector3 cam = this.transform.position;
