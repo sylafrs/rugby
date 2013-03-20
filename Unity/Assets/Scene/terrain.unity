@@ -8732,9 +8732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa3031727ccd6045b92962bd69eb5fa, type: 3}
   m_Name: 
   score:
-    points_drop: 5
+    points_drop: 3
     points_essai: 5
-    points_transfo: 3
+    points_transfo: 2
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
@@ -8862,7 +8862,7 @@ MonoBehaviour:
   cpuUp: 95
   specialLuck: 20
   playerSpecialUp: 80
-  frameStart: 200
+  frameStart: 50
   rightGap: -27
   leftGap: 10
   IAoffset: -.0500000007
