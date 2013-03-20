@@ -361,8 +361,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1a2312bd51b9bfa42ac91ecab02dc856, type: 2}
-  - {fileID: 2100000, guid: d08b5d57e8e03bb458fd833a30144a60, type: 2}
+  - {fileID: 2100000, guid: 6ddfe2194f36ce64ea4f4cf273dd0659, type: 2}
+  - {fileID: 2100000, guid: 5904e08bee538ee46b6b9b7dc2e10ba3, type: 2}
   - {fileID: 2100000, guid: 4f806baacc5cd234f884328f60f8e764, type: 2}
   - {fileID: 2100000, guid: 74e956f02b0b092409fa9bce1e099ea6, type: 2}
   m_SubsetIndices: 
@@ -521,7 +521,7 @@ MonoBehaviour:
   buttonIndicator: {fileID: 11400006}
   selectedIndicators:
   - {fileID: 100006}
-  superDashParticles: {fileID: 0}
+  superDashParticles: {fileID: 19800000}
   superTackleParticles: {fileID: 19800002}
 --- !u!114 &11400004
 MonoBehaviour:
