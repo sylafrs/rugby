@@ -175,12 +175,12 @@ public class scrumController : myMonoBehaviour {
  	 *@author Maxens Dubois 
  	 */
 	void endScrum(){
-		inScrum = false;
-		_game.state = Game.State.PLAYING;
+		inScrum = false;		
 		
 		_p1.enableMove();
 		_game.disableIA = false;
 		_game.cameraManager.OnScrum(false);
+		_game.state = Game.State.PLAYING;
 		Init();
 	}
 	
