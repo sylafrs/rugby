@@ -185,13 +185,13 @@ public class Arbiter : MonoBehaviour {
 		Team.switchPlaces(t[0], Game.Ball.Owner);
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 		
-		// Switch de caméra
-		Game.cameraManager.gameCamera.gameObject.SetActive(false);
-		Game.cameraManager.transfoCamera.gameObject.SetActive(true);
-		
+		// Switch/Position de caméra
 		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
 		Game.cameraManager.transfoCamera.transform.position = cameraPlaceHolder.position;
-		Game.cameraManager.transfoCamera.transform.rotation = cameraPlaceHolder.rotation;
+				
+		Game.cameraManager.transfoCamera.but = t.opponent.But;
+		Game.cameraManager.gameCamera.gameObject.SetActive(false);
+		Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;

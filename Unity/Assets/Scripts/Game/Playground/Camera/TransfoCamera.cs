@@ -8,5 +8,9 @@ using System.Collections.Generic;
   * @see MonoBehaviour
   */
 public class TransfoCamera : MonoBehaviour {
-
+	public But but;
+	
+	void OnEnable() {
+		this.transform.LookAt(but.transform.FindChild("Transformation LookAt"));	
+	}
 }

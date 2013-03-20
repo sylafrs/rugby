@@ -8,7 +8,7 @@ using System.Collections.Generic;
  * @author Sylvain Lafon
  */
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
-public class Team : myMonoBehaviour {
+public class Team : myMonoBehaviour, IEnumerable {
 
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
@@ -24,7 +24,7 @@ public class Team : myMonoBehaviour {
 
     public int nbPoints = 0;
 
-    public Unit [] units {get; set;}
+    private Unit [] units;
 	
 	public float speedFactor;
 	public float tackleFactor;
@@ -397,5 +397,45 @@ public class Team : myMonoBehaviour {
 		default:
 			break;
 		}
+	}
+	
+	public class TeamUnitEnumerator : IEnumerator {
+		Team t;
+		int current;
+		
+		public TeamUnitEnumerator(Team t) {
+			this.t = t;
+			current = 0;
+		}
+		
+		public bool MoveNext()
+	    {
+	        current++;
+	        return (current < t.nbUnits);
+	    }
+	
+	    public void Reset()
+	    {
+	        current = -1;
+	    }
+	
+	    public object Current
+	    {
+	        get
+	        {
+	            try
+	            {
+	                return t[current];
+	            }
+	            catch (System.IndexOutOfRangeException)
+	            {
+	                throw new System.InvalidOperationException();
+	            }
+	        }
+	    }
+	}
+	
+	public IEnumerator GetEnumerator() {
+		return new TeamUnitEnumerator(this);
 	}
 }
