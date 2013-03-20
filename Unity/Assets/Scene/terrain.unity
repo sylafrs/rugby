@@ -2899,22 +2899,22 @@ MonoBehaviour:
       xbox: 11
     drop:
       keyboard: 50
-      xbox: 0
+      xbox: 9
     tackle:
       keyboard: 51
       xbox: 0
     reset:
       keyboard: 48
-      xbox: 0
+      xbox: 7
     enableIA:
       keyboard: 57
-      xbox: 0
+      xbox: 2
     scrumNormal:
       keyboard: 119
       xbox: 0
     scrumExtra:
       keyboard: 120
-      xbox: 0
+      xbox: 10
     put:
       keyboard: 52
       xbox: 0
