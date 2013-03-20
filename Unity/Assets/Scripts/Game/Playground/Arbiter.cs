@@ -105,8 +105,9 @@ public class Arbiter : MonoBehaviour {
 			tm.gamerTouch = touchTeam.Player;
 			
 			// On indique si l'un ou l'autre sera fait au pif
-			tm.randomTouch = (tm.gamerTouch == null);
-			tm.randomIntercept = (tm.gamerIntercept == null);
+			// TODO : patch j2
+			tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
+			tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
 						
 			// Fonction à appeller à la fin de la touche
 			tm.CallBack = delegate(TouchManager.Result result, int id) {

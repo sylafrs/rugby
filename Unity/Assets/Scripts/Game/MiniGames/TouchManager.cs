@@ -42,7 +42,8 @@ public class TouchManager : MonoBehaviour {
 		if(randomIntercept)
 			choixInter = Random.Range(0, n) + 1;
 	}
-		
+	
+	/*
 	public void OnGUI() {
 		
 		Color c = GUI.color;
@@ -80,6 +81,7 @@ public class TouchManager : MonoBehaviour {
 		
 		GUI.color = c;
 	}
+	*/
 	
 	public void Update() {
 		timeLeft -= Time.deltaTime;
