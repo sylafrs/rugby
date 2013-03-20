@@ -405,7 +405,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 		
 		public TeamUnitEnumerator(Team t) {
 			this.t = t;
-			current = 0;
+			current = -1;
 		}
 		
 		public bool MoveNext()

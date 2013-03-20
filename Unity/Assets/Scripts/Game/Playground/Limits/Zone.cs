@@ -64,22 +64,11 @@ public class Zone : TriggeringTrigger {
         if (b != null)
         {
 			b.inZone = null;
-            if (b.Owner != null)
-            {
-                if (b.Owner.Team != this.Owner)
-                {                   
-                    if (b.Owner.Team.Player != null) {
-						b.Owner.buttonIndicator.target.renderer.enabled = false;							
-					}
-				}
+            foreach(Unit u in b.Team) {
+				u.HideButton();
 			}
-			else if(b.PreviousOwner != null) {
-				if (b.PreviousOwner.Team != this.Owner)
-                {                   
-                    if (b.PreviousOwner.Team.Player != null) {
-						b.PreviousOwner.buttonIndicator.target.renderer.enabled = false;							
-					}
-				}				
+			foreach(Unit u in b.Team.opponent) {
+				u.HideButton();
 			}
 		}
 	}

@@ -119,6 +119,11 @@ public class TransformationManager : MonoBehaviour {
 		}		
 	}
 	
+	public void OnLimit() {
+		transformed = false;
+		Finish ();
+	}
+	
 	public void But() {
 		transformed = true;
 		Finish ();

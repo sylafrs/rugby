@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f638fb15fa9958b44a1cec0e7a0dbb1c, type: 3}
   m_Name: 
+  game: {fileID: 2004071851}
 --- !u!65 &15182805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8348,6 +8349,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f638fb15fa9958b44a1cec0e7a0dbb1c, type: 3}
   m_Name: 
+  game: {fileID: 2004071851}
 --- !u!65 &1964732606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8954,8 +8956,8 @@ MonoBehaviour:
   angleSpeedKeyBoard: 1
   angleSpeedReleasedKeyBoard: .800000012
   powerSpeed: 1.20000005
-  maxPower: {x: 900, y: 1100, z: 0}
-  maxAngle: 45
+  maxPower: {x: 1200, y: 1500, z: 0}
+  maxAngle: 50
 --- !u!1 &2018489758
 GameObject:
   m_ObjectHideFlags: 0
