@@ -34,7 +34,6 @@ public class Unit : TriggeringTriggered, Debugable
 	public ParticleSystem superDashParticles;
 	public ParticleSystem superTackleParticles;
 	
-	
 	public NearUnit triggerTackle {get; set;}
 	
 	//maxens : c'est très bourrin xD
