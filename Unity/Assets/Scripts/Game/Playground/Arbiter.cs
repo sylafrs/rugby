@@ -185,28 +185,21 @@ public class Arbiter : MonoBehaviour {
 		// Switch/Position de caméra
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
-		Game.cameraManager.transfoCamera.transform.position = cameraPlaceHolder.position;
+			
+		///////
 		
-		/*Vector3 position = cameraPlaceHolder.transform.position;
-		float y = position.y;
-		
-		Vector3 ownerPosition = Game.Ball.Owner.transform.position;
-		ownerPosition.y = 0;
+		Vector3 BallCamera = cameraPlaceHolder.transform.position - Game.Ball.Owner.transform.position;
+		BallCamera.y = 0;
 				
-		//
+		Vector3 ButBall = Game.Ball.Owner.transform.position - butPoint.transform.position;
+		ButBall.y = 0;
 		
+		Vector3 CameraPos = ButBall.normalized * BallCamera.magnitude + Game.Ball.Owner.transform.position;
+		CameraPos.y = cameraPlaceHolder.transform.position.y;
 		
+		Game.cameraManager.transfoCamera.transform.position = CameraPos;
 		
-		Vector3 ecart = ownerPosition - new Vector3(butPoint.position.x, 0, butPoint.position.z);
-		
-		Game.cameraManager.transfoCamera.transform.position = f
-		/*
-		float distance = Vector3.Distance(position, Game.Ball.Owner.transform.position);
-		float f = Mathf.Sqrt(Mathf.Pow(distance, 2) - Mathf.Pow(position.y, 2));
-		Game.cameraManager.transfoCamera.transform.position = Game.Ball.Owner.transform.position - (f * forward) + new Vector3(0, position.y, 0);
-		*/
-		
-		
+		///////
 		
 		Game.cameraManager.gameCamera.gameObject.SetActive(false);
 		Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
