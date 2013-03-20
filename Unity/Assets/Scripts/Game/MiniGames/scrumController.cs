@@ -17,9 +17,9 @@ public class scrumController : myMonoBehaviour {
 	private Team	_t1;
 	private Team	_t2;
 	
-	private int  playerScore;
+	private float  playerScore;
 	private bool playerSpecial;
-	private int cpuScore;
+	private float cpuScore;
 	private bool inScrum;
 	private	int currentFrameWait;
 	private int frameToGo;
@@ -29,6 +29,7 @@ public class scrumController : myMonoBehaviour {
 	/** tweak session **/
 	public int scoreTarget 		= 1000;
 	public int playerUp	   		= 15;
+	public float cpuUp			= 0.5f;
 	public int specialLuck 		= 20;
 	public int playerSpecialUp 	= 80;
 	public int frameStart		= 30;
@@ -51,8 +52,8 @@ public class scrumController : myMonoBehaviour {
 		_ball 	= _game.Ball;
 		_p1 	= _game.p1;
 		_p2	 	= _game.p2;
-		_t1		= _game.left;
-		_t2		= _game.right;
+		_t1		= _game.right;
+		_t2		= _game.left;
         Init();
 	}
 	
@@ -96,6 +97,8 @@ public class scrumController : myMonoBehaviour {
 			playersInline(offset);	
 			if(currentFrameWait > frameStart)
 			{
+				increaseIaScore();
+				
                 if (Input.GetKeyDown(_game.p1.Inputs.scrumNormal.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumNormal.xbox))
                 {
                     playerUpScore(playerUp);
@@ -113,17 +116,21 @@ public class scrumController : myMonoBehaviour {
                         playerSpecial = false;
                     }
                 }
-				
-				cpuScore += Random.Range(0,4);
-				offset += IAoffset;
-				if(cpuScore > scoreTarget){
-					//cpu win
-					Debug.Log("cpu win");
-					endScrum();
-				}
+
 			}else{
 				frameToGo --;
 			}
+		}
+	}
+	
+	public void increaseIaScore(){
+		cpuScore += cpuUp*Time.deltaTime;
+		offset += IAoffset;
+		if(cpuScore > scoreTarget){
+			//cpu win
+			Debug.Log("cpu win");
+			_ball.Owner = _t2[0];
+			endScrum();
 		}
 	}
 	
@@ -155,6 +162,7 @@ public class scrumController : myMonoBehaviour {
 			//player Win !
 			Debug.Log("player win");
 			//Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
+			_ball.Owner = _t1[0];
 			endScrum();
 		}
 		offset += playerOffset;
@@ -217,11 +225,11 @@ public class scrumController : myMonoBehaviour {
 	 * Needed for GUI
 	 * maxens dubois
 	 */
-	public int GetPlayerScore(){
+	public float GetPlayerScore(){
 		return playerScore;
 	}
 	
-	public int GetCpuScore(){
+	public float GetCpuScore(){
 		return cpuScore;
 	}
 	

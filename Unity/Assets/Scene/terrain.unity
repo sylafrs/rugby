@@ -2991,6 +2991,7 @@ MonoBehaviour:
   cam: {fileID: 278997180}
   scoreTarget: 1000
   playerUp: 15
+  cpuUp: 95
   specialLuck: 20
   playerSpecialUp: 80
   frameStart: 200
