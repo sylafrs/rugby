@@ -156,6 +156,10 @@ public class XboxInputs : myMonoBehaviour{
                 prevState[i] = GetButton((XBOX_BUTTONS)i);
             }
         }
+		
+		void Vibrate(float left, float right) {
+			GamePad.SetVibration(index, pad.Triggers.Left, pad.Triggers.Right);
+		}
     }
 
     // -------------------------------------------  //

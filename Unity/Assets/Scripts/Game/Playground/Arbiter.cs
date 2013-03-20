@@ -147,11 +147,7 @@ public class Arbiter : MonoBehaviour {
 	public void OnScrum() {
 		
 	}
-	
-	public void OnTransformation() {
 		
-	}
-	
 	public void OnTackle() {
 		
 	}
@@ -171,7 +167,7 @@ public class Arbiter : MonoBehaviour {
 				
 		Debug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
-        			
+		        			
 		Game.state = Game.State.TRANSFORMATION;
 				
 		Transform point = t.opponent.But.transformationPoint;
@@ -186,12 +182,35 @@ public class Arbiter : MonoBehaviour {
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 		
 		// Switch/Position de caméra
+		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
 		Game.cameraManager.transfoCamera.transform.position = cameraPlaceHolder.position;
+		
+		/*Vector3 position = cameraPlaceHolder.transform.position;
+		float y = position.y;
+		
+		Vector3 ownerPosition = Game.Ball.Owner.transform.position;
+		ownerPosition.y = 0;
 				
-		Game.cameraManager.transfoCamera.but = t.opponent.But;
+		//
+		
+		
+		
+		Vector3 ecart = ownerPosition - new Vector3(butPoint.position.x, 0, butPoint.position.z);
+		
+		Game.cameraManager.transfoCamera.transform.position = f
+		/*
+		float distance = Vector3.Distance(position, Game.Ball.Owner.transform.position);
+		float f = Mathf.Sqrt(Mathf.Pow(distance, 2) - Mathf.Pow(position.y, 2));
+		Game.cameraManager.transfoCamera.transform.position = Game.Ball.Owner.transform.position - (f * forward) + new Vector3(0, position.y, 0);
+		*/
+		
+		
+		
 		Game.cameraManager.gameCamera.gameObject.SetActive(false);
 		Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
+		
+		Game.cameraManager.transfoCamera.transform.LookAt(butPoint);
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
