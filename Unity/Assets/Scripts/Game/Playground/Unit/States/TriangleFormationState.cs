@@ -24,8 +24,8 @@ class TriangleFormationState : UnitState
         float x = o.point.x * dif;
         float z = o.point.z * Mathf.Abs(dif);
 
-        unit.GetNMA().stoppingDistance = 0;
-        unit.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
+        unit.nma.stoppingDistance = 0;
+        unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
     }
 }
 

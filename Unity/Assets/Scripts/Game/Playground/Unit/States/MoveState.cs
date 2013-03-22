@@ -13,15 +13,15 @@ public class MoveState : UnitState {
 
     public override void OnEnter()
     {
-        unit.GetNMA().stoppingDistance = 0f;
-        unit.GetNMA().SetDestination(unit.Order.point);
+        unit.nma.stoppingDistance = 0f;
+        unit.nma.SetDestination(unit.Order.point);
     }
 
     public override void OnUpdate()
     {       
-        if (unit.GetNMA().remainingDistance < epsilon)
+        if (unit.nma.remainingDistance < epsilon)
         {
-            unit.GetNMA().Stop();
+            unit.nma.Stop();
             unit.Order = Order.OrderNothing();
         }
     }

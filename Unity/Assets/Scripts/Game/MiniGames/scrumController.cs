@@ -226,8 +226,8 @@ public class scrumController : myMonoBehaviour {
                 int dif = u1.Team.GetLineNumber(u1, cap1);
                 float x = 3 * dif;
 
-                u1.GetNMA().stoppingDistance = 0;
-                u1.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
+                u1.nma.stoppingDistance = 0;
+                u1.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 			
 			if(cap2 != u2){
@@ -236,8 +236,8 @@ public class scrumController : myMonoBehaviour {
                 int dif = u2.Team.GetLineNumber(u2, cap2);
                 float x = 3 * dif;
 
-                u2.GetNMA().stoppingDistance = 0;
-                u2.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
+                u2.nma.stoppingDistance = 0;
+                u2.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 		}       
 	}

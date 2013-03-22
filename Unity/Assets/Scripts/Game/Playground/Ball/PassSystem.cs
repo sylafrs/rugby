@@ -116,7 +116,7 @@ public class PassSystem {
 		//Debug.Log(initialVelocity);
 
 		ball.transform.position = new Vector3(relativeDirection.x * t + initialPosition.x,
-			-0.5f * 9.81f * t * t + /*from.GetNMA().velocity.magnitude*/ velocityPass * Mathf.Sin(angle) * t + initialPosition.y, 
+			-0.5f * 9.81f * t * t + /*from.nma.velocity.magnitude*/ velocityPass * Mathf.Sin(angle) * t + initialPosition.y, 
 			relativeDirection.z * t + initialPosition.z);
 	}
 	
@@ -153,7 +153,7 @@ public class PassSystem {
 	 */
 	private void calculateRelativePosition()
 	{
-		relativePosition =  target.transform.position + target.transform.forward * target.GetNMA().velocity.magnitude * magnitude / velocityPass;
+		relativePosition =  target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
 	}
 
 	/*

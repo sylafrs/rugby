@@ -20,7 +20,16 @@ public class Team : myMonoBehaviour, IEnumerable {
     public But But;
     public Zone Zone;
 	
-	public bool fixUnits;
+	private bool _fixUnits = false;
+	public bool fixUnits {
+		get {
+			return _fixUnits;
+		}
+		set {
+			_fixUnits = value;
+			setSpeed();	
+		}		
+	}
 
     public int nbPoints = 0;
 
@@ -63,6 +72,13 @@ public class Team : myMonoBehaviour, IEnumerable {
 		tackleFactor = 1f;
     }
 	
+	public void setSpeed() {
+		foreach(var u in units) {
+			if(u.nma)
+				u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;	
+		}
+	}
+	
 	//maxens dubois
 	public void increaseSuperGauge(int value){
 		if((SuperGaugeValue += value) > Game.settings.super.superGaugeMaximum) SuperGaugeValue = Game.settings.super.superGaugeMaximum;
@@ -83,6 +99,8 @@ public class Team : myMonoBehaviour, IEnumerable {
             units[i].Team = this;
             //units[i].renderer.material.color = Color;           
         }
+		
+		setSpeed();
     }
 
     public void initPos()

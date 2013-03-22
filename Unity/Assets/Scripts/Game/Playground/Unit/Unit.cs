@@ -19,7 +19,7 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	public TextureCollectionner buttonIndicator;
 	
-    private NavMeshAgent nma;
+    public NavMeshAgent nma {get; private set;}
     private Order currentOrder;
     private Team team;
 	
@@ -40,10 +40,7 @@ public class Unit : TriggeringTriggered, Debugable
 	void Update() {
 		if(team == null)
 			return;
-		
-		if(nma)
-			nma.speed = team.fixUnits ? 0 : team.unitSpeed * team.speedFactor;
-		
+				
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 	}
@@ -86,11 +83,6 @@ public class Unit : TriggeringTriggered, Debugable
         sm.SetFirstState(new MainState(sm, this));
         base.Start();
 	}
-
-    public NavMeshAgent GetNMA()
-    {
-        return nma;
-    }
     
     public void ChangeOrderSilency(Order o)
     {

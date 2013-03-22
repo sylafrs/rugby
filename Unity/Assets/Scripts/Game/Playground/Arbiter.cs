@@ -54,23 +54,11 @@ public class Arbiter : MonoBehaviour {
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
 			
-			// Fixe et place les unités (relatif à la touche déjà placée)	
-			
-			interceptTeam.fixUnits = touchTeam.fixUnits = true;			
+			// Fixe les unités			
 			if(interceptTeam.Player) interceptTeam.Player.stopMove();
 			if(touchTeam.Player) touchTeam.Player.stopMove();
-						
-			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
-			interceptTeam.placeUnits(interceptConfiguration);
-			
-			Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
-			touchTeam.placeUnits(passConfiguration, 1);
-			
-			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
-			touchTeam.placeUnit(passUnitPosition, 0);
-			
-			Game.Ball.Owner = touchTeam[0];
-			
+			interceptTeam.fixUnits = touchTeam.fixUnits = true;					
+									
 			// Bouttons pour la touche.			
 			interceptTeam[0].buttonIndicator.ApplyTexture("A");
 			interceptTeam[1].buttonIndicator.ApplyTexture("B");
@@ -87,6 +75,18 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[1].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
+			
+			// Place les unités
+			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
+			interceptTeam.placeUnits(interceptConfiguration);
+			
+			Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
+			touchTeam.placeUnits(passConfiguration, 1);
+			
+			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
+			touchTeam.placeUnit(passUnitPosition, 0);
+			
+			Game.Ball.Owner = touchTeam[0];
 			
 			// Switch de caméra
 			Game.cameraManager.gameCamera.gameObject.SetActive(false);
