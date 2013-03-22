@@ -74,8 +74,10 @@ public class Team : myMonoBehaviour, IEnumerable {
 	
 	public void setSpeed() {
 		foreach(var u in units) {
-			if(u.nma)
+			if(u.nma) {
 				u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;	
+				u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
+			}
 		}
 	}
 	
