@@ -241,7 +241,7 @@ public class gameUIManager : myMonoBehaviour {
 				if(frameToGo > 0){
 					toGo = frameToGo+" to go ...";
 				}else{
-					toGo = "--- GO ---";
+					toGo = "--- GO ("+ (int)_scrumController.timeRemaining +") ---";
 				}
 				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
 				

@@ -42,6 +42,9 @@ public class scrumController : myMonoBehaviour {
 	
 	public float IAoffset = -0.05f;
 	public float playerOffset = 0.5f;
+	
+	public int timer = 10;
+	public float timeRemaining {get; private set;}
 		
 	/*
  	 *@author Maxens Dubois 
@@ -69,6 +72,7 @@ public class scrumController : myMonoBehaviour {
         playerSpecial    = false;
 		offset           = 0f;
 		frameToGo 		 = frameStart;
+		timeRemaining	 = timer;
     }
 	
 	
@@ -92,6 +96,24 @@ public class scrumController : myMonoBehaviour {
 		}
 		
 		if(inScrum){
+			
+			timeRemaining -= Time.deltaTime;
+			if(timeRemaining < 0) {
+				timeRemaining = 0;	
+			}
+			if(timeRemaining == 0 && playerScore != cpuScore) {
+				if(playerScore < cpuScore) {
+					Debug.Log("cpu win");
+					_ball.Owner = _t2[0];
+				}
+				else {
+					Debug.Log("player win");
+					_ball.Owner = _t1[0];
+				}
+				
+				endScrum();
+				return;
+			}
 			
 			currentFrameWait ++;
 			playersInline(offset);	
