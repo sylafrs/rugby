@@ -20,6 +20,9 @@ public class gameUIManager : myMonoBehaviour {
 	public Texture2D redBar;
 	public Texture2D LBButton;
 	
+	public float quotientMin = 0.5f;
+	public float quotientMax = 1.5f;
+	
 	private float blueProgress;
 	private float redProgress;
 	
@@ -247,9 +250,9 @@ public class gameUIManager : myMonoBehaviour {
 				
 				//bar
 				float quotient = playerScore/cpuScore;
-				if(quotient < 0.5f) quotient = 0.5f;
-				if(quotient > 1.5f) quotient = 1.5f;
-				float blueScrumProgress = quotient - 0.5f; 
+				if(quotient < quotientMin) quotient = quotientMin;
+				if(quotient > quotientMax) quotient = quotientMax;
+				float blueScrumProgress = quotient - quotientMin; 
 				
 				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
 					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
@@ -260,7 +263,7 @@ public class gameUIManager : myMonoBehaviour {
 				GUI.DrawTexture(scrumBlueBarBox,blueBar);
 				
 				//special
-				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton);
+				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
 				
 				//debug
 				/*

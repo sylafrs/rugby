@@ -157,7 +157,7 @@ public class scrumController : myMonoBehaviour {
  	 *@author Maxens Dubois 
  	 */
 	void playerUpScore(int up){
-		playerScore += up;
+		playerScore += up*Time.deltaTime;
 		if(playerScore > scoreTarget){
 			//player Win !
 			Debug.Log("player win");
