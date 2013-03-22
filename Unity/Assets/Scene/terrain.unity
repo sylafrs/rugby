@@ -11034,7 +11034,7 @@ MonoBehaviour:
       xbox: 0
     scrumExtra:
       keyboard: 120
-      xbox: 3
+      xbox: 10
     put:
       keyboard: 52
       xbox: 0
@@ -11135,7 +11135,7 @@ MonoBehaviour:
   emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
   blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
   redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
-  LBButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6, type: 3}
+  LBButton: {fileID: 2800000, guid: b21a69dd837de1644a39a47590a7ac1d, type: 3}
   superOkTextStyle:
     m_Name: 
     m_Normal:
