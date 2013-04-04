@@ -29,8 +29,8 @@ public class Ball : TriggeringTriggered {
 	}
 	
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
-	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
-	public float passSpeed = 20.0f;
+
+	public float passSpeed = 13.0f;
 	public float AngleOfFOV = 0.0f;
 
 	private Unit _previousOwner;
