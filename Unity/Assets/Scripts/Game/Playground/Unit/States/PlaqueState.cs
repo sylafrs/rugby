@@ -21,10 +21,11 @@ class PlaqueState : UnitState
             unit.Game.Ball.Put();
         }
 
-		if(unit.Team == unit.Game.left)
-		foreach (var mat in unit.renderer.materials)
-		{
-			mat.color = Color.yellow;
+		if(unit.Team.useColors) {
+			foreach (var mat in unit.Model.materials)
+			{
+				mat.color = Color.yellow;
+			}
 		}
     }
 
@@ -39,10 +40,11 @@ class PlaqueState : UnitState
 
 	public override void OnLeave()
 	{
-		if (unit.Team == unit.Game.left)
-		foreach (var mat in unit.renderer.materials)
-		{
-			mat.color = Color.red;
+		if (unit.Team.useColors) {
+			foreach (var mat in unit.Model.materials)
+			{
+				mat.color = unit.Team.Color;
+			}
 		}
 	}
 }

@@ -16,6 +16,8 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Color Color;
     public string Name;
     public bool right;
+	
+	public bool useColors = false;
 
     public But But;
     public Zone Zone;
