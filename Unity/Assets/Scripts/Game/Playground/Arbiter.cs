@@ -209,8 +209,8 @@ public class Arbiter : MonoBehaviour {
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
-		if(t.Player) 
-			tm.direction = t.Player.Inputs.move;
+		//if(t.Player) 
+		//	tm.direction = t.Player.Inputs.move;
 		
 		tm.CallBack = delegate(bool transformed) {			
 			

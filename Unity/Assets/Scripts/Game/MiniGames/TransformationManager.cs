@@ -15,14 +15,15 @@ public class TransformationManager : MonoBehaviour {
 	public Gamer gamer {get; set;}
 	public Ball ball {get; set;}
 	
-	public InputDirection direction;
+	//public InputDirection direction;
 	public InputTouch touch;
 	
 	private Quaternion initialRotation;
 	
 	private float angle = 0;
-	public float angleSpeedKeyBoard;
-	public float angleSpeedReleasedKeyBoard;
+	public float angleSpeed;
+	//public float angleSpeedKeyBoard;
+	//public float angleSpeedReleasedKeyBoard;
 	
 	private float power = 0;
 	public float powerSpeed;
@@ -58,7 +59,7 @@ public class TransformationManager : MonoBehaviour {
 	public void Update() {
 		
 		if(state == State.ANGLE) {
-			if(gamer.XboxController.IsConnected) {		
+			/*if(gamer.XboxController.IsConnected) {		
 				angle = gamer.XboxController.GetDirection(direction.xbox).x;
 				
 				if(gamer.XboxController.GetButtonDown(touch.xbox)) {
@@ -89,6 +90,21 @@ public class TransformationManager : MonoBehaviour {
 				if(Input.GetKeyDown(touch.keyboard)) {
 					state = State.POWER;	
 				}
+			}*/
+			
+			angle += angleSpeed * Time.deltaTime;
+			if(angle > 1) {
+				angle = 1;
+				angleSpeed *= -1;
+			}
+			if(angle < 0) {
+				angle = 0;
+				angleSpeed *= -1;
+			}
+			
+			
+			if(Input.GetKeyDown(touch.keyboard) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(touch.xbox))) {
+				state = State.POWER;	
 			}
 			
 			ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle * maxAngle, 0));
