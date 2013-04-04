@@ -41,7 +41,18 @@ public class Ball : TriggeringTriggered {
 	public float timeOnPass = -1;
 	private PassSystem p;
 	
+<<<<<<< HEAD
 	public Zone inZone = null;
+=======
+	public Color DiscTackle = new Color(0f, 0f, 255f, 33f);
+	public float sizeOfTackleArea = 2f;
+	
+	public Zone inZone {get; set;}
+	
+	public Ball() {
+		inZone = null;	
+	}
+>>>>>>> fc47b0167677a97babfe5df01c398a1fa45df342
 	
 	/*
 	 * @author Maxens Dubois 

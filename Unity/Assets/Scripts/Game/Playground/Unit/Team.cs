@@ -17,9 +17,12 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
 	public Color DiscTackle = new Color(0f, 0f, 1f, 0.33f);
     public Color Color;
+	public Color PlaqueColor;
     public string Name;
     public bool right;
-
+	
+	public bool useColors = false;
+	
     public But But;
     public Zone Zone;
 	
