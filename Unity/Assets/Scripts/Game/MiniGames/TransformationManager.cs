@@ -41,6 +41,19 @@ public class TransformationManager : MonoBehaviour {
 	private bool transformed;	
 	private State state;
 	
+	public GameObject arrow;
+	
+	public void Start() {
+		GameObject arr = GameObject.Instantiate(arrow) as GameObject;
+		
+		arr.transform.parent = this.transform;
+		arr.transform.localPosition = Vector3.zero;
+		arr.transform.localRotation = Quaternion.identity;
+		arr.transform.localScale = Vector3.one;
+		
+		this.arrow = arr;
+	}
+	
 	public void OnEnable() {
 		angle = 0;
 		power = 0;
@@ -93,12 +106,12 @@ public class TransformationManager : MonoBehaviour {
 			}*/
 			
 			angle += angleSpeed * Time.deltaTime;
-			if(angle > 1) {
-				angle = 1;
+			if(angle > maxAngle) {
+				angle = maxAngle;
 				angleSpeed *= -1;
 			}
-			if(angle < 0) {
-				angle = 0;
+			if(angle < -maxAngle) {
+				angle = -maxAngle;
 				angleSpeed *= -1;
 			}
 			
