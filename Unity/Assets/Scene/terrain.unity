@@ -2461,7 +2461,6 @@ MonoBehaviour:
   right: 0
   But: {fileID: 841198778}
   Zone: {fileID: 2049065008}
-  fixUnits: 0
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
@@ -11119,6 +11118,7 @@ MonoBehaviour:
   leftGap: 10
   IAoffset: -.0500000007
   playerOffset: .5
+  timer: 10
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11437,18 +11437,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
-  direction:
-    keyboard:
-      up: 273
-      down: 274
-      right: 275
-      left: 276
-    xbox: 1
   touch:
     keyboard: 97
     xbox: 0
-  angleSpeedKeyBoard: 1
-  angleSpeedReleasedKeyBoard: .800000012
+  angleSpeed: 2
   powerSpeed: 1.20000005
   maxPower: {x: 1200, y: 1500, z: 0}
   maxAngle: 70
@@ -11656,7 +11648,6 @@ MonoBehaviour:
   right: 0
   But: {fileID: 2078298286}
   Zone: {fileID: 2018489760}
-  fixUnits: 0
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
