@@ -24,7 +24,7 @@ class PlaqueState : UnitState
 		if(unit.Team.useColors) {
 			foreach (var mat in unit.Model.materials)
 			{
-				mat.color = Color.yellow;
+				mat.color = unit.Team.PlaqueColor;
 			}
 		}
     }
