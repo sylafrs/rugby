@@ -3340,7 +3340,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
-  Game: {fileID: 0}
+  Game: {fileID: 2004071851}
   multiplierDrop: {x: 500, y: 1100, z: 0}
   multiplierPass: {x: 20, y: 20, z: 200}
   passSpeed: 13
@@ -3349,7 +3349,6 @@ MonoBehaviour:
   timeOnPass: -1
   DiscTackle: {r: 0, g: 0, b: 255, a: 33}
   sizeOfTackleArea: 2
-  inZone: {fileID: 0}
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7932,7 +7931,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1504338350}
   m_Layer: 0
-  m_Name: Prefabs
+  m_Name: Joueurs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7950,7 +7949,7 @@ Transform:
   m_Children:
   - {fileID: 156800327}
   - {fileID: 545566622}
-  m_Father: {fileID: 1921280094}
+  m_Father: {fileID: 0}
 --- !u!1 &1523021745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8829,69 +8828,6 @@ Transform:
   - {fileID: 528087310}
   - {fileID: 219502519}
   m_Father: {fileID: 0}
---- !u!1 &1763318296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100044, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1763318297}
-  - 108: {fileID: 1763318298}
-  m_Layer: 0
-  m_Name: Soleil
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1763318297
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400044, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1763318296}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
-  m_LocalPosition: {x: -3.63387036, y: 6.25257499e-08, z: -2.09801626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2004071850}
---- !u!108 &1763318298
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10800000, guid: 8270225a641f2934b8948aa3749c6e7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1763318296}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: .5
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_Softness: 4
-    m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_ActuallyLightmapped: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 1
-  m_ShadowSamples: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_IndirectIntensity: 1
-  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &1766545036
 GameObject:
   m_ObjectHideFlags: 0
@@ -10313,34 +10249,6 @@ MonoBehaviour:
   - {r: 1, g: .566433549, b: 0, a: 1}
   sizePoint: 1
   lengthForward: 0
---- !u!1 &1921280093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1921280094}
-  m_Layer: 0
-  m_Name: GameDesign
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1921280094
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1921280093}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1504338350}
-  - {fileID: 2004071850}
-  m_Father: {fileID: 0}
 --- !u!1 &1921525203
 GameObject:
   m_ObjectHideFlags: 0
@@ -10641,7 +10549,7 @@ GameObject:
   - 114: {fileID: 2004071855}
   - 114: {fileID: 2004071856}
   m_Layer: 0
-  m_Name: Scene
+  m_Name: GameDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10660,9 +10568,8 @@ Transform:
   - {fileID: 661539565}
   - {fileID: 1693924982}
   - {fileID: 423563788}
-  - {fileID: 1763318297}
   - {fileID: 1157111314}
-  m_Father: {fileID: 1921280094}
+  m_Father: {fileID: 0}
 --- !u!114 &2004071851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10678,8 +10585,8 @@ MonoBehaviour:
   xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
-  limiteTerrainNordEst: {fileID: 0}
-  limiteTerrainSudOuest: {fileID: 0}
+  limiteTerrainNordEst: {fileID: 1206045609}
+  limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
   left: {fileID: 2078013331}
   Ball: {fileID: 661539566}

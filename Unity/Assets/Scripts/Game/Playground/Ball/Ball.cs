@@ -45,7 +45,11 @@ public class Ball : TriggeringTriggered {
 	public Color DiscTackle = new Color(0f, 0f, 255f, 33f);
 	public float sizeOfTackleArea = 2f;
 	
-	public Zone inZone = null;
+	public Zone inZone {get; set;}
+	
+	public Ball() {
+		inZone = null;	
+	}
 	
 	/*
 	 * @author Maxens Dubois 
