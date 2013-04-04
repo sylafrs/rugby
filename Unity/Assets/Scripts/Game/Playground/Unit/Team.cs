@@ -13,6 +13,9 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
     public Game Game {get; set;}
+	public float AngleOfFovTackleCrit = 0.0f;
+	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
+	public Color DiscTackle = new Color(0f, 0f, 1f, 0.33f);
     public Color Color;
     public string Name;
     public bool right;
@@ -45,7 +48,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     {
         get
         {
-            if (index < 0 || index >= units.Length)
+			if (units == null || index < 0 || index >= units.Length)
                 return null;
 
             return units[index];
@@ -431,7 +434,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 		public bool MoveNext()
 	    {
 	        current++;
-	        return (current < t.nbUnits);
+	        return (t.units != null && current < t.nbUnits);
 	    }
 	
 	    public void Reset()
