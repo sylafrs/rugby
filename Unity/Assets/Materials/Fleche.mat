@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Fleche
+  m_Shader: {fileID: 4800000, guid: a46795b225c3e4947be241ad327c5d87, type: 3}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: fc00ec05a89da4ff695a4273715cd5ce, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Pourcent
+        second: 1
+      data:
+        first:
+          name: _Ratio
+        second: .865384638
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ContentColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _DegradeLow
+        second: {r: 1, g: 1, b: 0, a: 1}
+      data:
+        first:
+          name: _DegradeHigh
+        second: {r: 1, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _PosLow
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _PosHigh
+        second: {r: 0, g: 1, b: 0, a: 0}
