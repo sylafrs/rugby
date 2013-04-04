@@ -35,7 +35,7 @@ public class Tackle : Editor
 		}
 	}
 
-	void OnInspectorGUI()
+	public override void OnInspectorGUI()
 	{
 		DrawDefaultInspector();
 		team.ConeTackle = EditorGUILayout.ColorField(team.ConeTackle, GUILayout.Width(200));
