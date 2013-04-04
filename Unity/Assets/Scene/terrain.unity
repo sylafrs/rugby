@@ -2461,7 +2461,6 @@ MonoBehaviour:
   right: 0
   But: {fileID: 841198778}
   Zone: {fileID: 2049065008}
-  fixUnits: 0
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
@@ -11119,6 +11118,7 @@ MonoBehaviour:
   leftGap: 10
   IAoffset: -.0500000007
   playerOffset: .5
+  timer: 10
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11656,7 +11656,6 @@ MonoBehaviour:
   right: 0
   But: {fileID: 2078298286}
   Zone: {fileID: 2018489760}
-  fixUnits: 0
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1

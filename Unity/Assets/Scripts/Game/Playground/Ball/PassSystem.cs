@@ -83,11 +83,11 @@ public class PassSystem {
 			directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
-			
+			/*
 			if (!passValidity())
 			{
 				CorrectTrajectory();
-			}
+			}*/
 			
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
