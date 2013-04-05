@@ -10,16 +10,6 @@ public class ScrumCamera : myMonoBehaviour {
 		set { _cm = value; Start(); } 
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	public void Activate() {
 		
 		
