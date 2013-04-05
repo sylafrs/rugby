@@ -16,9 +16,20 @@ public class Touche : TriggeringTrigger
         Ball ball = t.GetComponent<Ball>();
         if (ball != null)
         {
+			ball.inTouch = this;
 			this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
         }
     }
+	
+	public override void Left (Triggered o)
+	{
+		Ball b = o.GetComponent<Ball>();
+        if (b != null)
+        {
+			b.inTouch = null;          
+		}
+	}
+	
     void OnDrawGizmos()
     {
         if (a == null || b == null)

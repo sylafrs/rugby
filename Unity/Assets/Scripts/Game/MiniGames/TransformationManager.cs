@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public delegate void CallBack_transfo(bool transformed);
+public delegate void CallBack_transfo(TransformationManager.Result transformed);
 
 /**
   * @class TransformationManager
@@ -41,7 +41,14 @@ public class TransformationManager : MonoBehaviour {
 		FINISHED
 	}
 	
-	private bool transformed;	
+	public enum Result {
+		NONE,
+		TRANSFORMED,	
+		GROUND,
+		LIMIT
+	}
+	
+	private Result transformed;	
 	private State state;
 	
 	public GameObject arrow;
@@ -124,25 +131,26 @@ public class TransformationManager : MonoBehaviour {
 		
 		if(state == State.WAITING) {
 			if(ball.transform.position.y < 0.3f) {
-				transformed = false;
+                transformed = Result.GROUND;
 				Finish ();	
 			}
 		}		
 	}
 	
 	public void OnLimit() {
-		transformed = false;
+		transformed = Result.LIMIT;
 		Finish ();
 	}
 	
 	public void But() {
-		transformed = true;
+		transformed = Result.TRANSFORMED;
 		Finish ();
 	}
 	
 	public void Launch() {
 		
-		state = State.WAITING;	
+		state = State.WAITING;
+        transformed = Result.NONE;
 		
 		GameObject.Destroy(myArrow);
 					

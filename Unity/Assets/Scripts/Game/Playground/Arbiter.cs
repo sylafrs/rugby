@@ -13,6 +13,7 @@ public class Arbiter : MonoBehaviour {
 	public Game Game {get;set;}
 	
 	public bool ToucheRemiseAuCentre = false;
+	public bool TransfoRemiseAuCentre = false;
 	public Transform TouchPlacement = null;
 	public Transform TransfoPlacement = null;	
 	
@@ -115,26 +116,32 @@ public class Arbiter : MonoBehaviour {
 				// On remet la caméra à sa rotation d'origine
 				Game.cameraManager.gameCamera.ResetRotation();
 								
-				if(result == TouchManager.Result.INTERCEPTION)
+				// On donne la balle à la bonne personne
+				if(result == TouchManager.Result.INTERCEPTION) {
 					Game.Ball.Owner = interceptTeam[id];
-				else
+				}
+				else {
 					Game.Ball.Owner = touchTeam[id+1];
+				}
 				
+				// Caméra bien orientée
 				if(Game.Ball.Owner.Team == Game.left) {
 					Game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
 				}
 								
+				// Indicateur de bouton
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
-				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;
-				
+				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;				
 				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
 				
+				// Caméra
 				Game.cameraManager.gameCamera.gameObject.SetActive(true);
 				Game.cameraManager.touchCamera.gameObject.SetActive(false);
 				
+				// Retour en jeu
 				Game.state = Game.State.PLAYING;
 				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
 				if(interceptTeam.Player) interceptTeam.Player.enableMove();
@@ -209,21 +216,20 @@ public class Arbiter : MonoBehaviour {
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
-		//if(t.Player) 
-		//	tm.direction = t.Player.Inputs.move;
 		
-		tm.CallBack = delegate(bool transformed) {			
+		tm.CallBack = delegate(TransformationManager.Result transformed) {			
 			
-			if(transformed) {
+			if(transformed == TransformationManager.Result.TRANSFORMED) {
 				Debug.Log ("Transformation");
 				t.nbPoints += Game.settings.score.points_transfo;
 			}
 			
-			Game.cameraManager.gameCamera.ResetRotation();
-			Game.Ball.setPosition(Vector3.zero);
-
-       		Game.right.initPos();
-        	Game.left.initPos();			
+			if(TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND || Game.Ball.inTouch != null) {
+				Game.cameraManager.gameCamera.ResetRotation();
+				Game.Ball.setPosition(Vector3.zero);
+	       		Game.right.initPos();
+	        	Game.left.initPos();			
+			}
 			
 			Game.cameraManager.gameCamera.gameObject.SetActive(true);
 			Game.cameraManager.transfoCamera.gameObject.SetActive(false);

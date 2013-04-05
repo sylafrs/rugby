@@ -24,7 +24,6 @@ public class scrumController : myMonoBehaviour {
 	private	int currentFrameWait;
 	private int frameToGo;
 	
-	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
 	/** tweak session **/
 	public int scoreTarget 		= 1000;
@@ -37,7 +36,7 @@ public class scrumController : myMonoBehaviour {
 	public float rightGap = -27f;
 	public float leftGap = 10f;
 	
-	private float zGap = 0f;
+	//private float zGap = 0f;
 	private float offset = 0f;
 	
 	public float IAoffset = -0.05f;

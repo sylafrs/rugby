@@ -7316,7 +7316,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1157111314}
-  - 114: {fileID: 1157111315}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -7342,20 +7341,6 @@ Transform:
   - {fileID: 2049065007}
   - {fileID: 2018489759}
   m_Father: {fileID: 2004071850}
---- !u!114 &1157111315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: e244aea1f2d60fa4e915889e5035e306,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157111313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
-  m_Name: 
-  ToucheRemiseAuCentre: 0
-  TouchPlacement: {fileID: 843848053}
-  TransfoPlacement: {fileID: 456611913}
 --- !u!1 &1181389385
 GameObject:
   m_ObjectHideFlags: 0
@@ -10548,6 +10533,7 @@ GameObject:
   - 114: {fileID: 2004071854}
   - 114: {fileID: 2004071855}
   - 114: {fileID: 2004071856}
+  - 114: {fileID: 2004071857}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -10593,7 +10579,7 @@ MonoBehaviour:
   cpu: 0
   disableIAKey: 105
   tweakMode: 0
-  arbiter: {fileID: 1157111315}
+  arbiter: {fileID: 2004071857}
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11071,6 +11057,20 @@ MonoBehaviour:
   timeAngle: 3
   timePower: 3
   arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
+--- !u!114 &2004071857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
+  m_Name: 
+  ToucheRemiseAuCentre: 0
+  TransfoRemiseAuCentre: 0
+  TouchPlacement: {fileID: 843848053}
+  TransfoPlacement: {fileID: 456611913}
 --- !u!1 &2018489758
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,7 +55,6 @@ public class Game : myMonoBehaviour {
     
 	private gameState _gameState;
     private Team Owner;
-	private bool btnIaReleased = true;
 	
     private bool _disableIA = false;
     public bool disableIA
