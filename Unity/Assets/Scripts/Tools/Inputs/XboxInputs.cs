@@ -178,9 +178,13 @@ public class XboxInputs : myMonoBehaviour{
 
     void Update()
     {
-        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        // Update number / 2.
+        if (Mathf.PingPong(0, 1) == 1)
         {
-            controllers[i].UpdateButtons();
-        }      
+            for (int i = 0; i < MAX_CONTROLLERS; i++)
+            {
+                controllers[i].UpdateButtons();
+            }
+        }
     }
 }
