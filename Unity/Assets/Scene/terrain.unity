@@ -2016,7 +2016,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 274430069}
   m_Layer: 0
-  m_Name: GameArtists
+  m_Name: GameArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2693,7 +2693,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 434155317}
   m_Layer: 0
-  m_Name: GameArtistsAndDesigners
+  m_Name: GameArtAndDesign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
