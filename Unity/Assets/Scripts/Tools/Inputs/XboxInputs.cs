@@ -150,7 +150,7 @@ public class XboxInputs : myMonoBehaviour{
         }
         
         public void UpdateButtons()
-        {
+        {            
             for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
             {
                 prevState[i] = GetButton((XBOX_BUTTONS)i);
@@ -176,14 +176,15 @@ public class XboxInputs : myMonoBehaviour{
         }
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Update number / 2.
-        if (Mathf.PingPong(0, 1) == 1)
+        // if (Mathf.PingPong(0, 1) == 1)
         {
             for (int i = 0; i < MAX_CONTROLLERS; i++)
             {
-                controllers[i].UpdateButtons();
+                if(controllers[i].IsConnected)
+                    controllers[i].UpdateButtons();
             }
         }
     }

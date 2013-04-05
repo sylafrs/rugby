@@ -68,8 +68,7 @@ public class TransformationManager : MonoBehaviour {
 		
 		myArrow.transform.parent = ball.Owner.transform;
 		myArrow.transform.localPosition = Vector3.zero;
-		myArrow.transform.localRotation = Quaternion.identity;
-		
+		myArrow.transform.localRotation = Quaternion.identity;		
 	}
 	
 	public void OnGUI() {

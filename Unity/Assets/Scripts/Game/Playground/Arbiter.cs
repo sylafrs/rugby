@@ -240,10 +240,7 @@ public class Arbiter : MonoBehaviour {
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();
 		};
-		
-		
+				
 		tm.enabled = true;
-		
-		
 	}
 }
