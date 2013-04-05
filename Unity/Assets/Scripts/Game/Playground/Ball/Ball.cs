@@ -46,7 +46,7 @@ public class Ball : TriggeringTriggered {
 	public float sizeOfTackleArea = 2f;
 	
 	public Zone inZone {get; set;}
-	public Touche inTouch {get; set;}
+	//public Touche inTouch {get; set;}
 	
 	public Ball() {
 		inZone = null;	

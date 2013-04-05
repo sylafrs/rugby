@@ -223,14 +223,15 @@ public class Arbiter : MonoBehaviour {
 				Debug.Log ("Transformation");
 				t.nbPoints += Game.settings.score.points_transfo;
 			}
-			
-			if(TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND || Game.Ball.inTouch != null) {
-				Game.cameraManager.gameCamera.ResetRotation();
-				Game.Ball.setPosition(Vector3.zero);
-	       		Game.right.initPos();
-	        	Game.left.initPos();			
-			}
-			
+
+            if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            {
+                Game.cameraManager.gameCamera.ResetRotation();
+                Game.Ball.setPosition(Vector3.zero);
+                Game.right.initPos();
+                Game.left.initPos();
+            }
+          
 			Game.cameraManager.gameCamera.gameObject.SetActive(true);
 			Game.cameraManager.transfoCamera.gameObject.SetActive(false);
 			

@@ -3668,6 +3668,14 @@ Prefab:
       propertyPath: m_Name
       value: SceneGraphique
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6d9a5ea7374faa64a8376e17d9383e31, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 6d9a5ea7374faa64a8376e17d9383e31, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d9a5ea7374faa64a8376e17d9383e31, type: 2}
   m_RootGameObject: {fileID: 667704859}
