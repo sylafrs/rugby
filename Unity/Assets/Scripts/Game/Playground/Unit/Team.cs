@@ -14,9 +14,12 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Gamer Player {get; set;}
     public Game Game {get; set;}
     public Color Color;
+	public Color PlaqueColor;
     public string Name;
     public bool right;
-
+	
+	public bool useColors = false;
+	
     public But But;
     public Zone Zone;
 	
