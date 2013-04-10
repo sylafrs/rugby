@@ -9,7 +9,10 @@ public class ScrumCamera : myMonoBehaviour {
 		get { return _cm; }
 		set { _cm = value; Start(); } 
 	}
-
+	
+	void Start(){
+	}
+	
 	public void Activate() {
 		
 		
