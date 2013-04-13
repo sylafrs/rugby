@@ -31,7 +31,7 @@ public class DebugWindow : EditorWindow {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
         toDebug.Clear();
-        GameObject root = GameObject.Find("GameDesign");
+        GameObject root = GameObject.Find(root);
         if (root != null)
         {
             Search(root);
