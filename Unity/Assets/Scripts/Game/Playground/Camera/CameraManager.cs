@@ -27,8 +27,8 @@ public class CameraManager : myMonoBehaviour {
 	void Start () {
 
         sm.SetFirstState(new MainCameraState(sm, this));
-		
-		/*
+       
+        /*
 		gameCamera.cameraManager = this;
 		scrumCamera.cameraManager = this;
 		*/
@@ -49,7 +49,7 @@ public class CameraManager : myMonoBehaviour {
 	
 	public void OnOwnerChanged()
     {	
-		gameCamera.OnOwnerChanged();
+		//gameCamera.OnOwnerChanged();
 	}
 	
 	public void OnScrum(bool active) {
