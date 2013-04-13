@@ -11,6 +11,15 @@ public class CameraManager : myMonoBehaviour {
 	public GameCamera gameCamera;
 	public ScrumCamera scrumCamera;
 	public TransfoCamera transfoCamera;
+	
+	
+	private Transform 	target;
+	public  float 		smoothTime = 0.3f;
+	private Vector3 	velocity = Vector3.zero;
+	
+	public 	Vector3		MaxfollowOffset;
+	public 	Vector3		MinfollowOffset;
+	
 
 	// Use this for initialization
 	void Start () {
@@ -22,9 +31,19 @@ public class CameraManager : myMonoBehaviour {
 		scrumCamera.cameraManager = this;
 		*/
 		
-		
 	}
 	
+	void Update(){
+		this.setTarget(game.right[0].transform);
+		//Debug.Log(" tar "+target.position);
+		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
+		Vector3 offset = Camera.mainCamera.transform.position+MinfollowOffset;
+		Camera.mainCamera.transform.position = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+	}
+	
+	void setTarget(Transform _t){
+		target = _t;
+	}
 	
 	public void OnOwnerChanged()
     {	
