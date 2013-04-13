@@ -21,10 +21,12 @@ public class CameraManager : myMonoBehaviour {
 	public 	Vector3		MinfollowOffset;
 	
 
+    public StateMachine sm;
+
 	// Use this for initialization
 	void Start () {
-		
 
+        sm.SetFirstState(new MainCameraState(sm, this));
 		
 		/*
 		gameCamera.cameraManager = this;

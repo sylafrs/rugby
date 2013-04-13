@@ -24,6 +24,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnGameStateChanged(Game.State old, Game.State current)
+    {
+        return (false);
+    }
 }
 
 /**
@@ -67,6 +72,15 @@ public partial class StateMachine
         {
             if (tmp.OnNearBall())
                 return;
+        }
+    }
+
+    public void event_GameStateChanged(Game.State old, Game.State current)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnGameStateChanged(old, current))            
+                return;            
         }
     }
 }
