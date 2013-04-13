@@ -11,6 +11,8 @@ using System.Collections.Generic;
   */
 public class DebugWindow : EditorWindow {
 
+    const string root = "GameDesign";
+
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
     Dictionary<GameObject, System.Boolean> registeredGO = new Dictionary<GameObject, System.Boolean>();
@@ -29,7 +31,7 @@ public class DebugWindow : EditorWindow {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
         toDebug.Clear();
-        GameObject root = GameObject.Find("Scene");
+        GameObject root = GameObject.Find("GameDesign");
         if (root != null)
         {
             Search(root);
