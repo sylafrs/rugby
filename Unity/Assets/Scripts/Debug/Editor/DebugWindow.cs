@@ -25,6 +25,7 @@ public class DebugWindow : EditorWindow {
     }
 
     Vector2 scrollPosition = Vector2.zero;
+    static string filter = string.Empty;
 
     void OnGUI()
     {
@@ -52,7 +53,8 @@ public class DebugWindow : EditorWindow {
         {
             foreach (var c in components)
             {
-                toDebug.Add(c);
+                if(filter == string.Empty || c.name.Contains(filter))
+                    toDebug.Add(c);
             }
         }
 
@@ -132,10 +134,8 @@ public class DebugWindow : EditorWindow {
 
     void Print()
     {
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Trier par : ", GUILayout.Width(65));    
-        sort = (SORT)EditorGUILayout.EnumPopup(sort);
-        GUILayout.EndHorizontal();
+        sort = (SORT)EditorGUILayout.EnumPopup("Trier par :", sort);
+        filter = EditorGUILayout.TextField("Filtre :", filter);
 
         switch (sort)
         {
