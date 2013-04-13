@@ -18,8 +18,20 @@ public class Game : myMonoBehaviour {
 		SCRUM,
 		TRANSFORMATION
 	}
-	
-	public State state = State.PAUSED;
+
+    public State _state = State.PAUSED;
+    public State state
+    {
+        get
+        {
+            return _state;
+        }
+        set
+        {
+            cameraManager.sm.event_GameStateChanged(_state, value);
+            _state = value;
+        }
+    }
 
     public XboxInputs xboxInputs;
     public GameSettings settings;

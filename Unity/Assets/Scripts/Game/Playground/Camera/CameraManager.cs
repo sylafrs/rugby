@@ -12,10 +12,12 @@ public class CameraManager : myMonoBehaviour {
 	public ScrumCamera scrumCamera;
 	public TransfoCamera transfoCamera;
 
+    public StateMachine sm;
+
 	// Use this for initialization
 	void Start () {
-		
 
+        sm.SetFirstState(new MainCameraState(sm, this));
 		
 		/*
 		gameCamera.cameraManager = this;
