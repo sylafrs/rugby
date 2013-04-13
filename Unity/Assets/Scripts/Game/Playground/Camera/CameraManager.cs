@@ -4,6 +4,8 @@ using System.Collections;
 [AddComponentMenu("Scripts/Camera/CameraManager")]
 public class CameraManager : myMonoBehaviour {
 	
+	
+	
 	public Game game {get; set;}
 	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
@@ -12,9 +14,17 @@ public class CameraManager : myMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
+
+		
+		/*
 		gameCamera.cameraManager = this;
 		scrumCamera.cameraManager = this;
+		*/
+		
+		
 	}
+	
 	
 	public void OnOwnerChanged()
     {	
