@@ -1553,6 +1553,32 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &102195329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 102195330}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &102195330
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102195329}
+  m_LocalRotation: {x: 0, y: .273932636, z: 0, w: .961748898}
+  m_LocalPosition: {x: -25.0599995, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1694633024}
 --- !u!1 &116222227
 GameObject:
   m_ObjectHideFlags: 0
@@ -8569,6 +8595,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1693924982}
   - 114: {fileID: 1693924984}
+  - 114: {fileID: 1693924983}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -8591,6 +8618,16 @@ Transform:
   - {fileID: 1586452255}
   - {fileID: 1523272046}
   m_Father: {fileID: 2004071850}
+--- !u!114 &1693924983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693924981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe11037fcb736b4ba9286d7c74087a7, type: 3}
+  m_Name: 
 --- !u!114 &1693924984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8606,6 +8643,10 @@ MonoBehaviour:
   gameCamera: {fileID: 840478219}
   scrumCamera: {fileID: 278997181}
   transfoCamera: {fileID: 1523272052}
+  smoothTime: .300000012
+  MaxfollowOffset: {x: 0, y: 0, z: 0}
+  MinfollowOffset: {x: .0500000007, y: .0500000007, z: -.100000001}
+  sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
   m_ObjectHideFlags: 0
@@ -8690,7 +8731,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 102195330}
   m_Father: {fileID: 840478217}
 --- !u!114 &1694633025
 MonoBehaviour:
@@ -10622,7 +10664,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
-  state: 0
+  _state: 0
   xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
