@@ -4307,7 +4307,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400068, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840478216}
-  m_LocalRotation: {x: 0, y: -.273932636, z: 0, w: .961748898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 148.728943, y: 144.370392, z: -239.904892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8645,7 +8645,7 @@ MonoBehaviour:
   transfoCamera: {fileID: 1523272052}
   smoothTime: .300000012
   MaxfollowOffset: {x: 0, y: 0, z: 0}
-  MinfollowOffset: {x: .0500000007, y: .0500000007, z: -.100000001}
+  MinfollowOffset: {x: 0, y: .0500000007, z: -.100000001}
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
