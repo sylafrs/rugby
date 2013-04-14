@@ -126,8 +126,9 @@ public class Ball : TriggeringTriggered {
 	public void Pass(Unit to)
 	{
 		//Game.right.But
-		
-		Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
+        Game.OnPass(this.Owner, to);
+				
+		//Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
 		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
@@ -139,8 +140,7 @@ public class Ball : TriggeringTriggered {
 		{
 			if (this.transform.position.y > 0.6f)
 			{
-                //Game.OnPass(from, to);
-				p.DoPass(timeOnPass);
+                p.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
 			else
