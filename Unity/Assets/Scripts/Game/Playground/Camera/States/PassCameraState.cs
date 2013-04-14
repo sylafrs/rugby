@@ -26,6 +26,7 @@ public class PassCameraState : CameraState {
         if (onGround)
         {
             sm.state_change_me(this, new GroundBallState(sm, cam));
+            return true;
         }
 
         return false;

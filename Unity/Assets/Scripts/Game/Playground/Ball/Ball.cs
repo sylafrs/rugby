@@ -104,7 +104,7 @@ public class Ball : TriggeringTriggered {
             this.transform.localRotation = Quaternion.identity;
         }
 
-        if (this.transform.position.y <= 0.2f)
+        if (this.transform.position.y <= 0.6f)
         {
             if (!this.onGround)
             {
