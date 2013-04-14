@@ -38,6 +38,7 @@ public class Game : myMonoBehaviour {
     public XboxInputs xboxInputs;
     public GameSettings settings;
 	public CameraManager cameraManager;
+    public IntroManager introManager;
 
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
@@ -134,7 +135,15 @@ public class Game : myMonoBehaviour {
 		this.cameraLocked = true;
 		
 		// Must be done by Arbiter
-		state = State.PLAYING;
+		// state = State.PLAYING;
+
+        state = State.INTRODUCTION;
+        introManager.OnFinish = delegate()
+        {
+            state = State.PLAYING;
+        };
+
+        introManager.enabled = true;
     }
 
     void Update()
