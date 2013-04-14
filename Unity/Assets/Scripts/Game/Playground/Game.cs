@@ -181,13 +181,14 @@ public class Game : myMonoBehaviour {
 	
 
     public void OnOwnerChanged(Unit before, Unit after)
-    {		
+    {
+        cameraManager.OnOwnerChanged(before, after);
+
 		if (after != null)
         {
             if (after.Team != Owner)
             {
-                Owner = after.Team;
-				cameraManager.OnOwnerChanged(before, after);
+                Owner = after.Team;				
             }
 
             // PATCH
