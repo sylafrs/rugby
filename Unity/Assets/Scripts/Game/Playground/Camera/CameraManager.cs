@@ -55,40 +55,14 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	void FixedUpdate(){
-		//sera gérer dans les states
-		//this.setTarget(game.right[2].transform);
-		//
-
-		
+				
 		if (target != null)
         {
 			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
 			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
 			Vector3 delta  = result- Camera.mainCamera.transform.position;
-			
-			
-			Vector3 angle = new Vector3(
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.x, target.eulerAngles.x, ref angleVelocity[0], smoothAngle.x),
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.y, target.eulerAngles.y, ref angleVelocity[1], smoothAngle.y),
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.z, target.eulerAngles.z, ref angleVelocity[2], smoothAngle.z)
-				);
-			
-			
-			
-			if(angle.magnitude > rotationMagnitudeGap){
-				if(rotationCurrentDelay >= rotationDelay){
-					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
-        			Camera.mainCamera.transform.LookAt(target);
-				}
-				else{
-					rotationCurrentDelay += Time.deltaTime;
-				}
-			}else{
-				resetRotationDelay();
-			}
-			
-		
+				    
 			if( delta.magnitude > magnitudeGap){
 				if(actualDelay >= delay){
 					Camera.mainCamera.transform.position = result;
@@ -99,6 +73,32 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}else{
 				resetActualDelay();
 			}
+
+            Vector3 camEuler = Camera.mainCamera.transform.eulerAngles;
+            Vector3 tarEuler = target.eulerAngles; // Quaternion.LookRotation :)
+
+            Vector3 angle = new Vector3(
+                Mathf.SmoothDampAngle(camEuler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
+                Mathf.SmoothDampAngle(camEuler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
+                Mathf.SmoothDampAngle(camEuler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
+            );
+
+            if (angle.magnitude > rotationMagnitudeGap)
+            {
+                if (rotationCurrentDelay >= rotationDelay)
+                {
+                    Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, 0, angle.z);
+                    Camera.mainCamera.transform.LookAt(target);
+                }
+                else
+                {
+                    rotationCurrentDelay += Time.deltaTime;
+                }
+            }
+            else
+            {
+                resetRotationDelay();
+            }		
 		}
 	}
 	
