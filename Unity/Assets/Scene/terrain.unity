@@ -8645,6 +8645,8 @@ MonoBehaviour:
   scrumCamera: {fileID: 278997181}
   transfoCamera: {fileID: 1523272052}
   smoothTime: .300000012
+  delay: 0
+  magnitudeGap: 0
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
   sm: {fileID: 1693924983}
@@ -10670,6 +10672,7 @@ MonoBehaviour:
   xboxInputs: {fileID: 219502520}
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
+  introManager: {fileID: 2004071858}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
