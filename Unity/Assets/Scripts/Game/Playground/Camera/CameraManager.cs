@@ -7,7 +7,7 @@ using System.Collections;
 [AddComponentMenu("Scripts/Camera/CameraManager")]
 public class CameraManager : myMonoBehaviour, Debugable {
 
-	public Game game {get; set;}
+    public Game game;
 	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
 	public ScrumCamera scrumCamera;

@@ -8639,6 +8639,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}
   m_Name: 
+  game: {fileID: 2004071851}
   touchCamera: {fileID: 1586452261}
   gameCamera: {fileID: 840478219}
   scrumCamera: {fileID: 278997181}
