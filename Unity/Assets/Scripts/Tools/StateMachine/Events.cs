@@ -39,6 +39,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnBallOnGround(bool onGround)
+    {
+        return (false);
+    }
 }
 
 /**
@@ -108,6 +113,14 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnPass(from, to))
+                return;
+        }
+    }
+
+    public void event_BallOnGround(bool onGround) {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnBallOnGround(onGround))
                 return;
         }
     }

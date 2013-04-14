@@ -27,7 +27,8 @@ public class Ball : TriggeringTriggered {
 			
 		}
 	}
-	
+
+    public bool onGround { get; set; }
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
 	public float passSpeed = 20.0f;
@@ -85,7 +86,7 @@ public class Ball : TriggeringTriggered {
     }
    
 	new void Start(){
-
+        onGround = false;
 		goScrum = false;
         base.Start();
 	}
@@ -101,6 +102,25 @@ public class Ball : TriggeringTriggered {
             }
                        
             this.transform.localRotation = Quaternion.identity;
+        }
+
+        if (this.transform.position.y <= 0.2f)
+        {
+            if (!this.onGround)
+            {
+                this.Game.BallOnGround(true);
+            }
+
+            this.onGround = true;
+        }
+        else
+        {
+            if (this.onGround)
+            {
+                this.Game.BallOnGround(false);
+            }
+
+            this.onGround = false;
         }
 
         UpdateTackle();

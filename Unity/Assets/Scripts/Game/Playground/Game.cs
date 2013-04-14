@@ -226,4 +226,9 @@ public class Game : myMonoBehaviour {
 			Ball.EventTackle(tackler, tackled);
 		}
     }
+
+    public void BallOnGround(bool onGround)
+    {
+
+    }
 }
