@@ -103,6 +103,11 @@ public class CameraManager : myMonoBehaviour, Debugable {
         sm.event_Pass(from, to);
     }
 
+    public void ballOnGround(bool onGround)
+    {
+        sm.event_BallOnGround(onGround);
+    }   
+
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

@@ -229,6 +229,6 @@ public class Game : myMonoBehaviour {
 
     public void BallOnGround(bool onGround)
     {
-
+        cameraManager.ballOnGround(onGround);
     }
 }
