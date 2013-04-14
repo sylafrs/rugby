@@ -1,12 +1,13 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.Collections;
 
 [AddComponentMenu("Scripts/Camera/CameraManager")]
-public class CameraManager : myMonoBehaviour {
-	
-	
-	
-	public Game game {get; set;}
+public class CameraManager : myMonoBehaviour, Debugable {
+
+    public Game game;
 	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
 	public ScrumCamera scrumCamera;
@@ -33,6 +34,8 @@ public class CameraManager : myMonoBehaviour {
 		resetActualDelay();
 		
 		/*
+       
+        /*
 		gameCamera.cameraManager = this;
 		scrumCamera.cameraManager = this;
 		*/
@@ -40,7 +43,7 @@ public class CameraManager : myMonoBehaviour {
 	}
 	
 	void FixedUpdate(){
-		//sera géré dans les states
+		//sera gérer dans les states
 		this.setTarget(game.right[2].transform);
 		//
 		
@@ -62,7 +65,7 @@ public class CameraManager : myMonoBehaviour {
 		}
 	}
 	
-	void setTarget(Transform _t){
+	public void setTarget(Transform _t){
 		target = _t;
 		//resetActualDelay();
 	}
@@ -90,4 +93,11 @@ public class CameraManager : myMonoBehaviour {
 		}
 			
 	}
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        EditorGUILayout.LabelField("Current target", target.name);
+#endif
+    }
 }

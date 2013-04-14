@@ -1,6 +1,3 @@
-using UnityEngine;
-using System.Collections.Generic;
-
 /**
   * @class FollowPlayerState
   * @brief Etat de la caméra lorsqu'elle doit suivre un joueur.
@@ -12,6 +9,6 @@ public class FollowPlayerState : CameraState {
 
     public override void OnEnter()
     {
-        
+        cam.setTarget(cam.game.Ball.Owner.transform);
     }
 }

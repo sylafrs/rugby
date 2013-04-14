@@ -12,6 +12,8 @@ using XInputDotNetPure;
 public class Game : myMonoBehaviour {
 	
 	public enum State {
+        NULL = 0,
+        INTRODUCTION,
 		PAUSED,
 		PLAYING,
 		TOUCH,
@@ -96,8 +98,7 @@ public class Game : myMonoBehaviour {
         this.Log = this.gameObject.AddComponent<GameLog>();
 		
 		arbiter.Game = this;
-		cameraManager.game = this;
-
+		
         right.Game = this;
         left.Game = this;
         right.right = true;
