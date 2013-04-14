@@ -178,7 +178,11 @@ public class Game : myMonoBehaviour {
 	public void OnEssai() {
 		arbiter.OnEssai();
 	}
-	
+
+    public void OnPass(Unit from, Unit to)
+    {
+        cameraManager.OnPass(from, to);
+    }
 
     public void OnOwnerChanged(Unit before, Unit after)
     {

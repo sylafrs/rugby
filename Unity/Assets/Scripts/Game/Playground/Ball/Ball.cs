@@ -139,6 +139,7 @@ public class Ball : TriggeringTriggered {
 		{
 			if (this.transform.position.y > 0.6f)
 			{
+                //Game.OnPass(from, to);
 				p.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
