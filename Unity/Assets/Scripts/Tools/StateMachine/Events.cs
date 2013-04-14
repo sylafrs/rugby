@@ -25,6 +25,11 @@ public abstract partial class State
         return (false);
     }
 
+    public virtual bool OnNewOwner(Unit old, Unit current)
+    {
+        return (false);
+    }
+
     public virtual bool OnGameStateChanged(Game.State old, Game.State current)
     {
         return (false);
@@ -81,6 +86,15 @@ public partial class StateMachine
         {
             if (tmp.OnGameStateChanged(old, current))            
                 return;            
+        }
+    }
+
+    public void event_NewOwner(Unit old, Unit current)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnNewOwner(old, current))
+                return;
         }
     }
 }

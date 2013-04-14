@@ -44,14 +44,20 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	void FixedUpdate(){
 		//sera gérer dans les states
-		this.setTarget(game.right[2].transform);
+		//this.setTarget(game.right[2].transform);
 		//
-		
-		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-		Vector3 offset = Camera.mainCamera.transform.position+MinfollowOffset;
-		Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-		Vector3 delta  = result- Camera.mainCamera.transform.position;
-		
+
+        Vector3 result = Camera.mainCamera.transform.position;
+
+        if (target != null)
+        {
+            Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
+            Vector3 offset = Camera.mainCamera.transform.position + MinfollowOffset;
+            result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);            
+        }
+
+        Vector3 delta = result - Camera.mainCamera.transform.position;
+				
 		//Debug.Log("diff magnitude: "+delta.magnitude);
 		
 		if( delta.magnitude > magnitudeGap){
@@ -74,9 +80,10 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		actualDelay = 0f;
 	}
 	
-	public void OnOwnerChanged()
+	public void OnOwnerChanged(Unit old, Unit current)
     {	
 		//gameCamera.OnOwnerChanged();
+        sm.event_NewOwner(old, current);
 	}
 	
 	public void OnScrum(bool active) {

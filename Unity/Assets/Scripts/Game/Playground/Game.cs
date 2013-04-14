@@ -187,7 +187,7 @@ public class Game : myMonoBehaviour {
             if (after.Team != Owner)
             {
                 Owner = after.Team;
-				cameraManager.OnOwnerChanged();
+				cameraManager.OnOwnerChanged(before, after);
             }
 
             // PATCH
