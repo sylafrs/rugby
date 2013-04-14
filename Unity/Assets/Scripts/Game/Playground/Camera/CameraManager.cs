@@ -17,6 +17,9 @@ public class CameraManager : myMonoBehaviour {
 	public  float 		smoothTime = 0.3f;
 	private Vector3 	velocity = Vector3.zero;
 	
+	public 	float		delay;
+	public 	float		magnitudeGap;
+	private float		actualDelay;
 	public 	Vector3		MaxfollowOffset;
 	public 	Vector3		MinfollowOffset;
 	
@@ -27,6 +30,7 @@ public class CameraManager : myMonoBehaviour {
 	void Start () {
 
         sm.SetFirstState(new MainCameraState(sm, this));
+		resetActualDelay();
 		
 		/*
 		gameCamera.cameraManager = this;
@@ -35,21 +39,41 @@ public class CameraManager : myMonoBehaviour {
 		
 	}
 	
-	void Update(){
-		this.setTarget(game.right[0].transform);
-		//Debug.Log(" tar "+target.position);
+	void FixedUpdate(){
+		//sera géré dans les states
+		this.setTarget(game.right[2].transform);
+		//
+		
 		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
 		Vector3 offset = Camera.mainCamera.transform.position+MinfollowOffset;
-		Camera.mainCamera.transform.position = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+		Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+		Vector3 delta  = result- Camera.mainCamera.transform.position;
+		
+		//Debug.Log("diff magnitude: "+delta.magnitude);
+		
+		if( delta.magnitude > magnitudeGap){
+			if(actualDelay >= delay){
+				Camera.mainCamera.transform.position = result;
+			}else{
+				actualDelay += Time.deltaTime;
+			}
+		}else{
+			resetActualDelay();
+		}
 	}
 	
 	void setTarget(Transform _t){
 		target = _t;
+		//resetActualDelay();
+	}
+	
+	void resetActualDelay(){
+		actualDelay = 0f;
 	}
 	
 	public void OnOwnerChanged()
     {	
-		gameCamera.OnOwnerChanged();
+		//gameCamera.OnOwnerChanged();
 	}
 	
 	public void OnScrum(bool active) {
