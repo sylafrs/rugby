@@ -20,4 +20,14 @@ public class PassCameraState : CameraState {
 
         return false;
     }
+
+    public override bool OnBallOnGround(bool onGround)
+    {
+        if (onGround)
+        {
+            sm.state_change_me(this, new GroundBallState(sm, cam));
+        }
+
+        return false;
+    }
 }
