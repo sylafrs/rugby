@@ -12,6 +12,8 @@ using XInputDotNetPure;
 public class Game : myMonoBehaviour {
 	
 	public enum State {
+        NULL = 0,
+        INTRODUCTION,
 		PAUSED,
 		PLAYING,
 		TOUCH,

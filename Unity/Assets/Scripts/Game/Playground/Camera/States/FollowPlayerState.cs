@@ -1,6 +1,3 @@
-using UnityEngine;
-using System.Collections.Generic;
-
 /**
   * @class FollowPlayerState
   * @brief Etat de la caméra lorsqu'elle doit suivre un joueur.
