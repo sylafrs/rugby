@@ -20,6 +20,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	public 	float		delay;
 	public 	float		magnitudeGap;
+	public 	float		zoom;
 	private float		actualDelay;
 	public 	Vector3		MaxfollowOffset;
 	public 	Vector3		MinfollowOffset;
@@ -48,7 +49,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		//
 		
 		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-		Vector3 offset = Camera.mainCamera.transform.position+MinfollowOffset;
+		Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 		Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
 		Vector3 delta  = result- Camera.mainCamera.transform.position;
 		

@@ -8647,6 +8647,7 @@ MonoBehaviour:
   smoothTime: .300000012
   delay: .5
   magnitudeGap: .180000007
+  zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
   sm: {fileID: 1693924983}
