@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.Collections;
 
 [AddComponentMenu("Scripts/Camera/CameraManager")]
@@ -68,7 +71,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
-        
+        EditorGUILayout.LabelField("Current target", target.name);
 #endif
     }
 }
