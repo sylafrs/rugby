@@ -3,9 +3,7 @@ using System.Collections;
 
 [AddComponentMenu("Scripts/Camera/CameraManager")]
 public class CameraManager : myMonoBehaviour {
-	
-	
-	
+
 	public Game game {get; set;}
 	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
@@ -43,7 +41,7 @@ public class CameraManager : myMonoBehaviour {
 		Camera.mainCamera.transform.position = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
 	}
 	
-	void setTarget(Transform _t){
+	public void setTarget(Transform _t){
 		target = _t;
 	}
 	

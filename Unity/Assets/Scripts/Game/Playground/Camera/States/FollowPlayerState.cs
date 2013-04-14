@@ -12,6 +12,6 @@ public class FollowPlayerState : CameraState {
 
     public override void OnEnter()
     {
-        
+        cam.setTarget(cam.game.Ball.Owner.transform);
     }
 }
