@@ -8645,6 +8645,7 @@ MonoBehaviour:
   scrumCamera: {fileID: 278997181}
   transfoCamera: {fileID: 1523272052}
   smoothTime: .300000012
+  smoothAngle: {x: .300000012, y: .300000012, z: .300000012}
   delay: .5
   magnitudeGap: .180000007
   zoom: 1
