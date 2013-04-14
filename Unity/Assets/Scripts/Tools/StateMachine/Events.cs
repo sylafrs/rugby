@@ -30,7 +30,17 @@ public abstract partial class State
         return (false);
     }
 
+    public virtual bool OnPass(Unit from, Unit to)
+    {
+        return (false);
+    }
+
     public virtual bool OnGameStateChanged(Game.State old, Game.State current)
+    {
+        return (false);
+    }
+
+    public virtual bool OnBallOnGround(bool onGround)
     {
         return (false);
     }
@@ -94,6 +104,23 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnNewOwner(old, current))
+                return;
+        }
+    }
+
+    public void event_Pass(Unit from, Unit to)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnPass(from, to))
+                return;
+        }
+    }
+
+    public void event_BallOnGround(bool onGround) {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnBallOnGround(onGround))
                 return;
         }
     }

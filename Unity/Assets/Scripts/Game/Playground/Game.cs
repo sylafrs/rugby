@@ -178,16 +178,21 @@ public class Game : myMonoBehaviour {
 	public void OnEssai() {
 		arbiter.OnEssai();
 	}
-	
+
+    public void OnPass(Unit from, Unit to)
+    {
+        cameraManager.OnPass(from, to);
+    }
 
     public void OnOwnerChanged(Unit before, Unit after)
-    {		
+    {
+        cameraManager.OnOwnerChanged(before, after);
+
 		if (after != null)
         {
             if (after.Team != Owner)
             {
-                Owner = after.Team;
-				cameraManager.OnOwnerChanged(before, after);
+                Owner = after.Team;				
             }
 
             // PATCH
@@ -220,5 +225,10 @@ public class Game : myMonoBehaviour {
 		{			
 			Ball.EventTackle(tackler, tackled);
 		}
+    }
+
+    public void BallOnGround(bool onGround)
+    {
+        cameraManager.ballOnGround(onGround);
     }
 }

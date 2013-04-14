@@ -14,7 +14,17 @@ public class FollowPlayerState : CameraState {
 
     public override bool OnNewOwner(Unit old, Unit current)
     {
-        cam.setTarget(cam.game.Ball.Owner.transform);
+        if (current != null)
+        {
+            cam.setTarget(current.transform);
+        }
+
+        return false;
+    }
+
+    public override bool OnPass(Unit from, Unit to)
+    {
+        sm.state_change_me(this, new PassCameraState(sm, cam));
         return true;
     }
 }

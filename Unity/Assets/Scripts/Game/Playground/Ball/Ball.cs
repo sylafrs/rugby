@@ -27,7 +27,8 @@ public class Ball : TriggeringTriggered {
 			
 		}
 	}
-	
+
+    public bool onGround { get; set; }
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
 	public float passSpeed = 20.0f;
@@ -85,7 +86,7 @@ public class Ball : TriggeringTriggered {
     }
    
 	new void Start(){
-
+        onGround = false;
 		goScrum = false;
         base.Start();
 	}
@@ -101,6 +102,25 @@ public class Ball : TriggeringTriggered {
             }
                        
             this.transform.localRotation = Quaternion.identity;
+        }
+
+        if (this.transform.position.y <= 0.6f)
+        {
+            if (!this.onGround)
+            {
+                this.Game.BallOnGround(true);
+            }
+
+            this.onGround = true;
+        }
+        else
+        {
+            if (this.onGround)
+            {
+                this.Game.BallOnGround(false);
+            }
+
+            this.onGround = false;
         }
 
         UpdateTackle();
@@ -126,8 +146,9 @@ public class Ball : TriggeringTriggered {
 	public void Pass(Unit to)
 	{
 		//Game.right.But
-		
-		Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
+        Game.OnPass(this.Owner, to);
+				
+		//Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
 		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
@@ -139,7 +160,7 @@ public class Ball : TriggeringTriggered {
 		{
 			if (this.transform.position.y > 0.6f)
 			{
-				p.DoPass(timeOnPass);
+                p.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
 			else
