@@ -104,7 +104,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
-        EditorGUILayout.LabelField("Current target", target.name);
+        EditorGUILayout.LabelField("Current target", target == null ? "null" : target.name);
 #endif
     }
 }
