@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("Scripts/Camera/CameraManager")]
-public class CameraManager : myMonoBehaviour {
+public class CameraManager : myMonoBehaviour, Debugable {
 
 	public Game game {get; set;}
 	public TouchCamera touchCamera;
@@ -64,4 +64,11 @@ public class CameraManager : myMonoBehaviour {
 		}
 			
 	}
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        
+#endif
+    }
 }
