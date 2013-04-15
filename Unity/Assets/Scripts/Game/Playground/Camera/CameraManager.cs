@@ -56,34 +56,33 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	void FixedUpdate(){
-		//sera gérer dans les states
-		//this.setTarget(game.right[2].transform);
-		//
-
-		
+				
 		if (target != null)
         {
 			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
 			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
 			Vector3 delta  = result- Camera.mainCamera.transform.position;
+
 			
 			//rotation
 			targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
 			
 			Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
+			Vector3 tarEuler = targetRotation.eulerAngles;
 			
 			Vector3 angle = new Vector3(
-				Mathf.SmoothDampAngle(euler.x, targetRotation.eulerAngles.x, ref angleVelocity[0], smoothAngle.x),
-				Mathf.SmoothDampAngle(euler.y, targetRotation.eulerAngles.y, ref angleVelocity[1], smoothAngle.y),
-				Mathf.SmoothDampAngle(euler.z, targetRotation.eulerAngles.z, ref angleVelocity[2], smoothAngle.z)
+				Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
+				Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
+				Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
 				);
 			
 			
 			
 			if(angle.magnitude > rotationMagnitudeGap){
 				if(rotationCurrentDelay >= rotationDelay){
-					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, 0f, angle.z);
+					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
+					//pas besoin, c'est déjà fait !
         			//Camera.mainCamera.transform.LookAt(target);
 				}
 				else{
@@ -93,7 +92,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 				resetRotationDelay();
 			}
 			
-		
 			if( delta.magnitude > magnitudeGap){
 				if(actualDelay >= delay){
 					Camera.mainCamera.transform.position = result;
@@ -103,7 +101,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 				}
 			}else{
 				resetActualDelay();
-			}
+			}		
 		}
 	}
 	
