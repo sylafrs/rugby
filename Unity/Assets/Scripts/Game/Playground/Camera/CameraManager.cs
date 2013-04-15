@@ -21,6 +21,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float		angleVelocityY;
 	private float		angleVelocityZ;
 	private float		actualDelay;
+	private Quaternion	targetRotation;
 	
 	public  float		rotationDelay;
 	private float 		rotationCurrentDelay;
@@ -67,19 +68,23 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
 			Vector3 delta  = result- Camera.mainCamera.transform.position;
 			
+			//rotation
+			targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
+			
+			Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
 			
 			Vector3 angle = new Vector3(
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.x, target.eulerAngles.x, ref angleVelocity[0], smoothAngle.x),
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.y, target.eulerAngles.y, ref angleVelocity[1], smoothAngle.y),
-				Mathf.SmoothDampAngle(Camera.mainCamera.transform.eulerAngles.z, target.eulerAngles.z, ref angleVelocity[2], smoothAngle.z)
+				Mathf.SmoothDampAngle(euler.x, targetRotation.eulerAngles.x, ref angleVelocity[0], smoothAngle.x),
+				Mathf.SmoothDampAngle(euler.y, targetRotation.eulerAngles.y, ref angleVelocity[1], smoothAngle.y),
+				Mathf.SmoothDampAngle(euler.z, targetRotation.eulerAngles.z, ref angleVelocity[2], smoothAngle.z)
 				);
 			
 			
 			
 			if(angle.magnitude > rotationMagnitudeGap){
 				if(rotationCurrentDelay >= rotationDelay){
-					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
-        			Camera.mainCamera.transform.LookAt(target);
+					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, 0f, angle.z);
+        			//Camera.mainCamera.transform.LookAt(target);
 				}
 				else{
 					rotationCurrentDelay += Time.deltaTime;
