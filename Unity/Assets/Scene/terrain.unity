@@ -8644,12 +8644,12 @@ MonoBehaviour:
   gameCamera: {fileID: 840478219}
   scrumCamera: {fileID: 278997181}
   transfoCamera: {fileID: 1523272052}
-  rotationDelay: .00100000005
+  rotationDelay: .300000012
   smoothTime: .300000012
   smoothAngle: {x: .300000012, y: .300000012, z: .300000012}
   delay: .5
   magnitudeGap: .00999999978
-  rotationMagnitudeGap: .00100000005
+  rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
