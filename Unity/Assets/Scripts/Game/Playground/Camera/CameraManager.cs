@@ -56,8 +56,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	void FixedUpdate(){
-				
-		if (target != null)
+
+        if (target != null && Camera.mainCamera != null)
         {
 			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
 			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
@@ -75,7 +75,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 				Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
 				Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
 				Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
-				);
+			);
 			
 			
 			
