@@ -193,7 +193,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	//flipping camera
 	public void flip(){
-		flipInit(new Vector3(0,1,0), 180);
+		flipInit(new Vector3(0,1,0), 360);
 	}
 	
 	void flipInit(Vector3 axis, float angle){
@@ -217,7 +217,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
 			
-			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero - this.flipLastAngle);
+			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero);
 			this.flipLastAngle = angleFromZero;
 			
 			if(this.flipLastAngle >= this.flipAngle){
