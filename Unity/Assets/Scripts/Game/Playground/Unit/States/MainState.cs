@@ -36,7 +36,7 @@ public class MainState : UnitState
         return true;
     }
 
-    public override bool OnPlaque()
+    public override bool OnTackle()
     {
         sm.state_change_me(this, new PlaqueState(sm, unit));
         return true;
@@ -99,8 +99,8 @@ public class MainState : UnitState
             case Order.TYPE.TACKLE:
                 Unit target = unit.Order.target;
 
-                target.sm.event_plaque();
-                unit.sm.event_plaque();
+                target.sm.event_tackle();
+                unit.sm.event_tackle();
 
                 unit.Game.EventTackle(unit, target);
                 break;

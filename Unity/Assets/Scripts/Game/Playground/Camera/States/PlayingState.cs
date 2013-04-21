@@ -20,15 +20,39 @@ public class PlayingState : CameraState
 
     private bool decide()
     {
-        if (cam.game.Ball.Owner == null)
+        Unit ballOwner = cam.game.Ball.Owner;
+
+        if (ballOwner == null)
         {
             sm.state_change_son(this, new GroundBallState(sm, cam));
         }
         else
         {
-            sm.state_change_son(this, new FollowPlayerState(sm, cam));
+            sm.state_change_son(this, new FollowPlayerState(sm, cam, ballOwner));
         }
 
         return true;
+    }
+
+    public override bool OnNewOwner(Unit old, Unit current)
+    {
+        if (current != null)
+        {
+            sm.state_change_me(this, new FollowPlayerState(sm, cam, current));
+            return true;
+        }
+
+        return false;
+    }
+
+    public override bool OnBallOnGround(bool onGround)
+    {
+        if (onGround)
+        {
+            sm.state_change_me(this, new GroundBallState(sm, cam));
+            return true;
+        }
+
+        return false;
     }
 }

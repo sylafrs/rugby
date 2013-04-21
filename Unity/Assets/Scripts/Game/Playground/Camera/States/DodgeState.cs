@@ -6,5 +6,7 @@
   */
 public class DodgeState : CameraState
 {
-    public DodgeState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
+    public DodgeState(StateMachine sm, CameraManager cam, Unit unit) : base(sm, cam) { this.unit = unit; }
+
+    Unit unit;
 }

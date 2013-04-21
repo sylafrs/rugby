@@ -20,7 +20,7 @@ public abstract partial class State
         return (false);
     }
 
-    public virtual bool OnPlaque()
+    public virtual bool OnTackle()
     {
         return (false);
     }
@@ -31,6 +31,16 @@ public abstract partial class State
     }
 
     public virtual bool OnPass(Unit from, Unit to)
+    {
+        return (false);
+    }
+
+    public virtual bool OnDodge(Unit u)
+    {
+        return (false);
+    }
+
+    public virtual bool OnSprint(Unit u, bool sprinting)
     {
         return (false);
     }
@@ -53,7 +63,6 @@ public abstract partial class State
  */
 public partial class StateMachine
 {
-
     public void event_neworder()
     {
         foreach (State tmp in list)
@@ -63,11 +72,11 @@ public partial class StateMachine
         }
     }
 
-    public void event_plaque()
+    public void event_tackle()
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnPlaque())
+            if (tmp.OnTackle())
                 return;
         }
     }
@@ -121,6 +130,24 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnBallOnGround(onGround))
+                return;
+        }
+    }
+
+    public void event_Sprint(Unit unit, bool sprinting)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnSprint(unit, sprinting))
+                return;
+        }
+    }
+
+    public void event_Dodge(Unit unit)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnDodge(unit))
                 return;
         }
     }
