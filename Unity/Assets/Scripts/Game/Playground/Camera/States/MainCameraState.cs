@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 /**
   * @class MainCameraState
   * @brief Etat principal de la caméra.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see CameraState
   */
 public class MainCameraState : CameraState {
 
@@ -18,6 +17,11 @@ public class MainCameraState : CameraState {
 
     public override bool OnGameStateChanged(Game.State old, Game.State current)
     {
+        if (old == current)
+        {
+            throw new UnityException("OnGameStateChanged called without state changement..\nHow strange !");
+        }
+
         return this.decide(old, current);
     }
 
@@ -31,7 +35,25 @@ public class MainCameraState : CameraState {
 
         if (current == Game.State.PLAYING)
         {
-            sm.state_change_son(this, new FollowPlayerState(sm, cam));
+            sm.state_change_son(this, new PlayingState(sm, cam));
+            return true;
+        }
+
+        if (current == Game.State.SCRUM)
+        {
+            sm.state_change_son(this, new ScrumState(sm, cam));
+            return true;
+        }
+
+        if (current == Game.State.TOUCH)
+        {
+            sm.state_change_son(this, new TouchState(sm, cam));
+            return true;
+        }
+
+        if (current == Game.State.TRANSFORMATION)
+        {
+            sm.state_change_son(this, new TransfoState(sm, cam));
             return true;
         }
 

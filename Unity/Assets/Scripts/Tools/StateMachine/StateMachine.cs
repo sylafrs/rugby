@@ -60,8 +60,8 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         }
         while (index > 0)
         {
-            index--;
             list[index].OnLeave();
+            index--;            
         }
         current.OnLeave();
         index = list.IndexOf(current);
@@ -89,8 +89,8 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         index--;
         while (index > 0)
         {
-            index--;
             list[index].OnLeave();
+            index--;            
         }
         index = list.IndexOf(current);
         if (index == -1)
