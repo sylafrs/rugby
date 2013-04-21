@@ -147,13 +147,16 @@ public class gameUIManager : myMonoBehaviour {
 		Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
 			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
 			blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+
 		Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
 			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
 			blueGaugeBoxWidthPercentage * blueProgress,
 			blueGaugeBoxHeightPercentage);
-		Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
-			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
-			redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
+
+        Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
+            redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
+            redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
+
 		Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
 			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
 			redGaugeBoxWidthPercentage * redProgress, 
@@ -163,6 +166,7 @@ public class gameUIManager : myMonoBehaviour {
 		Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
 			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+
 		Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
 			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
@@ -232,6 +236,7 @@ public class gameUIManager : myMonoBehaviour {
 					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 					scrumBarBoxWidthPercentage*blueScrumProgress, 
 					scrumBarBoxHeightPercentage);
+
 				GUI.DrawTexture(scrumBarBox, emptyBar);
 				GUI.DrawTexture(scrumRedBarBox, redBar);
 				GUI.DrawTexture(scrumBlueBarBox,blueBar);
