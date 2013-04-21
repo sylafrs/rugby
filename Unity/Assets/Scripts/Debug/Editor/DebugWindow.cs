@@ -21,26 +21,38 @@ public class DebugWindow : EditorWindow {
     [MenuItem("Component/Scripts/Debug Window")]
     public static void Init()
     {
-        EditorWindow.GetWindow(typeof(DebugWindow));
+        EditorWindow.GetWindow(typeof(DebugWindow));        
     }
 
     Vector2 scrollPosition = Vector2.zero;
-    static string filter = string.Empty;
+    EditorMemory mem;
 
     void OnGUI()
     {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-        toDebug.Clear();
-        GameObject root = GameObject.Find(root_gameobject);
-        if (root != null)
+        if (mem == null)
         {
-            Search(root);
-            Print();
+            mem = EditorMemory.Get();
+        }
+
+        if (mem == null)
+        {
+            EditorGUILayout.LabelField("Mémoire non detectée");
         }
         else
         {
-            EditorGUILayout.LabelField("Aucun GameObject detecte");
+            toDebug.Clear();
+            GameObject root = GameObject.Find(root_gameobject);
+            if (root != null)
+            {
+                Search(root);
+                Print();
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Aucun GameObject detecte");
+            }
         }
 
         EditorGUILayout.EndScrollView();
@@ -53,7 +65,7 @@ public class DebugWindow : EditorWindow {
         {
             foreach (var c in components)
             {
-                if(filter == string.Empty || c.name.Contains(filter))
+                if (mem.DebugWindowFilter == string.Empty || c.name.Contains(mem.DebugWindowFilter))
                     toDebug.Add(c);
             }
         }
@@ -135,7 +147,7 @@ public class DebugWindow : EditorWindow {
     void Print()
     {
         sort = (SORT)EditorGUILayout.EnumPopup("Trier par :", sort);
-        filter = EditorGUILayout.TextField("Filtre :", filter);
+        mem.DebugWindowFilter = EditorGUILayout.TextField("Filtre :", mem.DebugWindowFilter);
 
         switch (sort)
         {

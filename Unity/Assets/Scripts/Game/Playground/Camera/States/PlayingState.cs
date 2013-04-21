@@ -10,13 +10,11 @@ public class PlayingState : CameraState
 
     public override void OnEnter()
     {
-        UnityEngine.Debug.Log("OnEnter Playing State");
         decide();
     }
 
     public override void OnLeave()
     {
-        UnityEngine.Debug.Log("OnLeave Playing State");
         cam.setTarget(null);
     }
 
