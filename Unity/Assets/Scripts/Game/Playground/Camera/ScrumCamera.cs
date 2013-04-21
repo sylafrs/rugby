@@ -7,15 +7,10 @@ public class ScrumCamera : myMonoBehaviour {
 	private CameraManager _cm;
 	public CameraManager cameraManager { 
 		get { return _cm; }
-		set { _cm = value; Start(); } 
+		set { _cm = value; } 
 	}
-	
-	void Start(){
-	}
-	
-	public void Activate() {
 		
-		
+	public void Activate() {		
 		Vector3 pos = this.transform.position;
 		pos.z = _cm.game.Ball.transform.position.z;
 		this.transform.position = pos;

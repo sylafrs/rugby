@@ -204,7 +204,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
-	}
+    }
 	
 	void flipUpdate () 
 	{				
@@ -223,7 +223,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
 			
             // Rotates the camera from his previous state to the current one 
-			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero - this.flipLastAngle);
+            Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
 			
             // This current state becomes the next previous one
             this.flipLastAngle = angleFromZero;
