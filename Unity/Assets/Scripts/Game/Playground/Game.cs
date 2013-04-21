@@ -18,10 +18,11 @@ public class Game : myMonoBehaviour {
 		PLAYING,
 		TOUCH,
 		SCRUM,
-		TRANSFORMATION
+		TRANSFORMATION,
+        END
 	}
 
-    public State _state = State.PAUSED;
+    private State _state = State.PAUSED;
     public State state
     {
         get
@@ -141,6 +142,7 @@ public class Game : myMonoBehaviour {
         introManager.OnFinish = delegate()
         {
             state = State.PLAYING;
+            arbiter.OnStart();
         };
 
         introManager.enabled = true;

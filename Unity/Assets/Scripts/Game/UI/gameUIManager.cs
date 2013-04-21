@@ -11,7 +11,6 @@ public class gameUIManager : myMonoBehaviour {
 	private Game _game;
 	private scrumController _scrumController;
 	
-	public float gameTime;
 	public KeyCode resetKey;
 	
 	//for super bars and th scrum bar
@@ -68,16 +67,11 @@ public class gameUIManager : myMonoBehaviour {
 	public float scrumTimeBoxXPercentage = 50;
 	public float scrumTimeBoxYPercentage = 34;
 	
-	private float  timeElapsed;
-	private bool   over;
-	
 	void Start () 
     {
 		_game 		= gameObject.GetComponent<Game>();
 		_scrumController = gameObject.GetComponent<scrumController>();
-        timeElapsed = 0f;
-		over		= false;
-		
+       
 		blueProgress = 0f;
 		redProgress  = 0f;
 	}
@@ -91,15 +85,15 @@ public class gameUIManager : myMonoBehaviour {
 
 		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
 		
-		timeElapsed += Time.deltaTime;
-		
+		/*
 		if(timeElapsed > gameTime){
 			over = true;
 			Debug.Log("Time out !");
 			_game.unlockCamera();
 			//stuff sur la caméra
 		}
-
+        */
+        
         Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
@@ -188,7 +182,7 @@ public class gameUIManager : myMonoBehaviour {
 		float playerLeftBoxHeight = 10;	
 		Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
 		
-		if(!over)
+		if(_game.state != Game.State.END)
         {
 			
 			//superbars
@@ -208,7 +202,7 @@ public class gameUIManager : myMonoBehaviour {
 			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
 			
 			//time
-			GUI.Label(timeBox,  "Time : "+(int)timeElapsed, gameTimeTextStyle);
+			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.TimeEllapsed, gameTimeTextStyle);
 			
 			
 			//Gui du scrum
