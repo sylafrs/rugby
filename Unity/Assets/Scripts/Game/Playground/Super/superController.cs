@@ -50,12 +50,7 @@ public class superController : MonoBehaviour {
         }
 
 		updateSuperValue();
-
-        if (this._game.state == Game.State.PLAYING)
-        {
-            updateSuperInput();
-        }
-
+        updateSuperInput();
 		updateSuperStatus();
 	}
 	
@@ -107,7 +102,7 @@ public class superController : MonoBehaviour {
 			//maj super time
 			SuperTimeLeft -= Time.deltaTime;
 			//Debug.Log("Super Time left  : "+SuperTimeLeft);
-			if(SuperTimeLeft > 0f){
+			/*if(SuperTimeLeft > 0f){
 				switch(currentSuper){
 					case SuperList.superDash:{
 						break;
@@ -124,7 +119,11 @@ public class superController : MonoBehaviour {
 				}
 			}else{
 				endSuper();
-			}
+			}*/
+
+            if (SuperTimeLeft <= 0) {
+                endSuper();
+            }
 		}
 	}
 	
