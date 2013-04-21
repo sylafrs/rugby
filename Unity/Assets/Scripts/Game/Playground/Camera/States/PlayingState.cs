@@ -15,7 +15,7 @@ public class PlayingState : CameraState
 
     public override void OnLeave()
     {
-        cam.setTarget(null);
+        // cam.setTarget(null);
     }
 
     private bool decide()
