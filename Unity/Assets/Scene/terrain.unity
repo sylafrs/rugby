@@ -2530,6 +2530,44 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 545566622}
+--- !u!1 &392098668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 392098669}
+  - 114: {fileID: 392098670}
+  m_Layer: 0
+  m_Name: EditorMemory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392098669
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392098668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1745840700}
+--- !u!114 &392098670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392098668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
+  m_Name: 
+  DebugWindowFilter: Cameras
 --- !u!1 &406906012
 GameObject:
   m_ObjectHideFlags: 0
@@ -8628,7 +8666,7 @@ MonoBehaviour:
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
   flipDuration: 1
-  flipDelay: 1
+  flipDelay: 0
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
@@ -8889,6 +8927,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 392098669}
   - {fileID: 528087310}
   - {fileID: 219502519}
   m_Father: {fileID: 0}
