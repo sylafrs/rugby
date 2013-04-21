@@ -22,19 +22,32 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float		angleVelocityZ;
 	private float		actualDelay;
 	private Quaternion	targetRotation;
-	
 	public  float		rotationDelay;
 	private float 		rotationCurrentDelay;
-	
+			
 	public  float 		smoothTime 	= 0.3f;
 	public  Vector3 	smoothAngle = new Vector3(0.3f, 0.3f, 0.3f);
-	public 	float		delay;
+	public 	float		moveDelay;
 	public 	float		magnitudeGap;
 	public  float 		rotationMagnitudeGap;
 	public 	float		zoom;
 	
 	public 	Vector3		MaxfollowOffset;
 	public 	Vector3		MinfollowOffset;
+	
+	
+	//flipping when team change
+	Vector3 		flipAxis;
+	float 			flipAngle;
+	float 			flipTime;
+	
+	public  float 	flipDuration = 1;
+	public  float 	flipDelay;
+	
+	private	bool	isflipping;
+	private float 	flipLastAngle;
+	private float 	flipWaiting;
+	private bool    isflipped;
 	
 
     public StateMachine sm;
@@ -45,6 +58,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
         sm.SetFirstState(new MainCameraState(sm, this));
 		resetActualDelay();
 		resetRotationDelay();
+		isflipping = false;
+		isflipped= false;
 		
 		/*
        
@@ -56,52 +71,78 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	void FixedUpdate(){
-
-        if (target != null && Camera.mainCamera != null)
-        {
-			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
-			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-			Vector3 delta  = result- Camera.mainCamera.transform.position;
-
-			
-			//rotation
-			targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
-			
-			Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
-			Vector3 tarEuler = targetRotation.eulerAngles;
-			
-			Vector3 angle = new Vector3(
-				Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
-				Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
-				Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
-			);
-			
-			
-			
-			if(angle.magnitude > rotationMagnitudeGap){
-				if(rotationCurrentDelay >= rotationDelay){
-					Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
-					//pas besoin, c'est déjà fait !
-        			//Camera.mainCamera.transform.LookAt(target);
-				}
-				else{
-					rotationCurrentDelay += Time.deltaTime;
-				}
-			}else{
-				resetRotationDelay();
-			}
-			
-			if( delta.magnitude > magnitudeGap){
-				if(actualDelay >= delay){
-					Camera.mainCamera.transform.position = result;
+		
+		if(isflipping != true)
+		{
+	        if (target != null && Camera.mainCamera != null)
+	        {
+				Vector3 MinfollowOffset2 = new Vector3();
+				Vector3 MaxfollowOffset2 = new Vector3();
+				
+				if(this.isflipped == true){
+					//Debug.Log ("flip");
+					//z is flipped
+					
+					//MinfollowOffset.z *= -1;
+					//MaxfollowOffset.z *= -1;
+					
+					//MinfollowOffset2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, -MinfollowOffset.z);
+					//MaxfollowOffset2 = new Vector3(MaxfollowOffset.x, MaxfollowOffset.y, -MaxfollowOffset.z);
 					
 				}else{
-					actualDelay += Time.deltaTime;
+					//MinfollowOffset2 = this.MinfollowOffset;
+					//MinfollowOffset2 = this.MaxfollowOffset;
+					//Debug.Log ("pas flip");
+				}	
+				
+				Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
+				
+				Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+				
+				Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+				Vector3 delta  = result- Camera.mainCamera.transform.position;
+	
+				
+				//rotation
+				targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
+				
+				Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
+				Vector3 tarEuler = targetRotation.eulerAngles;
+				
+				Vector3 angle = new Vector3(
+					Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
+					Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
+					Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
+				);
+				
+				
+				
+				if(angle.magnitude > rotationMagnitudeGap){
+					if(rotationCurrentDelay >= rotationDelay){
+						Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
+						//pas besoin, c'est déjà fait !
+	        			//Camera.mainCamera.transform.LookAt(target);
+					}
+					else{
+						rotationCurrentDelay += Time.deltaTime;
+					}
+				}else{
+					resetRotationDelay();
 				}
-			}else{
-				resetActualDelay();
-			}		
+				
+				if( delta.magnitude > magnitudeGap){
+					if(actualDelay >= moveDelay){
+						Camera.mainCamera.transform.position = result;
+						
+					}else{
+						actualDelay += Time.deltaTime;
+					}
+				}else{
+					resetActualDelay();
+				}		
+			}
+		}else{
+			flipUpdate();
 		}
 	}
 	
@@ -137,8 +178,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 		}
 			
-	}
-
+	}	
+	
     public void OnPass(Unit from, Unit to)
     {
         sm.event_Pass(from, to);
@@ -148,6 +189,50 @@ public class CameraManager : myMonoBehaviour, Debugable {
     {
         sm.event_BallOnGround(onGround);
     }   
+	
+	
+	//flipping camera
+	public void flip(){
+		flipInit(new Vector3(0,1,0), 180);
+	}
+	
+	void flipInit(Vector3 axis, float angle){
+		
+		this.isflipping  			= true;
+		this.flipAxis	 			= axis;
+		this.flipAngle	 			= Mathf.Deg2Rad * angle;
+		this.flipTime	 			= 0;
+		this.flipLastAngle			= 0;
+		this.flipWaiting			= 0;
+	}
+	
+	void flipUpdate () 
+	{				
+		this.flipWaiting += Time.deltaTime;
+		if(this.flipWaiting >= this.flipDelay){
+			
+			this.flipTime += Time.deltaTime;
+			
+			if(this.flipTime > this.flipDuration) this.flipTime = this.flipDuration;
+			
+			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			
+			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero - this.flipLastAngle);
+			this.flipLastAngle = angleFromZero;
+			
+			if(this.flipLastAngle >= this.flipAngle){
+				flipEnd();
+			}
+		}
+	}
+	
+	void flipEnd(){
+		this.MinfollowOffset.z *= -1;
+		this.MaxfollowOffset.z *= -1;
+		this.isflipping  			= false;
+	}
+	
+	
 
     public void ForDebugWindow()
     {

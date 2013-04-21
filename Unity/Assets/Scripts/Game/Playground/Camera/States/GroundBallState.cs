@@ -10,7 +10,12 @@ using System.Collections.Generic;
 public class GroundBallState : CameraState {
 
     public GroundBallState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
-
+	
+	public override void OnEnter()
+    {
+		cam.flip();
+    }
+	
     public override bool OnNewOwner(Unit old, Unit current)
     {
         if (current != null)

@@ -1553,32 +1553,6 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!1 &102195329
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 102195330}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &102195330
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 102195329}
-  m_LocalRotation: {x: 0, y: .273932636, z: 0, w: .961748898}
-  m_LocalPosition: {x: -25.0599995, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1694633024}
 --- !u!1 &116222227
 GameObject:
   m_ObjectHideFlags: 0
@@ -8647,12 +8621,14 @@ MonoBehaviour:
   rotationDelay: .300000012
   smoothTime: .300000012
   smoothAngle: {x: .300000012, y: .300000012, z: .300000012}
-  delay: .5
+  moveDelay: 0
   magnitudeGap: .00999999978
   rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
+  flipDuration: 1
+  flipDelay: 1
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
@@ -8738,8 +8714,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 102195330}
+  m_Children: []
   m_Father: {fileID: 840478217}
 --- !u!114 &1694633025
 MonoBehaviour:
