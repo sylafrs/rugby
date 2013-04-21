@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 /**
   * @class MainCameraState
@@ -18,6 +17,11 @@ public class MainCameraState : CameraState {
 
     public override bool OnGameStateChanged(Game.State old, Game.State current)
     {
+        if (old == current)
+        {
+            throw new UnityException("OnGameStateChanged called without state changement..\nHow strange !");
+        }
+
         return this.decide(old, current);
     }
 
