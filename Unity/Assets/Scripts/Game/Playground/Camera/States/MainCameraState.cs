@@ -31,7 +31,7 @@ public class MainCameraState : CameraState {
 
         if (current == Game.State.PLAYING)
         {
-            sm.state_change_son(this, new FollowPlayerState(sm, cam));
+            sm.state_change_son(this, new PlayingState(sm, cam));
             return true;
         }
 
