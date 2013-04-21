@@ -84,21 +84,12 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void Update()
     {
-		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
-		
-		/*
-        if (pad.IsConnected)
+        if (this._game.state == Game.State.INTRODUCTION)
         {
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
+            return;
         }
-        */
+
+		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
 		
 		timeElapsed += Time.deltaTime;
 		
@@ -109,20 +100,7 @@ public class gameUIManager : myMonoBehaviour {
 			//stuff sur la caméra
 		}
 
-        Gamer.initGamerId();		
-		
-		/*
-		if(pad.IsConnected){
-			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){
-				btnResetReleased = false;
-				Application.LoadLevel(Application.loadedLevel);
-			}
-		}
-		else if(Input.GetKeyDown(resetKey)){
-           	Application.LoadLevel(Application.loadedLevel);
-		}
-		*/
-		
+        Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
 	
