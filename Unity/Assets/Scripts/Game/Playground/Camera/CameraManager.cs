@@ -208,19 +208,27 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	void flipUpdate () 
 	{				
+        // Delay before flipping (seems to be added to normal delay)
 		this.flipWaiting += Time.deltaTime;
 		if(this.flipWaiting >= this.flipDelay){
 			
+            // Current time
 			this.flipTime += Time.deltaTime;
 			
-			if(this.flipTime > this.flipDuration) this.flipTime = this.flipDuration;
+            // Current state : 100%
+			if(this.flipTime > this.flipDuration) 
+                this.flipTime = this.flipDuration;
 			
+            // Get the angle for the current state
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
 			
 			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero);
-			this.flipLastAngle = angleFromZero;
 			
-			if(this.flipLastAngle >= this.flipAngle){
+            // This current state becomes the next previous one
+            this.flipLastAngle = angleFromZero;
+			
+            // If the rotation is finished
+            if (this.flipTime == this.flipDuration){
 				flipEnd();
 			}
 		}
