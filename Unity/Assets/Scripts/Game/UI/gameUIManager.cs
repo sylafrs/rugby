@@ -132,6 +132,11 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void OnGUI()
     {
+        if (this._game.state == Game.State.INTRODUCTION)
+        {
+            return;
+        }
+
 		int offset = 200;
 		
 		//time box
