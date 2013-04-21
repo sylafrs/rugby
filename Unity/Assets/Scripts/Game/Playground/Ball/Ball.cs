@@ -141,6 +141,8 @@ public class Ball : TriggeringTriggered {
 		this.rigidbody.isKinematic = false;
         this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
         Owner = null;
+
+        Game.OnDrop();
     }
 
 	public void Pass(Unit to)

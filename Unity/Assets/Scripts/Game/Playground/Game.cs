@@ -176,6 +176,11 @@ public class Game : myMonoBehaviour {
 	public void lockCamera(){
 		this.cameraLocked = true;
 	}
+    
+    public void OnDrop()
+    {
+        cameraManager.sm.event_Drop();
+    }
 	
 	public void OnEssai() {
 		arbiter.OnEssai();
@@ -183,12 +188,12 @@ public class Game : myMonoBehaviour {
 
     public void OnPass(Unit from, Unit to)
     {
-        cameraManager.OnPass(from, to);
+        cameraManager.sm.event_Pass(from, to);
     }
 
     public void OnOwnerChanged(Unit before, Unit after)
     {
-        cameraManager.OnOwnerChanged(before, after);
+        cameraManager.sm.event_NewOwner(before, after);
 
 		if (after != null)
         {
@@ -223,6 +228,10 @@ public class Game : myMonoBehaviour {
      */
     public void EventTackle(Unit tackler, Unit tackled)
     {
+        tackler.sm.event_Tackle(tackler, tackled);
+        tackled.sm.event_Tackle(tackler, tackled);
+        this.cameraManager.sm.event_Tackle(tackler, tackled);
+        
 		if (tackled != Ball.Owner)
 		{			
 			Ball.EventTackle(tackler, tackled);
@@ -231,6 +240,6 @@ public class Game : myMonoBehaviour {
 
     public void BallOnGround(bool onGround)
     {
-        cameraManager.ballOnGround(onGround);
+        cameraManager.sm.event_BallOnGround(onGround);
     }
 }

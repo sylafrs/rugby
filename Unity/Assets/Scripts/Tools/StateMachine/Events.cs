@@ -20,7 +20,7 @@ public abstract partial class State
         return (false);
     }
 
-    public virtual bool OnTackle()
+    public virtual bool OnTackle(Unit from, Unit to)
     {
         return (false);
     }
@@ -54,6 +54,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnDrop()
+    {
+        return (false);
+    }
 }
 
 /**
@@ -72,11 +77,11 @@ public partial class StateMachine
         }
     }
 
-    public void event_tackle()
+    public void event_Tackle(Unit from, Unit to)
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnTackle())
+            if (tmp.OnTackle(from, to))
                 return;
         }
     }
@@ -148,6 +153,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnDodge(unit))
+                return;
+        }
+    }
+
+    public void event_Drop()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnDrop())
                 return;
         }
     }

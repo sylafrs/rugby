@@ -20,6 +20,12 @@ public class FollowPlayerState : CameraState {
         return true;
     }
 
+    public override bool OnDrop()
+    {
+        sm.state_change_me(this, new DropState(sm, cam));
+        return true;
+    }
+
     public override bool OnDodge(Unit u)
     {
         if (u == this.target)
@@ -47,5 +53,14 @@ public class FollowPlayerState : CameraState {
         return false;
     }
 
+    public override bool OnTackle(Unit from, Unit to)
+    {
+        if (from == this.target || to == this.target)
+        {
+            sm.state_change_son(this, new TackleState(sm, cam, this.target));
+            return true;
+        }
 
+        return false;
+    }
 }

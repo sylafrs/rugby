@@ -6,5 +6,7 @@
   */
 public class TackleState : CameraState
 {
-    public TackleState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
+    public TackleState(StateMachine sm, CameraManager cam, Unit unit) : base(sm, cam) { this.u = unit; }
+
+    Unit u;
 }
