@@ -2,7 +2,7 @@
   * @class IntroCameraState
   * @brief Etat de la caméra au départ
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see CameraState
   */
 public class IntroCameraState : CameraState
 {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
   * @class GroundBallState
   * @brief Etat de la caméra lorsque la balle est par terre
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see CameraState
   */
 public class GroundBallState : CameraState {
 
