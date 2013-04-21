@@ -56,4 +56,18 @@ public class PlayingState : CameraState
         return false;
     }
 
+    public override bool OnSuper(Team t, SuperList super)
+    {
+        // Fin du super
+        if (super == SuperList.superNull)
+        {
+            // ....
+        }
+        else
+        {
+            // ....
+        }
+
+        return false;
+    }
 }

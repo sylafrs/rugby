@@ -53,7 +53,7 @@ public class FollowPlayerState : CameraState {
         return false;
     }
 
-    public override bool OnTackle(Unit from, Unit to)
+    public override bool OnTackle(Unit from, Unit to)   
     {
         if (from == this.target || to == this.target)
         {

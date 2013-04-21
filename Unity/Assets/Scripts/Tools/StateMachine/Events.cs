@@ -59,6 +59,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnSuper(Team t, SuperList super)
+    {
+        return (false);
+    }
 }
 
 /**
@@ -162,6 +167,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnDrop())
+                return;
+        }
+    }
+
+    public void event_Super(Team t, SuperList super)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnSuper(t, super))
                 return;
         }
     }

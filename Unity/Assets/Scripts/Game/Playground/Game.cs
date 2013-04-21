@@ -222,11 +222,16 @@ public class Game : myMonoBehaviour {
         this.right.OnOwnerChanged();       
     }
 
+    public void OnSuper(Team team, SuperList super)
+    {
+        cameraManager.sm.event_Super(team, super);
+    }
+
     /**
      * @author Sylvain Lafon
      * @brief Se déclenche quand il y a plaquage
      */
-    public void EventTackle(Unit tackler, Unit tackled)
+    public void OnTackle(Unit tackler, Unit tackled)
     {
         tackler.sm.event_Tackle(tackler, tackled);
         tackled.sm.event_Tackle(tackler, tackled);
@@ -234,7 +239,7 @@ public class Game : myMonoBehaviour {
         
 		if (tackled != Ball.Owner)
 		{			
-			Ball.EventTackle(tackler, tackled);
+			Ball.OnTackle(tackler, tackled);
 		}
     }
 

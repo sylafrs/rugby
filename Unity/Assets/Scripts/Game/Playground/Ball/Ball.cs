@@ -246,7 +246,7 @@ public class Ball : TriggeringTriggered {
         }
     }
 
-    public void EventTackle(Unit tackler, Unit tackled)
+    public void OnTackle(Unit tackler, Unit tackled)
     {
         if(lastTackle == -1)
             lastTackle = Time.time;

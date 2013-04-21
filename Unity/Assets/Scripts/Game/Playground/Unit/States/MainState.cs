@@ -98,7 +98,7 @@ public class MainState : UnitState
                 
             case Order.TYPE.TACKLE:
                 Unit target = unit.Order.target;                
-                unit.Game.EventTackle(unit, target);
+                unit.Game.OnTackle(unit, target);
                 break;
 
             default:
