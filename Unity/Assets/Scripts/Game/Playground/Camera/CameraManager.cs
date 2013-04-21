@@ -8,12 +8,8 @@ using System.Collections;
 public class CameraManager : myMonoBehaviour, Debugable {
 
     public Game game;
-	public TouchCamera touchCamera;
 	public GameCamera gameCamera;
-	public ScrumCamera scrumCamera;
-	public TransfoCamera transfoCamera;
-	
-	
+		
 	private Transform 	target;
 	private Vector3 	velocity = Vector3.zero;
 	private float[]		angleVelocity = new float[3];
@@ -167,7 +163,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	public void OnScrum(bool active) {
 		
-		scrumCamera.gameObject.SetActive(active);
+		/*scrumCamera.gameObject.SetActive(active);
 		if(active) {
 			scrumCamera.Activate();
 		}
@@ -176,7 +172,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			if(game.Ball.Owner.Team == game.left) {
 				game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
 			}
-		}
+		}*/
 			
 	}	
 	
