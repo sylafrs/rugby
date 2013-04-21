@@ -44,8 +44,18 @@ public class superController : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (this._game.state == Game.State.INTRODUCTION)
+        {
+            return;
+        }
+
 		updateSuperValue();
-		updateSuperInput();
+
+        if (this._game.state == Game.State.PLAYING)
+        {
+            updateSuperInput();
+        }
+
 		updateSuperStatus();
 	}
 	
