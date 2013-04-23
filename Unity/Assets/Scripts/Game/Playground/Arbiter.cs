@@ -15,7 +15,15 @@ public class Arbiter : MonoBehaviour {
 	public bool ToucheRemiseAuCentre = false;
 	public bool TransfoRemiseAuCentre = false;
 	public Transform TouchPlacement = null;
-	public Transform TransfoPlacement = null;	
+	public Transform TransfoPlacement = null;
+
+    public float GameTime;
+    public float TimeEllapsed { get; private set; }
+
+    public void OnStart()
+    {
+        TimeEllapsed = 0;
+    }
 	
 	public void OnTouch(Touche t) {
 		if(t == null || Game.state != Game.State.PLAYING) {
@@ -246,4 +254,18 @@ public class Arbiter : MonoBehaviour {
 				
 		tm.enabled = true;
 	}
+
+    public void Update()
+    {
+        if (this.Game.state != Game.State.INTRODUCTION &&
+            this.Game.state != Game.State.END)
+        {
+            TimeEllapsed += Time.deltaTime;
+            if (TimeEllapsed > GameTime)
+            {
+                TimeEllapsed = GameTime;
+                this.Game.state = Game.State.END;
+            }
+        }
+    }
 }

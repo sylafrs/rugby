@@ -11,7 +11,6 @@ public class gameUIManager : myMonoBehaviour {
 	private Game _game;
 	private scrumController _scrumController;
 	
-	public float gameTime;
 	public KeyCode resetKey;
 	
 	//for super bars and th scrum bar
@@ -68,61 +67,34 @@ public class gameUIManager : myMonoBehaviour {
 	public float scrumTimeBoxXPercentage = 50;
 	public float scrumTimeBoxYPercentage = 34;
 	
-	private float  timeElapsed;
-	private bool   over;
-	
 	void Start () 
     {
 		_game 		= gameObject.GetComponent<Game>();
 		_scrumController = gameObject.GetComponent<scrumController>();
-        timeElapsed = 0f;
-		over		= false;
-		
+       
 		blueProgress = 0f;
 		redProgress  = 0f;
 	}
 	
 	void Update()
     {
+        if (this._game.state == Game.State.INTRODUCTION)
+        {
+            return;
+        }
+
 		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
 		
 		/*
-        if (pad.IsConnected)
-        {
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
-            if (!InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad))
-            {
-                btnResetReleased = true;
-            }
-        }
-        */
-		
-		timeElapsed += Time.deltaTime;
-		
 		if(timeElapsed > gameTime){
 			over = true;
 			Debug.Log("Time out !");
 			_game.unlockCamera();
 			//stuff sur la caméra
 		}
-
-        Gamer.initGamerId();		
-		
-		/*
-		if(pad.IsConnected){
-			if(btnResetReleased && InputSettingsXBOX.GetButton(_game.settings.XboxController.reset, pad)){
-				btnResetReleased = false;
-				Application.LoadLevel(Application.loadedLevel);
-			}
-		}
-		else if(Input.GetKeyDown(resetKey)){
-           	Application.LoadLevel(Application.loadedLevel);
-		}
-		*/
-		
+        */
+        
+        Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
 	
@@ -154,6 +126,11 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void OnGUI()
     {
+        if (this._game.state == Game.State.INTRODUCTION)
+        {
+            return;
+        }
+
 		int offset = 200;
 		
 		//time box
@@ -170,13 +147,16 @@ public class gameUIManager : myMonoBehaviour {
 		Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
 			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
 			blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+
 		Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
 			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
 			blueGaugeBoxWidthPercentage * blueProgress,
 			blueGaugeBoxHeightPercentage);
-		Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
-			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
-			redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
+
+        Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
+            redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
+            redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
+
 		Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
 			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
 			redGaugeBoxWidthPercentage * redProgress, 
@@ -186,6 +166,7 @@ public class gameUIManager : myMonoBehaviour {
 		Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
 			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+
 		Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
 			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
@@ -205,7 +186,7 @@ public class gameUIManager : myMonoBehaviour {
 		float playerLeftBoxHeight = 10;	
 		Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
 		
-		if(!over)
+		if(_game.state != Game.State.END)
         {
 			
 			//superbars
@@ -225,7 +206,7 @@ public class gameUIManager : myMonoBehaviour {
 			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
 			
 			//time
-			GUI.Label(timeBox,  "Time : "+(int)timeElapsed, gameTimeTextStyle);
+			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.TimeEllapsed, gameTimeTextStyle);
 			
 			
 			//Gui du scrum
@@ -255,6 +236,7 @@ public class gameUIManager : myMonoBehaviour {
 					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
 					scrumBarBoxWidthPercentage*blueScrumProgress, 
 					scrumBarBoxHeightPercentage);
+
 				GUI.DrawTexture(scrumBarBox, emptyBar);
 				GUI.DrawTexture(scrumRedBarBox, redBar);
 				GUI.DrawTexture(scrumBlueBarBox,blueBar);

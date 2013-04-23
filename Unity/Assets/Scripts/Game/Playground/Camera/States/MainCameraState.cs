@@ -57,6 +57,12 @@ public class MainCameraState : CameraState {
             return true;
         }
 
+        if (current == Game.State.END)
+        {
+            sm.state_change_son(this, new EndState(sm, cam));
+            return true;
+        }
+
         return false;
     }
 }

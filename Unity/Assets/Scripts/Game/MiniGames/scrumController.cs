@@ -91,7 +91,6 @@ public class scrumController : myMonoBehaviour {
 				
 				_p1.stopMove();
 				_game.disableIA = true;
-				_game.cameraManager.OnScrum(true);
 		    }
 		}
 		
@@ -201,7 +200,6 @@ public class scrumController : myMonoBehaviour {
 		
 		_p1.enableMove();
 		_game.disableIA = false;
-		_game.cameraManager.OnScrum(false);
 		_game.state = Game.State.PLAYING;
 		Init();
 	}

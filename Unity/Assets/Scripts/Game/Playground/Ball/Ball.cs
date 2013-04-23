@@ -141,6 +141,8 @@ public class Ball : TriggeringTriggered {
 		this.rigidbody.isKinematic = false;
         this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
         Owner = null;
+
+        Game.OnDrop();
     }
 
 	public void Pass(Unit to)
@@ -244,7 +246,7 @@ public class Ball : TriggeringTriggered {
         }
     }
 
-    public void EventTackle(Unit tackler, Unit tackled)
+    public void OnTackle(Unit tackler, Unit tackled)
     {
         if(lastTackle == -1)
             lastTackle = Time.time;

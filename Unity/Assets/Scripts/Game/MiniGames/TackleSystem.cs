@@ -57,7 +57,7 @@ public class TackleSystem {
 				if (IsCrit())
 				{
 				//	ball.Owner = tackler;
-			//		ball.transform.parent = tackler;
+			//		ball.transform.parent = tackler;                   
 				}
 				else
 				{
