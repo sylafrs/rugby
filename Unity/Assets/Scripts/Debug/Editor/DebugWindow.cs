@@ -12,6 +12,8 @@ using System.Collections.Generic;
 public class DebugWindow : EditorWindow {
 
     const string root_gameobject = "GameDesign";
+    const bool GO_INIT_OPEN = true;
+    const bool D_INIT_OPEN = true;
 
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
@@ -211,7 +213,7 @@ public class DebugWindow : EditorWindow {
                 go = c.gameObject;
                 if (!registeredGO.ContainsKey(go))
                 {
-                    registeredGO.Add(go, false);
+                    registeredGO.Add(go, GO_INIT_OPEN);
                 }
                 registeredGO[go] = EditorGUILayout.Foldout(registeredGO[go], go.name);
             }
@@ -223,7 +225,7 @@ public class DebugWindow : EditorWindow {
                 EditorGUI.indentLevel++;
                 if (!registeredD.ContainsKey(d))
                 {
-                    registeredD.Add(d, true);
+                    registeredD.Add(d, D_INIT_OPEN);
                 }
 
                 registeredD[d] = EditorGUILayout.Foldout(registeredD[d], c.GetType().Name);

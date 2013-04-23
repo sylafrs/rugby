@@ -171,8 +171,8 @@ public class PassSystem {
 	private bool passValidity()
 	{
 		Vector3 tmpDir = butBleu - butRouge;
-		Debug.Log("direction : " + relativeDirection + " par rapport à : " + tmpDir +
-			" donne le scalaire : " + Vector3.Dot(relativeDirection, tmpDir));
+		// Debug.Log("direction : " + relativeDirection + " par rapport à : " + tmpDir +
+		// 	" donne le scalaire : " + Vector3.Dot(relativeDirection, tmpDir));
 		return Vector3.Dot(relativeDirection, tmpDir) > 0 ? true : false;
 	}
 }

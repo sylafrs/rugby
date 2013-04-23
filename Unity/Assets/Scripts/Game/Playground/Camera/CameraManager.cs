@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 using System.Collections;
+using System;
 
 [AddComponentMenu("Scripts/Camera/CameraManager")]
 public class CameraManager : myMonoBehaviour, Debugable {
@@ -193,7 +194,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	//flipping camera
 	public void flip(){
-		flipInit(new Vector3(0,1,0), 360);
+		flipInit(new Vector3(0,1,0), 180);
 	}
 	
 	void flipInit(Vector3 axis, float angle){
@@ -204,7 +205,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
-	}
+    }
 	
 	void flipUpdate () 
 	{				
@@ -222,7 +223,9 @@ public class CameraManager : myMonoBehaviour, Debugable {
             // Get the angle for the current state
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
 			
-			Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, angleFromZero);
+
+            // Rotates the camera from his previous state to the current one 
+            Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
 			
             // This current state becomes the next previous one
             this.flipLastAngle = angleFromZero;
@@ -240,6 +243,25 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.isflipping  			= false;
 	}
 	
+	/*
+	 * 
+	 * 
+	 * Destination  		: the position to translate to
+	 * Delay				: when to do it
+	 * BlackscreenDuration	: time of black
+	 * Onfinish				: Action to do on finish
+	 * 
+	 */
+	public void transalateWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,
+		float blackScreenDuration, Action Onfinish){
+		
+		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
+			Camera.mainCamera.transform.Translate(destination); 
+			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
+				Onfinish();
+			});
+		});
+	}
 	
 
     public void ForDebugWindow()

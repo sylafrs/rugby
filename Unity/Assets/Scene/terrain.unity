@@ -8666,7 +8666,7 @@ MonoBehaviour:
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: .5, z: -1}
   flipDuration: 1
-  flipDelay: 0
+  flipDelay: .100000001
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:

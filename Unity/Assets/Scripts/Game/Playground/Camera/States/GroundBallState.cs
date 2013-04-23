@@ -13,7 +13,7 @@ public class GroundBallState : CameraState {
 	
 	public override void OnEnter()
     {
-		cam.flip();
+        cam.flip();
     }
 	
     public override bool OnNewOwner(Unit old, Unit current)
