@@ -24,4 +24,10 @@ public class IntroCameraState : CameraState
 		});
     }
 	
+	
+	public override void OnLeave()
+    {
+       	Debug.Log("Leaving intro ...");
+    }
+	
 }
