@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
+using System.Threading;
 
 /**
  * @class Game
@@ -141,6 +142,7 @@ public class Game : myMonoBehaviour {
         state = State.INTRODUCTION;
         introManager.OnFinish = delegate()
         {
+            Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
             state = State.PLAYING;
             arbiter.OnStart();
         };
