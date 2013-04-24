@@ -135,19 +135,29 @@ public class Game : myMonoBehaviour {
         Ball.Owner = p1.Controlled;        
       
 		this.cameraLocked = true;
-		
-		// Must be done by Arbiter
-		// state = State.PLAYING;
+				       
+        introManager.OnFinish = (() =>
+        {
+            state = State.PLAYING;
+            this.SetEnableIA(false);
+
+            Thread t = new Thread(() =>
+            {
+                Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
+                this.SetEnableIA(true);
+            });
+
+            t.Start();  
+            arbiter.OnStart();
+        });
 
         state = State.INTRODUCTION;
-        introManager.OnFinish = delegate()
-        {
-            Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
-            state = State.PLAYING;
-            arbiter.OnStart();
-        };
-
         introManager.enabled = true;
+    }
+
+    void SetEnableIA(bool status)
+    {
+        disableIA = !status;
     }
 
     void Update()
