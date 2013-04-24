@@ -145,22 +145,17 @@ public class Game : myMonoBehaviour {
     void test()
     {
         state = State.PLAYING;
-        this.SetEnableIA(false);
+        this._disableIA = true;
 
         Thread t = new Thread(() => {
             Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
-            this.SetEnableIA(true);
+            this._disableIA = false;
         });
 
         t.Start();
         arbiter.OnStart();
     }
-
-    void SetEnableIA(bool status)
-    {
-        disableIA = !status;
-    }
-
+   
     void Update()
     {
         if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
