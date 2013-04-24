@@ -148,15 +148,8 @@ public class Game : myMonoBehaviour {
         this.SetEnableIA(false);
 
         Thread t = new Thread(() => {
-
             Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
-            
-            try {
-                this.SetEnableIA(true);
-            }
-            catch(System.Exception e) {
-                Debug.LogWarning(e.Message + "\n" + e.StackTrace);
-            }
+            this.SetEnableIA(true);
         });
 
         t.Start();
