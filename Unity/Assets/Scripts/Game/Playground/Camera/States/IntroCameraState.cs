@@ -28,7 +28,7 @@ public class IntroCameraState : CameraState
 	public override void OnLeave()
     {
 		//CameraFade.wannaDie();
-		CameraFade.StartAlphaFade(Color.black,true, 1f, 1f, () => {
+		CameraFade.StartAlphaFade(Color.black,true, 2f, 2f, () => {
 		});
     }
 	
