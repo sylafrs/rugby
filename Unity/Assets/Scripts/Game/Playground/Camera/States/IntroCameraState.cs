@@ -27,7 +27,9 @@ public class IntroCameraState : CameraState
 	
 	public override void OnLeave()
     {
-       	Debug.Log("Leaving intro ...");
+		//CameraFade.wannaDie();
+		CameraFade.StartAlphaFade(Color.black,true, 1f, 1f, () => {
+		});
     }
 	
 }
