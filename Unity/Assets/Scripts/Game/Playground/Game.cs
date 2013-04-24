@@ -136,23 +136,31 @@ public class Game : myMonoBehaviour {
       
 		this.cameraLocked = true;
 				       
-        introManager.OnFinish = (() =>
-        {
-            state = State.PLAYING;
-            /*this.SetEnableIA(false);
-
-            Thread t = new Thread(() =>
-            {
-                Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
-                this.SetEnableIA(true);
-            });
-
-            t.Start();  */
-            arbiter.OnStart();
-        });
+        introManager.OnFinish = test;
 
         state = State.INTRODUCTION;
         introManager.enabled = true;
+    }
+
+    void test()
+    {
+        state = State.PLAYING;
+        this.SetEnableIA(false);
+
+        Thread t = new Thread(() => {
+
+            Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
+            
+            try {
+                this.SetEnableIA(true);
+            }
+            catch(System.Exception e) {
+                Debug.LogWarning(e.Message + "\n" + e.StackTrace);
+            }
+        });
+
+        t.Start();
+        arbiter.OnStart();
     }
 
     void SetEnableIA(bool status)
