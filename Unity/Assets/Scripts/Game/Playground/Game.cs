@@ -139,7 +139,7 @@ public class Game : myMonoBehaviour {
         introManager.OnFinish = (() =>
         {
             state = State.PLAYING;
-            this.SetEnableIA(false);
+            /*this.SetEnableIA(false);
 
             Thread t = new Thread(() =>
             {
@@ -147,7 +147,7 @@ public class Game : myMonoBehaviour {
                 this.SetEnableIA(true);
             });
 
-            t.Start();  
+            t.Start();  */
             arbiter.OnStart();
         });
 
