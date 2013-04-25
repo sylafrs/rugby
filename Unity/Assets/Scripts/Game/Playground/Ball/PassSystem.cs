@@ -83,11 +83,11 @@ public class PassSystem {
 			directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
-			
+			/*
 			if (!passValidity())
 			{
 				CorrectTrajectory();
-			}
+			}*/
 			
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
@@ -126,7 +126,7 @@ public class PassSystem {
 	 * */
 	public void CorrectTrajectory()
 	{
-		Debug.LogWarning("CorrectTrajectory : Tweak the passSpeed or the NMA velocity max if this case is too much present");
+		Debug.LogWarning("CorrectTrajectory : Tweak the passSpeed for the Y curve or the NMA velocity max if this case is too much present");
 		relativePosition = target.transform.position;
 		calculateRelativeDirection();
 		target.Order = Order.OrderMove(relativeDirection, Order.TYPE_DEPLACEMENT.SPRINT);
