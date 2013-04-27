@@ -32,6 +32,8 @@ public class Gamer : myMonoBehaviour
     public Unit Controlled;
     public Game Game;
     public Vector3 PassDirection;
+	private Unit unitTo;
+	private InputDirection.Direction stickDirection;
 
     public InputSettings Inputs;
 
@@ -88,7 +90,7 @@ public class Gamer : myMonoBehaviour
 
         if (Inputs == null) return;
 		if (Game.state != Game.State.PLAYING) return;
-
+		UpdateStickDirection();	
         UpdateMOVE();
         UpdateTACKLE();
         UpdatePASS();
@@ -96,23 +98,87 @@ public class Gamer : myMonoBehaviour
 		UpdateESSAI();
     }
 
+	//maxens dubois
+	//get the 2d vector
+	void UpdateStickDirection()
+	{
+		if (XboxController.IsConnected)
+		{
+			stickDirection = XboxController.GetDirection(Inputs.move.xbox);
+		}
+		else
+		{
+			stickDirection = Inputs.move.keyboard.GetDirection();
+		}
+	}
+
     void UpdatePASS()
     {
         if (Game.Ball.Owner == Controlled)
         {
-            if (Input.GetKeyDown(Inputs.passRight.keyboard) || XboxController.GetButtonDown(Inputs.passRight.xbox))
+			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
-                UpdatePASS_OnPress(true);
+				if (stickDirection.x == 1)
+				{
+					if (Controlled.Team.GetRight(Controlled).Count > 0)
+					{
+						unitTo = Controlled.Team.GetRight(Controlled)[0];
+					}
+					else
+					{
+						return;
+					}
+
+				}
+				else if (stickDirection.x == -1)
+				{
+					if (Controlled.Team.GetLeft(Controlled).Count > 0)
+					{
+						unitTo = Controlled.Team.GetLeft(Controlled)[0];
+					}
+					else
+					{
+						return;
+					}
+				}
+
             }
-            else if (Input.GetKeyDown(Inputs.passLeft.keyboard) || XboxController.GetButtonDown(Inputs.passLeft.xbox))
+			else if (Input.GetKeyDown(Inputs.longPass.keyboard) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
-                UpdatePASS_OnPress(false);
+				if (stickDirection.x == 1)
+				{
+
+					if (Controlled.Team.GetRight(Controlled).Count > 1)
+					{
+						unitTo = Controlled.Team.GetRight(Controlled)[1];
+					}
+					else
+					{
+						unitTo = null;
+						return;
+					}
+
+
+				}
+				else if (stickDirection.x == -1)
+				{
+					if (Controlled.Team.GetLeft(Controlled).Count > 1)
+					{
+						unitTo = Controlled.Team.GetLeft(Controlled)[1];
+					}
+					else
+					{
+						unitTo = null;
+						return;
+					}
+				}
             }
+				
             else if (
-                Input.GetKeyUp(Inputs.passRight.keyboard) ||
-                Input.GetKeyUp(Inputs.passLeft.keyboard) ||
-                XboxController.GetButtonUp(Inputs.passLeft.xbox) ||
-                XboxController.GetButtonUp(Inputs.passRight.xbox))
+                Input.GetKeyUp(Inputs.shortPass.keyboard) ||
+				Input.GetKeyUp(Inputs.longPass.keyboard) ||
+				XboxController.GetButtonUp(Inputs.shortPass.xbox) ||
+				XboxController.GetButtonUp(Inputs.longPass.xbox))
             {
                 UpdatePASS_OnRelease();
             }
@@ -132,18 +198,19 @@ public class Gamer : myMonoBehaviour
     {
         onActionCapture = true;
 
-        if (right)
-        {
-            PassDirection = this.transform.right;
-            Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
-            unitsSide = Controlled.Team.GetRight(Controlled);
-        }
-        else
-        {
-            PassDirection = -this.transform.right;
-            Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
-            unitsSide = Controlled.Team.GetLeft(Controlled);
-        }
+			if (right)
+			{
+				PassDirection = this.transform.right;
+				Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
+				unitsSide = Controlled.Team.GetRight(Controlled);
+			}
+			else
+			{
+				PassDirection = -this.transform.right;
+				Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
+				unitsSide = Controlled.Team.GetLeft(Controlled);
+			}
+
     }
 
     void UpdatePASS_OnRelease()
@@ -154,7 +221,7 @@ public class Gamer : myMonoBehaviour
             if (timeOnActionCapture > Game.settings.maxTimeHoldingPassButton)
                 timeOnActionCapture = Game.settings.maxTimeHoldingPassButton;
             //Debug.DrawRay(this.transform.position, passDirection, Color.red);
-
+			/*
             if (unitsSide.Count != 0)
             {
                 int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / Game.settings.maxTimeHoldingPassButton);
@@ -165,7 +232,10 @@ public class Gamer : myMonoBehaviour
 
                 Controlled.Order = Order.OrderPass(u);
                 PassDirection = Vector3.zero;
-            }
+            }*/
+			if ( unitTo != null )
+				Controlled.Order = Order.OrderPass(unitTo);
+			//PassDirection = Vector3.zero;
         }
         else
         {

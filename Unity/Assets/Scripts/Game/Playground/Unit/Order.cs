@@ -18,6 +18,7 @@ public struct Order  {
         TACKLE,
         FOLLOW,
         TRIANGLE,   // ASSISTER
+		DEFENSIVE_SIDE,
         LANE,      // PRESSER
         SEARCH,
     }
@@ -27,9 +28,18 @@ public struct Order  {
         COURSE,
         SPRINT
     }
+	public enum TYPE_POSITION
+	{
+		EXTRA_LEFT,
+		LEFT,
+		MIDDLE,
+		RIGHT,
+		EXTRA_RIGHT
+	}
 
     public TYPE type;
     public TYPE_DEPLACEMENT deplacement;
+	public TYPE_POSITION position;
 	public float pressionCapture;
 	public Vector3 passDirection;
     public Unit target;
@@ -90,6 +100,16 @@ public struct Order  {
         o.point = new Vector3(distance.x, 0, distance.z * (right ? -1 : 1));
         return o;
     }
+
+	public static Order OrderDefensiveSide(Unit unit, Vector3 distance, bool right, TYPE_POSITION type)
+	{
+		Order o = new Order();
+		o.type = TYPE.DEFENSIVE_SIDE;
+		o.target = unit;
+		o.position = type;
+		o.point = new Vector3(distance.x, 0, distance.z * (right ? -1 : 1));
+		return o;
+	}
 
     public static Order OrderAttack(Unit unit, float distance, bool right)
     {

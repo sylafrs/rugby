@@ -17,6 +17,7 @@ public class Ball : TriggeringTriggered {
 			if(Owner != null) {
 				return Owner.Team;
 			}
+
 			if(PreviousOwner != null) {
 				return PreviousOwner.Team;	
 			}
@@ -30,11 +31,12 @@ public class Ball : TriggeringTriggered {
 
     public bool onGround { get; set; }
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
-	public Vector3 multiplierPass = new Vector3(20.0f, 70.0f, 20.0f);
-	public float passSpeed = 20.0f;
-	public float AngleOfFOV = 0.0f;
+
+	public float passSpeed = 13.0f;
+	public float accelerationPass = 1.5f;
 
 	private Unit _previousOwner;
+	private Unit _nextOwner;
 	private bool goScrum;
 	private Unit _owner;
 
@@ -42,9 +44,6 @@ public class Ball : TriggeringTriggered {
 
 	public float timeOnPass = -1;
 	private PassSystem p;
-	
-	public Color DiscTackle = new Color(0f, 0f, 255f, 33f);
-	public float sizeOfTackleArea = 2f;
 	
 	public Zone inZone {get; set;}
 	//public Touche inTouch {get; set;}
@@ -64,11 +63,20 @@ public class Ball : TriggeringTriggered {
         }
         set
         {
+            if (PreviousOwner == null)
+            {
+                PreviousOwner = value;
+            }
+
             if (_owner != value)
             {
-                PreviousOwner = _owner;
+                if (_owner != null)
+                {
+                    PreviousOwner = _owner;
+                }
+
                 _owner = value;
-                Game.OnOwnerChanged(_owner, value);
+                Game.OnOwnerChanged(PreviousOwner, value);
             }         
         }
     }
@@ -84,6 +92,18 @@ public class Ball : TriggeringTriggered {
             _previousOwner = value;
         }
     }
+
+	public Unit NextOwner
+	{
+		get
+		{
+			return _nextOwner;
+		}
+		set
+		{
+			_previousOwner = value;
+		}
+	}
    
 	new void Start(){
         onGround = false;
@@ -125,8 +145,6 @@ public class Ball : TriggeringTriggered {
 
         UpdateTackle();
 		UpdatePass();
-		
-		drawCone();
     }
 
     public void Drop()
@@ -148,10 +166,10 @@ public class Ball : TriggeringTriggered {
 	public void Pass(Unit to)
 	{
 		//Game.right.But
-        Game.OnPass(this.Owner, to);
-				
-		//Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
-		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		
+Game.OnPass(this.Owner, to);
+
+p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
 	}
@@ -288,24 +306,5 @@ public class Ball : TriggeringTriggered {
             }
         }
     }
-	
-	public void drawCone()
-	{
-		/*
-		float newAngle = AngleOfFOV * Mathf.PI / 180f;
-		Vector3 source = this.Owner.transform.position;
-		source.y = 1f;
-		float tmp = Vector3.Angle( Vector3.forward, this.Owner.transform.forward) * Mathf.PI / 180f;
-		//float alpha = Mathf.Acos( Vector3.Dot(Vector3.forward, this.Owner.transform.forward) / (Vector3.forward.magnitude * this.Owner.transform.forward.magnitude) );
-		Vector3 tmp2 = new Vector3( 10f * Mathf.Sin(tmp + newAngle), 1f, 10f * Mathf.Cos(tmp + newAngle) );
-		Vector3 destination = 10f * this.Owner.transform.forward;
-		Debug.Log("Angle entre x et x' = " + tmp);
-		//destination.y = 1f;
-		Vector3 tmp3 = new Vector3( 10f * this.Owner.transform.forward.x / Mathf.Sin(newAngle) , 1f, 10f * this.Owner.transform.forward.z / Mathf.Cos(newAngle) );
-		Debug.Log(this.Owner.transform.forward);
-		Debug.DrawRay(source, destination, Color.yellow, 10f);
-		Debug.DrawRay(source, tmp2 - source, Color.cyan, 10f);
-		*/
-	}
 	
 }
