@@ -4,6 +4,9 @@
   * @author Sylvain Lafon
   * @see CameraState
   */
+using UnityEngine;
+
+
 public class PlayingState : CameraState
 {
     public PlayingState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
@@ -38,10 +41,15 @@ public class PlayingState : CameraState
     {
         if (current != null)
         {
-            sm.state_change_me(this, new FollowPlayerState(sm, cam, current));
-            return true;
-        }
-
+			if(old == null){
+				Debug.Log("ground -> new owner");
+				if(cam.game.Ball.PreviousOwner.Team != current.Team) cam.flip();
+			}else{
+				if(old.Team != current.Team) cam.flip();
+            	sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
+            	return true;
+			}
+		}
         return false;
     }
 
@@ -49,7 +57,7 @@ public class PlayingState : CameraState
     {
         if (onGround)
         {
-            sm.state_change_me(this, new GroundBallState(sm, cam));
+            sm.state_change_son(this, new GroundBallState(sm, cam));
             return true;
         }
 

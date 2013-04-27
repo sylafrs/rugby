@@ -13,6 +13,6 @@ public class GroundBallState : CameraState {
 	
 	public override void OnEnter()
     {
-        cam.flip();
+ 
     }
 }

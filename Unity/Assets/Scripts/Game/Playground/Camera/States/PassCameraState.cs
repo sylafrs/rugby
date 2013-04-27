@@ -10,5 +10,8 @@ using System.Collections.Generic;
 public class PassCameraState : CameraState {
     public PassCameraState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
 
-    
+    public override void OnEnter()
+    {
+        cam.setTarget(cam.game.Ball.transform);
+    }	
 }
