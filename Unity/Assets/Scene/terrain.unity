@@ -10649,7 +10649,7 @@ MonoBehaviour:
   Vwidth: 4
   LineSpace: 3
   maxTimeHoldingPassButton: 3
-  timeToSleepAfterIntro: 3
+  timeToSleepAfterIntro: 5
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
