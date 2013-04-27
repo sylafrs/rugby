@@ -91,7 +91,7 @@ public class Ball : TriggeringTriggered {
 		}
 		set
 		{
-			_previousOwner = value;
+			_nextOwner = value;
 		}
 	}
    
