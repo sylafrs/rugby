@@ -9,6 +9,9 @@ using System.Collections.Generic;
   */
 [AddComponentMenu("Scripts/Debug/Gizmos (recursively)")]
 public class GizmosRecursively : MonoBehaviour {
+
+	public bool active = true;
+
 	public Color [] colorPattern = {
 		Color.white,
 		Color.red,
@@ -19,7 +22,10 @@ public class GizmosRecursively : MonoBehaviour {
 	public float sizePoint = 1;
 	public float lengthForward = 5;
 	
-	public void OnDrawGizmos() {		
+	public void OnDrawGizmos() {
+		if (!active)
+			return;
+		
 		DrawRecursively(this.transform, 0);
 	}
 	

@@ -92,6 +92,10 @@ public class MainState : UnitState
                 sm.state_change_son(this, new TriangleFormationState(sm, unit));
                 break;
 
+			case Order.TYPE.DEFENSIVE_SIDE:
+				sm.state_change_son(this, new DefensiveSide(sm, unit));
+				break;
+
             case Order.TYPE.LANE:
                 sm.state_change_son(this, new LineFormationState(sm, unit));
                 break;

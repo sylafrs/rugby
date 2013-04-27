@@ -14,7 +14,7 @@ public class Arbiter : MonoBehaviour {
 	
 	public bool ToucheRemiseAuCentre = false;
 	public Transform TouchPlacement = null;
-	public Transform TransfoPlacement = null;	
+	public Transform TransfoPlacement = null;
 	
 	public void OnTouch(Touche t) {
 		if(t == null || Game.state != Game.State.PLAYING) {

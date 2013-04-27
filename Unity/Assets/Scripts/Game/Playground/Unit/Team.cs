@@ -38,6 +38,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 	}
 
     public int nbPoints = 0;
+	public Transform StartPlacement;
 
     private Unit [] units;
 	
@@ -97,9 +98,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         units = new Unit[nbUnits];
         for (int i = 0; i < nbUnits; i++)
         {
-            Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
-
-            GameObject o = GameObject.Instantiate(Prefab_model, pos, Quaternion.identity) as GameObject;
+            GameObject o = GameObject.Instantiate(Prefab_model) as GameObject;
             units[i] = o.GetComponent<Unit>();			
             units[i].Game = Game;
             units[i].name = Name + " " + (i+1).ToString("D2");
@@ -107,17 +106,20 @@ public class Team : myMonoBehaviour, IEnumerable {
             units[i].Team = this;
             //units[i].renderer.material.color = Color;           
         }
-		
+
+		initPos();
 		setSpeed();
     }
 
     public void initPos()
     {
+		/*
         for (int i = 0; i < nbUnits; i++)
         {
             Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
             units[i].transform.position = pos;     
-        }
+        }*/
+		this.placeUnits(StartPlacement);
     }
 
     public bool Contains(Unit unit)
@@ -150,7 +152,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 OwnerChangedOurs();
             }
-            else
+            else if (Game.Ball.NextOwner.Team != this)
             {
                 OwnerChangedBallFree();
             }
@@ -271,7 +273,10 @@ public class Team : myMonoBehaviour, IEnumerable {
         {
             owner.Order = Order.OrderNothing();
         }
-       
+
+
+		Order.TYPE_POSITION typePosition = PositionInMap( owner );
+		Debug.Log("pos in map : " + typePosition);
         foreach (Unit u in units)
         {
             // FIX. (TODO)
@@ -279,11 +284,23 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 if (u != owner)
                 {
-                    u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
+					u.Order = Order.OrderDefensiveSide(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), right, typePosition);
+					//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
                 }
-            }            
-        } 
+            }
+        }
     }
+
+	public Order.TYPE_POSITION PositionInMap(Unit owner)
+	{
+		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
+
+		if (owner.transform.position.z < Game.limiteTerrainSudOuest.transform.position.x + largeurTerrain / 3f)
+			return Order.TYPE_POSITION.LEFT;
+		else if (owner.transform.position.z > Game.limiteTerrainNordEst.transform.position.x - largeurTerrain / 3f)
+			return Order.TYPE_POSITION.RIGHT;
+		return Order.TYPE_POSITION.MIDDLE;
+	}
 	
     void OwnerChangedOpponents()
     {
