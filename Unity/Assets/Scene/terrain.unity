@@ -10645,8 +10645,8 @@ MonoBehaviour:
         left: 0
       xbox: 0
   timePlaque: 3
-  Vheight: 12
-  Vwidth: 2
+  Vheight: 10
+  Vwidth: 4
   LineSpace: 3
   maxTimeHoldingPassButton: 3
   timeToSleepAfterIntro: 3
