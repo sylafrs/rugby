@@ -9,7 +9,14 @@ using System.Threading;
  * @author Sylvain Lafon
  * @author Guilleminot Florian
  */
-[AddComponentMenu("Scripts/Game/Game")]
+[
+    AddComponentMenu("Scripts/Game/Game"),
+    RequireComponent(typeof(IntroManager)),
+    RequireComponent(typeof(scrumController)),
+    RequireComponent(typeof(TackleManager)),
+    RequireComponent(typeof(TouchManager)),
+    RequireComponent(typeof(TransformationManager))
+]
 public class Game : myMonoBehaviour {
 	
 	public enum State {
@@ -20,6 +27,7 @@ public class Game : myMonoBehaviour {
 		TOUCH,
 		SCRUM,
 		TRANSFORMATION,
+        TACKLE,
         END
 	}
 
@@ -143,6 +151,7 @@ public class Game : myMonoBehaviour {
             Thread t = new Thread(() => {
                 Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
                 this._disableIA = false;
+                this.left.fixUnits = this.right.fixUnits = false;
             });
 
             t.Start();

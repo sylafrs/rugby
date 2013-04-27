@@ -92,6 +92,17 @@ public class Unit : TriggeringTriggered, Debugable
 
     public List<Unit> NearUnits {get; set;}
 
+    public int getNearAlliesNumber()
+    {
+        int res = 0;
+        foreach (var u in NearUnits)
+        {
+            if (u.Team == this.Team)
+                res++;
+        }
+        return res;
+    }
+
     public override void Entered(Triggered o, Trigger t)
     {
         Unit other = o.GetComponent<Unit>();
