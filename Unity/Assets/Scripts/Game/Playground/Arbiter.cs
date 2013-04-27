@@ -12,17 +12,31 @@ public class Arbiter : MonoBehaviour {
 		
 	public Game Game {get;set;}
 	
-	public bool ToucheRemiseAuCentre = false;
-	public bool TransfoRemiseAuCentre = false;
-	public Transform TouchPlacement = null;
-	public Transform TransfoPlacement = null;
-
-    public float GameTime;
-    public float TimeEllapsed { get; private set; }
-
+	public bool ToucheRemiseAuCentre 	= false;
+	public bool TransfoRemiseAuCentre 	= false;
+	public Transform TouchPlacement 	= null;
+	public Transform TransfoPlacement 	= null;
+	
+	
+	public  float IngameTime;
+    private float GameTimeDuration;
+	private float IntroDelayTime;
+    private float TimeEllapsedSinceIntro;
+	private bool  TimePaused;
+	
+	
+	void Start(){
+		TimeEllapsedSinceIntro 	= 0;
+		IngameTime	 			= 0;
+		GameTimeDuration 		= Game.settings.score.period_time;
+		IntroDelayTime			= Game.settings.timeToSleepAfterIntro;
+		PauseIngameTime();
+	}
+	
+	//when the game start after intro
     public void OnStart()
     {
-        TimeEllapsed = 0;
+        ResumeIngameTime();
     }
 	
 	public void OnTouch(Touche t) {
@@ -254,18 +268,26 @@ public class Arbiter : MonoBehaviour {
 				
 		tm.enabled = true;
 	}
-
+	
+	public void PauseIngameTime(){
+		TimePaused = true;
+	}
+	
+	public void ResumeIngameTime(){
+		TimePaused = false;
+	}
+	
     public void Update()
     {
-        if (this.Game.state != Game.State.INTRODUCTION &&
-            this.Game.state != Game.State.END)
-        {
-            TimeEllapsed += Time.deltaTime;
-            if (TimeEllapsed > GameTime)
-            {
-                TimeEllapsed = GameTime;
-                this.Game.state = Game.State.END;
-            }
+        if (this.Game.state != Game.State.INTRODUCTION && this.Game.state != Game.State.END){
+       		TimeEllapsedSinceIntro += Time.deltaTime;
+			if(TimeEllapsedSinceIntro > IntroDelayTime){
+				if(TimePaused == false)IngameTime += Time.deltaTime;
+				if(IngameTime > GameTimeDuration){
+					IngameTime = GameTimeDuration;
+                	this.Game.state = Game.State.END;
+				}
+			}
         }
     }
 }

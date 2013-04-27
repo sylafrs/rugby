@@ -22,8 +22,6 @@ public class gameUIManager : myMonoBehaviour {
 	private float blueProgress;
 	private float redProgress;
 	
-
-	
 	//GUI custom
 	public GUIStyle superOkTextStyle;
 	public GUIStyle gameTimeTextStyle;
@@ -83,16 +81,7 @@ public class gameUIManager : myMonoBehaviour {
             return;
         }
 
-		GamePadState pad = GamePad.GetState(_game.p1.playerIndex); 
-		
-		/*
-		if(timeElapsed > gameTime){
-			over = true;
-			Debug.Log("Time out !");
-			_game.unlockCamera();
-			//stuff sur la caméra
-		}
-        */
+		GamePadState pad = GamePad.GetState(_game.p1.playerIndex);
         
         Gamer.initGamerId();					
 		UpdateSuperProgress();
@@ -206,7 +195,7 @@ public class gameUIManager : myMonoBehaviour {
 			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
 			
 			//time
-			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.TimeEllapsed, gameTimeTextStyle);
+			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.IngameTime, gameTimeTextStyle);
 			
 			
 			//Gui du scrum
