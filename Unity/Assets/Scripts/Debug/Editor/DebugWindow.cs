@@ -11,6 +11,10 @@ using System.Collections.Generic;
   */
 public class DebugWindow : EditorWindow {
 
+    const string root_gameobject = "GameDesign";
+    const bool GO_INIT_OPEN = true;
+    const bool D_INIT_OPEN = true;
+
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
     Dictionary<GameObject, System.Boolean> registeredGO = new Dictionary<GameObject, System.Boolean>();
@@ -19,25 +23,38 @@ public class DebugWindow : EditorWindow {
     [MenuItem("Component/Scripts/Debug Window")]
     public static void Init()
     {
-        EditorWindow.GetWindow(typeof(DebugWindow));
+        EditorWindow.GetWindow(typeof(DebugWindow));        
     }
 
     Vector2 scrollPosition = Vector2.zero;
+    EditorMemory mem;
 
     void OnGUI()
     {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-        toDebug.Clear();
-        GameObject root = GameObject.Find("Scene");
-        if (root != null)
+        if (mem == null)
         {
-            Search(root);
-            Print();
+            mem = EditorMemory.Get();
+        }
+
+        if (mem == null)
+        {
+            EditorGUILayout.LabelField("Mémoire non detectée");
         }
         else
         {
-            EditorGUILayout.LabelField("Aucun GameObject detecte");
+            toDebug.Clear();
+            GameObject root = GameObject.Find(root_gameobject);
+            if (root != null)
+            {
+                Search(root);
+                Print();
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Aucun GameObject detecte");
+            }
         }
 
         EditorGUILayout.EndScrollView();
@@ -50,7 +67,8 @@ public class DebugWindow : EditorWindow {
         {
             foreach (var c in components)
             {
-                toDebug.Add(c);
+                if (mem.DebugWindowFilter == string.Empty || c.name.Contains(mem.DebugWindowFilter))
+                    toDebug.Add(c);
             }
         }
 
@@ -130,10 +148,8 @@ public class DebugWindow : EditorWindow {
 
     void Print()
     {
-        GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Trier par : ", GUILayout.Width(65));    
-        sort = (SORT)EditorGUILayout.EnumPopup(sort);
-        GUILayout.EndHorizontal();
+        sort = (SORT)EditorGUILayout.EnumPopup("Trier par :", sort);
+        mem.DebugWindowFilter = EditorGUILayout.TextField("Filtre :", mem.DebugWindowFilter);
 
         switch (sort)
         {
@@ -197,7 +213,7 @@ public class DebugWindow : EditorWindow {
                 go = c.gameObject;
                 if (!registeredGO.ContainsKey(go))
                 {
-                    registeredGO.Add(go, false);
+                    registeredGO.Add(go, GO_INIT_OPEN);
                 }
                 registeredGO[go] = EditorGUILayout.Foldout(registeredGO[go], go.name);
             }
@@ -209,7 +225,7 @@ public class DebugWindow : EditorWindow {
                 EditorGUI.indentLevel++;
                 if (!registeredD.ContainsKey(d))
                 {
-                    registeredD.Add(d, true);
+                    registeredD.Add(d, D_INIT_OPEN);
                 }
 
                 registeredD[d] = EditorGUILayout.Foldout(registeredD[d], c.GetType().Name);

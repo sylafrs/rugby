@@ -5,7 +5,8 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois 
  */
-[AddComponentMenu("Scripts/Game/Scrum Controller")]
+[AddComponentMenu("Scripts/Game/Scrum Controller"),
+	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
 
 	public Camera cam;
@@ -24,7 +25,6 @@ public class scrumController : myMonoBehaviour {
 	private	int currentFrameWait;
 	private int frameToGo;
 	
-	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
 	/** tweak session **/
 	public int scoreTarget 		= 1000;
@@ -37,7 +37,7 @@ public class scrumController : myMonoBehaviour {
 	public float rightGap = -27f;
 	public float leftGap = 10f;
 	
-	private float zGap = 0f;
+	//private float zGap = 0f;
 	private float offset = 0f;
 	
 	public float IAoffset = -0.05f;
@@ -91,7 +91,6 @@ public class scrumController : myMonoBehaviour {
 				
 				_p1.stopMove();
 				_game.disableIA = true;
-				_game.cameraManager.OnScrum(true);
 		    }
 		}
 		
@@ -201,7 +200,6 @@ public class scrumController : myMonoBehaviour {
 		
 		_p1.enableMove();
 		_game.disableIA = false;
-		_game.cameraManager.OnScrum(false);
 		_game.state = Game.State.PLAYING;
 		Init();
 	}

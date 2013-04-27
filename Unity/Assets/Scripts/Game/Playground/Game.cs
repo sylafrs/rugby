@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
+using System.Threading;
 
 /**
  * @class Game
@@ -12,18 +13,34 @@ using XInputDotNetPure;
 public class Game : myMonoBehaviour {
 	
 	public enum State {
+        NULL = 0,
+        INTRODUCTION,
 		PAUSED,
 		PLAYING,
 		TOUCH,
 		SCRUM,
-		TRANSFORMATION
+		TRANSFORMATION,
+        END
 	}
-	
-	public State state = State.PAUSED;
+
+    private State _state = State.PAUSED;
+    public State state
+    {
+        get
+        {
+            return _state;
+        }
+        set
+        {
+            cameraManager.sm.event_GameStateChanged(_state, value);
+            _state = value;
+        }
+    }
 
     public XboxInputs xboxInputs;
     public GameSettings settings;
 	public CameraManager cameraManager;
+    public IntroManager introManager;
 
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
@@ -55,7 +72,6 @@ public class Game : myMonoBehaviour {
     
 	private gameState _gameState;
     private Team Owner;
-	private bool btnIaReleased = true;
 	
     private bool _disableIA = false;
     public bool disableIA
@@ -85,8 +101,7 @@ public class Game : myMonoBehaviour {
         this.Log = this.gameObject.AddComponent<GameLog>();
 		
 		arbiter.Game = this;
-		cameraManager.game = this;
-
+		
         right.Game = this;
         left.Game = this;
         right.right = true;
@@ -120,11 +135,24 @@ public class Game : myMonoBehaviour {
         Ball.Owner = p1.Controlled;        
       
 		this.cameraLocked = true;
-		
-		// Must be done by Arbiter
-		state = State.PLAYING;
-    }
+				       
+        introManager.OnFinish = () => {
+            state = State.PLAYING;
+            this._disableIA = true;
 
+            Thread t = new Thread(() => {
+                Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
+                this._disableIA = false;
+            });
+
+            t.Start();
+            arbiter.OnStart();
+        };
+
+        state = State.INTRODUCTION;
+        introManager.enabled = true;
+    }
+       
     void Update()
     {
         if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
@@ -153,20 +181,30 @@ public class Game : myMonoBehaviour {
 	public void lockCamera(){
 		this.cameraLocked = true;
 	}
+    
+    public void OnDrop()
+    {
+        cameraManager.sm.event_Drop();
+    }
 	
 	public void OnEssai() {
 		arbiter.OnEssai();
 	}
-	
+
+    public void OnPass(Unit from, Unit to)
+    {
+        cameraManager.sm.event_Pass(from, to);
+    }
 
     public void OnOwnerChanged(Unit before, Unit after)
-    {		
+    {
+        cameraManager.sm.event_NewOwner(before, after);
+
 		if (after != null)
         {
             if (after.Team != Owner)
             {
-                Owner = after.Team;
-				cameraManager.OnOwnerChanged();
+                Owner = after.Team;				
             }
 
             // PATCH
@@ -189,15 +227,29 @@ public class Game : myMonoBehaviour {
         this.right.OnOwnerChanged();       
     }
 
+    public void OnSuper(Team team, SuperList super)
+    {
+        cameraManager.sm.event_Super(team, super);
+    }
+
     /**
      * @author Sylvain Lafon
      * @brief Se déclenche quand il y a plaquage
      */
-    public void EventTackle(Unit tackler, Unit tackled)
+    public void OnTackle(Unit tackler, Unit tackled)
     {
+        tackler.sm.event_Tackle(tackler, tackled);
+        tackled.sm.event_Tackle(tackler, tackled);
+        this.cameraManager.sm.event_Tackle(tackler, tackled);
+        
 		if (tackled != Ball.Owner)
 		{			
-			Ball.EventTackle(tackler, tackled);
+			Ball.OnTackle(tackler, tackled);
 		}
+    }
+
+    public void BallOnGround(bool onGround)
+    {
+        cameraManager.sm.event_BallOnGround(onGround);
     }
 }

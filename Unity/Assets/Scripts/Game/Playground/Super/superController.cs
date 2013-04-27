@@ -44,8 +44,13 @@ public class superController : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (this._game.state == Game.State.INTRODUCTION)
+        {
+            return;
+        }
+
 		updateSuperValue();
-		updateSuperInput();
+        updateSuperInput();
 		updateSuperStatus();
 	}
 	
@@ -63,28 +68,32 @@ public class superController : MonoBehaviour {
 		if(_game.state == Game.State.PLAYING) {
 		
 			//offense
-			if(Input.GetKeyDown(superOff.keyboard) || _team.Player.XboxController.GetButtonDown(superOff.xbox)){
-				if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
-					Debug.Log("Offensive Super attack !");
-					launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
-					_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
-				}else{
-					Debug.Log("Need more Power to lauch the offensive super");
-					Debug.Log("Current Power : "+_team.SuperGaugeValue);
-					Debug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
+			if(_team.Player.XboxController != null){
+				if(Input.GetKeyDown(superOff.keyboard) || _team.Player.XboxController.GetButtonDown(superOff.xbox)){
+					if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
+						Debug.Log("Offensive Super attack !");
+						launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
+						_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
+                        _game.OnSuper(_team, SuperList.superDash);
+					}else{
+						Debug.Log("Need more Power to lauch the offensive super");
+						Debug.Log("Current Power : "+_team.SuperGaugeValue);
+						Debug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
+					}
 				}
-			}
-			
-			//defense
-			if(Input.GetKeyDown(superDef.keyboard) || _team.Player.XboxController.GetButtonDown(superDef.xbox)){
-				if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
-					Debug.Log("Defensive Super attack !");
-						launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
-						_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
-				}else{
-					Debug.Log("Need more Power to lauch the defensive super");
-					Debug.Log("Current Power : "+_team.SuperGaugeValue);
-					Debug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
+				
+				//defense
+				if(Input.GetKeyDown(superDef.keyboard) || _team.Player.XboxController.GetButtonDown(superDef.xbox)){
+					if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
+						Debug.Log("Defensive Super attack !");
+							launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
+							_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
+                            _game.OnSuper(_team, SuperList.superWall);
+					}else{
+						Debug.Log("Need more Power to lauch the defensive super");
+						Debug.Log("Current Power : "+_team.SuperGaugeValue);
+						Debug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
+					}
 				}
 			}
 		}
@@ -95,7 +104,7 @@ public class superController : MonoBehaviour {
 			//maj super time
 			SuperTimeLeft -= Time.deltaTime;
 			//Debug.Log("Super Time left  : "+SuperTimeLeft);
-			if(SuperTimeLeft > 0f){
+			/*if(SuperTimeLeft > 0f){
 				switch(currentSuper){
 					case SuperList.superDash:{
 						break;
@@ -112,7 +121,11 @@ public class superController : MonoBehaviour {
 				}
 			}else{
 				endSuper();
-			}
+			}*/
+
+            if (SuperTimeLeft <= 0) {
+                endSuper();
+            }
 		}
 	}
 	

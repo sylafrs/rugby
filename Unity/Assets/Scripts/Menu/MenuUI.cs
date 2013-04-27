@@ -6,7 +6,7 @@ public class MenuUI : MonoBehaviour {
 	void OnGUI()
     {
 		
-		int offset		 = 100;
+		// int offset		 = 100;
 		
 		//a box for the button to launch the game
 		Rect buttonBox = gameUIManager.screenRelativeRect(50- 40/2, 

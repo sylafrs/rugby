@@ -89,4 +89,5 @@ public class GameSettings : myMonoBehaviour {
     public float LineSpace = 1;
 
     public float maxTimeHoldingPassButton = 3; // Seconds
+    public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
 }

@@ -60,8 +60,8 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         }
         while (index > 0)
         {
-            index--;
             list[index].OnLeave();
+            index--;            
         }
         current.OnLeave();
         index = list.IndexOf(current);
@@ -86,11 +86,10 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
             Debug.LogError("state_change_son(" + current + ", " + newstate + ") : " + current + " introuvable !");
             return;
         }
-        index--;
         while (index > 0)
         {
-            index--;
-            list[index].OnLeave();
+            index--; 
+            list[index].OnLeave();                       
         }
         index = list.IndexOf(current);
         if (index == -1)
