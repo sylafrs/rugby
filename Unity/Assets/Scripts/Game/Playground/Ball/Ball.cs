@@ -32,8 +32,10 @@ public class Ball : TriggeringTriggered {
 	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
 
 	public float passSpeed = 13.0f;
+	public float accelerationPass = 1.5f;
 
 	private Unit _previousOwner;
+	private Unit _nextOwner;
 	private bool goScrum;
 	private Unit _owner;
 
@@ -80,6 +82,18 @@ public class Ball : TriggeringTriggered {
             _previousOwner = value;
         }
     }
+
+	public Unit NextOwner
+	{
+		get
+		{
+			return _nextOwner;
+		}
+		set
+		{
+			_previousOwner = value;
+		}
+	}
    
 	new void Start(){
         onGround = false;
@@ -142,10 +156,10 @@ public class Ball : TriggeringTriggered {
 	public void Pass(Unit to)
 	{
 		//Game.right.But
-        Game.OnPass(this.Owner, to);
-				
-		//Debug.LogWarning("Sylvain il faut qu'il soit possible de désactiver l'IA de groupe pour dire à la cible d'aller où je lui dis");
-		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		
+Game.OnPass(this.Owner, to);
+
+p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
 	}

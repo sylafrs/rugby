@@ -26,6 +26,8 @@ public class PassSystem {
 	private float fromVelocity;
 	private Vector3 butBleu;
 	private Vector3 butRouge;
+	private Vector3 butBleuRouge;
+	private float multiplyDirection = 20f;
 	
 	public PassSystem(Vector3 b1, Vector3 b2) {
 		Init(b1, b2, null, null, null);	
@@ -52,6 +54,11 @@ public class PassSystem {
 		this.initialPosition = ball.transform.position;
 		this.butBleu = b1;
 		this.butRouge = b2;
+
+		Debug.DrawRay(this.target.transform.position, new Vector3(-1f, this.target.transform.position.y, 0), Color.yellow, 100f);
+		Debug.DrawRay(this.target.transform.position, new Vector3(1f, this.target.transform.position.y, 0), Color.yellow, 100f);
+		Debug.DrawRay(this.target.transform.position, new Vector3(0f, this.target.transform.position.y, 1f), Color.yellow, 100f);
+		Debug.DrawRay(this.target.transform.position, new Vector3(0f, this.target.transform.position.y, -1f), Color.yellow, 100f);
 	}
 
 	// Getter/Setter
@@ -83,12 +90,20 @@ public class PassSystem {
 			directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
-			/*
+			
 			if (!passValidity())
 			{
 				CorrectTrajectory();
-			}*/
+				CorrectPosition();
+			}
 			
+			multiplyRelativeDirection();
+
+			Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
+			Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
+			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
+			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
+
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
@@ -96,40 +111,59 @@ public class PassSystem {
 			
 			Vector3 tmp = new Vector3(target.transform.position.x, 1.0f, target.transform.position.z);
 			Vector3 tmp2 = new Vector3(relativePosition.x, 5.0f, relativePosition.z);
-			//Debug.DrawLine(ball.transform.position, relativePosition, Color.cyan, 100);
-			//Debug.DrawRay(ball.transform.position, relativeDirection, Color.yellow, 100);
 
 			BetaAngle = Vector3.Angle(Vector3.right, relativeDirection) * Mathf.PI / 180;
 			GammaAngle = Vector3.Angle(Vector3.right, from.transform.forward) * Mathf.PI / 180;
 
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
-			angle = 25.0f * Mathf.PI / 180;
+			angle = Mathf.Deg2Rad * 25.0f;
+
+			target.Order = Order.OrderMove(relativePosition, Order.TYPE_DEPLACEMENT.SPRINT);
+			ball.NextOwner = target;
+
+			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
+			Debug.Log("pos in map : " + typePosition);
+			foreach (Unit u in target.Team)
+			{
+				// FIX. (TODO)
+				if (u.Order.type != Order.TYPE.SEARCH)
+				{
+					if (u != target)
+					{
+						u.Order = Order.OrderDefensiveSide(target, new Vector3(ball.Game.settings.Vheight, 0, ball.Game.settings.Vwidth), target.Team.right, typePosition);
+						//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
+					}
+				}
+			}
 		}
 	}
 	
 	/*
-	 * TODO : keep in mind that the curve on Y in the pass depends of the passSpeed or the NMA velocity
+	 * TODO : keep in mind that the curve on Y in the pass depends of the passSpeed
 	 */
 	public void DoPass(float t)
 	{
-		//Debug.Log(t);
-		//Debug.Log(initialVelocity);
-
-		ball.transform.position = new Vector3(relativeDirection.x * t + initialPosition.x,
-			-0.5f * 9.81f * t * t + /*from.nma.velocity.magnitude*/ velocityPass * Mathf.Sin(angle) * t + initialPosition.y, 
-			relativeDirection.z * t + initialPosition.z);
+		ball.transform.position = new Vector3(relativeDirection.x * 1.5f * t + initialPosition.x,
+			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
+			relativeDirection.z * 1.5f * t + initialPosition.z);
 	}
 	
 	/*
 	 * Correct the relativeDirection to send at the initial position of the target
 	 * TODO : Tweak the passSpeed or the NMA velocity max if this case is too much present;
 	 * */
-	public void CorrectTrajectory()
+	private void CorrectTrajectory()
 	{
-		Debug.LogWarning("CorrectTrajectory : Tweak the passSpeed for the Y curve or the NMA velocity max if this case is too much present");
-		relativePosition = target.transform.position;
-		calculateRelativeDirection();
-		target.Order = Order.OrderMove(relativeDirection, Order.TYPE_DEPLACEMENT.SPRINT);
+		if (from.transform.position.x > target.transform.position.x)
+			relativeDirection = -Vector3.Cross(butBleuRouge, Vector3.up).normalized;
+		else
+			relativeDirection = Vector3.Cross(butBleuRouge, Vector3.up).normalized;
+		//Debug.DrawRay(ball.Owner.transform.position, relativeDirection*100f, Color.cyan, 100f);
+	}
+
+	private void CorrectPosition()
+	{
+		relativePosition = ball.transform.position + relativeDirection * velocityPass * magnitude / target.nma.velocity.magnitude;
 	}
 
 	/*
@@ -161,7 +195,12 @@ public class PassSystem {
 	 */
 	private void calculateRelativeDirection()
 	{
-		relativeDirection = relativePosition - ball.transform.position;
+		relativeDirection = (relativePosition - ball.transform.position).normalized;
+	}
+
+	private void multiplyRelativeDirection()
+	{
+		relativeDirection = relativeDirection * multiplyDirection;
 	}
 
 	/**
@@ -170,9 +209,9 @@ public class PassSystem {
 	 */
 	private bool passValidity()
 	{
-		Vector3 tmpDir = butBleu - butRouge;
-		// Debug.Log("direction : " + relativeDirection + " par rapport à : " + tmpDir +
-		// 	" donne le scalaire : " + Vector3.Dot(relativeDirection, tmpDir));
-		return Vector3.Dot(relativeDirection, tmpDir) > 0 ? true : false;
+		Debug.DrawRay(ball.Owner.transform.position, relativeDirection * 100f, Color.red, 100f);
+		Debug.DrawRay(target.transform.position, target.transform.forward * 100f, Color.red, 100f);
+		butBleuRouge = butBleu - butRouge;
+		return Vector3.Dot(relativeDirection, butBleuRouge) > 0 ? true : false;
 	}
 }
