@@ -156,7 +156,7 @@ public class DefensiveSide : UnitState
 		Vector3 tPos = o.target.transform.position;
 
 		int dif = unit.Team.GetLineNumber(unit, o.target);
-		Debug.Log("diff : " + dif);
+		//Debug.Log("diff : " + dif);
 		float x = o.point.x * dif;
 		float z = o.point.z * Mathf.Abs(dif);
 

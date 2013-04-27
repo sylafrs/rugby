@@ -126,6 +126,7 @@ public class Gamer : myMonoBehaviour
 					}
 					else
 					{
+						unitTo = null;
 						return;
 					}
 
@@ -138,6 +139,7 @@ public class Gamer : myMonoBehaviour
 					}
 					else
 					{
+						unitTo = null;
 						return;
 					}
 				}
