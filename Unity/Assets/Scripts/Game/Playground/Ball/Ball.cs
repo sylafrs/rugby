@@ -157,9 +157,9 @@ public class Ball : TriggeringTriggered {
 	{
 		//Game.right.But
 		
-Game.OnPass(this.Owner, to);
+		Game.OnPass(this.Owner, to);
 
-p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
 		p.CalculatePass();
 		timeOnPass = 0;
 	}
