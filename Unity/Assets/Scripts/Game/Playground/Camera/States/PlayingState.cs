@@ -41,14 +41,13 @@ public class PlayingState : CameraState
     {
         if (current != null)
         {
-			if(old == null){
-				Debug.Log("ground -> new owner");
-				if(cam.game.Ball.PreviousOwner.Team != current.Team) cam.flip();
-			}else{
-				if(old.Team != current.Team) cam.flip();
-            	sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
-            	return true;
-			}
+            if (old.Team != current.Team)
+            {
+                cam.flip();
+            }
+
+            sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
+            return true;          
 		}
         return false;
     }
