@@ -17,6 +17,7 @@ public class Ball : TriggeringTriggered {
 			if(Owner != null) {
 				return Owner.Team;
 			}
+
 			if(PreviousOwner != null) {
 				return PreviousOwner.Team;	
 			}
@@ -62,11 +63,20 @@ public class Ball : TriggeringTriggered {
         }
         set
         {
+            if (PreviousOwner == null)
+            {
+                PreviousOwner = value;
+            }
+
             if (_owner != value)
             {
-                PreviousOwner = _owner;
+                if (_owner != null)
+                {
+                    PreviousOwner = _owner;
+                }
+
                 _owner = value;
-                Game.OnOwnerChanged(_owner, value);
+                Game.OnOwnerChanged(PreviousOwner, value);
             }         
         }
     }
