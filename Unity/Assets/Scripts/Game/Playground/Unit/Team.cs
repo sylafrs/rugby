@@ -152,7 +152,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 OwnerChangedOurs();
             }
-            else if (Game.Ball.NextOwner.Team != this)
+			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
             {
                 OwnerChangedBallFree();
             }
