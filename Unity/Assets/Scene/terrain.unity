@@ -1756,7 +1756,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400020, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
   m_PrefabInternal: {fileID: 1525895213}
   m_GameObject: {fileID: 156800326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 7.73628801e-14, y: 2.7814184e-07, z: 2.7814184e-07, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .0399999991, y: .0399999991, z: .0399999991}
   m_Children:
@@ -8207,15 +8207,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 7.73628801e-14
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 2.7814184e-07
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 2.7814184e-07
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: d21c22b98825e944e807407dfd4ba113, type: 2}
       propertyPath: m_LocalRotation.w
@@ -10478,6 +10478,7 @@ GameObject:
   - 114: {fileID: 2004071856}
   - 114: {fileID: 2004071857}
   - 114: {fileID: 2004071858}
+  - 114: {fileID: 2004071859}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -10539,6 +10540,7 @@ MonoBehaviour:
     points_drop: 3
     points_essai: 5
     points_transfo: 2
+    period_time: 120
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
@@ -11015,7 +11017,7 @@ MonoBehaviour:
   TransfoRemiseAuCentre: 0
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
-  GameTime: 100
+  IngameTime: 0
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11027,6 +11029,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e50eb0204974454e8bf1c2d7bdaacca, type: 3}
   m_Name: 
   touch:
+    keyboard: 97
+    xbox: 0
+--- !u!114 &2004071859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b504803cbe0ce47a0a73833dae60e2, type: 3}
+  m_Name: 
+  tempsPlaquage: 1
+  ralentiPlaquage: 1
+  touchPassOnTackle:
     keyboard: 97
     xbox: 0
 --- !u!1 &2018489758
