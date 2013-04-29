@@ -10,9 +10,10 @@ using System.Collections;
 [System.Serializable]
 public class ScoreSettings
 {
-    public int points_drop = 5;
-    public int points_essai = 5;
-	public int points_transfo = 3;
+    public int 	points_drop = 5;
+    public int 	points_essai = 5;
+	public int 	points_transfo = 3;
+	public float period_time = 120f;
 }
 
 /**
