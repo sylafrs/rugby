@@ -151,7 +151,6 @@ public class Game : myMonoBehaviour {
             Thread t = new Thread(() => {
                 Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
                 this._disableIA = false;
-                this.left.fixUnits = this.right.fixUnits = false;
             });
 
             t.Start();
@@ -247,14 +246,17 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        tackler.sm.event_Tackle(tackler, tackled);
-        tackled.sm.event_Tackle(tackler, tackled);
+        // tackler.sm.event_Tackle(tackler, tackled);
+        // tackled.sm.event_Tackle(tackler, tackled);
+        this.arbiter.OnTackle(tackler, tackled);
+
         this.cameraManager.sm.event_Tackle(tackler, tackled);
-        
+        /*
 		if (tackled != Ball.Owner)
 		{			
 			Ball.OnTackle(tackler, tackled);
 		}
+        */
     }
 
     public void BallOnGround(bool onGround)

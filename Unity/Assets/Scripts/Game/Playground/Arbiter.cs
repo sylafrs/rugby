@@ -174,12 +174,25 @@ public class Arbiter : MonoBehaviour {
         tm.tackler = tackler;
         tm.tackled = tackled;
 
+        // End of a tackle, according to the result
         tm.callback = (TackleManager.RESULT res) =>
         {
             switch (res)
             {
+                // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
                 case TackleManager.RESULT.CRITIC:
                     this.Game.Ball.Owner = tackler;
+                    break;
+
+                // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
+                case TackleManager.RESULT.PASS:
+
+                    break;
+
+                // Normal : les deux sont knock-out et la balle est par terre 
+                // /!\ Mêlée possible /!\
+                case TackleManager.RESULT.NORMAL:
+
                     break;
             }
 
@@ -225,6 +238,7 @@ public class Arbiter : MonoBehaviour {
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
 		
+        // After the transformation is done, according to the result :
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			
 			
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
