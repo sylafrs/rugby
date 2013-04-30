@@ -152,7 +152,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 OwnerChangedOurs();
             }
-            else if (Game.Ball.NextOwner.Team != this)
+			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
             {
                 OwnerChangedBallFree();
             }
@@ -276,7 +276,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 
 		Order.TYPE_POSITION typePosition = PositionInMap( owner );
-		Debug.Log("pos in map : " + typePosition);
+		//Debug.Log("pos in map : " + typePosition);
         foreach (Unit u in units)
         {
             // FIX. (TODO)

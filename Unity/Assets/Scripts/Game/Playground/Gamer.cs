@@ -126,6 +126,7 @@ public class Gamer : myMonoBehaviour
 					}
 					else
 					{
+						unitTo = null;
 						return;
 					}
 
@@ -138,6 +139,7 @@ public class Gamer : myMonoBehaviour
 					}
 					else
 					{
+						unitTo = null;
 						return;
 					}
 				}
@@ -233,7 +235,7 @@ public class Gamer : myMonoBehaviour
                 Controlled.Order = Order.OrderPass(u);
                 PassDirection = Vector3.zero;
             }*/
-			if ( unitTo != null )
+			if ( unitTo != null && unitTo != Game.Ball.Owner )
 				Controlled.Order = Order.OrderPass(unitTo);
 			//PassDirection = Vector3.zero;
         }

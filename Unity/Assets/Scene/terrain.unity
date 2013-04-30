@@ -7891,7 +7891,7 @@ MonoBehaviour:
   m_Name: 
   Game: {fileID: 2004071851}
   multiplierDrop: {x: 500, y: 1100, z: 0}
-  passSpeed: 13
+  passSpeed: 18
   accelerationPass: 1.5
   lastTackle: -1
   timeOnPass: -1

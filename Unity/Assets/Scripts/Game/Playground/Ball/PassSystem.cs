@@ -54,11 +54,12 @@ public class PassSystem {
 		this.initialPosition = ball.transform.position;
 		this.butBleu = b1;
 		this.butRouge = b2;
-
+		/*
 		Debug.DrawRay(this.target.transform.position, new Vector3(-1f, this.target.transform.position.y, 0), Color.yellow, 100f);
 		Debug.DrawRay(this.target.transform.position, new Vector3(1f, this.target.transform.position.y, 0), Color.yellow, 100f);
 		Debug.DrawRay(this.target.transform.position, new Vector3(0f, this.target.transform.position.y, 1f), Color.yellow, 100f);
 		Debug.DrawRay(this.target.transform.position, new Vector3(0f, this.target.transform.position.y, -1f), Color.yellow, 100f);
+		 * */
 	}
 
 	// Getter/Setter
@@ -98,12 +99,12 @@ public class PassSystem {
 			}
 			
 			multiplyRelativeDirection();
-
+			/*
 			Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
-
+			*/
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
@@ -122,7 +123,7 @@ public class PassSystem {
 			ball.NextOwner = target;
 
 			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
-			Debug.Log("pos in map : " + typePosition);
+			//Debug.Log("pos in map : " + typePosition);
 			foreach (Unit u in target.Team)
 			{
 				// FIX. (TODO)
@@ -209,8 +210,8 @@ public class PassSystem {
 	 */
 	private bool passValidity()
 	{
-		Debug.DrawRay(ball.Owner.transform.position, relativeDirection * 100f, Color.red, 100f);
-		Debug.DrawRay(target.transform.position, target.transform.forward * 100f, Color.red, 100f);
+		//Debug.DrawRay(ball.Owner.transform.position, relativeDirection * 100f, Color.red, 100f);
+		//Debug.DrawRay(target.transform.position, target.transform.forward * 100f, Color.red, 100f);
 		butBleuRouge = butBleu - butRouge;
 		return Vector3.Dot(relativeDirection, butBleuRouge) > 0 ? true : false;
 	}
