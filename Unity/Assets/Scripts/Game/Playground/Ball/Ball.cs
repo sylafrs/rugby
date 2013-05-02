@@ -75,6 +75,7 @@ public class Ball : TriggeringTriggered {
                 }
 
                 _owner = value;
+			
                 Game.OnOwnerChanged(PreviousOwner, value);
             }         
         }

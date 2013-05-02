@@ -10,58 +10,74 @@ using UnityEngine;
 public class PlayingState : CameraState
 {
     public PlayingState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
+	
+	private Game.State firstState;
 
     public override void OnEnter()
     {
-        decide();
+       decide(cam.game.state);
     }
 
     public override void OnLeave()
     {
         // cam.setTarget(null);
     }
-
-    private bool decide()
+	
+	public override bool OnGameStateChanged(Game.State old, Game.State current)
     {
-        Unit ballOwner = cam.game.Ball.Owner;
-
-        if (ballOwner == null)
+        if (old == current)
         {
-            sm.state_change_son(this, new GroundBallState(sm, cam));
-        }
-        else
-        {
-            sm.state_change_son(this, new FollowPlayerState(sm, cam, ballOwner));
+            throw new UnityException("OnGameStateChanged called without state changement..\nHow strange !");
         }
 
-        return true;
+        return this.decide(current);
     }
-
-    public override bool OnNewOwner(Unit old, Unit current)
+	
+	public override bool OnNewOwner(Unit old, Unit current)
     {
         if (current != null)
         {
-            if (old.Team != current.Team)
+            if ((old != null)&&(old.Team != current.Team))
             {
                 cam.flipForTeam(current.Team);
             }
-
-            sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
-            return true;          
 		}
         return false;
     }
-
-    public override bool OnBallOnGround(bool onGround)
+	
+    private bool decide(Game.State current)
     {
-        if (onGround)
+        Unit ballOwner = cam.game.Ball.Owner;
+		
+		//playin means followin
+       	if (current == Game.State.PLAYING)
         {
-            sm.state_change_son(this, new GroundBallState(sm, cam));
+            sm.state_change_son(this, new NewOwnerState(sm, cam, ballOwner));
+			return true;
+        }
+		
+		if (current == Game.State.SCRUM)
+        {
+            sm.state_change_son(this, new ScrumState(sm, cam));
+            return true;
+        }
+		
+        if (current == Game.State.TOUCH)
+        {
+            sm.state_change_son(this, new TouchState(sm, cam));
+            return true;
+        }
+       
+        if (current == Game.State.TRANSFORMATION)
+        {
+            sm.state_change_son(this, new TransfoState(sm, cam));
             return true;
         }
 
         return false;
     }
+
+    
 
     public override bool OnSuper(Team t, SuperList super)
     {

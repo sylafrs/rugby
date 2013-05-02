@@ -14,7 +14,7 @@ public class MainCameraState : CameraState {
     {
         this.decide(Game.State.NULL, cam.game.state);
     }
-
+	
     public override bool OnGameStateChanged(Game.State old, Game.State current)
     {
         if (old == current)
@@ -24,7 +24,8 @@ public class MainCameraState : CameraState {
 
         return this.decide(old, current);
     }
-
+	
+	
     public bool decide(Game.State old, Game.State current)
     {
         if (current == Game.State.INTRODUCTION)
@@ -33,35 +34,16 @@ public class MainCameraState : CameraState {
             return true;
         }
 
-        if (current == Game.State.PLAYING)
-        {
-            sm.state_change_son(this, new PlayingState(sm, cam));
-            return true;
-        }
-
-        if (current == Game.State.SCRUM)
-        {
-            sm.state_change_son(this, new ScrumState(sm, cam));
-            return true;
-        }
-
-        if (current == Game.State.TOUCH)
-        {
-            sm.state_change_son(this, new TouchState(sm, cam));
-            return true;
-        }
-
-        if (current == Game.State.TRANSFORMATION)
-        {
-            sm.state_change_son(this, new TransfoState(sm, cam));
-            return true;
-        }
-
         if (current == Game.State.END)
         {
             sm.state_change_son(this, new EndState(sm, cam));
             return true;
-        }
+		}
+		
+		if(old == Game.State.INTRODUCTION || old == Game.State.END) {
+			sm.state_change_son(this, new PlayingState(sm, cam));	
+			return true;
+		}
 
         return false;
     }

@@ -23663,7 +23663,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   scoreTarget: 1000
   playerUp: 15
-  cpuUp: 70
+  cpuUp: 2
   specialLuck: 20
   playerSpecialUp: 80
   frameStart: 50

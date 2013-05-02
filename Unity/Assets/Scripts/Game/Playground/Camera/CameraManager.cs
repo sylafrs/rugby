@@ -174,12 +174,13 @@ public class CameraManager : myMonoBehaviour, Debugable {
      */
 	
 	//flipping camera
-	public void flip(){
+	private void flip(){
 		flipInit(new Vector3(0,1,0), 180);
 	}
 	
 	public void flipForTeam(Team _t)
 	{
+		Debug.Log("Flip for Team "+_t);
 		if(isflipping == false){
 			//on lance le flip seulement si c'est un team différente
 			if(flipedForTeam != _t){

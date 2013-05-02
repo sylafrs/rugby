@@ -237,12 +237,12 @@ public class gameUIManager : myMonoBehaviour {
 				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
 				
 				//debug
-				/*
+				
 				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
 				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
 				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
 				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
-				*/
+				
 			}
 			
 			

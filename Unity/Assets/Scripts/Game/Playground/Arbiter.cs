@@ -109,7 +109,7 @@ public class Arbiter : MonoBehaviour {
 			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
 			touchTeam.placeUnit(passUnitPosition, 0);
 			
-			Game.Ball.Owner = touchTeam[0];
+			//Game.Ball.Owner = touchTeam[0];
 			
 			// Switch de caméra
 			
