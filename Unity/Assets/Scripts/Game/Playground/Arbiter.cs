@@ -110,19 +110,7 @@ public class Arbiter : MonoBehaviour {
 			touchTeam.placeUnit(passUnitPosition, 0);
 			
 			Game.Ball.Owner = touchTeam[0];
-			
-			// Switch de caméra
-			
-            /*
-            Game.cameraManager.gameCamera.gameObject.SetActive(false);
-			Game.cameraManager.touchCamera.gameObject.SetActive(true);
-			
-			// Placement de la caméra
-			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
-			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
-			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
-			*/
-
+			        
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
@@ -137,9 +125,6 @@ public class Arbiter : MonoBehaviour {
 						
 			// Fonction à appeller à la fin de la touche
 			tm.CallBack = delegate(TouchManager.Result result, int id) {
-				
-				// On remet la caméra à sa rotation d'origine
-				//Game.cameraManager.gameCamera.ResetRotation();
 								
 				// On donne la balle à la bonne personne
 				if(result == TouchManager.Result.INTERCEPTION) {
@@ -148,12 +133,7 @@ public class Arbiter : MonoBehaviour {
 				else {
 					Game.Ball.Owner = touchTeam[id+1];
 				}
-				
-				// Caméra bien orientée
-				/*if(Game.Ball.Owner.Team == Game.left) {
-					Game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
-				}*/
-								
+							
 				// Indicateur de bouton
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
@@ -161,11 +141,7 @@ public class Arbiter : MonoBehaviour {
 				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
-				
-				// Caméra
-				//Game.cameraManager.gameCamera.gameObject.SetActive(true);
-				//Game.cameraManager.touchCamera.gameObject.SetActive(false);
-				
+					
 				// Retour en jeu
 				Game.state = Game.State.PLAYING;
 				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
@@ -216,28 +192,7 @@ public class Arbiter : MonoBehaviour {
 		
 		// Switch/Position de caméra
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
-		//Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
-			
-		///////
-		
-		/*Vector3 BallCamera = cameraPlaceHolder.transform.position - Game.Ball.Owner.transform.position;
-		BallCamera.y = 0;
 				
-		Vector3 ButBall = Game.Ball.Owner.transform.position - butPoint.transform.position;
-		ButBall.y = 0;
-		
-		Vector3 CameraPos = ButBall.normalized * BallCamera.magnitude + Game.Ball.Owner.transform.position;
-		CameraPos.y = cameraPlaceHolder.transform.position.y;
-		
-		Game.cameraManager.transfoCamera.transform.position = CameraPos;*/
-		
-		///////
-		
-		//Game.cameraManager.gameCamera.gameObject.SetActive(false);
-		//Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
-		
-		//Game.cameraManager.transfoCamera.transform.LookAt(butPoint);
-		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
@@ -255,11 +210,8 @@ public class Arbiter : MonoBehaviour {
                 Game.Ball.setPosition(Vector3.zero);
                 Game.right.initPos();
                 Game.left.initPos();
-            }
-          
-			// Game.cameraManager.gameCamera.gameObject.SetActive(true);
-			// Game.cameraManager.transfoCamera.gameObject.SetActive(false);
-			
+            }          
+		
 			Game.state = Game.State.PLAYING;
 			t.fixUnits = t.opponent.fixUnits = false;	
 			if(t.Player) t.Player.enableMove();

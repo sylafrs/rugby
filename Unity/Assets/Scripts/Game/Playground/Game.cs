@@ -125,6 +125,7 @@ public class Game : myMonoBehaviour {
             p2.Game = this;
             p2.Team = left;
             p2.Controlled = left[0];
+            p2.Controlled.IndicateSelected(true);
             p2.Inputs = settings.inputs2;
         }
 
@@ -217,7 +218,9 @@ public class Game : myMonoBehaviour {
             }
             else if (p2 != null)
             {
+                p2.Controlled.IndicateSelected(false);
                 p2.Controlled = after;
+                p2.Controlled.IndicateSelected(true);
             }
 
             Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);

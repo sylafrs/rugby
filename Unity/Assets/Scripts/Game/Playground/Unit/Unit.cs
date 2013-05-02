@@ -50,6 +50,7 @@ public class Unit : TriggeringTriggered, Debugable
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
+        // TODO TEMPORARY STOP
         if (TemporaryAnimRun && nma.velocity.magnitude < 0.5f)
         {
             if (isAnimated)
