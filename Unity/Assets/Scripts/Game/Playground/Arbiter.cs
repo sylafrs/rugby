@@ -178,7 +178,10 @@ public class Arbiter : MonoBehaviour {
 	}
 	
 	public void OnScrum() {
-		
+		scrumController sc =  this.Game.GetComponent<scrumController>();
+		sc.callback = (Team t) => {
+			Game.Ball.Owner = t[0];
+		};
 	}
 		
 	public void OnTackle() {

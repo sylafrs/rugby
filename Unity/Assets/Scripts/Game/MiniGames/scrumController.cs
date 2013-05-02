@@ -34,6 +34,8 @@ public class scrumController : myMonoBehaviour {
 	public int playerSpecialUp 	= 80;
 	public int frameStart		= 30;
 	
+	public System.Action<Team> callback;
+	
 	public float rightGap = -27f;
 	public float leftGap = 10f;
 	
@@ -94,20 +96,17 @@ public class scrumController : myMonoBehaviour {
 		    }
 		}
 		
-		if(inScrum){
-			
+		if(inScrum){	
 			timeRemaining -= Time.deltaTime;
 			if(timeRemaining < 0) {
 				timeRemaining = 0;	
 			}
 			if(timeRemaining == 0 && playerScore != cpuScore) {
 				if(playerScore < cpuScore) {
-					Debug.Log("cpu win");
-					_ball.Owner = _t2[0];
+					if(callback != null) callback(_t2);
 				}
 				else {
-					Debug.Log("player win");
-					_ball.Owner = _t1[0];
+					if(callback != null) callback(_t1);
 				}
 				
 				endScrum();
@@ -149,8 +148,8 @@ public class scrumController : myMonoBehaviour {
 		offset += IAoffset;
 		if(cpuScore > scoreTarget){
 			//cpu win
-			Debug.Log("cpu win");
-			_ball.Owner = _t2[0];
+			Debug.Log("Cpu win Scrum");
+			if(callback != null) callback(_t1);
 			endScrum();
 		}
 	}
@@ -184,6 +183,7 @@ public class scrumController : myMonoBehaviour {
 			Debug.Log("player win");
 			//Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
 			_ball.Owner = _t1[0];
+			_game.OnOwnerChanged(_game.Ball.PreviousOwner, _t1[0]);
 			endScrum();
 		}
 		offset += playerOffset;
