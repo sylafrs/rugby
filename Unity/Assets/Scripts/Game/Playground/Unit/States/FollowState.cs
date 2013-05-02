@@ -36,7 +36,7 @@ public class FollowState : UnitState {
             pos = target.transform.position;
         }
 
-        unit.GetNMA().stoppingDistance = 2;
-        unit.GetNMA().SetDestination(pos);
+        unit.nma.stoppingDistance = 2;
+        unit.nma.SetDestination(pos);
     }
 }

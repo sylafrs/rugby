@@ -14,17 +14,18 @@ class PlaqueState : UnitState
     public override void OnEnter()
     {
         t = 0;
-        unit.GetNMA().Stop();
+        unit.nma.Stop();
 
         if (unit == unit.Game.Ball.Owner)
         {
             unit.Game.Ball.Put();
         }
 
-		if(unit.Team == unit.Game.left)
-		foreach (var mat in unit.renderer.materials)
-		{
-			mat.color = Color.yellow;
+		if(unit.Team.useColors && unit.Model) {
+			foreach (var mat in unit.Model.materials)
+			{
+				mat.color = unit.Team.PlaqueColor;
+			}
 		}
     }
 
@@ -39,10 +40,11 @@ class PlaqueState : UnitState
 
 	public override void OnLeave()
 	{
-		if (unit.Team == unit.Game.left)
-		foreach (var mat in unit.renderer.materials)
-		{
-			mat.color = Color.red;
+		if (unit.Team.useColors && unit.Model) {
+			foreach (var mat in unit.Model.materials)
+			{
+				mat.color = unit.Team.Color;
+			}
 		}
 	}
 }

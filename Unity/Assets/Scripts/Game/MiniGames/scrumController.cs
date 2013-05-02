@@ -5,7 +5,8 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois 
  */
-[AddComponentMenu("Scripts/Game/Scrum Controller")]
+[AddComponentMenu("Scripts/Game/Scrum Controller"),
+	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
 
 	public Camera cam;
@@ -24,7 +25,6 @@ public class scrumController : myMonoBehaviour {
 	private	int currentFrameWait;
 	private int frameToGo;
 	
-	private bool btnScrumNormalReleased = true, btnScrumSpecialReleased = true;
 	
 	/** tweak session **/
 	public int scoreTarget 		= 1000;
@@ -37,11 +37,14 @@ public class scrumController : myMonoBehaviour {
 	public float rightGap = -27f;
 	public float leftGap = 10f;
 	
-	private float zGap = 0f;
+	//private float zGap = 0f;
 	private float offset = 0f;
 	
 	public float IAoffset = -0.05f;
 	public float playerOffset = 0.5f;
+	
+	public int timer = 10;
+	public float timeRemaining {get; private set;}
 		
 	/*
  	 *@author Maxens Dubois 
@@ -69,6 +72,7 @@ public class scrumController : myMonoBehaviour {
         playerSpecial    = false;
 		offset           = 0f;
 		frameToGo 		 = frameStart;
+		timeRemaining	 = timer;
     }
 	
 	
@@ -87,11 +91,28 @@ public class scrumController : myMonoBehaviour {
 				
 				_p1.stopMove();
 				_game.disableIA = true;
-				_game.cameraManager.OnScrum(true);
 		    }
 		}
 		
 		if(inScrum){
+			
+			timeRemaining -= Time.deltaTime;
+			if(timeRemaining < 0) {
+				timeRemaining = 0;	
+			}
+			if(timeRemaining == 0 && playerScore != cpuScore) {
+				if(playerScore < cpuScore) {
+					Debug.Log("cpu win");
+					_ball.Owner = _t2[0];
+				}
+				else {
+					Debug.Log("player win");
+					_ball.Owner = _t1[0];
+				}
+				
+				endScrum();
+				return;
+			}
 			
 			currentFrameWait ++;
 			playersInline(offset);	
@@ -179,7 +200,6 @@ public class scrumController : myMonoBehaviour {
 		
 		_p1.enableMove();
 		_game.disableIA = false;
-		_game.cameraManager.OnScrum(false);
 		_game.state = Game.State.PLAYING;
 		Init();
 	}
@@ -204,8 +224,8 @@ public class scrumController : myMonoBehaviour {
                 int dif = u1.Team.GetLineNumber(u1, cap1);
                 float x = 3 * dif;
 
-                u1.GetNMA().stoppingDistance = 0;
-                u1.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
+                u1.nma.stoppingDistance = 0;
+                u1.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 			
 			if(cap2 != u2){
@@ -214,8 +234,8 @@ public class scrumController : myMonoBehaviour {
                 int dif = u2.Team.GetLineNumber(u2, cap2);
                 float x = 3 * dif;
 
-                u2.GetNMA().stoppingDistance = 0;
-                u2.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
+                u2.nma.stoppingDistance = 0;
+                u2.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
 			}
 		}       
 	}

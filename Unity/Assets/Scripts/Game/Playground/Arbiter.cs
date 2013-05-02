@@ -12,9 +12,32 @@ public class Arbiter : MonoBehaviour {
 		
 	public Game Game {get;set;}
 	
-	public bool ToucheRemiseAuCentre = false;
-	public Transform TouchPlacement = null;
-	public Transform TransfoPlacement = null;	
+	public bool ToucheRemiseAuCentre 	= false;
+	public bool TransfoRemiseAuCentre 	= false;
+	public Transform TouchPlacement 	= null;
+	public Transform TransfoPlacement 	= null;
+	
+	
+	public  float IngameTime;
+    private float GameTimeDuration;
+	private float IntroDelayTime;
+    private float TimeEllapsedSinceIntro;
+	private bool  TimePaused;
+	
+	
+	void Start(){
+		TimeEllapsedSinceIntro 	= 0;
+		IngameTime	 			= 0;
+		GameTimeDuration 		= Game.settings.score.period_time;
+		IntroDelayTime			= Game.settings.timeToSleepAfterIntro;
+		PauseIngameTime();
+	}
+	
+	//when the game start after intro
+    public void OnStart()
+    {
+        ResumeIngameTime();
+    }
 	
 	public void OnTouch(Touche t) {
 		if(t == null || Game.state != Game.State.PLAYING) {
@@ -54,23 +77,11 @@ public class Arbiter : MonoBehaviour {
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
 			
-			// Fixe et place les unités (relatif à la touche déjà placée)	
-			
-			interceptTeam.fixUnits = touchTeam.fixUnits = true;			
+			// Fixe les unités			
 			if(interceptTeam.Player) interceptTeam.Player.stopMove();
 			if(touchTeam.Player) touchTeam.Player.stopMove();
-						
-			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
-			interceptTeam.placeUnits(interceptConfiguration);
-			
-			Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
-			touchTeam.placeUnits(passConfiguration, 1);
-			
-			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
-			touchTeam.placeUnit(passUnitPosition, 0);
-			
-			Game.Ball.Owner = touchTeam[0];
-			
+			interceptTeam.fixUnits = touchTeam.fixUnits = true;					
+									
 			// Bouttons pour la touche.			
 			interceptTeam[0].buttonIndicator.ApplyTexture("A");
 			interceptTeam[1].buttonIndicator.ApplyTexture("B");
@@ -88,15 +99,30 @@ public class Arbiter : MonoBehaviour {
 			touchTeam[2].buttonIndicator.target.renderer.enabled = true;
 			touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 			
+			// Place les unités
+			Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
+			interceptTeam.placeUnits(interceptConfiguration);
+			
+			Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
+			touchTeam.placeUnits(passConfiguration, 1);
+			
+			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
+			touchTeam.placeUnit(passUnitPosition, 0);
+			
+			Game.Ball.Owner = touchTeam[0];
+			
 			// Switch de caméra
-			Game.cameraManager.gameCamera.gameObject.SetActive(false);
+			
+            /*
+            Game.cameraManager.gameCamera.gameObject.SetActive(false);
 			Game.cameraManager.touchCamera.gameObject.SetActive(true);
 			
 			// Placement de la caméra
 			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
 			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
 			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
-			
+			*/
+
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
@@ -113,28 +139,34 @@ public class Arbiter : MonoBehaviour {
 			tm.CallBack = delegate(TouchManager.Result result, int id) {
 				
 				// On remet la caméra à sa rotation d'origine
-				Game.cameraManager.gameCamera.ResetRotation();
+				//Game.cameraManager.gameCamera.ResetRotation();
 								
-				if(result == TouchManager.Result.INTERCEPTION)
+				// On donne la balle à la bonne personne
+				if(result == TouchManager.Result.INTERCEPTION) {
 					Game.Ball.Owner = interceptTeam[id];
-				else
-					Game.Ball.Owner = touchTeam[id+1];
-				
-				if(Game.Ball.Owner.Team == Game.left) {
-					Game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
 				}
+				else {
+					Game.Ball.Owner = touchTeam[id+1];
+				}
+				
+				// Caméra bien orientée
+				/*if(Game.Ball.Owner.Team == Game.left) {
+					Game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
+				}*/
 								
+				// Indicateur de bouton
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
-				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;
-				
+				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;				
 				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
 				
-				Game.cameraManager.gameCamera.gameObject.SetActive(true);
-				Game.cameraManager.touchCamera.gameObject.SetActive(false);
+				// Caméra
+				//Game.cameraManager.gameCamera.gameObject.SetActive(true);
+				//Game.cameraManager.touchCamera.gameObject.SetActive(false);
 				
+				// Retour en jeu
 				Game.state = Game.State.PLAYING;
 				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
 				if(interceptTeam.Player) interceptTeam.Player.enableMove();
@@ -184,11 +216,11 @@ public class Arbiter : MonoBehaviour {
 		
 		// Switch/Position de caméra
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
-		Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
+		//Transform cameraPlaceHolder = TransfoPlacement.FindChild("CameraPlaceHolder");
 			
 		///////
 		
-		Vector3 BallCamera = cameraPlaceHolder.transform.position - Game.Ball.Owner.transform.position;
+		/*Vector3 BallCamera = cameraPlaceHolder.transform.position - Game.Ball.Owner.transform.position;
 		BallCamera.y = 0;
 				
 		Vector3 ButBall = Game.Ball.Owner.transform.position - butPoint.transform.position;
@@ -197,46 +229,65 @@ public class Arbiter : MonoBehaviour {
 		Vector3 CameraPos = ButBall.normalized * BallCamera.magnitude + Game.Ball.Owner.transform.position;
 		CameraPos.y = cameraPlaceHolder.transform.position.y;
 		
-		Game.cameraManager.transfoCamera.transform.position = CameraPos;
+		Game.cameraManager.transfoCamera.transform.position = CameraPos;*/
 		
 		///////
 		
-		Game.cameraManager.gameCamera.gameObject.SetActive(false);
-		Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
+		//Game.cameraManager.gameCamera.gameObject.SetActive(false);
+		//Game.cameraManager.transfoCamera.gameObject.SetActive(true);		
 		
-		Game.cameraManager.transfoCamera.transform.LookAt(butPoint);
+		//Game.cameraManager.transfoCamera.transform.LookAt(butPoint);
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
-		if(t.Player) 
-			tm.direction = t.Player.Inputs.move;
 		
-		tm.CallBack = delegate(bool transformed) {			
+		tm.CallBack = delegate(TransformationManager.Result transformed) {			
 			
-			if(transformed) {
+			if(transformed == TransformationManager.Result.TRANSFORMED) {
 				Debug.Log ("Transformation");
 				t.nbPoints += Game.settings.score.points_transfo;
 			}
-			
-			Game.cameraManager.gameCamera.ResetRotation();
-			Game.Ball.setPosition(Vector3.zero);
 
-       		Game.right.initPos();
-        	Game.left.initPos();			
-			
-			Game.cameraManager.gameCamera.gameObject.SetActive(true);
-			Game.cameraManager.transfoCamera.gameObject.SetActive(false);
+            if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            {
+                // Game.cameraManager.gameCamera.ResetRotation();
+                Game.Ball.setPosition(Vector3.zero);
+                Game.right.initPos();
+                Game.left.initPos();
+            }
+          
+			// Game.cameraManager.gameCamera.gameObject.SetActive(true);
+			// Game.cameraManager.transfoCamera.gameObject.SetActive(false);
 			
 			Game.state = Game.State.PLAYING;
 			t.fixUnits = t.opponent.fixUnits = false;	
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();
 		};
-		
-		
+				
 		tm.enabled = true;
-		
-		
 	}
+	
+	public void PauseIngameTime(){
+		TimePaused = true;
+	}
+	
+	public void ResumeIngameTime(){
+		TimePaused = false;
+	}
+	
+    public void Update()
+    {
+        if (this.Game.state != Game.State.INTRODUCTION && this.Game.state != Game.State.END){
+       		TimeEllapsedSinceIntro += Time.deltaTime;
+			if(TimeEllapsedSinceIntro > IntroDelayTime){
+				if(TimePaused == false)IngameTime += Time.deltaTime;
+				if(IngameTime > GameTimeDuration){
+					IngameTime = GameTimeDuration;
+                	this.Game.state = Game.State.END;
+				}
+			}
+        }
+    }
 }

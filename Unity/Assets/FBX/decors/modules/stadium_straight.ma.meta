@@ -1,0 +1,98 @@
+fileFormatVersion: 2
+guid: 2b80ac0caf4e93b4abc673855d3d5745
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: pasted__polySurface53
+    100002: pasted__polySurface55
+    100004: pasted__polySurface56
+    100006: pasted__Stadium_straight1
+    100008: //RootNode
+    100010: panneau
+    100012: panneau1
+    100014: Stadium_straight1
+    100016: rembarde
+    400000: pasted__polySurface53
+    400002: pasted__polySurface55
+    400004: pasted__polySurface56
+    400006: pasted__Stadium_straight1
+    400008: //RootNode
+    400010: panneau
+    400012: panneau1
+    400014: Stadium_straight1
+    400016: rembarde
+    2300000: pasted__polySurface53
+    2300002: pasted__polySurface55
+    2300004: pasted__polySurface56
+    2300006: pasted__Stadium_straight1
+    2300008: panneau
+    2300010: panneau1
+    2300012: Stadium_straight1
+    2300014: rembarde
+    3300000: pasted__polySurface53
+    3300002: pasted__polySurface55
+    3300004: pasted__polySurface56
+    3300006: pasted__Stadium_straight1
+    3300008: panneau
+    3300010: panneau1
+    3300012: Stadium_straight1
+    3300014: rembarde
+    4300000: pasted__Stadium_straight1
+    4300002: pasted__polySurface53
+    4300004: pasted__polySurface55
+    4300006: pasted__polySurface56
+    4300008: Stadium_straight1
+    4300010: panneau
+    4300012: panneau1
+    4300014: rembarde
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

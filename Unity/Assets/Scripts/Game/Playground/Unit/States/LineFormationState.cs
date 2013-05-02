@@ -23,8 +23,8 @@ class LineFormationState : UnitState
         int dif = unit.Team.GetLineNumber(unit, o.target);
         float x = o.power * dif;
         
-        unit.GetNMA().stoppingDistance = 0;
-        unit.GetNMA().SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
+        unit.nma.stoppingDistance = 0;
+        unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z));
     }
 
     public override bool OnNearUnit(Unit u)

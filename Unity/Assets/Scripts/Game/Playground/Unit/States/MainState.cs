@@ -36,7 +36,7 @@ public class MainState : UnitState
         return true;
     }
 
-    public override bool OnPlaque()
+    public override bool OnTackle(Unit from, Unit to)
     {
         sm.state_change_me(this, new PlaqueState(sm, unit));
         return true;
@@ -92,17 +92,17 @@ public class MainState : UnitState
                 sm.state_change_son(this, new TriangleFormationState(sm, unit));
                 break;
 
+			case Order.TYPE.DEFENSIVE_SIDE:
+				sm.state_change_son(this, new DefensiveSide(sm, unit));
+				break;
+
             case Order.TYPE.LANE:
                 sm.state_change_son(this, new LineFormationState(sm, unit));
                 break;
                 
             case Order.TYPE.TACKLE:
-                Unit target = unit.Order.target;
-
-                target.sm.event_plaque();
-                unit.sm.event_plaque();
-
-                unit.Game.EventTackle(unit, target);
+                Unit target = unit.Order.target;                
+                unit.Game.OnTackle(unit, target);
                 break;
 
             default:

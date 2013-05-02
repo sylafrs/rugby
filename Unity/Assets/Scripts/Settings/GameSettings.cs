@@ -10,9 +10,10 @@ using System.Collections;
 [System.Serializable]
 public class ScoreSettings
 {
-    public int points_drop = 5;
-    public int points_essai = 5;
-	public int points_transfo = 3;
+    public int 	points_drop = 5;
+    public int 	points_essai = 5;
+	public int 	points_transfo = 3;
+	public float period_time = 120f;
 }
 
 /**
@@ -65,7 +66,7 @@ public class SuperSettings
 [System.Serializable]
 public class InputSettings
 {    
-    public InputTouch passLeft, passRight, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef;
+    public InputTouch shortPass, longPass, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef;
     public InputDirection move;
 }
 
@@ -89,4 +90,5 @@ public class GameSettings : myMonoBehaviour {
     public float LineSpace = 1;
 
     public float maxTimeHoldingPassButton = 3; // Seconds
+    public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
 }

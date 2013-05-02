@@ -54,6 +54,7 @@ public class GameCamera : myMonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		if(cameraManager == null || Game == null) return;
 				
 		if(tweakMode){
@@ -64,7 +65,9 @@ public class GameCamera : myMonoBehaviour {
 		Vector3 cam = this.transform.position;
 		
 		//this.gameCamera.transform.LookAt(Ball.transform.position);
-
+		
+		/*
+		
    		if(cameraManager.game.Ball.Owner){
       		this.transform.position = BallOwner.transform.position;
 		}
@@ -72,6 +75,7 @@ public class GameCamera : myMonoBehaviour {
 		{
      		this.transform.position = cameraManager.game.Ball.transform.position;
 		}
+		*/
 		
 		// Debug.DrawLine(cam, this.transform.position, Color.red, 100);
 	}
