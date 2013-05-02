@@ -35,12 +35,14 @@ public class PlayingState : CameraState
 	
 	public override bool OnNewOwner(Unit old, Unit current)
     {
+		Debug.Log("hop "+current);
         if (current != null)
         {
-            if ((old != null)&&(old.Team != current.Team))
-            {
+            //if ((old != null)&&(old.Team != current.Team))
+            //{
+				cam.setTarget(current.transform);
                 cam.flipForTeam(current.Team);
-            }
+            //}
 		}
         return false;
     }

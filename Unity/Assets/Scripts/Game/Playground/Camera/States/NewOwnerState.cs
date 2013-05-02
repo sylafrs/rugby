@@ -22,7 +22,14 @@ public class NewOwnerState : CameraState
     {
         if (current != null)
         {
+			
+			//if ((old != null)&&(old.Team != current.Team))
+            //{
+                cam.flipForTeam(current.Team);
+            //}
+			
             sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
+			
             return true;          
 		}else{
 			OnBallOnGround(true);
