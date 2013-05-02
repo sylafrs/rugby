@@ -2888,6 +2888,7 @@ GameObject:
   - 195: {fileID: 156800330}
   - 114: {fileID: 156800328}
   - 114: {fileID: 156800329}
+  - 23: {fileID: 156800333}
   m_Layer: 0
   m_Name: Joueur_Jap
   m_TagString: Untagged
@@ -2996,6 +2997,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 86.0199966, y: 103.43, z: 31.8799992}
   m_Center: {x: 0, y: 50, z: 0}
+--- !u!23 &156800333
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300004, guid: 91399eeacaff9a44d878daeb70717522,
+    type: 2}
+  m_PrefabInternal: {fileID: 390108197}
+  m_GameObject: {fileID: 156800326}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
 --- !u!1 &164478699
 GameObject:
   m_ObjectHideFlags: 0
@@ -6685,8 +6705,9 @@ GameObject:
   - 195: {fileID: 545566625}
   - 114: {fileID: 545566623}
   - 114: {fileID: 545566624}
+  - 23: {fileID: 545566628}
   m_Layer: 0
-  m_Name: Joueur_Mao_Nuked
+  m_Name: Joueur_Mao_Naked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6791,6 +6812,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 86.0199966, y: 103.43, z: 31.8799992}
   m_Center: {x: 0, y: 50, z: 0}
+--- !u!23 &545566628
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300004, guid: aad68cbf3ce086f499be8fc2859200ae,
+    type: 2}
+  m_PrefabInternal: {fileID: 1114959013}
+  m_GameObject: {fileID: 545566621}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
 --- !u!1 &546586084
 GameObject:
   m_ObjectHideFlags: 0
@@ -13509,7 +13549,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
       propertyPath: m_Name
-      value: Joueur_Mao_Nuked
+      value: Joueur_Mao_Naked
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
@@ -23648,6 +23688,8 @@ MonoBehaviour:
   blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
   redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
   LBButton: {fileID: 2800000, guid: b21a69dd837de1644a39a47590a7ac1d, type: 3}
+  quotientMin: .5
+  quotientMax: 1.5
   superOkTextStyle:
     m_Name: 
     m_Normal:

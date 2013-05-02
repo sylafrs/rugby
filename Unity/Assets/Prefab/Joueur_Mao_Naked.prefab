@@ -163,8 +163,9 @@ GameObject:
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
+  - 23: {fileID: 2300004}
   m_Layer: 0
-  m_Name: Joueur_jap_captain_rouge
+  m_Name: Joueur_Mao_Naked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,6 +411,24 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+--- !u!23 &2300004
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
 --- !u!26 &2600000
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -525,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 2300000}
+  TemporaryAnimRun: {fileID: 0}
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   buttonIndicator: {fileID: 11400008}
