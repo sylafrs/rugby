@@ -39,6 +39,8 @@ public class Unit : TriggeringTriggered, Debugable
 	public ParticleSystem superTackleParticles;
 	
 	public NearUnit triggerTackle {get; set;}
+
+    private bool isAnimated = true;
 	
 	//maxens : c'est très bourrin xD
 	void Update() {
@@ -47,6 +49,23 @@ public class Unit : TriggeringTriggered, Debugable
 				
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
+
+        if (TemporaryAnimRun && nma.velocity.magnitude < 0.5f)
+        {
+            if (isAnimated)
+            {
+                TemporaryAnimRun.Stop();
+                isAnimated = false;
+            }
+        }
+        else
+        {
+            if (!isAnimated)
+            {
+                TemporaryAnimRun.Play();
+                isAnimated = true;
+            }
+        }
 	}
 
     public void IndicateSelected(bool enabled)
