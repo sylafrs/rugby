@@ -264,8 +264,11 @@ public class Gamer : myMonoBehaviour
 		{	
 			if ( Game.Ball.Owner.Team != Team && (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
 	        {
+				Controlled.IndicateSelected(false);
 				Controlled = GetUnitNear();
-				Debug.Log("joueur controllé " + Controlled);
+				Controlled.IndicateSelected(true);
+				
+				//Debug.Log("joueur controllé " + Controlled);
 	        }
 			
 			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
