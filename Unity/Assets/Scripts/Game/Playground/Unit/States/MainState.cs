@@ -36,7 +36,7 @@ public class MainState : UnitState
         return true;
     }
 
-    public override bool OnTackle(Unit from, Unit to)
+    public override bool OnTackle()
     {
         sm.state_change_me(this, new PlaqueState(sm, unit));
         return true;

@@ -54,9 +54,9 @@ public class FollowPlayerState : CameraState {
     }
 
     //  TODO à changer de place
-    public override bool OnTackle(Unit from, Unit to)   
+    public override bool OnTackle()   
     {
-        if (from == this.target || to == this.target)
+        if(this.target.isTackled) 
         {
             sm.state_change_son(this, new TackleState(sm, cam, this.target));
             return true;

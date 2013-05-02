@@ -311,7 +311,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.01012897}
   m_LocalScale: {x: .0399999991, y: .0399999991, z: .0399999991}
   m_Children:
   - {fileID: 400006}
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91abe38ba2410ce448f6d0e14fe39b6c, type: 3}
   m_Name: 
   sm: {fileID: 11400002}
-  Model: {fileID: 2300000}
+  Model: {fileID: 100004}
   TemporaryAnimRun: {fileID: 0}
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}

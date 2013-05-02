@@ -249,17 +249,8 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        // tackler.sm.event_Tackle(tackler, tackled);
-        // tackled.sm.event_Tackle(tackler, tackled);
         this.arbiter.OnTackle(tackler, tackled);
-
-        this.cameraManager.sm.event_Tackle(tackler, tackled);
-        /*
-		if (tackled != Ball.Owner)
-		{			
-			Ball.OnTackle(tackler, tackled);
-		}
-        */
+        this.cameraManager.sm.event_Tackle();       
     }
 
     public void BallOnGround(bool onGround)

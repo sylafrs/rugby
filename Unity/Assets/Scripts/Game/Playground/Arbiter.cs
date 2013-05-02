@@ -186,13 +186,18 @@ public class Arbiter : MonoBehaviour {
 
                 // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
                 case TackleManager.RESULT.PASS:
-
+                    Unit target = tackled.GetNearestAlly();
+                    Game.Ball.Pass(target);
+                    
+                    tackled.sm.event_Tackle();
+                    tackler.sm.event_Tackle();
                     break;
 
                 // Normal : les deux sont knock-out et la balle est par terre 
                 // /!\ Mêlée possible /!\
                 case TackleManager.RESULT.NORMAL:
-
+                    tackled.sm.event_Tackle();
+                    tackler.sm.event_Tackle();
                     break;
             }
 

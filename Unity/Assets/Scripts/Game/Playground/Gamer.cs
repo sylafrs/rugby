@@ -119,7 +119,7 @@ public class Gamer : myMonoBehaviour
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
 				if (stickDirection.x == 1)
-				{
+				{                    
 					if (Controlled.Team.GetRight(Controlled).Count > 0)
 					{
 						unitTo = Controlled.Team.GetRight(Controlled)[0];
@@ -149,10 +149,10 @@ public class Gamer : myMonoBehaviour
             {
 				if (stickDirection.x == 1)
 				{
-
-					if (Controlled.Team.GetRight(Controlled).Count > 1)
+                    List<Unit> rightAllies = Controlled.Team.GetRight(Controlled);
+                    if (rightAllies.Count > 1)
 					{
-						unitTo = Controlled.Team.GetRight(Controlled)[1];
+                        unitTo = rightAllies[1];
 					}
 					else
 					{
@@ -164,9 +164,10 @@ public class Gamer : myMonoBehaviour
 				}
 				else if (stickDirection.x == -1)
 				{
-					if (Controlled.Team.GetLeft(Controlled).Count > 1)
+                    List<Unit> leftAllies = Controlled.Team.GetLeft(Controlled);
+                    if (leftAllies.Count > 1)
 					{
-						unitTo = Controlled.Team.GetLeft(Controlled)[1];
+                        unitTo = leftAllies[1];
 					}
 					else
 					{

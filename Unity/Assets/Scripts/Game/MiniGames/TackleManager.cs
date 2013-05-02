@@ -35,7 +35,7 @@ public class TackleManager: MonoBehaviour {
             throw new UnityException("Manque tackled ou tackler");
         }
 
-    	if (IsCrit())
+    	if (this.IsCrit())
 		{            
             result = RESULT.CRITIC;
 
@@ -76,6 +76,20 @@ public class TackleManager: MonoBehaviour {
     {
         if (result == RESULT.QTE)
         {
+            /* Effect fall */
+            float ratio = remainingTime / tempsPlaquage;
+            float angle = 90 - (ratio * 90);
+
+            Vector3 rot = Vector3.zero;
+
+            if (tackled.Model)
+            {
+                rot = tackled.Model.transform.localRotation.eulerAngles;
+                rot.x = angle;
+                tackled.Model.transform.localRotation = Quaternion.Euler(rot);
+            }
+
+            /* Pass On Tackle */
             if (
                 tackled.Team.Player != null && 
                 (
@@ -83,21 +97,9 @@ public class TackleManager: MonoBehaviour {
                     tackled.Team.Player.XboxController.GetButtonDown(touchPassOnTackle.xbox)
                 )
             ){
-
-                /* Effect fall */
-                float ratio = remainingTime / tempsPlaquage;
-                float angle = (90 - (ratio * 90)) * Mathf.Deg2Rad;
-
-                Vector3 rot = tackled.transform.localRotation.eulerAngles;
-                rot.x = angle;
-                tackled.transform.localRotation = Quaternion.Euler(rot);
-
                 result = RESULT.PASS;
                 if (callback != null)
                 {
-                    rot.x = 0;
-                    tackled.transform.localRotation = Quaternion.Euler(rot);
-
                     callback(result);
                 }
                 
@@ -109,14 +111,7 @@ public class TackleManager: MonoBehaviour {
             {
                 result = RESULT.NORMAL;
                 if (callback != null)
-                {
-                    if (tackled)
-                    {
-                        Vector3 rot = tackled.transform.localRotation.eulerAngles;
-                        rot.x = 0;
-                        tackled.transform.localRotation = Quaternion.Euler(rot);
-                    }
-
+                {   
                     callback(result);
                 }
 
@@ -135,9 +130,11 @@ public class TackleManager: MonoBehaviour {
 	
 	private bool IsCrit()
 	{
-        float angle = Vector3.Angle(tackled.transform.position - tackler.transform.position, tackler.transform.forward);
-        bool supporte = tackled.getNearAlliesNumber() > 0;
+        //float angle = Vector3.Angle(tackled.transform.position - tackler.transform.position, tackler.transform.forward);
+        //bool supporte = tackled.getNearAlliesNumber() > 0;
 
-		return angle <= tackler.Team.AngleOfFovTackleCrit && !supporte;
-	}
+		//return angle <= tackler.Team.AngleOfFovTackleCrit && !supporte;
+
+        return tackler.Team.GetComponent<superController>().SuperActive;
+    }
 }
