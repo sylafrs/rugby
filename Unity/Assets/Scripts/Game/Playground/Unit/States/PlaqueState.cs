@@ -21,7 +21,7 @@ class PlaqueState : UnitState
             unit.Game.Ball.Put();
         }
 
-		if(unit.Team.useColors) {
+		if(unit.Team.useColors && unit.Model) {
 			foreach (var mat in unit.Model.materials)
 			{
 				mat.color = unit.Team.PlaqueColor;
@@ -40,7 +40,7 @@ class PlaqueState : UnitState
 
 	public override void OnLeave()
 	{
-		if (unit.Team.useColors) {
+		if (unit.Team.useColors && unit.Model) {
 			foreach (var mat in unit.Model.materials)
 			{
 				mat.color = unit.Team.Color;

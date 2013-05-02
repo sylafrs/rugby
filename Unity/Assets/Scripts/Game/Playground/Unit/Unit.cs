@@ -15,6 +15,9 @@ public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
 	public Renderer Model;
+    
+    public Animation TemporaryAnimRun;
+    
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft; 
 	
