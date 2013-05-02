@@ -7596,7 +7596,7 @@ GameObject:
   - 114: {fileID: 545566624}
   - 23: {fileID: 545566628}
   m_Layer: 0
-  m_Name: Joueur_Mao_Naked
+  m_Name: Joueur_Mao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26954,7 +26954,7 @@ MonoBehaviour:
       keyboard: 103
       xbox: 5
     changePlayer:
-      keyboard: 0
+      keyboard: 49
       xbox: 1
     move:
       keyboard:
