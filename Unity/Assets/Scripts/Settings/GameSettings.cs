@@ -66,7 +66,7 @@ public class SuperSettings
 [System.Serializable]
 public class InputSettings
 {    
-    public InputTouch shortPass, longPass, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef;
+    public InputTouch shortPass, longPass, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef, changePlayer;
     public InputDirection move;
 }
 

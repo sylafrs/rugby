@@ -96,6 +96,7 @@ public class Gamer : myMonoBehaviour
         UpdatePASS();
         UpdateDROP();
 		UpdateESSAI();
+		UpdatePLAYER();
     }
 
 	//maxens dubois
@@ -118,7 +119,7 @@ public class Gamer : myMonoBehaviour
         {
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
-				if (stickDirection.x == 1)
+				if (stickDirection.x > 0.1f)
 				{
 					if (Controlled.Team.GetRight(Controlled).Count > 0)
 					{
@@ -131,7 +132,7 @@ public class Gamer : myMonoBehaviour
 					}
 
 				}
-				else if (stickDirection.x == -1)
+				else if (stickDirection.x < 0.1f)
 				{
 					if (Controlled.Team.GetLeft(Controlled).Count > 0)
 					{
@@ -147,7 +148,7 @@ public class Gamer : myMonoBehaviour
             }
 			else if (Input.GetKeyDown(Inputs.longPass.keyboard) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
-				if (stickDirection.x == 1)
+				if (stickDirection.x > 0.1f)
 				{
 
 					if (Controlled.Team.GetRight(Controlled).Count > 1)
@@ -162,7 +163,7 @@ public class Gamer : myMonoBehaviour
 
 
 				}
-				else if (stickDirection.x == -1)
+				else if (stickDirection.x < 0.1f)
 				{
 					if (Controlled.Team.GetLeft(Controlled).Count > 1)
 					{
@@ -255,6 +256,69 @@ public class Gamer : myMonoBehaviour
             }
         }
     }
+	
+	void UpdatePLAYER()
+	{
+		if ( Controlled != null && Controlled.Team != null && Game != null && 
+			Game.Ball != null && Game.Ball.Owner != null && Game.Ball.Owner.Team != null )
+		{	
+			if ( Game.Ball.Owner.Team != Team && (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+	        {
+				Controlled = GetUnitNear();
+				Debug.Log("joueur controllé " + Controlled);
+	        }
+			
+			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
+			//Debug.Log("pos in map : " + typePosition);
+			if (Game.Ball.Owner.Team == Team)
+			{
+				
+				//offensiveside
+				foreach (Unit u in Controlled.Team)
+			    {
+					if (u.Order.type != Order.TYPE.SEARCH)
+            		{
+			            if (u != Controlled)
+			            {
+							u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
+			        	}
+			        }
+				}
+			}
+			else
+			{
+				//defensiveside
+				foreach (Unit u in Controlled.Team)
+			    {
+					if (u.Order.type != Order.TYPE.SEARCH)
+            		{
+			            if (u != Controlled)
+			            {
+							u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
+			        	}
+			        }
+				}
+			}
+		}
+	}
+	
+	public Unit GetUnitNear()
+	{
+		float dist;
+		float min = Vector3.SqrMagnitude(Game.Ball.Owner.transform.position - Controlled.Team[0].transform.position);
+		Unit near = Controlled.Team[0];
+		
+		foreach( Unit u in Controlled.Team )
+		{
+			dist = Vector3.SqrMagnitude(Game.Ball.Owner.transform.position - u.transform.position);
+			if ( dist < min )
+			{
+				near = u;
+				min = dist;
+			}
+		}
+		return near;
+	}
 
     void UpdateMOVE()
     {

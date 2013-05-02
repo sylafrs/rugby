@@ -4,9 +4,6 @@ using System.Collections;
 /*
  * @class DefensiveSide
  * @brief Etat se place en mode de support défensif selon la position du porteur sur le terrain :
- *		-				OU			-			OU			-
- *	-		-					-		-				-		-
- *		-		-			-		-				-				-
  * @author Florian Guilleminot
  */
 public class DefensiveSide : UnitState
@@ -21,10 +18,9 @@ public class DefensiveSide : UnitState
     }
 
     public override void OnUpdate()
-    {
-
-
-		switch (o.position)
+	{
+		Order.TYPE_POSITION typePosition = o.target.Team.PositionInMap( o.target );
+		switch ( typePosition )
 		{
 			case Order.TYPE_POSITION.EXTRA_LEFT:
 			{
@@ -43,7 +39,7 @@ public class DefensiveSide : UnitState
 			}
 			case Order.TYPE_POSITION.EXTRA_RIGHT:
 			{
-	//			PositionExtraRightSide();
+				PositionExtraRightSide();
 				break;
 			}
 			case Order.TYPE_POSITION.MIDDLE:
@@ -63,7 +59,22 @@ public class DefensiveSide : UnitState
 		float x;
 		float z;
 
-		//right side
+		x = o.point.x * Mathf.Abs(dif);
+		z = o.point.z * Mathf.Abs(dif);
+
+
+		unit.nma.stoppingDistance = 0;
+		unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
+	}
+
+	public void PositionLeftSide()
+	{
+		Vector3 tPos = o.target.transform.position;
+
+		int dif = unit.Team.GetLineNumber(unit, o.target);
+		float x;
+		float z;
+		
 		if (o.point.z < 0)
 		{
 			x = o.point.x * dif;
@@ -86,8 +97,8 @@ public class DefensiveSide : UnitState
 		unit.nma.stoppingDistance = 0;
 		unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
 	}
-
-	public void PositionLeftSide()
+	
+	public void PositionExtraRightSide()
 	{
 		Vector3 tPos = o.target.transform.position;
 
@@ -95,28 +106,12 @@ public class DefensiveSide : UnitState
 		float x;
 		float z;
 
-		//right side
-		if (o.point.z < 0)
-		{
-			x = o.point.x * dif;
-			z = o.point.z * Mathf.Abs(dif);
-		}
-		else
-		{
-			if (dif <= -2)
-			{
-				x = o.point.x * Mathf.Abs(dif);
-				z = o.point.z * dif;
-			}
-			else
-			{
-				x = o.point.x * dif;
-				z = o.point.z * Mathf.Abs(dif);
-			}
-		}
+		x = o.point.x * Mathf.Abs(dif);
+		z = o.point.z * Mathf.Abs(dif);
 
 		unit.nma.stoppingDistance = 0;
-		unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
+		Debug.Log("joueur : " + unit.name + "pos : " + new Vector3(tPos.x - x, 0, tPos.z + z));
+		unit.nma.SetDestination(new Vector3(tPos.x - x, 0, tPos.z + z));
 	}
 
 	public void PositionRightSide()
@@ -156,7 +151,6 @@ public class DefensiveSide : UnitState
 		Vector3 tPos = o.target.transform.position;
 
 		int dif = unit.Team.GetLineNumber(unit, o.target);
-		//Debug.Log("diff : " + dif);
 		float x = o.point.x * dif;
 		float z = o.point.z * Mathf.Abs(dif);
 
