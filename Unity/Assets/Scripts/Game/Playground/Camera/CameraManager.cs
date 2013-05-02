@@ -45,6 +45,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
 	private bool    isflipped;
+	private Team	flipedForTeam;
 	
 
     public StateMachine sm;
@@ -57,6 +58,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		resetRotationDelay();
 		isflipping = false;
 		isflipped= false;
+		flipedForTeam = game.right;
 		
 		/*
        
@@ -174,6 +176,17 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	//flipping camera
 	public void flip(){
 		flipInit(new Vector3(0,1,0), 180);
+	}
+	
+	public void flipForTeam(Team _t)
+	{
+		if(isflipping == false){
+			//on lance le flip seulement si c'est un team différente
+			if(flipedForTeam != _t){
+				flipedForTeam = _t;
+				flip();
+			}
+		}
 	}
 	
 	void flipInit(Vector3 axis, float angle){

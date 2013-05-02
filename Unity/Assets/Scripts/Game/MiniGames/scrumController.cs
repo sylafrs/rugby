@@ -63,6 +63,7 @@ public class scrumController : myMonoBehaviour {
 
     void OnEnable()
     {
+		Start();
         playerScore = 1;
         cpuScore = 1;
         currentFrameWait = 0;
@@ -71,7 +72,6 @@ public class scrumController : myMonoBehaviour {
         offset = 0f;
         frameToGo = frameStart;
         timeRemaining = timer;
-
         _p1.stopMove();
         _game.disableIA = true;
     }

@@ -16,7 +16,7 @@ public class ScrumState : CameraState
 	
 	public override void OnEnter()
     {
-		initCutScene();
+		//initCutScene();
 		Debug.Log("previous owner "+cam.game.Ball.PreviousOwner);
     }
 }

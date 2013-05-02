@@ -43,7 +43,7 @@ public class PlayingState : CameraState
         {
             if (old.Team != current.Team)
             {
-                cam.flip();
+                cam.flipForTeam(current.Team);
             }
 
             sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
@@ -68,7 +68,7 @@ public class PlayingState : CameraState
         // Fin du super
         if (super == SuperList.superNull)
         {
-            cam.zoom = 1.50f;
+            //cam.zoom = 1.50f;
         }
         else
         {
