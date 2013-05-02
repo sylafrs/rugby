@@ -125,6 +125,7 @@ public class Game : myMonoBehaviour {
             p2.Game = this;
             p2.Team = left;
             p2.Controlled = left[0];
+            p2.Controlled.IndicateSelected(true);
             p2.Inputs = settings.inputs2;
         }
 
