@@ -79,6 +79,139 @@ ModelImporter:
     100146: transform7
     100148: transform8
     100150: transform9
+    100152: Chara_Japan__2_:C_Armor_jnt
+    100154: Chara_Japan__2_:C_Chest_ctrl
+    100156: Chara_Japan__2_:C_Chest_jnt
+    100158: Chara_Japan__2_:C_Eyes_ctrl
+    100160: Chara_Japan__2_:C_Eyes_GRP
+    100162: Chara_Japan__2_:C_Head_ctrl
+    100164: Chara_Japan__2_:C_Head_End_jnt
+    100166: Chara_Japan__2_:C_Head_jnt
+    100168: Chara_Japan__2_:C_Jaw_ctrl
+    100170: Chara_Japan__2_:C_Jaw_End_jnt
+    100172: Chara_Japan__2_:C_Jaw_jnt
+    100174: Chara_Japan__2_:C_MidChest_jnt
+    100176: Chara_Japan__2_:C_MidSpine_ctrl
+    100178: Chara_Japan__2_:C_MidSpine_jnt
+    100180: Chara_Japan__2_:C_Neck_ctrl
+    100182: Chara_Japan__2_:C_Neck_jnt
+    100184: Chara_Japan__2_:C_Pelvis_ctrl
+    100186: Chara_Japan__2_:C_Pelvis_jnt
+    100188: Chara_Japan__2_:C_Root_ctrl
+    100190: Chara_Japan__2_:C_Root_jnt
+    100192: Chara_Japan__2_:C_Ultimate_ctrl
+    100194: Chara_Japan__2_:CONTROLS
+    100196: Chara_Japan__2_:Jap_cap
+    100198: Chara_Japan__2_:L_Ankle_jnt
+    100200: Chara_Japan__2_:L_Ball_jnt
+    100202: Chara_Japan__2_:L_Belt01_jnt
+    100204: Chara_Japan__2_:L_Belt02_jnt
+    100206: Chara_Japan__2_:L_Belt03_jnt
+    100208: Chara_Japan__2_:L_Belt_ctrl
+    100210: Chara_Japan__2_:L_Belt_GRP
+    100212: Chara_Japan__2_:L_Clavicle_jnt
+    100214: Chara_Japan__2_:L_Clavicule_ctrl
+    100216: Chara_Japan__2_:L_Clavicule_GRP
+    100218: Chara_Japan__2_:L_Elbow_ctrl
+    100220: Chara_Japan__2_:L_Elbow_GRP
+    100222: Chara_Japan__2_:L_Elbow_jnt
+    100224: Chara_Japan__2_:L_Eye_ctrl
+    100226: Chara_Japan__2_:L_Eye_jnt
+    100228: Chara_Japan__2_:L_ForeArm_jnt
+    100230: Chara_Japan__2_:L_Hip_jnt
+    100232: Chara_Japan__2_:L_Index01_jnt
+    100234: Chara_Japan__2_:L_Index02_jnt
+    100236: Chara_Japan__2_:L_Index03_jnt
+    100238: Chara_Japan__2_:L_Index04_jnt
+    100240: Chara_Japan__2_:L_Index_ctrl
+    100242: Chara_Japan__2_:L_Index_GRP
+    100244: Chara_Japan__2_:L_Knee_jnt
+    100246: Chara_Japan__2_:L_Middle01_jnt
+    100248: Chara_Japan__2_:L_Middle02_jnt
+    100250: Chara_Japan__2_:L_Middle03_jnt
+    100252: Chara_Japan__2_:L_Middle04_jnt
+    100254: Chara_Japan__2_:L_Middle_ctrl
+    100256: Chara_Japan__2_:L_Middle_GRP
+    100258: Chara_Japan__2_:L_Pinky01_jnt
+    100260: Chara_Japan__2_:L_Pinky02_jnt
+    100262: Chara_Japan__2_:L_Pinky03_jnt
+    100264: Chara_Japan__2_:L_Pinky04_jnt
+    100266: Chara_Japan__2_:L_Pinky_ctrl
+    100268: Chara_Japan__2_:L_Pinky_GRP
+    100270: Chara_Japan__2_:L_Ring01_jnt
+    100272: Chara_Japan__2_:L_Ring02_jnt
+    100274: Chara_Japan__2_:L_Ring03_jnt
+    100276: Chara_Japan__2_:L_Ring04_jnt
+    100278: Chara_Japan__2_:L_Ring_ctrl
+    100280: Chara_Japan__2_:L_Ring_GRP
+    100282: Chara_Japan__2_:L_Shoulder_ctrl
+    100284: Chara_Japan__2_:L_Shoulder_GRP
+    100286: Chara_Japan__2_:L_Shoulder_jnt
+    100288: Chara_Japan__2_:L_Thumb01_jnt
+    100290: Chara_Japan__2_:L_Thumb02_jnt
+    100292: Chara_Japan__2_:L_Thumb03_jnt
+    100294: Chara_Japan__2_:L_Thumb04_jnt
+    100296: Chara_Japan__2_:L_Thumb_ctrl
+    100298: Chara_Japan__2_:L_Thumb_GRP
+    100300: Chara_Japan__2_:L_Toe_jnt
+    100302: Chara_Japan__2_:L_Wrist_ctrl
+    100304: Chara_Japan__2_:L_Wrist_GRP
+    100306: Chara_Japan__2_:L_Wrist_jnt
+    100308: Chara_Japan__2_:R_Ankle_jnt
+    100310: Chara_Japan__2_:R_Ball_jnt
+    100312: Chara_Japan__2_:R_Belt01_jnt
+    100314: Chara_Japan__2_:R_Belt02_jnt
+    100316: Chara_Japan__2_:R_Belt_ctrl
+    100318: Chara_Japan__2_:R_Belt_GRP
+    100320: Chara_Japan__2_:R_Clavicle_jnt
+    100322: Chara_Japan__2_:R_Clavicule_ctrl
+    100324: Chara_Japan__2_:R_Clavicule_GRP
+    100326: Chara_Japan__2_:R_Elbow_ctrl
+    100328: Chara_Japan__2_:R_Elbow_GRP
+    100330: Chara_Japan__2_:R_Elbow_jnt
+    100332: Chara_Japan__2_:R_Eye_ctrl
+    100334: Chara_Japan__2_:R_Eye_jnt
+    100336: Chara_Japan__2_:R_ForeArm_jnt
+    100338: Chara_Japan__2_:R_Hip_jnt
+    100340: Chara_Japan__2_:R_Index01_jnt
+    100342: Chara_Japan__2_:R_Index02_jnt
+    100344: Chara_Japan__2_:R_Index03_jnt
+    100346: Chara_Japan__2_:R_Index04_jnt
+    100348: Chara_Japan__2_:R_Index_ctrl
+    100350: Chara_Japan__2_:R_Index_GRP
+    100352: Chara_Japan__2_:R_Knee_jnt
+    100354: Chara_Japan__2_:R_Middle01_jnt
+    100356: Chara_Japan__2_:R_Middle02_jnt
+    100358: Chara_Japan__2_:R_Middle03_jnt
+    100360: Chara_Japan__2_:R_Middle04_jnt
+    100362: Chara_Japan__2_:R_Middle_ctrl
+    100364: Chara_Japan__2_:R_Middle_GRP
+    100366: Chara_Japan__2_:R_Pinky01_jnt
+    100368: Chara_Japan__2_:R_Pinky02_jnt
+    100370: Chara_Japan__2_:R_Pinky03_jnt
+    100372: Chara_Japan__2_:R_Pinky04_jnt
+    100374: Chara_Japan__2_:R_Pinky_ctrl
+    100376: Chara_Japan__2_:R_Pinky_GRP
+    100378: Chara_Japan__2_:R_Ring01_jnt
+    100380: Chara_Japan__2_:R_Ring02_jnt
+    100382: Chara_Japan__2_:R_Ring03_jnt
+    100384: Chara_Japan__2_:R_Ring04_jnt
+    100386: Chara_Japan__2_:R_Ring_ctrl
+    100388: Chara_Japan__2_:R_Ring_GRP
+    100390: Chara_Japan__2_:R_Shoulder_ctrl
+    100392: Chara_Japan__2_:R_Shoulder_GRP
+    100394: Chara_Japan__2_:R_Shoulder_jnt
+    100396: Chara_Japan__2_:R_Thumb01_jnt
+    100398: Chara_Japan__2_:R_Thumb02_jnt
+    100400: Chara_Japan__2_:R_Thumb03_jnt
+    100402: Chara_Japan__2_:R_Thumb04_jnt
+    100404: Chara_Japan__2_:R_Thumb_ctrl
+    100406: Chara_Japan__2_:R_Thumb_GRP
+    100408: Chara_Japan__2_:R_Toe_jnt
+    100410: Chara_Japan__2_:R_Wrist_ctrl
+    100412: Chara_Japan__2_:R_Wrist_GRP
+    100414: Chara_Japan__2_:R_Wrist_jnt
+    100416: Chara_Japan__2_:SKELETON
     400000: //RootNode
     400002: polySurface8
     400004: polySurface9
@@ -155,6 +288,139 @@ ModelImporter:
     400146: transform7
     400148: transform8
     400150: transform9
+    400152: Chara_Japan__2_:C_Armor_jnt
+    400154: Chara_Japan__2_:C_Chest_ctrl
+    400156: Chara_Japan__2_:C_Chest_jnt
+    400158: Chara_Japan__2_:C_Eyes_ctrl
+    400160: Chara_Japan__2_:C_Eyes_GRP
+    400162: Chara_Japan__2_:C_Head_ctrl
+    400164: Chara_Japan__2_:C_Head_End_jnt
+    400166: Chara_Japan__2_:C_Head_jnt
+    400168: Chara_Japan__2_:C_Jaw_ctrl
+    400170: Chara_Japan__2_:C_Jaw_End_jnt
+    400172: Chara_Japan__2_:C_Jaw_jnt
+    400174: Chara_Japan__2_:C_MidChest_jnt
+    400176: Chara_Japan__2_:C_MidSpine_ctrl
+    400178: Chara_Japan__2_:C_MidSpine_jnt
+    400180: Chara_Japan__2_:C_Neck_ctrl
+    400182: Chara_Japan__2_:C_Neck_jnt
+    400184: Chara_Japan__2_:C_Pelvis_ctrl
+    400186: Chara_Japan__2_:C_Pelvis_jnt
+    400188: Chara_Japan__2_:C_Root_ctrl
+    400190: Chara_Japan__2_:C_Root_jnt
+    400192: Chara_Japan__2_:C_Ultimate_ctrl
+    400194: Chara_Japan__2_:CONTROLS
+    400196: Chara_Japan__2_:Jap_cap
+    400198: Chara_Japan__2_:L_Ankle_jnt
+    400200: Chara_Japan__2_:L_Ball_jnt
+    400202: Chara_Japan__2_:L_Belt01_jnt
+    400204: Chara_Japan__2_:L_Belt02_jnt
+    400206: Chara_Japan__2_:L_Belt03_jnt
+    400208: Chara_Japan__2_:L_Belt_ctrl
+    400210: Chara_Japan__2_:L_Belt_GRP
+    400212: Chara_Japan__2_:L_Clavicle_jnt
+    400214: Chara_Japan__2_:L_Clavicule_ctrl
+    400216: Chara_Japan__2_:L_Clavicule_GRP
+    400218: Chara_Japan__2_:L_Elbow_ctrl
+    400220: Chara_Japan__2_:L_Elbow_GRP
+    400222: Chara_Japan__2_:L_Elbow_jnt
+    400224: Chara_Japan__2_:L_Eye_ctrl
+    400226: Chara_Japan__2_:L_Eye_jnt
+    400228: Chara_Japan__2_:L_ForeArm_jnt
+    400230: Chara_Japan__2_:L_Hip_jnt
+    400232: Chara_Japan__2_:L_Index01_jnt
+    400234: Chara_Japan__2_:L_Index02_jnt
+    400236: Chara_Japan__2_:L_Index03_jnt
+    400238: Chara_Japan__2_:L_Index04_jnt
+    400240: Chara_Japan__2_:L_Index_ctrl
+    400242: Chara_Japan__2_:L_Index_GRP
+    400244: Chara_Japan__2_:L_Knee_jnt
+    400246: Chara_Japan__2_:L_Middle01_jnt
+    400248: Chara_Japan__2_:L_Middle02_jnt
+    400250: Chara_Japan__2_:L_Middle03_jnt
+    400252: Chara_Japan__2_:L_Middle04_jnt
+    400254: Chara_Japan__2_:L_Middle_ctrl
+    400256: Chara_Japan__2_:L_Middle_GRP
+    400258: Chara_Japan__2_:L_Pinky01_jnt
+    400260: Chara_Japan__2_:L_Pinky02_jnt
+    400262: Chara_Japan__2_:L_Pinky03_jnt
+    400264: Chara_Japan__2_:L_Pinky04_jnt
+    400266: Chara_Japan__2_:L_Pinky_ctrl
+    400268: Chara_Japan__2_:L_Pinky_GRP
+    400270: Chara_Japan__2_:L_Ring01_jnt
+    400272: Chara_Japan__2_:L_Ring02_jnt
+    400274: Chara_Japan__2_:L_Ring03_jnt
+    400276: Chara_Japan__2_:L_Ring04_jnt
+    400278: Chara_Japan__2_:L_Ring_ctrl
+    400280: Chara_Japan__2_:L_Ring_GRP
+    400282: Chara_Japan__2_:L_Shoulder_ctrl
+    400284: Chara_Japan__2_:L_Shoulder_GRP
+    400286: Chara_Japan__2_:L_Shoulder_jnt
+    400288: Chara_Japan__2_:L_Thumb01_jnt
+    400290: Chara_Japan__2_:L_Thumb02_jnt
+    400292: Chara_Japan__2_:L_Thumb03_jnt
+    400294: Chara_Japan__2_:L_Thumb04_jnt
+    400296: Chara_Japan__2_:L_Thumb_ctrl
+    400298: Chara_Japan__2_:L_Thumb_GRP
+    400300: Chara_Japan__2_:L_Toe_jnt
+    400302: Chara_Japan__2_:L_Wrist_ctrl
+    400304: Chara_Japan__2_:L_Wrist_GRP
+    400306: Chara_Japan__2_:L_Wrist_jnt
+    400308: Chara_Japan__2_:R_Ankle_jnt
+    400310: Chara_Japan__2_:R_Ball_jnt
+    400312: Chara_Japan__2_:R_Belt01_jnt
+    400314: Chara_Japan__2_:R_Belt02_jnt
+    400316: Chara_Japan__2_:R_Belt_ctrl
+    400318: Chara_Japan__2_:R_Belt_GRP
+    400320: Chara_Japan__2_:R_Clavicle_jnt
+    400322: Chara_Japan__2_:R_Clavicule_ctrl
+    400324: Chara_Japan__2_:R_Clavicule_GRP
+    400326: Chara_Japan__2_:R_Elbow_ctrl
+    400328: Chara_Japan__2_:R_Elbow_GRP
+    400330: Chara_Japan__2_:R_Elbow_jnt
+    400332: Chara_Japan__2_:R_Eye_ctrl
+    400334: Chara_Japan__2_:R_Eye_jnt
+    400336: Chara_Japan__2_:R_ForeArm_jnt
+    400338: Chara_Japan__2_:R_Hip_jnt
+    400340: Chara_Japan__2_:R_Index01_jnt
+    400342: Chara_Japan__2_:R_Index02_jnt
+    400344: Chara_Japan__2_:R_Index03_jnt
+    400346: Chara_Japan__2_:R_Index04_jnt
+    400348: Chara_Japan__2_:R_Index_ctrl
+    400350: Chara_Japan__2_:R_Index_GRP
+    400352: Chara_Japan__2_:R_Knee_jnt
+    400354: Chara_Japan__2_:R_Middle01_jnt
+    400356: Chara_Japan__2_:R_Middle02_jnt
+    400358: Chara_Japan__2_:R_Middle03_jnt
+    400360: Chara_Japan__2_:R_Middle04_jnt
+    400362: Chara_Japan__2_:R_Middle_ctrl
+    400364: Chara_Japan__2_:R_Middle_GRP
+    400366: Chara_Japan__2_:R_Pinky01_jnt
+    400368: Chara_Japan__2_:R_Pinky02_jnt
+    400370: Chara_Japan__2_:R_Pinky03_jnt
+    400372: Chara_Japan__2_:R_Pinky04_jnt
+    400374: Chara_Japan__2_:R_Pinky_ctrl
+    400376: Chara_Japan__2_:R_Pinky_GRP
+    400378: Chara_Japan__2_:R_Ring01_jnt
+    400380: Chara_Japan__2_:R_Ring02_jnt
+    400382: Chara_Japan__2_:R_Ring03_jnt
+    400384: Chara_Japan__2_:R_Ring04_jnt
+    400386: Chara_Japan__2_:R_Ring_ctrl
+    400388: Chara_Japan__2_:R_Ring_GRP
+    400390: Chara_Japan__2_:R_Shoulder_ctrl
+    400392: Chara_Japan__2_:R_Shoulder_GRP
+    400394: Chara_Japan__2_:R_Shoulder_jnt
+    400396: Chara_Japan__2_:R_Thumb01_jnt
+    400398: Chara_Japan__2_:R_Thumb02_jnt
+    400400: Chara_Japan__2_:R_Thumb03_jnt
+    400402: Chara_Japan__2_:R_Thumb04_jnt
+    400404: Chara_Japan__2_:R_Thumb_ctrl
+    400406: Chara_Japan__2_:R_Thumb_GRP
+    400408: Chara_Japan__2_:R_Toe_jnt
+    400410: Chara_Japan__2_:R_Wrist_ctrl
+    400412: Chara_Japan__2_:R_Wrist_GRP
+    400414: Chara_Japan__2_:R_Wrist_jnt
+    400416: Chara_Japan__2_:SKELETON
     2300000: //RootNode
     2300002: polySurface9
     3300000: //RootNode
@@ -162,10 +428,14 @@ ModelImporter:
     4300000: jap_captain
     4300002: polySurface9
     4300004: polySurface59
+    4300006: Jap_cap
+    4300008: Chara_Japan__2_:Jap_cap
     9500000: //RootNode
+    11100000: //RootNode
+    13700000: Chara_Japan__2_:Jap_cap
   materials:
-    importMaterials: 0
-    materialName: 0
+    importMaterials: 1
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
@@ -179,7 +449,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .100000001
     meshCompression: 0
     addColliders: 0
     swapUVChannels: 0
@@ -191,40 +461,15 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
   tangentSpace:
-    normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalSmoothAngle: 180
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
     tangentImportMode: 1
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    human:
-    - boneName: jap_captain
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        preQ: {x: 0, y: 0, z: 0, w: 0}
-        postQ: {x: 0, y: 0, z: 0, w: 0}
-        length: 0
-        modified: 0
-    - boneName: None
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        preQ: {x: 0, y: 0, z: 0, w: 0}
-        postQ: {x: 0, y: 0, z: 0, w: 0}
-        length: 0
-        modified: 0
-    skeleton:
-    - name: jap_captain
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: .99999994}
-      scale: {x: 1, y: 1, z: 1}
-      transformModified: 1
+    human: []
+    skeleton: []
     handles: []
     armTwist: .5
     foreArmTwist: .5
@@ -236,5 +481,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 0
-  animationType: 3
+  animationType: 1
   userData: 
