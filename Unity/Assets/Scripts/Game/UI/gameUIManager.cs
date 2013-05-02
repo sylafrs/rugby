@@ -202,7 +202,7 @@ public class gameUIManager : myMonoBehaviour {
 			
 			
 			//Gui du scrum
-			if(_scrumController.isInScrum()){
+			if(_scrumController.enabled){
 				float playerScore = (float)_scrumController.GetPlayerScore();
 				float cpuScore 	  = (float)_scrumController.GetCpuScore();
 				int frameToGo	  = _scrumController.GetFrameToGo();

@@ -58,67 +58,64 @@ public class scrumController : myMonoBehaviour {
 		_p1 	= _game.p1;
 		_p2	 	= _game.p2;
 		_t1		= _game.right;
-		_t2		= _game.left;
-        Init();
+		_t2		= _game.left; 
 	}
-	
-	/*
- 	 *@author Sylvain Lafon
- 	 */
-    void Init()
+
+    void OnEnable()
     {
-        playerScore		 = 1;
-        cpuScore 		 = 1;
-		currentFrameWait = 0;
-        inScrum 		 = false;
-        playerSpecial    = false;
-		offset           = 0f;
-		frameToGo 		 = frameStart;
-		timeRemaining	 = timer;
+        playerScore = 1;
+        cpuScore = 1;
+        currentFrameWait = 0;
+        inScrum = false;
+        playerSpecial = false;
+        offset = 0f;
+        frameToGo = frameStart;
+        timeRemaining = timer;
+
+        _p1.stopMove();
+        _game.disableIA = true;
     }
-	
+
+    void EndScrum()
+    {
+        this.enabled = false;
+        _p1.enableMove();
+        _game.disableIA = false;
+     
+        if (playerScore < cpuScore)
+        {
+            if (callback != null) callback(_t2);
+        }
+        else
+        {
+            if (callback != null) callback(_t1);
+        }
+    }
 	
     /*
  	 *@author Maxens Dubois 
  	 */
-	void Update () {
-				
-		if(!inScrum){
-			if (_ball.getGoScrum())
-			{
-				inScrum = true;
-				_game.state = Game.State.SCRUM;
-				_ball.setGoScrum(false);
-				
-				
-				_p1.stopMove();
-				_game.disableIA = true;
-		    }
+	void Update () {		
+		timeRemaining -= Time.deltaTime;
+		if(timeRemaining < 0) {
+			timeRemaining = 0;	
 		}
-		
-		if(inScrum){	
-			timeRemaining -= Time.deltaTime;
-			if(timeRemaining < 0) {
-				timeRemaining = 0;	
-			}
-			if(timeRemaining == 0 && playerScore != cpuScore) {
-				if(playerScore < cpuScore) {
-					if(callback != null) callback(_t2);
-				}
-				else {
-					if(callback != null) callback(_t1);
-				}
-				
-				endScrum();
-				return;
-			}
-			
-			currentFrameWait ++;
-			playersInline(offset);	
-			if(currentFrameWait > frameStart)
-			{
-				increaseIaScore();
-				
+
+        if (timeRemaining == 0 && playerScore != cpuScore)
+        {
+            EndScrum();
+        }
+        else
+        {
+            currentFrameWait++;
+            playersInline(offset);
+            if (currentFrameWait > frameStart)
+            {                	
+                // Up cpu score linearly
+		        cpuScore += cpuUp*Time.deltaTime;
+		        offset += IAoffset;			
+
+                // SI Appui normal
                 if (Input.GetKeyDown(_game.p1.Inputs.scrumNormal.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumNormal.xbox))
                 {
                     playerUpScore(playerUp);
@@ -128,6 +125,7 @@ public class scrumController : myMonoBehaviour {
                     }
                 }
 
+                // SI Appui extra
                 if (Input.GetKeyDown(_game.p1.Inputs.scrumExtra.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumExtra.xbox))
                 {
                     if (playerSpecial)
@@ -136,34 +134,18 @@ public class scrumController : myMonoBehaviour {
                         playerSpecial = false;
                     }
                 }
-
-			}else{
-				frameToGo --;
-			}
-		}
+            }
+            else
+            {
+                frameToGo--;
+            }
+        }
 	}
-	
-	public void increaseIaScore(){
-		cpuScore += cpuUp*Time.deltaTime;
-		offset += IAoffset;
-		if(cpuScore > scoreTarget){
-			//cpu win
-			Debug.Log("Cpu win Scrum");
-			if(callback != null) callback(_t1);
-			endScrum();
-		}
-	}
-	
-	public bool isInScrum() {
-		return inScrum;
-	}
-	
+		
 	/*
  	 *@author Maxens Dubois 
  	 */
-	void changeZpos(float rightGap, float leftGap){
-		
-		
+	void changeZpos(float rightGap, float leftGap){				
 		Vector3 pos = _t2.transform.position;
 		pos.z = _ball.transform.position.z + rightGap;
 		_t2.transform.position = pos;
@@ -177,34 +159,11 @@ public class scrumController : myMonoBehaviour {
  	 *@author Maxens Dubois 
  	 */
 	void playerUpScore(int up){
-		playerScore += up*Time.deltaTime;
-		if(playerScore > scoreTarget){
-			//player Win !
-			Debug.Log("player win");
-			//Vector3 ballPos = new Vector3(0,0,_t1.transform.position.z+10);
-			_ball.Owner = _t1[0];
-			_game.OnOwnerChanged(_game.Ball.PreviousOwner, _t1[0]);
-			endScrum();
-		}
-		offset += playerOffset;
-		//_t1.transform.Translate(new Vector3(0f,0f,1f));
-		//_t2.transform.Translate(new Vector3(0f,0f,1f));
-		//_ball.transform.Translate(new Vector3(0f,0f,0.5f));
+		playerScore += up*Time.deltaTime;		
+		offset += playerOffset;	
 	}
 	
-	/*
- 	 *@author Maxens Dubois 
- 	 */
-	void endScrum(){
-		inScrum = false;		
-		
-		_p1.enableMove();
-		_game.disableIA = false;
-		_game.state = Game.State.PLAYING;
-		Init();
-	}
-	
-	/*
+    /*
  	 *@author Maxens Dubois 
  	 */
 	void playersInline(float offset){

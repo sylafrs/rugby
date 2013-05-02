@@ -178,10 +178,16 @@ public class Arbiter : MonoBehaviour {
 	}
 	
 	public void OnScrum() {
+
+        this.Game.state = Game.State.SCRUM;
+
 		scrumController sc =  this.Game.GetComponent<scrumController>();
 		sc.callback = (Team t) => {
 			Game.Ball.Owner = t[0];
+            this.Game.state = Game.State.PLAYING;
 		};
+
+        sc.enabled = true;
 	}
 		
 	public void OnTackle() {

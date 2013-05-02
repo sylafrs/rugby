@@ -181,6 +181,11 @@ public class Game : myMonoBehaviour {
 	public void lockCamera(){
 		this.cameraLocked = true;
 	}
+
+    public void OnScrum()
+    {
+        arbiter.OnScrum();
+    }
     
     public void OnDrop()
     {

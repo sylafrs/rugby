@@ -37,7 +37,6 @@ public class Ball : TriggeringTriggered {
 
 	private Unit _previousOwner;
 	private Unit _nextOwner;
-	private bool goScrum;
 	private Unit _owner;
 
 	public float lastTackle = -1;
@@ -107,7 +106,6 @@ public class Ball : TriggeringTriggered {
    
 	new void Start(){
         onGround = false;
-		goScrum = false;
         base.Start();
 	}
 	
@@ -270,14 +268,6 @@ public class Ball : TriggeringTriggered {
             lastTackle = Time.time;
     }
 	
-	public bool getGoScrum(){
-		return goScrum;
-	}
-	
-	public void setGoScrum(bool state){
-		goScrum = state && (Game.state == Game.State.PLAYING);
-	}
-	
     public void UpdateTackle()
     {       
         if (lastTackle != -1)
@@ -298,7 +288,8 @@ public class Ball : TriggeringTriggered {
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
                 if (right >= 3 && left >= 3)
                 {
-                    goScrum = true;
+                    Game.OnScrum();
+                    //goScrum = true;
 					//Debug.Log("Scruuum");
                 }else{
 					//goScrum = false;
