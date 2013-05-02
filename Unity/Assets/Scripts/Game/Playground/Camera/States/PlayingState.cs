@@ -68,7 +68,7 @@ public class PlayingState : CameraState
         // Fin du super
         if (super == SuperList.superNull)
         {
-            // ....
+            cam.zoom = 1.50f;
         }
         else
         {
