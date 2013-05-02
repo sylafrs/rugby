@@ -110,7 +110,7 @@ public class Arbiter : MonoBehaviour {
 			touchTeam.placeUnit(passUnitPosition, 0);
 			
 			Game.Ball.Owner = touchTeam[0];
-		
+
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
@@ -133,7 +133,7 @@ public class Arbiter : MonoBehaviour {
 				else {
 					Game.Ball.Owner = touchTeam[id+1];
 				}
-												
+				
 				// Indicateur de bouton
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
@@ -252,9 +252,7 @@ public class Arbiter : MonoBehaviour {
                 Game.Ball.setPosition(Vector3.zero);
                 Game.right.initPos();
                 Game.left.initPos();
-            }
-          			
-			Game.state = Game.State.PLAYING;
+			}			Game.state = Game.State.PLAYING;
 			t.fixUnits = t.opponent.fixUnits = false;	
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();
