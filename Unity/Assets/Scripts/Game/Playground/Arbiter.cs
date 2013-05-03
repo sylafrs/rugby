@@ -52,9 +52,7 @@ public class Arbiter : MonoBehaviour {
         else
         {
 			// Indique que le jeu passe en mode "Touche"
-			Game.state = Game.State.TOUCH;		
-            Debug.Log("Touche : [Replace au centre, sur la ligne]");
-
+			
             
 			// Placement dans la scène de la touche.
 			Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
@@ -73,6 +71,8 @@ public class Arbiter : MonoBehaviour {
 			}
 			
 			TouchPlacement.position = pos;
+			
+			Game.state = Game.State.TOUCH;		
 			
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
