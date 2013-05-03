@@ -252,7 +252,7 @@ public class Gamer : myMonoBehaviour
         if (Input.GetKeyDown(Inputs.tackle.keyboard) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
             Unit owner = this.Game.Ball.Owner;
-            if (owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
+            if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
                 Controlled.Order = Order.OrderPlaquer(owner);
             }
@@ -281,12 +281,9 @@ public class Gamer : myMonoBehaviour
 				//offensiveside
 				foreach (Unit u in Controlled.Team)
 			    {
-					if (u.Order.type != Order.TYPE.SEARCH)
-            		{
-			            if (u != Controlled)
-			            {
-							u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        	}
+			    	if (u != Controlled)
+			        {
+						u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
 			        }
 				}
 			}
@@ -295,12 +292,9 @@ public class Gamer : myMonoBehaviour
 				//defensiveside
 				foreach (Unit u in Controlled.Team)
 			    {
-					if (u.Order.type != Order.TYPE.SEARCH)
-            		{
-			            if (u != Controlled)
-			            {
-							u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        	}
+			    	if (u != Controlled)
+			        {
+						u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
 			        }
 				}
 			}
