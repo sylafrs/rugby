@@ -45,6 +45,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
 	private bool    isflipped;
+	private Team	flipedForTeam;
+	public bool 	CancelNextFlip;
 	
 
     public StateMachine sm;
@@ -57,6 +59,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		resetRotationDelay();
 		isflipping = false;
 		isflipped= false;
+		CancelNextFlip = false;
+		flipedForTeam = game.right;
 		
 		/*
        
@@ -172,8 +176,22 @@ public class CameraManager : myMonoBehaviour, Debugable {
      */
 	
 	//flipping camera
-	public void flip(){
+	private void flip(){
 		flipInit(new Vector3(0,1,0), 180);
+	}
+	
+	public void flipForTeam(Team _t)
+	{
+		Debug.Log("Flip for Team "+_t);
+		if((isflipping == false) && (CancelNextFlip == false)){
+			//on lance le flip seulement si c'est un team différente
+			if(flipedForTeam != _t){
+				flipedForTeam = _t;
+				flip();
+			}else{
+				CancelNextFlip = false;
+			}
+		}
 	}
 	
 	void flipInit(Vector3 axis, float angle){
@@ -203,8 +221,10 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
 			
 
-            // Rotates the camera from his previous state to the current one 
-            Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
+            // Rotates the camera from his previous state to the current one
+			if(target != null){
+            	Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
+			}
 			
             // This current state becomes the next previous one
             this.flipLastAngle = angleFromZero;
@@ -242,7 +262,16 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		});
 	}
 	
-
+	public void transalateToWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,
+		float blackScreenDuration, Action Onfinish){
+		
+		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
+			Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World); 
+			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
+				Onfinish();
+			});
+		});
+	}
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

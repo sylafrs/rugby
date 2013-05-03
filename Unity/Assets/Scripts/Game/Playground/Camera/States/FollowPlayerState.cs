@@ -14,12 +14,6 @@ public class FollowPlayerState : CameraState {
         cam.setTarget(this.target.transform);
     }
 
-    public override bool OnPass(Unit from, Unit to)
-    {
-        sm.state_change_me(this, new PassCameraState(sm, cam));
-        return true;
-    }
-
     public override bool OnDrop()
     {
         sm.state_change_me(this, new DropState(sm, cam));

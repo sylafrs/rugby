@@ -40,8 +40,9 @@ public class Game : myMonoBehaviour {
         }
         set
         {
-            cameraManager.sm.event_GameStateChanged(_state, value);
-            _state = value;
+			State old = _state;
+			_state = value;
+            cameraManager.sm.event_GameStateChanged(old, value);             
         }
     }
 
@@ -190,6 +191,11 @@ public class Game : myMonoBehaviour {
 	public void lockCamera(){
 		this.cameraLocked = true;
 	}
+
+    public void OnScrum()
+    {
+        arbiter.OnScrum();
+    }
     
     public void OnDrop()
     {
@@ -230,8 +236,9 @@ public class Game : myMonoBehaviour {
                 p2.Controlled = after;
                 p2.Controlled.IndicateSelected(true);
             }
-
-            Log.Add("La balle est attrapee par l'equipe " + after.Team.Name);
+			
+			this.Ball.Taken(after);
+            Debug.Log("La balle est attrapee par l'equipe " + after.Team.Name);
         }
         
         this.left.OnOwnerChanged();

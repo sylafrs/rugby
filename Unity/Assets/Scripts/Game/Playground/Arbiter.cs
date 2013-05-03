@@ -52,9 +52,7 @@ public class Arbiter : MonoBehaviour {
         else
         {
 			// Indique que le jeu passe en mode "Touche"
-			Game.state = Game.State.TOUCH;		
-            Debug.Log("Touche : [Replace au centre, sur la ligne]");
-
+			
             
 			// Placement dans la scène de la touche.
 			Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
@@ -73,6 +71,8 @@ public class Arbiter : MonoBehaviour {
 			}
 			
 			TouchPlacement.position = pos;
+			
+			Game.state = Game.State.TOUCH;		
 			
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
@@ -109,7 +109,24 @@ public class Arbiter : MonoBehaviour {
 			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
 			touchTeam.placeUnit(passUnitPosition, 0);
 			
+			Game.cameraManager.CancelNextFlip = true;
 			Game.Ball.Owner = touchTeam[0];
+			Game.cameraManager.setTarget(null);
+			
+			// Switch de caméra
+			
+            /*
+            Game.cameraManager.gameCamera.gameObject.SetActive(false);
+			Game.cameraManager.touchCamera.gameObject.SetActive(true);
+			
+			// Placement de la caméra
+			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
+			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
+			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
+			*/
+			
+			//Game.Ball.Owner = touchTeam[0];
+			        
 
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
@@ -154,7 +171,16 @@ public class Arbiter : MonoBehaviour {
 	}
 	
 	public void OnScrum() {
-		
+
+        this.Game.state = Game.State.SCRUM;
+
+		scrumController sc =  this.Game.GetComponent<scrumController>();
+		sc.callback = (Team t) => {
+			Game.Ball.Owner = t[0];
+            this.Game.state = Game.State.PLAYING;
+		};
+
+        sc.enabled = true;
 	}
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
