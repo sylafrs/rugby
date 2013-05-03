@@ -4149,6 +4149,8 @@ MonoBehaviour:
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
   TemporaryAnimRun: {fileID: 11100000}
+  TemporaryAnimIdle: {fileID: 11100000, guid: e694b0511cb812a46b572a26f6cca7fd, type: 3}
+  TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
   buttonIndicator: {fileID: 11400004}
