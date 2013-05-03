@@ -17,6 +17,8 @@ public class Unit : TriggeringTriggered, Debugable
 	public GameObject Model;
     
     public Animation TemporaryAnimRun;
+    public Animation TemporaryAnimIdle;
+    public bool TemporaryUseIdle;
     
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft; 
