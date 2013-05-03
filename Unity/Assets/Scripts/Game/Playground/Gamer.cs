@@ -252,7 +252,7 @@ public class Gamer : myMonoBehaviour
         if (Input.GetKeyDown(Inputs.tackle.keyboard) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
             Unit owner = this.Game.Ball.Owner;
-            if (owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
+            if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
                 Controlled.Order = Order.OrderPlaquer(owner);
             }
