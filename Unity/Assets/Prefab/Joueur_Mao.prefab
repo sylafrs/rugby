@@ -2133,7 +2133,7 @@ GameObject:
   - 4: {fileID: 400280}
   - 111: {fileID: 11100000}
   m_Layer: 0
-  m_Name: Maori_Run
+  m_Name: Maori_Anim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4035,7 +4035,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 8cdbe456f13fd504fa161931729ecfd0, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
   m_UserAABB:
@@ -4074,7 +4074,8 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100020}
-  TemporaryAnimRun: {fileID: 11100000}
+  ModelAnim: {fileID: 11100000}
+  TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   buttonIndicator: {fileID: 11400008}

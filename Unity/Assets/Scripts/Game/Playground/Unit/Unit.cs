@@ -15,9 +15,8 @@ public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
 	public GameObject Model;
-    
-    public Animation TemporaryAnimRun;
-    public Animation TemporaryAnimIdle;
+
+    public Animation ModelAnim;
     public bool TemporaryUseIdle;
     
     public GameObject BallPlaceHolderRight;
@@ -57,7 +56,7 @@ public class Unit : TriggeringTriggered, Debugable
 	public NearUnit triggerTackle {get; set;}
 
     private bool isAnimated = true;
-	
+    	
 	//maxens : c'est très bourrin xD
 	void Update() {
 		if(team == null)
@@ -67,19 +66,19 @@ public class Unit : TriggeringTriggered, Debugable
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
         // TODO TEMPORARY STOP
-        if (TemporaryAnimRun && nma.velocity.magnitude < 0.5f)
+        if (ModelAnim && nma.velocity.magnitude < 0.5f)
         {
             if (isAnimated)
             {
-                TemporaryAnimRun.Stop();
+                ModelAnim.Stop();
                 isAnimated = false;
             }
         }
-        else
+        else if(ModelAnim)
         {
             if (!isAnimated)
             {
-                TemporaryAnimRun.Play();
+                ModelAnim.Play();
                 isAnimated = true;
             }
         }
