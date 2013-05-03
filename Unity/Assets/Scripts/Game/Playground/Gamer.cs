@@ -261,10 +261,17 @@ public class Gamer : myMonoBehaviour
 	
 	void UpdatePLAYER()
 	{
+		if (Game.Ball.Owner == null && ((Game.Ball.PreviousOwner.Team == Controlled.Team && Game.Ball.PreviousOwner.isTackled)
+										|| Controlled.isTackled))
+		{
+			Controlled.IndicateSelected(false);
+			Controlled = GetUnitNear();
+			Controlled.IndicateSelected(true);
+		}
 		if ( Controlled != null && Controlled.Team != null && Game != null && 
 			Game.Ball != null && Game.Ball.Owner != null && Game.Ball.Owner.Team != null )
 		{	
-			if ( Game.Ball.Owner.Team != Team && (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+			if ( Game.Ball.Owner.Team != Team &&  (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
 	        {
 				Controlled.IndicateSelected(false);
 				Controlled = GetUnitNear();
@@ -304,13 +311,14 @@ public class Gamer : myMonoBehaviour
 	public Unit GetUnitNear()
 	{
 		float dist;
-		float min = Vector3.SqrMagnitude(Game.Ball.Owner.transform.position - Controlled.Team[0].transform.position);
-		Unit near = Controlled.Team[0];
+		float min = Vector3.SqrMagnitude(Game.Ball.transform.position - Controlled.Team[0].transform.position);
+		Unit near = (Controlled.Team[0].isTackled ? Controlled.Team[1] : Controlled.Team[0]);
 		
 		foreach( Unit u in Controlled.Team )
 		{
-			dist = Vector3.SqrMagnitude(Game.Ball.Owner.transform.position - u.transform.position);
-			if ( dist < min )
+			dist = Vector3.SqrMagnitude(Game.Ball.transform.position - u.transform.position);
+			
+			if ( dist < min && !u.isTackled )
 			{
 				near = u;
 				min = dist;
