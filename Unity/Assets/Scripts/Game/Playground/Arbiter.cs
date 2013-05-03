@@ -125,6 +125,7 @@ public class Arbiter : MonoBehaviour {
 			
 			//Game.Ball.Owner = touchTeam[0];
 			        
+
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
 			
@@ -147,7 +148,7 @@ public class Arbiter : MonoBehaviour {
 				else {
 					Game.Ball.Owner = touchTeam[id+1];
 				}
-							
+				
 				// Indicateur de bouton
 				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
 				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
@@ -155,7 +156,7 @@ public class Arbiter : MonoBehaviour {
 				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
 				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
-					
+				
 				// Retour en jeu
 				Game.state = Game.State.PLAYING;
 				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
@@ -180,8 +181,54 @@ public class Arbiter : MonoBehaviour {
         sc.enabled = true;
 	}
 		
-	public void OnTackle() {
-		
+	public void OnTackle(Unit tackler, Unit tackled) {
+
+        if (Game.state != Game.State.PLAYING)        
+            return;
+
+        this.Game.state = Game.State.TACKLE;
+
+        TackleManager tm = this.Game.GetComponent<TackleManager>();
+        if (tm == null)
+            throw new UnityException("Game needs a TackleManager !");
+        
+        if (tackler == null || tackled == null || tackler.Team == tackled.Team)
+            throw new UnityException("Error : " + tackler + " cannot tackle " + tackled + " !");
+
+        tm.tackler = tackler;
+        tm.tackled = tackled;
+
+        // End of a tackle, according to the result
+        tm.callback = (TackleManager.RESULT res) =>
+        {
+            switch (res)
+            {
+                // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
+                case TackleManager.RESULT.CRITIC:
+                    this.Game.Ball.Owner = tackler;
+                    break;
+
+                // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
+                case TackleManager.RESULT.PASS:
+                    Unit target = tackled.GetNearestAlly();
+                    Game.Ball.Pass(target);
+                    
+                    tackled.sm.event_Tackle();
+                    tackler.sm.event_Tackle();
+                    break;
+
+                // Normal : les deux sont knock-out et la balle est par terre 
+                // /!\ Mêlée possible /!\
+                case TackleManager.RESULT.NORMAL:
+                    tackled.sm.event_Tackle();
+                    tackler.sm.event_Tackle();
+                    break;
+            }
+
+            this.Game.state = Game.State.PLAYING;
+        };
+
+        tm.Tackle();
 	}
 	
 	public void OnEssai() {
@@ -220,6 +267,7 @@ public class Arbiter : MonoBehaviour {
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;		
 		
+        // After the transformation is done, according to the result :
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			
 			
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
@@ -233,9 +281,7 @@ public class Arbiter : MonoBehaviour {
                 Game.Ball.setPosition(Vector3.zero);
                 Game.right.initPos();
                 Game.left.initPos();
-            }          
-		
-			Game.state = Game.State.PLAYING;
+			}			Game.state = Game.State.PLAYING;
 			t.fixUnits = t.opponent.fixUnits = false;	
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();

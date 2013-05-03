@@ -14,6 +14,7 @@ class PlaqueState : UnitState
     public override void OnEnter()
     {
         t = 0;
+        unit.isTackled = true;
         unit.nma.Stop();
 
         if (unit == unit.Game.Ball.Owner)
@@ -21,12 +22,15 @@ class PlaqueState : UnitState
             unit.Game.Ball.Put();
         }
 
-		if(unit.Team.useColors && unit.Model) {
-			foreach (var mat in unit.Model.materials)
+        if (unit.Team.useColors && unit.Model && unit.Model.renderer)
+        {
+			foreach (var mat in unit.Model.renderer.materials)
 			{
 				mat.color = unit.Team.PlaqueColor;
 			}
 		}
+
+        unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
     }
 
     public override void OnUpdate()
@@ -40,12 +44,16 @@ class PlaqueState : UnitState
 
 	public override void OnLeave()
 	{
-		if (unit.Team.useColors && unit.Model) {
-			foreach (var mat in unit.Model.materials)
+        unit.isTackled = false;
+
+		if (unit.Team.useColors && unit.Model && unit.Model.renderer) {
+			foreach (var mat in unit.Model.renderer.materials)
 			{
 				mat.color = unit.Team.Color;
 			}
 		}
+
+        unit.Model.transform.localRotation = Quaternion.identity;
 	}
 }
 

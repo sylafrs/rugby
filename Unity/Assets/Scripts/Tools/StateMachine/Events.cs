@@ -20,7 +20,7 @@ public abstract partial class State
         return (false);
     }
 
-    public virtual bool OnTackle(Unit from, Unit to)
+    public virtual bool OnTackle()
     {
         return (false);
     }
@@ -82,11 +82,11 @@ public partial class StateMachine
         }
     }
 
-    public void event_Tackle(Unit from, Unit to)
+    public void event_Tackle()
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnTackle(from, to))
+            if (tmp.OnTackle())
                 return;
         }
     }

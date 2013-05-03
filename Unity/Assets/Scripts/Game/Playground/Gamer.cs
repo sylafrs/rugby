@@ -150,10 +150,10 @@ public class Gamer : myMonoBehaviour
             {
 				if (stickDirection.x > 0.1f)
 				{
-
-					if (Controlled.Team.GetRight(Controlled).Count > 1)
+                    List<Unit> rightAllies = Controlled.Team.GetRight(Controlled);
+                    if (rightAllies.Count > 1)
 					{
-						unitTo = Controlled.Team.GetRight(Controlled)[1];
+                        unitTo = rightAllies[1];
 					}
 					else
 					{
@@ -165,9 +165,10 @@ public class Gamer : myMonoBehaviour
 				}
 				else if (stickDirection.x < 0.1f)
 				{
-					if (Controlled.Team.GetLeft(Controlled).Count > 1)
+                    List<Unit> leftAllies = Controlled.Team.GetLeft(Controlled);
+                    if (leftAllies.Count > 1)
 					{
-						unitTo = Controlled.Team.GetLeft(Controlled)[1];
+                        unitTo = leftAllies[1];
 					}
 					else
 					{
@@ -250,9 +251,10 @@ public class Gamer : myMonoBehaviour
     {
         if (Input.GetKeyDown(Inputs.tackle.keyboard) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
-            if (Controlled.NearUnits.Count > 0)
+            Unit owner = this.Game.Ball.Owner;
+            if (owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                Controlled.Order = Order.OrderPlaquer(Controlled.NearUnits[0]);
+                Controlled.Order = Order.OrderPlaquer(owner);
             }
         }
     }

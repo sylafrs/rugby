@@ -9,7 +9,14 @@ using System.Threading;
  * @author Sylvain Lafon
  * @author Guilleminot Florian
  */
-[AddComponentMenu("Scripts/Game/Game")]
+[
+    AddComponentMenu("Scripts/Game/Game"),
+    RequireComponent(typeof(IntroManager)),
+    RequireComponent(typeof(scrumController)),
+    RequireComponent(typeof(TackleManager)),
+    RequireComponent(typeof(TouchManager)),
+    RequireComponent(typeof(TransformationManager))
+]
 public class Game : myMonoBehaviour {
 	
 	public enum State {
@@ -20,6 +27,7 @@ public class Game : myMonoBehaviour {
 		TOUCH,
 		SCRUM,
 		TRANSFORMATION,
+        TACKLE,
         END
 	}
 
@@ -248,14 +256,8 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        tackler.sm.event_Tackle(tackler, tackled);
-        tackled.sm.event_Tackle(tackler, tackled);
-        this.cameraManager.sm.event_Tackle(tackler, tackled);
-        
-		if (tackled != Ball.Owner)
-		{			
-			Ball.OnTackle(tackler, tackled);
-		}
+        this.arbiter.OnTackle(tackler, tackled);
+        this.cameraManager.sm.event_Tackle();       
     }
 
     public void BallOnGround(bool onGround)
