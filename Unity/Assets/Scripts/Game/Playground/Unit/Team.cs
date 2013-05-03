@@ -46,6 +46,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public float tackleFactor;
 		
 	public float unitSpeed;
+	public float handicapSpeed = 1;
 	public float unitTackleRange;
 	
     public Unit this[int index]
@@ -85,6 +86,22 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 Debug.Log("a " + u.nma.speed);
                 u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+                Debug.Log("b " + u.nma.speed);
+                u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
+            }
+            else
+            {
+                Debug.Log("WAT ?");
+            }
+		}
+	}
+	
+	public void setHandicapSpeed() {
+		foreach(var u in units) {
+            if (u.nma)
+            {
+                Debug.Log("a " + u.nma.speed);
+                u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
                 Debug.Log("b " + u.nma.speed);
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
@@ -167,6 +184,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         }
         else if (Game.Ball.Owner.Team == this)
         {
+			//setHandicapSpeed();
             OwnerChangedOurs();
         }
         else

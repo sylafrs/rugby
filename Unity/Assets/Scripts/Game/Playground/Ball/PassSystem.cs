@@ -126,14 +126,10 @@ public class PassSystem {
 			//Debug.Log("pos in map : " + typePosition);
 			foreach (Unit u in target.Team)
 			{
-				// FIX. (TODO)
-				if (u.Order.type != Order.TYPE.SEARCH)
+				if (u != target)
 				{
-					if (u != target)
-					{
-						u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Vheight, 0, ball.Game.settings.Vwidth), target.Team.right, typePosition);
+					u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Vheight, 0, ball.Game.settings.Vwidth), target.Team.right, typePosition);
 						//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
-					}
 				}
 			}
 		}

@@ -281,12 +281,9 @@ public class Gamer : myMonoBehaviour
 				//offensiveside
 				foreach (Unit u in Controlled.Team)
 			    {
-					if (u.Order.type != Order.TYPE.SEARCH)
-            		{
-			            if (u != Controlled)
-			            {
-							u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        	}
+			    	if (u != Controlled)
+			        {
+						u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
 			        }
 				}
 			}
@@ -295,12 +292,9 @@ public class Gamer : myMonoBehaviour
 				//defensiveside
 				foreach (Unit u in Controlled.Team)
 			    {
-					if (u.Order.type != Order.TYPE.SEARCH)
-            		{
-			            if (u != Controlled)
-			            {
-							u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        	}
+			    	if (u != Controlled)
+			        {
+						u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
 			        }
 				}
 			}
