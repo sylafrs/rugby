@@ -168,7 +168,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
         if (Game.Ball.Owner == null)
         {
-            if (Game.Ball.PreviousOwner.Team != this)
+            if (Game.Ball.PreviousOwner.Team != this && Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
             {
 				setSpeed();
                 OwnerChangedBallFree();
