@@ -163,6 +163,13 @@ public class TransformationManager : MonoBehaviour {
 						ball.Owner.transform.right * power * maxPower.z +
 						ball.Owner.transform.up * power * maxPower.y;
 		
+		// start fix TODO
+		Vector3 bPos = ball.transform.position;
+		bPos.x = ball.Owner.transform.position.x;
+		bPos.z = ball.Owner.transform.position.z + (ball.Owner.Team == ball.Game.right ? 2 : -2);
+		ball.transform.position = bPos;
+		//stop fix
+		
 		ball.rigidbody.AddForce(force);
 				
 		ball.Owner = null;

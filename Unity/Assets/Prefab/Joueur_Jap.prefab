@@ -2198,6 +2198,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400290}
+  m_Layer: 0
+  m_Name: BallPlaceHolderTransformation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -2354,6 +2369,7 @@ Transform:
   - {fileID: 400052}
   - {fileID: 400070}
   - {fileID: 400028}
+  - {fileID: 400290}
   - {fileID: 400206}
   - {fileID: 400126}
   - {fileID: 400008}
@@ -3937,6 +3953,17 @@ Transform:
   m_Children:
   - {fileID: 400138}
   m_Father: {fileID: 400236}
+--- !u!4 &400290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 21.367857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400024}
 --- !u!12 &1200000
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -4130,7 +4157,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
   m_UserAABB:
@@ -4148,11 +4175,11 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
-  TemporaryAnimRun: {fileID: 11100000}
-  TemporaryAnimIdle: {fileID: 11100000, guid: e694b0511cb812a46b572a26f6cca7fd, type: 3}
+  ModelAnim: {fileID: 11100000}
   TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
+  BallPlaceHolderTransformation: {fileID: 100290}
   buttonIndicator: {fileID: 11400004}
   selectedIndicators:
   - {fileID: 100256}

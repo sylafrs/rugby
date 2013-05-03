@@ -235,6 +235,7 @@ public class Arbiter : MonoBehaviour {
 			return;	
 		}	
 		
+		Game.Ball.transform.position = Game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
 		float x = Game.Ball.transform.position.x;
 		
 		Team t = Game.Ball.Owner.Team;
@@ -261,6 +262,8 @@ public class Arbiter : MonoBehaviour {
 		
 		// Switch/Position de caméra
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+
+        Team opponent = Game.Ball.Owner.Team.opponent;
 				
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
@@ -277,10 +280,15 @@ public class Arbiter : MonoBehaviour {
             if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
                 // Game.cameraManager.gameCamera.ResetRotation();
-                Game.Ball.setPosition(Vector3.zero);
+                //Game.Ball.setPosition(Vector3.zero);
+
                 Game.right.initPos();
                 Game.left.initPos();
-			}			Game.state = Game.State.PLAYING;
+                Game.Ball.Owner = opponent[0];
+            
+			}			
+            
+            Game.state = Game.State.PLAYING;
 			t.fixUnits = t.opponent.fixUnits = false;	
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();
