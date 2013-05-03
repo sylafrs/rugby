@@ -154,7 +154,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             }
 			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
             {
-                OwnerChangedBallFree();
+                OwnerChangedOurs();
             }
 
         }
@@ -274,7 +274,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             owner.Order = Order.OrderNothing();
         }
 
-
+		/*
 		Order.TYPE_POSITION typePosition = PositionInMap( owner );
 		//Debug.Log("pos in map : " + typePosition);
         foreach (Unit u in units)
@@ -284,20 +284,25 @@ public class Team : myMonoBehaviour, IEnumerable {
             {
                 if (u != owner)
                 {
-					u.Order = Order.OrderDefensiveSide(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), right, typePosition);
+					u.Order = Order.OrderOffensiveSide(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), right, typePosition);
 					//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
                 }
             }
-        }
+        }*/
     }
 
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
 		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
-
-		if (owner.transform.position.z < Game.limiteTerrainSudOuest.transform.position.x + largeurTerrain / 3f)
+		float section = largeurTerrain / 5f;
+		
+		if (owner.transform.position.x < Game.limiteTerrainSudOuest.transform.position.x + section)
+			return Order.TYPE_POSITION.EXTRA_LEFT;
+		else if (owner.transform.position.x >= Game.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
 			return Order.TYPE_POSITION.LEFT;
-		else if (owner.transform.position.z > Game.limiteTerrainNordEst.transform.position.x - largeurTerrain / 3f)
+		else if (owner.transform.position.x > Game.limiteTerrainNordEst.transform.position.x - section)
+			return Order.TYPE_POSITION.EXTRA_RIGHT;
+		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 2*section)
 			return Order.TYPE_POSITION.RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}

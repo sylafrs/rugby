@@ -110,6 +110,16 @@ public struct Order  {
 		o.point = new Vector3(distance.x, 0, distance.z * (right ? -1 : 1));
 		return o;
 	}
+	
+	public static Order OrderOffensiveSide(Unit unit, Vector3 distance, bool right, TYPE_POSITION type)
+	{
+		Order o = new Order();
+		o.type = TYPE.DEFENSIVE_SIDE;
+		o.target = unit;
+		o.position = type;
+		o.point = new Vector3(distance.x, 0, distance.z * (right ? -1 : 1));
+		return o;
+	}
 
     public static Order OrderAttack(Unit unit, float distance, bool right)
     {
