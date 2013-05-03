@@ -11,17 +11,10 @@ public class TouchState : CameraState
     public TouchState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
 	
  	public override void OnEnter ()
-	{
-		//cam.CancelNextFlip = true;
-		
+	{	
 		cam.setTarget(null);
 		
-		
 		Transform cameraPlaceHolder = GameObject.Find("TouchPlacement").transform.FindChild("CameraPlaceHolder");
-		
-		//Camera.mainCamera.transform.position = cameraPlaceHolder.position;
-		//Camera.mainCamera.transform.rotation = cameraPlaceHolder.rotation;
-
 
         cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
             (/* OnFinish */) => {
