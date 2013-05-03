@@ -8,7 +8,6 @@ using System;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
-[RequireComponent(typeof(Game))]
 public class IntroManager : MonoBehaviour {
 
     private Game game;

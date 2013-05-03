@@ -21,6 +21,14 @@ public class superController : MonoBehaviour {
 	private Team _team;
 	private SuperList currentSuper;
 	private Color colorSave;
+
+    public bool SuperActive
+    {
+        get
+        {
+            return currentSuper != SuperList.superNull;
+        }
+    }
 	
 	//super color
 	public Color superTackleColor;

@@ -14,7 +14,7 @@ using System.Collections.Generic;
 public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
-	public Renderer Model;
+	public GameObject Model;
     
     public Animation TemporaryAnimRun;
     
@@ -41,6 +41,8 @@ public class Unit : TriggeringTriggered, Debugable
 	
     public Game Game {get; set;}	
     public GameObject[] selectedIndicators;
+
+    public bool isTackled { get; set; }
 		
 	public Unit() {
 		NearUnits = new List<Unit>();	
@@ -126,6 +128,17 @@ public class Unit : TriggeringTriggered, Debugable
 
     public List<Unit> NearUnits {get; set;}
 
+    public int getNearAlliesNumber()
+    {
+        int res = 0;
+        foreach (var u in NearUnits)
+        {
+            if (u.Team == this.Team)
+                res++;
+        }
+        return res;
+    }
+
     public override void Entered(Triggered o, Trigger t)
     {
         Unit other = o.GetComponent<Unit>();
@@ -198,6 +211,34 @@ public class Unit : TriggeringTriggered, Debugable
         
         return u;
     }
+
+    public Unit GetNearestAlly()
+    {
+        float d;
+        return GetNearestAlly(out d);
+    }
+
+    public Unit GetNearestAlly(out float dMin)
+    {
+        Unit nearestAlly = null;
+        dMin = -1;
+
+        foreach (Unit u in this.Team)
+        {
+            if (u != this)
+            {
+                float d = Vector3.Distance(this.transform.position, u.transform.position);
+                if (nearestAlly == null || d < dMin)
+                {
+                    nearestAlly = u;
+                    dMin = d;
+                }
+            }
+        }
+
+        return nearestAlly;
+    }
+
 /*
     public void ShowTouch(InputTouch touch)
     {
