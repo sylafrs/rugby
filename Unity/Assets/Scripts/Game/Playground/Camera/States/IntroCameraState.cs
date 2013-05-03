@@ -38,7 +38,7 @@ public class IntroCameraState : CameraState
     }
 	
 	private void stepBack(){
-		cam.transalateWithFade(new Vector3(0,0,-180), 4f, 1f, 1f ,1f, () =>{
+		cam.transalateWithFade(new Vector3(0,0,-10), 4f, 1f, 1f ,1f, () =>{
 			//please, kill after usage x)
 				
 			stepBack();

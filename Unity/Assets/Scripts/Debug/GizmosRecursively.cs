@@ -10,7 +10,7 @@ using System.Collections.Generic;
 [AddComponentMenu("Scripts/Debug/Gizmos (recursively)")]
 public class GizmosRecursively : MonoBehaviour {
 
-	public bool active = true;
+	public new bool active = true;
 
 	public Color [] colorPattern = {
 		Color.white,

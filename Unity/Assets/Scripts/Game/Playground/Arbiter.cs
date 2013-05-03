@@ -109,7 +109,7 @@ public class Arbiter : MonoBehaviour {
 			Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
 			touchTeam.placeUnit(passUnitPosition, 0);
 			
-			Game.Ball.Owner = touchTeam[0];
+			//Game.Ball.Owner = touchTeam[0];
 			
 			// Switch de caméra
 			
@@ -178,7 +178,16 @@ public class Arbiter : MonoBehaviour {
 	}
 	
 	public void OnScrum() {
-		
+
+        this.Game.state = Game.State.SCRUM;
+
+		scrumController sc =  this.Game.GetComponent<scrumController>();
+		sc.callback = (Team t) => {
+			Game.Ball.Owner = t[0];
+            this.Game.state = Game.State.PLAYING;
+		};
+
+        sc.enabled = true;
 	}
 		
 	public void OnTackle() {
