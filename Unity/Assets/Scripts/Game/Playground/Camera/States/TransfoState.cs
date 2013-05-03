@@ -7,4 +7,10 @@
 public class TransfoState : CameraState
 {
     public TransfoState(StateMachine sm, CameraManager cam) : base(sm, cam) { }
+	
+	public override void OnEnter ()
+	{
+	
+	}
+	
 }
