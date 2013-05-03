@@ -77,6 +77,10 @@ public class Arbiter : MonoBehaviour {
 
         Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0);
+
+        Game.cameraManager.CancelNextFlip = true;
+        Game.Ball.Owner = touchTeam[0];
+        Game.cameraManager.setTarget(null);
     }
 	
 	public void OnTouch(Touche t) {
@@ -111,17 +115,12 @@ public class Arbiter : MonoBehaviour {
 			}
 			
 			TouchPlacement.position = pos;
-			
-			Game.state = Game.State.TOUCH;		
-			
+						
 			Team interceptTeam = Game.Ball.Team;
 			Team touchTeam = interceptTeam.opponent;
 
-            //PlacePlayersForTouch();
-			
-			Game.cameraManager.CancelNextFlip = true;
-			Game.Ball.Owner = touchTeam[0];
-			Game.cameraManager.setTarget(null);
+            //PlacePlayersForTouch();			
+            Game.state = Game.State.TOUCH;		
 			
 			//Game.Ball.Owner = touchTeam[0];			        
 
