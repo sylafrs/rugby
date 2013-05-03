@@ -262,11 +262,12 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		});
 	}
 	
-	public void transalateToWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,
+	public void transalateToWithFade(Vector3 destination, Quaternion _rotation,float delay,float fadeiInDuration, float fadeOutDuration,
 		float blackScreenDuration, Action Onfinish){
 		
 		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
 			Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World); 
+			Camera.mainCamera.transform.rotation = _rotation;
 			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
 				Onfinish();
 			});

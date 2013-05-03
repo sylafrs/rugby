@@ -39,6 +39,8 @@ public class Arbiter : MonoBehaviour {
         ResumeIngameTime();
     }
 	
+	//public Action OnFadingTouchCamera = null;
+	
 	public void OnTouch(Touche t) {
 		if(t == null || Game.state != Game.State.PLAYING) {
 			return;	
@@ -112,18 +114,6 @@ public class Arbiter : MonoBehaviour {
 			Game.cameraManager.CancelNextFlip = true;
 			Game.Ball.Owner = touchTeam[0];
 			Game.cameraManager.setTarget(null);
-			
-			// Switch de caméra
-			
-            /*
-            Game.cameraManager.gameCamera.gameObject.SetActive(false);
-			Game.cameraManager.touchCamera.gameObject.SetActive(true);
-			
-			// Placement de la caméra
-			Transform cameraPlaceHolder = TouchPlacement.FindChild("CameraPlaceHolder");
-			Game.cameraManager.touchCamera.transform.position = cameraPlaceHolder.position;
-			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
-			*/
 			
 			//Game.Ball.Owner = touchTeam[0];
 			        

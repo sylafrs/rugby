@@ -20,11 +20,14 @@ public class TouchState : CameraState
 		Transform cameraPlaceHolder = GameObject.Find("TouchPlacement").transform.FindChild("CameraPlaceHolder");
 		
 		//Camera.mainCamera.transform.position = cameraPlaceHolder.position;
-		Camera.mainCamera.transform.rotation = cameraPlaceHolder.rotation;
+		//Camera.mainCamera.transform.rotation = cameraPlaceHolder.rotation;
 		
 		
-		cam.transalateToWithFade(cameraPlaceHolder.position, 0f, 1f, 1f ,0.3f, () =>{
+		cam.transalateToWithFade(cameraPlaceHolder.position,cameraPlaceHolder.rotation, 0f, 1f, 1f ,0.3f, () =>{
 			//please, kill after usage x)
+			
+			//cam.game.arbiter.OnFadingTouchCamera();
+			
 			CameraFade.wannaDie();
 		});
 		
