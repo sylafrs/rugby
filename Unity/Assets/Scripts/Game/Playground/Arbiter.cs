@@ -149,12 +149,11 @@ public class Arbiter : MonoBehaviour {
 				}
 				
 				// Indicateur de bouton
-				interceptTeam[0].buttonIndicator.target.renderer.enabled = false;
-				interceptTeam[1].buttonIndicator.target.renderer.enabled = false;
-				interceptTeam[2].buttonIndicator.target.renderer.enabled = false;				
-				touchTeam[1].buttonIndicator.target.renderer.enabled = false;
-				touchTeam[2].buttonIndicator.target.renderer.enabled = false;
-				touchTeam[3].buttonIndicator.target.renderer.enabled = false;
+				foreach(Unit u in interceptTeam)
+					u.buttonIndicator.target.renderer.enabled = false;
+				
+				foreach(Unit u in touchTeam)
+					u.buttonIndicator.target.renderer.enabled = false;
 				
 				// Retour en jeu
 				Game.state = Game.State.PLAYING;
