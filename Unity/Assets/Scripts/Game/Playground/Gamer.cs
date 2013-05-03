@@ -119,13 +119,8 @@ public class Gamer : myMonoBehaviour
         {
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
-<<<<<<< HEAD
 				if (stickDirection.x > 0.1f)
 				{
-=======
-				if (stickDirection.x == 1)
-				{                    
->>>>>>> plaquage
 					if (Controlled.Team.GetRight(Controlled).Count > 0)
 					{
 						unitTo = Controlled.Team.GetRight(Controlled)[0];
