@@ -123,7 +123,7 @@ public class Arbiter : MonoBehaviour {
 			Game.cameraManager.touchCamera.transform.rotation = cameraPlaceHolder.rotation;
 			*/
 			
-			Game.Ball.Owner = touchTeam[0];
+			//Game.Ball.Owner = touchTeam[0];
 			        
 			// Règlage du mini-jeu
 			TouchManager tm = this.Game.GetComponent<TouchManager>();
