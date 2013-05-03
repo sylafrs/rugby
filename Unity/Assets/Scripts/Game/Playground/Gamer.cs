@@ -250,9 +250,10 @@ public class Gamer : myMonoBehaviour
     {
         if (Input.GetKeyDown(Inputs.tackle.keyboard) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
-            if (Controlled.NearUnits.Count > 0)
+            Unit owner = this.Game.Ball.Owner;
+            if (owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                Controlled.Order = Order.OrderPlaquer(Controlled.NearUnits[0]);
+                Controlled.Order = Order.OrderPlaquer(owner);
             }
         }
     }

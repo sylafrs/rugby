@@ -22,8 +22,20 @@ public class Unit : TriggeringTriggered, Debugable
     public GameObject BallPlaceHolderLeft; 
 	
 	public TextureCollectionner buttonIndicator;
-	
-    public NavMeshAgent nma {get; private set;}
+
+    private NavMeshAgent _nma;
+    public NavMeshAgent nma
+    {
+        get
+        {
+            if (_nma == null)
+            {
+                _nma = this.GetComponent<NavMeshAgent>();
+            }
+
+            return _nma;
+        }
+    }
     private Order currentOrder;
     private Team team;
 	
@@ -102,8 +114,7 @@ public class Unit : TriggeringTriggered, Debugable
     }
 
 	public override void Start () 
-    {
-        nma = this.GetComponent<NavMeshAgent>();
+    {        
         sm.SetFirstState(new MainState(sm, this));
         base.Start();
 	}
