@@ -4638,7 +4638,8 @@ MonoBehaviour:
   speedFactor: 1
   tackleFactor: 1
   unitSpeed: 15
-  unitTackleRange: 50
+  handicapSpeed: 2.5
+  unitTackleRange: 70
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
@@ -6056,7 +6057,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Cameras
+  DebugWindowFilter: B
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6396,7 +6397,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 431870786}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 14.515358, y: 6.23830032, z: 3.23373795}
+  m_LocalPosition: {x: 18.2488823, y: 6.23830032, z: 3.23373675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 762017080}
@@ -6426,7 +6427,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.69999981, y: 58.7000008, z: 66.5899963}
+  m_Size: {x: 9.69999981, y: 58.7000008, z: 100}
   m_Center: {x: 0, y: 28.2000008, z: 0}
 --- !u!1 &434155316
 GameObject:
@@ -7888,7 +7889,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578357187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.9416809, y: 6.23829985, z: 3.23373818}
+  m_LocalPosition: {x: -47.3658485, y: 6.23829985, z: 3.23373699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2056244999}
@@ -7918,7 +7919,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.69999981, y: 58.7000008, z: 66.5899963}
+  m_Size: {x: 9.69999981, y: 58.7000008, z: 100}
   m_Center: {x: 0, y: 28.2000008, z: 0}
 --- !u!1 &582775671
 GameObject:
@@ -10050,7 +10051,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 762017079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .852705002, y: 0, z: 32.7834091}
+  m_LocalPosition: {x: 4.1537075, y: 0, z: 32.7834129}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431870787}
@@ -12507,7 +12508,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 887974297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .76795578, y: 0, z: -33.383667}
+  m_LocalPosition: {x: 5.32159042, y: 0, z: -33.383667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578357188}
@@ -15755,7 +15756,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146276130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .852690756, y: 0, z: -33.0984154}
+  m_LocalPosition: {x: 4.16248035, y: 0, z: -33.0984154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431870787}
@@ -22298,7 +22299,7 @@ MonoBehaviour:
   rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
-  MinfollowOffset: {x: 0, y: .5, z: -1}
+  MinfollowOffset: {x: 0, y: 1, z: -1.5}
   flipDuration: 1
   flipDelay: .100000001
   CancelNextFlip: 0
@@ -27973,7 +27974,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2056244998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .76795578, y: 0, z: 32.7458038}
+  m_LocalPosition: {x: 5.16782379, y: 0, z: 32.7458076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578357188}
@@ -28223,8 +28224,9 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 14
-  unitTackleRange: 50
+  unitSpeed: 15
+  handicapSpeed: 2.5
+  unitTackleRange: 70
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
