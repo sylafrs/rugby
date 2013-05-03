@@ -733,10 +733,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40150577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.49011612e-08, y: 15.7236433, z: -20.6302643}
+  m_LocalPosition: {x: 0, y: 12.4399996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 456611913}
+  m_Father: {fileID: 139661136}
 --- !u!1 &47553876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,7 +2897,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 40150578}
   m_Father: {fileID: 456611913}
 --- !u!1 &142453948
 GameObject:
@@ -3148,8 +3149,8 @@ MonoBehaviour:
   sm: {fileID: 156800329}
   Model: {fileID: 1301781090}
   TemporaryAnimRun: {fileID: 554126931}
-  TemporaryAnimIdle: {fileID: 11100000, guid: e694b0511cb812a46b572a26f6cca7fd, type: 3}
-  TemporaryUseIdle: 1
+  TemporaryAnimIdle: {fileID: 0}
+  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 312903214}
   BallPlaceHolderLeft: {fileID: 509656382}
   buttonIndicator: {fileID: 170850786}
@@ -4683,7 +4684,7 @@ MonoBehaviour:
   speedFactor: 1
   tackleFactor: 1
   unitSpeed: 15
-  handicapSpeed: 2.5
+  handicapSpeed: 1
   unitTackleRange: 70
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
   SuperGaugeValue: 0
@@ -6759,7 +6760,6 @@ Transform:
   m_LocalPosition: {x: .13923645, y: 0, z: 6.98472023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 40150578}
   - {fileID: 139661136}
   - {fileID: 1644219627}
   - {fileID: 1897204961}
@@ -28236,7 +28236,7 @@ MonoBehaviour:
   speedFactor: 1
   tackleFactor: 1
   unitSpeed: 15
-  handicapSpeed: 2.5
+  handicapSpeed: 1
   unitTackleRange: 70
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
