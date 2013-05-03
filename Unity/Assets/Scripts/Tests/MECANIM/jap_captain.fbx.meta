@@ -1,0 +1,1236 @@
+fileFormatVersion: 2
+guid: 8d173006f4244784aa46bb627a3c9cf9
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Chara_Japan__2_:C_Armor_jnt
+    100002: Chara_Japan__2_:C_Chest_ctrl
+    100004: Chara_Japan__2_:C_Chest_jnt
+    100006: Chara_Japan__2_:C_Eyes_ctrl
+    100008: Chara_Japan__2_:C_Eyes_GRP
+    100010: Chara_Japan__2_:C_Head_ctrl
+    100012: Chara_Japan__2_:C_Head_End_jnt
+    100014: Chara_Japan__2_:C_Head_jnt
+    100016: Chara_Japan__2_:C_Jaw_ctrl
+    100018: Chara_Japan__2_:C_Jaw_End_jnt
+    100020: Chara_Japan__2_:C_Jaw_jnt
+    100022: Chara_Japan__2_:C_MidChest_jnt
+    100024: Chara_Japan__2_:C_MidSpine_ctrl
+    100026: Chara_Japan__2_:C_MidSpine_jnt
+    100028: Chara_Japan__2_:C_Neck_ctrl
+    100030: Chara_Japan__2_:C_Neck_jnt
+    100032: Chara_Japan__2_:C_Pelvis_ctrl
+    100034: Chara_Japan__2_:C_Pelvis_jnt
+    100036: Chara_Japan__2_:C_Root_ctrl
+    100038: Chara_Japan__2_:C_Root_jnt
+    100040: Chara_Japan__2_:C_Ultimate_ctrl
+    100042: Chara_Japan__2_:CONTROLS
+    100044: Chara_Japan__2_:Jap_cap
+    100046: Chara_Japan__2_:L_Ankle_jnt
+    100048: Chara_Japan__2_:L_Ball_jnt
+    100050: Chara_Japan__2_:L_Belt01_jnt
+    100052: Chara_Japan__2_:L_Belt02_jnt
+    100054: Chara_Japan__2_:L_Belt03_jnt
+    100056: Chara_Japan__2_:L_Belt_ctrl
+    100058: Chara_Japan__2_:L_Belt_GRP
+    100060: Chara_Japan__2_:L_Clavicle_jnt
+    100062: Chara_Japan__2_:L_Clavicule_ctrl
+    100064: Chara_Japan__2_:L_Clavicule_GRP
+    100066: Chara_Japan__2_:L_Elbow_ctrl
+    100068: Chara_Japan__2_:L_Elbow_GRP
+    100070: Chara_Japan__2_:L_Elbow_jnt
+    100072: Chara_Japan__2_:L_Eye_ctrl
+    100074: Chara_Japan__2_:L_Eye_jnt
+    100076: Chara_Japan__2_:L_ForeArm_jnt
+    100078: Chara_Japan__2_:L_Hip_jnt
+    100080: Chara_Japan__2_:L_Index01_jnt
+    100082: Chara_Japan__2_:L_Index02_jnt
+    100084: Chara_Japan__2_:L_Index03_jnt
+    100086: Chara_Japan__2_:L_Index04_jnt
+    100088: Chara_Japan__2_:L_Index_ctrl
+    100090: Chara_Japan__2_:L_Index_GRP
+    100092: Chara_Japan__2_:L_Knee_jnt
+    100094: Chara_Japan__2_:L_Middle01_jnt
+    100096: Chara_Japan__2_:L_Middle02_jnt
+    100098: Chara_Japan__2_:L_Middle03_jnt
+    100100: Chara_Japan__2_:L_Middle04_jnt
+    100102: Chara_Japan__2_:L_Middle_ctrl
+    100104: Chara_Japan__2_:L_Middle_GRP
+    100106: Chara_Japan__2_:L_Pinky01_jnt
+    100108: Chara_Japan__2_:L_Pinky02_jnt
+    100110: Chara_Japan__2_:L_Pinky03_jnt
+    100112: Chara_Japan__2_:L_Pinky04_jnt
+    100114: Chara_Japan__2_:L_Pinky_ctrl
+    100116: Chara_Japan__2_:L_Pinky_GRP
+    100118: Chara_Japan__2_:L_Ring01_jnt
+    100120: Chara_Japan__2_:L_Ring02_jnt
+    100122: Chara_Japan__2_:L_Ring03_jnt
+    100124: Chara_Japan__2_:L_Ring04_jnt
+    100126: Chara_Japan__2_:L_Ring_ctrl
+    100128: Chara_Japan__2_:L_Ring_GRP
+    100130: Chara_Japan__2_:L_Shoulder_ctrl
+    100132: Chara_Japan__2_:L_Shoulder_GRP
+    100134: Chara_Japan__2_:L_Shoulder_jnt
+    100136: Chara_Japan__2_:L_Thumb01_jnt
+    100138: Chara_Japan__2_:L_Thumb02_jnt
+    100140: Chara_Japan__2_:L_Thumb03_jnt
+    100142: Chara_Japan__2_:L_Thumb04_jnt
+    100144: Chara_Japan__2_:L_Thumb_ctrl
+    100146: Chara_Japan__2_:L_Thumb_GRP
+    100148: Chara_Japan__2_:L_Toe_jnt
+    100150: Chara_Japan__2_:L_Wrist_ctrl
+    100152: Chara_Japan__2_:L_Wrist_GRP
+    100154: Chara_Japan__2_:L_Wrist_jnt
+    100156: Chara_Japan__2_:R_Ankle_jnt
+    100158: Chara_Japan__2_:R_Ball_jnt
+    100160: Chara_Japan__2_:R_Belt01_jnt
+    100162: Chara_Japan__2_:R_Belt02_jnt
+    100164: Chara_Japan__2_:R_Belt_ctrl
+    100166: Chara_Japan__2_:R_Belt_GRP
+    100168: Chara_Japan__2_:R_Clavicle_jnt
+    100170: Chara_Japan__2_:R_Clavicule_ctrl
+    100172: Chara_Japan__2_:R_Clavicule_GRP
+    100174: Chara_Japan__2_:R_Elbow_ctrl
+    100176: Chara_Japan__2_:R_Elbow_GRP
+    100178: Chara_Japan__2_:R_Elbow_jnt
+    100180: Chara_Japan__2_:R_Eye_ctrl
+    100182: Chara_Japan__2_:R_Eye_jnt
+    100184: Chara_Japan__2_:R_ForeArm_jnt
+    100186: Chara_Japan__2_:R_Hip_jnt
+    100188: Chara_Japan__2_:R_Index01_jnt
+    100190: Chara_Japan__2_:R_Index02_jnt
+    100192: Chara_Japan__2_:R_Index03_jnt
+    100194: Chara_Japan__2_:R_Index04_jnt
+    100196: Chara_Japan__2_:R_Index_ctrl
+    100198: Chara_Japan__2_:R_Index_GRP
+    100200: Chara_Japan__2_:R_Knee_jnt
+    100202: Chara_Japan__2_:R_Middle01_jnt
+    100204: Chara_Japan__2_:R_Middle02_jnt
+    100206: Chara_Japan__2_:R_Middle03_jnt
+    100208: Chara_Japan__2_:R_Middle04_jnt
+    100210: Chara_Japan__2_:R_Middle_ctrl
+    100212: Chara_Japan__2_:R_Middle_GRP
+    100214: Chara_Japan__2_:R_Pinky01_jnt
+    100216: Chara_Japan__2_:R_Pinky02_jnt
+    100218: Chara_Japan__2_:R_Pinky03_jnt
+    100220: Chara_Japan__2_:R_Pinky04_jnt
+    100222: Chara_Japan__2_:R_Pinky_ctrl
+    100224: Chara_Japan__2_:R_Pinky_GRP
+    100226: Chara_Japan__2_:R_Ring01_jnt
+    100228: Chara_Japan__2_:R_Ring02_jnt
+    100230: Chara_Japan__2_:R_Ring03_jnt
+    100232: Chara_Japan__2_:R_Ring04_jnt
+    100234: Chara_Japan__2_:R_Ring_ctrl
+    100236: Chara_Japan__2_:R_Ring_GRP
+    100238: Chara_Japan__2_:R_Shoulder_ctrl
+    100240: Chara_Japan__2_:R_Shoulder_GRP
+    100242: Chara_Japan__2_:R_Shoulder_jnt
+    100244: Chara_Japan__2_:R_Thumb01_jnt
+    100246: Chara_Japan__2_:R_Thumb02_jnt
+    100248: Chara_Japan__2_:R_Thumb03_jnt
+    100250: Chara_Japan__2_:R_Thumb04_jnt
+    100252: Chara_Japan__2_:R_Thumb_ctrl
+    100254: Chara_Japan__2_:R_Thumb_GRP
+    100256: Chara_Japan__2_:R_Toe_jnt
+    100258: Chara_Japan__2_:R_Wrist_ctrl
+    100260: Chara_Japan__2_:R_Wrist_GRP
+    100262: Chara_Japan__2_:R_Wrist_jnt
+    100264: Chara_Japan__2_:SKELETON
+    100266: //RootNode
+    400000: Chara_Japan__2_:C_Armor_jnt
+    400002: Chara_Japan__2_:C_Chest_ctrl
+    400004: Chara_Japan__2_:C_Chest_jnt
+    400006: Chara_Japan__2_:C_Eyes_ctrl
+    400008: Chara_Japan__2_:C_Eyes_GRP
+    400010: Chara_Japan__2_:C_Head_ctrl
+    400012: Chara_Japan__2_:C_Head_End_jnt
+    400014: Chara_Japan__2_:C_Head_jnt
+    400016: Chara_Japan__2_:C_Jaw_ctrl
+    400018: Chara_Japan__2_:C_Jaw_End_jnt
+    400020: Chara_Japan__2_:C_Jaw_jnt
+    400022: Chara_Japan__2_:C_MidChest_jnt
+    400024: Chara_Japan__2_:C_MidSpine_ctrl
+    400026: Chara_Japan__2_:C_MidSpine_jnt
+    400028: Chara_Japan__2_:C_Neck_ctrl
+    400030: Chara_Japan__2_:C_Neck_jnt
+    400032: Chara_Japan__2_:C_Pelvis_ctrl
+    400034: Chara_Japan__2_:C_Pelvis_jnt
+    400036: Chara_Japan__2_:C_Root_ctrl
+    400038: Chara_Japan__2_:C_Root_jnt
+    400040: Chara_Japan__2_:C_Ultimate_ctrl
+    400042: Chara_Japan__2_:CONTROLS
+    400044: Chara_Japan__2_:Jap_cap
+    400046: Chara_Japan__2_:L_Ankle_jnt
+    400048: Chara_Japan__2_:L_Ball_jnt
+    400050: Chara_Japan__2_:L_Belt01_jnt
+    400052: Chara_Japan__2_:L_Belt02_jnt
+    400054: Chara_Japan__2_:L_Belt03_jnt
+    400056: Chara_Japan__2_:L_Belt_ctrl
+    400058: Chara_Japan__2_:L_Belt_GRP
+    400060: Chara_Japan__2_:L_Clavicle_jnt
+    400062: Chara_Japan__2_:L_Clavicule_ctrl
+    400064: Chara_Japan__2_:L_Clavicule_GRP
+    400066: Chara_Japan__2_:L_Elbow_ctrl
+    400068: Chara_Japan__2_:L_Elbow_GRP
+    400070: Chara_Japan__2_:L_Elbow_jnt
+    400072: Chara_Japan__2_:L_Eye_ctrl
+    400074: Chara_Japan__2_:L_Eye_jnt
+    400076: Chara_Japan__2_:L_ForeArm_jnt
+    400078: Chara_Japan__2_:L_Hip_jnt
+    400080: Chara_Japan__2_:L_Index01_jnt
+    400082: Chara_Japan__2_:L_Index02_jnt
+    400084: Chara_Japan__2_:L_Index03_jnt
+    400086: Chara_Japan__2_:L_Index04_jnt
+    400088: Chara_Japan__2_:L_Index_ctrl
+    400090: Chara_Japan__2_:L_Index_GRP
+    400092: Chara_Japan__2_:L_Knee_jnt
+    400094: Chara_Japan__2_:L_Middle01_jnt
+    400096: Chara_Japan__2_:L_Middle02_jnt
+    400098: Chara_Japan__2_:L_Middle03_jnt
+    400100: Chara_Japan__2_:L_Middle04_jnt
+    400102: Chara_Japan__2_:L_Middle_ctrl
+    400104: Chara_Japan__2_:L_Middle_GRP
+    400106: Chara_Japan__2_:L_Pinky01_jnt
+    400108: Chara_Japan__2_:L_Pinky02_jnt
+    400110: Chara_Japan__2_:L_Pinky03_jnt
+    400112: Chara_Japan__2_:L_Pinky04_jnt
+    400114: Chara_Japan__2_:L_Pinky_ctrl
+    400116: Chara_Japan__2_:L_Pinky_GRP
+    400118: Chara_Japan__2_:L_Ring01_jnt
+    400120: Chara_Japan__2_:L_Ring02_jnt
+    400122: Chara_Japan__2_:L_Ring03_jnt
+    400124: Chara_Japan__2_:L_Ring04_jnt
+    400126: Chara_Japan__2_:L_Ring_ctrl
+    400128: Chara_Japan__2_:L_Ring_GRP
+    400130: Chara_Japan__2_:L_Shoulder_ctrl
+    400132: Chara_Japan__2_:L_Shoulder_GRP
+    400134: Chara_Japan__2_:L_Shoulder_jnt
+    400136: Chara_Japan__2_:L_Thumb01_jnt
+    400138: Chara_Japan__2_:L_Thumb02_jnt
+    400140: Chara_Japan__2_:L_Thumb03_jnt
+    400142: Chara_Japan__2_:L_Thumb04_jnt
+    400144: Chara_Japan__2_:L_Thumb_ctrl
+    400146: Chara_Japan__2_:L_Thumb_GRP
+    400148: Chara_Japan__2_:L_Toe_jnt
+    400150: Chara_Japan__2_:L_Wrist_ctrl
+    400152: Chara_Japan__2_:L_Wrist_GRP
+    400154: Chara_Japan__2_:L_Wrist_jnt
+    400156: Chara_Japan__2_:R_Ankle_jnt
+    400158: Chara_Japan__2_:R_Ball_jnt
+    400160: Chara_Japan__2_:R_Belt01_jnt
+    400162: Chara_Japan__2_:R_Belt02_jnt
+    400164: Chara_Japan__2_:R_Belt_ctrl
+    400166: Chara_Japan__2_:R_Belt_GRP
+    400168: Chara_Japan__2_:R_Clavicle_jnt
+    400170: Chara_Japan__2_:R_Clavicule_ctrl
+    400172: Chara_Japan__2_:R_Clavicule_GRP
+    400174: Chara_Japan__2_:R_Elbow_ctrl
+    400176: Chara_Japan__2_:R_Elbow_GRP
+    400178: Chara_Japan__2_:R_Elbow_jnt
+    400180: Chara_Japan__2_:R_Eye_ctrl
+    400182: Chara_Japan__2_:R_Eye_jnt
+    400184: Chara_Japan__2_:R_ForeArm_jnt
+    400186: Chara_Japan__2_:R_Hip_jnt
+    400188: Chara_Japan__2_:R_Index01_jnt
+    400190: Chara_Japan__2_:R_Index02_jnt
+    400192: Chara_Japan__2_:R_Index03_jnt
+    400194: Chara_Japan__2_:R_Index04_jnt
+    400196: Chara_Japan__2_:R_Index_ctrl
+    400198: Chara_Japan__2_:R_Index_GRP
+    400200: Chara_Japan__2_:R_Knee_jnt
+    400202: Chara_Japan__2_:R_Middle01_jnt
+    400204: Chara_Japan__2_:R_Middle02_jnt
+    400206: Chara_Japan__2_:R_Middle03_jnt
+    400208: Chara_Japan__2_:R_Middle04_jnt
+    400210: Chara_Japan__2_:R_Middle_ctrl
+    400212: Chara_Japan__2_:R_Middle_GRP
+    400214: Chara_Japan__2_:R_Pinky01_jnt
+    400216: Chara_Japan__2_:R_Pinky02_jnt
+    400218: Chara_Japan__2_:R_Pinky03_jnt
+    400220: Chara_Japan__2_:R_Pinky04_jnt
+    400222: Chara_Japan__2_:R_Pinky_ctrl
+    400224: Chara_Japan__2_:R_Pinky_GRP
+    400226: Chara_Japan__2_:R_Ring01_jnt
+    400228: Chara_Japan__2_:R_Ring02_jnt
+    400230: Chara_Japan__2_:R_Ring03_jnt
+    400232: Chara_Japan__2_:R_Ring04_jnt
+    400234: Chara_Japan__2_:R_Ring_ctrl
+    400236: Chara_Japan__2_:R_Ring_GRP
+    400238: Chara_Japan__2_:R_Shoulder_ctrl
+    400240: Chara_Japan__2_:R_Shoulder_GRP
+    400242: Chara_Japan__2_:R_Shoulder_jnt
+    400244: Chara_Japan__2_:R_Thumb01_jnt
+    400246: Chara_Japan__2_:R_Thumb02_jnt
+    400248: Chara_Japan__2_:R_Thumb03_jnt
+    400250: Chara_Japan__2_:R_Thumb04_jnt
+    400252: Chara_Japan__2_:R_Thumb_ctrl
+    400254: Chara_Japan__2_:R_Thumb_GRP
+    400256: Chara_Japan__2_:R_Toe_jnt
+    400258: Chara_Japan__2_:R_Wrist_ctrl
+    400260: Chara_Japan__2_:R_Wrist_GRP
+    400262: Chara_Japan__2_:R_Wrist_jnt
+    400264: Chara_Japan__2_:SKELETON
+    400266: //RootNode
+    4300000: Chara_Japan__2_:Jap_cap
+    9500000: //RootNode
+    13700000: Chara_Japan__2_:Jap_cap
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Chara_Japan__2_:C_Root_jnt
+      humanName: Hips
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 6.7884326, y: 0, z: 3.3942163}
+        preQ: {x: .550704539, y: .443536371, z: -.55070442, w: -.443536431}
+        postQ: {x: 1.04308121e-07, y: 2.98023206e-08, z: -.99999994, w: 0}
+        length: 8.48554325
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Hip_jnt
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: 14.541914, y: 0, z: 7.27095699}
+        preQ: {x: .939009786, y: .343227118, z: .020047415, w: -.00732776849}
+        postQ: {x: -2.98023206e-08, y: -.0665377155, z: .99778378, w: -4.47034836e-08}
+        length: 18.1773968
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Hip_jnt
+      humanName: RightUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: 14.5418816, y: 0, z: 7.27094078}
+        preQ: {x: .939009786, y: .343227118, z: -.020047415, w: .00732776849}
+        postQ: {x: .752589047, y: 1.06170781e-07, z: -6.70552254e-08, w: .658490419}
+        length: 18.1773567
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Knee_jnt
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 17.2731686, y: 0, z: 8.63658428}
+        preQ: {x: .043552205, y: .0555120409, z: -.5579108, w: .826896071}
+        postQ: {x: 1.49011612e-08, y: -.999999881, z: .000398263335, w: -5.96046448e-08}
+        length: 21.5914688
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Knee_jnt
+      humanName: RightLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 17.2731876, y: 0, z: 8.63659382}
+        preQ: {x: -.433755487, y: .615499794, z: -.553907692, w: -.355249584}
+        postQ: {x: -.706825137, y: -1.75088644e-07, z: -3.35276127e-08, w: -.707388222}
+        length: 21.5914936
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Ankle_jnt
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: 5.61854696, y: 0, z: 2.80927348}
+        preQ: {x: .153605044, y: -.98813194, z: .0005030334, w: -.000643014908}
+        postQ: {x: .0127085224, y: -.0238927752, z: .888941407, w: -.457220703}
+        length: 7.02318573
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Ankle_jnt
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: 5.61854839, y: 0, z: 2.8092742}
+        preQ: {x: -.698359132, y: -.109070018, z: .108160652, w: -.699070334}
+        postQ: {x: .840022981, y: -.446181446, z: -.102773912, w: -.291068554}
+        length: 7.02318764
+        modified: 1
+    - boneName: Chara_Japan__2_:C_MidSpine_jnt
+      humanName: Spine
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 6.81755733, y: 0, z: 3.40877867}
+        preQ: {x: 4.47034871e-08, y: 1.49011612e-08, z: -.999595225, w: -.0284483302}
+        postQ: {x: 2.98023224e-08, y: 2.98023224e-08, z: -.99999994, w: -5.96046448e-08}
+        length: 8.52194881
+        modified: 1
+    - boneName: Chara_Japan__2_:C_Chest_jnt
+      humanName: Chest
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 11.2416162, y: 0, z: 5.62080812}
+        preQ: {x: 8.94069601e-08, y: -2.98023206e-08, z: .98256886, w: .185898647}
+        postQ: {x: 2.98023224e-08, y: -0, z: .990119338, w: .140226841}
+        length: 14.0520248
+        modified: 1
+    - boneName: Chara_Japan__2_:C_Neck_jnt
+      humanName: Neck
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 4.56591558, y: 0, z: 2.28295779}
+        preQ: {x: -.143989876, y: -.989578903, z: 9.12248943e-05, w: -.000626861933}
+        postQ: {x: 2.98023206e-08, y: -.999783099, z: .0208270382, w: -5.96046412e-08}
+        length: 5.70739651
+        modified: 1
+    - boneName: Chara_Japan__2_:C_Head_jnt
+      humanName: Head
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: 4.56591558, y: 0, z: 2.28295779}
+        preQ: {x: .0152007788, y: .999667287, z: -.020834282, w: -.000316813588}
+        postQ: {x: .201211587, y: .979547322, z: .000802666007, w: .000164866462}
+        length: 5.70739651
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Clavicle_jnt
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: 6.43941402, y: 0, z: 3.21970701}
+        preQ: {x: .568086922, y: .447964221, z: -.577626169, w: .378091484}
+        postQ: {x: 7.89441457e-10, y: -.00207327167, z: -.999997795, w: 1.42663348e-08}
+        length: 8.04926968
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Clavicle_jnt
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: 6.43939638, y: 0, z: 3.21969819}
+        preQ: {x: -.378092438, y: .577625811, z: -.447963387, w: -.56808728}
+        postQ: {x: .999997795, y: 1.29837099e-06, z: -3.51403287e-07, w: .0020731953}
+        length: 8.04924774
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Shoulder_jnt
+      humanName: LeftUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: 8.20384121, y: 0, z: 4.1019206}
+        preQ: {x: -.266330183, y: .00144749682, z: -.881616771, w: .389638454}
+        postQ: {x: -3.1723173e-09, y: -.00989737827, z: -.999951005, w: 1.05122275e-07}
+        length: 10.2548056
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Shoulder_jnt
+      humanName: RightUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: 8.20388031, y: 0, z: 4.10194016}
+        preQ: {x: .881616592, y: .389638275, z: -.266330183, w: -.00144744653}
+        postQ: {x: .999951005, y: -1.03482432e-06, z: 3.24012944e-07, w: .00989740808}
+        length: 10.2548552
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Elbow_jnt
+      humanName: LeftLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 9.34126377, y: 0, z: 4.67063189}
+        preQ: {x: -.499440581, y: -.535024047, z: -.519837081, w: .44054237}
+        postQ: {x: -.0118260058, y: -.73694247, z: -.67550838, w: .0215480495}
+        length: 11.6765842
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Elbow_jnt
+      humanName: RightLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: 9.34122276, y: 0, z: 4.67061138}
+        preQ: {x: -.519837499, y: -.440542161, z: .499441326, w: -.535023212}
+        postQ: {x: -.67550838, y: -.0215485096, z: .0118257189, w: -.73694247}
+        length: 11.6765327
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Wrist_jnt
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: 4.67063189, y: 0, z: 2.33531594}
+        preQ: {x: .0272877943, y: -.0904754251, z: -.995503664, w: -.00647952221}
+        postQ: {x: -.0693412796, y: .00138815248, z: -.997578859, w: .00512819178}
+        length: 5.83829212
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Wrist_jnt
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: 4.67061138, y: 0, z: 2.33530569}
+        preQ: {x: .995503664, y: -.00647899928, z: .0272876397, w: .0904754549}
+        postQ: {x: .9047001, y: -.0246567298, z: -.0650121272, w: .420336902}
+        length: 5.83826637
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Ball_jnt
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: 3.92514443, y: 0, z: 1.96257222}
+        preQ: {x: -.025881052, y: .00790846255, z: -.951880217, w: -.305272549}
+        postQ: {x: .0221471805, y: .00107597758, z: -.99843967, w: .0512492508}
+        length: 4.90643167
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Ball_jnt
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: -50}
+        max: {x: 0, y: 0, z: 50}
+        value: {x: 3.92514372, y: 0, z: 1.96257186}
+        preQ: {x: -.90948391, y: -.27848798, z: -.133144394, w: .278488696}
+        postQ: {x: -.997321188, y: .0515035503, z: -.0066982219, w: -.0515058078}
+        length: 4.90643072
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Eye_jnt
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: -20, z: -10}
+        max: {x: 0, y: 20, z: 15.000001}
+        value: {x: .0799999759, y: 0, z: .0399999879}
+        preQ: {x: .00068417209, y: .000450998661, z: -.834922731, w: .550366521}
+        postQ: {x: -.707106769, y: -4.21468513e-08, z: -.707106769, w: -6.3220277e-08}
+        length: .100000001
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Eye_jnt
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: -20, z: -10}
+        max: {x: 0, y: 20, z: 15.000001}
+        value: {x: .0799999759, y: 0, z: .0399999879}
+        preQ: {x: .00068417209, y: .000450998661, z: -.834922731, w: .550366521}
+        postQ: {x: -.707106769, y: -4.21468513e-08, z: -.707106769, w: -6.3220277e-08}
+        length: .100000001
+        modified: 1
+    - boneName: Chara_Japan__2_:C_Jaw_jnt
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: -10, z: -10}
+        max: {x: 0, y: 10, z: 10}
+        value: {x: .0799999759, y: 0, z: .0399999879}
+        preQ: {x: .000721860095, y: .000387859414, z: -.782228172, w: .622991621}
+        postQ: {x: -0, y: -2.23517453e-08, z: -.981354654, w: -.192205399}
+        length: .100000001
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Thumb01_jnt
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: 1.08482039, y: 0, z: .542410195}
+        preQ: {x: -.272100478, y: -.676101744, z: -.561583757, w: .391754389}
+        postQ: {x: 3.91155453e-07, y: -.878413618, z: -.477900982, w: 1.04308117e-06}
+        length: 1.35602605
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Thumb02_jnt
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 1.32079899, y: 0, z: .660399497}
+        preQ: {x: .175026327, y: -.853922546, z: -.48679468, w: -.0566818826}
+        postQ: {x: -4.65661287e-07, y: -.86001575, z: -.510267377, w: -4.17232513e-07}
+        length: 1.65099931
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Thumb03_jnt
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: .990599394, y: 0, z: .495299697}
+        preQ: {x: .168212444, y: -.836008906, z: -.512672067, w: -.0998050645}
+        postQ: {x: .00347072561, y: -.870048404, z: -.491354018, w: .0396837667}
+        length: 1.23824954
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Index01_jnt
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .926355064, y: 0, z: .463177532}
+        preQ: {x: -.114141814, y: -.000167195423, z: -.968702435, w: .220424965}
+        postQ: {x: 3.72529065e-08, y: -.0321340188, z: -.999483526, w: -6.06275137e-07}
+        length: 1.15794408
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Index02_jnt
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.17472613, y: 0, z: .587363064}
+        preQ: {x: -.00884225219, y: -.030139951, z: -.944123507, w: .328091472}
+        postQ: {x: 5.12227327e-09, y: -.0315368213, z: -.99950254, w: -7.75083549e-07}
+        length: 1.46840823
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Index03_jnt
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .881044745, y: 0, z: .440522373}
+        preQ: {x: -.00988289434, y: -.0291785114, z: -.949180663, w: .313219875}
+        postQ: {x: -.0399665199, y: .0225860514, z: -.998943329, w: .00219484535}
+        length: 1.1013062
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Middle01_jnt
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: -7.50000048, z: -50}
+        max: {x: 0, y: 7.50000048, z: 50}
+        value: {x: 1.23925769, y: 0, z: .619628847}
+        preQ: {x: -.0840428397, y: .0115189012, z: -.933396757, w: .34867537}
+        postQ: {x: 8.66129923e-08, y: -.0811587721, z: -.996701181, w: -7.84848453e-07}
+        length: 1.54907274
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Middle02_jnt
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.41818404, y: 0, z: .709092021}
+        preQ: {x: .00199600495, y: -.0747964382, z: -.948679864, w: .307258695}
+        postQ: {x: -3.14321413e-09, y: -.0431409292, z: -.999068916, w: 5.02055684e-07}
+        length: 1.77273059
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Middle03_jnt
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.06363785, y: 0, z: .531818926}
+        preQ: {x: -.0135105122, y: -.0296140444, z: -.949234605, w: .312880218}
+        postQ: {x: -.0401777215, y: .0347385444, z: -.998569131, w: -.00621272391}
+        length: 1.32954788
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Ring01_jnt
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: -7.50000048, z: -50}
+        max: {x: 0, y: 7.50000048, z: 50}
+        value: {x: 1.01363552, y: 0, z: .506817758}
+        preQ: {x: .0165135413, y: .0203243624, z: -.934692502, w: .354491234}
+        postQ: {x: -9.77888703e-08, y: -.148934767, z: -.988846958, w: 5.61039997e-07}
+        length: 1.26704502
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Ring02_jnt
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.01771271, y: 0, z: .508856356}
+        preQ: {x: -.0107412748, y: -.123462014, z: -.948029518, w: .293055415}
+        postQ: {x: -4.69153711e-08, y: -.0454223156, z: -.998967826, w: -1.14487186e-07}
+        length: 1.27214146
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Ring03_jnt
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .763284624, y: 0, z: .381642312}
+        preQ: {x: -.0141632287, y: -.0118735554, z: -.950069904, w: .311489224}
+        postQ: {x: -.0410595834, y: .0604086407, z: -.997324109, w: .00307987235}
+        length: .954106092
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Pinky01_jnt
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .954104185, y: 0, z: .477052093}
+        preQ: {x: .0669833273, y: .0245942697, z: -.932981431, w: .352780014}
+        postQ: {x: 1.06170774e-07, y: -.154073343, z: -.988059342, w: -6.77673597e-07}
+        length: 1.19263053
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Pinky02_jnt
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .871380568, y: 0, z: .435690284}
+        preQ: {x: -.0372128598, y: -.128758892, z: -.948420584, w: .287288755}
+        postQ: {x: -3.49245965e-10, y: -.102730855, z: -.994709134, w: 2.93684934e-07}
+        length: 1.08922601
+        modified: 1
+    - boneName: Chara_Japan__2_:L_Pinky03_jnt
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .653535366, y: 0, z: .326767683}
+        preQ: {x: -.0321077518, y: -.0748143941, z: -.94695282, w: .310888976}
+        postQ: {x: -.0401389785, y: .112521775, z: -.992820024, w: .00600509113}
+        length: .816919506
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Thumb01_jnt
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: -25, z: -20}
+        max: {x: 0, y: 25, z: 20}
+        value: {x: 1.08486319, y: 0, z: .542431593}
+        preQ: {x: .22323586, y: .240057871, z: -.412168145, w: .850091398}
+        postQ: {x: -.477896303, y: -1.72853458e-06, z: 3.56882788e-06, w: -.878416181}
+        length: 1.35607958
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Thumb02_jnt
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: 1.3208189, y: 0, z: .660409451}
+        preQ: {x: .486790001, y: -.0566816404, z: .175020367, w: .853926599}
+        postQ: {x: -.510264158, y: 3.96370888e-06, z: 8.70972872e-06, w: -.860017776}
+        length: 1.65102422
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Thumb03_jnt
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: -40}
+        max: {x: 0, y: 0, z: 35}
+        value: {x: .990614295, y: 0, z: .495307148}
+        preQ: {x: .512668073, y: -.099808, z: .168204784, w: .836012602}
+        postQ: {x: -.491350532, y: -.0396886915, z: -.00347067043, w: -.870050192}
+        length: 1.23826814
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Index01_jnt
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .926347911, y: 0, z: .463173956}
+        preQ: {x: -.877870798, y: -.151535958, z: .196606547, w: -.409542948}
+        postQ: {x: .999483526, y: 2.21669779e-06, z: -2.54460588e-06, w: .0321338736}
+        length: 1.15793514
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Index02_jnt
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.17477524, y: 0, z: .587387621}
+        preQ: {x: -.944120586, y: -.328100234, z: .00883765332, w: -.0301384907}
+        postQ: {x: .99950254, y: 8.51711775e-06, z: 4.83845315e-06, w: .0315366797}
+        length: 1.46846962
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Index03_jnt
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .881081522, y: 0, z: .440540761}
+        preQ: {x: -.949177921, y: -.313228726, z: .00987826753, w: -.0291771274}
+        postQ: {x: .998943031, y: .00220025447, z: -.0399690494, w: -.0225868821}
+        length: 1.10135221
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Middle01_jnt
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: -7.50000048, z: -50}
+        max: {x: 0, y: 7.50000048, z: 50}
+        value: {x: 1.23920894, y: 0, z: .619604468}
+        preQ: {x: -.850811243, y: -.28048563, z: .223531216, w: -.384033531}
+        postQ: {x: .996701241, y: -1.35756864e-05, z: -1.31083641e-06, w: .0811581761}
+        length: 1.54901171
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Middle02_jnt
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.41818941, y: 0, z: .709094703}
+        preQ: {x: -.948683202, y: -.307247669, z: -.00199610088, w: -.0748002827}
+        postQ: {x: .999068916, y: -1.11800891e-05, z: -5.6787394e-07, w: .0431409217}
+        length: 1.77273738
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Middle03_jnt
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.06364191, y: 0, z: .531820953}
+        preQ: {x: -.949238062, y: -.312869251, z: .0135109155, w: -.0296180714}
+        postQ: {x: .998569369, y: -.00621308619, z: -.0401718728, w: -.0347382911}
+        length: 1.32955301
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Ring01_jnt
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: -7.50000048, z: -50}
+        max: {x: 0, y: 7.50000048, z: 50}
+        value: {x: 1.01359534, y: 0, z: .506797671}
+        preQ: {x: -.85570842, y: -.328255415, z: .134849459, w: -.376599252}
+        postQ: {x: .988847136, y: -7.17942521e-06, z: -3.45706917e-06, w: .14893356}
+        length: 1.26699471
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Ring02_jnt
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: 1.01774299, y: 0, z: .508871496}
+        preQ: {x: -.948028386, y: -.293061674, z: .0107351132, w: -.123457022}
+        postQ: {x: .998967826, y: 1.37891357e-05, z: 1.64471555e-06, w: .0454200767}
+        length: 1.27217925
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Ring03_jnt
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .763307333, y: 0, z: .381653666}
+        preQ: {x: -.950065851, y: -.31150192, z: .0141613241, w: -.0118665453}
+        postQ: {x: .99732393, y: .00309335114, z: -.0410580374, w: -.0604116656}
+        length: .954134464
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Pinky01_jnt
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: -20, z: -50}
+        max: {x: 0, y: 20, z: 50}
+        value: {x: .954107642, y: 0, z: .477053821}
+        preQ: {x: -.855961144, y: -.348038614, z: .0883850083, w: -.372004926}
+        postQ: {x: .988059402, y: 2.2191889e-05, z: -6.26407564e-06, w: .154073268}
+        length: 1.19263482
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Pinky02_jnt
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .871357679, y: 0, z: .43567884}
+        preQ: {x: -.948423445, y: -.287278473, z: .0372122414, w: -.128760144}
+        postQ: {x: .994708896, y: -1.02982631e-05, z: 5.03147021e-07, w: .102732979}
+        length: 1.0891974
+        modified: 1
+    - boneName: Chara_Japan__2_:R_Pinky03_jnt
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: -45}
+        max: {x: 0, y: 0, z: 45}
+        value: {x: .6535182, y: 0, z: .3267591}
+        preQ: {x: -.946956158, y: -.310878843, z: .0321076848, w: -.0748156384}
+        postQ: {x: .992820442, y: .00599737465, z: -.040137969, w: -.112518795}
+        length: .816898048
+        modified: 1
+    skeleton:
+    - name: jap_captain
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:SKELETON
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Root_jnt
+      position: {x: -4.93038066e-32, y: 48.9755363, z: -1.39147806}
+      rotation: {x: .443536371, y: -.550704479, z: -.443536371, w: .550704479}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_MidSpine_jnt
+      position: {x: -8.48554325, y: 7.10542736e-15, z: 8.06094786e-16}
+      rotation: {x: 1.10990909e-16, y: -2.74547333e-17, z: -.0284482185, w: .999595225}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Chest_jnt
+      position: {x: -8.52194595, y: 4.4408921e-15, z: 8.34583681e-16}
+      rotation: {x: -3.95372403e-19, y: -6.94450417e-17, z: -.0462793857, w: .998928487}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_MidChest_jnt
+      position: {x: -3.85957813, y: 4.38538095e-15, z: 1.98824648e-18}
+      rotation: {x: .981565297, y: -.191126794, z: 1.91881335e-18, w: 6.27559564e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Neck_jnt
+      position: {x: -10.3996048, y: 0, z: -4.38170699e-16}
+      rotation: {x: .0205188543, y: -.00362554588, z: -.143945649, w: .989366174}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Head_jnt
+      position: {x: -5.70739269, y: 3.10862447e-15, z: -9.71445147e-17}
+      rotation: {x: -.0211443454, y: .00467945077, z: .186251581, w: .982263327}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Head_End_jnt
+      position: {x: -11.1913033, y: 1.42108547e-14, z: 1.18828558e-16}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Jaw_jnt
+      position: {x: -1.29951882, y: -3.00457883, z: .00186503166}
+      rotation: {x: .000311085954, y: -.000758104026, z: .700581491, w: .713571966}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Jaw_End_jnt
+      position: {x: -3.76076746, y: 1.42108547e-14, z: -3.15544362e-30}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Eye_jnt
+      position: {x: -6.00942135, y: -2.683532, z: -1.70294487}
+      rotation: {x: .389486849, y: -.590863228, z: .38884905, w: .589895666}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Eye_jnt
+      position: {x: -6.011621, y: -2.68865967, z: 1.70154738}
+      rotation: {x: .389486849, y: -.590863228, z: .38884905, w: .589895666}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Clavicle_jnt
+      position: {x: -3.37176824, y: -.382973105, z: -4.73487997}
+      rotation: {x: .449160814, y: -.567301869, z: .379268467, w: .576696157}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Shoulder_jnt
+      position: {x: -8.04927063, y: 2.84217094e-14, z: -2.66453526e-15}
+      rotation: {x: .00928759947, y: .024883559, z: .0646286979, w: .997555792}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Elbow_jnt
+      position: {x: -10.2548046, y: -1.42108547e-14, z: -9.76996262e-15}
+      rotation: {x: .0320653543, y: .00330647896, z: -.0550792329, w: .997961462}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_ForeArm_jnt
+      position: {x: -6.23121691, y: 0, z: -1.77635684e-15}
+      rotation: {x: .0486530103, y: .0516491681, z: .00999989361, w: .997429252}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Wrist_jnt
+      position: {x: -5.46149349, y: 7.10542736e-15, z: -1.0658141e-14}
+      rotation: {x: -.0919476449, y: -.0967062041, z: -.0053331675, w: .991042376}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Index01_jnt
+      position: {x: -6.72778654, y: 1.44994366, z: .0629341751}
+      rotation: {x: .0307087898, y: .0376162715, z: -.0700150728, w: .996363282}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Index02_jnt
+      position: {x: -1.15794313, y: 0, z: 8.8817842e-16}
+      rotation: {x: -.000587209011, y: -.00080498663, z: .0157397334, w: .999875605}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Index03_jnt
+      position: {x: -1.46840632, y: 0, z: -8.8817842e-16}
+      rotation: {x: -.0540783443, y: -.0400158428, z: -.000934116542, w: .99773407}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Index04_jnt
+      position: {x: -1.51146197, y: -7.10542736e-15, z: -1.33226763e-15}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Middle01_jnt
+      position: {x: -6.73079491, y: 2.84217094e-14, z: -1.11022302e-15}
+      rotation: {x: .0841106176, y: .0543359518, z: .060798198, w: .993114531}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Middle02_jnt
+      position: {x: -1.54907334, y: 7.10542736e-15, z: 1.77635684e-15}
+      rotation: {x: -.0381293818, y: -.0290149823, z: -.00409293128, w: .998843074}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Middle03_jnt
+      position: {x: -1.77273285, y: 2.13162821e-14, z: -3.55271368e-15}
+      rotation: {x: -.0777853727, y: -.0398723036, z: .00794074684, w: .996140778}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Middle04_jnt
+      position: {x: -1.51740336, y: -2.13162821e-14, z: -4.4408921e-16}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Pinky01_jnt
+      position: {x: -5.44939184, y: -2.97441888, z: .0176038742}
+      rotation: {x: .159767359, y: .0212813746, z: .0684408993, w: .984549284}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Pinky02_jnt
+      position: {x: -1.19263136, y: 0, z: -3.55271368e-15}
+      rotation: {x: -.0533179604, y: -.0137492083, z: -.0214545019, w: .998252392}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Pinky03_jnt
+      position: {x: -1.0892272, y: 7.10542736e-15, z: 0}
+      rotation: {x: -.213919699, y: -.0405435525, z: -.00184951455, w: .97600776}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Pinky04_jnt
+      position: {x: -1.33649468, y: 7.10542736e-15, z: 1.77635684e-15}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ring01_jnt
+      position: {x: -6.21570492, y: -1.65225232, z: .00807100255}
+      rotation: {x: .153715387, y: .0340512842, z: .0673044696, w: .985231996}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ring02_jnt
+      position: {x: -1.26704574, y: 0, z: 0}
+      rotation: {x: -.105236247, y: -.0381996706, z: -.0152567327, w: .993596137}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ring03_jnt
+      position: {x: -1.27214074, y: 0, z: -2.66453526e-15}
+      rotation: {x: -.105647065, y: -.0411570445, z: -.00121178431, w: .993550777}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ring04_jnt
+      position: {x: -1.56117511, y: 2.13162821e-14, z: 2.44249065e-15}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Thumb01_jnt
+      position: {x: -2.66627741, y: 1.38771093, z: .377745509}
+      rotation: {x: .230818138, y: .34012413, z: -.137730971, w: .901148498}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Thumb02_jnt
+      position: {x: -1.35602701, y: -1.42108547e-14, z: -2.66453526e-15}
+      rotation: {x: -.0387515351, y: .0299929958, z: .0222085137, w: .998551667}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Thumb03_jnt
+      position: {x: -1.6509999, y: 0, z: 0}
+      rotation: {x: .0213850476, y: -.0323578082, z: -.0232347827, w: .998977304}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Thumb04_jnt
+      position: {x: -1.81885648, y: -7.10542736e-15, z: -8.8817842e-16}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Clavicle_jnt
+      position: {x: -3.37179923, y: -.382961065, z: 4.73487997}
+      rotation: {x: .567301869, y: .449160814, z: .576696157, w: -.379268467}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Shoulder_jnt
+      position: {x: 8.0492487, y: 2.17443412e-05, z: -5.6733802e-06}
+      rotation: {x: .00928764138, y: .0248839725, z: .0646297038, w: .997555733}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Elbow_jnt
+      position: {x: 10.2548542, y: -1.80482202e-05, z: 6.83442886e-06}
+      rotation: {x: .032065358, y: .00330670387, z: -.0550806038, w: .997961342}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_ForeArm_jnt
+      position: {x: 6.23117638, y: 1.13579983e-06, z: 9.5027616e-07}
+      rotation: {x: .0486530103, y: .0516491681, z: .00999989361, w: .997429252}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Wrist_jnt
+      position: {x: 5.461483, y: 1.55507132e-05, z: -5.08698395e-06}
+      rotation: {x: .335499734, y: -.0898994803, z: .0360363163, w: .937048197}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Index01_jnt
+      position: {x: 6.72776604, y: -.980238616, z: 1.07028699}
+      rotation: {x: -.39324972, y: .0045022727, z: -.0793525353, w: .915989935}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Index02_jnt
+      position: {x: 1.15793407, y: 5.59901764e-06, z: -6.07816537e-06}
+      rotation: {x: -.000587209011, y: -.00080498663, z: .0157397334, w: .999875605}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Index03_jnt
+      position: {x: 1.46846998, y: 2.7525819e-05, z: 1.33374633e-05}
+      rotation: {x: -.0540786497, y: -.0400235839, z: -.000930275244, w: .997733653}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Index04_jnt
+      position: {x: 1.5114727, y: 4.03638433e-06, z: -5.49818469e-06}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Middle01_jnt
+      position: {x: 6.73085165, y: 6.77817843e-06, z: -1.5647327e-05}
+      rotation: {x: -.343478233, y: .0749496073, z: .0321464092, w: .935613036}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Middle02_jnt
+      position: {x: 1.54901242, y: -4.5531142e-05, z: -1.7796873e-07}
+      rotation: {x: -.0381293818, y: -.0290149823, z: -.00409293128, w: .998843074}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Middle03_jnt
+      position: {x: 1.77273929, y: -3.9117851e-05, z: -3.53469773e-07}
+      rotation: {x: -.0777855963, y: -.0398654789, z: .00792921428, w: .996141136}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Middle04_jnt
+      position: {x: 1.51740098, y: 7.05119164e-05, z: 8.69699397e-06}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Pinky01_jnt
+      position: {x: 5.44941902, y: 1.89841235, z: -2.28983402}
+      rotation: {x: -.271290451, y: .0481983386, z: .0530194081, w: .959826648}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Pinky02_jnt
+      position: {x: 1.19263649, y: 4.81577299e-05, z: -2.23833977e-05}
+      rotation: {x: -.0533179604, y: -.0137492083, z: -.0214545019, w: .998252392}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Pinky03_jnt
+      position: {x: 1.08919704, y: -2.39844612e-05, z: 3.77508491e-06}
+      rotation: {x: -.213919267, y: -.0405410714, z: -.00185243064, w: .976007938}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Pinky04_jnt
+      position: {x: 1.33648372, y: -1.44013347e-05, z: 2.80510449e-06}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ring01_jnt
+      position: {x: 6.21578217, y: 1.05585289, z: -1.27088034}
+      rotation: {x: -.277064443, y: .0593062826, z: .0466143228, w: .957885742}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ring02_jnt
+      position: {x: 1.26699531, y: -1.80833558e-05, z: -6.35595688e-06}
+      rotation: {x: -.105236351, y: -.038205754, z: -.0152638052, w: .993595779}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ring03_jnt
+      position: {x: 1.27217901, y: 3.59195947e-05, z: 2.63291031e-06}
+      rotation: {x: -.105647273, y: -.0411586501, z: -.00121164182, w: .993550718}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ring04_jnt
+      position: {x: 1.56107688, y: 2.88043702e-05, z: 6.41965653e-06}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Thumb01_jnt
+      position: {x: 2.66629243, y: -1.18134737, z: .820199609}
+      rotation: {x: -.171643659, y: .250047982, z: -.26856485, w: .914268672}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Thumb02_jnt
+      position: {x: 1.35607934, y: -7.34510377e-06, z: -8.44880742e-06}
+      rotation: {x: -.0387526564, y: .0299951937, z: .0222113617, w: .998551488}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Thumb03_jnt
+      position: {x: 1.65102386, y: -2.94123474e-05, z: -4.48245873e-06}
+      rotation: {x: .0213849582, y: -.0323612168, z: -.0232460648, w: .998976946}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Thumb04_jnt
+      position: {x: 1.81885922, y: 3.90088717e-05, z: 3.23147265e-06}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:C_Pelvis_jnt
+      position: {x: 5.17658377, y: -.755148113, z: 9.81755973e-16}
+      rotation: {x: -5.73070265e-17, y: -1.18628698e-16, z: -.0723646581, w: .99737823}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Hip_jnt
+      position: {x: -1.47494519, y: -.331705242, z: 5.29610014}
+      rotation: {x: -.0896698609, y: .993519187, z: .0681459531, w: .0153285442}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Knee_jnt
+      position: {x: -18.1773968, y: -1.77635684e-15, z: 0}
+      rotation: {x: .958909273, y: .274836928, z: -.00166736171, w: -.0703904331}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ankle_jnt
+      position: {x: -21.5914726, y: -6.66133815e-15, z: 6.21724894e-15}
+      rotation: {x: .808156133, y: .588318586, z: -.00854608882, w: .0263024289}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Ball_jnt
+      position: {x: -9.81286335, y: -5.32907052e-15, z: -8.8817842e-15}
+      rotation: {x: .0123064313, y: .047655873, z: -.353376418, w: .934185386}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:L_Toe_jnt
+      position: {x: -3.62851906, y: 1.77635684e-15, z: 8.8817842e-16}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Hip_jnt
+      position: {x: -1.47493088, y: -.331706166, z: -5.29610014}
+      rotation: {x: .654337704, y: .0742449537, z: .0525670275, w: .750710666}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Knee_jnt
+      position: {x: 18.1773605, y: 5.33136188e-07, z: -6.70821737e-06}
+      rotation: {x: .0703904331, y: -.274836928, z: .00166736171, w: .958909273}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ankle_jnt
+      position: {x: 21.5914936, y: 4.00113049e-06, z: -4.7209428e-06}
+      rotation: {x: .731036723, y: -.299249738, z: -.50654465, w: -.345611393}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Ball_jnt
+      position: {x: 9.8128643, y: -8.13885708e-06, z: -1.0248242e-06}
+      rotation: {x: .31586358, y: -.126695171, z: .33330673, w: .879252434}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Chara_Japan__2_:R_Toe_jnt
+      position: {x: 3.62852049, y: 8.15747262e-06, z: 6.0590736e-07}
+      rotation: {x: 0, y: -0, z: -0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Chara_Japan__2_:SKELETON
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 3
+  userData: 
