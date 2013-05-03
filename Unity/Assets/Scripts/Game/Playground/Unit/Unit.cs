@@ -20,7 +20,8 @@ public class Unit : TriggeringTriggered, Debugable
     public bool TemporaryUseIdle;
     
     public GameObject BallPlaceHolderRight;
-    public GameObject BallPlaceHolderLeft; 
+    public GameObject BallPlaceHolderLeft;
+	public GameObject BallPlaceHolderTransformation;
 	
 	public TextureCollectionner buttonIndicator;
 

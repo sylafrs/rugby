@@ -235,6 +235,7 @@ public class Arbiter : MonoBehaviour {
 			return;	
 		}	
 		
+		Game.Ball.transform.position = Game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
 		float x = Game.Ball.transform.position.x;
 		
 		Team t = Game.Ball.Owner.Team;
