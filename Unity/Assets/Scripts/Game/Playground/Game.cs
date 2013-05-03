@@ -147,9 +147,10 @@ public class Game : myMonoBehaviour {
 		this.cameraLocked = true;
 				       
         introManager.OnFinish = () => {
-            state = State.PLAYING;
+            
             this._disableIA = true;
-
+			state = State.PLAYING;
+			
             Thread t = new Thread(() => {
                 Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
                 this._disableIA = false;
