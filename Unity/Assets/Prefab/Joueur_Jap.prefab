@@ -4130,7 +4130,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
   m_UserAABB:
@@ -4148,8 +4148,7 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
-  TemporaryAnimRun: {fileID: 11100000}
-  TemporaryAnimIdle: {fileID: 11100000, guid: e694b0511cb812a46b572a26f6cca7fd, type: 3}
+  ModelAnim: {fileID: 11100000}
   TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
