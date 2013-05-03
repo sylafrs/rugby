@@ -21,15 +21,16 @@ public class TouchState : CameraState
 		
 		//Camera.mainCamera.transform.position = cameraPlaceHolder.position;
 		//Camera.mainCamera.transform.rotation = cameraPlaceHolder.rotation;
-		
-		
-		cam.transalateToWithFade(cameraPlaceHolder.position,cameraPlaceHolder.rotation, 0f, 1f, 1f ,0.3f, () =>{
-			//please, kill after usage x)
-			
-			//cam.game.arbiter.OnFadingTouchCamera();
-			
-			CameraFade.wannaDie();
-		});
+
+
+        cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
+            (/* OnFinish */) => {
+                //please, kill after usage x)
+                CameraFade.wannaDie();
+            }, (/* OnFade */) => {
+                cam.game.arbiter.PlacePlayersForTouch();
+            }
+        );
 		
 	}
 	
