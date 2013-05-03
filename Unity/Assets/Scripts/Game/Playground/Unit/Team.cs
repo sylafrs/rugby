@@ -170,10 +170,12 @@ public class Team : myMonoBehaviour, IEnumerable {
         {
             if (Game.Ball.PreviousOwner.Team != this)
             {
+				setSpeed();
                 OwnerChangedBallFree();
             }
             else if (Game.Ball.PreviousOwner.Team == Game.right)
             {
+				setSpeed();
                 OwnerChangedOurs();
             }
 			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
@@ -184,11 +186,12 @@ public class Team : myMonoBehaviour, IEnumerable {
         }
         else if (Game.Ball.Owner.Team == this)
         {
-			//setHandicapSpeed();
+			setHandicapSpeed();
             OwnerChangedOurs();
         }
         else
         {
+			setSpeed();
             OwnerChangedOpponents();
         }
     }

@@ -4637,7 +4637,8 @@ MonoBehaviour:
   speedFactor: 1
   tackleFactor: 1
   unitSpeed: 15
-  unitTackleRange: 50
+  handicapSpeed: 2.5
+  unitTackleRange: 70
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
@@ -6099,7 +6100,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Cameras
+  DebugWindowFilter: B
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -22343,6 +22344,7 @@ MonoBehaviour:
   MinfollowOffset: {x: 0, y: 1, z: -1.5}
   flipDuration: 1
   flipDelay: .100000001
+  CancelNextFlip: 0
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
@@ -28220,8 +28222,9 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
-  unitSpeed: 14
-  unitTackleRange: 50
+  unitSpeed: 15
+  handicapSpeed: 2.5
+  unitTackleRange: 70
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
