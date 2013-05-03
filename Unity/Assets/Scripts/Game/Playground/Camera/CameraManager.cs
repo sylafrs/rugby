@@ -46,6 +46,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipWaiting;
 	private bool    isflipped;
 	private Team	flipedForTeam;
+	public bool 	CancelNextFlip;
 	
 
     public StateMachine sm;
@@ -58,6 +59,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		resetRotationDelay();
 		isflipping = false;
 		isflipped= false;
+		CancelNextFlip = false;
 		flipedForTeam = game.right;
 		
 		/*
@@ -181,11 +183,13 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public void flipForTeam(Team _t)
 	{
 		Debug.Log("Flip for Team "+_t);
-		if(isflipping == false){
+		if((isflipping == false) && (CancelNextFlip == false)){
 			//on lance le flip seulement si c'est un team différente
 			if(flipedForTeam != _t){
 				flipedForTeam = _t;
 				flip();
+			}else{
+				CancelNextFlip = false;
 			}
 		}
 	}
@@ -258,7 +262,16 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		});
 	}
 	
-
+	public void transalateToWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,
+		float blackScreenDuration, Action Onfinish){
+		
+		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
+			Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World); 
+			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
+				Onfinish();
+			});
+		});
+	}
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

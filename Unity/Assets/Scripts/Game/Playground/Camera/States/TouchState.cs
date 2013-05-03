@@ -12,18 +12,27 @@ public class TouchState : CameraState
 	
  	public override void OnEnter ()
 	{
+		//cam.CancelNextFlip = true;
 		
 		cam.setTarget(null);
 		
+		
 		Transform cameraPlaceHolder = GameObject.Find("TouchPlacement").transform.FindChild("CameraPlaceHolder");
 		
-		Camera.mainCamera.transform.position = cameraPlaceHolder.position;
+		//Camera.mainCamera.transform.position = cameraPlaceHolder.position;
 		Camera.mainCamera.transform.rotation = cameraPlaceHolder.rotation;
+		
+		
+		cam.transalateToWithFade(cameraPlaceHolder.position, 0f, 1f, 1f ,0.3f, () =>{
+			//please, kill after usage x)
+			CameraFade.wannaDie();
+		});
 		
 	}
 	
 	public override void OnLeave ()
 	{
-		cam.setTarget(cam.game.Ball.transform);
+		cam.setTarget(cam.game.Ball.transform);	
+		//cam.CancelNextFlip = true;
 	}
 }
