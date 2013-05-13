@@ -68,11 +68,53 @@ public class Arbiter : MonoBehaviour {
         touchTeam[2].buttonIndicator.target.renderer.enabled = true;
         touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 
+        // Touche à droite ?
+        bool right = (TouchPlacement.position.x > 0);
+
         // Place les unités
+
+
+        Transform blueTeam, redTeam, rightTeam, leftTeam;
+        rightTeam = TouchPlacement.FindChild("RightTeam");
+        leftTeam = TouchPlacement.FindChild("LeftTeam");
+
+        if (right)
+        {
+            redTeam = rightTeam;
+            blueTeam = leftTeam;
+        }
+        else
+        {
+            redTeam = leftTeam;
+            blueTeam = rightTeam;
+        }
+
         Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
+        if (interceptTeam == this.Game.left/*(red)*/)
+        {
+            interceptConfiguration.transform.position = redTeam.transform.position;
+            interceptConfiguration.transform.rotation = redTeam.transform.rotation;
+        }
+        else
+        {
+            interceptConfiguration.transform.position = blueTeam.transform.position;
+            interceptConfiguration.transform.rotation = blueTeam.transform.rotation;
+        }
+
         interceptTeam.placeUnits(interceptConfiguration);
 
         Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
+        if (touchTeam == this.Game.left/*(red)*/)
+        {
+            passConfiguration.transform.position = redTeam.transform.position;
+            passConfiguration.transform.rotation = redTeam.transform.rotation;
+        }
+        else
+        {
+            passConfiguration.transform.position = blueTeam.transform.position;
+            passConfiguration.transform.rotation = blueTeam.transform.rotation;
+        }
+
         touchTeam.placeUnits(passConfiguration, 1);
 
         Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
@@ -95,19 +137,19 @@ public class Arbiter : MonoBehaviour {
         }
         else
         {
-			// Indique que le jeu passe en mode "Touche"
-			
+			// Indique que le jeu passe en mode "Touche"			
             
 			// Placement dans la scène de la touche.
 			Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
-            pos.y = 0; // A terre
-           
+            pos.y = 0; // A terre           
 			
 			if(TouchPlacement == null) {
 				throw new UnityException("I need to know how place the players when a touch occurs");
-			}			
-			
-			if(pos.x > 0) {
+			}
+
+            bool right = (pos.x > 0);
+            			
+			if(right) {
 				TouchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
 			}
 			else {
