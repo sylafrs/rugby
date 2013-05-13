@@ -40,8 +40,12 @@ public class PlayingState : CameraState
         {
             //if ((old != null)&&(old.Team != current.Team))
             //{
+			
+			/*
 				cam.setTarget(current.transform);
                 cam.flipForTeam(current.Team);
+            */    
+                
             //}
 		}
         return false;

@@ -23,7 +23,7 @@ public class MainState : UnitState
 
         if (unit.Game.Ball.Owner == null)
         {
-            unit.Game.Ball.Taken(unit);
+			unit.Game.Ball.Owner = unit;
             return true;
         }
 
