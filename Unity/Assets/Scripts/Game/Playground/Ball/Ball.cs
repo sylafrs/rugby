@@ -118,7 +118,7 @@ public class Ball : TriggeringTriggered {
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
 				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
             {
-				if ( Game.state == Game.State.TRANSFORMATION)
+				if ( Game.state == Game.State.TRANSFORMATION )
 					this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
 				else
                 	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
@@ -151,16 +151,18 @@ public class Ball : TriggeringTriggered {
     }
 
     public void Drop()
-    {              
+    {
 		Drop (this.multiplierDrop);
     }
 	
 	public void Drop(Vector3 multiplierDrop)
-    {              
+    {
         this.transform.parent = null;
+		this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
+		Owner.canCatchTheBall = false;
         this.rigidbody.useGravity = true;
 		this.rigidbody.isKinematic = false;
-        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
+        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.z + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.x);
         Owner = null;
 
         Game.OnDrop();
