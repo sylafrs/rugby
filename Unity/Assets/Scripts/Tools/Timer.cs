@@ -10,48 +10,68 @@ using System.Collections.Generic;
   */
 public class Timer : MonoBehaviour {
 
-    private static Timer singleton;
-
-    private struct myTimer {
+    private static Timer singleton = null;
+	
+    private class myTimer {
         public CallBack callback;
         public float remainingTime;
     }
 
-    private static List<myTimer> list = new List<myTimer>();
+    private static List<myTimer> list;
 
-    public Timer()
-    {
-        if (singleton != null)
-        {
-            throw new UnityException("Singleton");
-        }
-
+    public void Start()
+    {		
         singleton = this;
     }
 
     public static void AddTimer(float time, CallBack callback)
     {
-        myTimer t = new myTimer();
+		myTimer t = new myTimer();
         t.remainingTime = time;
         t.callback = callback;
+		
+		if(list == null)
+			list = new List<myTimer>();
+		
         list.Add(t);
     }
        
-    public void Update()
-    {
+    void Update()
+    {	
+		if(list == null)
+			list = new List<myTimer>();
+		
+		bool delete = false;
+		
         foreach (myTimer t in list)
-            UpdateTimer(t);
+            delete = delete || UpdateTimer(t);
+		
+		if(delete) {
+			int l = list.Count;
+			for(int i = 0; i < l; i++) {
+				myTimer t = list[i];
+				
+				if(t.callback == null) {
+					list.Remove(t);
+					i--;
+					l--;
+				}
+			}
+		}
     }
 
-    private void UpdateTimer(myTimer t)
+    private bool UpdateTimer(myTimer t)
     {
         t.remainingTime -= Time.deltaTime;
         if (t.remainingTime <= 0)
         {
             if (t.callback != null)
                 t.callback();
-
-            list.Remove(t);
+			
+			t.callback = null;
+			return true;
         }
+			
+		return false;
     }
 }

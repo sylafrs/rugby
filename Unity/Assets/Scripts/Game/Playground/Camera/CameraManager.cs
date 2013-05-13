@@ -256,7 +256,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
-            	Camera.mainCamera.transform.RotateAround(target.localPosition, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
+				Camera.mainCamera.transform.RotateAround(target.position, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
 			}
 			
             // This current state becomes the next previous one
