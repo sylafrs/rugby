@@ -60,6 +60,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
 	private bool    isflipped;
+	private float 	zMinForBlue;
+	private float 	zMaxForBlue;
 	private Team	flipedForTeam;
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
@@ -78,6 +80,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		CancelNextFlip = false;
 		ActionOnFlipFinish = null;
 		flipedForTeam = game.right;
+		zMinForBlue	  = MinfollowOffset.z;
+		zMaxForBlue	  = MaxfollowOffset.z;
 		
 		/*
        
@@ -212,10 +216,13 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	public void flipForTeam(Team _t, Action _cb)
 	{
+		/*
 		Debug.Log("Fliped for Team "+flipedForTeam);
 		Debug.Log("Flip for Team "+_t);
 		Debug.Log("target of flip "+this.target);
+		*/
 		Debug.Log("Flip start ");
+		
 		this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
 			//on lance le flip seulement si c'est un team différente
@@ -227,12 +234,17 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 		}else{
 			if(CancelNextFlip){
-				//here beacause of touch
-
-				//may need to do that if we change team
-				if(flipedForTeam != _t){
-					flipedForTeam = _t;
-					this.flipEnd();
+				Debug.Log("Flip for trasnfo/touch ");
+				//here beacause of touch or transfo
+				if(_t == game.right){
+					Debug.Log("Flip for blue");
+					MinfollowOffset.z	  = zMinForBlue;
+					MaxfollowOffset.z	  = zMaxForBlue;
+				}
+				if(_t == game.left){
+					Debug.Log("Flip for red ");
+					MinfollowOffset.z	  = zMinForBlue * -1;
+					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}
 			}
 		}
