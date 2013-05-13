@@ -16,8 +16,7 @@ public class Unit : TriggeringTriggered, Debugable
     public StateMachine sm;
 	public GameObject Model;
 
-    public Animation ModelAnim;
-    public bool TemporaryUseIdle;
+    public Animator animator;
     
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft;
@@ -55,9 +54,7 @@ public class Unit : TriggeringTriggered, Debugable
 	public ParticleSystem superTackleParticles;
 	
 	public NearUnit triggerTackle {get; set;}
-
-    private bool isAnimated = true;
-    	
+        	
 	//maxens : c'est très bourrin xD
 	void Update() {
 		if(team == null)
@@ -66,22 +63,9 @@ public class Unit : TriggeringTriggered, Debugable
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
-        // TODO TEMPORARY STOP
-        if (ModelAnim && nma.velocity.magnitude < 0.5f)
+        if (animator)
         {
-            if (isAnimated)
-            {
-                ModelAnim.Stop();
-                isAnimated = false;
-            }
-        }
-        else if(ModelAnim)
-        {
-            if (!isAnimated)
-            {
-                ModelAnim.Play();
-                isAnimated = true;
-            }
+            animator.SetFloat("speed", this.nma.velocity.magnitude);
         }
 	}
 

@@ -588,7 +588,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400076}
-  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: PR_jap_captain
   m_TagString: Untagged
@@ -1283,6 +1282,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400168}
+  - 95: {fileID: 9500000}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -4145,24 +4145,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 86.0199966, y: 103.43, z: 31.8799992}
   m_Center: {x: 0, y: 50, z: 0}
---- !u!111 &11100000
-Animation:
+--- !u!95 &9500000
+Animator:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100076}
+  m_GameObject: {fileID: 100168}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 1
+  m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
-  m_CullingType: 1
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4175,8 +4169,6 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
-  ModelAnim: {fileID: 11100000}
-  TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
   BallPlaceHolderTransformation: {fileID: 100290}
