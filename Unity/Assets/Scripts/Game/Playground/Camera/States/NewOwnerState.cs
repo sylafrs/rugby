@@ -32,15 +32,13 @@ public class NewOwnerState : CameraState
 				//cam.setTarget();
 				//cam.OnNextIdealPosition = () => {
 			
-				
-						Debug.Log("before pause");
-               				Thread.Sleep((int)(1000));
-						Debug.Log("after pause");
-		              cam.flipForTeam(current.Team, () =>{
-						Debug.Log("Hop, fin du flip");
-						 	
+			
+			
+				//Timer.AddTimer(1, () => {			
+		              	cam.flipForTeam(current.Team, () =>{
+							Debug.Log("Hop, fin du flip"); 	
 					 });
-				
+				//});
 					
 				//};
 				//cam.setTarget(current.transform);
