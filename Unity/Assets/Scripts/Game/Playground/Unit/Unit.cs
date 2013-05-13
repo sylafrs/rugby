@@ -16,8 +16,6 @@ public class Unit : TriggeringTriggered, Debugable
     public StateMachine sm;
 	public GameObject Model;
 
-    public Animator animator;
-    
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft;
 	public GameObject BallPlaceHolderTransformation;
@@ -62,11 +60,6 @@ public class Unit : TriggeringTriggered, Debugable
 				
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
-
-        if (animator)
-        {
-            animator.SetFloat("speed", this.nma.velocity.magnitude);
-        }
 	}
 
     public void IndicateSelected(bool enabled)

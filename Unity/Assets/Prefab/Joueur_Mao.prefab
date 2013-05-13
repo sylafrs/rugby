@@ -162,6 +162,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 23: {fileID: 2300004}
+  - 114: {fileID: 11400010}
   m_Layer: 0
   m_Name: Joueur_Mao
   m_TagString: Untagged
@@ -4055,7 +4056,6 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100020}
-  animator: {fileID: 9500000}
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   BallPlaceHolderTransformation: {fileID: 100282}
@@ -4096,6 +4096,17 @@ MonoBehaviour:
   - name: Y
     texture: {fileID: 2800000, guid: aee52572a9434e74fa20e698d778a192, type: 3}
   target: {fileID: 2300002}
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989bb0a56bf51e14f94ca9e99f613607, type: 3}
+  m_Name: 
+  animator: {fileID: 9500000}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
