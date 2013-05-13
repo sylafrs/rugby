@@ -212,6 +212,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	public void flipForTeam(Team _t, Action _cb)
 	{
+		Debug.Log("Fliped for Team "+flipedForTeam);
 		Debug.Log("Flip for Team "+_t);
 		Debug.Log("target of flip "+this.target);
 		Debug.Log("Flip start ");
@@ -223,6 +224,16 @@ public class CameraManager : myMonoBehaviour, Debugable {
 				flip();
 			}else{
 				CancelNextFlip = false;
+			}
+		}else{
+			if(CancelNextFlip){
+				//here beacause of touch
+
+				//may need to do that if we change team
+				if(flipedForTeam != _t){
+					flipedForTeam = _t;
+					this.flipEnd();
+				}
 			}
 		}
 	}
@@ -269,7 +280,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		}
 	}
 	
-	void flipEnd(){
+	public void flipEnd(){
 		this.MinfollowOffset.z *= -1;
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
