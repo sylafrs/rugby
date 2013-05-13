@@ -269,7 +269,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		}
 	}
 	
-	void flipEnd(){
+	public void flipEnd(){
 		this.MinfollowOffset.z *= -1;
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
