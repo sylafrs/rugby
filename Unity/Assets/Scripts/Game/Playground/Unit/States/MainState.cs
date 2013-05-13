@@ -21,7 +21,7 @@ public class MainState : UnitState
             return false;
         }*/
 
-        if (unit.Game.Ball.Owner == null)
+        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall )
         {
 			unit.Game.Ball.Owner = unit;
             return true;
@@ -78,10 +78,15 @@ public class MainState : UnitState
                 sm.state_change_son(this, new FollowState(sm, unit));
                 break;
 
-            case Order.TYPE.DROP:
+            case Order.TYPE.DROPKICK:
                 if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Drop();
+					unit.Team.Game.Ball.Drop(DropManager.TYPEOFDROP.KICK);
                 break;
+
+			case Order.TYPE.DROPUPANDUNDER:
+				if (unit.Team.Game.Ball.Owner == unit)
+					unit.Team.Game.Ball.Drop(DropManager.TYPEOFDROP.UPANDUNDER);
+				break;
 
 			case Order.TYPE.PASS:
 				if (unit.Team.Game.Ball.Owner == unit)
