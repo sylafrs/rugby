@@ -104,7 +104,7 @@ public class Unit : TriggeringTriggered, Debugable
             if (team == null) team = value;
         }
     }
-
+    
     public Order Order
     {
         get

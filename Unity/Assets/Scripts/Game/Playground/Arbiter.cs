@@ -336,7 +336,20 @@ public class Arbiter : MonoBehaviour {
 				
 		tm.enabled = true;
 	}
-	
+
+    public void OnBut()
+    {
+        /*
+	        Debug.Log(Owner.name + " viens de se prendre un but dans sa face");
+	        Owner.nbPoints += b.Game.settings.score.points_drop;
+	        b.setPosition(Vector3.zero);
+        */
+
+
+
+
+    }
+
 	public void PauseIngameTime(){
 		TimePaused = true;
 	}

@@ -237,6 +237,11 @@ public class Game : myMonoBehaviour {
         cameraManager.sm.event_Pass(from, to);
     }
 
+    public void OnBut()
+    {
+        arbiter.OnBut();
+    }
+
     public void OnOwnerChanged(Unit before, Unit after)
     {
         cameraManager.sm.event_NewOwner(before, after);
