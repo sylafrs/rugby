@@ -58,6 +58,7 @@ public class Unit : TriggeringTriggered, Debugable
 
     private bool isAnimated = true;
 	public bool canCatchTheBall = true;
+	private float timeNoCatch = 0f;
     	
 	//maxens : c'est très bourrin xD
 	void Update() {
@@ -84,6 +85,20 @@ public class Unit : TriggeringTriggered, Debugable
                 isAnimated = true;
             }
         }
+
+		if (!canCatchTheBall)
+		{
+			if (timeNoCatch < 2f)
+			{
+				timeNoCatch += Time.deltaTime;
+			}
+			else
+			{
+				canCatchTheBall = true;
+				timeNoCatch = 0f;
+			}
+		}
+		
 	}
 
     public void IndicateSelected(bool enabled)
