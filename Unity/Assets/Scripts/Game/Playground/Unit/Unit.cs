@@ -22,6 +22,7 @@ public class Unit : TriggeringTriggered, Debugable
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft;
 	public GameObject BallPlaceHolderTransformation;
+	public GameObject BallPlaceHolderDrop;
 	
 	public TextureCollectionner buttonIndicator;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DropManager: MonoBehaviour {
+public class DropManager {
 
 	Ball ball;
 	Unit owner;
@@ -25,19 +25,21 @@ public class DropManager: MonoBehaviour {
 	public void setupDrop()
 	{
 		float randAngle = Random.Range(- ball.randomLimitAngle, ball.randomLimitAngle);
-		Debug.Log("angleX : " + randAngle);
 		if (ball != null)
 		{
 			owner = ball.Owner;
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
+			
 			ownerDirection = ball.Owner.transform.forward;
 			ball.Owner = null;
-			initPos = ball.transform.position;
+			
 			angleX = Mathf.Deg2Rad * randAngle;
-			ball.transform.position = owner.BallPlaceHolderTransformation.transform.position;
-			Debug.Log("pos ball before drop : " + ball.transform.position);
+			
+			ball.transform.position = owner.BallPlaceHolderDrop.transform.position;
+			initPos = ball.transform.position;
+			
 			owner.canCatchTheBall = false;
 		}
 	}
@@ -58,17 +60,16 @@ public class DropManager: MonoBehaviour {
 	private void doKick(float t)
 	{
 
-		ball.transform.position = new Vector3( (ownerDirection.x != 0? ownerDirection.x : 1f)* Mathf.Cos(angleX) * t + initPos.x,
-												-0.5f * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropKick) * t + initPos.y,
-												ownerDirection.z * ball.multiplierDropKick.y * t + initPos.z);
+		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
+												-0.75f * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropKick) * t + initPos.y,
+												(ownerDirection.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 
 	private void doUpAndUnder(float t)
 	{
 		Vector3 pos = ball.transform.position;
-		ball.transform.position = new Vector3( ((ownerDirection.x != 0 ? ownerDirection.x : 1f) + Mathf.Cos(angleX)) * t + initPos.x,
-												-0.5f * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
-												ownerDirection.z * ball.multiplierDropUpAndUnder.y * t + initPos.z);
-		Debug.DrawRay(pos, ball.transform.position - pos, Color.yellow, 10f);
+		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
+												-0.75f * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
+												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 }
