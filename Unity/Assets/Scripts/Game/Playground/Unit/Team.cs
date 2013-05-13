@@ -144,20 +144,8 @@ public class Team : myMonoBehaviour, IEnumerable {
             units[i].Team = this;
             //units[i].renderer.material.color = Color;           
         }
-
-		initPos();
-		setSpeed();
-    }
-
-    public void initPos()
-    {
-		/*
-        for (int i = 0; i < nbUnits; i++)
-        {
-            Vector3 pos = this.transform.position + new Vector3((i - (nbUnits / 2.0f)) * 2, 0, 0);
-            units[i].transform.position = pos;     
-        }*/
-		this.placeUnits(StartPlacement);
+        
+        setSpeed();
     }
 
     public bool Contains(Unit unit)

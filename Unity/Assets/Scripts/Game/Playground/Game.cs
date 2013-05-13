@@ -143,6 +143,8 @@ public class Game : myMonoBehaviour {
         right.CreateUnits();
         left.CreateUnits();
 
+        arbiter.StartPlacement();
+
         right.opponent = left;
         left.opponent = right;
 
@@ -237,9 +239,10 @@ public class Game : myMonoBehaviour {
         cameraManager.sm.event_Pass(from, to);
     }
 
-    public void OnBut()
+    public void OnDropTransformed(But but)
     {
-        arbiter.OnBut();
+        cameraManager.sm.event_DropTransformed(but);
+        arbiter.OnDropTransformed(but);
     }
 
     public void OnOwnerChanged(Unit before, Unit after)
