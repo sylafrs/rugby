@@ -47,7 +47,7 @@ public class TackleManager: MonoBehaviour {
             remainingTime = tempsPlaquage;
             result = RESULT.QTE;
 
-
+            tackled.ShowButton("A");
 
 
             // Le plaqué a une durée avant de tomber			    => time.timeScale (attention caméra !)
@@ -100,6 +100,7 @@ public class TackleManager: MonoBehaviour {
                 result = RESULT.PASS;
                 if (callback != null)
                 {
+                    tackled.HideButton();
                     callback(result);
                 }
                 
@@ -111,7 +112,8 @@ public class TackleManager: MonoBehaviour {
             {
                 result = RESULT.NORMAL;
                 if (callback != null)
-                {   
+                {
+                    tackled.HideButton();
                     callback(result);
                 }
 
