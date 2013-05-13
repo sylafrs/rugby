@@ -1,3 +1,4 @@
+using UnityEngine;
 /**
   * @class FollowPlayerState
   * @brief Etat de la caméra lorsqu'elle doit suivre un joueur.
@@ -47,16 +48,20 @@ public class FollowPlayerState : CameraState {
         return false;
     }
 
-    //  TODO à changer de place
+    //  TODO à changer de place ou pas
     public override bool OnTackle()   
     {
-        if(this.target.isTackled) 
-        {
+		
+		
+		
+        //if(this.target.isTackled) 
+        //{
+			Debug.Log("On Tackle");
             sm.state_change_son(this, new TackleState(sm, cam, this.target));
             return true;
-        }
+        //}
 
-        return false;
+        //return false;
     }
 	
 	

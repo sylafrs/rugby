@@ -17,6 +17,31 @@ using System.Threading;
     RequireComponent(typeof(TouchManager)),
     RequireComponent(typeof(TransformationManager))
 ]
+/*
+ *
+ * B
+ *  E
+ *   S
+ *    T
+ *   
+ *      S
+ *       C
+ *        R
+ *         I
+ *          P
+ *           T
+ * 
+ *             N
+ *              A
+ *               M
+ *                E
+ *                  
+ *                  E
+ *                   V
+ *                    E
+ *                     R
+ * 
+ */
 public class Game : myMonoBehaviour {
 	
 	public enum State {
@@ -237,9 +262,6 @@ public class Game : myMonoBehaviour {
                 p2.Controlled = after;
                 p2.Controlled.IndicateSelected(true);
             }
-			
-			this.Ball.Taken(after);
-            Debug.Log("La balle est attrapee par l'equipe " + after.Team.Name);
         }
         
         this.left.OnOwnerChanged();

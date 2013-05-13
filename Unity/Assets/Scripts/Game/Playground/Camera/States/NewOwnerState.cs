@@ -1,3 +1,6 @@
+using UnityEngine;
+using System.Threading;
+
 /**
   * @class NewOwnerState
   * @brief Etat de la caméra durant une touche
@@ -25,11 +28,26 @@ public class NewOwnerState : CameraState
 			
 			//if ((old != null)&&(old.Team != current.Team))
             //{
-				cam.setTarget(current.transform);
-                cam.flipForTeam(current.Team);
+				sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
+				//cam.setTarget();
+				//cam.OnNextIdealPosition = () => {
+			
+				
+						Debug.Log("before pause");
+               				Thread.Sleep((int)(1000));
+						Debug.Log("after pause");
+		              cam.flipForTeam(current.Team, () =>{
+						Debug.Log("Hop, fin du flip");
+						 	
+					 });
+				
+					
+				//};
+				//cam.setTarget(current.transform);
+                
             //}
 			
-            sm.state_change_son(this, new FollowPlayerState(sm, cam, current));
+           
 			
             return true;          
 		}else{
