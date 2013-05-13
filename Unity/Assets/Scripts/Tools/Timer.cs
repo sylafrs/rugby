@@ -8,18 +8,18 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
-public class TimerManager : MonoBehaviour {
+public class Timer : MonoBehaviour {
 
-    private static TimerManager singleton;
+    private static Timer singleton;
 
-    private struct Timer {
+    private struct myTimer {
         public CallBack callback;
         public float remainingTime;
     }
 
-    private static List<Timer> list = new List<Timer>();
+    private static List<myTimer> list = new List<myTimer>();
 
-    public TimerManager()
+    public Timer()
     {
         if (singleton != null)
         {
@@ -31,7 +31,7 @@ public class TimerManager : MonoBehaviour {
 
     public static void AddTimer(float time, CallBack callback)
     {
-        Timer t = new Timer();
+        myTimer t = new myTimer();
         t.remainingTime = time;
         t.callback = callback;
         list.Add(t);
@@ -39,11 +39,11 @@ public class TimerManager : MonoBehaviour {
        
     public void Update()
     {
-        foreach (Timer t in list)
+        foreach (myTimer t in list)
             UpdateTimer(t);
     }
 
-    private void UpdateTimer(Timer t)
+    private void UpdateTimer(myTimer t)
     {
         t.remainingTime -= Time.deltaTime;
         if (t.remainingTime <= 0)
