@@ -135,6 +135,12 @@ public class TackleManager: MonoBehaviour {
 
 		//return angle <= tackler.Team.AngleOfFovTackleCrit && !supporte;
 
-        return tackler.Team.GetComponent<superController>().SuperActive;
+        bool superTackler = tackler.Team.Super.SuperActive;
+        if (superTackler)
+        {
+            return tackled.Team.Super.SuperActive;
+        }
+
+        return false;
     }
 }
