@@ -264,6 +264,8 @@ public class Gamer : myMonoBehaviour
 		if (Game.Ball.Owner == null && ((Game.Ball.PreviousOwner.Team == Controlled.Team && Game.Ball.PreviousOwner.isTackled)
 										|| Controlled.isTackled))
 		{
+            Controlled.Order = Order.OrderNothing();
+
 			Controlled.IndicateSelected(false);
 			Controlled = GetUnitNear();
 			Controlled.IndicateSelected(true);
