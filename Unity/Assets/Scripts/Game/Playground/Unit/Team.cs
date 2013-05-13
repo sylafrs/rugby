@@ -65,7 +65,21 @@ public class Team : myMonoBehaviour, IEnumerable {
         }
     }
     public GameObject Prefab_model;
-	
+
+    private superController _super;
+    public superController Super
+    {
+        get
+        {
+            if (_super == null)
+            {
+                _super = this.GetComponent<superController>();
+            }
+
+            return _super;
+        }
+    }
+
 	//maxens dubois
 	public int SuperGaugeValue;
     
