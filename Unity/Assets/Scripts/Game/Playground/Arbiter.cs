@@ -121,8 +121,6 @@ public class Arbiter : MonoBehaviour {
         touchTeam.placeUnit(passUnitPosition, 0);
 
         Game.cameraManager.CancelNextFlip = true;
-		Game.cameraManager.flipEnd();
-		
         Game.Ball.Owner = touchTeam[0];
         Game.cameraManager.setTarget(null);
     }
