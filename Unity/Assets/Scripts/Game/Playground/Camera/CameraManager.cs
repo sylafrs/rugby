@@ -11,7 +11,22 @@ public class CameraManager : myMonoBehaviour, Debugable {
     public Game game;
 	public GameCamera gameCamera;
 		
-	private Transform 	target;
+	//private Transform 	target;
+	
+	private Transform _target = null;
+	private Transform target
+    {
+        get
+        {
+            return _target;
+        }
+        set
+        {
+			_target = value;
+            Debug.Log("Target Changed for "+value);            
+        }
+    }
+	
 	private Vector3 	velocity = Vector3.zero;
 	private float[]		angleVelocity = new float[3];
 	private float		angleVelocityX;
@@ -47,7 +62,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private bool    isflipped;
 	private Team	flipedForTeam;
 	public bool 	CancelNextFlip;
-	
+	private Action	ActionOnFlipFinish;
+	public Action	OnNextIdealPosition {get;set;}
 
     public StateMachine sm;
 
@@ -60,6 +76,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		isflipping = false;
 		isflipped= false;
 		CancelNextFlip = false;
+		ActionOnFlipFinish = null;
 		flipedForTeam = game.right;
 		
 		/*
@@ -73,8 +90,10 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	void FixedUpdate(){
 		
+		
 		if(isflipping != true)
 		{
+		
 	        if (target != null && Camera.mainCamera != null)
 	        {
 				Vector3 MinfollowOffset2 = new Vector3();
@@ -139,12 +158,23 @@ public class CameraManager : myMonoBehaviour, Debugable {
 						actualDelay += Time.deltaTime;
 					}
 				}else{
+					
+					if(OnNextIdealPosition != null) {
+						OnNextIdealPosition();
+						OnNextIdealPosition = null;
+					}
+					
 					resetActualDelay();
 				}		
 			}
+		
+		
 		}else{
 			flipUpdate();
 		}
+		
+		
+		//if(isflipping) flipUpdate();
 	}
 	
 	public void setTarget(Transform _t){
@@ -180,9 +210,12 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		flipInit(new Vector3(0,1,0), 180);
 	}
 	
-	public void flipForTeam(Team _t)
+	public void flipForTeam(Team _t, Action _cb)
 	{
 		Debug.Log("Flip for Team "+_t);
+		Debug.Log("target of flip "+this.target);
+		Debug.Log("Flip start ");
+		this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
 			//on lance le flip seulement si c'est un team différente
 			if(flipedForTeam != _t){
@@ -239,7 +272,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	void flipEnd(){
 		this.MinfollowOffset.z *= -1;
 		this.MaxfollowOffset.z *= -1;
-		this.isflipping  			= false;
+		this.isflipping  		= false;
+		this.ActionOnFlipFinish();
 	}
 	
 	/*

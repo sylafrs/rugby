@@ -75,7 +75,7 @@ public class Ball : TriggeringTriggered {
                 }
 
                 _owner = value;
-			
+				if(value) this.Taken(value);
                 Game.OnOwnerChanged(PreviousOwner, value);
             }         
         }
@@ -201,8 +201,9 @@ public class Ball : TriggeringTriggered {
         setPosition(this.transform.position);    
     }
 
-    public void Taken(Unit u)
-    {	
+    private void Taken(Unit u)
+    {		
+		
 		Debug.Log("i take the ball " + u.name);
 
 		this.rigidbody.useGravity = false;
@@ -210,10 +211,7 @@ public class Ball : TriggeringTriggered {
 		this.transform.parent = u.BallPlaceHolderRight.transform;
 		this.transform.localPosition = Vector3.zero;
 
-		if (Owner != u)
-		{
-			Owner = u;
-		}
+		
 	}
 
     public void setPosition(Vector3 v)

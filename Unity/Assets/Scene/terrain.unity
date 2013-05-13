@@ -27033,7 +27033,7 @@ MonoBehaviour:
       keyboard: 48
       xbox: 7
     enableIA:
-      keyboard: 57
+      keyboard: 0
       xbox: 2
     scrumNormal:
       keyboard: 119
@@ -27068,10 +27068,10 @@ MonoBehaviour:
       keyboard: 0
       xbox: 1
     drop:
-      keyboard: 0
+      keyboard: 111
       xbox: 9
     tackle:
-      keyboard: 0
+      keyboard: 57
       xbox: 0
     reset:
       keyboard: 0
@@ -27099,10 +27099,10 @@ MonoBehaviour:
       xbox: 1
     move:
       keyboard:
-        up: 0
-        down: 0
-        right: 0
-        left: 0
+        up: 105
+        down: 107
+        right: 108
+        left: 106
       xbox: 2
   timePlaque: 3
   Vheight: 10
