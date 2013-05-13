@@ -4083,10 +4083,12 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100020}
+  ModelAnim: {fileID: 0}
+  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   BallPlaceHolderTransformation: {fileID: 100284}
-  BallPlaceHolderDrop: {fileID: 100282}
+  BallPlaceHolderDrop: {fileID: 100284}
   buttonIndicator: {fileID: 11400008}
   selectedIndicators:
   - {fileID: 100022}

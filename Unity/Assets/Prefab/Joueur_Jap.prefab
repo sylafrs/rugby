@@ -4196,6 +4196,8 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
+  ModelAnim: {fileID: 0}
+  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
   BallPlaceHolderTransformation: {fileID: 100292}

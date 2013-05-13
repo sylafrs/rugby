@@ -159,7 +159,6 @@ public class Ball : TriggeringTriggered {
 	public void Drop(DropManager.TYPEOFDROP t)
     {
 
-		Debug.Log("drop: forward : "+ this.Owner.transform.forward + " initPos : " + this.transform.position);
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
