@@ -64,6 +64,12 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnDropTransformed(But b)
+    {
+        return (false);
+    }
+
 }
 
 /**
@@ -176,6 +182,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnSuper(t, super))
+                return;
+        }
+    }
+
+    public void event_DropTransformed(But but)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnDropTransformed(but))
                 return;
         }
     }

@@ -324,8 +324,7 @@ public class Arbiter : MonoBehaviour {
                 // Game.cameraManager.gameCamera.ResetRotation();
                 //Game.Ball.setPosition(Vector3.zero);
 
-                Game.right.initPos();
-                Game.left.initPos();
+                this.StartPlacement();
                 Game.Ball.Owner = opponent[0];
             
 			}			
@@ -339,17 +338,25 @@ public class Arbiter : MonoBehaviour {
 		tm.enabled = true;
 	}
 
-    public void OnBut()
+    public void OnDropTransformed(But but)
+    {  
+
+        this.Game.state = Game.State.PAUSED;
+
+        // On donne les points
+        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
+
+        // Remise au centre, donne la balle aux perdants.
+        this.StartPlacement();
+        Game.Ball.Owner = but.Owner[0];
+
+        this.Game.state = Game.State.PLAYING;
+    }
+
+    public void StartPlacement()
     {
-        /*
-	        Debug.Log(Owner.name + " viens de se prendre un but dans sa face");
-	        Owner.nbPoints += b.Game.settings.score.points_drop;
-	        b.setPosition(Vector3.zero);
-        */
-
-
-
-
+        Game.right.placeUnits(Game.right.StartPlacement);
+        Game.left.placeUnits(Game.left.StartPlacement);
     }
 
 	public void PauseIngameTime(){
