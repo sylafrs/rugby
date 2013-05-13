@@ -353,10 +353,14 @@ public class Gamer : myMonoBehaviour
 
     void UpdateDROP()
     {
-        if (Input.GetKeyDown(Inputs.drop.keyboard) || XboxController.GetButtonDown(Inputs.drop.xbox))
+		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
-            Controlled.Order = Order.OrderDrop(Game.left[0]);
+            Controlled.Order = Order.OrderDropUpAndUnder(Game.left[0]);
         }
+		else if (Input.GetKeyDown(Inputs.dropKick.keyboard) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
+		{
+			Controlled.Order = Order.OrderDropKick(Game.left[0]);
+		}
     }
 	
 	void UpdateESSAI() {

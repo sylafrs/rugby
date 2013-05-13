@@ -14,7 +14,8 @@ public struct Order  {
         NOTHING,
         MOVE,
         PASS,
-        DROP,
+        DROPKICK,
+		DROPUPANDUNDER,
         TACKLE,
         FOLLOW,
         TRIANGLE,   // ASSISTER
@@ -70,19 +71,33 @@ public struct Order  {
         return o;
     }
 	
-	public static Order OrderDrop(Unit unit)
+	public static Order OrderDropKick(Unit unit)
     {
-		return OrderDrop(unit, 1.0f);
+		return OrderDropKick(unit, 1.0f);
 	}
 
-    public static Order OrderDrop(Unit unit, float pressionCapture)
+    public static Order OrderDropKick(Unit unit, float pressionCapture)
     {
         Order o = new Order();
-        o.type = TYPE.DROP;
+        o.type = TYPE.DROPKICK;
         o.target = unit;
 		o.pressionCapture = pressionCapture;
         return o;
     }
+
+	public static Order OrderDropUpAndUnder(Unit unit)
+	{
+		return OrderDropUpAndUnder(unit, 1.0f);
+	}
+
+	public static Order OrderDropUpAndUnder(Unit unit, float pressionCapture)
+	{
+		Order o = new Order();
+		o.type = TYPE.DROPUPANDUNDER;
+		o.target = unit;
+		o.pressionCapture = pressionCapture;
+		return o;
+	}
 
 	public static Order OrderPass(Unit unit)
 	{
