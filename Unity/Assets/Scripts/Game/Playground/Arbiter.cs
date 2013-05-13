@@ -344,6 +344,10 @@ public class Arbiter : MonoBehaviour {
 	        Owner.nbPoints += b.Game.settings.score.points_drop;
 	        b.setPosition(Vector3.zero);
         */
+
+
+
+
     }
 
 	public void PauseIngameTime(){
