@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class Arbiter
   * @brief The arbiter watch the game and apply rules.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Game/Arbiter")]
-public class Arbiter : MonoBehaviour {
+public class Arbiter : myMonoBehaviour {
 		
 	public Game Game {get;set;}
 	

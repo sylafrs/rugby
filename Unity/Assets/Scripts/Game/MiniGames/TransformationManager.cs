@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class TransformationManager
   * @brief Description.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/MiniGames/Transformation")]
-public class TransformationManager : MonoBehaviour {
+public class TransformationManager : myMonoBehaviour {
 	public System.Action<TransformationManager.Result> CallBack;
 	
 	public Gamer gamer {get; set;}

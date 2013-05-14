@@ -6,10 +6,10 @@ using XInputDotNetPure;
   * @class TouchManager
   * @brief Mini jeu de la touche.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/MiniGames/Touch")]
-public class TouchManager : MonoBehaviour {
+public class TouchManager : myMonoBehaviour {
 	
 	public System.Action<TouchManager.Result, int> CallBack;
 	

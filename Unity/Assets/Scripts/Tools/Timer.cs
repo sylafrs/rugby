@@ -6,10 +6,10 @@ using System.Collections.Generic;
   * @class Timer
   * @brief Description.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Code Tools/Timer")]
-public class Timer : MonoBehaviour {
+public class Timer : myMonoBehaviour {
 
     private static Timer singleton = null;
 	

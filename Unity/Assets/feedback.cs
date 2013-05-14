@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("Scripts/FeedBack (à ranger)")]
-public class feedback : MonoBehaviour {
+public class feedback : myMonoBehaviour {
 	
 	public GameObject player;
 	private Color colorSave;

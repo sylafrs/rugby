@@ -11,10 +11,10 @@ public class NamedTexture {
   * @class TextureCollectionner
   * @brief Collects textures.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Textures/Collectionner")]
-public class TextureCollectionner : MonoBehaviour {
+public class TextureCollectionner : myMonoBehaviour {
 		
 	public NamedTexture [] collection;
 	public Renderer target;

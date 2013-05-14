@@ -10,7 +10,7 @@ public enum SuperList{
 };
 
 [AddComponentMenu("Scripts/Supers/Controller")]
-public class superController : MonoBehaviour {
+public class superController : myMonoBehaviour {
 	
 	//public KeyCode OffensiveSuperButton;
 	//public KeyCode DefensiveSuperButton;

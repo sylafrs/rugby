@@ -3,7 +3,7 @@ using UnityEngine;
   * @class FollowPlayerState
   * @brief Etat de la caméra lorsqu'elle doit suivre un joueur.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 public class FollowPlayerState : CameraState {
     public FollowPlayerState(StateMachine sm, CameraManager cam, Unit target) : base(sm, cam) { this.target = target; }

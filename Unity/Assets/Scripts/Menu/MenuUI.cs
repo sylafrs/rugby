@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("Scripts/Menu/UI")]
-public class MenuUI : MonoBehaviour {
+public class MenuUI : myMonoBehaviour {
 
 	void OnGUI()
     {

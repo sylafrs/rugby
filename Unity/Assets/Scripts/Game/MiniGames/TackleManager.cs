@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 
 [AddComponentMenu("Scripts/MiniGames/Tackle")]
-public class TackleManager: MonoBehaviour {
+public class TackleManager: myMonoBehaviour {
 
     public Unit tackled { get; set; }
     public Unit tackler { get; set; }
