@@ -117,13 +117,13 @@ public class TouchManager : myMonoBehaviour {
 	
 	public void DoTouch() {
 		
-		Debug.Log ("touche : " + choixTouche + " -- inter : " + choixInter);
+		MyDebug.Log("touche : " + choixTouche + " -- inter : " + choixInter);
 		
 		if(choixTouche == choixInter) {
-			Debug.Log ("interception");	
+			MyDebug.Log("interception");	
 		}
 		else {
-			Debug.Log ("reussite");	
+			MyDebug.Log("reussite");	
 		}
 		
 		this.enabled = false;

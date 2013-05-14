@@ -298,4 +298,9 @@ public class Game : myMonoBehaviour {
         cameraManager.sm.event_BallOut();
         arbiter.OnBallOut();
     }
+
+    public void Reset()
+    {
+        SceneReloader.Go();
+    }
 }

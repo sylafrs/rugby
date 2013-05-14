@@ -21,7 +21,7 @@ public class But : TriggeringTrigger
 	
 	public Transform transformationPoint;
 
-    public override void Entered(Triggered t)
+    public override void Left(Triggered t)
     {
         Ball b = t.GetComponent<Ball>();
         if (b != null)

@@ -24,10 +24,10 @@ public class IntroManager : myMonoBehaviour {
     
     void Update()
     {
-        if (game.p1.XboxController.GetButtonUp(touch.xbox) || Input.GetKeyUp(touch.keyboard))
+        if ((game.p1.XboxController != null && game.p1.XboxController.GetButtonUp(touch.xbox)) || Input.GetKeyUp(touch.keyboard))
         {
             Finish();
-        }
+        }        
     }
 
     void Finish()

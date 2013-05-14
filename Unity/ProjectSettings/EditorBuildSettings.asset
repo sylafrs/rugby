@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scene/menu.unity
   - enabled: 1
     path: Assets/Scene/terrain.unity
+  - enabled: 1
+    path: Assets/Scene/reloadScene.unity
