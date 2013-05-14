@@ -9,6 +9,7 @@ public enum SuperList{
 	superWall
 };
 
+[AddComponentMenu("Scripts/Supers/Controller")]
 public class superController : MonoBehaviour {
 	
 	//public KeyCode OffensiveSuperButton;

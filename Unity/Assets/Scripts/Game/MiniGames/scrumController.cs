@@ -5,7 +5,7 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois 
  */
-[AddComponentMenu("Scripts/Game/Scrum Controller"),
+[AddComponentMenu("Scripts/MiniGames/Scrum"),
 	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
 

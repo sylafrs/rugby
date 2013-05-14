@@ -7,7 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
-[RequireComponent(typeof(Unit))]
+[AddComponentMenu("Scripts/Animations/Unit Animator (require Unit)"), RequireComponent(typeof(Unit))]
 public class UnitAnimator : MonoBehaviour {
 
     private Unit unit;

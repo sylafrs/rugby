@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
  
+[AddComponentMenu("Scripts/Camera/Fade")]
 public class CameraFade : MonoBehaviour
 {   
 	private static CameraFade mInstance = null;

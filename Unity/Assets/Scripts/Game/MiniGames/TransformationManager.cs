@@ -1,16 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public delegate void CallBack_transfo(TransformationManager.Result transformed);
-
 /**
   * @class TransformationManager
   * @brief Description.
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/MiniGames/Transformation")]
 public class TransformationManager : MonoBehaviour {
-	public CallBack_transfo CallBack;
+	public System.Action<TransformationManager.Result> CallBack;
 	
 	public Gamer gamer {get; set;}
 	public Ball ball {get; set;}

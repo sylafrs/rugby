@@ -8,6 +8,7 @@ using System;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Scripts/MiniGames/Introduction")]
 public class IntroManager : MonoBehaviour {
 
     private Game game;

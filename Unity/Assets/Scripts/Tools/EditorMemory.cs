@@ -7,6 +7,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Code Tools/EditorMemory")]
 public class EditorMemory : MonoBehaviour
 {
     public string DebugWindowFilter = string.Empty;

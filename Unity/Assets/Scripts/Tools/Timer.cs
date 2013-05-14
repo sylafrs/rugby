@@ -8,6 +8,7 @@ using System.Collections.Generic;
   * @author Sylvain Lafon
   * @see MonoBehaviour
   */
+[AddComponentMenu("Code Tools/Timer")]
 public class Timer : MonoBehaviour {
 
     private static Timer singleton = null;
