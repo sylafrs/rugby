@@ -28,7 +28,8 @@ public class Ball : TriggeringTriggered {
 			
 		}
 	}
-
+	public GameObject CircleDrop;
+	
     public bool onGround { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);

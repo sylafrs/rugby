@@ -75,4 +75,8 @@ public class DropManager {
 												acceleration * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
+	
+	private void drawCircle()
+	{
+	}
 }
