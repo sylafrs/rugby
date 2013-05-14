@@ -27,7 +27,7 @@ public class But : TriggeringTrigger
         if (b != null)
         {
 			if(b.Game.state == Game.State.PLAYING) {
-                b.Game.OnDropTransformed(this);
+				b.Game.OnDropTransformed(this);
 			}
 			else if(b.Game.state == Game.State.TRANSFORMATION) {
 				TransformationManager tm = b.Game.GetComponent<TransformationManager>();

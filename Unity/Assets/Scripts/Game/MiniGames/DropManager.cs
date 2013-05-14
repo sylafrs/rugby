@@ -45,6 +45,8 @@ public class DropManager {
 		}
 		
 		acceleration = ball.accelerationDrop > 0f? -ball.accelerationDrop : ball.accelerationDrop;
+		
+		CalculateCircle();
 	}
 	
 	// Update is called once per frame
@@ -76,7 +78,38 @@ public class DropManager {
 												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 	
-	private void drawCircle()
+	private void CalculateCircle()
 	{
+		switch (type)
+		{
+			case TYPEOFDROP.KICK: drawCircle(ball.multiplierDropKick, ball.angleDropKick);
+				break;
+			case TYPEOFDROP.UPANDUNDER: drawCircle(ball.multiplierDropUpAndUnder, ball.angleDropUpAndUnder);
+				break;
+			default: break;
+		}
+	}
+	
+	private void drawCircle(Vector2 multiplier, float angle)
+	{
+		float a = acceleration * 9.81f;
+		float b = multiplier.x * Mathf.Sin(Mathf.Deg2Rad * angle);
+		float c = initPos.y - 0.4f;
+		float delta = b*b-4*a*c;
+		
+		float t = 0f;
+		if (delta >= 0)
+		{
+			t = Mathf.Max((-b + Mathf.Sqrt(delta))/(2*a),(-b - Mathf.Sqrt(delta))/(2*a));
+		}
+		t = (t > 0 ? t : 0f);
+		
+		Vector3 pos;
+		pos.x = (ownerDirection.x * multiplier.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x;
+		pos.y = 0.4f;
+		pos.z = (ownerDirection.z * multiplier.y + Mathf.Sin(angleX)) * t + initPos.z;
+		
+		ball.CircleDrop.transform.position = pos;
+		ball.CircleDrop.SetActive(true);
 	}
 }

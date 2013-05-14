@@ -121,6 +121,8 @@ public class Ball : TriggeringTriggered {
     {
         if (Owner != null)
         {
+			CircleDrop.SetActive(false);
+			
             if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
 				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
@@ -142,6 +144,7 @@ public class Ball : TriggeringTriggered {
             }
 
             this.onGround = true;
+			CircleDrop.SetActive(false);
         }
         else
         {
@@ -152,6 +155,7 @@ public class Ball : TriggeringTriggered {
 
             this.onGround = false;
         }
+			
 
         UpdateTackle();
 		UpdatePass();
