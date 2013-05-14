@@ -66,7 +66,7 @@ public class SuperSettings
 [System.Serializable]
 public class InputSettings
 {    
-    public InputTouch shortPass, longPass, drop, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef, changePlayer;
+    public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef, changePlayer;
     public InputDirection move;
 }
 
@@ -75,7 +75,7 @@ public class InputSettings
  * @brief Classe de reglages
  * @author Sylvain Lafon
  */
-[AddComponentMenu("Settings/GameSettings")]
+[AddComponentMenu("Scripts/Settings/GameSettings")]
 public class GameSettings : myMonoBehaviour {
 
     public ScoreSettings score;     // Attribution des Points

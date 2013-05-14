@@ -5,7 +5,7 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois 
  */
-[AddComponentMenu("Scripts/Game/Scrum Controller"),
+[AddComponentMenu("Scripts/MiniGames/Scrum"),
 	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
 
@@ -14,14 +14,14 @@ public class scrumController : myMonoBehaviour {
 	private Game 	_game;
 	private Ball 	_ball;
 	private Gamer 	_p1;
-	private Gamer 	_p2;
+	//private Gamer 	_p2;
 	private Team	_t1;
 	private Team	_t2;
 	
 	private float  playerScore;
 	private bool playerSpecial;
 	private float cpuScore;
-	private bool inScrum;
+	//private bool inScrum;
 	private	int currentFrameWait;
 	private int frameToGo;
 	
@@ -56,7 +56,7 @@ public class scrumController : myMonoBehaviour {
 		_game 	= gameObject.GetComponent<Game>();
 		_ball 	= _game.Ball;
 		_p1 	= _game.p1;
-		_p2	 	= _game.p2;
+		//_p2	 	= _game.p2;
 		_t1		= _game.right;
 		_t2		= _game.left; 
 	}
@@ -67,7 +67,7 @@ public class scrumController : myMonoBehaviour {
         playerScore = 1;
         cpuScore = 1;
         currentFrameWait = 0;
-        inScrum = false;
+        //inScrum = false;
         playerSpecial = false;
         offset = 0f;
         frameToGo = frameStart;

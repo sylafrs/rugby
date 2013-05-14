@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class Arbiter
   * @brief The arbiter watch the game and apply rules.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Game/Arbiter")]
-public class Arbiter : MonoBehaviour {
+public class Arbiter : myMonoBehaviour {
 		
 	public Game Game {get;set;}
 	
@@ -126,85 +126,78 @@ public class Arbiter : MonoBehaviour {
     }
 	
 	public void OnTouch(Touche t) {
-		if(t == null || Game.state != Game.State.PLAYING) {
+		if(t == null || t.a == null || t.b == null || Game.state != Game.State.PLAYING) {
 			return;	
 		}		
-		
-		if (t.a == null || t.b == null)
-        {
-            Debug.Log("Touche : [Replace au centre]");
-            Game.Ball.setPosition(Vector3.zero);
-        }
-        else
-        {
-			// Indique que le jeu passe en mode "Touche"			
+				
+		// Indique que le jeu passe en mode "Touche"			
             
-			// Placement dans la scène de la touche.
-			Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
-            pos.y = 0; // A terre           
+		// Placement dans la scène de la touche.
+		Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
+        pos.y = 0; // A terre           
 			
-			if(TouchPlacement == null) {
-				throw new UnityException("I need to know how place the players when a touch occurs");
-			}
+		if(TouchPlacement == null) {
+			throw new UnityException("I need to know how place the players when a touch occurs");
+		}
 
-            bool right = (pos.x > 0);
+        bool right = (pos.x > 0);
             			
-			if(right) {
-				TouchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
+		if(right) {
+			TouchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
+		}
+		else {
+			TouchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
+		}
+			
+		TouchPlacement.position = pos;
+						
+		Team interceptTeam = Game.Ball.Team;
+		Team touchTeam = interceptTeam.opponent;
+
+        //PlacePlayersForTouch();			
+        Game.state = Game.State.TOUCH;		
+			
+		//Game.Ball.Owner = touchTeam[0];			        
+
+		// Règlage du mini-jeu
+		TouchManager tm = this.Game.GetComponent<TouchManager>();
+			
+		// On indique les équipes
+		tm.gamerIntercept = interceptTeam.Player;
+		tm.gamerTouch = touchTeam.Player;
+			
+		// On indique si l'un ou l'autre sera fait au pif
+		// TODO : patch j2
+		tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
+		tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
+						
+		// Fonction à appeller à la fin de la touche
+		tm.CallBack = delegate(TouchManager.Result result, int id) {
+								
+			// On donne la balle à la bonne personne
+			if(result == TouchManager.Result.INTERCEPTION) {
+				Game.Ball.Owner = interceptTeam[id];
 			}
 			else {
-				TouchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
+				Game.Ball.Owner = touchTeam[id+1];
 			}
-			
-			TouchPlacement.position = pos;
-						
-			Team interceptTeam = Game.Ball.Team;
-			Team touchTeam = interceptTeam.opponent;
-
-            //PlacePlayersForTouch();			
-            Game.state = Game.State.TOUCH;		
-			
-			//Game.Ball.Owner = touchTeam[0];			        
-
-			// Règlage du mini-jeu
-			TouchManager tm = this.Game.GetComponent<TouchManager>();
-			
-			// On indique les équipes
-			tm.gamerIntercept = interceptTeam.Player;
-			tm.gamerTouch = touchTeam.Player;
-			
-			// On indique si l'un ou l'autre sera fait au pif
-			// TODO : patch j2
-			tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
-			tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
-						
-			// Fonction à appeller à la fin de la touche
-			tm.CallBack = delegate(TouchManager.Result result, int id) {
-								
-				// On donne la balle à la bonne personne
-				if(result == TouchManager.Result.INTERCEPTION) {
-					Game.Ball.Owner = interceptTeam[id];
-				}
-				else {
-					Game.Ball.Owner = touchTeam[id+1];
-				}
 				
-				// Indicateur de bouton
-				foreach(Unit u in interceptTeam)
-					u.buttonIndicator.target.renderer.enabled = false;
+			// Indicateur de bouton
+			foreach(Unit u in interceptTeam)
+				u.buttonIndicator.target.renderer.enabled = false;
 				
-				foreach(Unit u in touchTeam)
-					u.buttonIndicator.target.renderer.enabled = false;
+			foreach(Unit u in touchTeam)
+				u.buttonIndicator.target.renderer.enabled = false;
 				
-				// Retour en jeu
-				Game.state = Game.State.PLAYING;
-				interceptTeam.fixUnits = touchTeam.fixUnits = false;	
-				if(interceptTeam.Player) interceptTeam.Player.enableMove();
-				if(touchTeam.Player) touchTeam.Player.enableMove();
-			};			
+			// Retour en jeu
+			Game.state = Game.State.PLAYING;
+			interceptTeam.fixUnits = touchTeam.fixUnits = false;	
+			if(interceptTeam.Player) interceptTeam.Player.enableMove();
+			if(touchTeam.Player) touchTeam.Player.enableMove();
+		};			
 			
-			tm.enabled = true;
-        }           
+		tm.enabled = true;
+                  
 	}
 	
 	public void OnScrum() {
@@ -300,6 +293,7 @@ public class Arbiter : MonoBehaviour {
 		Team.switchPlaces(t[0], Game.Ball.Owner);
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 
+
         Team opponent = Game.Ball.Owner.Team.opponent;
 				
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
@@ -336,16 +330,41 @@ public class Arbiter : MonoBehaviour {
 	}
 
     public void OnDropTransformed(But but)
-    {  
+    {
+        if (this.Game.state != Game.State.PLAYING)
+        {
+            return;
+        }
 
         this.Game.state = Game.State.PAUSED;
 
         // On donne les points
+        Debug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
         // Remise au centre, donne la balle aux perdants.
         this.StartPlacement();
         Game.Ball.Owner = but.Owner[0];
+
+        this.Game.state = Game.State.PLAYING;
+    }
+
+    public void OnBallOut()
+    {
+        this.Game.state = Game.State.PAUSED;
+               
+        // Remise au centre, donne la balle aux perdants.
+        this.StartPlacement();
+        
+        // Si on est du côté droit
+        if (this.Game.Ball.RightSide())
+        {
+            Game.Ball.Owner = Game.right[0];
+        }
+        else
+        {
+            Game.Ball.Owner = Game.left[0];
+        }
 
         this.Game.state = Game.State.PLAYING;
     }

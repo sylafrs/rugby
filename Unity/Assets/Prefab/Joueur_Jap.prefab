@@ -588,7 +588,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400076}
-  - 111: {fileID: 11100000}
   m_Layer: 0
   m_Name: PR_jap_captain
   m_TagString: Untagged
@@ -1283,6 +1282,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400168}
+  - 95: {fileID: 9500000}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -2207,6 +2207,21 @@ GameObject:
   m_Component:
   - 4: {fileID: 400290}
   m_Layer: 0
+  m_Name: BallPlaceHolderDrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400292}
+  m_Layer: 0
   m_Name: BallPlaceHolderTransformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2368,8 +2383,9 @@ Transform:
   m_Children:
   - {fileID: 400052}
   - {fileID: 400070}
-  - {fileID: 400028}
   - {fileID: 400290}
+  - {fileID: 400028}
+  - {fileID: 400292}
   - {fileID: 400206}
   - {fileID: 400126}
   - {fileID: 400008}
@@ -3960,6 +3976,17 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 25, z: 36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400024}
+--- !u!4 &400292
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 21.367857}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4145,24 +4172,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 86.0199966, y: 103.43, z: 31.8799992}
   m_Center: {x: 0, y: 50, z: 0}
---- !u!111 &11100000
-Animation:
+--- !u!95 &9500000
+Animator:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100076}
+  m_GameObject: {fileID: 100168}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 4bf9f33be486707408c2db5706618032, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 1
+  m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
-  m_CullingType: 1
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4175,16 +4196,16 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
-  ModelAnim: {fileID: 11100000}
-  TemporaryUseIdle: 1
   BallPlaceHolderRight: {fileID: 100052}
   BallPlaceHolderLeft: {fileID: 100070}
-  BallPlaceHolderTransformation: {fileID: 100290}
+  BallPlaceHolderTransformation: {fileID: 100292}
+  BallPlaceHolderDrop: {fileID: 100290}
   buttonIndicator: {fileID: 11400004}
   selectedIndicators:
   - {fileID: 100256}
   superDashParticles: {fileID: 19800002}
   superTackleParticles: {fileID: 19800000}
+  canCatchTheBall: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4370,7 +4391,7 @@ NavMeshAgent:
   m_Speed: 13
   m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 300
+  m_AngularSpeed: 5000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
   m_AutoRepath: 0

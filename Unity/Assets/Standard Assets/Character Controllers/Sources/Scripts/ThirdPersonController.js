@@ -1,6 +1,7 @@
 
 // Require a character controller to be attached to the same game object
 @script RequireComponent(CharacterController)
+@script AddComponentMenu ("Character/Third Person/Controller")
 
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;

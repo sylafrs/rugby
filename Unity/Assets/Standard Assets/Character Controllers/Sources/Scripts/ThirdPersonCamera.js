@@ -1,4 +1,4 @@
-
+@script AddComponentMenu ("Character/Third Person/Camera")
 
 var cameraTransform : Transform;
 private var _target : Transform;

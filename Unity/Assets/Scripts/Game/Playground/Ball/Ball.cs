@@ -30,7 +30,12 @@ public class Ball : TriggeringTriggered {
 	}
 
     public bool onGround { get; set; }
-	public Vector3 multiplierDrop = new Vector3(50.0f, 70.0f, 0.0f);
+	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
+	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
+	public float angleDropKick = 45f;
+	public float angleDropUpAndUnder = 70f;
+	public float randomLimitAngle = 5f;
+	public float accelerationDrop = -0.75f;
 
 	public float passSpeed = 13.0f;
 	public float accelerationPass = 1.5f;
@@ -40,13 +45,14 @@ public class Ball : TriggeringTriggered {
 	private Unit _owner;
 
 	public float lastTackle = -1;
-
+	public float timeOnDrop = -1;
 	public float timeOnPass = -1;
-	private PassSystem p;
+	private PassSystem pass;
+	private DropManager drop;
 	
 	public Zone inZone {get; set;}
 	//public Touche inTouch {get; set;}
-	
+
 	public Ball() {
 		inZone = null;	
 	}
@@ -118,7 +124,7 @@ public class Ball : TriggeringTriggered {
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
 				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
             {
-				if ( Game.state == Game.State.TRANSFORMATION)
+				if ( Game.state == Game.State.TRANSFORMATION )
 					this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
 				else
                 	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
@@ -148,23 +154,37 @@ public class Ball : TriggeringTriggered {
 
         UpdateTackle();
 		UpdatePass();
-    }
-
-    public void Drop()
-    {              
-		Drop (this.multiplierDrop);
+		UpdateDrop();
     }
 	
-	public void Drop(Vector3 multiplierDrop)
-    {              
-        this.transform.parent = null;
-        this.rigidbody.useGravity = true;
-		this.rigidbody.isKinematic = false;
-        this.rigidbody.AddForce(Owner.transform.forward * multiplierDrop.x + Owner.transform.up * multiplierDrop.y + Owner.transform.right * multiplierDrop.z);
-        Owner = null;
+	public void Drop(DropManager.TYPEOFDROP t)
+    {
+
+		drop = new DropManager(this, t);
+		drop.setupDrop();
+		timeOnDrop = 0;
 
         Game.OnDrop();
     }
+
+	public void UpdateDrop()
+	{
+		if (timeOnDrop != -1)
+		{
+			if (this.transform.position.y > 0.399f)
+			{
+				drop.doDrop(timeOnDrop);
+				timeOnDrop += Time.deltaTime;
+			}
+			else
+			{
+				timeOnDrop = -1;
+				this.rigidbody.isKinematic = true;
+			}
+		}
+		if (this.Owner != null && timeOnDrop != -1)
+			timeOnDrop = -1;
+	}
 
 	public void Pass(Unit to)
 	{
@@ -172,8 +192,8 @@ public class Ball : TriggeringTriggered {
 		
 		Game.OnPass(this.Owner, to);
 
-		p = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
-		p.CalculatePass();
+		pass = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		pass.CalculatePass();
 		timeOnPass = 0;
 	}
 
@@ -183,7 +203,7 @@ public class Ball : TriggeringTriggered {
 		{
 			if (this.transform.position.y > 0.6f)
 			{
-                p.DoPass(timeOnPass);
+                pass.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
 			else
@@ -201,20 +221,7 @@ public class Ball : TriggeringTriggered {
         setPosition(this.transform.position);    
     }
 
-    private void Taken(Unit u)
-    {		
-		
-		Debug.Log("i take the ball " + u.name);
-
-		this.rigidbody.useGravity = false;
-		this.rigidbody.isKinematic = true;
-		this.transform.parent = u.BallPlaceHolderRight.transform;
-		this.transform.localPosition = Vector3.zero;
-
-		
-	}
-
-    public void setPosition(Vector3 v)
+    private void setPosition(Vector3 v)
     {
         if (v.y == 0)
         {
@@ -228,6 +235,24 @@ public class Ball : TriggeringTriggered {
         this.rigidbody.velocity = Vector3.zero;
         this.transform.rotation = Quaternion.identity;
         this.Owner = null;
+    }
+
+    private void Taken(Unit u)
+    {		
+		
+		Debug.Log("i take the ball " + u.name);
+
+		this.rigidbody.useGravity = false;
+		this.rigidbody.isKinematic = true;
+		this.transform.parent = u.BallPlaceHolderRight.transform;
+		this.transform.localPosition = Vector3.zero;
+
+		
+	}
+
+    public bool RightSide()
+    {
+        return this.transform.position.x < 0;
     }
 
     List<Unit> scrumFieldUnits = new List<Unit>();

@@ -1,3 +1,5 @@
+@script AddComponentMenu ("Utils/Timed Object Destructor")
+
 var timeOut = 1.0;
 var detachChildren = false;
 

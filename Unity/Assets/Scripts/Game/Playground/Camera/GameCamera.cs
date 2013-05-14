@@ -62,7 +62,7 @@ public class GameCamera : myMonoBehaviour {
 			this.gameCamera.transform.localPosition = offset;
 		}
 
-		Vector3 cam = this.transform.position;
+		//Vector3 cam = this.transform.position;
 		
 		//this.gameCamera.transform.LookAt(Ball.transform.position);
 		

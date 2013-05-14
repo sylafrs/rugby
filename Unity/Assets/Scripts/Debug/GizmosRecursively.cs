@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class GizmosRecursively
   * @brief Description.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Debug/Gizmos (recursively)")]
-public class GizmosRecursively : MonoBehaviour {
+public class GizmosRecursively : myMonoBehaviour {
 
 	public new bool active = true;
 

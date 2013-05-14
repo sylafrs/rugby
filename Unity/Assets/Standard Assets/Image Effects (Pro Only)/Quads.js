@@ -1,3 +1,4 @@
+@script AddComponentMenu ("Primitives/Quads")
 
 // same as Triangles but creates quads instead which generally
 // saves fillrate at the expense for more triangles to issue

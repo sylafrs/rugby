@@ -2,7 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class TackleManager: MonoBehaviour {
+[AddComponentMenu("Scripts/MiniGames/Tackle")]
+public class TackleManager: myMonoBehaviour {
 
     public Unit tackled { get; set; }
     public Unit tackler { get; set; }

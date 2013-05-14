@@ -83,7 +83,7 @@ public class Gamer : myMonoBehaviour
 		return canMove;
 	}
 
-    List<Unit> unitsSide;
+    //List<Unit> unitsSide;
 
     void Update()
     {
@@ -206,13 +206,13 @@ public class Gamer : myMonoBehaviour
 			{
 				PassDirection = this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
-				unitsSide = Controlled.Team.GetRight(Controlled);
+				//unitsSide = Controlled.Team.GetRight(Controlled);
 			}
 			else
 			{
 				PassDirection = -this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
-				unitsSide = Controlled.Team.GetLeft(Controlled);
+				//unitsSide = Controlled.Team.GetLeft(Controlled);
 			}
 
     }
@@ -264,6 +264,8 @@ public class Gamer : myMonoBehaviour
 		if (Game.Ball.Owner == null && ((Game.Ball.PreviousOwner.Team == Controlled.Team && Game.Ball.PreviousOwner.isTackled)
 										|| Controlled.isTackled))
 		{
+            Controlled.Order = Order.OrderNothing();
+
 			Controlled.IndicateSelected(false);
 			Controlled = GetUnitNear();
 			Controlled.IndicateSelected(true);
@@ -353,10 +355,14 @@ public class Gamer : myMonoBehaviour
 
     void UpdateDROP()
     {
-        if (Input.GetKeyDown(Inputs.drop.keyboard) || XboxController.GetButtonDown(Inputs.drop.xbox))
+		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
-            Controlled.Order = Order.OrderDrop(Game.left[0]);
+            Controlled.Order = Order.OrderDropUpAndUnder(Game.left[0]);
         }
+		else if (Input.GetKeyDown(Inputs.dropKick.keyboard) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
+		{
+			Controlled.Order = Order.OrderDropKick(Game.left[0]);
+		}
     }
 	
 	void UpdateESSAI() {

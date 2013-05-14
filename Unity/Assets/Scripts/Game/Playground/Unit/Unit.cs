@@ -15,13 +15,11 @@ public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
 	public GameObject Model;
-
-    public Animation ModelAnim;
-    public bool TemporaryUseIdle;
     
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft;
 	public GameObject BallPlaceHolderTransformation;
+	public GameObject BallPlaceHolderDrop;
 	
 	public TextureCollectionner buttonIndicator;
 
@@ -56,7 +54,8 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	public NearUnit triggerTackle {get; set;}
 
-    private bool isAnimated = true;
+  	public bool canCatchTheBall = true;
+	private float timeNoCatch = 0f;
     	
 	//maxens : c'est très bourrin xD
 	void Update() {
@@ -66,23 +65,20 @@ public class Unit : TriggeringTriggered, Debugable
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
-        // TODO TEMPORARY STOP
-        if (ModelAnim && nma.velocity.magnitude < 0.5f)
-        {
-            if (isAnimated)
-            {
-                ModelAnim.Stop();
-                isAnimated = false;
-            }
-        }
-        else if(ModelAnim)
-        {
-            if (!isAnimated)
-            {
-                ModelAnim.Play();
-                isAnimated = true;
-            }
-        }
+
+		if (!canCatchTheBall)
+		{
+			if (timeNoCatch < 2f)
+			{
+				timeNoCatch += Time.deltaTime;
+			}
+			else
+			{
+				canCatchTheBall = true;
+				timeNoCatch = 0f;
+			}
+		}
+		
 	}
 
     public void IndicateSelected(bool enabled)

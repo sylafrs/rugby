@@ -84,7 +84,7 @@ public class gameUIManager : myMonoBehaviour {
             return;
         }
 
-		GamePadState pad = GamePad.GetState(_game.p1.playerIndex);
+		//GamePadState pad = GamePad.GetState(_game.p1.playerIndex);
         
         Gamer.initGamerId();					
 		UpdateSuperProgress();
@@ -174,9 +174,9 @@ public class gameUIManager : myMonoBehaviour {
 			scrumTimeBoxWidthPercentage, scrumTimeBoxHeightPercentage);
 		
 		//player on left Box
-		float playerLeftBoxWidth  = 25;
-		float playerLeftBoxHeight = 10;	
-		Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
+		//float playerLeftBoxWidth  = 25;
+		//float playerLeftBoxHeight = 10;	
+		//Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
 		
 		if(_game.state != Game.State.END)
         {
