@@ -200,52 +200,6 @@ public class gameUIManager : myMonoBehaviour {
 			//time
 			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.IngameTime, gameTimeTextStyle);
 			
-			
-			//Gui du scrum
-			if(_scrumController.enabled){
-				float playerScore = (float)_scrumController.GetPlayerScore();
-				float cpuScore 	  = (float)_scrumController.GetCpuScore();
-				int frameToGo	  = _scrumController.GetFrameToGo();
-				bool hasSpecial   = _scrumController.HasPlayerSpecial();
-			
-				
-				//chrono
-				string toGo;
-				if(frameToGo > 0){
-					toGo = frameToGo+" to go ...";
-				}else{
-					toGo = "--- GO ("+ (int)_scrumController.timeRemaining +") ---";
-				}
-				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
-				
-				//bar
-				float quotient = playerScore/cpuScore;
-				if(quotient < quotientMin) quotient = quotientMin;
-				if(quotient > quotientMax) quotient = quotientMax;
-				float blueScrumProgress = quotient - quotientMin; 
-				
-				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-					scrumBarBoxWidthPercentage*blueScrumProgress, 
-					scrumBarBoxHeightPercentage);
-
-				GUI.DrawTexture(scrumBarBox, emptyBar);
-				GUI.DrawTexture(scrumRedBarBox, redBar);
-				GUI.DrawTexture(scrumBlueBarBox,blueBar);
-				
-				//special
-				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
-				
-				//debug
-				
-				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
-				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
-				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
-				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
-				
-			}
-			
-			
 		}
         else
         {
@@ -266,8 +220,8 @@ public class gameUIManager : myMonoBehaviour {
 			GUIStyle style = new GUIStyle();
 			style.fontSize = 30;
 			GUI.Label(new Rect(200+offset, 0+offset, 150+offset, 150), result, style);
-			if(GUI.Button(new Rect(200+offset, 50+offset, 250+offset, 100),"restart"))
-				Application.LoadLevel(Application.loadedLevel);
+            if (GUI.Button(new Rect(200 + offset, 50 + offset, 250 + offset, 100), "restart"))
+                this._game.Reset();
 		}
 	}
 }

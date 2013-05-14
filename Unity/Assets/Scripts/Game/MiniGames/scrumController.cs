@@ -8,16 +8,9 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/MiniGames/Scrum"),
 	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
-
-	public Camera cam;
-	
-	private Game 	_game;
-	private Ball 	_ball;
-	private Gamer 	_p1;
-	//private Gamer 	_p2;
-	private Team	_t1;
-	private Team	_t2;
-	
+    
+	private Game 	game;
+		
 	private float  playerScore;
 	private bool playerSpecial;
 	private float cpuScore;
@@ -26,7 +19,6 @@ public class scrumController : myMonoBehaviour {
 	private int frameToGo;
 	
 	
-	/** tweak session **/
 	public int scoreTarget 		= 1000;
 	public int playerUp	   		= 15;
 	public float cpuUp			= 0.5f;
@@ -47,19 +39,15 @@ public class scrumController : myMonoBehaviour {
 	
 	public int timer = 10;
 	public float timeRemaining {get; private set;}
-		
-	/*
- 	 *@author Maxens Dubois 
- 	 */
-	void Start()
-    {		
-		_game 	= gameObject.GetComponent<Game>();
-		_ball 	= _game.Ball;
-		_p1 	= _game.p1;
-		//_p2	 	= _game.p2;
-		_t1		= _game.right;
-		_t2		= _game.left; 
-	}
+
+    void Start()
+    {
+        this.game = gameObject.GetComponent<Game>();
+    }
+
+
+	/*	
+	
 
     void OnEnable()
     {
@@ -92,10 +80,7 @@ public class scrumController : myMonoBehaviour {
         }
     }
 	
-    /*
- 	 *@author Maxens Dubois 
- 	 */
-	void Update () {		
+    void Update () {		
 		timeRemaining -= Time.deltaTime;
 		if(timeRemaining < 0) {
 			timeRemaining = 0;	
@@ -141,10 +126,7 @@ public class scrumController : myMonoBehaviour {
             }
         }
 	}
-		
-	/*
- 	 *@author Maxens Dubois 
- 	 */
+			
 	void changeZpos(float rightGap, float leftGap){				
 		Vector3 pos = _t2.transform.position;
 		pos.z = _ball.transform.position.z + rightGap;
@@ -155,17 +137,11 @@ public class scrumController : myMonoBehaviour {
 		_t1.transform.position = pos;
 	}
 	
-	/*
- 	 *@author Maxens Dubois 
- 	 */
 	void playerUpScore(int up){
 		playerScore += up*Time.deltaTime;		
 		offset += playerOffset;	
 	}
 	
-    /*
- 	 *@author Maxens Dubois 
- 	 */
 	void playersInline(float offset){
 			
 		//MyDebug.Log("ligne !");
@@ -199,11 +175,6 @@ public class scrumController : myMonoBehaviour {
 		}       
 	}
 		
-	
-	/*
-	 * Needed for GUI
-	 * maxens dubois
-	 */
 	public float GetPlayerScore(){
 		return playerScore;
 	}
@@ -219,4 +190,52 @@ public class scrumController : myMonoBehaviour {
 	public int GetFrameToGo(){
 		return frameToGo;
 	}
+
+    
+    */
 }
+
+/*          //Gui du scrum
+			if(_scrumController.enabled){
+				float playerScore = (float)_scrumController.GetPlayerScore();
+				float cpuScore 	  = (float)_scrumController.GetCpuScore();
+				int frameToGo	  = _scrumController.GetFrameToGo();
+				bool hasSpecial   = _scrumController.HasPlayerSpecial();
+			
+				
+				//chrono
+				string toGo;
+				if(frameToGo > 0){
+					toGo = frameToGo+" to go ...";
+				}else{
+					toGo = "--- GO ("+ (int)_scrumController.timeRemaining +") ---";
+				}
+				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
+				
+				//bar
+				float quotient = playerScore/cpuScore;
+				if(quotient < quotientMin) quotient = quotientMin;
+				if(quotient > quotientMax) quotient = quotientMax;
+				float blueScrumProgress = quotient - quotientMin; 
+				
+				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
+					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
+					scrumBarBoxWidthPercentage*blueScrumProgress, 
+					scrumBarBoxHeightPercentage);
+
+				GUI.DrawTexture(scrumBarBox, emptyBar);
+				GUI.DrawTexture(scrumRedBarBox, redBar);
+				GUI.DrawTexture(scrumBlueBarBox,blueBar);
+				
+				//special
+				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
+				
+				//debug
+				
+				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
+				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
+				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
+				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
+				
+			}
+ */
