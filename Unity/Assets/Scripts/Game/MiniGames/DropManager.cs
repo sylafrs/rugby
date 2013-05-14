@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DropManager : MonoBehaviour {
+public class DropManager {
 
 	Ball ball;
 	Unit owner;
@@ -38,7 +38,7 @@ public class DropManager : MonoBehaviour {
 			
 			angleX = Mathf.Deg2Rad * randAngle;
 			
-			ball.transform.position = owner.BallPlaceHolderTransformation.transform.position;
+			ball.transform.position = owner.BallPlaceHolderDrop.transform.position;
 			initPos = ball.transform.position;
 			
 			owner.canCatchTheBall = false;

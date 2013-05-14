@@ -121,7 +121,6 @@ public class Ball : TriggeringTriggered {
     {
         if (Owner != null)
         {
-			CircleDrop.SetActive(false);
 			
             if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
@@ -188,7 +187,10 @@ public class Ball : TriggeringTriggered {
 			}
 		}
 		if (this.Owner != null && timeOnDrop != -1)
+		{
 			timeOnDrop = -1;
+			CircleDrop.SetActive(false);
+		}
 	}
 
 	public void Pass(Unit to)
