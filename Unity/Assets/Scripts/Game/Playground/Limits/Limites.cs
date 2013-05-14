@@ -8,8 +8,7 @@ using System.Collections;
  */
 [AddComponentMenu("Triggers/Game/Limites")]
 public class Limites : TriggeringTrigger
-{
-	
+{	
 	public Game game;
 
     public override void Entered(Triggered t)
@@ -18,9 +17,7 @@ public class Limites : TriggeringTrigger
         if (b != null)
         {		
 			if(game.state == Game.State.PLAYING) {
-				// La balle � d�pass� les bornes !
-            	Debug.Log("Hors limites : [Replace au centre]");
-            	b.setPosition(Vector3.zero);  
+				game.OnBallOut();
 			}
 			
 			if(game.state == Game.State.TRANSFORMATION) {

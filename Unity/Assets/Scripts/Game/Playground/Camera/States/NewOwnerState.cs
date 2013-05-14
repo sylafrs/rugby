@@ -43,16 +43,12 @@ public class NewOwnerState : CameraState
 				//};
 				//cam.setTarget(current.transform);
                 
-            //}
-			
-           
-			
+            //}			
+           			
             return true;          
-		}else{
-			OnBallOnGround(true);
-			return true;
 		}
-        return false;
+
+        return OnBallOnGround(true);		        
     }
 
 	public override bool OnBallOnGround(bool onGround)

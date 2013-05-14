@@ -70,6 +70,10 @@ public abstract partial class State
         return (false);
     }
 
+    public virtual bool OnBallOut()
+    {
+        return (false);
+    }
 }
 
 /**
@@ -191,6 +195,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnDropTransformed(but))
+                return;
+        }
+    }
+
+    public void event_BallOut()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnBallOut())
                 return;
         }
     }

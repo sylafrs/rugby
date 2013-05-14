@@ -295,4 +295,10 @@ public class Game : myMonoBehaviour {
     {
         cameraManager.sm.event_BallOnGround(onGround);
     }
+
+    public void OnBallOut()
+    {
+        cameraManager.sm.event_BallOut();
+        arbiter.OnBallOut();
+    }
 }

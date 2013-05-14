@@ -100,8 +100,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		
 	        if (target != null && Camera.mainCamera != null)
 	        {
-				Vector3 MinfollowOffset2 = new Vector3();
-				Vector3 MaxfollowOffset2 = new Vector3();
+				//Vector3 MinfollowOffset2 = new Vector3();
+				//Vector3 MaxfollowOffset2 = new Vector3();
 				
 				if(this.isflipped == true){
 					//Debug.Log ("flip");
