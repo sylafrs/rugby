@@ -47,7 +47,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public 	Vector3		MaxfollowOffset;
 	public 	Vector3		MinfollowOffset;
 	
-	
 	//flipping when team change
 	Vector3 		flipAxis;
 	float 			flipAngle;
@@ -62,7 +61,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
-	public Team	flipedForTeam;
+	public Team		flipedForTeam;
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}

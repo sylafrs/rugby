@@ -293,12 +293,19 @@ public class Arbiter : myMonoBehaviour {
 		Team.switchPlaces(t[0], Game.Ball.Owner);
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 
-
         Team opponent = Game.Ball.Owner.Team.opponent;
+		
+		// Cam face au look At
+		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+		Game.Ball.Owner.transform.LookAt(butPoint);
 				
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
-		tm.gamer = t.Player;		
+		tm.gamer = t.Player;	
+		
+		tm.OnLaunch = () => {
+			this.Game.cameraManager.sm.event_TransfoShot();	
+		};
 		
         // After the transformation is done, according to the result :
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			

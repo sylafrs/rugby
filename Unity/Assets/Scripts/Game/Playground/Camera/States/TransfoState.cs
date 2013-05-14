@@ -35,12 +35,12 @@ public class TransfoState : CameraState
 		
 		//Vector3 PlayerToGoalDir = cam.game.Ball.Owner.transform.position - Goal.transform.position;
 		Vector3 GoalToPlayer = cam.game.Ball.Owner.transform.position - Goal.transform.position;
-		Vector3	GoalToCam	 = Camera.mainCamera.transform.position - Goal.transform.position;
-		Vector3 Proj		 = Vector3.Project(cameraPlaceHolder.transform.position,GoalToPlayer);
+		Vector3	GoalToCam	 = cameraPlaceHolder.transform.position - Goal.transform.position;
+		Vector3 Proj		 = Vector3.Project(GoalToCam,GoalToPlayer);
+		float saveY 		 = cameraPlaceHolder.transform.position.y;
+		Vector3 dest		 = new Vector3(Proj.x + Goal.transform.position.x,saveY,Proj.z + Goal.transform.position.z);
 		
-		cam.transalateToWithFade(new Vector3(Proj.x,Proj.y,Proj.z), cameraPlaceHolder.rotation,
-			
-			0f, 1f, 1f, 1f, 
+		cam.transalateToWithFade(dest, cameraPlaceHolder.rotation,0f, 1f, 1f, 1f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
 				//cam.setTarget(cam.game.Ball.Owner.transform);
@@ -54,4 +54,42 @@ public class TransfoState : CameraState
         );
 	}	
 	
+	/*
+	public override void OnUpdate()
+	{
+		//Transform cameraPlaceHolder = cam.game.Ball.Owner.transform.FindChild("TransfoCamPlaceholder");
+		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").
+			FindChild("CameraPlaceHolder");
+		
+		//cameraPlaceHolder.LookAt(cam.game.Ball.Owner.transform);
+		
+		GameObject Goal = null;
+		if(cam.flipedForTeam == cam.game.right)
+		{
+			Goal = GameObject.Find("but_maori");
+			cameraPlaceHolder.LookAt(Goal.transform);
+			
+		}
+		if(cam.flipedForTeam == cam.game.left)
+		{
+			Goal = GameObject.Find("but_jap");
+			cameraPlaceHolder.LookAt(Goal.transform);
+		}
+		
+		//Vector3 PlayerToGoalDir = cam.game.Ball.Owner.transform.position - Goal.transform.position;
+		Vector3 GoalToPlayer = cam.game.Ball.Owner.transform.position - Goal.transform.position;
+		Vector3	GoalToCam	 = cameraPlaceHolder.transform.position - Goal.transform.position;
+		Vector3 Proj		 = Vector3.Project(GoalToCam,GoalToPlayer);
+		float saveY 		 = cameraPlaceHolder.transform.position.y;
+		Vector3 dest		 = new Vector3(Proj.x + Goal.transform.position.x,saveY,Proj.z + Goal.transform.position.z);
+		
+		Camera.mainCamera.transform.position=des;
+	}
+	*/
+	
+	public override bool OnTranfoShot()
+    {
+		sm.state_change_son(this, new TransfoShotState(sm, cam));
+		return true;
+	}
 }
