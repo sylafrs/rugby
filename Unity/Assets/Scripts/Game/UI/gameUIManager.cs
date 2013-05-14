@@ -220,8 +220,8 @@ public class gameUIManager : myMonoBehaviour {
 			GUIStyle style = new GUIStyle();
 			style.fontSize = 30;
 			GUI.Label(new Rect(200+offset, 0+offset, 150+offset, 150), result, style);
-            if (GUI.Button(new Rect(200 + offset, 50 + offset, 250 + offset, 100), "restart"))
-                this._game.Reset();
-		}
+			if (GUI.Button(new Rect(200 + offset, 50 + offset, 250 + offset, 100), "restart"))
+                _game.Reset();
+			}
 	}
 }
