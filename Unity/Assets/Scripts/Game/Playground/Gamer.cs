@@ -58,8 +58,8 @@ public class Gamer : myMonoBehaviour
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
-        //MyDebug.Log(playerIndex.ToString());		
-		XboxController = Game.xboxInputs.controllers[id];
+        if (XboxController == null)
+            XboxController = Game.xboxInputs.controllers[id];
 	}
 	
 	/*
@@ -87,6 +87,8 @@ public class Gamer : myMonoBehaviour
 
     void Update()
     {
+        if(XboxController == null)
+            XboxController = Game.xboxInputs.controllers[id];
 
         if (Inputs == null) return;
 		if (Game.state != Game.State.PLAYING) return;
@@ -97,6 +99,19 @@ public class Gamer : myMonoBehaviour
         UpdateDROP();
 		UpdateESSAI();
 		UpdatePLAYER();
+        if(UpdateRESET())
+            return;
+    }
+
+    bool UpdateRESET()
+    {
+        if (Input.GetKeyUp(Inputs.reset.keyboard) || XboxController.GetButtonUp(Inputs.reset.xbox))
+        {
+            Game.Reset();
+            return true;
+        }
+
+        return false;
     }
 
 	//maxens dubois

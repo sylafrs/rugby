@@ -27440,7 +27440,7 @@ MonoBehaviour:
       xbox: 0
     reset:
       keyboard: 48
-      xbox: 7
+      xbox: 2
     enableIA:
       keyboard: 0
       xbox: 2
@@ -27487,7 +27487,7 @@ MonoBehaviour:
       xbox: 0
     reset:
       keyboard: 0
-      xbox: 7
+      xbox: 2
     enableIA:
       keyboard: 0
       xbox: 0
