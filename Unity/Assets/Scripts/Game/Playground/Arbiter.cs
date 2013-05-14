@@ -330,10 +330,16 @@ public class Arbiter : MonoBehaviour {
 	}
 
     public void OnDropTransformed(But but)
-    {  
+    {
+        if (this.Game.state != Game.State.PLAYING)
+        {
+            return;
+        }
+
         this.Game.state = Game.State.PAUSED;
 
         // On donne les points
+        Debug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
         // Remise au centre, donne la balle aux perdants.
