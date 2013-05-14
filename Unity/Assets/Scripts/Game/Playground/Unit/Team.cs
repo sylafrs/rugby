@@ -204,7 +204,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         {
             if (u != Game.p1.Controlled && (Game.p2 == null || u != Game.p2.Controlled))
             {
-                u.Order = Order.OrderFollowBall();
+                u.Order = Order.OrderNothing(); // Order.OrderFollowBall();
             }
         }
     }
