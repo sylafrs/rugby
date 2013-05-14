@@ -27314,10 +27314,10 @@ MonoBehaviour:
       xbox: 2
   inputs2:
     shortPass:
-      keyboard: 0
+      keyboard: 55
       xbox: 0
     longPass:
-      keyboard: 0
+      keyboard: 56
       xbox: 1
     dropUpAndUnder:
       keyboard: 0
