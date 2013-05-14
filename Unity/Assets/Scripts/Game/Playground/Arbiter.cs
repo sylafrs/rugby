@@ -335,24 +335,18 @@ public class Arbiter : myMonoBehaviour {
         {
             return;
         }
-
-        this.Game.state = Game.State.PAUSED;
-
+       
         // On donne les points
         Debug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
         // Remise au centre, donne la balle aux perdants.
         this.StartPlacement();
-        Game.Ball.Owner = but.Owner[0];
-
-        this.Game.state = Game.State.PLAYING;
+        Game.Ball.Owner = but.Owner[0];      
     }
 
     public void OnBallOut()
-    {
-        this.Game.state = Game.State.PAUSED;
-               
+    {              
         // Remise au centre, donne la balle aux perdants.
         this.StartPlacement();
         
@@ -365,8 +359,6 @@ public class Arbiter : myMonoBehaviour {
         {
             Game.Ball.Owner = Game.left[0];
         }
-
-        this.Game.state = Game.State.PLAYING;
     }
 
     public void StartPlacement()
