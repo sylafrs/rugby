@@ -63,6 +63,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
 	private Team	flipedForTeam;
+    public Team TeamLooked { get { return flipedForTeam; } }
+
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
