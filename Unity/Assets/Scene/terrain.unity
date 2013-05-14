@@ -3205,12 +3205,10 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 156800329}
   Model: {fileID: 1301781090}
-  ModelAnim: {fileID: 0}
-  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 312903214}
   BallPlaceHolderLeft: {fileID: 509656382}
   BallPlaceHolderTransformation: {fileID: 513506514}
-  BallPlaceHolderDrop: {fileID: 0}
+  BallPlaceHolderDrop: {fileID: 1383690167}
   buttonIndicator: {fileID: 170850786}
   selectedIndicators:
   - {fileID: 1978565298}
@@ -7806,12 +7804,10 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 545566624}
   Model: {fileID: 993307451}
-  ModelAnim: {fileID: 0}
-  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 368664267}
   BallPlaceHolderLeft: {fileID: 2144643498}
   BallPlaceHolderTransformation: {fileID: 2055118850}
-  BallPlaceHolderDrop: {fileID: 0}
+  BallPlaceHolderDrop: {fileID: 2055118850}
   buttonIndicator: {fileID: 1714685502}
   selectedIndicators:
   - {fileID: 991758753}
@@ -9295,11 +9291,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
-  multiplierDropKick: {x: 15, y: 15}
-  multiplierDropUpAndUnder: {x: 20, y: 10}
-  angleDropKick: 45
-  angleDropUpAndUnder: 70
+  multiplierDropKick: {x: 20, y: 20}
+  multiplierDropUpAndUnder: {x: 25, y: 5}
+  angleDropKick: 70
+  angleDropUpAndUnder: 85
   randomLimitAngle: 5
+  accelerationDrop: -.75
   passSpeed: 18
   accelerationPass: 1.5
   lastTackle: -1
@@ -27276,11 +27273,11 @@ MonoBehaviour:
       keyboard: 53
       xbox: 1
     dropUpAndUnder:
-      keyboard: 0
-      xbox: 0
+      keyboard: 50
+      xbox: 8
     dropKick:
-      keyboard: 0
-      xbox: 0
+      keyboard: 51
+      xbox: 9
     tackle:
       keyboard: 51
       xbox: 0

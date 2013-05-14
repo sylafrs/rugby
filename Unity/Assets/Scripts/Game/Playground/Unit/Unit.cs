@@ -15,9 +15,6 @@ public class Unit : TriggeringTriggered, Debugable
 {
     public StateMachine sm;
 	public GameObject Model;
-
-    public Animation ModelAnim;
-    public bool TemporaryUseIdle;
     
     public GameObject BallPlaceHolderRight;
     public GameObject BallPlaceHolderLeft;
@@ -69,23 +66,6 @@ public class Unit : TriggeringTriggered, Debugable
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
-        // TODO TEMPORARY STOP
-        if (ModelAnim && nma.velocity.magnitude < 0.5f)
-        {
-            if (isAnimated)
-            {
-                ModelAnim.Stop();
-                isAnimated = false;
-            }
-        }
-        else if(ModelAnim)
-        {
-            if (!isAnimated)
-            {
-                ModelAnim.Play();
-                isAnimated = true;
-            }
-        }
 
 		if (!canCatchTheBall)
 		{
