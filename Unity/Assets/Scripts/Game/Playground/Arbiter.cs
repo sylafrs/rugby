@@ -294,7 +294,7 @@ public class Arbiter : myMonoBehaviour {
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 		
 		// Switch/Position de caméra
-		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+		//Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 
         Team opponent = Game.Ball.Owner.Team.opponent;
 				

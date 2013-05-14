@@ -1111,11 +1111,11 @@ public class TerrainToolkitEditor : Editor {
                     Rect textureRect = EditorGUILayout.BeginHorizontal();
                     if (nTextures == 0)
                     {
-                        splatPrototype.texture = EditorGUILayout.ObjectField("Cliff texture", splatPrototype.texture, typeof(Texture2D)) as Texture2D;
+                        splatPrototype.texture = EditorGUILayout.ObjectField("Cliff texture", splatPrototype.texture, typeof(Texture2D), true) as Texture2D;
                     }
                     else
                     {
-                        splatPrototype.texture = EditorGUILayout.ObjectField("Texture " + nTextures, splatPrototype.texture, typeof(Texture2D)) as Texture2D;
+                        splatPrototype.texture = EditorGUILayout.ObjectField("Texture " + nTextures, splatPrototype.texture, typeof(Texture2D), true) as Texture2D;
                     }
                     GUI.skin = terrain.guiSkin;
                     textureRect.x += 146;

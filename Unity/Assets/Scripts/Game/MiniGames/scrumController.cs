@@ -14,7 +14,7 @@ public class scrumController : myMonoBehaviour {
 	private Game 	_game;
 	private Ball 	_ball;
 	private Gamer 	_p1;
-	private Gamer 	_p2;
+	//private Gamer 	_p2;
 	private Team	_t1;
 	private Team	_t2;
 	
@@ -56,7 +56,7 @@ public class scrumController : myMonoBehaviour {
 		_game 	= gameObject.GetComponent<Game>();
 		_ball 	= _game.Ball;
 		_p1 	= _game.p1;
-		_p2	 	= _game.p2;
+		//_p2	 	= _game.p2;
 		_t1		= _game.right;
 		_t2		= _game.left; 
 	}

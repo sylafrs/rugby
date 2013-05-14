@@ -16,10 +16,10 @@ public class PassSystem {
 	private float magnitude;
 	private Vector3 relativePosition;
 	private Vector3 relativeDirection;
-	private Vector3 directionFromTarget;
+	//private Vector3 directionFromTarget;
 	private float TimeUpdate;
-	private float BetaAngle;
-	private float GammaAngle;
+	//private float BetaAngle;
+	//private float GammaAngle;
 	private Vector3 initialPosition;
 	private float angle;
 	private float initialVelocity;
@@ -29,18 +29,6 @@ public class PassSystem {
 	private Vector3 butBleuRouge;
 	private float multiplyDirection = 20f;
 	
-	public PassSystem(Vector3 b1, Vector3 b2) {
-		Init(b1, b2, null, null, null);	
-	}
-	
-	public PassSystem(Vector3 b1, Vector3 b2, Unit from) {
-		Init(b1, b2, from, null, null);	
-	}
-	
-	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target) {
-		Init(b1, b2, from, target, null);	
-	}
-
 	// Constructor
 	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball)
 	{
@@ -88,7 +76,7 @@ public class PassSystem {
 		{
 			velocityPass = this.ball.passSpeed;
 			this.magnitude = calculateMagnitude(from.transform.position, target.transform.position);
-			directionFromToTarget();
+			//directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
 			
@@ -110,11 +98,11 @@ public class PassSystem {
 			ball.rigidbody.useGravity = false;
 			ball.Owner = null;
 			
-			Vector3 tmp = new Vector3(target.transform.position.x, 1.0f, target.transform.position.z);
-			Vector3 tmp2 = new Vector3(relativePosition.x, 5.0f, relativePosition.z);
+			//Vector3 tmp = new Vector3(target.transform.position.x, 1.0f, target.transform.position.z);
+			//Vector3 tmp2 = new Vector3(relativePosition.x, 5.0f, relativePosition.z);
 
-			BetaAngle = Vector3.Angle(Vector3.right, relativeDirection) * Mathf.PI / 180;
-			GammaAngle = Vector3.Angle(Vector3.right, from.transform.forward) * Mathf.PI / 180;
+			// BetaAngle = Vector3.Angle(Vector3.right, relativeDirection) * Mathf.PI / 180;
+			// GammaAngle = Vector3.Angle(Vector3.right, from.transform.forward) * Mathf.PI / 180;
 
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
@@ -174,10 +162,10 @@ public class PassSystem {
 	/*
 	 * @brief direction between the ball and the target
 	 */
-	private void directionFromToTarget()
+	/*private void directionFromToTarget()
 	{
 		directionFromTarget = target.transform.position - from.transform.position;
-	}
+	}*/
 
 	/*
 	 * @brief relative position of the target

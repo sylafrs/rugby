@@ -11,19 +11,12 @@ using System.Collections.Generic;
 [AddComponentMenu("Code Tools/Timer")]
 public class Timer : myMonoBehaviour {
 
-    private static Timer singleton = null;
-	
     private class myTimer {
         public CallBack callback;
         public float remainingTime;
     }
 
     private static List<myTimer> list;
-
-    public void Start()
-    {		
-        singleton = this;
-    }
 
     public static void AddTimer(float time, CallBack callback)
     {
