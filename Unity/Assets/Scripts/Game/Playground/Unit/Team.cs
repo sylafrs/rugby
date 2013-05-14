@@ -20,12 +20,12 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public Color PlaqueColor;
     public string Name;
     public bool right;
-	
+
 	public bool useColors = false;
-	
+
     public But But;
     public Zone Zone;
-	
+
 	private bool _fixUnits = false;
 	public bool fixUnits {
 		get {
@@ -33,22 +33,22 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 		set {
 			_fixUnits = value;
-			setSpeed();	
-		}		
+			setSpeed();
+		}
 	}
 
     public int nbPoints = 0;
 	public Transform StartPlacement;
 
     private Unit [] units;
-	
+
 	public float speedFactor;
 	public float tackleFactor;
-		
+
 	public float unitSpeed;
 	public float handicapSpeed = 1;
 	public float unitTackleRange;
-	
+
     public Unit this[int index]
     {
         get
@@ -82,18 +82,18 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	//maxens dubois
 	public int SuperGaugeValue;
-    
+
     public int nbUnits;
 
     public void Start()
     {
         But.Owner = this;
         Zone.Owner = this;
-		
+
 		speedFactor  = 1f;
 		tackleFactor = 1f;
     }
-	
+
 	public void setSpeed() {
 		foreach(var u in units) {
             if (u.nma)
@@ -109,7 +109,7 @@ public class Team : myMonoBehaviour, IEnumerable {
             }
 		}
 	}
-	
+
 	public void setHandicapSpeed() {
 		foreach(var u in units) {
             if (u.nma)
@@ -125,26 +125,26 @@ public class Team : myMonoBehaviour, IEnumerable {
             }
 		}
 	}
-	
+
 	//maxens dubois
 	public void increaseSuperGauge(int value){
 		if((SuperGaugeValue += value) > Game.settings.super.superGaugeMaximum) SuperGaugeValue = Game.settings.super.superGaugeMaximum;
 	}
-	
+
     public void CreateUnits()
     {
         units = new Unit[nbUnits];
         for (int i = 0; i < nbUnits; i++)
         {
             GameObject o = GameObject.Instantiate(Prefab_model) as GameObject;
-            units[i] = o.GetComponent<Unit>();			
+            units[i] = o.GetComponent<Unit>();
             units[i].Game = Game;
             units[i].name = Name + " " + (i+1).ToString("D2");
             units[i].transform.parent = this.transform;
             units[i].Team = this;
-            //units[i].renderer.material.color = Color;           
+            //units[i].renderer.material.color = Color;
         }
-        
+
         setSpeed();
     }
 
@@ -325,7 +325,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 	{
 		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
 		float section = largeurTerrain / 5f;
-		
+
 		if (owner.transform.position.x < Game.limiteTerrainSudOuest.transform.position.x + section)
 			return Order.TYPE_POSITION.EXTRA_LEFT;
 		else if (owner.transform.position.x >= Game.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
@@ -336,7 +336,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 			return Order.TYPE_POSITION.RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}
-	
+
     void OwnerChangedOpponents()
     {
         Unit a;
@@ -363,94 +363,95 @@ public class Team : myMonoBehaviour, IEnumerable {
             }
 
             a.Order = Order.OrderFollow(Game.Ball.Owner, Order.TYPE_DEPLACEMENT.COURSE);
-        } 
+        }
 
         foreach (Unit u in units)
         {
             if (u != a)
             {
-                u.Order = Order.OrderAttack(a, Game.settings.LineSpace, right);
+                //u.Order = Order.OrderAttack(a, Game.settings.LineSpace, right);
+				u.Order = Order.OrderNothing();
             }
         }
     }
-	
+
 	public void switchPlaces(int a, int b) {
 		if(a == b)
 			return;
-		
+
 		if(a < 0 || b < 0 || a >= nbUnits || b >= nbUnits)
 			return;
-		
+
 		Unit A, B;
 		A = units[a];
 		B = units[b];
-		
+
 		switchPlaces(A, B);
 	}
-	
+
 	public static void switchPlaces(Unit A, Unit B) {
 		if(!A || !B)
 			return;
-		
+
 		Vector3 pos = A.transform.position;
 		Quaternion rot = A.transform.rotation;
-		
+
 		A.transform.position = B.transform.position;
 		A.transform.rotation = B.transform.rotation;
-		
+
 		B.transform.position = pos;
 		B.transform.rotation = rot;
 	}
-		
+
 	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to) {
-		
+
 		int i = 0;
 		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
 		while(t != null && (i + from) < nbUnits && (i + from) < to) {
-			
+
 			this.placeUnit(t, i + from);
-			
+
 			i++;
 			t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
-		}			
+		}
 	}
-	
+
 	public void placeUnits(Transform configuration, string pattern) {
 		this.placeUnits(configuration, pattern, "#", 0, nbUnits);
 	}
-	
+
 	public void placeUnits(Transform configuration, int from, int to) {
 		this.placeUnits(configuration, "Player_#", "#", from, to);
 	}
-	
+
 	public void placeUnits(Transform configuration, int from) {
 		this.placeUnits(configuration, "Player_#", "#", from, nbUnits);
 	}
-	
+
 	public void placeUnits(Transform configuration) {
 		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits);
 	}
-	
+
 	public void placeUnit(Transform t, int index) {
 		if( t == null || index < 0 || index >= nbUnits ) {
 			throw new System.ArgumentException();
 		}
-		
+
 		units[index].transform.position = t.position;
 		units[index].transform.rotation = t.rotation;
 	}
-	
+
 	//maxens dubois
 	public void ChangePlayersColor(Color _color){
 		foreach(Unit u in units){
 			u.renderer.material.color = _color;
 		}
 	}
-	
+
 	public Color GetPlayerColor(){
 		return units[0].renderer.material.color;
 	}
-	
+
 	//maxens dubois
 	public void PlaySuperParticleSystem(SuperList _super, bool play){
 		switch (_super){
@@ -476,27 +477,27 @@ public class Team : myMonoBehaviour, IEnumerable {
 			break;
 		}
 	}
-	
+
 	public class TeamUnitEnumerator : IEnumerator {
 		Team t;
 		int current;
-		
+
 		public TeamUnitEnumerator(Team t) {
 			this.t = t;
 			current = -1;
 		}
-		
+
 		public bool MoveNext()
 	    {
 	        current++;
 	        return (t.units != null && current < t.nbUnits);
 	    }
-	
+
 	    public void Reset()
 	    {
 	        current = -1;
 	    }
-	
+
 	    public object Current
 	    {
 	        get
@@ -512,7 +513,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 	        }
 	    }
 	}
-	
+
 	public IEnumerator GetEnumerator() {
 		return new TeamUnitEnumerator(this);
 	}
