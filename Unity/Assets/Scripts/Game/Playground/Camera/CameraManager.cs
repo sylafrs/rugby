@@ -23,7 +23,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
         set
         {
 			_target = value;
-            Debug.Log("Target Changed for "+value);            
+            MyDebug.Log("Target Changed for "+value);            
         }
     }
 	
@@ -63,6 +63,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
 	private Team	flipedForTeam;
+    public Team TeamLooked { get { return flipedForTeam; } }
+
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
@@ -217,11 +219,11 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public void flipForTeam(Team _t, Action _cb)
 	{
 		/*
-		Debug.Log("Fliped for Team "+flipedForTeam);
-		Debug.Log("Flip for Team "+_t);
-		Debug.Log("target of flip "+this.target);
+		MyDebug.Log("Fliped for Team "+flipedForTeam);
+		MyDebug.Log("Flip for Team "+_t);
+		MyDebug.Log("target of flip "+this.target);
 		*/
-		Debug.Log("Flip start ");
+		MyDebug.Log("Flip start ");
 		
 		this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
@@ -234,15 +236,15 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 		}else{
 			if(CancelNextFlip){
-				Debug.Log("Flip for trasnfo/touch ");
+				MyDebug.Log("Flip for trasnfo/touch ");
 				//here beacause of touch or transfo
 				if(_t == game.right){
-					Debug.Log("Flip for blue");
+					MyDebug.Log("Flip for blue");
 					MinfollowOffset.z	  = zMinForBlue;
 					MaxfollowOffset.z	  = zMaxForBlue;
 				}
 				if(_t == game.left){
-					Debug.Log("Flip for red ");
+					MyDebug.Log("Flip for red ");
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}

@@ -168,7 +168,7 @@ public class scrumController : myMonoBehaviour {
  	 */
 	void playersInline(float offset){
 			
-		//Debug.Log("ligne !");
+		//MyDebug.Log("ligne !");
 		
 		Unit cap1 = _t1[0];
 		Unit cap2 = _t2[0];

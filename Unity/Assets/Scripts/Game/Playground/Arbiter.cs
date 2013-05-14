@@ -277,7 +277,7 @@ public class Arbiter : myMonoBehaviour {
 		if(t.Player) t.Player.stopMove();
 		if(t.opponent.Player) t.opponent.Player.stopMove();		
 				
-		Debug.Log("Essai de la part des " + t.Name + " !");
+		MyDebug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
 		        			
 		Game.state = Game.State.TRANSFORMATION;
@@ -306,7 +306,7 @@ public class Arbiter : myMonoBehaviour {
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			
 			
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
-				Debug.Log ("Transformation");
+				MyDebug.Log ("Transformation");
 				t.nbPoints += Game.settings.score.points_transfo;
 			}
 
@@ -337,7 +337,7 @@ public class Arbiter : myMonoBehaviour {
         }
        
         // On donne les points
-        Debug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
+        MyDebug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
         // Remise au centre, donne la balle aux perdants.
