@@ -468,7 +468,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					Debug.Log("Process complete in: "+processTime.ToString());
+					MyDebug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -677,7 +677,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					Debug.Log("Process complete in: "+processTime.ToString());
+					MyDebug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -754,7 +754,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					Debug.Log("Process complete in: "+processTime.ToString());
+					MyDebug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -839,7 +839,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					Debug.Log("Process complete in: "+processTime.ToString());
+					MyDebug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;

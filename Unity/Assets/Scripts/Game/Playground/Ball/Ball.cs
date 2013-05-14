@@ -240,7 +240,7 @@ public class Ball : TriggeringTriggered {
     private void Taken(Unit u)
     {		
 		
-		Debug.Log("i take the ball " + u.name);
+		MyDebug.Log("i take the ball " + u.name);
 
 		this.rigidbody.useGravity = false;
 		this.rigidbody.isKinematic = true;
@@ -318,7 +318,7 @@ public class Ball : TriggeringTriggered {
                 {
                     Game.OnScrum();
                     //goScrum = true;
-					//Debug.Log("Scruuum");
+					//MyDebug.Log("Scruuum");
                 }else{
 					//goScrum = false;
 				}

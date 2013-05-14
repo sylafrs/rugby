@@ -36,7 +36,7 @@ public class NewOwnerState : CameraState
 			
 				//Timer.AddTimer(1, () => {			
 		              	cam.flipForTeam(current.Team, () =>{
-							Debug.Log("Hop, fin du flip"); 	
+							MyDebug.Log("Hop, fin du flip"); 	
 					 });
 				//});
 					

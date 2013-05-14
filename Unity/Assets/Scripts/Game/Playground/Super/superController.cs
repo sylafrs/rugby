@@ -80,28 +80,28 @@ public class superController : myMonoBehaviour {
 			if(_team.Player.XboxController != null){
 				if(Input.GetKeyDown(superOff.keyboard) || _team.Player.XboxController.GetButtonDown(superOff.xbox)){
 					if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
-						Debug.Log("Offensive Super attack !");
+						MyDebug.Log("Offensive Super attack !");
 						launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
 						_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
                         _game.OnSuper(_team, SuperList.superDash);
 					}else{
-						Debug.Log("Need more Power to lauch the offensive super");
-						Debug.Log("Current Power : "+_team.SuperGaugeValue);
-						Debug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
+						MyDebug.Log("Need more Power to lauch the offensive super");
+						MyDebug.Log("Current Power : "+_team.SuperGaugeValue);
+						MyDebug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
 					}
 				}
 				
 				//defense
 				if(Input.GetKeyDown(superDef.keyboard) || _team.Player.XboxController.GetButtonDown(superDef.xbox)){
 					if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
-						Debug.Log("Defensive Super attack !");
+						MyDebug.Log("Defensive Super attack !");
 							launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
 							_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
                             _game.OnSuper(_team, SuperList.superWall);
 					}else{
-						Debug.Log("Need more Power to lauch the defensive super");
-						Debug.Log("Current Power : "+_team.SuperGaugeValue);
-						Debug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
+						MyDebug.Log("Need more Power to lauch the defensive super");
+						MyDebug.Log("Current Power : "+_team.SuperGaugeValue);
+						MyDebug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
 					}
 				}
 			}
@@ -112,7 +112,7 @@ public class superController : myMonoBehaviour {
 		if(currentSuper != SuperList.superNull){
 			//maj super time
 			SuperTimeLeft -= Time.deltaTime;
-			//Debug.Log("Super Time left  : "+SuperTimeLeft);
+			//MyDebug.Log("Super Time left  : "+SuperTimeLeft);
 			/*if(SuperTimeLeft > 0f){
 				switch(currentSuper){
 					case SuperList.superDash:{
@@ -139,7 +139,7 @@ public class superController : myMonoBehaviour {
 	}
 	
 	void endSuper(){
-		Debug.Log("Super Over");
+		MyDebug.Log("Super Over");
 		currentSuper = SuperList.superNull;
 		_team.speedFactor 	= 1f;
 		_team.tackleFactor 	= 1f;
@@ -154,21 +154,21 @@ public class superController : myMonoBehaviour {
 		currentSuper  = super;
 		switch (super){
 			case SuperList.superDash:{
-				Debug.Log("Dash Super attack !");
+				MyDebug.Log("Dash Super attack !");
 				launchDashAttackFeedback();
 				_team.speedFactor = _game.settings.super.superSpeedScale;
 				//dash
 			break;
 			}
 			case SuperList.superTackle:{
-				Debug.Log("Tackle Super attack !");
+				MyDebug.Log("Tackle Super attack !");
 				launchTackleAttackFeedback();
 				_team.tackleFactor = _game.settings.super.superTackleBoxScale;
 				//tackle
 			break;
 			}
 			case SuperList.superWall:{
-				Debug.Log("Wall Super attack !");
+				MyDebug.Log("Wall Super attack !");
 				//wall
 			break;
 			}

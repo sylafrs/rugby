@@ -58,7 +58,7 @@ public class Gamer : myMonoBehaviour
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
-        //Debug.Log(playerIndex.ToString());		
+        //MyDebug.Log(playerIndex.ToString());		
 		XboxController = Game.xboxInputs.controllers[id];
 	}
 	
@@ -229,7 +229,7 @@ public class Gamer : myMonoBehaviour
             if (unitsSide.Count != 0)
             {
                 int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / Game.settings.maxTimeHoldingPassButton);
-                Debug.Log(unit);
+                MyDebug.Log(unit);
 
                 if (unit == unitsSide.Count) unit--;
                 Unit u = unitsSide[unit];
@@ -279,11 +279,11 @@ public class Gamer : myMonoBehaviour
 				Controlled = GetUnitNear();
 				Controlled.IndicateSelected(true);
 				
-				//Debug.Log("joueur controllé " + Controlled);
+				//MyDebug.Log("joueur controllé " + Controlled);
 	        }
 			
 			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
-			//Debug.Log("pos in map : " + typePosition);
+			//MyDebug.Log("pos in map : " + typePosition);
 			if (Game.Ball.Owner.Team == Team)
 			{
 				
@@ -372,12 +372,12 @@ public class Gamer : myMonoBehaviour
 					this.Game.OnEssai();
 				}
 				else {
-					Debug.Log ("Pas la bonne zone !");	
+					MyDebug.Log("Pas la bonne zone !");	
 				}
 			}
 			else {
 				// Debug inutile si la touche est utilisée autre part ^^
-				Debug.Log ("Sans la balle c'est chaud ^^");	
+				MyDebug.Log("Sans la balle c'est chaud ^^");	
 			}
 		}
 	}

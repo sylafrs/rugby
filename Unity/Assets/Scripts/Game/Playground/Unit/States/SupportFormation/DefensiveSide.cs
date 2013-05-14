@@ -110,7 +110,7 @@ public class DefensiveSide : UnitState
 		z = o.point.z * Mathf.Abs(dif);
 
 		unit.nma.stoppingDistance = 0;
-		//Debug.Log("joueur : " + unit.name + "pos : " + new Vector3(tPos.x - x, 0, tPos.z + z));
+		//MyDebug.Log("joueur : " + unit.name + "pos : " + new Vector3(tPos.x - x, 0, tPos.z + z));
 		unit.nma.SetDestination(new Vector3(tPos.x - x, 0, tPos.z + z));
 	}
 

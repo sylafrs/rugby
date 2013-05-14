@@ -35,7 +35,7 @@ public class PlayingState : CameraState
 	
 	public override bool OnNewOwner(Unit old, Unit current)
     {
-		Debug.Log("hop "+current);
+		MyDebug.Log("hop "+current);
         if (current != null)
         {
             //if ((old != null)&&(old.Team != current.Team))
