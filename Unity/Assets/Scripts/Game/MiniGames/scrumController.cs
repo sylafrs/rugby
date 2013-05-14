@@ -21,7 +21,7 @@ public class scrumController : myMonoBehaviour {
 	private float  playerScore;
 	private bool playerSpecial;
 	private float cpuScore;
-	private bool inScrum;
+	//private bool inScrum;
 	private	int currentFrameWait;
 	private int frameToGo;
 	
@@ -67,7 +67,7 @@ public class scrumController : myMonoBehaviour {
         playerScore = 1;
         cpuScore = 1;
         currentFrameWait = 0;
-        inScrum = false;
+        //inScrum = false;
         playerSpecial = false;
         offset = 0f;
         frameToGo = frameStart;

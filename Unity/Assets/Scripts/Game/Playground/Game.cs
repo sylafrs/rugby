@@ -102,7 +102,6 @@ public class Game : myMonoBehaviour {
 	public Gamer p2 {get; private set;}
 
     public Ball Ball;
-    public GameLog Log {get; set;}
     
 	private gameState _gameState;
     private Team Owner;
@@ -132,8 +131,6 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-        this.Log = this.gameObject.AddComponent<GameLog>();
-		
 		arbiter.Game = this;
 		
         right.Game = this;
