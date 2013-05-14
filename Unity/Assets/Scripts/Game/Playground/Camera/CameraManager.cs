@@ -62,7 +62,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
-	private Team	flipedForTeam;
+	public Team	flipedForTeam;
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
@@ -319,6 +319,19 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		});
 	}
 	
+	public void transalateWithFade(Vector3 destination, Quaternion _rotation, float delay,float fadeiInDuration, float fadeOutDuration,
+		float blackScreenDuration, Action Onfinish, Action OnFade){
+		
+		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
+			OnFade();
+			Camera.mainCamera.transform.Translate(destination); 
+			Camera.mainCamera.transform.rotation = _rotation;
+			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
+				Onfinish();
+			});
+		});
+	}
+	
 	public void transalateToWithFade(Vector3 destination, Quaternion _rotation,float delay,float fadeiInDuration, float fadeOutDuration,
 		float blackScreenDuration, Action Onfinish){
 		
@@ -337,9 +350,9 @@ public class CameraManager : myMonoBehaviour, Debugable {
 
         CameraFade.StartAlphaFade(Color.black, false, fadeiInDuration, delay, () =>
         {
-            OnFade();
             Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World);
             Camera.mainCamera.transform.rotation = _rotation;
+			OnFade();
             CameraFade.StartAlphaFade(Color.black, true, fadeOutDuration, blackScreenDuration, () =>
             {
                 Onfinish();

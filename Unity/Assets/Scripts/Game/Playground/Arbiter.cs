@@ -287,7 +287,7 @@ public class Arbiter : MonoBehaviour {
 		Debug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
 		        			
-		Game.state = Game.State.TRANSFORMATION;
+		
 				
 		Transform point = t.opponent.But.transformationPoint;
 		point.transform.position = new Vector3(x, 0, point.transform.position.z);
@@ -299,9 +299,6 @@ public class Arbiter : MonoBehaviour {
 		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
 		Team.switchPlaces(t[0], Game.Ball.Owner);
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
-		
-		// Switch/Position de caméra
-		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 
         Team opponent = Game.Ball.Owner.Team.opponent;
 				
@@ -334,6 +331,8 @@ public class Arbiter : MonoBehaviour {
 		};
 				
 		tm.enabled = true;
+		
+		Game.state = Game.State.TRANSFORMATION;
 	}
 
     public void OnDropTransformed(But but)
