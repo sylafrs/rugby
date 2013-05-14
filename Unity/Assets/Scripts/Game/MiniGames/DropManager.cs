@@ -9,6 +9,7 @@ public class DropManager {
 	Vector3 ownerDirection;
 	Vector3 initPos;
 	float angleX;
+	float acceleration;
 
 	public enum TYPEOFDROP
 	{
@@ -42,6 +43,8 @@ public class DropManager {
 			
 			owner.canCatchTheBall = false;
 		}
+		
+		acceleration = ball.accelerationDrop > 0f? -ball.accelerationDrop : ball.accelerationDrop;
 	}
 	
 	// Update is called once per frame
@@ -59,9 +62,9 @@ public class DropManager {
 
 	private void doKick(float t)
 	{
-
+		
 		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
-												-0.75f * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropKick) * t + initPos.y,
+												acceleration * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropKick) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 
@@ -69,7 +72,7 @@ public class DropManager {
 	{
 		Vector3 pos = ball.transform.position;
 		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
-												-0.75f * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
+												acceleration * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 }

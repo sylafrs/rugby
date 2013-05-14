@@ -35,6 +35,7 @@ public class Ball : TriggeringTriggered {
 	public float angleDropKick = 45f;
 	public float angleDropUpAndUnder = 70f;
 	public float randomLimitAngle = 5f;
+	public float accelerationDrop = -0.75f;
 
 	public float passSpeed = 13.0f;
 	public float accelerationPass = 1.5f;
