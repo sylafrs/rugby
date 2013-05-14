@@ -83,7 +83,7 @@ public class Gamer : myMonoBehaviour
 		return canMove;
 	}
 
-    List<Unit> unitsSide;
+    //List<Unit> unitsSide;
 
     void Update()
     {
@@ -206,13 +206,13 @@ public class Gamer : myMonoBehaviour
 			{
 				PassDirection = this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
-				unitsSide = Controlled.Team.GetRight(Controlled);
+				//unitsSide = Controlled.Team.GetRight(Controlled);
 			}
 			else
 			{
 				PassDirection = -this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
-				unitsSide = Controlled.Team.GetLeft(Controlled);
+				//unitsSide = Controlled.Team.GetLeft(Controlled);
 			}
 
     }

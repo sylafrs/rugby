@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class MenuUI : MonoBehaviour {
+[AddComponentMenu("Scripts/Menu/UI")]
+public class MenuUI : myMonoBehaviour {
 
 	void OnGUI()
     {

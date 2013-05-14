@@ -2,17 +2,16 @@ using UnityEngine;
 using System.Collections.Generic;
 using XInputDotNetPure;
 
-public delegate void CallBack_touch(TouchManager.Result result, int id);
-
 /**
   * @class TouchManager
   * @brief Mini jeu de la touche.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
-public class TouchManager : MonoBehaviour {
+[AddComponentMenu("Scripts/MiniGames/Touch")]
+public class TouchManager : myMonoBehaviour {
 	
-	public CallBack_touch CallBack;
+	public System.Action<TouchManager.Result, int> CallBack;
 	
 	public Gamer gamerTouch {get; set;}
 	public Gamer gamerIntercept {get; set;}

@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class LookAtCamera
   * @brief Make the object constantly looking at the camera.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Camera/Look At Camera")]
-public class LookAtCamera : MonoBehaviour {
+public class LookAtCamera : myMonoBehaviour {
 	
 	public Camera fixedCamera;
 	public Vector3 up;

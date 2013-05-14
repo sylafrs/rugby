@@ -22,7 +22,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode()]
 [AddComponentMenu("Terrain/Terrain Toolkit")]
 
-public class TerrainToolkit : MonoBehaviour {
+public class TerrainToolkit : myMonoBehaviour {
 	
 	// -------------------------------------------------------------------------------------------------------- VARS
 	

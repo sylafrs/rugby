@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class UnitAnimator
   * @brief Description.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
-[RequireComponent(typeof(Unit))]
-public class UnitAnimator : MonoBehaviour {
+[AddComponentMenu("Scripts/Animations/Unit Animator (require Unit)"), RequireComponent(typeof(Unit))]
+public class UnitAnimator : myMonoBehaviour {
 
     private Unit unit;
     public Animator animator;

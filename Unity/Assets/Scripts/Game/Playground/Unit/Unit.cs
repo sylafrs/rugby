@@ -54,8 +54,7 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	public NearUnit triggerTackle {get; set;}
 
-    private bool isAnimated = true;
-	public bool canCatchTheBall = true;
+  	public bool canCatchTheBall = true;
 	private float timeNoCatch = 0f;
     	
 	//maxens : c'est très bourrin xD

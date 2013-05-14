@@ -70,7 +70,7 @@ public class DropManager {
 
 	private void doUpAndUnder(float t)
 	{
-		Vector3 pos = ball.transform.position;
+		//Vector3 pos = ball.transform.position;
 		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
 												acceleration * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);

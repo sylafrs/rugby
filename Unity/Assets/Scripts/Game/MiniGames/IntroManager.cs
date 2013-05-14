@@ -6,9 +6,10 @@ using System;
   * @class IntroManager
   * @brief Description.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
-public class IntroManager : MonoBehaviour {
+[AddComponentMenu("Scripts/MiniGames/Introduction")]
+public class IntroManager : myMonoBehaviour {
 
     private Game game;
     public InputTouch touch;

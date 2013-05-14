@@ -5,10 +5,10 @@ using System.Collections.Generic;
   * @class Arbiter
   * @brief The arbiter watch the game and apply rules.
   * @author Sylvain Lafon
-  * @see MonoBehaviour
+  * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Game/Arbiter")]
-public class Arbiter : MonoBehaviour {
+public class Arbiter : myMonoBehaviour {
 		
 	public Game Game {get;set;}
 	
@@ -294,7 +294,7 @@ public class Arbiter : MonoBehaviour {
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
 		
 		// Switch/Position de caméra
-		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+		//Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 
         Team opponent = Game.Ball.Owner.Team.opponent;
 				

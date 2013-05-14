@@ -4083,8 +4083,6 @@ MonoBehaviour:
   m_Name: 
   sm: {fileID: 11400002}
   Model: {fileID: 100020}
-  ModelAnim: {fileID: 0}
-  TemporaryUseIdle: 0
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   BallPlaceHolderTransformation: {fileID: 100284}
@@ -4264,7 +4262,7 @@ NavMeshAgent:
   m_Speed: 8.5
   m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 300
+  m_AngularSpeed: 5000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
   m_AutoRepath: 0
