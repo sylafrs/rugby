@@ -115,7 +115,7 @@ public class Gamer : myMonoBehaviour
 
     void UpdatePASS()
     {
-        if (Game.Ball.Owner == Controlled)
+        if (Game.Ball.Owner == Controlled && Game.Ball.inZone == null)  
         {
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
@@ -367,18 +367,12 @@ public class Gamer : myMonoBehaviour
 	
 	void UpdateESSAI() {
 		if(Input.GetKeyDown(Inputs.put.keyboard) || XboxController.GetButtonDown(Inputs.put.xbox)) {
-			if(this.Game.Ball.Owner == this.Controlled) {
+            if (this.Game.Ball.Owner == this.Controlled)
+            {
 				if(this.Game.Ball.inZone == this.Team.opponent.Zone) {
 					this.Game.OnEssai();
-				}
-				else {
-					MyDebug.Log("Pas la bonne zone !");	
-				}
-			}
-			else {
-				// Debug inutile si la touche est utilisée autre part ^^
-				MyDebug.Log("Sans la balle c'est chaud ^^");	
-			}
+				}			
+			}			
 		}
 	}
 }
