@@ -13,6 +13,7 @@ public class Timer : myMonoBehaviour {
 
     private class myTimer {
         public CallBack callback;
+		//public CallBack OnUpdate;
         public float remainingTime;
     }
 
