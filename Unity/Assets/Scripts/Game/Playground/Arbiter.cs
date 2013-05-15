@@ -280,7 +280,7 @@ public class Arbiter : myMonoBehaviour {
 		MyDebug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
 		        			
-		Game.state = Game.State.TRANSFORMATION;
+		
 				
 		Transform point = t.opponent.But.transformationPoint;
 		point.transform.position = new Vector3(x, 0, point.transform.position.z);
@@ -292,15 +292,20 @@ public class Arbiter : myMonoBehaviour {
 		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
 		Team.switchPlaces(t[0], Game.Ball.Owner);
 		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
-		
-		// Switch/Position de caméra
-		//Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
 
         Team opponent = Game.Ball.Owner.Team.opponent;
+		
+		// Cam face au look At
+		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+		Game.Ball.Owner.transform.LookAt(butPoint);
 				
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
-		tm.gamer = t.Player;		
+		tm.gamer = t.Player;	
+		
+		tm.OnLaunch = () => {
+			this.Game.cameraManager.sm.event_TransfoShot();	
+		};
 		
         // After the transformation is done, according to the result :
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			
@@ -327,6 +332,8 @@ public class Arbiter : myMonoBehaviour {
 		};
 				
 		tm.enabled = true;
+		
+		Game.state = Game.State.TRANSFORMATION;
 	}
 
     public void OnDropTransformed(But but)

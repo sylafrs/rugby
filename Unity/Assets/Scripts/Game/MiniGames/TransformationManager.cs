@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 /**
@@ -101,7 +102,7 @@ public class TransformationManager : myMonoBehaviour {
 				state = State.POWER;	
 			}
 			
-			ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
+			ball.Owner.transform.FindChild("Fleche(Clone)").rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
 		}
 		
 		if(state == State.POWER) {
@@ -145,6 +146,8 @@ public class TransformationManager : myMonoBehaviour {
 		Finish ();
 	}
 	
+	public Action OnLaunch;
+	
 	public void Launch() {
 		
 		state = State.WAITING;
@@ -170,6 +173,8 @@ public class TransformationManager : myMonoBehaviour {
 		//stop fix
 		
 		ball.rigidbody.AddForce(force);
+		
+		if(OnLaunch != null) OnLaunch();
 				
 		ball.Owner = null;
 	}
