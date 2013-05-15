@@ -18,10 +18,12 @@ public class scrumController : myMonoBehaviour {
     public float SmashDistance;                                             // Unity            (tweak)
     public float SuperMultiplicator;                                        // Mult             (tweak)
 
+    public  bool ChronoLaunched { get; private set; }                       // First smash      (variable, readonly)
     public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
     private float currentPosition;                                          // -1 to 1          (variable)
-
-    private Game Game;                                                      // Game              (reference)    
+    private int PreviousWinner;                                             // Winner if 0      (variable)
+    
+    private Game Game;                                                      // Game             (reference)    
 
     void Start()
     {
@@ -34,26 +36,60 @@ public class scrumController : myMonoBehaviour {
     
     void OnEnable()
     {
-        this.currentPosition = 0;
-        this.TimeRemaining = 0;       
+        this.currentPosition = 0;                   // Current score.
+        this.TimeRemaining = this.MaximumDuration;  // Decreased by time after if chrono launched.
+        this.ChronoLaunched = false;                // Launched at first smash.
+        this.PreviousWinner = 0;                    // Changed at first smash.
+    }
+
+    void Update()
+    {
+        if (this.ChronoLaunched)
+        {
+            this.TimeRemaining -= Time.deltaTime;
+            if (this.TimeRemaining <= 0)
+            {
+                this.Finish();
+            }
+            else
+            {
+
+            }
+        }
+        else
+        {
+            // Waiting for first 'inequal' smash
+        }
+    }
+
+    private Team GetWinner()
+    {        
+        if (currentPosition > 0)
+        {
+            return Game.right;
+        }
+
+        if (currentPosition < 0)
+        {
+            return Game.left;
+        }
+        
+        if (PreviousWinner > 0)
+        {
+            return Game.right;
+        }
+
+        if (PreviousWinner < 0)
+        {
+            return Game.left;
+        }
+
+        throw new UnityException("[scrumController] : Must NEVER happen EVER"); 
     }
 
     void Finish()
     {
-        Team winner = Game.right;
-
-        if (currentPosition > 0)
-        {
-            winner = Game.right;
-        }
-        else if (currentPosition < 0)
-        {
-            winner = Game.left;
-        }
-        else
-        {
-            Debug.LogWarning("Egalité parfaite : FIX : Je la donne aux " + winner);
-        }
+        Team winner = this.GetWinner();
 
         if (callback != null)
         {
