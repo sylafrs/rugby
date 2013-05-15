@@ -172,12 +172,19 @@ public class Arbiter : myMonoBehaviour {
 		// Fonction à appeller à la fin de la touche
 		tm.CallBack = delegate(TouchManager.Result result, int id) {
 								
+			// Charger le super à la touche
+			
 			// On donne la balle à la bonne personne
 			if(result == TouchManager.Result.INTERCEPTION) {
 				Game.Ball.Owner = interceptTeam[id];
+				//super
+				this.IncreaseSuper(Game.settings.super.touchInterceptSuperPoints, interceptTeam);
+				this.IncreaseSuper(Game.settings.super.touchLooseSuperPoints, touchTeam); 
 			}
 			else {
 				Game.Ball.Owner = touchTeam[id+1];
+				//super
+				this.IncreaseSuper(Game.settings.super.touchWinSuperPoints, touchTeam);
 			}
 				
 			// Indicateur de bouton
@@ -250,6 +257,10 @@ public class Arbiter : myMonoBehaviour {
                 // Normal : les deux sont knock-out et la balle est par terre 
                 // /!\ Mêlée possible /!\
                 case TackleManager.RESULT.NORMAL:
+				
+					//super				
+					IncreaseSuper(Game.settings.super.tackleWinSuperPoints,tackler.Team);
+				
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
                     break;
@@ -307,8 +318,11 @@ public class Arbiter : myMonoBehaviour {
 				
 		MyDebug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
-		
 		Team opponent = Game.Ball.Owner.Team.opponent;
+		
+		//super for try
+		IncreaseSuper(Game.settings.super.tryWinSuperPoints,t);
+		IncreaseSuper(Game.settings.super.tryLooseSuperPoints,opponent);
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
@@ -324,7 +338,15 @@ public class Arbiter : myMonoBehaviour {
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
 				MyDebug.Log ("Transformation");
 				t.nbPoints += Game.settings.score.points_transfo;
+				
+				//transfo super
+				IncreaseSuper(Game.settings.super.conversionWinSuperPoints,t);
+			}else{
+
+				//transfo super
+				IncreaseSuper(Game.settings.super.conversionLooseSuperPoints,t);
 			}
+			IncreaseSuper(Game.settings.super.conversionOpponentSuperPoints,t.opponent);
 
             if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
@@ -394,6 +416,10 @@ public class Arbiter : myMonoBehaviour {
 	
 	public void ResumeIngameTime(){
 		TimePaused = false;
+	}
+	
+ 	public void IncreaseSuper(int amount, Team _t){
+		_t.increaseSuperGauge(amount);
 	}
 	
     public void Update()
