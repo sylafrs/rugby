@@ -9356,7 +9356,6 @@ MonoBehaviour:
   randomLimitAngle: 5
   accelerationDrop: -.899999976
   passSpeed: 18
-  accelerationPass: 1.5
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
@@ -27343,7 +27342,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2004071850}
   - 114: {fileID: 2004071851}
-  - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071853}
   - 114: {fileID: 2004071854}
   - 114: {fileID: 2004071855}
@@ -27351,6 +27349,7 @@ GameObject:
   - 114: {fileID: 2004071857}
   - 114: {fileID: 2004071858}
   - 114: {fileID: 2004071859}
+  - 114: {fileID: 2004071852}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -27400,8 +27399,7 @@ MonoBehaviour:
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400026, guid: 8270225a641f2934b8948aa3749c6e7a,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2004071849}
   m_Enabled: 1
@@ -27459,11 +27457,11 @@ MonoBehaviour:
       keyboard: 0
       xbox: 2
     scrumNormal:
-      keyboard: 119
+      keyboard: 0
       xbox: 0
     scrumExtra:
-      keyboard: 120
-      xbox: 10
+      keyboard: 0
+      xbox: 0
     put:
       keyboard: 52
       xbox: 0
@@ -27491,8 +27489,9 @@ MonoBehaviour:
       keyboard: 56
       xbox: 1
     dropUpAndUnder:
-      keyboard: 57
-      xbox: 8    dropKick:
+      keyboard: 0
+      xbox: 8
+    dropKick:
       keyboard: 0
       xbox: 9
     tackle:
@@ -27509,7 +27508,7 @@ MonoBehaviour:
       xbox: 0
     scrumExtra:
       keyboard: 0
-      xbox: 10
+      xbox: 0
     put:
       keyboard: 0
       xbox: 0
