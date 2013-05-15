@@ -230,8 +230,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			if(flipedForTeam != _t){
 				flipedForTeam = _t;
 				flip();
-			}else{
-				CancelNextFlip = false;
 			}
 		}else{
 			if(CancelNextFlip){
@@ -248,6 +246,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}
 				flipedForTeam = _t;
+				CancelNextFlip = false;
 			}
 		}
 	}

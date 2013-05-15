@@ -20,7 +20,8 @@ public class TouchState : CameraState
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
-            }, (/* OnFade */) => {
+            }, (/* OnFade */) => { 
+				cam.CancelNextFlip = true;
                 cam.game.arbiter.PlacePlayersForTouch();
             }
         );
