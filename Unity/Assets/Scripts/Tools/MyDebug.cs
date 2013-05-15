@@ -8,11 +8,11 @@ using System.Collections.Generic;
   */
 public static class MyDebug {
 
-    public static bool enabled = false;
+    public static bool enabled = true;
 
     public static void Log(object o)
     {
         if(enabled)
-            MyDebug.Log(o);
+            Debug.Log(o);
     }
 }

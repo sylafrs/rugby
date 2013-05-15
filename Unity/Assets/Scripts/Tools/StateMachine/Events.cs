@@ -64,6 +64,11 @@ public abstract partial class State
     {
         return (false);
     }
+	
+	public virtual bool OnTranfoShot()
+    {
+        return (false);
+    }
 
     public virtual bool OnDropTransformed(But b)
     {
@@ -171,7 +176,15 @@ public partial class StateMachine
                 return;
         }
     }
-
+	
+	public void event_TransfoShot(){
+		foreach (State tmp in list)
+        {
+            if (tmp.OnTranfoShot())
+                return;
+        }
+	}
+	
     public void event_Drop()
     {
         foreach (State tmp in list)
