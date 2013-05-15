@@ -8,43 +8,58 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/MiniGames/Scrum"),
 	RequireComponent(typeof(Game))]
 public class scrumController : myMonoBehaviour {
-    
-	private Game 	game;
-		
-	private float  playerScore;
-	private bool playerSpecial;
-	private float cpuScore;
-	//private bool inScrum;
-	private	int currentFrameWait;
-	private int frameToGo;
 	
-	
-	public int scoreTarget 		= 1000;
-	public int playerUp	   		= 15;
-	public float cpuUp			= 0.5f;
-	public int specialLuck 		= 20;
-	public int playerSpecialUp 	= 80;
-	public int frameStart		= 30;
-	
-	public System.Action<Team> callback;
-	
-	public float rightGap = -27f;
-	public float leftGap = 10f;
-	
-	//private float zGap = 0f;
-	private float offset = 0f;
-	
-	public float IAoffset = -0.05f;
-	public float playerOffset = 0.5f;
-	
-	public int timer = 10;
-	public float timeRemaining {get; private set;}
+    public Transform ScrumBloc                      { private get; set; }   // Object to move   (parameter)
+    public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
+    public System.Action<Team, Vector3> callback    { private get; set; }   // At the end.      (parameter, optionnal)	
+
+    public float MaximumDistance;                                           // Unity            (tweak)
+    public float MaximumDuration;                                           // Seconds          (tweak)                                                        
+    public float SmashDistance;                                             // Unity            (tweak)
+    public float SuperMultiplicator;                                        // Mult             (tweak)
+
+    public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
+    private float currentPosition;                                          // -1 to 1          (variable)
+
+    private Game Game;                                                      // Game              (reference)    
 
     void Start()
     {
-        this.game = gameObject.GetComponent<Game>();
+        this.Game = this.GetComponent<Game>();
+        if (this.Game == null)
+        {
+            throw new UnityException("[scrumController] : I need a game to work !");
+        }
+    }
+    
+    void OnEnable()
+    {
+        this.currentPosition = 0;
+        this.TimeRemaining = 0;       
     }
 
+    void Finish()
+    {
+        Team winner = Game.right;
+
+        if (currentPosition > 0)
+        {
+            winner = Game.right;
+        }
+        else if (currentPosition < 0)
+        {
+            winner = Game.left;
+        }
+        else
+        {
+            Debug.LogWarning("Egalité parfaite : FIX : Je la donne aux " + winner);
+        }
+
+        if (callback != null)
+        {
+            callback(winner, ScrumBloc.transform.position);
+        }
+    }
 
 	/*	
 	

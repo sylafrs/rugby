@@ -205,7 +205,7 @@ public class Arbiter : myMonoBehaviour {
         this.Game.state = Game.State.SCRUM;
 
 		scrumController sc =  this.Game.GetComponent<scrumController>();
-		sc.callback = (Team t) => {
+		sc.callback = (Team t, Vector3 pos) => {
 			Game.Ball.Owner = t[0];
             this.Game.state = Game.State.PLAYING;
 		};
