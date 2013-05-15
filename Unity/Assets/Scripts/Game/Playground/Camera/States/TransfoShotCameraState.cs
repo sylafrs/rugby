@@ -20,6 +20,7 @@ public class TransfoShotState : CameraState
 	{
 		cam.zoom = 1f;
 		
+		cam.setTarget(null);
 		
 		cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
             (/* OnFinish */) => {

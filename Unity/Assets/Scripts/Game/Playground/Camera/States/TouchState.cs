@@ -30,6 +30,5 @@ public class TouchState : CameraState
 	public override void OnLeave ()
 	{
 		cam.setTarget(cam.game.Ball.transform);	
-		//cam.CancelNextFlip = true;
 	}
 }

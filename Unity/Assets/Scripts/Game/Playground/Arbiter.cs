@@ -24,6 +24,7 @@ public class Arbiter : myMonoBehaviour {
     private float TimeEllapsedSinceIntro;
 	private bool  TimePaused;
 	
+	public  Unit  UnitToGiveBallTo;
 	
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
@@ -263,14 +264,44 @@ public class Arbiter : myMonoBehaviour {
         tm.Tackle();
 	}
 	
+	public void PlacePlayersForTransfo(){
+		Game.Ball.transform.position = Game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
+		float x = Game.Ball.transform.position.x;
+		
+		Team t = Game.Ball.Owner.Team;
+		
+		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1);
+		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
+		Team.switchPlaces(t[0], Game.Ball.Owner);
+		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
+		 
+        Team opponent = Game.Ball.Owner.Team.opponent;
+		
+		// Joueur face au look At
+		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
+		Game.Ball.Owner.transform.LookAt(butPoint);
+	}
+	
+	public void EnableTransformation(){
+		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
+		tm.enabled = true;
+	}
+	
+	private void PlaceTransfoPlaceholders(){
+		Team t = Game.Ball.Owner.Team;
+		float x = Game.Ball.transform.position.x;
+		
+		Transform point = t.opponent.But.transformationPoint;
+		point.transform.position = new Vector3(x, 0, point.transform.position.z);
+		
+		TransfoPlacement.transform.position = point.position;
+		TransfoPlacement.transform.rotation = point.rotation;
+	}
+	
 	public void OnEssai() {
 		if(Game.state != Game.State.PLAYING) {
 			return;	
 		}	
-		
-		Game.Ball.transform.position = Game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
-		float x = Game.Ball.transform.position.x;
-		
 		Team t = Game.Ball.Owner.Team;
 		
 		t.fixUnits = t.opponent.fixUnits = true;			
@@ -279,26 +310,9 @@ public class Arbiter : myMonoBehaviour {
 				
 		MyDebug.Log("Essai de la part des " + t.Name + " !");
         t.nbPoints += Game.settings.score.points_essai;
-		        			
 		
-				
-		Transform point = t.opponent.But.transformationPoint;
-		point.transform.position = new Vector3(x, 0, point.transform.position.z);
+		Team opponent = Game.Ball.Owner.Team.opponent;
 		
-		TransfoPlacement.transform.position = point.position;
-		TransfoPlacement.transform.rotation = point.rotation;
-				
-		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1);
-		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
-		Team.switchPlaces(t[0], Game.Ball.Owner);
-		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
-
-        Team opponent = Game.Ball.Owner.Team.opponent;
-		
-		// Cam face au look At
-		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
-		Game.Ball.Owner.transform.LookAt(butPoint);
-				
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;	
@@ -319,10 +333,9 @@ public class Arbiter : myMonoBehaviour {
             {
                 // Game.cameraManager.gameCamera.ResetRotation();
                 //Game.Ball.setPosition(Vector3.zero);
-
-                this.StartPlacement();
-                Game.Ball.Owner = opponent[0];
-            
+				
+				UnitToGiveBallTo = opponent[0];
+                //this.StartPlacement();
 			}			
             
             Game.state = Game.State.PLAYING;
@@ -330,9 +343,7 @@ public class Arbiter : myMonoBehaviour {
 			if(t.Player) t.Player.enableMove();
 			if(t.opponent.Player) t.opponent.Player.enableMove();
 		};
-				
-		tm.enabled = true;
-		
+		PlaceTransfoPlaceholders();
 		Game.state = Game.State.TRANSFORMATION;
 	}
 
@@ -345,33 +356,39 @@ public class Arbiter : myMonoBehaviour {
        
         // On donne les points
         MyDebug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
-        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
-
-        // Remise au centre, donne la balle aux perdants.
-        this.StartPlacement();
-        Game.Ball.Owner = but.Owner[0];      
+        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;  
     }
-
+	
+	private void GiveBall(Unit _u){
+		Game.Ball.Owner = _u;
+	}
+	
     public void OnBallOut()
     {              
-        // Remise au centre, donne la balle aux perdants.
-        this.StartPlacement();
+        
+		Unit NewOwner = null;
         
         // Si on est du côté droit
         if (this.Game.Ball.RightSide())
         {
-            Game.Ball.Owner = Game.right[0];
+            NewOwner = Game.right[0];
         }
         else
         {
-            Game.Ball.Owner = Game.left[0];
+            NewOwner = Game.left[0];
         }
+		
+		// Remise au centre, donne la balle aux perdants.
+		UnitToGiveBallTo = NewOwner;
+        this.StartPlacement();
     }
 
     public void StartPlacement()
-    {
+    {	
         Game.right.placeUnits(Game.right.StartPlacement);
         Game.left.placeUnits(Game.left.StartPlacement);
+		Debug.Log("Unit to give : "+UnitToGiveBallTo);
+		GiveBall(UnitToGiveBallTo);
     }
 
 	public void PauseIngameTime(){

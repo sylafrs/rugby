@@ -247,6 +247,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}
+				flipedForTeam = _t;
 			}
 		}
 	}
