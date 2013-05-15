@@ -22618,6 +22618,7 @@ MonoBehaviour:
   MinfollowOffset: {x: 0, y: 1, z: -1.5}
   flipDuration: 1
   flipDelay: .100000001
+  flipedForTeam: {fileID: 0}
   CancelNextFlip: 0
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
@@ -27321,10 +27322,10 @@ MonoBehaviour:
       xbox: 1
     dropUpAndUnder:
       keyboard: 0
-      xbox: 0
+      xbox: 8
     dropKick:
       keyboard: 0
-      xbox: 0
+      xbox: 9
     tackle:
       keyboard: 57
       xbox: 0
@@ -27733,6 +27734,7 @@ MonoBehaviour:
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
   IngameTime: 0
+  UnitToGiveBallTo: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
