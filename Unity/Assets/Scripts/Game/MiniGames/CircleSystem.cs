@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class CircleSystem : MonoBehaviour {
 	
@@ -8,6 +9,8 @@ public class CircleSystem : MonoBehaviour {
 	public float raySquare;
 	public float YToDecide = 3f;
 	public Ball ball;
+	
+	public bool winnerDrop;
 	
 	public System.Collections.Generic.List<Unit> unitInCircle;
 	
@@ -18,8 +21,10 @@ public class CircleSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (ball.transform.position.y < YToDecide && ball.PreviousOwner.canCatchTheBall)
+		if (winnerDrop)
+			return;
+		
+		if (ball.transform.position.y < YToDecide && !winnerDrop)
 		{
 			ball.Owner = GetFirstUnit();
 		}
@@ -31,12 +36,22 @@ public class CircleSystem : MonoBehaviour {
 	
 	void OnEnable(){
 		unitInCircle.Clear();
+		winnerDrop = false;
+	}
+	
+	void OnDisable()
+	{
+		//Debug.Log("hauteur balle qd 'disable' " + ball.transform.position.y);
+		foreach(Unit u in unitInCircle)
+			Debug.Log("nom unite " + u + " peut attraper : "+ u.canCatchTheBall);
 	}
 	
 	Unit GetFirstUnit(){
 		if (unitInCircle.Count != 0)
 		{
 			Debug.Log(unitInCircle[0]);
+			unitInCircle[0].canCatchTheBall = true;
+			winnerDrop = true;
 			return unitInCircle[0];
 		}
 		else
@@ -61,12 +76,17 @@ public class CircleSystem : MonoBehaviour {
 				(u.transform.position.z-this.transform.position.z)*(u.transform.position.z-this.transform.position.z) <= raySquare)
 			{
 				if (!unitInCircle.Contains(u))
+				{
 					unitInCircle.Add(u);
+					u.canCatchTheBall = false;
+				}
 			}
 			else if (unitInCircle.Contains(u))
 			{
 				unitInCircle.Remove(u);
+				u.canCatchTheBall = true;
 			}
 		}
 	}
+	
 }

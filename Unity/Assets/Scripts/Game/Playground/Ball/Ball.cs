@@ -39,7 +39,6 @@ public class Ball : TriggeringTriggered {
 	public float accelerationDrop = -0.75f;
 
 	public float passSpeed = 13.0f;
-	public float accelerationPass = 1.5f;
 
 	private Unit _previousOwner;
 	private Unit _nextOwner;
@@ -163,19 +162,18 @@ public class Ball : TriggeringTriggered {
 	
 	public void Drop(DropManager.TYPEOFDROP t)
     {
-
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
 
-        Game.OnDrop();
+		Game.OnDrop();
     }
 
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
 		{
-			if (this.transform.position.y > 0.399f)
+			if (this.transform.position.y > 0.3f)
 			{
 				drop.doDrop(timeOnDrop);
 				timeOnDrop += Time.deltaTime;
