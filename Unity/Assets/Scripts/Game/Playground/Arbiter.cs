@@ -220,7 +220,7 @@ public class Arbiter : myMonoBehaviour {
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
 
-        if (Game.state != Game.State.PLAYING)        
+        if (Game.state != Game.State.PLAYING)
             return;
 
         this.Game.state = Game.State.TACKLE;

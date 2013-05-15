@@ -106,7 +106,7 @@ public class MainState : UnitState
                 break;
                 
             case Order.TYPE.TACKLE:
-                Unit target = unit.Order.target;                
+                Unit target = unit.Order.target;
                 unit.Game.OnTackle(unit, target);
                 break;
 
