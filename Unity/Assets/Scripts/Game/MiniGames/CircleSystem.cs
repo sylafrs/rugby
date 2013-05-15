@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class CircleSystem : MonoBehaviour {
 	
@@ -42,8 +41,8 @@ public class CircleSystem : MonoBehaviour {
 	void OnDisable()
 	{
 		//Debug.Log("hauteur balle qd 'disable' " + ball.transform.position.y);
-		foreach(Unit u in unitInCircle)
-			Debug.Log("nom unite " + u + " peut attraper : "+ u.canCatchTheBall);
+		//foreach(Unit u in unitInCircle)
+		//	Debug.Log("nom unite " + u + " peut attraper : "+ u.canCatchTheBall);
 	}
 	
 	Unit GetFirstUnit(){
