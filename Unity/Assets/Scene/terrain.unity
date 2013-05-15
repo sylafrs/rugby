@@ -20372,6 +20372,72 @@ Transform:
   m_Children:
   - {fileID: 59076053}
   m_Father: {fileID: 1431346254}
+--- !u!1 &1497590892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1497590896}
+  - 33: {fileID: 1497590895}
+  - 65: {fileID: 1497590894}
+  - 23: {fileID: 1497590893}
+  m_Layer: 0
+  m_Name: SCRUM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1497590893
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1497590892}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!65 &1497590894
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1497590892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1497590895
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1497590892}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1497590896
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1497590892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7.38000011, y: 5.26999998, z: 4.98999977}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1498518326
 GameObject:
   m_ObjectHideFlags: 0
@@ -22618,6 +22684,7 @@ MonoBehaviour:
   MinfollowOffset: {x: 0, y: 1, z: -1.5}
   flipDuration: 1
   flipDelay: .100000001
+  flipedForTeam: {fileID: 0}
   CancelNextFlip: 0
   sm: {fileID: 1693924983}
 --- !u!1 &1694633019
@@ -27287,12 +27354,6 @@ MonoBehaviour:
     enableIA:
       keyboard: 0
       xbox: 2
-    scrumNormal:
-      keyboard: 119
-      xbox: 0
-    scrumExtra:
-      keyboard: 120
-      xbox: 10
     put:
       keyboard: 52
       xbox: 0
@@ -27334,12 +27395,6 @@ MonoBehaviour:
     enableIA:
       keyboard: 0
       xbox: 0
-    scrumNormal:
-      keyboard: 0
-      xbox: 0
-    scrumExtra:
-      keyboard: 0
-      xbox: 10
     put:
       keyboard: 0
       xbox: 0
@@ -27376,18 +27431,44 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  cam: {fileID: 0}
-  scoreTarget: 1000
-  playerUp: 15
-  cpuUp: 2
-  specialLuck: 20
-  playerSpecialUp: 80
-  frameStart: 50
-  rightGap: -27
-  leftGap: 10
-  IAoffset: -.0500000007
-  playerOffset: .5
-  timer: 10
+  tweakSettings:
+    FeedSuperPerSmash: .0500000007
+    FeedSuperPerSecond: .200000003
+    MaximumDistance: 11.5
+    MaximumDuration: 5
+    SmashValue: .0500000007
+    SuperMultiplicator: 5
+  inputSettings:
+    rightSmashButton:
+      keyboard: 119
+      xbox: 0
+    leftSmashButton:
+      keyboard: 99
+      xbox: 0
+    rightSuperButton:
+      keyboard: 120
+      xbox: 3
+    leftSuperButton:
+      keyboard: 118
+      xbox: 3
+  guiSettings:
+    ScrumSpecialRect:
+      serializedVersion: 2
+      x: 42.5
+      y: 78
+      width: 20
+      height: 10
+    ScrumSpecialButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6,
+      type: 3}
+    ScrumBarRect:
+      serializedVersion: 2
+      x: 20
+      y: 90
+      width: 60
+      height: 5
+    ScrumRightBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+    ScrumLeftBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+    ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
