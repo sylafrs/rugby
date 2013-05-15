@@ -9348,7 +9348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
-  CircleDrop: {fileID: 66834957}
+  CircleDrop: {fileID: 0}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
   angleDropKick: 70
@@ -27420,6 +27420,7 @@ MonoBehaviour:
     superSpeedScale: 1.5
     superTackleBoxScale: 1.5
     superUnblockable: 0
+    passInterceptSuperPoints: 20
     passWinSuperPoints: 10
     passLooseSuperPoints: 5
     dropWinSuperPoints: 20
@@ -27428,7 +27429,9 @@ MonoBehaviour:
     tryLooseSuperPoints: 20
     conversionWinSuperPoints: 10
     conversionLooseSuperPoints: 5
+    conversionOpponentSuperPoints: 10
     touchWinSuperPoints: 20
+    touchInterceptSuperPoints: 20
     touchLooseSuperPoints: 10
     tackleWinSuperPoints: 20
     tackleLooseSuperPoints: 5
@@ -27468,9 +27471,6 @@ MonoBehaviour:
     superOff:
       keyboard: 102
       xbox: 3
-    superDef:
-      keyboard: 103
-      xbox: 5
     changePlayer:
       keyboard: 49
       xbox: 1
@@ -27515,9 +27515,6 @@ MonoBehaviour:
     superOff:
       keyboard: 0
       xbox: 3
-    superDef:
-      keyboard: 0
-      xbox: 5
     changePlayer:
       keyboard: 0
       xbox: 1
@@ -28785,7 +28782,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuper: 0
+  OffensiveSuper: 2
   DefensiveSuper: 0
   superTackleColor: {r: 0, g: 0, b: 0, a: 0}
   superDashColor: {r: 0, g: 0, b: 0, a: 0}
