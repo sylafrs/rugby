@@ -27385,10 +27385,10 @@ MonoBehaviour:
       xbox: 1
     dropUpAndUnder:
       keyboard: 0
-      xbox: 0
+      xbox: 8
     dropKick:
       keyboard: 0
-      xbox: 0
+      xbox: 9
     tackle:
       keyboard: 57
       xbox: 0
@@ -27819,6 +27819,7 @@ MonoBehaviour:
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
   IngameTime: 0
+  UnitToGiveBallTo: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,8 @@ public class TouchState : CameraState
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
-            }, (/* OnFade */) => {
+            }, (/* OnFade */) => { 
+				cam.CancelNextFlip = true;
                 cam.game.arbiter.PlacePlayersForTouch();
             }
         );
@@ -30,6 +31,5 @@ public class TouchState : CameraState
 	public override void OnLeave ()
 	{
 		cam.setTarget(cam.game.Ball.transform);	
-		//cam.CancelNextFlip = true;
 	}
 }
