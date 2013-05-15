@@ -30,7 +30,7 @@ public class Ball : TriggeringTriggered {
 	}
 
     public Renderer Model;
-
+	public GameObject CircleDrop;
     public bool onGround { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
@@ -40,7 +40,6 @@ public class Ball : TriggeringTriggered {
 	public float accelerationDrop = -0.75f;
 
 	public float passSpeed = 13.0f;
-	public float accelerationPass = 1.5f;
 
 	private Unit _previousOwner;
 	private Unit _nextOwner;
@@ -122,6 +121,7 @@ public class Ball : TriggeringTriggered {
     {
         if (Owner != null)
         {
+			
             if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
 				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
@@ -143,6 +143,7 @@ public class Ball : TriggeringTriggered {
             }
 
             this.onGround = true;
+			CircleDrop.SetActive(false);
         }
         else
         {
@@ -153,6 +154,7 @@ public class Ball : TriggeringTriggered {
 
             this.onGround = false;
         }
+			
 
         UpdatePass();
 		UpdateDrop();
@@ -160,19 +162,18 @@ public class Ball : TriggeringTriggered {
 	
 	public void Drop(DropManager.TYPEOFDROP t)
     {
-
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
 
-        Game.OnDrop();
+		Game.OnDrop();
     }
 
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
 		{
-			if (this.transform.position.y > 0.399f)
+			if (this.transform.position.y > 0.3f)
 			{
 				drop.doDrop(timeOnDrop);
 				timeOnDrop += Time.deltaTime;
@@ -184,7 +185,10 @@ public class Ball : TriggeringTriggered {
 			}
 		}
 		if (this.Owner != null && timeOnDrop != -1)
+		{
 			timeOnDrop = -1;
+			CircleDrop.SetActive(false);
+		}
 	}
 
 	public void Pass(Unit to)
