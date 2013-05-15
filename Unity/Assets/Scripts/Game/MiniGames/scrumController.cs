@@ -259,5 +259,29 @@ public class scrumController : myMonoBehaviour {
         GUI.DrawTexture(rightRect, guiSettings.ScrumRightBar);
         GUI.DrawTexture(leftRect, guiSettings.ScrumLeftBar);
     }
-	
+    /*
+    void OnDrawGizmos()
+    {
+        InitialPosition = Vector3.zero;
+
+        Color prev = Gizmos.color;
+ 
+        Vector3 pos = InitialPosition;
+        pos.z += currentPosition * this.tweakSettings.MaximumDistance * 100;
+       
+        Vector3 posLeft = InitialPosition;
+        pos.z -= this.tweakSettings.MaximumDistance * 100;
+
+        Vector3 posRight = InitialPosition;
+        pos.z += this.tweakSettings.MaximumDistance * 100;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(posLeft, pos);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(posRight, pos);
+        
+        Gizmos.color = prev;
+    }
+    */
 }
