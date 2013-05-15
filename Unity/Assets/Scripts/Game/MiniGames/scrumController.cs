@@ -13,16 +13,16 @@ public class scrumController : myMonoBehaviour {
     public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
     public System.Action<Team, Vector3> callback    { private get; set; }   // At the end.      (parameter, optionnal)	
 
-    public float MaximumDistance;                                           // Unity            (tweak)
-    public float MaximumDuration;                                           // Seconds          (tweak)                                                        
-    public float SmashDistance;                                             // Unity            (tweak)
-    public float SuperMultiplicator;                                        // Mult             (tweak)
+    public TweakSettings tweakSettings;                                     // Tweaks
+    public InputSettings inputSettings;                                     // Inputs
+    public GUISettings guiSettings;                                         // Elems' positions (tweak)
 
     public  bool ChronoLaunched { get; private set; }                       // First smash      (variable, readonly)
     public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
     private float currentPosition;                                          // -1 to 1          (variable)
-    private int PreviousWinner;                                             // Winner if 0      (variable)
-    
+    private int CurrentWinner;                                              // Winner           (variable)
+    private float SuperLoading;                                             // 0 to 1           (variable)
+
     private Game Game;                                                      // Game             (reference)    
 
     void Start()
@@ -32,54 +32,139 @@ public class scrumController : myMonoBehaviour {
         {
             throw new UnityException("[scrumController] : I need a game to work !");
         }
+
+        this.StartGUI();
     }
     
     void OnEnable()
     {
-        this.currentPosition = 0;                   // Current score.
-        this.TimeRemaining = this.MaximumDuration;  // Decreased by time after if chrono launched.
-        this.ChronoLaunched = false;                // Launched at first smash.
-        this.PreviousWinner = 0;                    // Changed at first smash.
+        if (this.ScrumBloc == null)
+        {
+            GameObject o = GameObject.Find("SCRUM");
+            if(o == null)
+                o = new GameObject("SCRUM");
+
+            this.ScrumBloc = o.transform;
+        }
+
+        this.currentPosition = 0;                                   // Current score.
+        this.TimeRemaining = this.tweakSettings.MaximumDuration;    // Decreased by time after if chrono launched.
+        this.ChronoLaunched = false;                                // Launched at first smash.
+        this.CurrentWinner = 0;                                     // Changed at first smash.
+        this.SuperLoading = 0;                                      // Super Loading
     }
 
     void Update()
     {
-        if (this.ChronoLaunched)
+        if (this.UpdateChrono())
         {
-            this.TimeRemaining -= Time.deltaTime;
-            if (this.TimeRemaining <= 0)
-            {
-                this.Finish();
-            }
-            else
-            {
-
-            }
+            Finish();
         }
         else
         {
-            // Waiting for first 'inequal' smash
+            float smash = this.GetSmashResult();
+            if (smash != 0)
+            {
+                this.ChronoLaunched = true;
+                this.MoveForSmash(smash);
+                this.UpdateWinner();
+
+                if (currentPosition >= 1 || currentPosition <= -1)
+                {
+                    this.Finish();
+                }
+            }
         }
     }
 
-    private Team GetWinner()
-    {        
+    private bool UpdateChrono()
+    {
+        if (this.ChronoLaunched)
+        {
+            float feedsuper = this.tweakSettings.FeedSuperPerSecond * Time.deltaTime;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + feedsuper);
+
+            this.TimeRemaining -= Time.deltaTime;
+            return (this.TimeRemaining <= 0);
+        }
+
+        return false;
+    }
+        
+    private float GetSmashResult()
+    {
+        float smash = 0;
+
+        if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard))
+        {
+            smash += this.tweakSettings.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
+        }
+
+        if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard))
+        {
+            smash -= this.tweakSettings.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
+        }
+
+        if (this.SuperLoading == 1)
+        {
+            int super = 0;
+            bool used = false;
+
+            if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard))
+            {
+                super += 1;
+                used = true;
+            }
+
+            if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard))
+            {
+                super -= 1;
+                used = true;
+            }
+
+            if (used)
+            {
+                this.tweakSettings.FeedSuperPerSmash = 0;
+                smash += super * this.tweakSettings.SuperMultiplicator * this.tweakSettings.SmashValue;
+            }
+        }
+
+        return smash;
+    }
+
+    private void MoveForSmash(float smash)
+    {
+        currentPosition += smash;
+
+        Vector3 pos = InitialPosition;
+        pos.z += currentPosition * this.tweakSettings.MaximumDistance;
+
+        ScrumBloc.transform.position = pos;
+    }
+
+    private void UpdateWinner()
+    {
         if (currentPosition > 0)
         {
-            return Game.right;
+            CurrentWinner = 1;
         }
 
         if (currentPosition < 0)
         {
-            return Game.left;
+            CurrentWinner = -1;
         }
-        
-        if (PreviousWinner > 0)
+    }
+
+    private Team GetWinner()
+    {   
+        if (CurrentWinner > 0)
         {
             return Game.right;
         }
 
-        if (PreviousWinner < 0)
+        if (CurrentWinner < 0)
         {
             return Game.left;
         }
@@ -95,198 +180,86 @@ public class scrumController : myMonoBehaviour {
         {
             callback(winner, ScrumBloc.transform.position);
         }
-    }
 
-	/*	
-	
-
-    void OnEnable()
-    {
-		Start();
-        playerScore = 1;
-        cpuScore = 1;
-        currentFrameWait = 0;
-        //inScrum = false;
-        playerSpecial = false;
-        offset = 0f;
-        frameToGo = frameStart;
-        timeRemaining = timer;
-        _p1.stopMove();
-        _game.disableIA = true;
-    }
-
-    void EndScrum()
-    {
         this.enabled = false;
-        _p1.enableMove();
-        _game.disableIA = false;
-     
-        if (playerScore < cpuScore)
+    }
+
+    [System.Serializable]
+    public class GUISettings {
+        public Rect ScrumSpecialRect;
+        public Texture2D ScrumSpecialButton;
+        public Rect ScrumBarRect;
+        public Texture2D ScrumRightBar;
+        public Texture2D ScrumLeftBar;
+        public Texture2D ScrumEmptyBar;
+    }
+
+    [System.Serializable]
+    public class TweakSettings
+    {
+        public float FeedSuperPerSmash;    // 0 to 1           (tweak)
+        public float FeedSuperPerSecond;   // 0 to 1           (tweak)
+        public float MaximumDistance;      // Unity            (tweak)
+        public float MaximumDuration;      // Seconds          (tweak)                                                        
+        public float SmashValue;           // 0 to 1           (tweak)
+        public float SuperMultiplicator;   // Mult             (tweak)  
+    }
+
+    [System.Serializable]
+    public class InputSettings
+    {
+        public InputTouch rightSmashButton;
+        public InputTouch leftSmashButton; 
+        public InputTouch rightSuperButton;
+        public InputTouch leftSuperButton; 
+    }
+
+    void StartGUI()
+    {
+        Rect rect;        
+       
+        rect = gameUIManager.screenRelativeRect(this.guiSettings.ScrumSpecialRect);
+        this.guiSettings.ScrumSpecialRect = rect;
+
+        rect = gameUIManager.screenRelativeRect(this.guiSettings.ScrumBarRect);
+        this.guiSettings.ScrumBarRect = rect;    
+    }
+
+    void OnGUI()
+    {
+        if (!ChronoLaunched)
         {
-            if (callback != null) callback(_t2);
+            GUILayout.Label("BEGIN !");
         }
         else
         {
-            if (callback != null) callback(_t1);
+            GUILayout.Label("SMASH UNTIL " + (int)TimeRemaining + " !");
+        }
+
+        this.DrawBar();
+
+        if (SuperLoading == 1)
+        {
+            GUI.DrawTexture(guiSettings.ScrumSpecialRect, guiSettings.ScrumSpecialButton, ScaleMode.ScaleToFit);
         }
     }
+
+    void DrawBar()
+    {
+        GUI.DrawTexture(guiSettings.ScrumBarRect, guiSettings.ScrumEmptyBar);
+
+        float leftPercent = (1 + currentPosition) / 2;
+        float leftWidth = leftPercent * guiSettings.ScrumBarRect.width;
+
+        Rect rightRect = guiSettings.ScrumBarRect;
+        Rect leftRect = guiSettings.ScrumBarRect;
+
+        leftRect.width = leftWidth;
+        rightRect.width -= leftWidth;
+        rightRect.x += leftWidth;
+        
+        GUI.DrawTexture(rightRect, guiSettings.ScrumRightBar);
+        GUI.DrawTexture(leftRect, guiSettings.ScrumLeftBar);
+    }
 	
-    void Update () {		
-		timeRemaining -= Time.deltaTime;
-		if(timeRemaining < 0) {
-			timeRemaining = 0;	
-		}
-
-        if (timeRemaining == 0 && playerScore != cpuScore)
-        {
-            EndScrum();
-        }
-        else
-        {
-            currentFrameWait++;
-            playersInline(offset);
-            if (currentFrameWait > frameStart)
-            {                	
-                // Up cpu score linearly
-		        cpuScore += cpuUp*Time.deltaTime;
-		        offset += IAoffset;			
-
-                // SI Appui normal
-                if (Input.GetKeyDown(_game.p1.Inputs.scrumNormal.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumNormal.xbox))
-                {
-                    playerUpScore(playerUp);
-                    if (Random.Range(1, specialLuck) == 1)
-                    {
-                        playerSpecial = true;
-                    }
-                }
-
-                // SI Appui extra
-                if (Input.GetKeyDown(_game.p1.Inputs.scrumExtra.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumExtra.xbox))
-                {
-                    if (playerSpecial)
-                    {
-                        playerUpScore(playerSpecialUp);
-                        playerSpecial = false;
-                    }
-                }
-            }
-            else
-            {
-                frameToGo--;
-            }
-        }
-	}
-			
-	void changeZpos(float rightGap, float leftGap){				
-		Vector3 pos = _t2.transform.position;
-		pos.z = _ball.transform.position.z + rightGap;
-		_t2.transform.position = pos;
-		
-		pos = _t1.transform.position;
-		pos.z = _ball.transform.position.z + leftGap;
-		_t1.transform.position = pos;
-	}
-	
-	void playerUpScore(int up){
-		playerScore += up*Time.deltaTime;		
-		offset += playerOffset;	
-	}
-	
-	void playersInline(float offset){
-			
-		//MyDebug.Log("ligne !");
-		
-		Unit cap1 = _t1[0];
-		Unit cap2 = _t2[0];
-				
-		for(int i = 0; i < _t1.nbUnits; i++){
-			Unit u1 = _t1[i];
-			Unit u2 = _t2[i];
-			
-			if(cap1 != u1){
-                Vector3 tPos = cap1.transform.position;
-
-                int dif = u1.Team.GetLineNumber(u1, cap1);
-                float x = 3 * dif;
-
-                u1.nma.stoppingDistance = 0;
-                u1.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
-			}
-			
-			if(cap2 != u2){
-                Vector3 tPos = cap2.transform.position;
-
-                int dif = u2.Team.GetLineNumber(u2, cap2);
-                float x = 3 * dif;
-
-                u2.nma.stoppingDistance = 0;
-                u2.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z+offset));
-			}
-		}       
-	}
-		
-	public float GetPlayerScore(){
-		return playerScore;
-	}
-	
-	public float GetCpuScore(){
-		return cpuScore;
-	}
-	
-	public bool HasPlayerSpecial(){
-		return playerSpecial;
-	}
-	
-	public int GetFrameToGo(){
-		return frameToGo;
-	}
-
-    
-    */
 }
-
-/*          //Gui du scrum
-			if(_scrumController.enabled){
-				float playerScore = (float)_scrumController.GetPlayerScore();
-				float cpuScore 	  = (float)_scrumController.GetCpuScore();
-				int frameToGo	  = _scrumController.GetFrameToGo();
-				bool hasSpecial   = _scrumController.HasPlayerSpecial();
-			
-				
-				//chrono
-				string toGo;
-				if(frameToGo > 0){
-					toGo = frameToGo+" to go ...";
-				}else{
-					toGo = "--- GO ("+ (int)_scrumController.timeRemaining +") ---";
-				}
-				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
-				
-				//bar
-				float quotient = playerScore/cpuScore;
-				if(quotient < quotientMin) quotient = quotientMin;
-				if(quotient > quotientMax) quotient = quotientMax;
-				float blueScrumProgress = quotient - quotientMin; 
-				
-				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-					scrumBarBoxWidthPercentage*blueScrumProgress, 
-					scrumBarBoxHeightPercentage);
-
-				GUI.DrawTexture(scrumBarBox, emptyBar);
-				GUI.DrawTexture(scrumRedBarBox, redBar);
-				GUI.DrawTexture(scrumBlueBarBox,blueBar);
-				
-				//special
-				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
-				
-				//debug
-				
-				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
-				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
-				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
-				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
-				
-			}
- */

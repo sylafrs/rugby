@@ -9,7 +9,6 @@ using XInputDotNetPure;
 public class gameUIManager : myMonoBehaviour {
 	
 	private Game _game;
-	private scrumController _scrumController;
 	
 	public KeyCode resetKey;
 	
@@ -71,8 +70,7 @@ public class gameUIManager : myMonoBehaviour {
 	void Start () 
     {
 		_game 		= gameObject.GetComponent<Game>();
-		_scrumController = gameObject.GetComponent<scrumController>();
-       
+	  
 		blueProgress = 0f;
 		redProgress  = 0f;
 	}
@@ -115,6 +113,12 @@ public class gameUIManager : myMonoBehaviour {
 
 		return new Rect(x * W, y * H, w * W, h * H);	
 	}
+
+    public static Rect screenRelativeRect(Rect r)
+    {
+        return screenRelativeRect(r.x, r.y, r.width, r.height);
+    }
+
 	
 	void OnGUI()
     {
@@ -153,26 +157,7 @@ public class gameUIManager : myMonoBehaviour {
 			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
 			redGaugeBoxWidthPercentage * redProgress, 
 			redGaugeBoxHeightPercentage);
-		
-		//scrum bars
-		Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
-
-		Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
-		
-		//scrum special
-		Rect scrumSpecialBox = screenRelativeRect(scrumSpecialBoxXPercentage - scrumSpecialBoxWidthPercentage/2,
-			scrumSpecialBoxYPercentage - scrumSpecialBoxHeightPercentage/2, 
-			scrumSpecialBoxWidthPercentage, scrumSpecialBoxHeightPercentage);
-		
-		//Time before Scrum
-		Rect scrumTimeBox = screenRelativeRect(scrumTimeBoxXPercentage - scrumTimeBoxWidthPercentage/2,
-			scrumTimeBoxYPercentage - scrumTimeBoxHeightPercentage/2, 
-			scrumTimeBoxWidthPercentage, scrumTimeBoxHeightPercentage);
-		
+			
 		//player on left Box
 		//float playerLeftBoxWidth  = 25;
 		//float playerLeftBoxHeight = 10;	
