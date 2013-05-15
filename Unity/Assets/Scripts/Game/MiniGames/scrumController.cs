@@ -245,9 +245,7 @@ public class scrumController : myMonoBehaviour {
     }
 
     void DrawBar()
-    {
-        GUI.DrawTexture(guiSettings.ScrumBarRect, guiSettings.ScrumEmptyBar);
-
+    {       
         float leftPercent = (1 + currentPosition) / 2;
         float leftWidth = leftPercent * guiSettings.ScrumBarRect.width;
 

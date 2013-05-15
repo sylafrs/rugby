@@ -243,6 +243,17 @@ public class Unit : TriggeringTriggered, Debugable
 
     }
 */
+
+    public void ShowPlayer(bool active)
+    {
+        if (!active)
+        {
+            this.IndicateSelected(false);
+        }
+
+        this.Model.SetActive(active);        
+    }
+
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

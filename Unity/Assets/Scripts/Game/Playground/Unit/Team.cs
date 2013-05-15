@@ -476,8 +476,17 @@ public class Team : myMonoBehaviour, IEnumerable {
 			break;
 		}
 	}
-	
-	public class TeamUnitEnumerator : IEnumerator {
+
+    public void ShowPlayers(bool active)
+    {
+        for (int i = 0; i < this.units.Length; i++)
+        {
+            this.units[i].ShowPlayer(active);
+        }
+    }
+
+    public class TeamUnitEnumerator : IEnumerator
+    {
 		Team t;
 		int current;
 		

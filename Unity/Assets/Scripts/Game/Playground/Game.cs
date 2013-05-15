@@ -76,6 +76,8 @@ public class Game : myMonoBehaviour {
 	public CameraManager cameraManager;
     public IntroManager introManager;
 
+    public Renderer ScrumBloc;
+
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
 

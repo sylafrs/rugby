@@ -9247,6 +9247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
+  Model: {fileID: 1119795520}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
   angleDropKick: 70
@@ -9258,6 +9259,7 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  scrumFieldUnits: []
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20384,12 +20386,12 @@ GameObject:
   - 65: {fileID: 1497590894}
   - 23: {fileID: 1497590893}
   m_Layer: 0
-  m_Name: SCRUM
+  m_Name: ScrumBloc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1497590893
 Renderer:
   m_ObjectHideFlags: 0
@@ -20437,7 +20439,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.38000011, y: 5.26999998, z: 4.98999977}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2027178520}
 --- !u!1 &1498518326
 GameObject:
   m_ObjectHideFlags: 0
@@ -27284,6 +27286,7 @@ MonoBehaviour:
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
   introManager: {fileID: 2004071858}
+  ScrumBloc: {fileID: 1497590893}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
@@ -27420,6 +27423,8 @@ MonoBehaviour:
   LineSpace: 3
   maxTimeHoldingPassButton: 3
   timeToSleepAfterIntro: 5
+  timeToGetOutTackleAreaBeforeScrum: 2
+  minPlayersEachTeamToTriggerScrum: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28110,6 +28115,7 @@ Transform:
   - {fileID: 1795899136}
   - {fileID: 303037525}
   - {fileID: 1774892247}
+  - {fileID: 1497590896}
   m_Father: {fileID: 0}
 --- !u!1 &2031191950
 GameObject:
@@ -28695,7 +28701,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuper: 0
+  OffensiveSuper: 2
   DefensiveSuper: 0
   superTackleColor: {r: 0, g: 0, b: 0, a: 0}
   superDashColor: {r: 0, g: 0, b: 0, a: 0}

@@ -23,7 +23,7 @@ public class Arbiter : myMonoBehaviour {
 	private float IntroDelayTime;
     private float TimeEllapsedSinceIntro;
 	private bool  TimePaused;
-	
+    private float LastTackle = -1;
 	
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
@@ -199,14 +199,39 @@ public class Arbiter : myMonoBehaviour {
 		tm.enabled = true;
                   
 	}
-	
+
+    public void OnGUI()
+    {
+        if (GUILayout.Button("ZEGDFGG"))
+        {
+            Game.OnScrum();
+        }
+    }
+
 	public void OnScrum() {
 
         this.Game.state = Game.State.SCRUM;
 
+        Renderer bloc = this.Game.ScrumBloc;
+        bloc.transform.position = this.Game.Ball.transform.position;
+        
 		scrumController sc =  this.Game.GetComponent<scrumController>();
-		sc.callback = (Team t, Vector3 pos) => {
+        sc.InitialPosition = this.Game.Ball.transform.position;
+        sc.ScrumBloc = bloc.transform;
+       
+        this.Game.right.ShowPlayers(false);
+        this.Game.left.ShowPlayers(false);
+        this.Game.Ball.Model.enabled = false;
+        bloc.enabled = true;
+        
+        sc.callback = (Team t, Vector3 pos) => {
 			Game.Ball.Owner = t[0];
+
+            this.Game.Ball.Model.enabled = true;
+            this.Game.right.ShowPlayers(true);
+            this.Game.left.ShowPlayers(true);
+            bloc.enabled = false;
+
             this.Game.state = Game.State.PLAYING;
 		};
 
@@ -256,6 +281,8 @@ public class Arbiter : myMonoBehaviour {
                     tackler.sm.event_Tackle();
                     break;
             }
+
+            LastTackle = Time.time;
 
             this.Game.state = Game.State.PLAYING;
         };
@@ -393,6 +420,37 @@ public class Arbiter : myMonoBehaviour {
                 	this.Game.state = Game.State.END;
 				}
 			}
+        }
+
+        UpdateTackle();
+    }
+
+    public void UpdateTackle()
+    {
+        if (LastTackle != -1)
+        {
+            // TODO cte : 2 -> temps pour checker
+            if (Time.time - LastTackle > Game.settings.timeToGetOutTackleAreaBeforeScrum)
+            {
+                LastTackle = -1;
+                int right = 0, left = 0;
+                for (int i = 0; i < this.Game.Ball.scrumFieldUnits.Count; i++)
+                {
+                    if (this.Game.Ball.scrumFieldUnits[i].Team == Game.right)
+                        right++;
+                    else
+                        left++;
+                }
+
+                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
+                if (right >= Game.settings.minPlayersEachTeamToTriggerScrum && 
+                    left >= Game.settings.minPlayersEachTeamToTriggerScrum)
+                {
+                    Game.OnScrum();
+                    //goScrum = true;
+                    //MyDebug.Log("Scruuum");
+                }
+            }
         }
     }
 }

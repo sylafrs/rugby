@@ -29,6 +29,8 @@ public class Ball : TriggeringTriggered {
 		}
 	}
 
+    public Renderer Model;
+
     public bool onGround { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
@@ -152,8 +154,7 @@ public class Ball : TriggeringTriggered {
             this.onGround = false;
         }
 
-        UpdateTackle();
-		UpdatePass();
+        UpdatePass();
 		UpdateDrop();
     }
 	
@@ -255,7 +256,7 @@ public class Ball : TriggeringTriggered {
         return this.transform.position.x < 0;
     }
 
-    List<Unit> scrumFieldUnits = new List<Unit>();
+    public List<Unit> scrumFieldUnits = new List<Unit>();
     public override void Entered(Triggered o, Trigger t)
     {       
         if (t.GetType() == typeof(NearBall))
@@ -288,42 +289,5 @@ public class Ball : TriggeringTriggered {
                     scrumFieldUnits.Remove(u);
             }
         }
-    }
-
-    public void OnTackle(Unit tackler, Unit tackled)
-    {
-        if(lastTackle == -1)
-            lastTackle = Time.time;
-    }
-	
-    public void UpdateTackle()
-    {       
-        if (lastTackle != -1)
-        {
-            // TODO cte : 2 -> temps pour checker
-            if (Time.time - lastTackle > 2)
-            {
-                lastTackle = -1;
-                int right = 0, left = 0;
-                for (int i = 0; i < scrumFieldUnits.Count; i++)
-                {
-                    if (scrumFieldUnits[i].Team == Game.right)
-                        right++;
-                    else
-                        left++;
-                }
-
-                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-                if (right >= 3 && left >= 3)
-                {
-                    Game.OnScrum();
-                    //goScrum = true;
-					//MyDebug.Log("Scruuum");
-                }else{
-					//goScrum = false;
-				}
-            }
-        }
-    }
-	
+    }   
 }
