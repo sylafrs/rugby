@@ -150,15 +150,13 @@ public class TransformationManager : myMonoBehaviour {
 		}
 		
 		if(state == State.WAITING) {
+            timeInAir += Time.deltaTime;
+            doTransfo(timeInAir);
+
 			if(ball.transform.position.y < 0.3f) {
                 transformed = Result.GROUND;
 				Finish ();	
-			}
-			else
-			{
-				timeInAir += Time.deltaTime;
-				doTransfo( timeInAir );
-			}
+			}			
 		}
 	}
 	
@@ -200,9 +198,14 @@ public class TransformationManager : myMonoBehaviour {
 	
 	private void doTransfo(float t)
 	{
-		ball.transform.position = new Vector3( dir.x * maxPower * t + pos.x,
-												-0.5f * 9.81f * t * t + minPower + ((maxPower - minPower) * Mathf.Sin(Mathf.Deg2Rad * power * 80f)) * t + pos.y,
-												dir.z * maxPower * t + pos.z);
+        float X = dir.x * maxPower * t + pos.x;
+        float Y = -0.5f * 9.81f * t * t + minPower + ((maxPower - minPower) * Mathf.Sin(Mathf.Deg2Rad * power * 80f)) * t + pos.y;
+        float Z = dir.z * maxPower * t + pos.z;
+
+        if (Y < 0)
+            Y = 0;
+
+		ball.transform.position = new Vector3(X, Y, Z);
 	}
 	
 	public void Finish() {
