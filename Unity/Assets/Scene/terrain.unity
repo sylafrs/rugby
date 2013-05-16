@@ -28027,7 +28027,7 @@ MonoBehaviour:
     xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
-  maxPower: {x: 20, y: 20, z: 20}
+  maxPower: {x: 0, y: 0, z: 0}
   maxAngle: 70
   infiniteTime: 1
   timeAngle: 3

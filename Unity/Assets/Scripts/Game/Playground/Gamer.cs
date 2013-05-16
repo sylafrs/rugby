@@ -128,34 +128,35 @@ public class Gamer : myMonoBehaviour
 		}
 	}
 
+    int passSide;
     void UpdatePASS()
     {
         if (Game.Ball.Owner == Controlled && Game.Ball.inZone == null)  
         {
-
-            int side = 0;
+            passSide = 0;
 
             if (stickDirection.x > 0.1f)
             {
-                side = 1;
+                passSide = 1;
             }
             else if (stickDirection.x < 0.1f)
             {
-                side = -1;
+                passSide = -1;
             }
 
             if (Game.cameraManager.TeamLooked == Game.left)
             {
-                side *= -1;
+                passSide *= -1;
             }
 
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
-				if (side > 0)
+                if (passSide > 0)
 				{
-					if (Controlled.Team.GetRight(Controlled).Count > 0)
+                    List<Unit> right = Controlled.Team.GetRight(Controlled);
+                    if (right.Count > 0)
 					{
-						unitTo = Controlled.Team.GetRight(Controlled)[0];
+                        unitTo = right[0];
 					}
 					else
 					{
@@ -164,11 +165,12 @@ public class Gamer : myMonoBehaviour
 					}
 
 				}
-				else if (side < 0)
+                else if (passSide < 0)
 				{
-					if (Controlled.Team.GetLeft(Controlled).Count > 0)
+                    List<Unit> left = Controlled.Team.GetLeft(Controlled);
+                    if (left.Count > 0)
 					{
-						unitTo = Controlled.Team.GetLeft(Controlled)[0];
+                        unitTo = left[0];
 					}
 					else
 					{
@@ -180,7 +182,7 @@ public class Gamer : myMonoBehaviour
             }
 			else if (Input.GetKeyDown(Inputs.longPass.keyboard) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
-				if (side > 0)
+                if (passSide > 0)
 				{
                     List<Unit> rightAllies = Controlled.Team.GetRight(Controlled);
                     if (rightAllies.Count > 1)
@@ -195,7 +197,7 @@ public class Gamer : myMonoBehaviour
 
 
 				}
-				else if (side < 0)
+                else if (passSide < 0)
 				{
                     List<Unit> leftAllies = Controlled.Team.GetLeft(Controlled);
                     if (leftAllies.Count > 1)
@@ -270,7 +272,7 @@ public class Gamer : myMonoBehaviour
                 PassDirection = Vector3.zero;
             }*/
 			if ( unitTo != null && unitTo != Game.Ball.Owner )
-				Controlled.Order = Order.OrderPass(unitTo);
+                Controlled.Order = Order.OrderPass(unitTo, passSide);
 			//PassDirection = Vector3.zero;
         }
         else

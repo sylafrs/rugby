@@ -89,8 +89,16 @@ public class MainState : UnitState
 				break;
 
 			case Order.TYPE.PASS:
-				if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Pass(unit.Order.target);
+                if (unit.Team.Game.Ball.Owner == unit)
+                {
+                    UnitAnimator ua = this.unit.GetComponent<UnitAnimator>();
+                    if (ua)
+                    {
+                        ua.OnPass(unit.Order.passDirection == 1);
+                    }
+
+                    unit.Team.Game.Ball.Pass(unit.Order.target);
+                }
 				break;
 
             case Order.TYPE.TRIANGLE:

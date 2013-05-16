@@ -42,7 +42,7 @@ public struct Order  {
     public TYPE_DEPLACEMENT deplacement;
 	public TYPE_POSITION position;
 	public float pressionCapture;
-	public Vector3 passDirection;
+	public int passDirection;
     public Unit target;
     public float power;
     public Vector3 point;
@@ -99,11 +99,12 @@ public struct Order  {
 		return o;
 	}
 
-	public static Order OrderPass(Unit unit)
+	public static Order OrderPass(Unit unit, int passSide)
 	{
 		Order o = new Order();
 		o.type = TYPE.PASS;
 		o.target = unit;
+        o.passDirection = passSide;
 		return o;
 	}
 

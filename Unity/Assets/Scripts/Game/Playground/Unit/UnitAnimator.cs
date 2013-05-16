@@ -26,16 +26,82 @@ public class UnitAnimator : myMonoBehaviour {
     {
         if (animator)
         {
-            animator.SetFloat("speed", unit.nma.velocity.magnitude);
-            animator.SetBool("ball", unit == unit.Game.Ball.Owner);
+            Speed = unit.nma.velocity.magnitude;
+
+            bool hasBall = (unit == unit.Game.Ball.Owner);
+            HasBall = hasBall;
+            if (!hasBall)
+            {
+                Pass = false;
+            }
         }
     }
 
+    public float Speed
+    {
+        get
+        {
+            return animator.GetFloat("speed");
+        }
+        set
+        {
+            animator.SetFloat("speed", value);
+        }
+    }
+
+    public bool HasBall
+    {
+        get
+        {
+            return animator.GetBool("ball");
+        }
+        set
+        {
+            animator.SetBool("ball", value);
+        }
+    }
+
+    public bool Pass
+    {
+        get
+        {
+            return animator.GetBool("pass");
+        }
+        set
+        {
+            animator.SetBool("pass", value);
+        }
+    }
+
+    public bool Touch
+    {
+        get
+        {
+            return animator.GetBool("touch");
+        }
+        set
+        {
+            animator.SetBool("touch", value);
+        }
+    }
+
+    public bool BallAtRight
+    {
+        get
+        {
+            return animator.GetBool("ballRight");
+        }
+        set
+        {
+            animator.SetBool("ballRight", value);
+        }
+    }
+    
     public void OnTouch()
     {
         if (animator)
         {
-            animator.SetBool("touch", true);
+            Touch = true;
         }
     }
 
@@ -43,7 +109,13 @@ public class UnitAnimator : myMonoBehaviour {
     {
         if (animator)
         {
-            animator.SetBool("touch", false);
+            Touch = false;
         }
+    }
+
+    public void OnPass(bool right)
+    {
+        this.Pass = true;
+        this.BallAtRight = right;
     }
 }
