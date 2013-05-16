@@ -57,6 +57,7 @@ public class TransformationManager : myMonoBehaviour {
 	
 	public GameObject arrow;
 	private GameObject myArrow;
+    private GameObject myArrowPower;
 		
 	public void OnEnable() {
 		angle = 0;
@@ -68,20 +69,28 @@ public class TransformationManager : myMonoBehaviour {
 		
 		myArrow = GameObject.Instantiate(arrow) as GameObject;
 		if(!myArrow)
-			throw new UnityException("Erreur : missing arrow");
+			throw new UnityException("Error : missing arrow");
 		
 		myArrow.transform.parent = ball.Owner.transform;
 		myArrow.transform.localPosition = Vector3.zero;
-		myArrow.transform.localRotation = Quaternion.identity;		
+		myArrow.transform.localRotation = Quaternion.identity;
+
+        Transform jaugePower = myArrow.transform.FindChild("Power");
+        if (!jaugePower)
+            throw new UnityException("Error : missing arrow -> power");
+
+        myArrowPower = jaugePower.gameObject;
 	}
-	
+
+    public GUIStyle timeStyle;
+
 	public void OnGUI() {
-		GUILayout.Space(300);
-		GUILayout.Label ("Transformation");
-		GUILayout.Label ("State : " + state);
-		GUILayout.Label ("Time : " + (infiniteTime ? "Infinite" : remainingTime.ToString()));
-		GUILayout.Label ("Angle : " + angle);
-		GUILayout.Label ("Power : " + power);
+		//GUILayout.Space(300);
+		//GUILayout.Label ("Transformation");
+		//GUILayout.Label ("State : " + state);
+		GUILayout.Label ("Time : " + (infiniteTime ? "Infinite" : remainingTime.ToString()), timeStyle);
+		//GUILayout.Label ("Angle : " + angle);
+		//GUILayout.Label ("Power : " + power);
 	}
 	
 	public void Update() {
@@ -120,6 +129,10 @@ public class TransformationManager : myMonoBehaviour {
 				power = 0;
 				powerSpeed *= -1;
 			}
+
+            Vector3 scale = myArrowPower.transform.localScale;
+            scale.z = power;
+            myArrowPower.transform.localScale = scale;
 			
 			if(!infiniteTime) {
 				remainingTime -= Time.deltaTime;	

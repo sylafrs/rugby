@@ -922,7 +922,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 57705858}
   m_LocalRotation: {x: .707106829, y: .707106829, z: 3.09086197e-08, w: -3.09086197e-08}
-  m_LocalPosition: {x: -28.9531651, y: -.0291736443, z: 50.790802}
+  m_LocalPosition: {x: -28.9531651, y: -.0291736443, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 841198777}
@@ -10297,7 +10297,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 745536239}
   m_LocalRotation: {x: 0, y: 0, z: -.707106829, w: .707106829}
-  m_LocalPosition: {x: -28.9531708, y: -.0291736498, z: -70.5742188}
+  m_LocalPosition: {x: -28.9531708, y: -.0291736498, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2078298285}
@@ -27694,10 +27694,10 @@ MonoBehaviour:
   cam: {fileID: 0}
   scoreTarget: 1000
   playerUp: 15
-  cpuUp: 2
+  cpuUp: .5
   specialLuck: 20
   playerSpecialUp: 80
-  frameStart: 50
+  frameStart: 30
   rightGap: -27
   leftGap: 10
   IAoffset: -.0500000007
@@ -28033,6 +28033,65 @@ MonoBehaviour:
   timeAngle: 3
   timePower: 3
   arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
+  timeStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!114 &2004071857
 MonoBehaviour:
   m_ObjectHideFlags: 0
