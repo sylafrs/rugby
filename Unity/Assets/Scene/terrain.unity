@@ -27623,7 +27623,7 @@ MonoBehaviour:
     points_drop: 3
     points_essai: 5
     points_transfo: 2
-    period_time: 10
+    period_time: 120
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
