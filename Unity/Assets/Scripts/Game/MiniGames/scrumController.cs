@@ -126,7 +126,7 @@ public class scrumController : myMonoBehaviour {
 
             if (used)
             {
-                this.tweakSettings.FeedSuperPerSmash = 0;
+                this.SuperLoading = 0;
                 smash += super * this.tweakSettings.SuperMultiplicator * this.tweakSettings.SmashValue;
             }
         }
@@ -137,6 +137,10 @@ public class scrumController : myMonoBehaviour {
     private void MoveForSmash(float smash)
     {
         currentPosition += smash;
+        if (currentPosition > 1)
+            currentPosition = 1;
+        if (currentPosition < -1)
+            currentPosition = -1;
 
         Vector3 pos = InitialPosition;
         pos.z += currentPosition * this.tweakSettings.MaximumDistance;
