@@ -173,11 +173,9 @@ public class Game : myMonoBehaviour {
         introManager.OnFinish = () => {
             
             this._disableIA = true;
-			state = State.PLAYING;
+			state = State.PLAYING;                  
 
-            Timer.AddTimer(settings.timeToSleepAfterIntro, () => {
-                this._disableIA = false;
-            });
+            this.TimedDisableIA(settings.timeToSleepAfterIntro);
 
             arbiter.OnStart();
         };
@@ -279,5 +277,14 @@ public class Game : myMonoBehaviour {
     public void Reset()
     {
         SceneReloader.Go();
+    }
+
+    public void TimedDisableIA(float time)
+    {
+        this.disableIA = true;
+        Timer.AddTimer(time, () =>
+        {
+            this.disableIA = false;
+        });
     }
 }
