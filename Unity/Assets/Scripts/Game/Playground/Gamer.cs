@@ -90,8 +90,15 @@ public class Gamer : myMonoBehaviour
         if(XboxController == null)
             XboxController = Game.xboxInputs.controllers[id];
 
-        if (Inputs == null) return;
-		if (Game.state != Game.State.PLAYING) return;
+        if (Inputs == null) 
+            return;
+
+        if (UpdateRESET())
+            return;
+
+		if (Game.state != Game.State.PLAYING) 
+            return;
+
 		UpdateStickDirection();	
         UpdateMOVE();
         UpdateTACKLE();
@@ -99,8 +106,7 @@ public class Gamer : myMonoBehaviour
         UpdateDROP();
 		UpdateESSAI();
 		UpdatePLAYER();
-        if(UpdateRESET())
-            return;
+        
     }
 
     bool UpdateRESET()
