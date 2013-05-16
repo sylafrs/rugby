@@ -360,6 +360,43 @@ public class Gamer : myMonoBehaviour
 		}
 		return near;
 	}
+	
+	public List<Unit> GetListUnitNear(Unit target)
+	{
+		float dist;
+		float dMin;
+		List<Unit> l = new List<Unit>();
+		List<Unit> lTeamTemp = new List<Unit>();
+
+		Unit near = target.GetNearestAlly(out dMin, true);
+		
+		l.Add(target);
+		l.Add(near);
+
+		foreach(Unit u in target.Team)
+			lTeamTemp.Add(u);
+		
+		lTeamTemp.Remove(near);
+		lTeamTemp.Remove(target);
+		
+		for (uint nb = 0; nb < lTeamTemp.Count; ++nb)
+		{
+			foreach( Unit u in lTeamTemp)
+			{
+				dist = Vector3.SqrMagnitude(target.transform.position - u.transform.position);
+				//Debug.Log("unit : " + u + " position : " + u.transform.position + " compare : " + dist + " et " + dMin + " resultat : " + Others.nearlyEqual( dist, dMin, 0.00001f));
+				if ( Others.nearlyEqual( dist, dMin, 0.00001f) )
+				{
+					dMin = dist;
+					l.Add(u);
+					lTeamTemp.Remove(u);
+					break;
+				}
+			}
+		}
+		
+		return l;
+	}
 
     void UpdateMOVE()
     {

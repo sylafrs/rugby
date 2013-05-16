@@ -4,6 +4,7 @@ using UnityEditor;
 #endif
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 /**
  * @class Unit
@@ -216,16 +217,20 @@ public class Unit : TriggeringTriggered, Debugable
         return GetNearestAlly(out d);
     }
 
-    public Unit GetNearestAlly(out float dMin)
+    public Unit GetNearestAlly(out float dMin, bool square = false)
     {
         Unit nearestAlly = null;
         dMin = -1;
-
+		float d;
+		
         foreach (Unit u in this.Team)
         {
             if (u != this)
             {
-                float d = Vector3.Distance(this.transform.position, u.transform.position);
+				if (!square)
+                	d = Vector3.Distance(this.transform.position, u.transform.position);
+				else
+					d = Vector3.SqrMagnitude(this.transform.position - u.transform.position);
                 if (nearestAlly == null || d < dMin)
                 {
                     nearestAlly = u;
@@ -306,5 +311,6 @@ public class Unit : TriggeringTriggered, Debugable
 		CurrentButton = str;
 		ButtonVisible = true;
 	}
+
 }
 
