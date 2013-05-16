@@ -12,14 +12,11 @@ public enum SuperList{
 [AddComponentMenu("Scripts/Supers/Controller")]
 public class superController : myMonoBehaviour {
 	
-	//public KeyCode OffensiveSuperButton;
-	//public KeyCode DefensiveSuperButton;
-	
 	public SuperList OffensiveSuper;
 	public SuperList DefensiveSuper;
 	
-	private Game _game;
-	private Team _team;
+	private Game game;
+	private Team team;
 	private SuperList currentSuper;
 	private Color colorSave;
 
@@ -42,18 +39,18 @@ public class superController : myMonoBehaviour {
 	
 	
 	void Start () {
-		_game 	        = GameObject.Find("GameDesign").GetComponent<Game>();
-		_team			= gameObject.GetComponent<Team>();
+		game 	        = GameObject.Find("GameDesign").GetComponent<Game>();
+		team			= gameObject.GetComponent<Team>();
 		currentSuper    = SuperList.superNull;
 		
-		OffensiveSuperTimeAmount = _game.settings.super.OffensiveSuperDurationTime;
-		DefensiveSuperTimeAmount = _game.settings.super.DefensiveSuperDurationTime;
+		OffensiveSuperTimeAmount = game.settings.super.OffensiveSuperDurationTime;
+		DefensiveSuperTimeAmount = game.settings.super.DefensiveSuperDurationTime;
 		
 		SuperTimeLeft = 0f;
 	}
 	
 	void Update () {
-        if (this._game.state == Game.State.INTRODUCTION)
+        if (this.game.state == Game.State.INTRODUCTION)
         {
             return;
         }
@@ -65,45 +62,47 @@ public class superController : myMonoBehaviour {
 	
 	void updateSuperValue(){
 		if( (Random.Range(1,20) == 1) && (currentSuper == SuperList.superNull) ){
-			_team.increaseSuperGauge(5);
+			team.increaseSuperGauge(0);
 		}
 	}
 	
 	void updateSuperInput(){
 		
-		InputTouch superOff = _game.settings.inputs.superOff;
-		InputTouch superDef = _game.settings.inputs.superDef;
+		InputTouch superOff = game.settings.inputs.superOff;
+		//InputTouch superDef = game.settings.inputs.superDef;
 		
-		if(_game.state == Game.State.PLAYING) {
+		if(game.state == Game.State.PLAYING) {
 		
 			//offense
-			if(_team.Player.XboxController != null){
-				if(Input.GetKeyDown(superOff.keyboard) || _team.Player.XboxController.GetButtonDown(superOff.xbox)){
-					if(_team.SuperGaugeValue == _game.settings.super.superGaugeOffensiveLimitBreak){
+			if(team.Player.XboxController != null){
+				if(Input.GetKeyDown(superOff.keyboard) || team.Player.XboxController.GetButtonDown(superOff.xbox)){
+					if(team.SuperGaugeValue == game.settings.super.superGaugeOffensiveLimitBreak){
 						MyDebug.Log("Offensive Super attack !");
 						launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
-						_team.SuperGaugeValue -= _game.settings.super.superGaugeOffensiveLimitBreak;
-                        _game.OnSuper(_team, SuperList.superDash);
+						team.SuperGaugeValue -= game.settings.super.superGaugeOffensiveLimitBreak;
+                        game.OnSuper(team, SuperList.superDash);
 					}else{
 						MyDebug.Log("Need more Power to lauch the offensive super");
-						MyDebug.Log("Current Power : "+_team.SuperGaugeValue);
-						MyDebug.Log("Needed  Power : "+_game.settings.super.superGaugeOffensiveLimitBreak);
+						MyDebug.Log("Current Power : "+team.SuperGaugeValue);
+						MyDebug.Log("Needed  Power : "+game.settings.super.superGaugeOffensiveLimitBreak);
 					}
 				}
 				
 				//defense
-				if(Input.GetKeyDown(superDef.keyboard) || _team.Player.XboxController.GetButtonDown(superDef.xbox)){
-					if(_team.SuperGaugeValue == _game.settings.super.superGaugeDefensiveLimitBreak){
+				/*
+				if(Input.GetKeyDown(superDef.keyboard) || team.Player.XboxController.GetButtonDown(superDef.xbox)){
+					if(team.SuperGaugeValue == game.settings.super.superGaugeDefensiveLimitBreak){
 						MyDebug.Log("Defensive Super attack !");
 							launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
-							_team.SuperGaugeValue -= _game.settings.super.superGaugeDefensiveLimitBreak;
-                            _game.OnSuper(_team, SuperList.superWall);
+							team.SuperGaugeValue -= game.settings.super.superGaugeDefensiveLimitBreak;
+                            game.OnSuper(team, SuperList.superWall);
 					}else{
 						MyDebug.Log("Need more Power to lauch the defensive super");
-						MyDebug.Log("Current Power : "+_team.SuperGaugeValue);
-						MyDebug.Log("Needed  Power : "+_game.settings.super.superGaugeDefensiveLimitBreak);
+						MyDebug.Log("Current Power : "+team.SuperGaugeValue);
+						MyDebug.Log("Needed  Power : "+game.settings.super.superGaugeDefensiveLimitBreak);
 					}
 				}
+				*/
 			}
 		}
 	}
@@ -141,29 +140,29 @@ public class superController : myMonoBehaviour {
 	void endSuper(){
 		MyDebug.Log("Super Over");
 		currentSuper = SuperList.superNull;
-		_team.speedFactor 	= 1f;
-		_team.tackleFactor 	= 1f;
-		_team.ChangePlayersColor(colorSave);
+		team.speedFactor 	= 1f;
+		team.tackleFactor 	= 1f;
+		team.ChangePlayersColor(colorSave);
 		stopDashAttackFeedback();
 		stopTackleAttackFeedback();
 	}
 	
 	void launchSuper(SuperList super, float duration){
-		colorSave = _team.GetPlayerColor();
+		colorSave = team.GetPlayerColor();
 		SuperTimeLeft = duration;
 		currentSuper  = super;
 		switch (super){
 			case SuperList.superDash:{
 				MyDebug.Log("Dash Super attack !");
 				launchDashAttackFeedback();
-				_team.speedFactor = _game.settings.super.superSpeedScale;
+				team.speedFactor = game.settings.super.superSpeedScale;
 				//dash
 			break;
 			}
 			case SuperList.superTackle:{
 				MyDebug.Log("Tackle Super attack !");
 				launchTackleAttackFeedback();
-				_team.tackleFactor = _game.settings.super.superTackleBoxScale;
+				team.tackleFactor = game.settings.super.superTackleBoxScale;
 				//tackle
 			break;
 			}
@@ -178,25 +177,23 @@ public class superController : myMonoBehaviour {
 		}
 	}
 	
-	
-	
 	void launchDashAttackFeedback(){		
-		_team.ChangePlayersColor(superDashColor);
-		_team.PlaySuperParticleSystem(SuperList.superDash, true);
+		team.ChangePlayersColor(superDashColor);
+		team.PlaySuperParticleSystem(SuperList.superDash, true);
 	}
 	
 	void launchTackleAttackFeedback(){
-		_team.ChangePlayersColor(superTackleColor);
-		_team.PlaySuperParticleSystem(SuperList.superTackle, true);
+		team.ChangePlayersColor(superTackleColor);
+		team.PlaySuperParticleSystem(SuperList.superTackle, true);
 	}
 	
 	void stopDashAttackFeedback(){
-		_team.ChangePlayersColor(colorSave);
-		_team.PlaySuperParticleSystem(SuperList.superDash, false);
+		team.ChangePlayersColor(colorSave);
+		team.PlaySuperParticleSystem(SuperList.superDash, false);
 	}
 	
 	void stopTackleAttackFeedback(){
-		_team.ChangePlayersColor(colorSave);
-		_team.PlaySuperParticleSystem(SuperList.superTackle, false);
+		team.ChangePlayersColor(colorSave);
+		team.PlaySuperParticleSystem(SuperList.superTackle, false);
 	}
 }

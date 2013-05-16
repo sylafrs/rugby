@@ -4113,7 +4113,7 @@ MonoBehaviour:
   BallPlaceHolderRight: {fileID: 100002}
   BallPlaceHolderLeft: {fileID: 100006}
   BallPlaceHolderTransformation: {fileID: 100284}
-  BallPlaceHolderDrop: {fileID: 100284}
+  BallPlaceHolderDrop: {fileID: 100282}
   buttonIndicator: {fileID: 11400008}
   selectedIndicators:
   - {fileID: 100022}
@@ -4286,7 +4286,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100018}
   m_Enabled: 1
   m_Radius: 15.1999998
-  m_Speed: 8.5
+  m_Speed: 13
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 5000

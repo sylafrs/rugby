@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 /**
@@ -30,6 +31,10 @@ public class TransformationManager : myMonoBehaviour {
 	public bool infiniteTime = true;
 	public float timeAngle = 0;
 	public float timePower = 0;
+	
+	private Vector3 pos;
+	private Vector3 dir;
+	private float timeInAir = 0f;
 	
 	private float remainingTime = 0;
 	
@@ -101,7 +106,7 @@ public class TransformationManager : myMonoBehaviour {
 				state = State.POWER;	
 			}
 			
-			ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
+			ball.Owner.transform.FindChild("Fleche(Clone)").rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
 		}
 		
 		if(state == State.POWER) {
@@ -132,7 +137,12 @@ public class TransformationManager : myMonoBehaviour {
                 transformed = Result.GROUND;
 				Finish ();	
 			}
-		}		
+			else
+			{
+				timeInAir += Time.deltaTime;
+				doTransfo( timeInAir );
+			}
+		}
 	}
 	
 	public void OnLimit() {
@@ -145,7 +155,9 @@ public class TransformationManager : myMonoBehaviour {
 		Finish ();
 	}
 	
-	public void Launch() {
+	public Action OnLaunch;
+	
+	private void Launch() {
 		
 		state = State.WAITING;
         transformed = Result.NONE;
@@ -153,11 +165,12 @@ public class TransformationManager : myMonoBehaviour {
 		GameObject.Destroy(myArrow);
 					
 		ball.transform.parent = null;
-        ball.rigidbody.useGravity = true;
+        ball.rigidbody.useGravity = false;
 		ball.rigidbody.isKinematic = false;
         
 		ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
-			
+		
+		/*
 		Vector3 force = ball.Owner.transform.forward * power * maxPower.x + 
 						ball.Owner.transform.right * power * maxPower.z +
 						ball.Owner.transform.up * power * maxPower.y;
@@ -168,14 +181,29 @@ public class TransformationManager : myMonoBehaviour {
 		bPos.z = ball.Owner.transform.position.z + (ball.Owner.Team == ball.Game.right ? 2 : -2);
 		ball.transform.position = bPos;
 		//stop fix
+		*/
 		
-		ball.rigidbody.AddForce(force);
+		pos = ball.Owner.BallPlaceHolderTransformation.transform.position;
+		dir = ball.Owner.transform.forward;
+		
+		Debug.Log("transformation : " + dir);
+		//ball.rigidbody.AddForce(force);
+
+		if(OnLaunch != null) OnLaunch();
 				
 		ball.Owner = null;
 	}
 	
+	private void doTransfo(float t)
+	{
+		ball.transform.position = new Vector3( dir.x * maxPower.x * t + pos.x,
+												-0.5f * 9.81f * t * t + maxPower.y * Mathf.Sin(Mathf.Deg2Rad * power * 80f) * t + pos.y,
+												dir.z * maxPower.z * t + pos.z);
+	}
+	
 	public void Finish() {
 		state = State.FINISHED;
+		timeInAir = 0f;
 		this.enabled = false;
 		if(CallBack != null) CallBack(transformed);
 	}

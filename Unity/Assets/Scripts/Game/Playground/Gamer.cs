@@ -132,24 +132,25 @@ public class Gamer : myMonoBehaviour
     {
         if (Game.Ball.Owner == Controlled && Game.Ball.inZone == null)  
         {
+
+            int side = 0;
+
+            if (stickDirection.x > 0.1f)
+            {
+                side = 1;
+            }
+            else if (stickDirection.x < 0.1f)
+            {
+                side = -1;
+            }
+
+            if (Game.cameraManager.TeamLooked == Game.left)
+            {
+                side *= -1;
+            }
+
 			if (Input.GetKeyDown(Inputs.shortPass.keyboard) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
-                int side = 0;
-
-                if (stickDirection.x > 0.1f)
-				{
-                    side = 1;
-                }
-                else if (stickDirection.x < 0.1f)
-                {
-                    side = -1;
-                }
-
-                if (Game.cameraManager.TeamLooked == Game.left)
-                {
-                    side *= -1;
-                }
-
 				if (side > 0)
 				{
 					if (Controlled.Team.GetRight(Controlled).Count > 0)
@@ -179,7 +180,7 @@ public class Gamer : myMonoBehaviour
             }
 			else if (Input.GetKeyDown(Inputs.longPass.keyboard) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
-				if (stickDirection.x > 0.1f)
+				if (side > 0)
 				{
                     List<Unit> rightAllies = Controlled.Team.GetRight(Controlled);
                     if (rightAllies.Count > 1)
@@ -194,7 +195,7 @@ public class Gamer : myMonoBehaviour
 
 
 				}
-				else if (stickDirection.x < 0.1f)
+				else if (side < 0)
 				{
                     List<Unit> leftAllies = Controlled.Team.GetLeft(Controlled);
                     if (leftAllies.Count > 1)

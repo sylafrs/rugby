@@ -47,7 +47,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public 	Vector3		MaxfollowOffset;
 	public 	Vector3		MinfollowOffset;
 	
-	
 	//flipping when team change
 	Vector3 		flipAxis;
 	float 			flipAngle;
@@ -62,9 +61,9 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
-	private Team	flipedForTeam;
-    public Team TeamLooked { get { return flipedForTeam; } }
-
+	public  Team	flipedForTeam;
+    public  Team 	TeamLooked { get { return flipedForTeam; } }
+	
 	public bool 	CancelNextFlip;
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
@@ -231,8 +230,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			if(flipedForTeam != _t){
 				flipedForTeam = _t;
 				flip();
-			}else{
-				CancelNextFlip = false;
 			}
 		}else{
 			if(CancelNextFlip){
@@ -248,6 +245,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}
+				flipedForTeam = _t;
+				CancelNextFlip = false;
 			}
 		}
 	}
@@ -321,6 +320,19 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		});
 	}
 	
+	public void transalateWithFade(Vector3 destination, Quaternion _rotation, float delay,float fadeiInDuration, float fadeOutDuration,
+		float blackScreenDuration, Action Onfinish, Action OnFade){
+		
+		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
+			OnFade();
+			Camera.mainCamera.transform.Translate(destination); 
+			Camera.mainCamera.transform.rotation = _rotation;
+			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
+				Onfinish();
+			});
+		});
+	}
+	
 	public void transalateToWithFade(Vector3 destination, Quaternion _rotation,float delay,float fadeiInDuration, float fadeOutDuration,
 		float blackScreenDuration, Action Onfinish){
 		
@@ -339,9 +351,9 @@ public class CameraManager : myMonoBehaviour, Debugable {
 
         CameraFade.StartAlphaFade(Color.black, false, fadeiInDuration, delay, () =>
         {
-            OnFade();
             Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World);
             Camera.mainCamera.transform.rotation = _rotation;
+			OnFade();
             CameraFade.StartAlphaFade(Color.black, true, fadeOutDuration, blackScreenDuration, () =>
             {
                 Onfinish();

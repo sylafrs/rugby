@@ -35,6 +35,7 @@ public class SuperSettings
 	public float superTackleBoxScale        = 1.5f;
 	public bool  superUnblockable           = true;
 	//passe
+	public int passInterceptSuperPoints = 20;
     public int passWinSuperPoints  		= 10;
 	public int passLooseSuperPoints  	= 5;
 	//drop
@@ -46,9 +47,11 @@ public class SuperSettings
 	//conversion = transformation
 	public int conversionWinSuperPoints    = 10;
 	public int conversionLooseSuperPoints  = 5;
+	public int conversionOpponentSuperPoints  = 10;
 	//touche = touch
-	public int touchWinSuperPoints  	= 20;
-	public int touchLooseSuperPoints  	= 10;
+	public int touchWinSuperPoints  	 = 20;
+	public int touchInterceptSuperPoints = 20;
+	public int touchLooseSuperPoints  	 = 5;
 	//tackle = plaquage
 	public int tackleWinSuperPoints    = 20;
 	public int tackleLooseSuperPoints  = 5;
@@ -66,7 +69,7 @@ public class SuperSettings
 [System.Serializable]
 public class InputSettings
 {    
-    public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, superDef, changePlayer;
+    public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, /*superDef,*/ changePlayer;
     public InputDirection move;
 }
 
