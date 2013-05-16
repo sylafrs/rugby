@@ -377,8 +377,18 @@ public class Arbiter : myMonoBehaviour {
         }
        
         // On donne les points
-        MyDebug.Log(but.Owner + " 's but has been reached : + " + this.Game.settings.score.points_drop + " for " + but.Owner.opponent);
-        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;  
+        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
+
+        this.Game.disableIA = true;
+        
+        // A faire en caméra :
+        this.StartPlacement();
+        this.Game.Ball.Owner = but.Owner[0];
+        
+        Timer.AddTimer(3, () =>
+        {
+            this.Game.disableIA = false;
+        });
     }
 	
 	private void GiveBall(Unit _u){
