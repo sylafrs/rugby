@@ -2,12 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class CircleSystem : MonoBehaviour {
-	
-	public Team left;
-	public Team right;
+
+    public Game game;
 	public float raySquare;
 	public float YToDecide = 3f;
-	public Ball ball;
 	
 	public bool winnerDrop;
 	
@@ -23,13 +21,13 @@ public class CircleSystem : MonoBehaviour {
 		if (winnerDrop)
 			return;
 		
-		if (ball.transform.position.y < YToDecide && !winnerDrop)
+		if (game.Ball.transform.position.y < YToDecide && !winnerDrop)
 		{
-			ball.Owner = GetFirstUnit();
+            game.Ball.Owner = GetFirstUnit();
 		}
 		else{
-			unitIn(left);
-			unitIn(right);
+			unitIn(game.left);
+            unitIn(game.right);
 		}
 	}
 	
