@@ -28027,17 +28027,18 @@ MonoBehaviour:
     xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
-  maxPower: {x: 20, y: 20, z: 20}
+  minPower: 5
+  maxPower: 20
   maxAngle: 70
-  infiniteTime: 1
+  infiniteTime: 0
   timeAngle: 3
   timePower: 3
   arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
   timeStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -28080,7 +28081,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 0}
-    m_FontSize: 0
+    m_FontSize: 30
     m_FontStyle: 0
     m_Alignment: 0
     m_WordWrap: 0
@@ -28092,6 +28093,12 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  timeRect:
+    serializedVersion: 2
+    x: 40
+    y: 20
+    width: 20
+    height: 6
 --- !u!114 &2004071857
 MonoBehaviour:
   m_ObjectHideFlags: 0
