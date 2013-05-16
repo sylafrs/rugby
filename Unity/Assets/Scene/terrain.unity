@@ -28030,7 +28030,7 @@ MonoBehaviour:
   minPower: 5
   maxPower: 20
   maxAngle: 70
-  infiniteTime: 0
+  infiniteTime: 1
   timeAngle: 3
   timePower: 3
   arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
