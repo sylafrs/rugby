@@ -121,6 +121,8 @@ public class Arbiter : myMonoBehaviour {
         Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0);
 
+        touchTeam.OnTouch();
+        interceptTeam.OnTouch();
        
         Game.Ball.Owner = touchTeam[0];
         Game.cameraManager.setTarget(null);
@@ -171,6 +173,9 @@ public class Arbiter : myMonoBehaviour {
 						
 		// Fonction à appeller à la fin de la touche
 		tm.CallBack = delegate(TouchManager.Result result, int id) {
+
+            touchTeam.OnTouchAction();
+            interceptTeam.OnTouchAction();
 								
 			// Charger le super à la touche
 			

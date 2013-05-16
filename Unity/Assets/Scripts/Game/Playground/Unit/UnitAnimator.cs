@@ -27,6 +27,23 @@ public class UnitAnimator : myMonoBehaviour {
         if (animator)
         {
             animator.SetFloat("speed", unit.nma.velocity.magnitude);
+            animator.SetBool("ball", unit == unit.Game.Ball.Owner);
+        }
+    }
+
+    public void OnTouch()
+    {
+        if (animator)
+        {
+            animator.SetBool("touch", true);
+        }
+    }
+
+    public void OnTouchAction()
+    {
+        if (animator)
+        {
+            animator.SetBool("touch", false);
         }
     }
 }

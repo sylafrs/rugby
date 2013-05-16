@@ -478,6 +478,26 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 	}
 
+    public void OnTouch()
+    {
+        foreach (Unit u in units)
+        {
+            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            if (a != null)
+                a.OnTouch();
+        }
+    }
+
+    public void OnTouchAction()
+    {
+        foreach (Unit u in units)
+        {
+            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            if (a != null)
+                a.OnTouchAction();
+        }
+    }
+
 	public class TeamUnitEnumerator : IEnumerator {
 		Team t;
 		int current;
