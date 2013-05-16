@@ -379,16 +379,11 @@ public class Arbiter : myMonoBehaviour {
         // On donne les points
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
-        this.Game.disableIA = true;
-        
-        // A faire en caméra :
+                // A faire en caméra :
         this.StartPlacement();
         this.Game.Ball.Owner = but.Owner[0];
-        
-        Timer.AddTimer(3, () =>
-        {
-            this.Game.disableIA = false;
-        });
+
+        this.Game.TimedDisableIA(3);
     }
 	
 	private void GiveBall(Unit _u){
@@ -413,6 +408,7 @@ public class Arbiter : myMonoBehaviour {
 		// Remise au centre, donne la balle aux perdants.
 		UnitToGiveBallTo = NewOwner;
         this.StartPlacement();
+        this.Game.TimedDisableIA(3);
     }
 
     public void StartPlacement()
