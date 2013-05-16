@@ -357,11 +357,14 @@ public class Arbiter : myMonoBehaviour {
                 //this.StartPlacement();
 			}			
             
-            Game.state = Game.State.PLAYING;
-			t.fixUnits = t.opponent.fixUnits = false;	
-			if(t.Player) t.Player.enableMove();
-			if(t.opponent.Player) t.opponent.Player.enableMove();
-		};
+            Game.state = Game.State.PLAYING;           
+
+            Timer.AddTimer(3, () => {
+                if (t.Player) t.Player.enableMove();
+                if (t.opponent.Player) t.opponent.Player.enableMove();
+	            t.fixUnits = t.opponent.fixUnits = false;				    
+            });
+        };
 		PlaceTransfoPlaceholders();
 		Game.state = Game.State.TRANSFORMATION;
 	}

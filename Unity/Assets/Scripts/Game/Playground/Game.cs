@@ -174,13 +174,11 @@ public class Game : myMonoBehaviour {
             
             this._disableIA = true;
 			state = State.PLAYING;
-			
-            Thread t = new Thread(() => {
-                Thread.Sleep((int)(settings.timeToSleepAfterIntro * 1000));
+
+            Timer.AddTimer(settings.timeToSleepAfterIntro, () => {
                 this._disableIA = false;
             });
 
-            t.Start();
             arbiter.OnStart();
         };
 

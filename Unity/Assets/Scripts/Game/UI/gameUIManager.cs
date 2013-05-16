@@ -198,7 +198,7 @@ public class gameUIManager : myMonoBehaviour {
 			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
 			
 			//time
-			GUI.Label(timeBox,  "Time : "+(int)_game.arbiter.IngameTime, gameTimeTextStyle);
+            GUI.Label(timeBox, "Time : " + ((int)_game.settings.score.period_time - (int)_game.arbiter.IngameTime), gameTimeTextStyle);
 			
 			
 			//Gui du scrum
