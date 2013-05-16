@@ -259,6 +259,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
+		this.game.p1.stopMove();
+		this.game.p2.stopMove();
     }
 	
 	void flipUpdate () 
@@ -298,6 +300,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
 		this.ActionOnFlipFinish();
+		this.game.p1.enableMove();
+		this.game.p2.enableMove();
 	}
 	
 	/*

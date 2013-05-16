@@ -194,27 +194,6 @@ public class Game : myMonoBehaviour {
         }
     }
 	
-	/*
-	 * @ author Maxens Dubois
-	 */
-	public void unlockCamera(){
-		this.cameraLocked = false;
-	}
-	
-	/*
-	 * @ author Maxens Dubois
-	 */
-	public bool getCameraLocked(){
-		return this.cameraLocked;
-	}
-	
-	/*
-	 * @ author Maxens Dubois
-	 */
-	public void lockCamera(){
-		this.cameraLocked = true;
-	}
-
     public void OnScrum()
     {
         arbiter.OnScrum();
