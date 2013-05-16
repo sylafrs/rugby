@@ -115,159 +115,183 @@ public class gameUIManager : myMonoBehaviour {
 
 		return new Rect(x * W, y * H, w * W, h * H);	
 	}
-	
+
+    public static Rect screenRelativeRect(Rect r)
+    {
+        return screenRelativeRect(r.x, r.y, r.width, r.height);
+    }
+    	
 	void OnGUI()
     {
         if (this._game.state == Game.State.INTRODUCTION)
         {
             return;
         }
+			
+		if(_game.state != Game.State.END)
+        {
+            // Gui Global
+            GUIPlaying();
+						
+			//Gui du scrum
+			if(_scrumController.enabled){
+                GUIScrum();
+			}			
+		}
+        else
+        {
+            GUIGameOver();
+		}
+	}
 
-		int offset = 200;
-		
-		//time box
-		Rect timeBox = screenRelativeRect(timeBoxXPercentage- timeBoxWidthPercentage/2, 
-			timeBoxYPercentage - timeBoxHeightPercentage/2, 
-			timeBoxWidthPercentage, timeBoxHeightPercentage);
-		
-		//score box
-		Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage/2,
-			scoreBoxYPercentage - scoreBoxHeightPercentage/2, 
-			scoreBoxWidthPercentage, scoreBoxHeightPercentage);
-		
-		//super gauges
-		Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
-			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
-			blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+    void GUIPlaying()
+    {
+        //time box
+        Rect timeBox = screenRelativeRect(timeBoxXPercentage - timeBoxWidthPercentage / 2,
+            timeBoxYPercentage - timeBoxHeightPercentage / 2,
+            timeBoxWidthPercentage, timeBoxHeightPercentage);
 
-		Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
-			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
-			blueGaugeBoxWidthPercentage * blueProgress,
-			blueGaugeBoxHeightPercentage);
+        //score box
+        Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage / 2,
+            scoreBoxYPercentage - scoreBoxHeightPercentage / 2,
+            scoreBoxWidthPercentage, scoreBoxHeightPercentage);
+
+        //super gauges
+        Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage / 2,
+            blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage / 2,
+            blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+
+        Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage / 2,
+            blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage / 2,
+            blueGaugeBoxWidthPercentage * blueProgress,
+            blueGaugeBoxHeightPercentage);
 
         Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
             redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
             redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
 
-		Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
-			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
-			redGaugeBoxWidthPercentage * redProgress, 
-			redGaugeBoxHeightPercentage);
-		
-		//scrum bars
-		Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+        Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
+            redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
+            redGaugeBoxWidthPercentage * redProgress,
+            redGaugeBoxHeightPercentage);
 
-		Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-			scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-			scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
-		
-		//scrum special
-		Rect scrumSpecialBox = screenRelativeRect(scrumSpecialBoxXPercentage - scrumSpecialBoxWidthPercentage/2,
-			scrumSpecialBoxYPercentage - scrumSpecialBoxHeightPercentage/2, 
-			scrumSpecialBoxWidthPercentage, scrumSpecialBoxHeightPercentage);
-		
-		//Time before Scrum
-		Rect scrumTimeBox = screenRelativeRect(scrumTimeBoxXPercentage - scrumTimeBoxWidthPercentage/2,
-			scrumTimeBoxYPercentage - scrumTimeBoxHeightPercentage/2, 
-			scrumTimeBoxWidthPercentage, scrumTimeBoxHeightPercentage);
-		
-		//player on left Box
-		//float playerLeftBoxWidth  = 25;
-		//float playerLeftBoxHeight = 10;	
-		//Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
-		
-		if(_game.state != Game.State.END)
+        //superbars
+        //blue 
+        GUI.DrawTexture(blueGaugeBox, emptyBar);
+        GUI.DrawTexture(blueProgressGaugeBox, blueBar);
+        if (blueProgress == 1f) GUI.Label(blueGaugeBox, "SUPER READY !", superOkTextStyle);
+
+
+        //red
+        GUI.DrawTexture(redGaugeBox, emptyBar);
+        GUI.DrawTexture(redprogressGaugeBox, redBar);
+        if (redProgress == 1f) GUI.Label(redGaugeBox, "SUPER READY !", superOkTextStyle);
+
+
+        //score
+        GUI.Label(scoreBox, _game.right.nbPoints + "  -  " + _game.left.nbPoints, gameScoreTextStyle);
+
+        //time
+        GUI.Label(timeBox, "Time : " + ((int)_game.settings.score.period_time - (int)_game.arbiter.IngameTime), gameTimeTextStyle);
+			
+    }
+
+    void GUIScrum()
+    {
+        //scrum bars
+        Rect scrumBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage / 2,
+            scrumBarBoxYPercentage - scrumBarBoxHeightPercentage / 2,
+            scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+
+        Rect scrumRedBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage / 2,
+            scrumBarBoxYPercentage - scrumBarBoxHeightPercentage / 2,
+            scrumBarBoxWidthPercentage, scrumBarBoxHeightPercentage);
+
+        //scrum special
+        Rect scrumSpecialBox = screenRelativeRect(scrumSpecialBoxXPercentage - scrumSpecialBoxWidthPercentage / 2,
+            scrumSpecialBoxYPercentage - scrumSpecialBoxHeightPercentage / 2,
+            scrumSpecialBoxWidthPercentage, scrumSpecialBoxHeightPercentage);
+
+        //Time before Scrum
+        Rect scrumTimeBox = screenRelativeRect(scrumTimeBoxXPercentage - scrumTimeBoxWidthPercentage / 2,
+            scrumTimeBoxYPercentage - scrumTimeBoxHeightPercentage / 2,
+            scrumTimeBoxWidthPercentage, scrumTimeBoxHeightPercentage);
+
+
+        float playerScore = (float)_scrumController.GetPlayerScore();
+        float cpuScore = (float)_scrumController.GetCpuScore();
+        int frameToGo = _scrumController.GetFrameToGo();
+        bool hasSpecial = _scrumController.HasPlayerSpecial();
+
+        //chrono
+        string toGo;
+        if (frameToGo > 0)
         {
-			
-			//superbars
-			//blue 
-			GUI.DrawTexture(blueGaugeBox, emptyBar);
-			GUI.DrawTexture(blueProgressGaugeBox, blueBar);
-			if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",superOkTextStyle);
-			
-			
-			//red
-			GUI.DrawTexture(redGaugeBox, emptyBar);
-			GUI.DrawTexture(redprogressGaugeBox, redBar);
-			if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",superOkTextStyle);
-			
-			
-			//score
-			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
-			
-			//time
-            GUI.Label(timeBox, "Time : " + ((int)_game.settings.score.period_time - (int)_game.arbiter.IngameTime), gameTimeTextStyle);
-			
-			
-			//Gui du scrum
-			if(_scrumController.enabled){
-				float playerScore = (float)_scrumController.GetPlayerScore();
-				float cpuScore 	  = (float)_scrumController.GetCpuScore();
-				int frameToGo	  = _scrumController.GetFrameToGo();
-				bool hasSpecial   = _scrumController.HasPlayerSpecial();
-			
-				
-				//chrono
-				string toGo;
-				if(frameToGo > 0){
-					toGo = frameToGo+" to go ...";
-				}else{
-					toGo = "--- GO ("+ (int)_scrumController.timeRemaining +") ---";
-				}
-				GUI.Label(scrumTimeBox,toGo,timeBeforeScrumStyle);
-				
-				//bar
-				float quotient = playerScore/cpuScore;
-				if(quotient < quotientMin) quotient = quotientMin;
-				if(quotient > quotientMax) quotient = quotientMax;
-				float blueScrumProgress = quotient - quotientMin; 
-				
-				Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage/2,
-					scrumBarBoxYPercentage - scrumBarBoxHeightPercentage/2, 
-					scrumBarBoxWidthPercentage*blueScrumProgress, 
-					scrumBarBoxHeightPercentage);
-
-				GUI.DrawTexture(scrumBarBox, emptyBar);
-				GUI.DrawTexture(scrumRedBarBox, redBar);
-				GUI.DrawTexture(scrumBlueBarBox,blueBar);
-				
-				//special
-				if(hasSpecial)GUI.DrawTexture(scrumSpecialBox, LBButton,ScaleMode.ScaleToFit);
-				
-				//debug
-				
-				GUI.Label(new Rect(0, 0, 150, 150),  "Player score : "+playerScore);
-				GUI.Label(new Rect(0, 50, 150, 150),  "Player Special : "+hasSpecial);
-				GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : "+cpuScore);
-				GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : "+frameToGo);
-				
-			}
-			
-			
-		}
+            toGo = frameToGo + " to go ...";
+        }
         else
         {
-			string result = "";
-            if (_game.right.nbPoints < _game.left.nbPoints)
-            {
-				result = "You loose ...";
-            }
-            else if (_game.left.nbPoints < _game.right.nbPoints)
-            {
-				result = "You win !";
-			}
-            else
-            {
-				result = "Draw !";
-			}
-			result += " Press the button to restart !";
-			GUIStyle style = new GUIStyle();
-			style.fontSize = 30;
-			GUI.Label(new Rect(200+offset, 0+offset, 150+offset, 150), result, style);
-            if (GUI.Button(new Rect(200 + offset, 50 + offset, 250 + offset, 100), "restart"))
-                _game.Reset();
-		}
-	}
+            toGo = "--- GO (" + (int)_scrumController.timeRemaining + ") ---";
+        }
+        GUI.Label(scrumTimeBox, toGo, timeBeforeScrumStyle);
+
+        //bar
+        float quotient = playerScore / cpuScore;
+        if (quotient < quotientMin) quotient = quotientMin;
+        if (quotient > quotientMax) quotient = quotientMax;
+        float blueScrumProgress = quotient - quotientMin;
+
+        Rect scrumBlueBarBox = screenRelativeRect(scrumBarBoxXPercentage - scrumBarBoxWidthPercentage / 2,
+            scrumBarBoxYPercentage - scrumBarBoxHeightPercentage / 2,
+            scrumBarBoxWidthPercentage * blueScrumProgress,
+            scrumBarBoxHeightPercentage);
+
+        GUI.DrawTexture(scrumBarBox, emptyBar);
+        GUI.DrawTexture(scrumRedBarBox, redBar);
+        GUI.DrawTexture(scrumBlueBarBox, blueBar);
+
+        //special
+        if (hasSpecial) GUI.DrawTexture(scrumSpecialBox, LBButton, ScaleMode.ScaleToFit);
+
+        //debug
+
+        GUI.Label(new Rect(0, 0, 150, 150), "Player score : " + playerScore);
+        GUI.Label(new Rect(0, 50, 150, 150), "Player Special : " + hasSpecial);
+        GUI.Label(new Rect(0, 100, 150, 150), "CPU score    : " + cpuScore);
+        GUI.Label(new Rect(0, 150, 150, 150), "Frame top go    : " + frameToGo);
+    }
+
+    public Rect ResultRect, ResultButtonRect, ResultScoreRect;
+    public GUIStyle ResultStyle, ResultScoreStyle;
+    public int btnFontSize;
+
+    void GUIGameOver()
+    {
+        Rect resultRect = screenRelativeRect(ResultRect);
+        Rect resultButtonRect = screenRelativeRect(ResultButtonRect);
+        Rect resultScoreRect = screenRelativeRect(ResultScoreRect);
+
+        string result = "";
+        if (_game.right.nbPoints < _game.left.nbPoints)
+        {
+            result = "Player 1 win !";
+        }
+        else if (_game.left.nbPoints < _game.right.nbPoints)
+        {
+            result = "Player 2 win !";
+        }
+        else
+        {
+            result = "Draw !";
+        }
+
+        GUI.Label(resultRect, result, ResultStyle);
+        GUI.Label(resultScoreRect, _game.right.nbPoints + "  -  " + _game.left.nbPoints, ResultScoreStyle);
+
+        GUIStyle btnStyle = GUI.skin.button;
+        btnStyle.fontSize = btnFontSize;
+
+        if (GUI.Button(resultButtonRect, "restart", btnStyle))
+            _game.Reset();
+    }
 }

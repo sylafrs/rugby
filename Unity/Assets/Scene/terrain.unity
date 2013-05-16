@@ -27623,7 +27623,7 @@ MonoBehaviour:
     points_drop: 3
     points_essai: 5
     points_transfo: 2
-    period_time: 120
+    period_time: 10
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
@@ -27847,7 +27847,7 @@ MonoBehaviour:
   gameTimeTextStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -27906,7 +27906,7 @@ MonoBehaviour:
   gameScoreTextStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
       m_TextColor: {r: .230142996, g: .671641827, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -27965,7 +27965,7 @@ MonoBehaviour:
   timeBeforeScrumStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -28050,6 +28050,143 @@ MonoBehaviour:
   scrumTimeBoxHeightPercentage: 7
   scrumTimeBoxXPercentage: 50
   scrumTimeBoxYPercentage: 40
+  ResultRect:
+    serializedVersion: 2
+    x: 35
+    y: 20
+    width: 8
+    height: 20
+  ResultButtonRect:
+    serializedVersion: 2
+    x: 42.5
+    y: 80
+    width: 15
+    height: 10
+  ResultScoreRect:
+    serializedVersion: 2
+    x: 40
+    y: 36
+    width: 10
+    height: 15
+  ResultStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 70
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  ResultScoreStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  btnFontSize: 20
 --- !u!114 &2004071855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28060,6 +28197,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
+  infiniteTime: 0
   touche:
   - keyboard: 97
     xbox: 0
