@@ -125,7 +125,7 @@ public class Game : myMonoBehaviour {
 	public KeyCode disableIAKey;
 	public bool tweakMode;
    	
-    private bool cameraLocked;
+  //  private bool cameraLocked;
     
 	public Arbiter arbiter;
 	
@@ -168,7 +168,7 @@ public class Game : myMonoBehaviour {
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.Controlled;        
       
-		this.cameraLocked = true;
+		//this.cameraLocked = true;
 				       
         introManager.OnFinish = () => {
             

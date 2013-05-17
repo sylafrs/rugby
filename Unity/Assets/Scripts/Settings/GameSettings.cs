@@ -70,7 +70,7 @@ public class SuperSettings
 public class InputSettings
 {    
     public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, /*superDef,*/ changePlayer;
-    public InputDirection move;
+    public InputDirection move, dodge;
 }
 
 /**
