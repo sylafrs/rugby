@@ -15,12 +15,6 @@ public class FollowPlayerState : CameraState {
         cam.setTarget(this.target.transform);
     }
 
-    public override bool OnDrop()
-    {
-        sm.state_change_me(this, new DropState(sm, cam));
-        return true;
-    }
-
     public override bool OnDodge(Unit u)
     {
         if (u == this.target)

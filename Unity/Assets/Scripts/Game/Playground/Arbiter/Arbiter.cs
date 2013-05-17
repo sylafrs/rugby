@@ -415,7 +415,7 @@ public class Arbiter : myMonoBehaviour {
     {	
         Game.right.placeUnits(Game.right.StartPlacement);
         Game.left.placeUnits(Game.left.StartPlacement);
-		Debug.Log("Unit to give : "+UnitToGiveBallTo);
+		//Debug.Log("Unit to give : "+UnitToGiveBallTo);
 		GiveBall(UnitToGiveBallTo);
     }
 

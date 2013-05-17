@@ -28060,6 +28060,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
+  infiniteTime: 0
   touche:
   - keyboard: 97
     xbox: 0

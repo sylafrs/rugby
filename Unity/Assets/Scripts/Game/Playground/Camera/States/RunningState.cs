@@ -2,19 +2,18 @@ using UnityEngine;
 using System.Threading;
 
 /**
-  * @class NewOwnerState
+  * @class RunningState
   * @brief Etat de la caméra durant une touche
   * @author Maxens Dubois
   * @see CameraState
   */
-public class NewOwnerState : CameraState
+public class RunningState : CameraState
 {
 	private Unit firstOwner;
 	
-    public NewOwnerState(StateMachine sm, CameraManager cam, Unit current) : base(sm, cam) { 
+    public RunningState(StateMachine sm, CameraManager cam, Unit current) : base(sm, cam) { 
 		firstOwner = current;
 	}
-	
 	
 	public override void OnEnter ()
 	{
@@ -65,6 +64,13 @@ public class NewOwnerState : CameraState
 	public override bool OnPass(Unit from, Unit to)
     {
         sm.state_change_son(this, new PassCameraState(sm, cam));
+        return true;
+    }
+	
+	public override bool OnDrop()
+    {
+		Debug.Log("Drop Cam");
+        sm.state_change_me(this, new DropState(sm, cam));
         return true;
     }
 }

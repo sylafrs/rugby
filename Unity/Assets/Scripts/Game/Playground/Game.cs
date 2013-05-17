@@ -49,6 +49,7 @@ public class Game : myMonoBehaviour {
         INTRODUCTION,
 		PAUSED,
 		PLAYING,
+		DROPING,
 		TOUCH,
 		SCRUM,
 		TRANSFORMATION,
@@ -88,22 +89,12 @@ public class Game : myMonoBehaviour {
         if (t == left) return right;
         return null;
     }
-    
-	//a state for the camera
-	enum gameState{
-		NORMAL,
-		SCRUMING,
-		THROW_IN,
-		PASSING
-	}
-	
 	
     public Gamer p1 {get; private set;}
 	public Gamer p2 {get; private set;}
 
     public Ball Ball;
-    
-	private gameState _gameState;
+  
     private Team Owner;
 	
     private bool _disableIA = false;
@@ -199,6 +190,8 @@ public class Game : myMonoBehaviour {
     
     public void OnDrop()
     {
+		Debug.Log("Drop");
+		//this.state = State.DROPING;
         cameraManager.sm.event_Drop();
     }
 	

@@ -15,7 +15,7 @@ public class PlayingState : CameraState
 
     public override void OnEnter()
     {
-       decide(cam.game.state);
+       //decide(cam.game.state);
     }
 
     public override void OnLeave()
@@ -23,6 +23,7 @@ public class PlayingState : CameraState
         // cam.setTarget(null);
     }
 	
+	/*
 	public override bool OnGameStateChanged(Game.State old, Game.State current)
     {
         if (old == current)
@@ -32,9 +33,18 @@ public class PlayingState : CameraState
 
         return this.decide(current);
     }
+    */
 	
+	//Touch
+	//scrum
+	//transfo
+	//running
+	//waiting 
+	
+	/*
     private bool decide(Game.State current)
     {
+		
         Unit ballOwner = cam.game.Ball.Owner;
 		
 		//playin means followin
@@ -63,10 +73,9 @@ public class PlayingState : CameraState
         }
 
         return false;
-    }
-
-    
-
+       
+    }*/
+   
     public override bool OnSuper(Team t, SuperList super)
     {
         // Fin du super
