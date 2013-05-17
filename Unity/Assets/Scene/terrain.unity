@@ -6121,7 +6121,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: B
+  DebugWindowFilter: R
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -28060,6 +28060,11 @@ MonoBehaviour:
   teamTweak:
   - {fileID: 293398129}
   - {fileID: 2078013331}
+  DistanceMinBetweenFormation: 10
+  DistanceMaxBetweenFormation: 20
+  brainlagIATimePrioritary: .5
+  brainlagIATimeSecondary: 1
+  timeToManage: 0
 --- !u!1 &2005516407
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,9 @@ public struct Order  {
 	{
 		EXTRA_LEFT,
 		LEFT,
+		MIDDLE_LEFT,
 		MIDDLE,
+		MIDDLE_RIGHT,
 		RIGHT,
 		EXTRA_RIGHT
 	}

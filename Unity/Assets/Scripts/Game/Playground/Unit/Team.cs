@@ -324,7 +324,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
 		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
-		float section = largeurTerrain / 5f;
+		float section = largeurTerrain / 7f;
 
 		if (owner.transform.position.x < Game.limiteTerrainSudOuest.transform.position.x + section)
 			return Order.TYPE_POSITION.EXTRA_LEFT;
@@ -334,6 +334,10 @@ public class Team : myMonoBehaviour, IEnumerable {
 			return Order.TYPE_POSITION.EXTRA_RIGHT;
 		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 2*section)
 			return Order.TYPE_POSITION.RIGHT;
+		else if (owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2 * section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
+			return Order.TYPE_POSITION.MIDDLE_LEFT;
+		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - 2 * section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 3*section)
+			return Order.TYPE_POSITION.MIDDLE_RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}
 
