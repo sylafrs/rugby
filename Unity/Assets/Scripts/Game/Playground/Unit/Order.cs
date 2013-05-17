@@ -22,13 +22,11 @@ public struct Order  {
 		DEFENSIVE_SIDE,
         LANE,      // PRESSER
         SEARCH,
+        DODGE,
+
+        LENGTH
     }
-    public enum TYPE_DEPLACEMENT
-    {
-        MARCHE,
-        COURSE,
-        SPRINT
-    }
+  
 	public enum TYPE_POSITION
 	{
 		EXTRA_LEFT,
@@ -39,7 +37,6 @@ public struct Order  {
 	}
 
     public TYPE type;
-    public TYPE_DEPLACEMENT deplacement;
 	public TYPE_POSITION position;
 	public float pressionCapture;
 	public Vector3 passDirection;
@@ -53,21 +50,27 @@ public struct Order  {
         return o;
     }
 
-    public static Order OrderMove(Vector3 point, TYPE_DEPLACEMENT type)
+    public static Order OrderDodge(Vector3 direction)
+    {
+        Order o = new Order();
+        o.type = TYPE.DODGE;
+        o.point = direction;
+        return o;
+    }
+
+    public static Order OrderMove(Vector3 point)
     {
         Order o = new Order();
         o.type = TYPE.MOVE;
         o.point = point;
-        o.deplacement = type;
         return o;
     }
 
-    public static Order OrderFollow(Unit unit, TYPE_DEPLACEMENT type)
+    public static Order OrderFollow(Unit unit)
     {
         Order o = new Order();
         o.type = TYPE.FOLLOW;
         o.target = unit;
-        o.deplacement = type;
         return o;
     }
 	
@@ -153,10 +156,11 @@ public struct Order  {
     }
 
     public static Order OrderPlaquer(Unit u)
-    {
+    {          
         Order o = new Order();
-        o.type = TYPE.TACKLE;
+        o.type = TYPE.TACKLE;        
         o.target = u;
+        
         return o;
     }
 }

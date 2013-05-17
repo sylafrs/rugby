@@ -61,10 +61,15 @@ public class MainState : UnitState
         {
             sm.state_change_son(this, new IdleState(sm, unit));
             return;
-        }         
+        }
 
+     
         switch (this.unit.Order.type)
         {
+            case Order.TYPE.DODGE:
+                sm.state_change_son(this, new DodgeState(sm, unit));
+                break;
+
             case Order.TYPE.NOTHING:
                 sm.state_change_son(this, new IdleState(sm, unit));
                 break;

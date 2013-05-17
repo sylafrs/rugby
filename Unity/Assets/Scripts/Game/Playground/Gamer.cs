@@ -99,14 +99,18 @@ public class Gamer : myMonoBehaviour
 		if (Game.state != Game.State.PLAYING) 
             return;
 
-		UpdateStickDirection();	
-        UpdateMOVE();
-        UpdateTACKLE();
-        UpdatePASS();
-        UpdateDROP();
-		UpdateESSAI();
-		UpdatePLAYER();
-        
+        UpdateDODGE();
+
+        if (!Controlled.Dodge)
+        {
+            UpdateStickDirection();
+            UpdateMOVE();
+            UpdateTACKLE();
+            UpdatePASS();
+            UpdateDROP();
+            UpdateESSAI();
+            UpdatePLAYER();
+        }
     }
 
     bool UpdateRESET()
@@ -292,7 +296,12 @@ public class Gamer : myMonoBehaviour
             Unit owner = this.Game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                Controlled.Order = Order.OrderPlaquer(owner);
+                if (owner.Dodge && owner.Team.unitInvincibleDodge)
+                    Controlled.Order = Order.OrderPlaquer(null);
+                else
+                    Controlled.Order = Order.OrderPlaquer(owner);
+
+
             }
         }
     }
@@ -374,8 +383,9 @@ public class Gamer : myMonoBehaviour
     {
         if (!canMove) return;
         Vector3 direction = Vector3.zero;
-
         InputDirection.Direction d;
+
+        direction = Vector3.zero;
         if (XboxController.IsConnected)
         {
             d = XboxController.GetDirection(Inputs.move.xbox);
@@ -390,7 +400,35 @@ public class Gamer : myMonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
+            Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized);
+        }
+    }
+
+    void UpdateDODGE()
+    {
+        if (!canMove) return;
+        if (!Controlled) return;
+        if (!Controlled.CanDodge) return;
+        
+        Vector3 direction = Vector3.zero;
+        InputDirection.Direction d;
+
+        direction = Vector3.zero;
+        if (XboxController.IsConnected)
+        {
+            d = XboxController.GetDirection(Inputs.dodge.xbox);
+        }
+        else
+        {
+            d = Inputs.dodge.keyboard.GetDirection();
+        }
+
+        direction += Camera.main.transform.forward * d.y;
+        direction += Camera.main.transform.right * d.x;
+
+        if (direction.magnitude > 0.8f)
+        {
+            Controlled.Order = Order.OrderDodge(direction.normalized);
         }
     }
 
