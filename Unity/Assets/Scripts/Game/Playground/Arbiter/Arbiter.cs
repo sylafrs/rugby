@@ -103,7 +103,7 @@ public class Arbiter : myMonoBehaviour {
             interceptConfiguration.transform.rotation = blueTeam.transform.rotation;
         }
 
-        interceptTeam.placeUnits(interceptConfiguration);
+        interceptTeam.placeUnits(interceptConfiguration, true);
 
         Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
         if (touchTeam == this.Game.left/*(red)*/)
@@ -117,10 +117,10 @@ public class Arbiter : myMonoBehaviour {
             passConfiguration.transform.rotation = blueTeam.transform.rotation;
         }
 
-        touchTeam.placeUnits(passConfiguration, 1);
+        touchTeam.placeUnits(passConfiguration, 1, true);
 
         Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
-        touchTeam.placeUnit(passUnitPosition, 0);
+        touchTeam.placeUnit(passUnitPosition, 0, true);
 
        
         Game.Ball.Owner = touchTeam[0];
@@ -249,6 +249,12 @@ public class Arbiter : myMonoBehaviour {
         if (Game.state != Game.State.PLAYING)
             return;
 
+        if (tackled == null)
+        {
+            tackler.sm.event_Tackle();
+            return;
+        }
+
         this.Game.state = Game.State.TACKLE;
 
         TackleManager tm = this.Game.GetComponent<TackleManager>();
@@ -306,10 +312,10 @@ public class Arbiter : myMonoBehaviour {
 		
 		Team t = Game.Ball.Owner.Team;
 		
-		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1);
-		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
+		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1, true);
+		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0, true);
 		Team.switchPlaces(t[0], Game.Ball.Owner);
-		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
+		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"), true);
 		 
         Team opponent = Game.Ball.Owner.Team.opponent;
 		
@@ -441,8 +447,8 @@ public class Arbiter : myMonoBehaviour {
 
     public void StartPlacement()
     {	
-        Game.right.placeUnits(Game.right.StartPlacement);
-        Game.left.placeUnits(Game.left.StartPlacement);
+        Game.right.placeUnits(Game.right.StartPlacement, true);
+        Game.left.placeUnits(Game.left.StartPlacement, true);
 		Debug.Log("Unit to give : "+UnitToGiveBallTo);
 		GiveBall(UnitToGiveBallTo);
     }
