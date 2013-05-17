@@ -128,7 +128,6 @@ public class Arbiter : myMonoBehaviour {
 	
 	public void OnTouch(Touche t) {
 		if(t == null || t.a == null || t.b == null ){
-			//|| Game.state != Game.State.PLAYING) {
 			return;	
 		}		
 				
@@ -156,7 +155,8 @@ public class Arbiter : myMonoBehaviour {
 		Team interceptTeam = Game.Ball.Team;
 		Team touchTeam = interceptTeam.opponent;
 	
-        //Game.state = Game.State.TOUCH;					        
+		//launch the event
+        Game.OnTouch();
 
 		// Règlage du mini-jeu
 		TouchManager tm = this.Game.GetComponent<TouchManager>();

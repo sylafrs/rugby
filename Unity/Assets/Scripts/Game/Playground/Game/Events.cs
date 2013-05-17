@@ -81,6 +81,11 @@ public abstract partial class State
     {
         return (false);
     }
+	
+	public virtual bool OnTouch()
+	{
+		return (false);
+	}
 
     public virtual bool OnSuper(Team t, SuperList super)
     {
@@ -174,6 +179,14 @@ public partial class StateMachine
 		foreach (State tmp in list)
         {
             if (tmp.OnEndLaunch())
+                return;
+        }
+	}
+	
+	public void event_OnTouch(){
+		foreach (State tmp in list)
+        {
+            if (tmp.OnTouch())
                 return;
         }
 	}

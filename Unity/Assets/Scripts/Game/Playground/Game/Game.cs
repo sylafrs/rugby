@@ -204,6 +204,11 @@ public class Game : myMonoBehaviour {
         //cameraManager.sm.event_Drop();
     }
 	
+	public void OnTouch()
+	{
+		sm.event_OnTouch();
+	}
+	
 	public void OnEssai() {
 		arbiter.OnEssai();
 	}

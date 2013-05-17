@@ -78,6 +78,12 @@ public class PlayingState : GameState
        
     }*/
    
+	public override bool OnTouch()
+	{
+		sm.state_change_son(this,new TouchState(sm,cam,game));
+		return(true);
+	}
+	
     public override bool OnSuper(Team t, SuperList super)
     {
         // Fin du super

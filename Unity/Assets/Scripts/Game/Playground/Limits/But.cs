@@ -26,10 +26,11 @@ public class But : TriggeringTrigger
         Ball b = t.GetComponent<Ball>();
         if (b != null)
         {
-			/*
-			if(b.Game.state == Game.State.PLAYING) {
+			
+			//if(b.Game.state == Game.State.PLAYING) {
 				b.Game.OnDropTransformed(this);
-			}
+			//}
+			/*
 			else if(b.Game.state == Game.State.TRANSFORMATION) {
 				TransformationManager tm = b.Game.GetComponent<TransformationManager>();
 				tm.But();

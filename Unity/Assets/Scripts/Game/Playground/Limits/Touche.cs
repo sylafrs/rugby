@@ -17,11 +17,12 @@ public class Touche : TriggeringTrigger
         if (ball != null)
         {
 			//ball.inTouch = this;
-			/*
-            if (ball.Game.state == Game.State.PLAYING)
-            {
+			
+            //if (ball.Game.state == Game.State.PLAYING)
+            //{
                 this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
-            }
+            //}
+			/*
             else if(ball.Game.state == Game.State.TRANSFORMATION)
             {
                 TransformationManager tm = ball.Game.GetComponent<TransformationManager>();
