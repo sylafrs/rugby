@@ -13,6 +13,32 @@ public class UnitAnimator : myMonoBehaviour {
     private Unit unit;
     public Animator animator;
 
+    public bool Tackled
+    {
+        get
+        {
+            return animator.GetBool("tackled"); 
+        }
+
+        set
+        {
+            animator.SetBool("tackled", value); 
+        }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return animator.GetFloat("speed");
+        }
+
+        set
+        {
+            animator.SetFloat("speed", value);
+        }
+    }
+
     public void Start()
     {
         unit = this.GetComponent<Unit>();
@@ -26,7 +52,7 @@ public class UnitAnimator : myMonoBehaviour {
     {
         if (animator)
         {
-            animator.SetFloat("speed", unit.nma.velocity.magnitude);
+            this.Speed = unit.nma.velocity.magnitude;
         }
     }
 }

@@ -9,14 +9,10 @@ using XInputDotNetPure;
 public class gameUIManager : myMonoBehaviour {
 	
 	private Game _game;
-	
-	public KeyCode resetKey;
-	
-	//for super bars and th scrum bar
+		
 	public Texture2D emptyBar;
 	public Texture2D blueBar;
 	public Texture2D redBar;
-	public Texture2D LBButton;
 	
 	public float quotientMin = 0.5f;
 	public float quotientMax = 1.5f;
@@ -24,7 +20,6 @@ public class gameUIManager : myMonoBehaviour {
 	private float blueProgress;
 	private float redProgress;
 	
-	//GUI custom
 	public GUIStyle superOkTextStyle;
 	public GUIStyle gameTimeTextStyle;
 	public GUIStyle gameScoreTextStyle;
@@ -119,94 +114,106 @@ public class gameUIManager : myMonoBehaviour {
         return screenRelativeRect(r.x, r.y, r.width, r.height);
     }
 
-	
 	void OnGUI()
     {
         if (this._game.state == Game.State.INTRODUCTION)
         {
             return;
         }
+			
+		if(_game.state != Game.State.END)
+        {
+            GUIPlaying();			
+		}
+        else
+        {
+            GUIGameOver();
+		}
+	}
 
-		int offset = 200;
-		
-		//time box
-		Rect timeBox = screenRelativeRect(timeBoxXPercentage- timeBoxWidthPercentage/2, 
-			timeBoxYPercentage - timeBoxHeightPercentage/2, 
-			timeBoxWidthPercentage, timeBoxHeightPercentage);
-		
-		//score box
-		Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage/2,
-			scoreBoxYPercentage - scoreBoxHeightPercentage/2, 
-			scoreBoxWidthPercentage, scoreBoxHeightPercentage);
-		
-		//super gauges
-		Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
-			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
-			blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+    void GUIPlaying()
+    {
+        //time box
+        Rect timeBox = screenRelativeRect(timeBoxXPercentage - timeBoxWidthPercentage / 2,
+            timeBoxYPercentage - timeBoxHeightPercentage / 2,
+            timeBoxWidthPercentage, timeBoxHeightPercentage);
 
-		Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage/2,
-			blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage/2, 
-			blueGaugeBoxWidthPercentage * blueProgress,
-			blueGaugeBoxHeightPercentage);
+        //score box
+        Rect scoreBox = screenRelativeRect(scoreBoxXPercentage - scoreBoxWidthPercentage / 2,
+            scoreBoxYPercentage - scoreBoxHeightPercentage / 2,
+            scoreBoxWidthPercentage, scoreBoxHeightPercentage);
+
+        //super gauges
+        Rect blueGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage / 2,
+            blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage / 2,
+            blueGaugeBoxWidthPercentage, blueGaugeBoxHeightPercentage);
+
+        Rect blueProgressGaugeBox = screenRelativeRect(blueGaugeBoxXPercentage - blueGaugeBoxWidthPercentage / 2,
+            blueGaugeBoxYPercentage - blueGaugeBoxHeightPercentage / 2,
+            blueGaugeBoxWidthPercentage * blueProgress,
+            blueGaugeBoxHeightPercentage);
 
         Rect redGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
             redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
             redGaugeBoxWidthPercentage, redGaugeBoxHeightPercentage);
 
-		Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage/2,
-			redGaugeBoxYPercentage - redGaugeBoxHeightPercentage/2, 
-			redGaugeBoxWidthPercentage * redProgress, 
-			redGaugeBoxHeightPercentage);
+        Rect redprogressGaugeBox = screenRelativeRect(redGaugeBoxXPercentage - redGaugeBoxWidthPercentage / 2,
+            redGaugeBoxYPercentage - redGaugeBoxHeightPercentage / 2,
+            redGaugeBoxWidthPercentage * redProgress,
+            redGaugeBoxHeightPercentage);
+
+        //superbars
+        //blue 
+        GUI.DrawTexture(blueGaugeBox, emptyBar);
+        GUI.DrawTexture(blueProgressGaugeBox, blueBar);
+        if (blueProgress == 1f) GUI.Label(blueGaugeBox, "SUPER READY !", superOkTextStyle);
+
+
+        //red
+        GUI.DrawTexture(redGaugeBox, emptyBar);
+        GUI.DrawTexture(redprogressGaugeBox, redBar);
+        if (redProgress == 1f) GUI.Label(redGaugeBox, "SUPER READY !", superOkTextStyle);
+
+
+        //score
+        GUI.Label(scoreBox, _game.right.nbPoints + "  -  " + _game.left.nbPoints, gameScoreTextStyle);
+
+        //time
+        GUI.Label(timeBox, "Time : " + ((int)_game.settings.score.period_time - (int)_game.arbiter.IngameTime), gameTimeTextStyle);
 			
-		//player on left Box
-		//float playerLeftBoxWidth  = 25;
-		//float playerLeftBoxHeight = 10;	
-		//Rect playerLeftBox = screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
-		
-		if(_game.state != Game.State.END)
+    }
+
+    public Rect ResultRect, ResultButtonRect, ResultScoreRect;
+    public GUIStyle ResultStyle, ResultScoreStyle;
+    public int btnFontSize;
+
+    void GUIGameOver()
+    {
+        Rect resultRect = screenRelativeRect(ResultRect);
+        Rect resultButtonRect = screenRelativeRect(ResultButtonRect);
+        Rect resultScoreRect = screenRelativeRect(ResultScoreRect);
+
+        string result = "";
+        if (_game.right.nbPoints < _game.left.nbPoints)
         {
-			
-			//superbars
-			//blue 
-			GUI.DrawTexture(blueGaugeBox, emptyBar);
-			GUI.DrawTexture(blueProgressGaugeBox, blueBar);
-			if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",superOkTextStyle);
-			
-			
-			//red
-			GUI.DrawTexture(redGaugeBox, emptyBar);
-			GUI.DrawTexture(redprogressGaugeBox, redBar);
-			if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",superOkTextStyle);
-			
-			
-			//score
-			GUI.Label(scoreBox, _game.right.nbPoints+"  -  "+_game.left.nbPoints,gameScoreTextStyle);
-			
-			//time
-            GUI.Label(timeBox, "Time : " + ((int)_game.settings.score.period_time - (int)_game.arbiter.IngameTime), gameTimeTextStyle);
-			
-		}
+            result = "Player 1 win !";
+        }
+        else if (_game.left.nbPoints < _game.right.nbPoints)
+        {
+            result = "Player 2 win !";
+        }
         else
         {
-			string result = "";
-            if (_game.right.nbPoints < _game.left.nbPoints)
-            {
-				result = "You loose ...";
-            }
-            else if (_game.left.nbPoints < _game.right.nbPoints)
-            {
-				result = "You win !";
-			}
-            else
-            {
-				result = "Draw !";
-			}
-			result += " Press the button to restart !";
-			GUIStyle style = new GUIStyle();
-			style.fontSize = 30;
-			GUI.Label(new Rect(200+offset, 0+offset, 150+offset, 150), result, style);
-			if (GUI.Button(new Rect(200 + offset, 50 + offset, 250 + offset, 100), "restart"))
-                _game.Reset();
-			}
-	}
+            result = "Draw !";
+        }
+
+        GUI.Label(resultRect, result, ResultStyle);
+        GUI.Label(resultScoreRect, _game.right.nbPoints + "  -  " + _game.left.nbPoints, ResultScoreStyle);
+
+        GUIStyle btnStyle = GUI.skin.button;
+        btnStyle.fontSize = btnFontSize;
+
+        if (GUI.Button(resultButtonRect, "restart", btnStyle))
+            _game.Reset();
+    }
 }

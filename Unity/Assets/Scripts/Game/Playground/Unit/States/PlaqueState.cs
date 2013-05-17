@@ -31,6 +31,12 @@ class PlaqueState : UnitState
 		}
 
         unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
+
+        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        if (ua != null)
+        {
+            ua.Tackled = true;
+        }
     }
 
     public override void OnUpdate()
@@ -54,6 +60,12 @@ class PlaqueState : UnitState
 		}
 
         unit.Model.transform.localRotation = Quaternion.identity;
+
+        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        if (ua != null)
+        {
+            ua.Tackled = false;
+        }
 	}
 }
 
