@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -18893,7 +18893,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 18
+  m_Radius: 27
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1353050259
 MonoBehaviour:

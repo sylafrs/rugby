@@ -206,13 +206,13 @@ public class Arbiter : myMonoBehaviour {
                   
 	}
 
-    public void OnGUI()
+   /* public void OnGUI()
     {
         if (GUILayout.Button("ZEGDFGG"))
         {
             Game.OnScrum();
         }
-    }
+    }*/
 
 	public void OnScrum() {
 

@@ -308,56 +308,68 @@ public class Gamer : myMonoBehaviour
 	
 	void UpdatePLAYER()
 	{
-		if (Game.Ball.Owner == null && ((Game.Ball.PreviousOwner.Team == Controlled.Team && Game.Ball.PreviousOwner.isTackled)
-										|| Controlled.isTackled))
-		{
-            Controlled.Order = Order.OrderNothing();
+        bool change = false;
 
-			Controlled.IndicateSelected(false);
-			Controlled = GetUnitNear();
-			Controlled.IndicateSelected(true);
-		}
+        if (this.Controlled == null)
+        {
+            change = true;
+        }        
+        else if (this.Controlled.isTackled)
+        {
+            change = true;
+        }
+        else if (this.Controlled != this.Game.Ball.Owner && (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+        {
+            change = true;
+        }
 
-		if ( Controlled != null && Controlled.Team != null && Game != null && Game.Ball != null)
-		{	
-			if ((Game.Ball.Owner == null || Game.Ball.Owner.Team != Team) &&
-                (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
-	        {
-				Controlled.IndicateSelected(false);
-				Controlled = GetUnitNear();
+        if (change)
+        {
+            if (Controlled)
+            {
                 Controlled.Order = Order.OrderNothing();
-				Controlled.IndicateSelected(true);
-				
-				//MyDebug.Log("joueur controllé " + Controlled);
-	        }
-			
-			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
-			//MyDebug.Log("pos in map : " + typePosition);
-			
+                Controlled.IndicateSelected(false);
+            }
+
+            Controlled = GetUnitNear();
+
+            if (Controlled)
+            {
+                Controlled.Order = Order.OrderNothing();
+                Controlled.IndicateSelected(true);
+            }
+        }
+
+        if (Controlled)
+        {
+            Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
+            //MyDebug.Log("pos in map : " + typePosition);
+
             if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
-			{				
-				//offensiveside
-				foreach (Unit u in Controlled.Team)
-			    {
-			    	if (u != Controlled)
-			        {
-						u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        }
-				}
-			}
-			else
-			{
-				//defensiveside
-				foreach (Unit u in Controlled.Team)
-			    {
-			    	if (u != Controlled)
-			        {
-						u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        }
-				}
-			}
-             
-		}
+            {
+                //offensiveside
+                foreach (Unit u in Controlled.Team)
+                {
+                    if (u != Controlled)
+                    {
+                        u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                    }
+                }
+            }
+            else
+            {
+                //defensiveside
+                foreach (Unit u in Controlled.Team)
+                {
+                    if (u != Controlled)
+                    {
+                        u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                    }
+                }
+            }
+        }
+
+		
 	}
 	
 	public Unit GetUnitNear()
