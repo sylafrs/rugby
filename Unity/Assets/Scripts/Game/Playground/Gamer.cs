@@ -393,6 +393,9 @@ public class Gamer : myMonoBehaviour
 
     void UpdateMOVE()
     {
+        if (Game.state != Game.State.PLAYING)
+            return;
+
         if (!canMove) return;
         Vector3 direction = Vector3.zero;
         InputDirection.Direction d;
@@ -418,6 +421,9 @@ public class Gamer : myMonoBehaviour
 
     void UpdateDODGE()
     {
+        if (Game.state != Game.State.PLAYING)
+            return;
+
         if (!canMove) return;
         if (!Controlled) return;
         if (!Controlled.CanDodge) return;
