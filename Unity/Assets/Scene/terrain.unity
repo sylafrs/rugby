@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -4778,7 +4778,7 @@ MonoBehaviour:
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
-  Name: Bleu
+  Name: Japan
   right: 0
   useColors: 0
   But: {fileID: 841198778}
@@ -4787,6 +4787,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 2
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -16633,6 +16637,7 @@ Transform:
   - {fileID: 841198777}
   - {fileID: 2078298285}
   - {fileID: 1054134496}
+  - {fileID: 1976457027}
   - {fileID: 311398054}
   - {fileID: 236162113}
   - {fileID: 843848053}
@@ -27708,7 +27713,7 @@ Transform:
   m_Children:
   - {fileID: 393058073}
   - {fileID: 818688626}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1157111314}
 --- !u!114 &1976457028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28063,6 +28068,13 @@ MonoBehaviour:
         right: 100
         left: 113
       xbox: 2
+    dodge:
+      keyboard:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      xbox: 1
   inputs2:
     shortPass:
       keyboard: 55
@@ -28107,6 +28119,13 @@ MonoBehaviour:
         right: 108
         left: 106
       xbox: 2
+    dodge:
+      keyboard:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      xbox: 1
   timePlaque: 3
   Vheight: 10
   Vwidth: 4
@@ -29543,7 +29562,7 @@ MonoBehaviour:
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
   Color: {r: 1, g: 0, b: 0, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
-  Name: Rouge
+  Name: Maori
   right: 0
   useColors: 0
   But: {fileID: 2078298286}
@@ -29552,6 +29571,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 2
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70

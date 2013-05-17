@@ -25,7 +25,7 @@ public class FollowPlayerState : CameraState {
     {
         if (u == this.target)
         {
-            sm.state_change_son(this, new DodgeState(sm, cam, u));
+            sm.state_change_son(this, new CameraDodgeState(sm, cam, u));
             return true;
         }
 

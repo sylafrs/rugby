@@ -274,11 +274,11 @@ public class gameUIManager : myMonoBehaviour {
         string result = "";
         if (_game.right.nbPoints < _game.left.nbPoints)
         {
-            result = "Player 1 win !";
+            result = _game.left.Name + " win !";
         }
         else if (_game.left.nbPoints < _game.right.nbPoints)
         {
-            result = "Player 2 win !";
+            result = _game.right.Name + " win !";
         }
         else
         {
