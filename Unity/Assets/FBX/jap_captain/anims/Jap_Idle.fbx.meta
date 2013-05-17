@@ -259,7 +259,7 @@ ModelImporter:
     400250: R_Wrist_GRP
     400252: R_Wrist_jnt
     400254: SKELETON
-    7400000: Maori_Idle_Leger
+    7400000: Jap_Idle
     9500000: //RootNode
     11100000: //RootNode
   materials:
@@ -275,7 +275,7 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 2
     clipAnimations:
-    - name: Maori_Idle_Leger
+    - name: Jap_Idle
       takeName: Take 001
       firstFrame: 0
       lastFrame: 48
