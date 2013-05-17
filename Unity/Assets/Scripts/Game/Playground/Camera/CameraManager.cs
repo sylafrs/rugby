@@ -68,12 +68,12 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
 
-    public StateMachine sm;
+	//public StateMachine sm;
 
 	// Use this for initialization
 	void Start () {
 
-        sm.SetFirstState(new MainCameraState(sm, this));
+      //  sm.SetFirstState(new MainGameState(sm, this, this.game));
 		resetActualDelay();
 		resetRotationDelay();
 		isflipping = false;
@@ -83,14 +83,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		flipedForTeam = game.right;
 		zMinForBlue	  = MinfollowOffset.z;
 		zMaxForBlue	  = MaxfollowOffset.z;
-		
-		/*
-       
-        /*
-		gameCamera.cameraManager = this;
-		scrumCamera.cameraManager = this;
-		*/
-		
 	}
 	
 	void FixedUpdate(){
@@ -364,7 +356,13 @@ public class CameraManager : myMonoBehaviour, Debugable {
             });
         });
     }
-
+	
+	/*
+	public void OnIntroLaunch(){
+		sm.SendMessage("OnIntroLaunch");
+	}
+	*/
+	
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR

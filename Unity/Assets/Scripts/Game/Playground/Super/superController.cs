@@ -50,10 +50,12 @@ public class superController : myMonoBehaviour {
 	}
 	
 	void Update () {
+		/*
         if (this.game.state == Game.State.INTRODUCTION)
         {
             return;
         }
+        */
 
 		updateSuperValue();
         updateSuperInput();
@@ -71,7 +73,7 @@ public class superController : myMonoBehaviour {
 		InputTouch superOff = game.settings.inputs.superOff;
 		//InputTouch superDef = game.settings.inputs.superDef;
 		
-		if(game.state == Game.State.PLAYING) {
+		//if(game.state == Game.State.PLAYING) {
 		
 			//offense
 			if(team.Player.XboxController != null){
@@ -104,7 +106,7 @@ public class superController : myMonoBehaviour {
 				}
 				*/
 			}
-		}
+		//}
 	}
 	
 	void updateSuperStatus(){

@@ -26,6 +26,7 @@ public class But : TriggeringTrigger
         Ball b = t.GetComponent<Ball>();
         if (b != null)
         {
+			/*
 			if(b.Game.state == Game.State.PLAYING) {
 				b.Game.OnDropTransformed(this);
 			}
@@ -33,6 +34,7 @@ public class But : TriggeringTrigger
 				TransformationManager tm = b.Game.GetComponent<TransformationManager>();
 				tm.But();
 			}
+			*/
         }
     }
 }

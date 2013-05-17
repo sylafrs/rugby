@@ -87,7 +87,8 @@ public class Ball : TriggeringTriggered {
         }
     }
 
-    public Unit PreviousOwner
+    public Unit PreviousOwner;
+	/*
     {
         get
         {
@@ -98,6 +99,7 @@ public class Ball : TriggeringTriggered {
             _previousOwner = value;
         }
     }
+    */
 
 	public Unit NextOwner
 	{
@@ -125,10 +127,12 @@ public class Ball : TriggeringTriggered {
                 this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
 				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
             {
+				/*
 				if ( Game.state == Game.State.TRANSFORMATION )
 					this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
 				else
                 	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
+                	*/
             }
                        
             this.transform.localRotation = Quaternion.identity;

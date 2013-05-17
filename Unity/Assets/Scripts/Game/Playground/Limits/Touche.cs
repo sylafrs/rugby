@@ -17,6 +17,7 @@ public class Touche : TriggeringTrigger
         if (ball != null)
         {
 			//ball.inTouch = this;
+			/*
             if (ball.Game.state == Game.State.PLAYING)
             {
                 this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
@@ -29,6 +30,7 @@ public class Touche : TriggeringTrigger
                 else
                     Debug.LogWarning("Error : I dont find Transformation Manager in the Game");
             }
+            */
         }
     }
 	

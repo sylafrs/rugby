@@ -90,7 +90,7 @@ public class TransformationManager : myMonoBehaviour {
     {
         if (this.state == State.ANGLE || this.state == State.POWER)
         {
-            Rect rect = gameUIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
+            Rect rect = GameUIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
 
             if (!infiniteTime)
                 GUI.Label(rect, "Time : " + (int)remainingTime, timeStyle);
