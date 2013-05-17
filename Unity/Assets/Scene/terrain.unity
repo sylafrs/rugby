@@ -7236,6 +7236,59 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 843848053}
+--- !u!1 &471928660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471928661}
+  - 33: {fileID: 471928664}
+  - 23: {fileID: 471928662}
+  m_Layer: 0
+  m_Name: ScrumBloc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471928661
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471928660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 5, z: 10}
+  m_Children: []
+  m_Father: {fileID: 2027178520}
+--- !u!23 &471928662
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471928660}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &471928664
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471928660}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &475202261
 GameObject:
   m_ObjectHideFlags: 0
@@ -9461,6 +9514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
+  Model: {fileID: 1119795520}
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
@@ -9472,6 +9526,7 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  scrumFieldUnits: []
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27969,6 +28024,7 @@ MonoBehaviour:
   settings: {fileID: 2004071852}
   cameraManager: {fileID: 1693924984}
   introManager: {fileID: 2004071858}
+  ScrumBloc: {fileID: 471928662}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
@@ -28041,12 +28097,6 @@ MonoBehaviour:
     enableIA:
       keyboard: 0
       xbox: 2
-    scrumNormal:
-      keyboard: 0
-      xbox: 0
-    scrumExtra:
-      keyboard: 0
-      xbox: 0
     put:
       keyboard: 52
       xbox: 0
@@ -28085,12 +28135,6 @@ MonoBehaviour:
     enableIA:
       keyboard: 0
       xbox: 0
-    scrumNormal:
-      keyboard: 0
-      xbox: 0
-    scrumExtra:
-      keyboard: 0
-      xbox: 0
     put:
       keyboard: 0
       xbox: 0
@@ -28113,6 +28157,8 @@ MonoBehaviour:
   LineSpace: 3
   maxTimeHoldingPassButton: 3
   timeToSleepAfterIntro: 5
+  timeToGetOutTackleAreaBeforeScrum: 2
+  minPlayersEachTeamToTriggerScrum: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28124,18 +28170,44 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  cam: {fileID: 0}
-  scoreTarget: 1000
-  playerUp: 15
-  cpuUp: .5
-  specialLuck: 20
-  playerSpecialUp: 80
-  frameStart: 30
-  rightGap: -27
-  leftGap: 10
-  IAoffset: -.0500000007
-  playerOffset: .5
-  timer: 10
+  tweakSettings:
+    FeedSuperPerSmash: .0500000007
+    FeedSuperPerSecond: .200000003
+    MaximumDistance: 11.5
+    MaximumDuration: 5
+    SmashValue: .0500000007
+    SuperMultiplicator: 5
+  inputSettings:
+    rightSmashButton:
+      keyboard: 119
+      xbox: 0
+    leftSmashButton:
+      keyboard: 99
+      xbox: 0
+    rightSuperButton:
+      keyboard: 120
+      xbox: 3
+    leftSuperButton:
+      keyboard: 118
+      xbox: 3
+  guiSettings:
+    ScrumSpecialRect:
+      serializedVersion: 2
+      x: 42.5
+      y: 78
+      width: 20
+      height: 10
+    ScrumSpecialButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6,
+      type: 3}
+    ScrumBarRect:
+      serializedVersion: 2
+      x: 20
+      y: 90
+      width: 60
+      height: 5
+    ScrumRightBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+    ScrumLeftBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+    ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28147,11 +28219,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
   m_Name: 
-  resetKey: 32
   emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
   blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
   redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
-  LBButton: {fileID: 2800000, guid: b21a69dd837de1644a39a47590a7ac1d, type: 3}
   quotientMin: .5
   quotientMax: 1.5
   superOkTextStyle:
@@ -28981,8 +29051,9 @@ Transform:
   - {fileID: 719836396}
   - {fileID: 1795899136}
   - {fileID: 303037525}
-  - {fileID: 642022007}
   - {fileID: 1774892247}
+  - {fileID: 471928661}
+  - {fileID: 642022007}
   m_Father: {fileID: 0}
 --- !u!1 &2031191950
 GameObject:
