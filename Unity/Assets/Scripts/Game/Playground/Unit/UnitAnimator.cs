@@ -49,6 +49,18 @@ public class UnitAnimator : myMonoBehaviour {
         }
     }
 
+    public bool Tackled
+    {
+        get
+        {
+            return animator.GetBool("tackled");
+        }
+        set
+        {
+            animator.SetBool("tackled", value);
+        }
+    }
+
     public bool HasBall
     {
         get

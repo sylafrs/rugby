@@ -33,13 +33,21 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: ballRight
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
   - m_Name: pass
+    m_Type: 4
+    m_Min: -1
+    m_Max: 1
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: tackled
     m_Type: 4
     m_Min: 1e+06
     m_Max: -1e+06
@@ -436,14 +444,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_LocalTransitions:
     data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
-    data:
-      first: {fileID: 110277665}
-      second:
-      - {fileID: 110156463}
-    data:
       first: {fileID: 0}
       second: []
     data:
@@ -462,6 +462,10 @@ StateMachine:
       second:
       - {fileID: 110157732}
     data:
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
       first: {fileID: 110266262}
       second:
       - {fileID: 110128538}
@@ -472,16 +476,12 @@ StateMachine:
       first: {fileID: 110275423}
       second:
       - {fileID: 110188629}
+    data:
+      first: {fileID: 110277665}
+      second:
+      - {fileID: 110156463}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
-    data:
-      first: {fileID: 110277665}
-      second:
-      - {fileID: 110156463}
-    data:
       first: {fileID: 0}
       second: []
     data:
@@ -500,6 +500,10 @@ StateMachine:
       second:
       - {fileID: 110157732}
     data:
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
       first: {fileID: 110266262}
       second:
       - {fileID: 110128538}
@@ -510,6 +514,10 @@ StateMachine:
       first: {fileID: 110275423}
       second:
       - {fileID: 110188629}
+    data:
+      first: {fileID: 110277665}
+      second:
+      - {fileID: 110156463}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -420, y: -288, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
