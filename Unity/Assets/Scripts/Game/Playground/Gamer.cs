@@ -90,8 +90,15 @@ public class Gamer : myMonoBehaviour
         if(XboxController == null)
             XboxController = Game.xboxInputs.controllers[id];
 
-        if (Inputs == null) return;
-		if (Game.state != Game.State.PLAYING) return;
+        if (Inputs == null) 
+            return;
+
+        if (UpdateRESET())
+            return;
+
+		if (Game.state != Game.State.PLAYING) 
+            return;
+
 		UpdateStickDirection();	
         UpdateMOVE();
         UpdateTACKLE();
@@ -99,8 +106,7 @@ public class Gamer : myMonoBehaviour
         UpdateDROP();
 		UpdateESSAI();
 		UpdatePLAYER();
-        if(UpdateRESET())
-            return;
+        
     }
 
     bool UpdateRESET()
@@ -304,13 +310,15 @@ public class Gamer : myMonoBehaviour
 			Controlled = GetUnitNear();
 			Controlled.IndicateSelected(true);
 		}
-		if ( Controlled != null && Controlled.Team != null && Game != null && 
-			Game.Ball != null && Game.Ball.Owner != null && Game.Ball.Owner.Team != null )
+
+		if ( Controlled != null && Controlled.Team != null && Game != null && Game.Ball != null)
 		{	
-			if ( Game.Ball.Owner.Team != Team &&  (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+			if ((Game.Ball.Owner == null || Game.Ball.Owner.Team != Team) &&
+                (Input.GetKeyDown(Inputs.changePlayer.keyboard) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
 	        {
 				Controlled.IndicateSelected(false);
 				Controlled = GetUnitNear();
+                Controlled.Order = Order.OrderNothing();
 				Controlled.IndicateSelected(true);
 				
 				//MyDebug.Log("joueur controllé " + Controlled);
@@ -318,9 +326,9 @@ public class Gamer : myMonoBehaviour
 			
 			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
 			//MyDebug.Log("pos in map : " + typePosition);
-			if (Game.Ball.Owner.Team == Team)
-			{
-				
+			
+            if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
+			{				
 				//offensiveside
 				foreach (Unit u in Controlled.Team)
 			    {
@@ -341,6 +349,7 @@ public class Gamer : myMonoBehaviour
 			        }
 				}
 			}
+             
 		}
 	}
 	

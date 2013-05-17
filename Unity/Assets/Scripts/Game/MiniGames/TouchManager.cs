@@ -15,6 +15,8 @@ public class TouchManager : myMonoBehaviour {
 	
 	public Gamer gamerTouch {get; set;}
 	public Gamer gamerIntercept {get; set;}
+
+    public bool infiniteTime;
 	
 	private int choixTouche;
 	private int choixInter;
@@ -49,7 +51,7 @@ public class TouchManager : myMonoBehaviour {
 			
 			GUILayout.Space(300);
 					
-			if(timeLeft > 0)
+			if(timeLeft > 0 && !infiniteTime)
 				GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
 			else
 				GUILayout.Label("Choisissez une touche");
@@ -83,7 +85,8 @@ public class TouchManager : myMonoBehaviour {
 	}
 	
 	public void Update() {
-		timeLeft -= Time.deltaTime;
+		if(!infiniteTime)
+            timeLeft -= Time.deltaTime;
 		
 		for(int i = 0; i < n; i++) {
 			if(Input.GetKeyDown(touche[i].keyboard) || (gamerTouch && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
@@ -93,10 +96,11 @@ public class TouchManager : myMonoBehaviour {
 				choixInter = i+1;
 			}
 		}
-		
-		if(choixTouche != 0 && timeLeft < 0) {
-			DoTouch();	
-		}
+
+        if (choixTouche != 0 && ((timeLeft < 0 && !infiniteTime) || choixInter != 0))
+        {
+            DoTouch();
+        }        
 	}
 		
 	public enum Result {
