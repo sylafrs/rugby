@@ -80,11 +80,9 @@ public class TransfoState : GameState
 	}
 	*/
 	
-	/*
-	public override bool OnTranfoShot()
+	public override bool OnConversionShot()
     {
 		sm.state_change_son(this, new TransfoShotState(sm, cam, game));
 		return true;
 	}
-	*/
 }
