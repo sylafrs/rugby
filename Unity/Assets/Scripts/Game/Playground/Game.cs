@@ -197,6 +197,7 @@ public class Game : myMonoBehaviour {
     public void OnScrum()
     {
         arbiter.OnScrum();
+        cameraManager.sm.event_Scrum();
     }
     
     public void OnDrop()

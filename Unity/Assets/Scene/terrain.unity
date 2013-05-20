@@ -6286,7 +6286,7 @@ Transform:
   - {fileID: 1924330243}
   - {fileID: 168174436}
   - {fileID: 762862356}
-  m_Father: {fileID: 1976457027}
+  m_Father: {fileID: 1899945715}
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -11179,7 +11179,7 @@ Transform:
   - {fileID: 390349551}
   - {fileID: 1017393011}
   - {fileID: 241076126}
-  m_Father: {fileID: 1976457027}
+  m_Father: {fileID: 1899945715}
 --- !u!1 &820290637
 GameObject:
   m_ObjectHideFlags: 0
@@ -18893,7 +18893,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 91.9199982
+  m_Radius: 60
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1353050259
 MonoBehaviour:
@@ -26716,6 +26716,34 @@ MonoBehaviour:
   - {r: 1, g: .566433549, b: 0, a: 1}
   sizePoint: 1
   lengthForward: 0
+--- !u!1 &1899945714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1899945715}
+  m_Layer: 0
+  m_Name: CinematicPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1899945715
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1899945714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 393058073}
+  - {fileID: 818688626}
+  m_Father: {fileID: 1976457027}
 --- !u!1 &1901102881
 GameObject:
   m_ObjectHideFlags: 0
@@ -27766,8 +27794,7 @@ Transform:
   m_LocalPosition: {x: 29.193882, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 393058073}
-  - {fileID: 818688626}
+  - {fileID: 1899945715}
   m_Father: {fileID: 1157111314}
 --- !u!114 &1976457028
 MonoBehaviour:
@@ -28773,8 +28800,7 @@ MonoBehaviour:
   TransfoRemiseAuCentre: 1
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
-  IngameTime: 0
-  UnitToGiveBallTo: {fileID: 0}
+  ScrumPlacement: {fileID: 1976457027}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0

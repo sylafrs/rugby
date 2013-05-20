@@ -16,16 +16,16 @@ public class Arbiter : myMonoBehaviour {
 	public bool TransfoRemiseAuCentre 	= false;
 	public Transform TouchPlacement 	= null;
 	public Transform TransfoPlacement 	= null;
-	
-	
-	public  float IngameTime;
+    public Transform ScrumPlacement     = null;
+
+    public float IngameTime { get; set; }
     private float GameTimeDuration;
 	private float IntroDelayTime;
     private float TimeEllapsedSinceIntro;
 	private bool  TimePaused;
 
     private float LastTackle = -1;
-	public  Unit  UnitToGiveBallTo;
+    public Unit UnitToGiveBallTo { get; set; }
 	
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
@@ -206,32 +206,32 @@ public class Arbiter : myMonoBehaviour {
                   
 	}
 
-   /* public void OnGUI()
-    {
-        if (GUILayout.Button("ZEGDFGG"))
-        {
-            Game.OnScrum();
-        }
-    }*/
-
 	public void OnScrum() {
 
         this.Game.state = Game.State.SCRUM;
+        this.Game.Ball.Owner = null;
 
+        ScrumCinematicMovement();
+        NowScrum();
+	}
+
+    public void NowScrum()
+    {
         Renderer bloc = this.Game.ScrumBloc;
         bloc.transform.position = this.Game.Ball.transform.position;
-        
-		scrumController sc =  this.Game.GetComponent<scrumController>();
+
+        scrumController sc = this.Game.GetComponent<scrumController>();
         sc.InitialPosition = this.Game.Ball.transform.position;
-        sc.ScrumBloc = bloc.transform;
-       
+        sc.ScrumBloc = bloc.transform;        
+        
         this.Game.right.ShowPlayers(false);
         this.Game.left.ShowPlayers(false);
         this.Game.Ball.Model.enabled = false;
         bloc.enabled = true;
-        
-        sc.callback = (Team t, Vector3 pos) => {
-			Game.Ball.Owner = t[0];
+
+        sc.callback = (Team t, Vector3 endPos) =>
+        {
+            Game.Ball.Owner = t[0];
 
             this.Game.Ball.Model.enabled = true;
             this.Game.right.ShowPlayers(true);
@@ -239,10 +239,23 @@ public class Arbiter : myMonoBehaviour {
             bloc.enabled = false;
 
             this.Game.state = Game.State.PLAYING;
-		};
+        };
 
         sc.enabled = true;
-	}
+    }
+
+    public void ScrumCinematicMovement()
+    {
+        Vector3 pos = this.Game.Ball.transform.position;
+        Transform cinematic = ScrumPlacement.FindChild("CinematicPlacement");
+        cinematic.position = new Vector3(pos.x, 0, pos.z);
+
+        Transform red = cinematic.FindChild("RedTeam");
+        Transform blue = cinematic.FindChild("BlueTeam");
+
+        this.Game.right.placeUnits(red, false);
+        this.Game.left.placeUnits(blue, false);
+    }
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
 
@@ -413,7 +426,7 @@ public class Arbiter : myMonoBehaviour {
         // On donne les points
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
-                // A faire en caméra :
+        // A faire en caméra :
         this.StartPlacement();
         this.Game.Ball.Owner = but.Owner[0];
 

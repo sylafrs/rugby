@@ -21,7 +21,7 @@ public class MainState : UnitState
             return false;
         }*/
 
-        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall )
+        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall && this.unit.Game.state == Game.State.PLAYING)
         {
 			unit.Game.Ball.Owner = unit;
             return true;

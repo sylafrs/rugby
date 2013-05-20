@@ -278,18 +278,19 @@ public class Unit : TriggeringTriggered, Debugable
         return nearestAlly;
     }
 
-/*
-    public void ShowTouch(InputTouch touch)
-    {
-
-    }
-*/
-
     public void ShowPlayer(bool active)
     {
         if (!active)
         {
             this.IndicateSelected(false);
+        }
+        else
+        {
+            Gamer g = this.team.Player;
+            if (g)
+            {
+                this.IndicateSelected(this == g.Controlled);
+            }
         }
 
         this.Model.SetActive(active);        

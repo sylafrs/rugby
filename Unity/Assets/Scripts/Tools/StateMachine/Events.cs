@@ -79,6 +79,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnScrum()
+    {
+        return (false);
+    }
 }
 
 /**
@@ -88,6 +93,15 @@ public abstract partial class State
  */
 public partial class StateMachine
 {
+    public void event_Scrum()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnScrum())
+                return;
+        }
+    }
+
     public void event_neworder()
     {
         foreach (State tmp in list)

@@ -453,20 +453,22 @@ public class Team : myMonoBehaviour, IEnumerable {
 		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnit(Transform t, int index, bool teleport) {
-		if( t == null || index < 0 || index >= nbUnits ) {
+	public void placeUnit(Transform dst, int index, bool teleport) {
+		if( dst == null || index < 0 || index >= nbUnits ) {
 			throw new System.ArgumentException();
 		}
 
+        Unit unit = units[index];
+
         if (teleport)
         {
-            units[index].transform.position = t.position;
-            units[index].transform.rotation = t.rotation;
+            unit.transform.position = dst.position;
+            unit.transform.rotation = dst.rotation;
         }
         else
         {
-            units[index].Order = Order.OrderMove(t.position);
-            units[index].transform.rotation = t.rotation;
+            unit.Order = Order.OrderMove(dst.position);
+            unit.transform.rotation = dst.rotation;
         }
 	}
 
