@@ -172,16 +172,15 @@ public class Game : myMonoBehaviour {
             this._disableIA = true;                  
             this.TimedDisableIA(settings.timeToSleepAfterIntro);
             arbiter.OnStart();
-			sm.event_OnIntroEnd();
+			sm.event_OnStartSignal();
         };
 
 		sm.SetFirstState(new MainGameState(sm,this.cameraManager,this));
-		sm.event_OnIntroLaunch();
-        introManager.enabled = true;
+		introManager.enabled = true;
     }
 	
 	public void OnGameEnd(){
-		sm.event_OnEndLaunch();
+		sm.event_OnEndSignal();
 	}
        
     void Update()

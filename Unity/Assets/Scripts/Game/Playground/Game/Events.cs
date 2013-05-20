@@ -153,24 +153,8 @@ public partial class StateMachine
                 return;
         }
 	}
-	
-	public void event_OnIntroLaunch(){
-		foreach (State tmp in list)
-        {
-            if (tmp.OnIntroLaunch())
-                return;
-        }
-	}
-	
-	public void event_OnIntroEnd(){
-		foreach (State tmp in list)
-        {
-            if (tmp.OnIntroEnd())
-                return;
-        }
-	}
-	 
-	public void event_OnEndSignal(){
+
+    public void event_OnEndSignal(){
 		foreach (State tmp in list)
         {
             if (tmp.OnEndSignal())
@@ -208,15 +192,6 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnBallOnGround(onGround))
-                return;
-        }
-    }
-
-    public void event_Sprint(Unit unit, bool sprinting)
-    {
-        foreach (State tmp in list)
-        {
-            if (tmp.OnSprint(unit, sprinting))
                 return;
         }
     }

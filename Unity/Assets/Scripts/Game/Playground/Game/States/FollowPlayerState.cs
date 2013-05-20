@@ -26,22 +26,6 @@ public class FollowPlayerState : GameState {
         return false;
     }
 
-    public override bool OnSprint(Unit u, bool sprinting)
-    {
-        if (u == this.target)
-        {
-            if (sprinting)
-            {
-                sm.state_change_son(this, new SprintState(sm, cam, game, u));
-                return true;
-            }
-            // else : 
-            //  if a sprintState exists, it must kill himself.
-        }
-
-        return false;
-    }
-
     //  TODO à changer de place ou pas
     public override bool OnTackle()   
     {
