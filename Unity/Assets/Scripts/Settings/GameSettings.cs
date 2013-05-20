@@ -73,6 +73,26 @@ public class InputSettings
     public InputDirection move;
 }
 
+[System.Serializable]
+public class GlobalSettings
+{
+	
+}
+
+[System.Serializable]
+public class GameStatesSettings
+{
+	
+}
+
+[System.Serializable]
+public class UISettings
+{
+	
+}
+
+
+
 /**
  * @class GameSettings
  * @brief Classe de reglages
@@ -80,7 +100,14 @@ public class InputSettings
  */
 [AddComponentMenu("Scripts/Settings/GameSettings")]
 public class GameSettings : myMonoBehaviour {
-
+	
+	public GlobalSettings Global;
+	public GlobalSettings GameStatesSettings;
+	public GlobalSettings InputSettings;
+	public GlobalSettings UISettings;
+	
+	
+	/*
     public ScoreSettings score;     // Attribution des Points
 	public SuperSettings super;     // for super settings
     public InputSettings inputs;    // Controles J1
@@ -94,4 +121,5 @@ public class GameSettings : myMonoBehaviour {
 
     public float maxTimeHoldingPassButton = 3; // Seconds
     public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
+    */
 }

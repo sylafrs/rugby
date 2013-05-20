@@ -11,6 +11,7 @@ public class SprintState : GameState
     Unit unit;
 
     // Check if the unit stops sprinting..
+	/*
     public override bool OnSprint(Unit u, bool sprinting)
     {
         if (!sprinting && u == this.unit)
@@ -21,4 +22,5 @@ public class SprintState : GameState
 
         return false;
     }
+    */
 }
