@@ -4790,7 +4790,7 @@ MonoBehaviour:
   unitDodgeSpeedFactor: 2
   unitDodgeDuration: .200000003
   unitDodgeCooldown: 2
-  unitInvincibleDodge: 1
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -23256,7 +23256,7 @@ MonoBehaviour:
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
   MinfollowOffset: {x: 0, y: 1, z: -1.5}
-  flipDuration: 1
+  flipDuration: .810000002
   flipDelay: .100000001
   flipedForTeam: {fileID: 0}
   CancelNextFlip: 0
@@ -28080,7 +28080,7 @@ MonoBehaviour:
     points_drop: 3
     points_essai: 5
     points_transfo: 2
-    period_time: 120
+    period_time: 240
   super:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
@@ -28824,7 +28824,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8b504803cbe0ce47a0a73833dae60e2, type: 3}
   m_Name: 
-  tempsPlaquage: 1
+  tempsPlaquage: .5
   ralentiPlaquage: 1
   touchPassOnTackle:
     keyboard: 97
@@ -29671,7 +29671,7 @@ MonoBehaviour:
   unitDodgeSpeedFactor: 2
   unitDodgeDuration: .200000003
   unitDodgeCooldown: 2
-  unitInvincibleDodge: 1
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
