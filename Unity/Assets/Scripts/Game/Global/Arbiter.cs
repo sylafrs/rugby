@@ -370,7 +370,7 @@ public class Arbiter : myMonoBehaviour {
 		if(t.Player) t.Player.stopMove();
 		if(t.opponent.Player) t.opponent.Player.stopMove();		
 				
-		MyDebug.Log("Essai de la part des " + t.Name + " !");
+		
         t.nbPoints += Game.settings.score.points_essai;
 		Team opponent = Game.Ball.Owner.Team.opponent;
 		
@@ -471,7 +471,7 @@ public class Arbiter : myMonoBehaviour {
     {	
         Game.right.placeUnits(Game.right.StartPlacement, true);
         Game.left.placeUnits(Game.left.StartPlacement, true);
-		Debug.Log("Unit to give : "+UnitToGiveBallTo);
+		
 
 		GiveBall(UnitToGiveBallTo);
     }
@@ -532,7 +532,7 @@ public class Arbiter : myMonoBehaviour {
                 {
                     Game.OnScrum();
                     //goScrum = true;
-                    //MyDebug.Log("Scruuum");
+                    //
                 }
             }
         }

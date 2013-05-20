@@ -188,7 +188,7 @@ public class TransformationManager : myMonoBehaviour {
 		pos = ball.Owner.BallPlaceHolderTransformation.transform.position;
 		dir = ball.Owner.transform.forward;
 		
-		Debug.Log("transformation : " + dir);
+		
 		//ball.rigidbody.AddForce(force);
 
 		if(OnLaunch != null) OnLaunch();

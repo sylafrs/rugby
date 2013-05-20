@@ -203,7 +203,7 @@ public class Game : myMonoBehaviour {
     public void OnDrop()
     {
         this.sm.event_Drop();
-		//Debug.Log("Drop");
+		//
 		//this.state = State.DROPING;
         //cameraManager.sm.event_Drop();
     }

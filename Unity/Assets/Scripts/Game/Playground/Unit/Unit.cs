@@ -216,7 +216,7 @@ public class Unit : TriggeringTriggered, Debugable
             if (t.GetType() == typeof(NearUnit))
             {
                 if (other.Team != this.Team)  
-                    this.sm.event_NearUnit(other);// MyDebug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
+                    this.sm.event_NearUnit(other);// 
             }
         }
     }

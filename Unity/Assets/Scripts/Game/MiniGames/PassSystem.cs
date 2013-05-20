@@ -111,7 +111,7 @@ public class PassSystem {
 			ball.NextOwner = target;
 
 			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
-			//MyDebug.Log("pos in map : " + typePosition);
+			//
 			foreach (Unit u in target.Team)
 			{
 				if (u != target)

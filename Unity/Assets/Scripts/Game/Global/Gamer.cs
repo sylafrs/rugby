@@ -273,7 +273,7 @@ public class Gamer : myMonoBehaviour
             if (unitsSide.Count != 0)
             {
                 int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / Game.settings.maxTimeHoldingPassButton);
-                MyDebug.Log(unit);
+                
 
                 if (unit == unitsSide.Count) unit--;
                 Unit u = unitsSide[unit];
@@ -345,7 +345,7 @@ public class Gamer : myMonoBehaviour
         if (Controlled)
         {
             Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
-            //MyDebug.Log("pos in map : " + typePosition);
+            //
 
             if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
             {

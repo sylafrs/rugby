@@ -103,7 +103,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 		foreach(var u in units) {
             if (u.nma)
             {
-                //MyDebug.Log("a " + u.nma.speed);
+                //
                 if (fixUnits)
                 {
                     u.nma.speed = 0;
@@ -117,12 +117,12 @@ public class Team : myMonoBehaviour, IEnumerable {
                     }
                 }
                 
-                //MyDebug.Log("b " + u.nma.speed);
+                //
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
             else
             {
-                MyDebug.Log("WAT ?");
+                
             }
 		}
 	}
@@ -131,14 +131,14 @@ public class Team : myMonoBehaviour, IEnumerable {
 		foreach(var u in units) {
             if (u.nma)
             {
-                //MyDebug.Log("a " + u.nma.speed);
+                //
                 u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
-                //MyDebug.Log("b " + u.nma.speed);
+                //MyDebug.Log(
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
             else
             {
-                MyDebug.Log("WAT ?");
+                
             }
 		}
 	}
@@ -323,7 +323,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 		/*
 		Order.TYPE_POSITION typePosition = PositionInMap( owner );
-		//MyDebug.Log("pos in map : " + typePosition);
+		//
         foreach (Unit u in units)
         {
             // FIX. (TODO)
