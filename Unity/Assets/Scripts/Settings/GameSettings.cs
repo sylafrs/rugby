@@ -107,7 +107,7 @@ public class GameSettings : myMonoBehaviour {
 	public GlobalSettings UISettings;
 	
 	
-	/*
+	
     public ScoreSettings score;     // Attribution des Points
 	public SuperSettings super;     // for super settings
     public InputSettings inputs;    // Controles J1
@@ -121,5 +121,4 @@ public class GameSettings : myMonoBehaviour {
 
     public float maxTimeHoldingPassButton = 3; // Seconds
     public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
-    */
 }
