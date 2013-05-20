@@ -173,6 +173,28 @@ public class Ball : TriggeringTriggered {
 		Game.OnDrop();
     }
 
+    public bool isDroping
+    {
+        get
+        {
+            return (timeOnDrop != -1);
+        }
+    }
+
+    public DropManager.TYPEOFDROP? typeOfDrop
+    {
+        get
+        {
+            if (!isDroping)
+                return null;
+
+            if (drop == null)
+                return null;
+
+            return drop.typeOfDrop;
+        }
+    }
+
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
@@ -188,6 +210,7 @@ public class Ball : TriggeringTriggered {
 				this.rigidbody.isKinematic = true;
 			}
 		}
+
 		if (this.Owner != null && timeOnDrop != -1)
 		{
 			timeOnDrop = -1;

@@ -17,6 +17,14 @@ public class DropManager {
 		KICK
 	}
 
+    public TYPEOFDROP typeOfDrop
+    {
+        get
+        {
+            return type;
+        }
+    }
+
 	public DropManager(Ball b, TYPEOFDROP t)
 	{
 		ball = b;

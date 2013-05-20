@@ -18,7 +18,7 @@ public class BallHandlingState : GameState
 
     public override bool OnDodge(Unit u)
     {
-        sm.state_change_son(this, new DodgeState(sm, cam, game));
+        sm.state_change_son(this, new DodgingState(sm, cam, game));
         return true;
     }
 }

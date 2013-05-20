@@ -12,12 +12,12 @@ public class GainGroundingState : GameState {
     {
         cam.setTarget(this.game.Ball.Owner.transform);
     }
-
+        
     public override bool OnDodge(Unit u)
     {
         if (u == this.game.Ball.Owner)
         {
-            sm.state_change_son(this, new DodgeState(sm, cam, this.game));
+            sm.state_change_son(this, new DodgingState(sm, cam, this.game));
             return true;
         }
 
