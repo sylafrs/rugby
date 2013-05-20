@@ -14,7 +14,7 @@ public class ScrumState : CameraState
 		cam.setTarget(null);
 	}
 	
-	public override bool OnEnter()
+	public override void OnEnter()
     {
 		//initCutScene();
 		//MyDebug.Log("previous owner "+cam.game.Ball.PreviousOwner);
@@ -22,6 +22,5 @@ public class ScrumState : CameraState
        // cam.game.arbiter.ScrumCinematicMovement();
        // cam.game.arbiter.NowScrum();
 
-        return false;
     }
 }
