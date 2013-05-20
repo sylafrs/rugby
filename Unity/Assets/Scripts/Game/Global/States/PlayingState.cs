@@ -36,6 +36,10 @@ public class PlayingState : GameState
 
     public override bool OnTry(Zone z)
     {
-        return false;
+        GameActionState newSon = new GameActionState(sm, cam, game);
+        sm.state_change_son(this, newSon);
+        newSon.OnTry(z);
+
+        return true;
     }
 }
