@@ -213,7 +213,8 @@ public class Game : myMonoBehaviour {
 		sm.event_OnTouch();
 	}
 	
-	public void OnEssai() {
+	public void OnEssai(Zone z) {
+        sm.event_Try(z);
 		arbiter.OnEssai();
 	}
 

@@ -17,4 +17,9 @@ public class GameActionState : GameState {
         return true;
     }
 
+    public override bool OnScrum()
+    {
+        sm.state_change_son(this, new ScrumState(sm, cam, game));
+        return true;
+    }
 }

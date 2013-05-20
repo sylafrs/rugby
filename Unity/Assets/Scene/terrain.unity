@@ -4787,6 +4787,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -9461,6 +9465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
+  Model: {fileID: 1119795520}
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
@@ -9473,6 +9478,7 @@ MonoBehaviour:
   timeOnDrop: -1
   timeOnPass: -1
   PreviousOwner: {fileID: 0}
+  scrumFieldUnits: []
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27808,6 +27814,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1531963448}
   m_GameObject: {fileID: 1978565298}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1983692975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1983692976}
+  - 33: {fileID: 1983692979}
+  - 23: {fileID: 1983692977}
+  m_Layer: 0
+  m_Name: ScrumBloc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983692976
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1983692975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20.1399994, y: 14.3000002, z: 17.9899998}
+  m_Children: []
+  m_Father: {fileID: 2027178520}
+--- !u!23 &1983692977
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1983692975}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &1983692979
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1983692975}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1990382059
 GameObject:
   m_ObjectHideFlags: 0
@@ -27925,7 +27984,6 @@ GameObject:
   - 4: {fileID: 2004071850}
   - 114: {fileID: 2004071851}
   - 114: {fileID: 2004071853}
-  - 114: {fileID: 2004071854}
   - 114: {fileID: 2004071855}
   - 114: {fileID: 2004071856}
   - 114: {fileID: 2004071857}
@@ -27933,6 +27991,7 @@ GameObject:
   - 114: {fileID: 2004071859}
   - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071860}
+  - 114: {fileID: 2004071854}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -27972,6 +28031,7 @@ MonoBehaviour:
   cameraManager: {fileID: 1693924984}
   guiManager: {fileID: 2004071854}
   introManager: {fileID: 2004071858}
+  ScrumBloc: {fileID: 1983692977}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
@@ -28020,14 +28080,6 @@ MonoBehaviour:
       keyboardP1: 0
       keyboardP2: 0
       xbox: 0
-    scrumNormal:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    scrumExtra:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
     put:
       keyboardP1: 0
       keyboardP2: 0
@@ -28055,6 +28107,18 @@ MonoBehaviour:
         down: 107
         right: 108
         left: 106
+      xbox: 0
+    dodge:
+      keyboardP1:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      keyboardP2:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
       xbox: 0
   UI:
     GameUI:
@@ -28363,6 +28427,8 @@ MonoBehaviour:
   LineSpace: 3
   maxTimeHoldingPassButton: 3
   timeToSleepAfterIntro: 5
+  timeToGetOutTackleAreaBeforeScrum: 2
+  minPlayersEachTeamToTriggerScrum: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28374,28 +28440,56 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  cam: {fileID: 0}
-  scoreTarget: 1000
-  playerUp: 15
-  cpuUp: .5
-  specialLuck: 20
-  playerSpecialUp: 80
-  frameStart: 30
-  rightGap: -27
-  leftGap: 10
-  IAoffset: -.0500000007
-  playerOffset: .5
-  timer: 10
+  tweakSettings:
+    FeedSuperPerSmash: 0
+    FeedSuperPerSecond: 0
+    MaximumDistance: 0
+    MaximumDuration: 0
+    SmashValue: 0
+    SuperMultiplicator: 0
+  inputSettings:
+    rightSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    rightSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+  guiSettings:
+    ScrumSpecialRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    ScrumSpecialButton: {fileID: 0}
+    ScrumBarRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    ScrumRightBar: {fileID: 0}
+    ScrumLeftBar: {fileID: 0}
+    ScrumEmptyBar: {fileID: 0}
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2004071849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
+  m_Script: {fileID: 11500000, guid: aca29ccebb51aa148a07ed4fa512862a, type: 3}
   m_Name: 
 --- !u!114 &2004071855
 MonoBehaviour:
@@ -28532,8 +28626,7 @@ MonoBehaviour:
   TransfoRemiseAuCentre: 1
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
-  IngameTime: 0
-  UnitToGiveBallTo: {fileID: 0}
+  ScrumPlacement: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28834,6 +28927,7 @@ Transform:
   - {fileID: 719836396}
   - {fileID: 1795899136}
   - {fileID: 303037525}
+  - {fileID: 1983692976}
   - {fileID: 642022007}
   - {fileID: 1774892247}
   m_Father: {fileID: 0}
@@ -29405,6 +29499,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
