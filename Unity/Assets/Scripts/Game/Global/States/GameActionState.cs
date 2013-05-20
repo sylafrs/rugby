@@ -28,4 +28,11 @@ public class GameActionState : GameState {
         sm.state_change_son(this, new ConvertingState(sm, cam, game, z));
         return true;
     }
+
+    const int N = 4; // To define somewhere else..
+
+    public override void OnLeave()
+    {
+        sm.state_change_me(this, new WaitingState(sm, cam, game, N));
+    }
 }
