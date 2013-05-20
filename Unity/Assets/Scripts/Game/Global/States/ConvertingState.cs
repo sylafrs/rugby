@@ -15,4 +15,14 @@ public class ConvertingState : GameState {
 
     private Zone zone;
 
+    public override void OnEnter()
+    {
+        sm.state_change_son(this, new AimingConversionState(sm, cam, game, zone));
+    }
+
+    public override bool OnConversionShot()
+    {
+        sm.state_change_son(this, new ConversionFlyState(sm, cam, game, zone));
+        return true;
+    }
 }
