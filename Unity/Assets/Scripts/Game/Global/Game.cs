@@ -83,6 +83,8 @@ public class Game : myMonoBehaviour {
 	public UIManager guiManager;
     public IntroManager introManager;
 
+    public Renderer ScrumBloc;
+
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
 
@@ -122,7 +124,7 @@ public class Game : myMonoBehaviour {
 	public KeyCode disableIAKey;
 	public bool tweakMode;
    	
-    private bool cameraLocked;
+  //  private bool cameraLocked;
     
 	public Arbiter arbiter;
 	
@@ -166,7 +168,7 @@ public class Game : myMonoBehaviour {
         Ball.Owner 			= p1.Controlled;
 		//Ball.PreviousOwner 	= null;
       
-		this.cameraLocked = true;
+		//this.cameraLocked = true;
 				       
         introManager.OnFinish = () => {
             this._disableIA = true;                  
@@ -194,6 +196,8 @@ public class Game : myMonoBehaviour {
     public void OnScrum()
     {
         arbiter.OnScrum();
+        //cameraManager.sm.event_Scrum();
+        sm.event_Scrum();
     }
     
     public void OnDrop()

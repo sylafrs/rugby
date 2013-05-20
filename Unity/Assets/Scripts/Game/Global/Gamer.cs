@@ -101,14 +101,18 @@ public class Gamer : myMonoBehaviour
             return;
            */
 
-		UpdateStickDirection();	
-        UpdateMOVE();
-        UpdateTACKLE();
-        UpdatePASS();
-        UpdateDROP();
-		UpdateESSAI();
-		UpdatePLAYER();
-        
+        UpdateDODGE();
+
+        if (!Controlled.Dodge)
+        {
+            UpdateStickDirection();
+            UpdateMOVE();
+            UpdateTACKLE();
+            UpdatePASS();
+            UpdateDROP();
+            UpdateESSAI();
+            UpdatePLAYER();
+        }
     }
 
     bool UpdateRESET()
@@ -294,63 +298,80 @@ public class Gamer : myMonoBehaviour
             Unit owner = this.Game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                Controlled.Order = Order.OrderPlaquer(owner);
+                if (owner.Dodge && owner.Team.unitInvincibleDodge)
+                    Controlled.Order = Order.OrderPlaquer(null);
+                else
+                    Controlled.Order = Order.OrderPlaquer(owner);
+
+
             }
         }
     }
 	
 	void UpdatePLAYER()
 	{
-		if (Game.Ball.Owner == null && ((Game.Ball.PreviousOwner.Team == Controlled.Team && Game.Ball.PreviousOwner.isTackled)
-										|| Controlled.isTackled))
-		{
-            Controlled.Order = Order.OrderNothing();
+        bool change = false;
 
-			Controlled.IndicateSelected(false);
-			Controlled = GetUnitNear();
-			Controlled.IndicateSelected(true);
-		}
-
-		if ( Controlled != null && Controlled.Team != null && Game != null && Game.Ball != null)
-		{	
-			if ((Game.Ball.Owner == null || Game.Ball.Owner.Team != Team) &&
-                (Input.GetKeyDown(Inputs.changePlayer.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
-	        {
-				Controlled.IndicateSelected(false);
-				Controlled = GetUnitNear();
+        if (this.Controlled == null)
+        {
+            change = true;
+        }        
+        else if (this.Controlled.isTackled)
+        {
+            change = true;
+        }
+        else if (this.Controlled != this.Game.Ball.Owner &&
+				(Input.GetKeyDown(Inputs.changePlayer.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+        {
+            change = true;
+        }
+        if (change)
+        {
+            if (Controlled)
+            {
                 Controlled.Order = Order.OrderNothing();
-				Controlled.IndicateSelected(true);
-				
-				//MyDebug.Log("joueur controllé " + Controlled);
-	        }
-			
-			Order.TYPE_POSITION typePosition = Team.PositionInMap( Controlled );
-			//MyDebug.Log("pos in map : " + typePosition);
-			
+                Controlled.IndicateSelected(false);
+            }
+
+            Controlled = GetUnitNear();
+
+            if (Controlled)
+            {
+                Controlled.Order = Order.OrderNothing();
+                Controlled.IndicateSelected(true);
+            }
+        }
+
+        if (Controlled)
+        {
+            Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
+            //MyDebug.Log("pos in map : " + typePosition);
+
             if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
-			{				
-				//offensiveside
-				foreach (Unit u in Controlled.Team)
-			    {
-			    	if (u != Controlled)
-			        {
-						u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        }
-				}
-			}
-			else
-			{
-				//defensiveside
-				foreach (Unit u in Controlled.Team)
-			    {
-			    	if (u != Controlled)
-			        {
-						u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth/1.5f), Controlled.Team.right, typePosition);
-			        }
-				}
-			}
-             
-		}
+            {
+                //offensiveside
+                foreach (Unit u in Controlled.Team)
+                {
+                    if (u != Controlled)
+                    {
+                        u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                    }
+                }
+            }
+            else
+            {
+                //defensiveside
+                foreach (Unit u in Controlled.Team)
+                {
+                    if (u != Controlled)
+                    {
+                        u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                    }
+                }
+            }
+        }
+
+		
 	}
 	
 	public Unit GetUnitNear()
@@ -374,10 +395,14 @@ public class Gamer : myMonoBehaviour
 
     void UpdateMOVE()
     {
+       // if (Game.state != Game.State.PLAYING)
+       //     return;
+
         if (!canMove) return;
         Vector3 direction = Vector3.zero;
-
         InputDirection.Direction d;
+
+        direction = Vector3.zero;
         if (XboxController.IsConnected)
         {
             d = XboxController.GetDirection(Inputs.move.xbox);
@@ -392,7 +417,38 @@ public class Gamer : myMonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized, Order.TYPE_DEPLACEMENT.COURSE);
+            Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized);
+        }
+    }
+
+    void UpdateDODGE()
+    {
+       // if (Game.state != Game.State.PLAYING)
+       //     return;
+
+        if (!canMove) return;
+        if (!Controlled) return;
+        if (!Controlled.CanDodge) return;
+        
+        Vector3 direction = Vector3.zero;
+        InputDirection.Direction d;
+
+        direction = Vector3.zero;
+        if (XboxController.IsConnected)
+        {
+            d = XboxController.GetDirection(Inputs.dodge.xbox);
+        }
+        else
+        {
+            d = Inputs.dodge.keyboard.GetDirection();
+        }
+
+        direction += Camera.main.transform.forward * d.y;
+        direction += Camera.main.transform.right * d.x;
+
+        if (direction.magnitude > 0.8f)
+        {
+            Controlled.Order = Order.OrderDodge(direction.normalized);
         }
     }
 
