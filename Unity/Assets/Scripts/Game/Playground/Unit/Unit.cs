@@ -115,7 +115,7 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public override void Start () 
     {        
-        sm.SetFirstState(new MainState(sm, this));
+        sm.SetFirstState(new MainUnitState(sm, this));
         base.Start();
 	}
     

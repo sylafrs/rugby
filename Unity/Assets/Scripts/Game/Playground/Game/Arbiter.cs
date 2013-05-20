@@ -392,7 +392,7 @@ public class Arbiter : myMonoBehaviour {
         this.StartPlacement();
         this.Game.Ball.Owner = but.Owner[0];
 
-        this.Game.TimedDisableIA(3);
+        //this.Game.TimedDisableIA(3);
     }
 	
 	private void GiveBall(Unit _u){
@@ -417,7 +417,7 @@ public class Arbiter : myMonoBehaviour {
 		// Remise au centre, donne la balle aux perdants.
 		UnitToGiveBallTo = NewOwner;
         this.StartPlacement();
-        this.Game.TimedDisableIA(3);
+        //this.Game.TimedDisableIA(3);
     }
 
     public void StartPlacement()
