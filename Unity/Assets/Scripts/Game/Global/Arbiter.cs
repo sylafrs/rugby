@@ -209,7 +209,7 @@ public class Arbiter : myMonoBehaviour {
 
 	public void OnScrum() {
 
-        this.Game.state = Game.State.SCRUM;
+       // this.Game.state = Game.State.SCRUM;
         this.Game.Ball.Owner = null;
 
         ScrumCinematicMovement();
@@ -239,7 +239,7 @@ public class Arbiter : myMonoBehaviour {
             this.Game.left.ShowPlayers(true);
             bloc.enabled = false;
 
-            this.Game.state = Game.State.PLAYING;
+            // this.Game.state = Game.State.PLAYING;
         };
 
         sc.enabled = true;
@@ -315,13 +315,9 @@ public class Arbiter : myMonoBehaviour {
                     break;
             }
 
-<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
-            //this.Game.state = Game.State.PLAYING;
-=======
             LastTackle = Time.time;
 
-            this.Game.state = Game.State.PLAYING;
->>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
+            //this.Game.state = Game.State.PLAYING;
         };
 
         tm.Tackle();
@@ -473,15 +469,10 @@ public class Arbiter : myMonoBehaviour {
 
     public void StartPlacement()
     {	
-<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
-        Game.right.placeUnits(Game.right.StartPlacement);
-        Game.left.placeUnits(Game.left.StartPlacement);
-		//Debug.Log("Unit to give : "+UnitToGiveBallTo);
-=======
         Game.right.placeUnits(Game.right.StartPlacement, true);
         Game.left.placeUnits(Game.left.StartPlacement, true);
 		Debug.Log("Unit to give : "+UnitToGiveBallTo);
->>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
+
 		GiveBall(UnitToGiveBallTo);
     }
 
@@ -513,10 +504,7 @@ public class Arbiter : myMonoBehaviour {
 					this.Game.OnGameEnd();
 				}
 			}
-<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
         //}
-=======
-        }
 
         UpdateTackle();
     }
@@ -548,6 +536,5 @@ public class Arbiter : myMonoBehaviour {
                 }
             }
         }
->>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
     }
 }

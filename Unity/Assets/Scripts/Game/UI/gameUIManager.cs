@@ -72,10 +72,10 @@ public class gameUIManager : myMonoBehaviour {
 	
 	void Update()
     {
-        if (this._game.state == Game.State.INTRODUCTION)
-        {
-            return;
-        }
+       // if (this._game.state == Game.State.INTRODUCTION)
+       // {
+       //     return;
+       // }
 
 		//GamePadState pad = GamePad.GetState(_game.p1.playerIndex);
         
@@ -116,19 +116,19 @@ public class gameUIManager : myMonoBehaviour {
 
 	void OnGUI()
     {
-        if (this._game.state == Game.State.INTRODUCTION)
-        {
-            return;
-        }
-			
-		if(_game.state != Game.State.END)
-        {
-            GUIPlaying();			
-		}
-        else
-        {
-            GUIGameOver();
-		}
+        //if (this._game.state == Game.State.INTRODUCTION)
+        //{
+        //    return;
+        //}
+		//	
+		//if(_game.state != Game.State.END)
+        //{
+        //    GUIPlaying();			
+		//}
+        //else
+        //{
+        //    GUIGameOver();
+		//}
 	}
 
     void GUIPlaying()
