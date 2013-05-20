@@ -85,7 +85,7 @@ public class Gamer : myMonoBehaviour
 
     //List<Unit> unitsSide;
 
-    void Update()
+    public void myUpdate()
     {
         if(XboxController == null)
             XboxController = Game.xboxInputs.controllers[id];

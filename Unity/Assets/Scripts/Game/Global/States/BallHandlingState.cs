@@ -24,6 +24,9 @@ public class BallHandlingState : GameState
 
     public override void OnUpdate()
     {
-        game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderRight.transform.position;
+        if (game.Ball.Owner)
+        {
+            game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderRight.transform.position;
+        }
     }
 }
