@@ -21,4 +21,9 @@ public class BallHandlingState : GameState
         sm.state_change_son(this, new DodgingState(sm, cam, game));
         return true;
     }
+
+    public override void OnUpdate()
+    {
+        game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderRight.transform.position;
+    }
 }
