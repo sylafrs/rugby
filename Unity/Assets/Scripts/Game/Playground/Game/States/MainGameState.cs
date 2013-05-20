@@ -15,4 +15,10 @@ public class MainGameState : GameState {
     {
         sm.state_change_son(this, new RunningState(sm, cam, game));
     }
+
+    public override bool OnPass(Unit from, Unit to)
+    {
+        sm.state_change_son(this, new PassingState(sm, cam, game, from, to));
+        return true;
+    }
 }
