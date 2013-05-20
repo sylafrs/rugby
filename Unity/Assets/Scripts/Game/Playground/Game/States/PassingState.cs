@@ -19,24 +19,4 @@ public class PassingState : GameState {
     {
         cam.setTarget(cam.game.Ball.transform);
     }
-
-    public override bool OnNewOwner(Unit old, Unit current)
-    {
-        if (current)
-        {
-            sm.state_change_me(this, new RunningState(sm, cam, game));
-            return true;
-        }
-
-        return false;
-    }
-
-    public override bool OnBallOnGround(bool onGround)
-    {
-        if (!onGround)
-            return false;
-
-        sm.state_change_me(this, new RunningState(sm, cam, game));
-        return true;
-    }
 }

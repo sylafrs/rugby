@@ -22,23 +22,5 @@ public class GainGroundingState : GameState {
         }
 
         return false;
-    }
-
-    //  TODO à changer de place ou pas
-    public override bool OnTackle()   
-    {
-		
-		
-		
-        //if(this.target.isTackled) 
-        //{
-			//MyDebug.Log("On Tackle");
-            sm.state_change_son(this, new TackleState(sm, cam, game, this.game.Ball.Owner));
-            return true;
-        //}
-
-        //return false;
-    }
-	
-	
+    }	
 }
