@@ -27993,11 +27993,11 @@ MonoBehaviour:
   m_Name: 
   Inputs:
     shortPass:
-      keyboardP1: 0
+      keyboardP1: 49
       keyboardP2: 0
       xbox: 0
     longPass:
-      keyboardP1: 0
+      keyboardP1: 50
       keyboardP2: 0
       xbox: 0
     dropUpAndUnder:
@@ -28045,11 +28045,16 @@ MonoBehaviour:
       keyboardP2: 97
       xbox: 0
     move:
-      keyboard:
+      keyboardP1:
         up: 122
         down: 115
         right: 100
         left: 113
+      keyboardP2:
+        up: 105
+        down: 107
+        right: 108
+        left: 106
       xbox: 0
   UI:
     GameUI:

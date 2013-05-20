@@ -132,7 +132,7 @@ public class Gamer : myMonoBehaviour
 		}
 		else
 		{
-			stickDirection = Inputs.move.keyboard.GetDirection();
+			stickDirection = Inputs.move.keyboard(this.Team).GetDirection();
 		}
 	}
 
@@ -384,7 +384,7 @@ public class Gamer : myMonoBehaviour
         }
         else
         {
-            d = Inputs.move.keyboard.GetDirection();
+            d = Inputs.move.keyboard(this.Team).GetDirection();
         }
 
         direction += Camera.main.transform.forward * d.y;

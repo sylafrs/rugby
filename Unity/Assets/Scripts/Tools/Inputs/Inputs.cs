@@ -29,7 +29,16 @@ public class InputDirection
         }
     }
 
-    public KeyBoardDirection keyboard;
+    public KeyBoardDirection keyboardP1;
+	public KeyBoardDirection keyboardP2;
+	
+	public KeyBoardDirection keyboard(Team t) {
+		Game g = t.Game;
+		if(t == g.right)
+			return keyboardP1;
+		return keyboardP2;
+	}
+	
     public XBOX_DIRECTION xbox;   
 }
 
