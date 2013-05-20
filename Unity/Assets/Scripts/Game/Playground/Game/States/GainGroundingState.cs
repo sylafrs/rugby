@@ -5,19 +5,17 @@ using UnityEngine;
   * @author Sylvain Lafon
   * @see myMonoBehaviour
   */
-public class FollowPlayerState : GameState {
-    public FollowPlayerState(StateMachine sm, CameraManager cam, Unit target, Game game) : base(sm, cam, game) { this.target = target; }
-
-    Unit target;
+public class GainGroundingState : GameState {
+    public GainGroundingState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
     public override void OnEnter()
     {
-        cam.setTarget(this.target.transform);
+        cam.setTarget(this.game.Ball.Owner.transform);
     }
 
     public override bool OnDodge(Unit u)
     {
-        if (u == this.target)
+        if (u == this.game.Ball.Owner)
         {
             sm.state_change_son(this, new DodgeState(sm, cam, this.game));
             return true;
@@ -35,7 +33,7 @@ public class FollowPlayerState : GameState {
         //if(this.target.isTackled) 
         //{
 			//MyDebug.Log("On Tackle");
-            sm.state_change_son(this, new TackleState(sm, cam, game, this.target));
+            sm.state_change_son(this, new TackleState(sm, cam, game, this.game.Ball.Owner));
             return true;
         //}
 
