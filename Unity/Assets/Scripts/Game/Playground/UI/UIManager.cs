@@ -71,6 +71,11 @@ public class UIManager : myMonoBehaviour {
 
 		return new Rect(x * W, y * H, w * W, h * H);	
 	}
+
+    public static Rect screenRelativeRect(Rect r)
+    {
+        return screenRelativeRect(r.x, r.y, r.width, r.height);
+    }
 	
 	void OnGUI()
     {

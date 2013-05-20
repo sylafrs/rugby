@@ -95,13 +95,13 @@ public class scrumController : myMonoBehaviour {
     {
         float smash = 0;
 
-        if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard))
+        if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard(Game.right)))
         {
             smash += this.tweakSettings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
         }
 
-        if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard))
+        if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard(Game.left)))
         {
             smash -= this.tweakSettings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
@@ -112,13 +112,13 @@ public class scrumController : myMonoBehaviour {
             int super = 0;
             bool used = false;
 
-            if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard))
+            if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard(Game.right)))
             {
                 super += 1;
                 used = true;
             }
 
-            if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard))
+            if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard(Game.left)))
             {
                 super -= 1;
                 used = true;
@@ -222,10 +222,10 @@ public class scrumController : myMonoBehaviour {
     {
         Rect rect;        
        
-        rect = gameUIManager.screenRelativeRect(this.guiSettings.ScrumSpecialRect);
+        rect = UIManager.screenRelativeRect(this.guiSettings.ScrumSpecialRect);
         this.guiSettings.ScrumSpecialRect = rect;
 
-        rect = gameUIManager.screenRelativeRect(this.guiSettings.ScrumBarRect);
+        rect = UIManager.screenRelativeRect(this.guiSettings.ScrumBarRect);
         this.guiSettings.ScrumBarRect = rect;    
     }
 

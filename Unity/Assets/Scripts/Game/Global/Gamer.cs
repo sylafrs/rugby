@@ -440,7 +440,7 @@ public class Gamer : myMonoBehaviour
         }
         else
         {
-            d = Inputs.dodge.keyboard.GetDirection();
+            d = Inputs.dodge.keyboard(Team).GetDirection();
         }
 
         direction += Camera.main.transform.forward * d.y;
