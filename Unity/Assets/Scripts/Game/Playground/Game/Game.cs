@@ -175,7 +175,7 @@ public class Game : myMonoBehaviour {
 			sm.event_OnStartSignal();
         };
 
-		sm.SetFirstState(new MainGameState(sm,this.cameraManager,this));
+		sm.SetFirstState(new MainState(sm,this.cameraManager,this));
 		introManager.enabled = true;
     }
 	

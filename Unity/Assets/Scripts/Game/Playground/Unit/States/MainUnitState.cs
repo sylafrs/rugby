@@ -4,9 +4,9 @@
  * @author Sylvain Lafon
  * @author Guilleminot Florian
  */
-public class MainState : UnitState
+public class MainUnitState : UnitState
 {
-    public MainState(StateMachine sm, Unit unit) : base(sm, unit) { }
+    public MainUnitState(StateMachine sm, Unit unit) : base(sm, unit) { }
 
     public override void OnEnter()
     {

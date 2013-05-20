@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /**
   * @class MainGameState
-  * @brief Etat principal du jeu.
+  * @brief Description.
   * @author Sylvain Lafon
-  * @see GameState
+  * @see MonoBehaviour
   */
 public class MainGameState : GameState {
 
@@ -12,19 +13,6 @@ public class MainGameState : GameState {
 
     public override void OnEnter()
     {
-        sm.state_change_son(this, new IntroState(sm, cam, game));
+        sm.state_change_son(this, new RunningState(sm, cam, game));
     }
-
-    public override bool OnEndSignal()
-    {
-        sm.state_change_son(this, new EndState(sm, cam, game));
-        return true;
-    }
-	
-	public override bool OnStartSignal()
-    {
-		sm.state_change_son(this, new PlayingState(sm, cam, game));
-		return true;
-	}
 }
-

@@ -44,7 +44,7 @@ class PlaqueState : UnitState
         t += UnityEngine.Time.deltaTime;
         if (t > unit.Game.settings.timePlaque)
         {
-            sm.state_change_me(this, new MainState(sm, unit));
+            sm.state_change_me(this, new MainUnitState(sm, unit));
         }
     }
 
