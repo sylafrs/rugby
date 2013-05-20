@@ -22,8 +22,13 @@ public class PassingState : GameState {
 
     public override bool OnNewOwner(Unit old, Unit current)
     {
-        sm.state_change_me(this, new RunningState(sm, cam, game));
-        return true;
+        if (current)
+        {
+            sm.state_change_me(this, new RunningState(sm, cam, game));
+            return true;
+        }
+
+        return false;
     }
 
     public override bool OnBallOnGround(bool onGround)
