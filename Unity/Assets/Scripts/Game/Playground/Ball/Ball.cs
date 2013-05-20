@@ -124,17 +124,17 @@ public class Ball : TriggeringTriggered {
         if (Owner != null)
         {
 			
-            if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
-                this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
-				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
-            {
-				/*
-				if ( Game.state == Game.State.TRANSFORMATION )
-					this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
-				else
-                	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
-                	*/
-            }
+           // if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
+           //     this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
+			//	this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
+           // {
+			//	/*
+			//	if ( Game.state == Game.State.TRANSFORMATION )
+			//		this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
+			//	else
+           //     	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
+           //     	*/
+           // }
                        
             this.transform.localRotation = Quaternion.identity;
         }

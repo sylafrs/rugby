@@ -13,23 +13,8 @@ public class RunningState : GameState
 
     public override void OnEnter()
     {
-        decide(this.game.Ball.Owner);
-    }   
+        Unit owner = this.game.Ball.Owner;
 
-    public override bool OnDrop()
-    {
-        decide(null);
-        return true;
-    }
-
-    public override bool OnNewOwner(Unit old, Unit current)
-    {
-        decide(current);
-        return true;
-    }
-	
-    private void decide(Unit owner) 
-    {
         if (owner)
         {
             sm.state_change_son(this, new BallHandlingState(sm, cam, game));
@@ -38,8 +23,7 @@ public class RunningState : GameState
         {
             sm.state_change_son(this, new BallFreeState(sm, cam, game));
         }
-
-    }
+    }   
 
 	//public override void OnEnter ()
 	//{

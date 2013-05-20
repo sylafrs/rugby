@@ -47,4 +47,13 @@ public class MainGameState : GameState {
         sm.state_change_son(this, new RunningState(sm, cam, game));
         return true;
     }
+
+    public override void OnUpdate()
+    {
+        var p1 = this.game.right.Player;
+        var p2 = this.game.left.Player;
+       
+        if (p1) p1.myUpdate();
+        if (p2) p2.myUpdate();
+    }
 }
