@@ -208,6 +208,7 @@ public class Ball : TriggeringTriggered {
 			{
 				timeOnDrop = -1;
 				this.rigidbody.isKinematic = true;
+                this.Game.BallOnGround(true);
 			}
 		}
 

@@ -198,7 +198,8 @@ public class Game : myMonoBehaviour {
     
     public void OnDrop()
     {
-		Debug.Log("Drop");
+        this.sm.event_Drop();
+		//Debug.Log("Drop");
 		//this.state = State.DROPING;
         //cameraManager.sm.event_Drop();
     }
@@ -225,7 +226,7 @@ public class Game : myMonoBehaviour {
 
     public void OnOwnerChanged(Unit before, Unit after)
     {
-        //cameraManager.sm.event_NewOwner(before, after);
+        sm.event_NewOwner(before, after);
 
 		if (after != null)
         {
@@ -272,6 +273,8 @@ public class Game : myMonoBehaviour {
     public void BallOnGround(bool onGround)
     {
         //cameraManager.sm.event_BallOnGround(onGround);
+
+        sm.event_BallOnGround(onGround);
     }
 
     public void OnBallOut()
