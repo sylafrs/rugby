@@ -5,32 +5,25 @@
  */
 public abstract partial class State
 {
+	//unit State Machine
     public virtual bool OnNearUnit(Unit u)
     {
         return (false);
     }
-
+	
+	//unit State Machine
     public virtual bool OnNearBall()
     {
         return (false);
     }
-
+	
+	//unit State Machine
     public virtual bool OnNewOrder()
     {
         return (false);
     }
 	
-	public virtual bool OnIntroLaunch()
-    {
-        return (false);
-    }
-	
-	public virtual bool OnIntroEnd()
-    {
-        return (false);
-    }
-	
-	public virtual bool OnEndLaunch()
+	public virtual bool OnEndSignal()
     {
         return (false);
     }
@@ -59,7 +52,8 @@ public abstract partial class State
     {
         return (false);
     }
-
+	
+	/*
     public virtual bool OnSprint(Unit u, bool sprinting)
     {
         return (false);
@@ -86,18 +80,19 @@ public abstract partial class State
 	{
 		return (false);
 	}
-
+	
+	//Team "State Machine"
     public virtual bool OnSuper(Team t, SuperList super)
     {
         return (false);
     }
 	
-	public virtual bool OnTranfoShot()
+	public virtual bool OnConversionShot()
     {
         return (false);
     }
 
-    public virtual bool OnDropTransformed(But b)
+    public virtual bool OnDropConverted(But b)
     {
         return (false);
     }
@@ -175,10 +170,10 @@ public partial class StateMachine
         }
 	}
 	 
-	public void event_OnEndLaunch(){
+	public void event_OnEndSignal(){
 		foreach (State tmp in list)
         {
-            if (tmp.OnEndLaunch())
+            if (tmp.OnEndSignal())
                 return;
         }
 	}
@@ -238,7 +233,7 @@ public partial class StateMachine
 	public void event_TransfoShot(){
 		foreach (State tmp in list)
         {
-            if (tmp.OnTranfoShot())
+            if (tmp.OnConversionShot())
                 return;
         }
 	}
@@ -265,7 +260,7 @@ public partial class StateMachine
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnDropTransformed(but))
+            if (tmp.OnDropConverted(but))
                 return;
         }
     }
