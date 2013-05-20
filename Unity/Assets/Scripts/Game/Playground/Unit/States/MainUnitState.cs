@@ -21,7 +21,7 @@ public class MainUnitState : UnitState
             return false;
         }*/
 
-        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall )
+        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall && this.unit.Game.state == Game.State.PLAYING)
         {
 			unit.Game.Ball.Owner = unit;
             return true;
@@ -61,10 +61,15 @@ public class MainUnitState : UnitState
         {
             sm.state_change_son(this, new IdleState(sm, unit));
             return;
-        }         
+        }
 
+     
         switch (this.unit.Order.type)
         {
+            case Order.TYPE.DODGE:
+                sm.state_change_son(this, new DodgeState(sm, unit));
+                break;
+
             case Order.TYPE.NOTHING:
                 sm.state_change_son(this, new IdleState(sm, unit));
                 break;

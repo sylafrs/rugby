@@ -69,8 +69,8 @@ public class SuperSettings
 [System.Serializable]
 public class InputSettings
 {    
-    public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, scrumNormal, scrumExtra, put, superOff, /*superDef,*/ changePlayer;
-    public InputDirection move;
+    public InputTouch shortPass, longPass, dropUpAndUnder, dropKick, tackle, reset, enableIA, put, superOff, /*superDef,*/ changePlayer;
+    public InputDirection move, dodge;
 }
 
 [System.Serializable]
@@ -121,4 +121,7 @@ public class GameSettings : myMonoBehaviour {
 
     public float maxTimeHoldingPassButton = 3; // Seconds
     public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
+
+    public float timeToGetOutTackleAreaBeforeScrum = 2;
+    public int minPlayersEachTeamToTriggerScrum = 3;
 }

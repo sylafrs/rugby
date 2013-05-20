@@ -16,15 +16,16 @@ public class Arbiter : myMonoBehaviour {
 	public bool TransfoRemiseAuCentre 	= false;
 	public Transform TouchPlacement 	= null;
 	public Transform TransfoPlacement 	= null;
-	
-	
-	public  float IngameTime;
+    public Transform ScrumPlacement     = null;
+
+    public float IngameTime { get; set; }
     private float GameTimeDuration;
 	private float IntroDelayTime;
     private float TimeEllapsedSinceIntro;
 	private bool  TimePaused;
-	
-	public  Unit  UnitToGiveBallTo;
+
+    private float LastTackle = -1;
+    public Unit UnitToGiveBallTo { get; set; }
 	
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
@@ -102,7 +103,7 @@ public class Arbiter : myMonoBehaviour {
             interceptConfiguration.transform.rotation = blueTeam.transform.rotation;
         }
 
-        interceptTeam.placeUnits(interceptConfiguration);
+        interceptTeam.placeUnits(interceptConfiguration, true);
 
         Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
         if (touchTeam == this.Game.left/*(red)*/)
@@ -116,10 +117,10 @@ public class Arbiter : myMonoBehaviour {
             passConfiguration.transform.rotation = blueTeam.transform.rotation;
         }
 
-        touchTeam.placeUnits(passConfiguration, 1);
+        touchTeam.placeUnits(passConfiguration, 1, true);
 
         Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
-        touchTeam.placeUnit(passUnitPosition, 0);
+        touchTeam.placeUnit(passUnitPosition, 0, true);
 
        
         Game.Ball.Owner = touchTeam[0];
@@ -205,25 +206,69 @@ public class Arbiter : myMonoBehaviour {
 		tm.enabled = true;
                   
 	}
-	
+
 	public void OnScrum() {
 
-       // this.Game.state = Game.State.SCRUM;
+        this.Game.state = Game.State.SCRUM;
+        this.Game.Ball.Owner = null;
 
-		scrumController sc =  this.Game.GetComponent<scrumController>();
-		sc.callback = (Team t) => {
-			Game.Ball.Owner = t[0];
-            //this.Game.state = Game.State.PLAYING;
-		};
+        ScrumCinematicMovement();
+        NowScrum();
+	}
+
+    public void NowScrum()
+    {
+        Renderer bloc = this.Game.ScrumBloc;
+        bloc.transform.position = this.Game.Ball.transform.position;
+
+        scrumController sc = this.Game.GetComponent<scrumController>();
+        sc.InitialPosition = this.Game.Ball.transform.position;
+        sc.ScrumBloc = bloc.transform;        
+        
+        this.Game.right.ShowPlayers(false);
+        this.Game.left.ShowPlayers(false);
+        this.Game.Ball.Model.enabled = false;
+        bloc.enabled = true;
+
+        sc.callback = (Team t, Vector3 endPos) =>
+        {
+            Game.Ball.Owner = t[0];
+
+            this.Game.Ball.Model.enabled = true;
+            this.Game.right.ShowPlayers(true);
+            this.Game.left.ShowPlayers(true);
+            bloc.enabled = false;
+
+            this.Game.state = Game.State.PLAYING;
+        };
 
         sc.enabled = true;
-	}
+    }
+
+    public void ScrumCinematicMovement()
+    {
+        Vector3 pos = this.Game.Ball.transform.position;
+        Transform cinematic = ScrumPlacement.FindChild("CinematicPlacement");
+        cinematic.position = new Vector3(pos.x, 0, pos.z);
+
+        Transform red = cinematic.FindChild("RedTeam");
+        Transform blue = cinematic.FindChild("BlueTeam");
+
+        this.Game.right.placeUnits(red, false);
+        this.Game.left.placeUnits(blue, false);
+    }
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
 	
 		/*
         if (Game.state != Game.State.PLAYING)
             return;
+
+        if (tackled == null)
+        {
+            tackler.sm.event_Tackle();
+            return;
+        }
 
         this.Game.state = Game.State.TACKLE;
 	 	*/
@@ -270,7 +315,13 @@ public class Arbiter : myMonoBehaviour {
                     break;
             }
 
+<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
             //this.Game.state = Game.State.PLAYING;
+=======
+            LastTackle = Time.time;
+
+            this.Game.state = Game.State.PLAYING;
+>>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
         };
 
         tm.Tackle();
@@ -282,10 +333,10 @@ public class Arbiter : myMonoBehaviour {
 		
 		Team t = Game.Ball.Owner.Team;
 		
-		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1);
-		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0);
+		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1, true);
+		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0, true);
 		Team.switchPlaces(t[0], Game.Ball.Owner);
-		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"));
+		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"), true);
 		 
         Team opponent = Game.Ball.Owner.Team.opponent;
 		
@@ -388,7 +439,7 @@ public class Arbiter : myMonoBehaviour {
         // On donne les points
         but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
 
-                // A faire en caméra :
+        // A faire en caméra :
         this.StartPlacement();
         this.Game.Ball.Owner = but.Owner[0];
 
@@ -422,9 +473,15 @@ public class Arbiter : myMonoBehaviour {
 
     public void StartPlacement()
     {	
+<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
         Game.right.placeUnits(Game.right.StartPlacement);
         Game.left.placeUnits(Game.left.StartPlacement);
 		//Debug.Log("Unit to give : "+UnitToGiveBallTo);
+=======
+        Game.right.placeUnits(Game.right.StartPlacement, true);
+        Game.left.placeUnits(Game.left.StartPlacement, true);
+		Debug.Log("Unit to give : "+UnitToGiveBallTo);
+>>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
 		GiveBall(UnitToGiveBallTo);
     }
 
@@ -456,6 +513,41 @@ public class Arbiter : myMonoBehaviour {
 					this.Game.OnGameEnd();
 				}
 			}
+<<<<<<< HEAD:Unity/Assets/Scripts/Game/Global/Arbiter.cs
         //}
+=======
+        }
+
+        UpdateTackle();
+    }
+
+    public void UpdateTackle()
+    {
+        if (LastTackle != -1)
+        {
+            // TODO cte : 2 -> temps pour checker
+            if (Time.time - LastTackle > Game.settings.timeToGetOutTackleAreaBeforeScrum)
+            {
+                LastTackle = -1;
+                int right = 0, left = 0;
+                for (int i = 0; i < this.Game.Ball.scrumFieldUnits.Count; i++)
+                {
+                    if (this.Game.Ball.scrumFieldUnits[i].Team == Game.right)
+                        right++;
+                    else
+                        left++;
+                }
+
+                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
+                if (right >= Game.settings.minPlayersEachTeamToTriggerScrum && 
+                    left >= Game.settings.minPlayersEachTeamToTriggerScrum)
+                {
+                    Game.OnScrum();
+                    //goScrum = true;
+                    //MyDebug.Log("Scruuum");
+                }
+            }
+        }
+>>>>>>> remotes/origin/master:Unity/Assets/Scripts/Game/Playground/Arbiter/Arbiter.cs
     }
 }

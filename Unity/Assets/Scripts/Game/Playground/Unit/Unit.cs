@@ -61,6 +61,15 @@ public class Unit : TriggeringTriggered, Debugable
 	void Update() {
 		if(team == null)
 			return;
+
+        if (remainingTimeDodging > 0)
+        {
+            remainingTimeDodging -= Time.deltaTime;
+        }
+        else if (cooldownDodge > 0)
+        {
+            cooldownDodge -= Time.deltaTime;
+        }
 				
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
@@ -113,12 +122,44 @@ public class Unit : TriggeringTriggered, Debugable
         }
     }
 
+    private float remainingTimeDodging = -1;
+    private float cooldownDodge = -1;
+
+    public Vector3 dodgeDirection { get; set; }
+    public bool Dodge
+    {
+        get
+        {
+            return (remainingTimeDodging > 0);
+        }
+        set
+        {
+            if (value == false)
+            {
+                remainingTimeDodging = -1;
+            }
+            else if(CanDodge)
+            {
+                remainingTimeDodging = this.team.unitDodgeDuration;
+                cooldownDodge = this.team.unitDodgeCooldown;
+            }
+        }
+    }
+
+    public bool CanDodge
+    {
+        get
+        {
+            return !Dodge && cooldownDodge < 0 && this == Game.Ball.Owner;
+        }
+    }
+
 	public override void Start () 
     {        
         sm.SetFirstState(new MainUnitState(sm, this));
         base.Start();
 	}
-    
+
     public void ChangeOrderSilency(Order o)
     {
         this.currentOrder = o;
@@ -237,12 +278,24 @@ public class Unit : TriggeringTriggered, Debugable
         return nearestAlly;
     }
 
-/*
-    public void ShowTouch(InputTouch touch)
+    public void ShowPlayer(bool active)
     {
+        if (!active)
+        {
+            this.IndicateSelected(false);
+        }
+        else
+        {
+            Gamer g = this.team.Player;
+            if (g)
+            {
+                this.IndicateSelected(this == g.Controlled);
+            }
+        }
 
+        this.Model.SetActive(active);        
     }
-*/
+
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
@@ -276,7 +329,23 @@ public class Unit : TriggeringTriggered, Debugable
                 EditorGUILayout.LabelField("Plaque " + o.target.name);
                 break;
 
-        }        
+        }
+
+        if (this.CanDodge)
+        {
+            EditorGUILayout.LabelField("Can Dodge");
+        }
+        else
+        {
+            if (this.Dodge)
+            {
+                EditorGUILayout.LabelField("Dodging : " + (int)this.remainingTimeDodging);
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Dodge cooldown : " + (int)this.cooldownDodge);
+            }
+        }
 #endif
     }
 	

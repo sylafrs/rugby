@@ -45,6 +45,11 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public float speedFactor;
 	public float tackleFactor;
 
+    public float unitDodgeSpeedFactor;
+    public float unitDodgeDuration;
+    public float unitDodgeCooldown;
+    public bool  unitInvincibleDodge;
+
 	public float unitSpeed;
 	public float handicapSpeed = 1;
 	public float unitTackleRange;
@@ -99,7 +104,19 @@ public class Team : myMonoBehaviour, IEnumerable {
             if (u.nma)
             {
                 //MyDebug.Log("a " + u.nma.speed);
-                u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+                if (fixUnits)
+                {
+                    u.nma.speed = 0;
+                }
+                else 
+                {
+                    u.nma.speed = unitSpeed * speedFactor;
+                    if (u.Dodge)
+                    {
+                        u.nma.speed *= unitDodgeSpeedFactor;
+                    }
+                }
+                
                 //MyDebug.Log("b " + u.nma.speed);
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
@@ -297,7 +314,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         if (owner != Game.p1.Controlled && (Game.p2 == null || owner != Game.p2.Controlled))
         {
             Zone z = Game.opponent(this).Zone;
-            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z), Order.TYPE_DEPLACEMENT.SPRINT);
+            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z));
         }
         else
         {
@@ -362,7 +379,7 @@ public class Team : myMonoBehaviour, IEnumerable {
                 }
             }
 
-            a.Order = Order.OrderFollow(Game.Ball.Owner, Order.TYPE_DEPLACEMENT.COURSE);
+            a.Order = Order.OrderFollow(Game.Ball.Owner);
         }
 
         foreach (Unit u in units)
@@ -403,42 +420,56 @@ public class Team : myMonoBehaviour, IEnumerable {
 		B.transform.rotation = rot;
 	}
 
-	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to) {
+	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to, bool teleport) {
 
 		int i = 0;
 		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
 		while(t != null && (i + from) < nbUnits && (i + from) < to) {
 
-			this.placeUnit(t, i + from);
+			this.placeUnit(t, i + from, teleport);
 
 			i++;
 			t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
 		}
 	}
 
-	public void placeUnits(Transform configuration, string pattern) {
-		this.placeUnits(configuration, pattern, "#", 0, nbUnits);
+    public void placeUnits(Transform configuration, string pattern, bool teleport)
+    {
+        this.placeUnits(configuration, pattern, "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnits(Transform configuration, int from, int to) {
-		this.placeUnits(configuration, "Player_#", "#", from, to);
+    public void placeUnits(Transform configuration, int from, int to, bool teleport)
+    {
+        this.placeUnits(configuration, "Player_#", "#", from, to, teleport);
 	}
 
-	public void placeUnits(Transform configuration, int from) {
-		this.placeUnits(configuration, "Player_#", "#", from, nbUnits);
+    public void placeUnits(Transform configuration, int from, bool teleport)
+    {
+        this.placeUnits(configuration, "Player_#", "#", from, nbUnits, teleport);
+	}
+    
+    public void placeUnits(Transform configuration, bool teleport)
+    {
+		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnits(Transform configuration) {
-		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits);
-	}
-
-	public void placeUnit(Transform t, int index) {
-		if( t == null || index < 0 || index >= nbUnits ) {
+	public void placeUnit(Transform dst, int index, bool teleport) {
+		if( dst == null || index < 0 || index >= nbUnits ) {
 			throw new System.ArgumentException();
 		}
 
-		units[index].transform.position = t.position;
-		units[index].transform.rotation = t.rotation;
+        Unit unit = units[index];
+
+        if (teleport)
+        {
+            unit.transform.position = dst.position;
+            unit.transform.rotation = dst.rotation;
+        }
+        else
+        {
+            unit.Order = Order.OrderMove(dst.position);
+            unit.transform.rotation = dst.rotation;
+        }
 	}
 
 	//maxens dubois
@@ -478,7 +509,16 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 	}
 
-	public class TeamUnitEnumerator : IEnumerator {
+    public void ShowPlayers(bool active)
+    {
+        for (int i = 0; i < this.units.Length; i++)
+        {
+            this.units[i].ShowPlayer(active);
+        }
+    }
+
+    public class TeamUnitEnumerator : IEnumerator
+    {
 		Team t;
 		int current;
 
