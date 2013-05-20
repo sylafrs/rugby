@@ -170,7 +170,7 @@ public class Game : myMonoBehaviour {
 				       
         introManager.OnFinish = () => {
             this._disableIA = true;                  
-            this.TimedDisableIA(settings.timeToSleepAfterIntro);
+            //this.TimedDisableIA(settings.timeToSleepAfterIntro);
             arbiter.OnStart();
 			sm.event_OnStartSignal();
         };
@@ -215,6 +215,7 @@ public class Game : myMonoBehaviour {
 
     public void OnPass(Unit from, Unit to)
     {
+        sm.event_Pass(from, to);
         //cameraManager.sm.event_Pass(from, to);
     }
 
@@ -288,13 +289,13 @@ public class Game : myMonoBehaviour {
         SceneReloader.Go();
     }
 
-    public void TimedDisableIA(float time)
+    /*public void TimedDisableIA(float time)
     {
         this.disableIA = true;
         Timer.AddTimer(time, () =>
         {
-			sm.event_OnStartSignal();
+            sm.event_OnStartSignal();
             this.disableIA = false;
         });
-    }
+    }*/
 }

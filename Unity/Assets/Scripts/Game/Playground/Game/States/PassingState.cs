@@ -18,5 +18,20 @@ public class PassingState : GameState {
     public override void OnEnter()
     {
         cam.setTarget(cam.game.Ball.transform);
-    }	
+    }
+
+    public override bool OnNewOwner(Unit old, Unit current)
+    {
+        sm.state_change_me(this, new RunningState(sm, cam, game));
+        return true;
+    }
+
+    public override bool OnBallOnGround(bool onGround)
+    {
+        if (!onGround)
+            return false;
+
+        sm.state_change_me(this, new RunningState(sm, cam, game));
+        return true;
+    }
 }

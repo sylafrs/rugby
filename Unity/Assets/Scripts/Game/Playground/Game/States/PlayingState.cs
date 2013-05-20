@@ -13,6 +13,7 @@ public class PlayingState : GameState
 	
     public override void OnEnter()
     {
+        Debug.Log("Playing State : onEnter");
 		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.timeToSleepAfterIntro));
     }
 }

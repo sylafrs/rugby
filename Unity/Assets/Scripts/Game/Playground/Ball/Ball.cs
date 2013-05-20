@@ -221,8 +221,7 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		//Game.right.But
-		
+		//Game.right.But		
 		Game.OnPass(this.Owner, to);
 
 		pass = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);

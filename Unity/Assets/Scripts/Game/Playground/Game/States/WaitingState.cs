@@ -14,6 +14,8 @@ public class WaitingState : GameState
 	
 	public override void OnEnter()
     {
+       MyDebug.Log("Waiting State : onEnter");
+       game.disableIA = true;
        game.arbiter.PauseIngameTime();
     }
 
@@ -29,5 +31,6 @@ public class WaitingState : GameState
 	public override void OnLeave()
     {
        game.arbiter.ResumeIngameTime();
+       game.disableIA = false;
     }
 }
