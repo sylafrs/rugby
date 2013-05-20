@@ -27991,6 +27991,336 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfa3031727ccd6045b92962bd69eb5fa, type: 3}
   m_Name: 
+  Inputs:
+    shortPass:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    longPass:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    dropUpAndUnder:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    dropKick:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    tackle:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    reset:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    enableIA:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    scrumNormal:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    scrumExtra:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    put:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    superOff:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    changePlayer:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    skipIntro:
+      keyboardP1: 97
+      keyboardP2: 97
+      xbox: 0
+    move:
+      keyboard:
+        up: 122
+        down: 115
+        right: 100
+        left: 113
+      xbox: 0
+  UI:
+    GameUI:
+      emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+      blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+      redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+      superOkTextStyle:
+        m_Name: 
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 0
+        m_FontStyle: 0
+        m_Alignment: 0
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+      gameTimeTextStyle:
+        m_Name: 
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 0
+        m_FontStyle: 0
+        m_Alignment: 0
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+      gameScoreTextStyle:
+        m_Name: 
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 0
+        m_FontStyle: 0
+        m_Alignment: 0
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+      timeBeforeScrumStyle:
+        m_Name: 
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 0
+        m_FontStyle: 0
+        m_Alignment: 0
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
+      ScrumBarMaxDelta: 1.5
+      timeBoxWidthPercentage: 10
+      timeBoxHeightPercentage: 5
+      timeBoxXPercentage: 50
+      timeBoxYPercentage: 10
+      blueGaugeBoxWidthPercentage: 25
+      blueGaugeBoxHeightPercentage: 10
+      blueGaugeBoxXPercentage: 22.5
+      blueGaugeBoxYPercentage: 10
+      redGaugeBoxWidthPercentage: 25
+      redGaugeBoxHeightPercentage: 10
+      redGaugeBoxXPercentage: 77.5
+      redGaugeBoxYPercentage: 10
+      scoreBoxWidthPercentage: 20
+      scoreBoxHeightPercentage: 15
+      scoreBoxXPercentage: 50
+      scoreBoxYPercentage: 10
+      scrumBarBoxWidthPercentage: 50
+      scrumBarBoxHeightPercentage: 16
+      scrumBarBoxXPercentage: 50
+      scrumBarBoxYPercentage: 50
+      scrumSpecialBoxWidthPercentage: 50
+      scrumSpecialBoxHeightPercentage: 16
+      scrumSpecialBoxXPercentage: 50
+      scrumSpecialBoxYPercentage: 66
+      scrumTimeBoxWidthPercentage: 50
+      scrumTimeBoxHeightPercentage: 16
+      scrumTimeBoxXPercentage: 50
+      scrumTimeBoxYPercentage: 34
   score:
     points_drop: 3
     points_essai: 5
@@ -28022,94 +28352,6 @@ MonoBehaviour:
     tackleLooseSuperPoints: 5
     scrumWinSuperPoints: 30
     scrumLooseSuperPoints: 10
-  inputs:
-    shortPass:
-      keyboard: 49
-      xbox: 0
-    longPass:
-      keyboard: 53
-      xbox: 1
-    dropUpAndUnder:
-      keyboard: 50
-      xbox: 8
-    dropKick:
-      keyboard: 51
-      xbox: 9
-    tackle:
-      keyboard: 51
-      xbox: 0
-    reset:
-      keyboard: 48
-      xbox: 2
-    enableIA:
-      keyboard: 0
-      xbox: 2
-    scrumNormal:
-      keyboard: 0
-      xbox: 0
-    scrumExtra:
-      keyboard: 0
-      xbox: 0
-    put:
-      keyboard: 52
-      xbox: 0
-    superOff:
-      keyboard: 102
-      xbox: 3
-    changePlayer:
-      keyboard: 49
-      xbox: 1
-    move:
-      keyboard:
-        up: 122
-        down: 115
-        right: 100
-        left: 113
-      xbox: 2
-  inputs2:
-    shortPass:
-      keyboard: 55
-      xbox: 0
-    longPass:
-      keyboard: 56
-      xbox: 1
-    dropUpAndUnder:
-      keyboard: 0
-      xbox: 8
-    dropKick:
-      keyboard: 0
-      xbox: 9
-    tackle:
-      keyboard: 57
-      xbox: 0
-    reset:
-      keyboard: 0
-      xbox: 2
-    enableIA:
-      keyboard: 0
-      xbox: 0
-    scrumNormal:
-      keyboard: 0
-      xbox: 0
-    scrumExtra:
-      keyboard: 0
-      xbox: 0
-    put:
-      keyboard: 0
-      xbox: 0
-    superOff:
-      keyboard: 0
-      xbox: 3
-    changePlayer:
-      keyboard: 0
-      xbox: 1
-    move:
-      keyboard:
-        up: 105
-        down: 107
-        right: 108
-        left: 106
-      xbox: 2
   timePlaque: 3
   Vheight: 10
   Vwidth: 4
@@ -28150,281 +28392,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
   m_Name: 
-  hideGameUi: 0
-  hideEndUi: 0
-  hideScrumUi: 0
-  resetKey: 32
-  emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
-  blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
-  redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
-  LBButton: {fileID: 2800000, guid: b21a69dd837de1644a39a47590a7ac1d, type: 3}
-  quotientMin: .5
-  quotientMax: 1.5
-  superOkTextStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
-    m_FontSize: 30
-    m_FontStyle: 0
-    m_Alignment: 4
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  gameTimeTextStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 27
-    m_FontStyle: 0
-    m_Alignment: 4
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  gameScoreTextStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
-      m_TextColor: {r: .230142996, g: .671641827, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 65
-    m_FontStyle: 0
-    m_Alignment: 4
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  timeBeforeScrumStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 10
-      m_Right: 10
-      m_Top: 10
-      m_Bottom: 10
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 0
-    m_Alignment: 4
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  ScrumBarMaxDelta: 1.5
-  timeBoxWidthPercentage: 16
-  timeBoxHeightPercentage: 5
-  timeBoxXPercentage: 50
-  timeBoxYPercentage: 13
-  blueGaugeBoxWidthPercentage: 25
-  blueGaugeBoxHeightPercentage: 5
-  blueGaugeBoxXPercentage: 22.5
-  blueGaugeBoxYPercentage: 7.5
-  redGaugeBoxWidthPercentage: 25
-  redGaugeBoxHeightPercentage: 5
-  redGaugeBoxXPercentage: 77.5
-  redGaugeBoxYPercentage: 7.5
-  scoreBoxWidthPercentage: 20
-  scoreBoxHeightPercentage: 8
-  scoreBoxXPercentage: 50
-  scoreBoxYPercentage: 5
-  scrumBarBoxWidthPercentage: 60
-  scrumBarBoxHeightPercentage: 13
-  scrumBarBoxXPercentage: 50
-  scrumBarBoxYPercentage: 50
-  scrumSpecialBoxWidthPercentage: 14.8999996
-  scrumSpecialBoxHeightPercentage: 7.19000006
-  scrumSpecialBoxXPercentage: 50
-  scrumSpecialBoxYPercentage: 66
-  scrumTimeBoxWidthPercentage: 26.8999996
-  scrumTimeBoxHeightPercentage: 7
-  scrumTimeBoxXPercentage: 50
-  scrumTimeBoxYPercentage: 40
 --- !u!114 &2004071855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28437,18 +28404,24 @@ MonoBehaviour:
   m_Name: 
   infiniteTime: 0
   touche:
-  - keyboard: 97
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 0
-  - keyboard: 122
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 1
-  - keyboard: 101
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 8
   interception:
-  - keyboard: 113
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 0
-  - keyboard: 115
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 1
-  - keyboard: 100
+  - keyboardP1: 0
+    keyboardP2: 0
     xbox: 8
   minTime: 3
   hideGui: 0
@@ -28463,7 +28436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
   touch:
-    keyboard: 97
+    keyboardP1: 0
+    keyboardP2: 0
     xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
@@ -28565,9 +28539,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e50eb0204974454e8bf1c2d7bdaacca, type: 3}
   m_Name: 
-  touch:
-    keyboard: 97
-    xbox: 0
 --- !u!114 &2004071859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28578,11 +28549,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8b504803cbe0ce47a0a73833dae60e2, type: 3}
   m_Name: 
+  game: {fileID: 2004071851}
   tempsPlaquage: 1
   ralentiPlaquage: 1
-  touchPassOnTackle:
-    keyboard: 97
-    xbox: 0
 --- !u!114 &2004071860
 MonoBehaviour:
   m_ObjectHideFlags: 0

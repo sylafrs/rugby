@@ -90,7 +90,7 @@ public class TransformationManager : myMonoBehaviour {
     {
         if (this.state == State.ANGLE || this.state == State.POWER)
         {
-            Rect rect = GameUIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
+            Rect rect = UIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
 
             if (!infiniteTime)
                 GUI.Label(rect, "Time : " + (int)remainingTime, timeStyle);
@@ -114,7 +114,7 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime -= Time.deltaTime;	
 			}				
 				
-			if(remainingTime < 0 || Input.GetKeyDown(touch.keyboard) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(touch.xbox))) {
+			if(remainingTime < 0 || Input.GetKeyDown(touch.keyboard(gamer.Team)) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(touch.xbox))) {
 				remainingTime = timePower;
 				state = State.POWER;	
 			}
@@ -142,7 +142,7 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime -= Time.deltaTime;	
 			}
 			
-			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(touch.xbox)) || Input.GetKeyUp(touch.keyboard)) {
+			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(touch.xbox)) || Input.GetKeyUp(touch.keyboard(gamer.Team))) {
 				Launch();
 			}
 			

@@ -20,10 +20,6 @@ public class RunningState : GameState
 		OnNewOwner(null, firstOwner);
 	}
 	
-	public override void OnUpdate(){
-		game.guiManager.hideGameUi = false;
-	}
-	
 	public override bool OnNewOwner(Unit old, Unit current)
     {
         if (current != null)

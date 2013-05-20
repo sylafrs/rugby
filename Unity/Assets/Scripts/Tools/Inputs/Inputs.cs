@@ -4,8 +4,16 @@ using System.Collections;
 [System.Serializable]
 public class InputTouch
 {
-    public KeyCode keyboard;
+    public KeyCode keyboardP1;
+	public KeyCode keyboardP2;
     public XBOX_BUTTONS xbox;   
+	
+	public KeyCode keyboard(Team t) {
+		Game g = t.Game;
+		if(t == g.right)
+			return keyboardP1;
+		return keyboardP2;
+	}
 }
 
 [System.Serializable]

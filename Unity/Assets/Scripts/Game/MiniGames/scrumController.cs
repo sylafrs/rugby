@@ -11,7 +11,7 @@ public class scrumController : myMonoBehaviour {
 
 	public Camera cam;
 	
-	private Game 	_game;
+	private Game 	game;
 	private Ball 	_ball;
 	private Gamer 	_p1;
 	//private Gamer 	_p2;
@@ -53,12 +53,12 @@ public class scrumController : myMonoBehaviour {
  	 */
 	void Start()
     {		
-		_game 	= gameObject.GetComponent<Game>();
-		_ball 	= _game.Ball;
-		_p1 	= _game.p1;
-		//_p2	 	= _game.p2;
-		_t1		= _game.right;
-		_t2		= _game.left; 
+		game 	= gameObject.GetComponent<Game>();
+		_ball 	= game.Ball;
+		_p1 	= game.p1;
+		//_p2	 	= game.p2;
+		_t1		= game.right;
+		_t2		= game.left; 
 	}
 
     void OnEnable()
@@ -73,14 +73,14 @@ public class scrumController : myMonoBehaviour {
         frameToGo = frameStart;
         timeRemaining = timer;
         _p1.stopMove();
-        _game.disableIA = true;
+        game.disableIA = true;
     }
 
     void EndScrum()
     {
         this.enabled = false;
         _p1.enableMove();
-        _game.disableIA = false;
+        game.disableIA = false;
      
         if (playerScore < cpuScore)
         {
@@ -116,7 +116,7 @@ public class scrumController : myMonoBehaviour {
 		        offset += IAoffset;			
 
                 // SI Appui normal
-                if (Input.GetKeyDown(_game.p1.Inputs.scrumNormal.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumNormal.xbox))
+                if (Input.GetKeyDown(game.p1.Inputs.scrumNormal.keyboard(game.p1.Team)) || game.p1.XboxController.GetButtonDown(game.p1.Inputs.scrumNormal.xbox))
                 {
                     playerUpScore(playerUp);
                     if (Random.Range(1, specialLuck) == 1)
@@ -126,7 +126,7 @@ public class scrumController : myMonoBehaviour {
                 }
 
                 // SI Appui extra
-                if (Input.GetKeyDown(_game.p1.Inputs.scrumExtra.keyboard) || _game.p1.XboxController.GetButtonDown(_game.p1.Inputs.scrumExtra.xbox))
+                if (Input.GetKeyDown(game.p1.Inputs.scrumExtra.keyboard(game.p1.Team)) || game.p1.XboxController.GetButtonDown(game.p1.Inputs.scrumExtra.xbox))
                 {
                     if (playerSpecial)
                     {

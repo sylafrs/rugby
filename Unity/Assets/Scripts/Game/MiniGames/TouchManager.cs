@@ -89,10 +89,10 @@ public class TouchManager : myMonoBehaviour {
             timeLeft -= Time.deltaTime;
 		
 		for(int i = 0; i < n; i++) {
-			if(Input.GetKeyDown(touche[i].keyboard) || (gamerTouch && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
+			if(Input.GetKeyDown(touche[i].keyboard(gamerTouch.Team)) || (gamerTouch && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
 				choixTouche = i+1;
 			}
-			if(Input.GetKeyDown(interception[i].keyboard) || (gamerIntercept && gamerIntercept.XboxController.GetButtonDown(interception[i].xbox))) {
+			if(Input.GetKeyDown(interception[i].keyboard(gamerIntercept.Team)) || (gamerIntercept && gamerIntercept.XboxController.GetButtonDown(interception[i].xbox))) {
 				choixInter = i+1;
 			}
 		}

@@ -80,7 +80,7 @@ public class Game : myMonoBehaviour {
     public XboxInputs xboxInputs;
     public GameSettings settings;
 	public CameraManager cameraManager;
-	public GameUIManager guiManager;
+	public UIManager guiManager;
     public IntroManager introManager;
 
     public GameObject limiteTerrainNordEst;
@@ -147,7 +147,7 @@ public class Game : myMonoBehaviour {
         p1.Team = right;
         p1.Controlled = right[p1.Team.nbUnits/2];
         p1.Controlled.IndicateSelected(true);
-        p1.Inputs = settings.inputs;
+        p1.Inputs = settings.Inputs;
 
         if (!cpu)
         {
@@ -156,7 +156,7 @@ public class Game : myMonoBehaviour {
             p2.Team = left;
             p2.Controlled = left[0];
             p2.Controlled.IndicateSelected(true);
-            p2.Inputs = settings.inputs2;
+            p2.Inputs = settings.Inputs;
         }
 
         this.Owner = p1.Controlled.Team;
@@ -185,7 +185,7 @@ public class Game : myMonoBehaviour {
        
     void Update()
     {
-        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
+        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard(p1.Team)) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
         {
             disableIA = !disableIA;   
         }

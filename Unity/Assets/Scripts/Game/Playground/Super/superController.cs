@@ -70,14 +70,14 @@ public class superController : myMonoBehaviour {
 	
 	void updateSuperInput(){
 		
-		InputTouch superOff = game.settings.inputs.superOff;
-		//InputTouch superDef = game.settings.inputs.superDef;
+		InputTouch superOff = game.settings.Inputs.superOff;
+		//InputTouch superDef = game.settings.Inputs.superDef;
 		
 		//if(game.state == Game.State.PLAYING) {
 		
 			//offense
 			if(team.Player.XboxController != null){
-				if(Input.GetKeyDown(superOff.keyboard) || team.Player.XboxController.GetButtonDown(superOff.xbox)){
+				if(Input.GetKeyDown(superOff.keyboard(team)) || team.Player.XboxController.GetButtonDown(superOff.xbox)){
 					if(team.SuperGaugeValue == game.settings.super.superGaugeOffensiveLimitBreak){
 						MyDebug.Log("Offensive Super attack !");
 						launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);

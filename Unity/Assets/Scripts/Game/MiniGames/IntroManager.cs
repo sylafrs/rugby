@@ -12,7 +12,6 @@ using System;
 public class IntroManager : myMonoBehaviour {
 
     private Game game;
-    public InputTouch touch;
     public Action OnFinish;
 
     void Start()
@@ -24,7 +23,9 @@ public class IntroManager : myMonoBehaviour {
     
     void Update()
     {
-        if ((game.p1.XboxController != null && game.p1.XboxController.GetButtonUp(touch.xbox)) || Input.GetKeyUp(touch.keyboard))
+        if ((game.p1.XboxController != null && game.p1.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) || 
+			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP1) || 
+			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP2))
         {
             Finish();
         }        

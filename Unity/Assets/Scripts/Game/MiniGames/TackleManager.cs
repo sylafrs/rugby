@@ -9,6 +9,7 @@ public class TackleManager: myMonoBehaviour {
     public Unit tackler { get; set; }
 
     private float remainingTime;
+	public Game game;
     	
     public enum RESULT
     {
@@ -23,7 +24,6 @@ public class TackleManager: myMonoBehaviour {
 
     public float tempsPlaquage = 1; // Seconds
     public float ralentiPlaquage = 1; // [0 .. 1]
-    public InputTouch touchPassOnTackle;
 
     private RESULT result = RESULT.NONE;
 
@@ -51,12 +51,12 @@ public class TackleManager: myMonoBehaviour {
             tackled.ShowButton("A");
 
 
-            // Le plaqué a une durée avant de tomber			    => time.timeScale (attention caméra !)
-            // Pendant la tombée : QTE => Cut scène peut-être		=> code reusable
-            // UI : bouton A (pos tweakable)				        => î
+            // Le plaquï¿½ a une durï¿½e avant de tomber			    => time.timeScale (attention camï¿½ra !)
+            // Pendant la tombï¿½e : QTE => Cut scï¿½ne peut-ï¿½tre		=> code reusable
+            // UI : bouton A (pos tweakable)				        => ï¿½
 
             // QTE :
-            // * Si pas appui sur A : Plaquage - Mêlée		=> voilà quoi ^^ 
+            // * Si pas appui sur A : Plaquage - Mï¿½lï¿½e		=> voilï¿½ quoi ^^ 
             // * Sinon : Passe
 
 
@@ -94,8 +94,10 @@ public class TackleManager: myMonoBehaviour {
             if (
                 tackled.Team.Player != null && 
                 (
-                    Input.GetKeyDown(touchPassOnTackle.keyboard) || 
-                    tackled.Team.Player.XboxController.GetButtonDown(touchPassOnTackle.xbox)
+					
+                    Input.GetKeyDown(game.settings.Inputs.tackle.keyboard(tackled.Team)) || 
+                    tackled.Team.Player.XboxController.GetButtonDown(game.settings.Inputs.tackle.xbox)
+                    
                 )
             ){
                 result = RESULT.PASS;
