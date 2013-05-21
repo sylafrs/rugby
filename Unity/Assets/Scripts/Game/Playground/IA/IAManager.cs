@@ -8,14 +8,16 @@ public class IAManager : MonoBehaviour {
 	public Team[] teamTweak;
 	public float DistanceMinBetweenFormation = 10f; //Distance entre la formation offensive et la formation défensive à ne jamais restreindre
 	public float DistanceMaxBetweenFormation = 15f; //Distance entre la formation offensive et la formation défensive à ne jamais dépasser
+	public int ZoneMinBetweenDefense = 1;
+	public int ZoneMaxBetweenDefense = 2;
 	public float brainlagIATimePrioritary = 0.1f;
 	public float brainlagIATimeSecondary = 0.2f;
 	
-	const uint NBTEAMTOMANAGE = 2;
-	Team BallOwner;
-	public float timeToManage = 0f;
+	private const uint NBTEAMTOMANAGE = 2;
+	private Team BallOwner;
+	private float timeToManage = 0f;
 	
-	public TeamFormation[] TeamManager;
+	private TeamFormation[] TeamManager;
 	
 	// Use this for initialization
 	void Start () {
@@ -42,23 +44,25 @@ public class IAManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		UpdateTeamManager();
-		
-		if (teamTweak[0].Game.state == Game.State.PLAYING && timeToManage <= Mathf.Max (brainlagIATimePrioritary, brainlagIATimeSecondary))
-			timeToManage += Time.deltaTime;
-		else
-			timeToManage = 0f;
-		
-		if (BallOwner != teamTweak[0].Game.Ball.Owner.Team)
-			BallOwner = teamTweak[0].Game.Ball.Owner.Team;
-		
-		if (DistanceMinBetweenFormation < 0f)
-			DistanceMinBetweenFormation = 0f;
-		
-		for (int iTeam = 0; iTeam < NBTEAMTOMANAGE; ++iTeam)
+		if (teamTweak[0].Game.state ==Game.State.PLAYING)
 		{
-			UpdateTeamPlacement(iTeam);
+			UpdateTeamManager();
+			
+			if (teamTweak[0].Game.state == Game.State.PLAYING && timeToManage <= Mathf.Max (brainlagIATimePrioritary, brainlagIATimeSecondary))
+				timeToManage += Time.deltaTime;
+			else
+				timeToManage = 0f;
+			
+			if (BallOwner != teamTweak[0].Game.Ball.Owner.Team)
+				BallOwner = teamTweak[0].Game.Ball.Owner.Team;
+			
+			if (DistanceMinBetweenFormation < 0f)
+				DistanceMinBetweenFormation = 0f;
+			
+			for (int iTeam = 0; iTeam < NBTEAMTOMANAGE; ++iTeam)
+			{
+				UpdateTeamPlacement(iTeam);
+			}
 		}
 	}
 	
@@ -104,15 +108,17 @@ public class IAManager : MonoBehaviour {
 				if (ecart < DistanceMinBetweenFormation)
 				{
 					//Debug.Log("too near : " + ecart);
-					TeamManager[indexTeam].FormationGo(TeamManager[indexTeam].GetDefensiveFormation(),( indexTeam == 0 ? -ecart : ecart ));
+					TeamManager[indexTeam].FormationGoZ(TeamManager[indexTeam].GetDefensiveFormation(),( indexTeam == 0 ? -ecart : ecart ));
 				}
 				
 				//Defenseur trop loin des avants
 				else if (ecart > DistanceMaxBetweenFormation)
 				{
 					//Debug.Log("too far : " + ecart);
-					TeamManager[indexTeam].FormationGo(TeamManager[indexTeam].GetDefensiveFormation(),( indexTeam == 0 ? ecart : -ecart ));
+					TeamManager[indexTeam].FormationGoZ(TeamManager[indexTeam].GetDefensiveFormation(),( indexTeam == 0 ? ecart : -ecart ));
 				}
+				
+				TeamManager[indexTeam].FormationDefenseGoX();
 				/*
 				foreach(var u in TeamManager[indexTeam].GetDefensiveFormation())
 				{
