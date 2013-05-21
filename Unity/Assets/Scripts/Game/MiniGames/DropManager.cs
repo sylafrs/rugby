@@ -89,11 +89,22 @@ public class DropManager {
 	{
 		switch (type)
 		{
-			case TYPEOFDROP.KICK: drawCircle(ball.multiplierDropKick, Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.BallDropState.angleDropKick);
+			case TYPEOFDROP.KICK: 
+                drawCircle(ball.multiplierDropKick, Game.instance.settings.GameStates
+                                                                          .MainState
+                                                                          .PlayingState
+                                                                          .MainGameState
+                                                                          .RunningState
+                                                                          .BallFreeState
+                                                                          .BallFlyingState
+                                                                          .BallDropState
+                                                                          .angleDropKick);
 				break;
-			case TYPEOFDROP.UPANDUNDER: drawCircle(ball.multiplierDropUpAndUnder, ball.angleDropUpAndUnder);
+			case TYPEOFDROP.UPANDUNDER: 
+                drawCircle(ball.multiplierDropUpAndUnder, ball.angleDropUpAndUnder);
 				break;
-			default: break;
+			default: 
+                break;
 		}
 	}
 	
