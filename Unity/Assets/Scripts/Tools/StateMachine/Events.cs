@@ -32,6 +32,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnResumeSignal()
+    {
+        return (false);
+    }
 	
 	public virtual bool OnStartSignal()
     {
@@ -57,7 +62,12 @@ public abstract partial class State
     {
         return (false);
     }
-	
+
+    public virtual bool OnDodgeFinished(Unit u)
+    {
+        return (false);
+    }
+	    
 	/*
     public virtual bool OnSprint(Unit u, bool sprinting)
     {
@@ -173,14 +183,24 @@ public partial class StateMachine
                 return;
         }
     }
-	
-	public void event_OnStartSignal(){
-		foreach (State tmp in list)
+
+    public void event_OnStartSignal()
+    {
+        foreach (State tmp in list)
         {
             if (tmp.OnStartSignal())
                 return;
         }
-	}
+    }
+
+    public void event_OnResumeSignal()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnResumeSignal())
+                return;
+        }
+    }
 
     public void event_OnEndSignal(){
 		foreach (State tmp in list)
@@ -229,6 +249,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnDodge(unit))
+                return;
+        }
+    }
+
+    public void event_DodgeFinished(Unit unit)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnDodgeFinished(unit))
                 return;
         }
     }
