@@ -9465,7 +9465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
-  Model: {fileID: 0}
+  Model: {fileID: 1119795520}
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
@@ -16640,6 +16640,7 @@ Transform:
   - {fileID: 841198777}
   - {fileID: 2078298285}
   - {fileID: 1054134496}
+  - {fileID: 1976457027}
   - {fileID: 311398054}
   - {fileID: 236162113}
   - {fileID: 843848053}
@@ -17481,6 +17482,59 @@ Transform:
   m_Children:
   - {fileID: 726140390}
   m_Father: {fileID: 1303618594}
+--- !u!1 &1239785091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1239785092}
+  - 33: {fileID: 1239785095}
+  - 23: {fileID: 1239785093}
+  m_Layer: 0
+  m_Name: ScrumBloc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239785092
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1239785091}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 5, z: 20}
+  m_Children: []
+  m_Father: {fileID: 2027178520}
+--- !u!23 &1239785093
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1239785091}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!33 &1239785095
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1239785091}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1243462753
 GameObject:
   m_ObjectHideFlags: 0
@@ -27714,7 +27768,7 @@ Transform:
   m_Children:
   - {fileID: 393058073}
   - {fileID: 818688626}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1157111314}
 --- !u!114 &1976457028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27978,7 +28032,7 @@ MonoBehaviour:
   cameraManager: {fileID: 1693924984}
   guiManager: {fileID: 2004071854}
   introManager: {fileID: 2004071858}
-  ScrumBloc: {fileID: 0}
+  ScrumBloc: {fileID: 1239785093}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
@@ -28877,6 +28931,7 @@ Transform:
   - {fileID: 303037525}
   - {fileID: 642022007}
   - {fileID: 1774892247}
+  - {fileID: 1239785092}
   m_Father: {fileID: 0}
 --- !u!1 &2031191950
 GameObject:
