@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -3202,7 +3202,6 @@ MonoBehaviour:
   But: {fileID: 1635297309}
   Zone: {fileID: 1508186582}
   nbPoints: 0
-  StartPlacement: {fileID: 1713467013}
   speedFactor: 1
   tackleFactor: 1
   unitDodgeSpeedFactor: 0
@@ -6863,8 +6862,62 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
-  refs: {fileID: 3678738}
   settings:
+    Global:
+      Game:
+        points_drop: 5
+        points_essai: 5
+        points_transfo: 3
+        period_time: 120
+        timePlaque: 3
+        Vheight: 1
+        Vwidth: 1
+        LineSpace: 1
+        maxTimeHoldingPassButton: 3
+        timeToSleepAfterIntro: 3
+        timeToGetOutTackleAreaBeforeScrum: 2
+        minPlayersEachTeamToTriggerScrum: 3
+        FeedSuperPerSmash: 0
+        FeedSuperPerSecond: 0
+        MaximumDistance: 0
+        MaximumDuration: 0
+        SmashValue: 0
+        SuperMultiplicator: 0
+      Super:
+        superGaugeOffensiveLimitBreak: 200
+        superGaugeDefensiveLimitBreak: 200
+        superGaugeMaximum: 200
+        OffensiveSuperDurationTime: 10
+        DefensiveSuperDurationTime: 10
+        superSpeedScale: 1.5
+        superTackleBoxScale: 1.5
+        superUnblockable: 1
+        passInterceptSuperPoints: 20
+        passWinSuperPoints: 10
+        passLooseSuperPoints: 5
+        dropWinSuperPoints: 20
+        dropLooseSuperPoints: 10
+        tryWinSuperPoints: 30
+        tryLooseSuperPoints: 20
+        conversionWinSuperPoints: 10
+        conversionLooseSuperPoints: 5
+        conversionOpponentSuperPoints: 10
+        touchWinSuperPoints: 20
+        touchInterceptSuperPoints: 20
+        touchLooseSuperPoints: 5
+        tackleWinSuperPoints: 20
+        tackleLooseSuperPoints: 5
+        scrumWinSuperPoints: 30
+        scrumLooseSuperPoints: 10
+    GameStates:
+      MainState:
+        PlayingState:
+          MainGameState:
+            RunningState:
+              BallHandlingState: {}
+              BallFreeState: {}
+          GameActionState:
+            ConvertingState: {}
     Inputs:
       shortPass:
         keyboardP1: 0
@@ -6873,24 +6926,20 @@ MonoBehaviour:
       longPass:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
+        xbox: 1
       dropUpAndUnder:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
+        xbox: 8
       dropKick:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
+        xbox: 9
       tackle:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 0
-      reset:
-        keyboardP1: 0
-        keyboardP2: 0
-        xbox: 0
-      enableIA:
+      changePlayer:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 0
@@ -6901,15 +6950,39 @@ MonoBehaviour:
       superOff:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
-      changePlayer:
+        xbox: 3
+      reset:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
+        xbox: 2
+      enableIA:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 7
       skipIntro:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 0
+      rightSmashButton:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      rightSuperButton:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 3
+      FeedSuperPerSmash:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      leftSmashButton:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      leftSuperButton:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 3
       move:
         keyboardP1:
           up: 0
@@ -6921,7 +6994,7 @@ MonoBehaviour:
           down: 0
           right: 0
           left: 0
-        xbox: 0
+        xbox: 2
       dodge:
         keyboardP1:
           up: 0
@@ -7204,45 +7277,24 @@ MonoBehaviour:
         scrumTimeBoxHeightPercentage: 16
         scrumTimeBoxXPercentage: 50
         scrumTimeBoxYPercentage: 34
-    score:
-      points_drop: 5
-      points_essai: 5
-      points_transfo: 3
-      period_time: 120
-    super:
-      superGaugeOffensiveLimitBreak: 200
-      superGaugeDefensiveLimitBreak: 200
-      superGaugeMaximum: 200
-      OffensiveSuperDurationTime: 10
-      DefensiveSuperDurationTime: 10
-      superSpeedScale: 1.5
-      superTackleBoxScale: 1.5
-      superUnblockable: 1
-      passInterceptSuperPoints: 20
-      passWinSuperPoints: 10
-      passLooseSuperPoints: 5
-      dropWinSuperPoints: 20
-      dropLooseSuperPoints: 10
-      tryWinSuperPoints: 30
-      tryLooseSuperPoints: 20
-      conversionWinSuperPoints: 10
-      conversionLooseSuperPoints: 5
-      conversionOpponentSuperPoints: 10
-      touchWinSuperPoints: 20
-      touchInterceptSuperPoints: 20
-      touchLooseSuperPoints: 5
-      tackleWinSuperPoints: 20
-      tackleLooseSuperPoints: 5
-      scrumWinSuperPoints: 30
-      scrumLooseSuperPoints: 10
-    timePlaque: 3
-    Vheight: 1
-    Vwidth: 1
-    LineSpace: 1
-    maxTimeHoldingPassButton: 3
-    timeToSleepAfterIntro: 3
-    timeToGetOutTackleAreaBeforeScrum: 2
-    minPlayersEachTeamToTriggerScrum: 3
+      ScrumUI:
+        ScrumSpecialRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        ScrumSpecialButton: {fileID: 0}
+        ScrumBarRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        ScrumRightBar: {fileID: 0}
+        ScrumLeftBar: {fileID: 0}
+        ScrumEmptyBar: {fileID: 0}
+  refs: {fileID: 3678738}
   tweakMode: 0
 --- !u!1 &450770354
 GameObject:
@@ -9399,7 +9451,6 @@ MonoBehaviour:
   But: {fileID: 1522212141}
   Zone: {fileID: 1310373314}
   nbPoints: 0
-  StartPlacement: {fileID: 885581429}
   speedFactor: 1
   tackleFactor: 1
   unitDodgeSpeedFactor: 0
@@ -12432,7 +12483,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 885581429}
   m_Layer: 0
-  m_Name: Rouges
+  m_Name: North
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24463,7 +24514,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1713467013}
   m_Layer: 0
-  m_Name: Bleus
+  m_Name: South
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28824,47 +28875,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  tweakSettings:
-    FeedSuperPerSmash: 0
-    FeedSuperPerSecond: 0
-    MaximumDistance: 0
-    MaximumDuration: 0
-    SmashValue: 0
-    SuperMultiplicator: 0
-  inputSettings:
-    rightSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    rightSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-  guiSettings:
-    ScrumSpecialRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumSpecialButton: {fileID: 0}
-    ScrumBarRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumRightBar: {fileID: 0}
-    ScrumLeftBar: {fileID: 0}
-    ScrumEmptyBar: {fileID: 0}
+  currentPosition: 0
+  SuperLoading: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0

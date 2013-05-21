@@ -438,6 +438,11 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to, bool teleport) {
 
+        if (configuration == null)
+        {
+            throw new UnityException("placeUnits configuration is null");
+        }
+
 		int i = 0;
 		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
 		while(t != null && (i + from) < nbUnits && (i + from) < to) {
