@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 /**
- * @class GameSettings
+ * @class GamePlaySettings
  * @brief Classe de reglages
  * @author Sylvain Lafon
  */
