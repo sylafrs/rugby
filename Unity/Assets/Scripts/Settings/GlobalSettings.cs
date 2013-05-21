@@ -25,7 +25,7 @@ public class GameSettings
     public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
 
     public float timeToGetOutTackleAreaBeforeScrum = 2;
-    public int minPlayersEachTeamToTriggerScrum = 3;
+    public int	 minPlayersEachTeamToTriggerScrum = 3;
 	
 	public float FeedSuperPerSmash;    // 0 to 1           (tweak)
     public float FeedSuperPerSecond;   // 0 to 1           (tweak)

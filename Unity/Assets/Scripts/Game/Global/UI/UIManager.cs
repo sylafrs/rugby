@@ -17,6 +17,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 		NULL,
 		GameUI,
 		ScrumUI,
+		TouchUI,
 		EndUI
 	}
 	public  UIState currentState{ get; set;}
@@ -26,6 +27,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 	public GameUI  gameUI;
 	public ScrumUI scrumUI;
 	public EndUI   endUI;
+	public TouchUI touchUi;
 	
 	void Start () 
     {
@@ -37,6 +39,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 		gameUI 	= new GameUI(game);
 		scrumUI = new ScrumUI(game);
 		endUI 	= new EndUI(game);
+		touchUi = new TouchUI(game);
 		
 		currentState = UIState.NULL;
 	}
@@ -95,6 +98,11 @@ public class UIManager : myMonoBehaviour, Debugable {
 			case UIState.ScrumUI:
 			{		
 				scrumUI.DrawUI();
+				break;
+			}
+			case UIState.TouchUI:
+			{		
+				touchUi.DrawUI();
 				break;
 			}
 			default:
