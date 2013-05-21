@@ -13,7 +13,7 @@ public class PlayingState : GameState
 	
     public override void OnEnter()
     {        
-		game.guiManager.currentState = UIManager.UIState.GameUI;
+		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.Global.Game.timeToSleepAfterIntro));
     }
 
@@ -46,6 +46,6 @@ public class PlayingState : GameState
 	
 	public override void OnLeave()
 	{
-		game.guiManager.currentState = UIManager.UIState.NULL;
+        game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 	}
 }

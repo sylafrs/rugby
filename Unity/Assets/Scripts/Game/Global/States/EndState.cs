@@ -10,11 +10,11 @@ public class EndState : GameState
 	
 	public override void OnEnter()
     {
-		game.guiManager.currentState = UIManager.UIState.EndUI;
+		game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
     }
 	
 	public override void OnLeave()
 	{
-		game.guiManager.currentState = UIManager.UIState.NULL;
+        game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 	}
 }

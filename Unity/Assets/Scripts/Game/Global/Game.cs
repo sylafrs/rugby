@@ -13,9 +13,7 @@ using System.Threading;
 public class Game : myMonoBehaviour {
 	
     public GamePlaySettings settings;
-
     public GameReferences refs;
-    public GameSettings settings;
 
     private static Game _instance;
     public static Game instance

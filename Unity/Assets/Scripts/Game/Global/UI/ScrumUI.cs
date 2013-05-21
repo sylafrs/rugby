@@ -4,27 +4,29 @@ using System.Collections;
 public class ScrumUI{
 	
 	private Game game;
+    private scrumController manager;
 	
 	public ScrumUI(Game _game)
 	{
 		game = _game;
+        manager = _game.refs.managers.scrum;
 		StartGUI();
 	}
 	
 	public void DrawUI()
 	{
-		if (!game.scrumController.ChronoLaunched)
+		if (!manager.ChronoLaunched)
         {
             GUILayout.Label("BEGIN !");
         }
         else
         {
-            GUILayout.Label("SMASH UNTIL " + (int)game.scrumController.TimeRemaining + " !");
+            GUILayout.Label("SMASH UNTIL " + (int)manager.TimeRemaining + " !");
         }
 
         this.DrawBar();
 
-        if (game.scrumController.SuperLoading == 1)
+        if (manager.SuperLoading == 1)
         {
             GUI.DrawTexture(game.settings.UI.ScrumUI.ScrumSpecialRect, 
 				game.settings.UI.ScrumUI.ScrumSpecialButton, 
@@ -45,7 +47,7 @@ public class ScrumUI{
 
     void DrawBar()
     {       
-        float leftPercent = (1 + game.scrumController.currentPosition) / 2;
+        float leftPercent = (1 + manager.currentPosition) / 2;
         float leftWidth = leftPercent * game.settings.UI.ScrumUI.ScrumBarRect.width;
 
         Rect rightRect = game.settings.UI.ScrumUI.ScrumBarRect;
