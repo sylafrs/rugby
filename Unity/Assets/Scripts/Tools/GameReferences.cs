@@ -18,7 +18,7 @@ public class GameReferences : myMonoBehaviour {
         public TackleManager tackle;
         public TouchManager touch;
         public TransformationManager conversion;
-        public scrumController scrum;
+        public ScrumController scrum;
         public UIManager ui;
     }
 

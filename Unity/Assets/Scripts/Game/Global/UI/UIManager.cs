@@ -11,8 +11,13 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/Game/UI Manager")]
 public class UIManager : myMonoBehaviour, Debugable {
 	
+<<<<<<< HEAD
 	private Game _game;
 	//private scrumController _scrumController;
+=======
+	private Game game;
+	private ScrumController scrumController;
+>>>>>>> 4ab3596edb92e06739582691b69e637199e3fb72
 	public enum UIState{
 		NULL,
 		GameUI,
@@ -29,31 +34,29 @@ public class UIManager : myMonoBehaviour, Debugable {
 	
 	void Start () 
     {
-		_game 				= Game.instance;
-		//_scrumController 	= _game.refs.managers.scrum;
+		game 				= Game.instance;
        
 		blueProgress = 0f;
 		redProgress  = 0f;
 		
-		gameUI 	= new GameUI(_game);
-		scrumUI = new ScrumUI(_game);
-		endUI 	= new EndUI(_game);
+		gameUI 	= new GameUI(game);
+		scrumUI = new ScrumUI(game);
+		endUI 	= new EndUI(game);
 		
 		currentState = UIState.NULL;
 	}
 	
 	void Update()
     {
-		//GamePadState pad = GamePad.GetState(_game.southTeam.Player.playerIndex);   
         Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
 	
 	void UpdateSuperProgress(){
 
-		float blueCurrent = (float)_game.southTeam.SuperGaugeValue;
-		float redCurrent  = (float)_game.northTeam.SuperGaugeValue;
-		float max		  = (float)_game.settings.Global.Super.superGaugeMaximum;
+		float blueCurrent = (float)game.southTeam.SuperGaugeValue;
+		float redCurrent  = (float)game.northTeam.SuperGaugeValue;
+		float max		  = (float)game.settings.Global.Super.superGaugeMaximum;
 		blueProgress = Mathf.Clamp01(blueCurrent/max);
 		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}
