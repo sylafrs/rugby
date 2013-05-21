@@ -16,6 +16,12 @@ public class BallHandlingState : GameState
         sm.state_change_son(this, new GainGroundingState(sm, cam, game));
     }
 
+    public override bool OnDodgeFinished(Unit u)
+    {
+        sm.state_change_son(this, new GainGroundingState(sm, cam, game));
+        return true;
+    }
+
     public override bool OnDodge(Unit u)
     {
         sm.state_change_son(this, new DodgingState(sm, cam, game));

@@ -13,8 +13,7 @@ public class WaitingState : GameState
     private float remainingTime;
 	
 	public override void OnEnter()
-    {
-       
+    {       
        game.disableIA = true;
        game.arbiter.PauseIngameTime();
     }

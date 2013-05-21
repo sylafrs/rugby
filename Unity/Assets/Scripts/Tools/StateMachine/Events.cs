@@ -57,7 +57,12 @@ public abstract partial class State
     {
         return (false);
     }
-	
+
+    public virtual bool OnDodgeFinished(Unit u)
+    {
+        return (false);
+    }
+	    
 	/*
     public virtual bool OnSprint(Unit u, bool sprinting)
     {
@@ -229,6 +234,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnDodge(unit))
+                return;
+        }
+    }
+
+    public void event_DodgeFinished(Unit unit)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnDodgeFinished(unit))
                 return;
         }
     }
