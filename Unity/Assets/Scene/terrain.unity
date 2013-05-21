@@ -28063,11 +28063,11 @@ MonoBehaviour:
     dropUpAndUnder:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 9
+      xbox: 8
     dropKick:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 8
+      xbox: 9
     tackle:
       keyboardP1: 0
       keyboardP2: 57
