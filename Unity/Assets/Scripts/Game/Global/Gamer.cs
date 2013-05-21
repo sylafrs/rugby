@@ -51,6 +51,8 @@ public class Gamer
 
     public Gamer(Team t)
     {
+        this.Game = t.Game;
+
         canMove = true;
 
         id = NextGamerId;
@@ -58,9 +60,8 @@ public class Gamer
         playerIndex = (PlayerIndex)id;
 
         if (XboxController == null)
-            XboxController = Game.refs.xboxInputs.controllers[id];
-
-        this.Game = t.Game;
+            XboxController = this.Game.refs.xboxInputs.controllers[id];
+                
         this.Team = t;
         this.Controlled = t[t.nbUnits / 2];
         this.Controlled.IndicateSelected(true);

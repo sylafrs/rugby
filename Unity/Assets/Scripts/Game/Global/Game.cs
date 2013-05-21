@@ -71,8 +71,20 @@ public class Game : myMonoBehaviour {
     public GameReferences refs;
     public GameSettings settings;
 
-    public static Game instance { get; private set; }
+    private static Game _instance;
+    public static Game instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                return _instance = (GameObject.FindObjectOfType(typeof(Game)) as Game);
+            }
 
+            return _instance;
+        }
+    }
+    
     public Ball Ball { get { return refs.gameObjects.ball; } }
     private Gamer p1, p2;
 	private Team Owner;
@@ -100,8 +112,6 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-        instance = this;
-
 		arbiter.Game = this;
 		
         northTeam.Game = this;
@@ -115,6 +125,8 @@ public class Game : myMonoBehaviour {
 
         northTeam.opponent = southTeam;
         southTeam.opponent = northTeam;
+
+        this.refs.xboxInputs.Start();
 
         p1 = new Gamer(refs.north);
         p2 = new Gamer(refs.south);

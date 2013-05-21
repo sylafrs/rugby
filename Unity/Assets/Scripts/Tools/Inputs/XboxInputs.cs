@@ -165,10 +165,19 @@ public class XboxInputs : myMonoBehaviour{
     // -------------------------------------------  //
     
     const int MAX_CONTROLLERS = 4;
-    public Controller [] controllers; 
-   
-    void Start()
+    public Controller [] controllers;
+
+    bool inited = false;
+    public void Start()
     {
+        if(!inited)
+            this.init();
+    }
+   
+    public void init()
+    {
+        inited = true;
+
         controllers = new Controller[MAX_CONTROLLERS];
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {

@@ -115,7 +115,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &3678738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4012,7 +4012,7 @@ Transform:
   m_LocalPosition: {x: 97.5082703, y: 148.309418, z: 141.123917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &219502520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6287,7 +6287,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &392098670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6829,14 +6829,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 448441828}
   - 114: {fileID: 448441829}
-  - 114: {fileID: 448441837}
-  - 114: {fileID: 448441836}
-  - 114: {fileID: 448441835}
-  - 114: {fileID: 448441834}
-  - 114: {fileID: 448441833}
-  - 114: {fileID: 448441832}
-  - 114: {fileID: 448441831}
-  - 114: {fileID: 448441830}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -7252,234 +7244,6 @@ MonoBehaviour:
     timeToGetOutTackleAreaBeforeScrum: 2
     minPlayersEachTeamToTriggerScrum: 3
   tweakMode: 0
---- !u!114 &448441830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe11037fcb736b4ba9286d7c74087a7, type: 3}
-  m_Name: 
---- !u!114 &448441831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8b504803cbe0ce47a0a73833dae60e2, type: 3}
-  m_Name: 
-  tempsPlaquage: 1
-  ralentiPlaquage: 1
---- !u!114 &448441832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e50eb0204974454e8bf1c2d7bdaacca, type: 3}
-  m_Name: 
---- !u!114 &448441833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
-  m_Name: 
-  ToucheRemiseAuCentre: 0
-  TransfoRemiseAuCentre: 1
---- !u!114 &448441834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
-  m_Name: 
-  touch:
-    keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
-  angleSpeed: 200
-  powerSpeed: 1.20000005
-  minPower: 5
-  maxPower: 20
-  maxAngle: 70
-  infiniteTime: 1
-  timeAngle: 3
-  timePower: 3
-  arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
-  timeStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  timeRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 4.65999985
-    height: 7.05000019
---- !u!114 &448441835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
-  m_Name: 
-  infiniteTime: 0
-  touche:
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 1
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 8
-  interception:
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 1
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 8
-  minTime: 3
-  hideGui: 0
---- !u!114 &448441836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400032, guid: 8270225a641f2934b8948aa3749c6e7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca29ccebb51aa148a07ed4fa512862a, type: 3}
-  m_Name: 
---- !u!114 &448441837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400034, guid: 8270225a641f2934b8948aa3749c6e7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 448441827}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
-  m_Name: 
-  tweakSettings:
-    FeedSuperPerSmash: 0
-    FeedSuperPerSecond: 0
-    MaximumDistance: 0
-    MaximumDuration: 0
-    SmashValue: 0
-    SuperMultiplicator: 0
-  inputSettings:
-    rightSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    rightSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-  guiSettings:
-    ScrumSpecialRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumSpecialButton: {fileID: 0}
-    ScrumBarRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumRightBar: {fileID: 0}
-    ScrumLeftBar: {fileID: 0}
-    ScrumEmptyBar: {fileID: 0}
 --- !u!1 &450770354
 GameObject:
   m_ObjectHideFlags: 0
@@ -8312,7 +8076,7 @@ Transform:
   m_LocalPosition: {x: 114.523605, y: 121.882423, z: 133.474991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &528087311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16263,7 +16027,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &1017857854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21262,6 +21026,38 @@ Transform:
   - {fileID: 353028668}
   - {fileID: 459764120}
   m_Father: {fileID: 1520761749}
+--- !u!1 &1419876915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1419876916}
+  m_Layer: 0
+  m_Name: GameProgrammers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1419876916
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419876915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 392098669}
+  - {fileID: 2004071850}
+  - {fileID: 3678737}
+  - {fileID: 1017857853}
+  - {fileID: 528087310}
+  - {fileID: 219502519}
+  m_Father: {fileID: 0}
 --- !u!1 &1420524553
 GameObject:
   m_ObjectHideFlags: 0
@@ -29000,7 +28796,7 @@ GameObject:
   - 114: {fileID: 2004071859}
   - 114: {fileID: 2004071860}
   m_Layer: 0
-  m_Name: GameProgrammers
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29015,13 +28811,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 392098669}
-  - {fileID: 3678737}
-  - {fileID: 1017857853}
-  - {fileID: 528087310}
-  - {fileID: 219502519}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 1419876916}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
