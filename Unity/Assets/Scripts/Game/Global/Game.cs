@@ -63,7 +63,7 @@ public class Game : myMonoBehaviour {
         northTeam.CreateUnits();
         southTeam.CreateUnits();
 
-        Referee.Game = this;
+        Referee.game = this;
         Referee.StartPlacement();
 
         northTeam.opponent = southTeam;
