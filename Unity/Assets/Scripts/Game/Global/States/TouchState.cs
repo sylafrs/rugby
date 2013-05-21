@@ -1,6 +1,6 @@
 /**
   * @class TouchState
-  * @brief Etat de la caméra durant une touche
+  * @brief Etat de la camï¿½ra durant une touche
   * @author Sylvain Lafon
   * @see GameState
   */
@@ -22,7 +22,7 @@ public class TouchState : GameState
                 CameraFade.wannaDie();
             }, (/* OnFade */) => { 
 				cam.CancelNextFlip = true;
-                cam.game.arbiter.PlacePlayersForTouch();
+                cam.game.Referee.PlacePlayersForTouch();
             }
         );
 		

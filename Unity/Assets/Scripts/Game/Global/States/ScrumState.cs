@@ -1,6 +1,6 @@
 /**
   * @class ScrumState
-  * @brief Etat de la caméra durant une mêlée
+  * @brief Etat de la camï¿½ra durant une mï¿½lï¿½e
   * @author Sylvain Lafon
   * @see GameState
   */
@@ -17,8 +17,8 @@ public class ScrumState : GameState
 	public override void OnEnter()
     {
 		initCutScene();
-       // cam.game.arbiter.ScrumCinematicMovement();
-       // cam.game.arbiter.NowScrum();
+       // cam.game.Referee.ScrumCinematicMovement();
+       // cam.game.Referee.NowScrum();
         game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
     }
 	

@@ -52,7 +52,7 @@ public class Game : myMonoBehaviour {
    	
     public Team northTeam { get { return refs.north; } }
     public Team southTeam { get { return refs.south; } }
-    public Arbiter arbiter { get { return refs.arbiter; } }
+    public Referee Referee { get { return refs.Referee; } }
 	
 	public void Start ()
     {
@@ -63,8 +63,8 @@ public class Game : myMonoBehaviour {
         northTeam.CreateUnits();
         southTeam.CreateUnits();
 
-        arbiter.Game = this;
-        arbiter.StartPlacement();
+        Referee.Game = this;
+        Referee.StartPlacement();
 
         northTeam.opponent = southTeam;
         southTeam.opponent = northTeam;
@@ -83,7 +83,7 @@ public class Game : myMonoBehaviour {
         this.refs.managers.intro.OnFinish = () =>
         {
             this._disableIA = true;                  
-            arbiter.OnStart();
+            Referee.OnStart();
 			this.refs.stateMachine.event_OnStartSignal();
         };
 
@@ -100,7 +100,7 @@ public class Game : myMonoBehaviour {
        	
     public void OnScrum()
     {
-        arbiter.OnScrum();
+        Referee.OnScrum();
         //cameraManager.sm.event_Scrum();
         this.refs.stateMachine.event_Scrum();
     }
@@ -120,7 +120,7 @@ public class Game : myMonoBehaviour {
 	
 	public void OnEssai(Zone z) {
         this.refs.stateMachine.event_Try(z);
-		arbiter.OnEssai();
+		Referee.OnEssai();
 	}
 
     public void OnPass(Unit from, Unit to)
@@ -132,7 +132,7 @@ public class Game : myMonoBehaviour {
     public void OnDropTransformed(But but)
     {
         //cameraManager.sm.event_DropTransformed(but);
-        arbiter.OnDropTransformed(but);
+        Referee.OnDropTransformed(but);
     }
 
     public void OnOwnerChanged(Unit before, Unit after)
@@ -177,7 +177,7 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        this.arbiter.OnTackle(tackler, tackled);
+        this.Referee.OnTackle(tackler, tackled);
         //this.cameraManager.sm.event_Tackle();       
     }
 
@@ -191,7 +191,7 @@ public class Game : myMonoBehaviour {
     public void OnBallOut()
     {
        //cameraManager.sm.event_BallOut();
-        arbiter.OnBallOut();
+        Referee.OnBallOut();
     }
 
     public void Reset()

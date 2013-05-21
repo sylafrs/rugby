@@ -15,7 +15,7 @@ public class WaitingState : GameState
 	public override void OnEnter()
     {       
        game.disableIA = true;
-       game.arbiter.PauseIngameTime();
+       game.Referee.PauseIngameTime();
     }
 
     public override void OnUpdate()
@@ -29,7 +29,7 @@ public class WaitingState : GameState
 	
 	public override void OnLeave()
     {
-       game.arbiter.ResumeIngameTime();
+       game.Referee.ResumeIngameTime();
        game.disableIA = false;
     }
 }

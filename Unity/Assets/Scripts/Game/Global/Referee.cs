@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /**
-  * @class Arbiter
-  * @brief The arbiter watch the game and apply rules.
+  * @class Referee
+  * @brief The Referee watch the game and apply rules.
   * @author Sylvain Lafon
   * @see myMonoBehaviour
   */
-[AddComponentMenu("Scripts/Game/Arbiter")]
-public class Arbiter : myMonoBehaviour {
+[AddComponentMenu("Scripts/Game/Referee")]
+public class Referee : myMonoBehaviour {
 		
 	public Game Game {get;set;}
 	

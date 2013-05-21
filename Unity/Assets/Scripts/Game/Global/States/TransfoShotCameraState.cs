@@ -27,7 +27,7 @@ public class TransfoShotState : GameState
                 //please, kill after usage x)
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
-                cam.game.arbiter.StartPlacement();
+                cam.game.Referee.StartPlacement();
             }
         );
 	}
