@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   game: {fileID: 448441829}
   stateMachine: {fileID: 2004071860}
-  arbiter: {fileID: 2004071857}
+  Referee: {fileID: 2004071857}
   north: {fileID: 613712549}
   south: {fileID: 166411255}
   managers:
@@ -7282,8 +7282,9 @@ MonoBehaviour:
         ScrumRightBar: {fileID: 0}
         ScrumLeftBar: {fileID: 0}
         ScrumEmptyBar: {fileID: 0}
+    ToucheRemiseAuCentre: 0
+    TransfoRemiseAuCentre: 0
   refs: {fileID: 3678738}
-  tweakMode: 0
 --- !u!1 &450770354
 GameObject:
   m_ObjectHideFlags: 0
@@ -28863,7 +28864,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
   currentPosition: 0
+  CurrentWinner: 0
   SuperLoading: 0
+  Game: {fileID: 0}
+  <ScrumBloc>k__BackingField: {fileID: 0}
+  <InitialPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  <ChronoLaunched>k__BackingField: 0
+  <TimeRemaining>k__BackingField: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29006,8 +29013,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
   m_Name: 
-  ToucheRemiseAuCentre: 0
-  TransfoRemiseAuCentre: 1
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
