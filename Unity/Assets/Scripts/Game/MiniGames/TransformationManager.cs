@@ -15,15 +15,13 @@ public class TransformationManager : myMonoBehaviour {
 	public Gamer gamer {get; set;}
 	public Ball ball {get; set;}
 	
-	public InputTouch touch;
-	
 	private Quaternion initialRotation;
 	
 	private float angle = 0;
-	public float angleSpeed;
+	public  float angleSpeed;
 	
 	private float power = 0;
-	public float powerSpeed;
+	public  float powerSpeed;
 
     public float minPower;
 	public float maxPower;
@@ -114,7 +112,7 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime -= Time.deltaTime;	
 			}				
 				
-			if(remainingTime < 0 || Input.GetKeyDown(touch.keyboard(gamer.Team)) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(touch.xbox))) {
+			if(remainingTime < 0 || Input.GetKeyDown(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team)) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(Game.instance.settings.Inputs.conversionTouch.xbox))) {
 				remainingTime = timePower;
 				state = State.POWER;	
 			}
@@ -142,7 +140,7 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime -= Time.deltaTime;	
 			}
 			
-			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(touch.xbox)) || Input.GetKeyUp(touch.keyboard(gamer.Team))) {
+			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(Game.instance.settings.Inputs.conversionTouch.xbox)) || Input.GetKeyUp(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team))) {
 				Launch();
 			}
 			

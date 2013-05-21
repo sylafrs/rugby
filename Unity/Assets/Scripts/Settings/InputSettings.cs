@@ -13,7 +13,7 @@ public class InputSettings
 					/* pass */
 					shortPass, longPass, 
 					/* abilities */
-					dropUpAndUnder, dropKick, tackle, changePlayer, put, superOff,
+					dropUpAndUnder, dropKick, tackle, changePlayer, put, superOff, conversionTouch,
 					/* misc */
 					reset, enableIA, skipIntro,
 					/* scrum */
