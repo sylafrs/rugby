@@ -23,7 +23,8 @@ public class IntroManager : myMonoBehaviour {
     
     void Update()
     {
-        if ((game.southTeam.Player.XboxController != null && game.southTeam.Player.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) || 
+        if ((game.southTeam.Player.XboxController != null && game.southTeam.Player.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) ||
+            (game.northTeam.Player.XboxController != null && game.northTeam.Player.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) || 
 			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP1) || 
 			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP2))
         {
