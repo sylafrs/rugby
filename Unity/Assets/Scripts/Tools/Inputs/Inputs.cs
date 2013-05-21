@@ -9,7 +9,7 @@ public class InputTouch
     public XBOX_BUTTONS xbox;   
 	
 	public KeyCode keyboard(Team t) {
-		Game g = t.Game;
+		Game g = t.game;
 		if(t == g.southTeam)
 			return keyboardP1;
 		return keyboardP2;
@@ -33,7 +33,7 @@ public class InputDirection
 	public KeyBoardDirection keyboardP2;
 	
 	public KeyBoardDirection keyboard(Team t) {
-		Game g = t.Game;
+		Game g = t.game;
 		if(t == g.southTeam)
 			return keyboardP1;
 		return keyboardP2;

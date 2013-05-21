@@ -54,8 +54,8 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-        northTeam.Game = this;
-        southTeam.Game = this;
+        northTeam.game = this;
+        southTeam.game = this;
         northTeam.south = false;
         southTeam.south = true;
         northTeam.CreateUnits();

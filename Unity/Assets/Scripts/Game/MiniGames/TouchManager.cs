@@ -43,8 +43,6 @@ public class TouchManager : myMonoBehaviour {
 			choixInter = Random.Range(0, n) + 1;
 	}
 	
-	public bool hideGui = true;
-	
 	public void Update() {
 		if(!infiniteTime)
             timeLeft -= Time.deltaTime;

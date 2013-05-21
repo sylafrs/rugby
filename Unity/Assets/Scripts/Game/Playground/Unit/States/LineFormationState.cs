@@ -29,7 +29,7 @@ class LineFormationState : UnitState
 
     public override bool OnNearUnit(Unit u)
     {
-        if (u == unit.Game.Ball.Owner)
+        if (u == unit.game.Ball.Owner)
         {
             unit.Order = Order.OrderPlaquer(u);
             return true;

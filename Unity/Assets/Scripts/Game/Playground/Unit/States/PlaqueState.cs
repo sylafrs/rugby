@@ -17,9 +17,9 @@ class PlaqueState : UnitState
         unit.isTackled = true;
         unit.nma.Stop();
 
-        if (unit == unit.Game.Ball.Owner)
+        if (unit == unit.game.Ball.Owner)
         {
-            unit.Game.Ball.Put();
+            unit.game.Ball.Put();
         }
 
         if (unit.Team.useColors && unit.Model && unit.Model.renderer)
@@ -42,7 +42,7 @@ class PlaqueState : UnitState
     public override void OnUpdate()
     {
         t += UnityEngine.Time.deltaTime;
-        if (t > unit.Game.settings.Global.Game.timePlaque)
+        if (t > unit.game.settings.Global.Game.timePlaque)
         {
             sm.state_change_me(this, new MainUnitState(sm, unit));
         }

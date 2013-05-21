@@ -12,7 +12,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
-    public Game Game {get; set;}
+    public Game game {get; set;}
 	public float AngleOfFovTackleCrit = 0.0f;
 	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
 	public Color DiscTackle = new Color(0f, 0f, 1f, 0.33f);
@@ -144,7 +144,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	//maxens dubois
 	public void increaseSuperGauge(int value){
-		if((SuperGaugeValue += value) > Game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = Game.settings.Global.Super.superGaugeMaximum;
+		if((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
 	}
 
     public void CreateUnits()
@@ -154,7 +154,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         {
             GameObject o = GameObject.Instantiate(Prefab_model) as GameObject;
             units[i] = o.GetComponent<Unit>();
-            units[i].Game = Game;
+            units[i].game = game;
             units[i].name = Name + " " + (i+1).ToString("D2");
             units[i].transform.parent = this.transform;
             units[i].Team = this;
@@ -179,30 +179,25 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public void OnOwnerChanged()
     {
-        if (Game.disableIA)
+        if (game.Ball.Owner == null)
         {
-            return;
-        }
-
-        if (Game.Ball.Owner == null)
-        {
-            if (Game.Ball.PreviousOwner.Team != this && Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
+            if (game.Ball.PreviousOwner.Team != this && game.Ball.NextOwner != null && game.Ball.NextOwner.Team != this)
             {
 				setSpeed();
                 OwnerChangedBallFree();
             }
-            else if (Game.Ball.PreviousOwner.Team == Game.southTeam)
+            else if (game.Ball.PreviousOwner.Team == game.southTeam)
             {
 				setSpeed();
                 OwnerChangedOurs();
             }
-			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
+			else if (game.Ball.NextOwner != null && game.Ball.NextOwner.Team != this)
             {
                 OwnerChangedOurs();
             }
 
         }
-        else if (Game.Ball.Owner.Team == this)
+        else if (game.Ball.Owner.Team == this)
         {
 			setHandicapSpeed();
             OwnerChangedOurs();
@@ -218,7 +213,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     {
         foreach (Unit u in units)
         {
-            if (u != Game.southTeam.Player.Controlled && (Game.northTeam.Player == null || u != Game.northTeam.Player.Controlled))
+            if (u != game.southTeam.Player.Controlled && (game.northTeam.Player == null || u != game.northTeam.Player.Controlled))
             {
                 u.Order = Order.OrderNothing(); // Order.OrderFollowBall();
             }
@@ -304,13 +299,13 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     void OwnerChangedOurs()
     {
-        Unit owner = Game.Ball.Owner;
+        Unit owner = game.Ball.Owner;
         if (owner == null)
         {
-            owner = Game.Ball.PreviousOwner;
+            owner = game.Ball.PreviousOwner;
         }
 
-        if (owner != Game.southTeam.Player.Controlled && (Game.northTeam.Player == null || owner != Game.northTeam.Player.Controlled))
+        if (owner != game.southTeam.Player.Controlled && (game.northTeam.Player == null || owner != game.northTeam.Player.Controlled))
         {
             Zone z = this.opponent.Zone;
             owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z));
@@ -339,11 +334,11 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
-        float largeurTerrain = Mathf.Abs(Game.refs.positions.limiteTerrainNordEst.transform.position.x - Game.refs.positions.limiteTerrainSudOuest.transform.position.x);
+        float largeurTerrain = Mathf.Abs(game.refs.positions.limiteTerrainNordEst.transform.position.x - game.refs.positions.limiteTerrainSudOuest.transform.position.x);
 		float section = largeurTerrain / 5f;
 
-        Transform SO = Game.refs.positions.limiteTerrainSudOuest.transform;
-        Transform NE = Game.refs.positions.limiteTerrainNordEst.transform;
+        Transform SO = game.refs.positions.limiteTerrainSudOuest.transform;
+        Transform NE = game.refs.positions.limiteTerrainNordEst.transform;
 
         if (owner.transform.position.x < SO.position.x + section)
         {
@@ -373,21 +368,21 @@ public class Team : myMonoBehaviour, IEnumerable {
     void OwnerChangedOpponents()
     {
         Unit a;
-        if (Game.southTeam.Player.Controlled != null && Game.southTeam.Player.Controlled.Team == this)
+        if (game.southTeam.Player.Controlled != null && game.southTeam.Player.Controlled.Team == this)
         {
-            a = Game.southTeam.Player.Controlled;
+            a = game.southTeam.Player.Controlled;
         }
-        else if (Game.northTeam.Player != null && Game.northTeam.Player.Controlled.Team == this)
+        else if (game.northTeam.Player != null && game.northTeam.Player.Controlled.Team == this)
         {
-            a = Game.northTeam.Player.Controlled;
+            a = game.northTeam.Player.Controlled;
         }
         else
         {
             a = units[0];
-            float d = Vector3.Distance(a.transform.position, Game.Ball.Owner.transform.position);
+            float d = Vector3.Distance(a.transform.position, game.Ball.Owner.transform.position);
             for (int i = 0; i < units.Length; i++)
             {
-                float d2 = Vector3.Distance(units[i].transform.position, Game.Ball.Owner.transform.position);
+                float d2 = Vector3.Distance(units[i].transform.position, game.Ball.Owner.transform.position);
                 if (d > d2)
                 {
                     a = units[i];
@@ -395,14 +390,13 @@ public class Team : myMonoBehaviour, IEnumerable {
                 }
             }
 
-            a.Order = Order.OrderFollow(Game.Ball.Owner);
+            a.Order = Order.OrderFollow(game.Ball.Owner);
         }
 
         foreach (Unit u in units)
         {
             if (u != a)
             {
-                //u.Order = Order.OrderAttack(a, Game.settings.LineSpace, right);
 				u.Order = Order.OrderNothing();
             }
         }
