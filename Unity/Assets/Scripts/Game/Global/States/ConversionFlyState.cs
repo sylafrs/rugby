@@ -16,4 +16,42 @@ public class ConversionFlyState : GameState
     }
 
     //private Zone zone;
+
+    public override bool OnTouch(Touche t)
+    {
+        game.refs.managers.conversion.OnLimit();
+        return true; // Could call signal
+    }
+
+    public override bool OnBallOut()
+    {
+        game.refs.managers.conversion.OnLimit();
+        return true; // Could call signal
+    }
+
+    public override bool OnConversion(But but)
+    {
+        game.refs.managers.conversion.But();
+        return true; // Could call signal
+    }
+
+    public override void OnEnter ()
+    {
+	    cam.setTarget(cam.game.Ball.transform);
+	    cam.zoom = 0.1f;
+    }
+
+    public override void OnLeave ()
+    {
+	    cam.zoom = 1f;	
+	    cam.setTarget(null);	
+	    cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
+            (/* OnFinish */) => {
+                //please, kill after usage x)
+                CameraFade.wannaDie();
+            }, (/* OnFade */) => {
+                cam.game.Referee.StartPlacement();
+            }
+        );
+    }    
 }

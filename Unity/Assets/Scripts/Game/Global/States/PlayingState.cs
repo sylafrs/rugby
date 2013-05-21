@@ -19,13 +19,20 @@ public class PlayingState : GameState
     }
 
     // Action de jeu : touche
-    public override bool OnTouch()
+    public override bool OnTouch(Touche t)
     {
-        GameActionState newSon = new GameActionState(sm, cam, game);
-        sm.state_change_son(this, newSon);
-        newSon.OnTouch();
+        if (sm.state_has_son(this, typeof(ConversionFlyState)))
+        {
+            return false;
+        }
+        else
+        {
+            GameActionState newSon = new GameActionState(sm, cam, game);
+            sm.state_change_son(this, newSon);
+            newSon.OnTouch(t);
 
-        return true;
+            return true;
+        }
     }
 
     // Action de jeu : mêlée

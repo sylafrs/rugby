@@ -6872,6 +6872,8 @@ MonoBehaviour:
         MaximumDuration: 0
         SmashValue: 0
         SuperMultiplicator: 0
+        ToucheRemiseAuCentre: 0
+        TransfoRemiseAuCentre: 0
       Super:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
@@ -6933,13 +6935,17 @@ MonoBehaviour:
         keyboardP2: 0
         xbox: 1
       put:
-        keyboardP1: 0
+        keyboardP1: 97
         keyboardP2: 0
         xbox: 0
       superOff:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 3
+      conversionTouch:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
       reset:
         keyboardP1: 0
         keyboardP2: 0
@@ -6949,7 +6955,7 @@ MonoBehaviour:
         keyboardP2: 0
         xbox: 7
       skipIntro:
-        keyboardP1: 0
+        keyboardP1: 97
         keyboardP2: 0
         xbox: 0
       rightSmashButton:
@@ -6980,10 +6986,10 @@ MonoBehaviour:
         xbox: 8
       move:
         keyboardP1:
-          up: 0
-          down: 0
-          right: 0
-          left: 0
+          up: 122
+          down: 115
+          right: 100
+          left: 113
         keyboardP2:
           up: 0
           down: 0
@@ -7289,8 +7295,6 @@ MonoBehaviour:
         ScrumRightBar: {fileID: 0}
         ScrumLeftBar: {fileID: 0}
         ScrumEmptyBar: {fileID: 0}
-    ToucheRemiseAuCentre: 0
-    TransfoRemiseAuCentre: 0
   refs: {fileID: 3678738}
 --- !u!114 &448441830
 MonoBehaviour:
@@ -28903,8 +28907,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
   infiniteTime: 1
+  choixTouche: 0
+  choixInter: 0
+  n: 0
+  timeLeft: 0
   minTime: 3
-  hideGui: 1
 --- !u!114 &2004071856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28915,10 +28922,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
-  touch:
-    keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
   minPower: 5

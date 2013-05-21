@@ -469,7 +469,7 @@ public class Gamer
             {
                 Zone z = this.game.Ball.inZone;
 				if(z == this.Team.opponent.Zone) {
-					this.game.OnEssai(z);
+					this.game.OnTry(z);
 				}			
 			}			
 		}

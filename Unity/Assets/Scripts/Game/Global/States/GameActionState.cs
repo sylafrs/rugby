@@ -11,10 +11,18 @@ public class GameActionState : GameState {
 
     public GameActionState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
-    public override bool OnTouch()
+    public override bool OnTouch(Touche t)
     {
-        sm.state_change_son(this, new TouchState(sm, cam, game));
-        return true;
+        if (sm.state_has_son(this, typeof(ConversionFlyState)))
+        {
+            return false;
+        }
+        else
+        {
+            game.Referee.OnTouch(t);
+            sm.state_change_son(this, new TouchState(sm, cam, game));
+            return true;
+        }        
     }
 
     public override bool OnScrum()
