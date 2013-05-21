@@ -32,6 +32,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    public virtual bool OnResumeSignal()
+    {
+        return (false);
+    }
 	
 	public virtual bool OnStartSignal()
     {
@@ -178,14 +183,24 @@ public partial class StateMachine
                 return;
         }
     }
-	
-	public void event_OnStartSignal(){
-		foreach (State tmp in list)
+
+    public void event_OnStartSignal()
+    {
+        foreach (State tmp in list)
         {
             if (tmp.OnStartSignal())
                 return;
         }
-	}
+    }
+
+    public void event_OnResumeSignal()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnResumeSignal())
+                return;
+        }
+    }
 
     public void event_OnEndSignal(){
 		foreach (State tmp in list)

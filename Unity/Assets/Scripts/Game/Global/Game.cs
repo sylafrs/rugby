@@ -304,6 +304,11 @@ public class Game : myMonoBehaviour {
         sm.event_DodgeFinished(u);
     }
 
+    public void OnResumeSignal()
+    {
+        sm.event_OnResumeSignal();
+    }
+
     /*public void TimedDisableIA(float time)
     {
         this.disableIA = true;
