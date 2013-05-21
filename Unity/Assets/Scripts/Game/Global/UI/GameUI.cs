@@ -12,7 +12,7 @@ public class GameUI{
 
 	public void DrawUI(float blueProgress, float redProgress)
 	{
-		int offset = 200;
+		//int offset = 200;
 		
 		//time box
 		Rect timeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.timeBoxXPercentage-game.settings.UI.GameUI.timeBoxWidthPercentage/2, 
@@ -44,28 +44,28 @@ public class GameUI{
 			game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
 		
 		//scrum bars
-		Rect scrumBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-			game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-
-		Rect scrumRedBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-			game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-		
-		//scrum special
-		Rect scrumSpecialBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumSpecialBoxXPercentage - game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage/2,
-			game.settings.UI.GameUI.scrumSpecialBoxYPercentage -game.settings.UI.GameUI. scrumSpecialBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage, game.settings.UI.GameUI.scrumSpecialBoxHeightPercentage);
-		
+		//Rect scrumBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
+        //
+		//Rect scrumRedBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
+		//
+		////scrum special
+		//Rect scrumSpecialBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumSpecialBoxXPercentage - game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.scrumSpecialBoxYPercentage -game.settings.UI.GameUI. scrumSpecialBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage, game.settings.UI.GameUI.scrumSpecialBoxHeightPercentage);
+		//
 		//Time before Scrum
-		Rect scrumTimeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumTimeBoxXPercentage - game.settings.UI.GameUI.scrumTimeBoxWidthPercentage/2,
-			game.settings.UI.GameUI.scrumTimeBoxYPercentage - game.settings.UI.GameUI.scrumTimeBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.scrumTimeBoxWidthPercentage, game.settings.UI.GameUI.scrumTimeBoxHeightPercentage);
+		//Rect scrumTimeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumTimeBoxXPercentage - game.settings.UI.GameUI.scrumTimeBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.scrumTimeBoxYPercentage - game.settings.UI.GameUI.scrumTimeBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.scrumTimeBoxWidthPercentage, game.settings.UI.GameUI.scrumTimeBoxHeightPercentage);
 		
 		//player on left Box
-		float playerLeftBoxWidth  = 25;
-		float playerLeftBoxHeight = 10;	
-		Rect playerLeftBox = UIManager.screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
+		//float playerLeftBoxWidth  = 25;
+		//float playerLeftBoxHeight = 10;	
+		//Rect playerLeftBox = UIManager.screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
 	
 		//superbars
 		//blue 
