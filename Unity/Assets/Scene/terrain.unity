@@ -18893,7 +18893,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 60
+  m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1353050259
 MonoBehaviour:
@@ -28095,8 +28095,8 @@ MonoBehaviour:
     passLooseSuperPoints: 5
     dropWinSuperPoints: 20
     dropLooseSuperPoints: 10
-    tryWinSuperPoints: 30
-    tryLooseSuperPoints: 20
+    tryWinSuperPoints: 200
+    tryLooseSuperPoints: 200
     conversionWinSuperPoints: 10
     conversionLooseSuperPoints: 5
     conversionOpponentSuperPoints: 10
