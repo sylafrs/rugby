@@ -71,8 +71,8 @@ public class Game : myMonoBehaviour {
 
         this.refs.xboxInputs.Start();
 
-        p1 = new Gamer(refs.north);
-        p2 = new Gamer(refs.south);
+        p1 = new Gamer(refs.south);
+        p2 = new Gamer(refs.north);
 
         this.Owner = p1.Controlled.Team;
         Ball.Game = this;

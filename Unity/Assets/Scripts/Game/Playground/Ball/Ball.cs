@@ -118,7 +118,9 @@ public class Ball : TriggeringTriggered {
         onGround = false;
         base.Start();
 	}
-	
+
+    const float epsilonOnGround = 0.3f;
+
     public void Update()
     {
         if (Owner != null)
@@ -139,12 +141,14 @@ public class Ball : TriggeringTriggered {
             this.transform.localRotation = Quaternion.identity;
         }
 
-        if (this.transform.position.y <= 0.6f)
+        if (this.transform.position.y <= epsilonOnGround)
         {
             if (!this.onGround)
             {
                 this.Game.BallOnGround(true);
             }
+
+            this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround, this.transform.position.z);
 
             this.onGround = true;
 			CircleDrop.SetActive(false);
@@ -169,6 +173,7 @@ public class Ball : TriggeringTriggered {
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
+        onGround = false;
 
 		Game.OnDrop();
     }
@@ -199,7 +204,7 @@ public class Ball : TriggeringTriggered {
 	{
 		if (timeOnDrop != -1)
 		{
-			if (this.transform.position.y > 0.3f)
+            if (this.transform.position.y > epsilonOnGround)
 			{
 				drop.doDrop(timeOnDrop);
 				timeOnDrop += Time.deltaTime;
@@ -233,7 +238,7 @@ public class Ball : TriggeringTriggered {
 	{
 		if (timeOnPass != -1)
 		{
-			if (this.transform.position.y > 0.6f)
+            if (this.transform.position.y > epsilonOnGround)
 			{
                 pass.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
@@ -257,7 +262,7 @@ public class Ball : TriggeringTriggered {
     {
         if (v.y == 0)
         {
-            v.y = 0.5f;
+            v.y = epsilonOnGround;
         }
 
         this.transform.parent = null;

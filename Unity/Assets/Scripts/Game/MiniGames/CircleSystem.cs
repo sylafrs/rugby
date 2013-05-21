@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CircleSystem : MonoBehaviour {
 
-    public Game game;
+    private Game game;
 	public float raySquare;
 	public float YToDecide = 3f;
 	
@@ -13,6 +13,7 @@ public class CircleSystem : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+        game = Game.instance;
 		unitInCircle = new System.Collections.Generic.List<Unit>();
 	}
 	

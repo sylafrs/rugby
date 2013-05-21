@@ -119,17 +119,7 @@ public class TouchManager : myMonoBehaviour {
 		return Result.TOUCH;
 	}
 	
-	public void DoTouch() {
-		
-		
-		
-		if(choixTouche == choixInter) {
-				
-		}
-		else {
-				
-		}
-		
+	public void DoTouch() {		
 		this.enabled = false;
 		
 		if(CallBack != null)
