@@ -467,9 +467,10 @@ public class Arbiter : myMonoBehaviour {
 
     public void StartPlacement()
     {	
-        Game.southTeam.placeUnits(Game.southTeam.StartPlacement, true);
-        Game.northTeam.placeUnits(Game.northTeam.StartPlacement, true);
-		
+        Transform t = Game.refs.placeHolders.startPlacement;
+
+        Game.southTeam.placeUnits(t.Find("South"), true);
+        Game.northTeam.placeUnits(t.Find("North"), true);	
 
 		GiveBall(UnitToGiveBallTo);
     }

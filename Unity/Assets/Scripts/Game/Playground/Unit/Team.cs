@@ -38,7 +38,6 @@ public class Team : myMonoBehaviour, IEnumerable {
 	}
 
     public int nbPoints = 0;
-	public Transform StartPlacement;
 
     private Unit [] units;
 

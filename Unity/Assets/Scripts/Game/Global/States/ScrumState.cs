@@ -25,5 +25,5 @@ public class ScrumState : GameState
 	public override void OnLeave()
 	{
         game.refs.managers.ui.currentState = UIManager.UIState.NULL;
-	}
+	}   
 }

@@ -56,15 +56,14 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-		
-
         northTeam.Game = this;
         southTeam.Game = this;
         northTeam.south = false;
         southTeam.south = true;
         northTeam.CreateUnits();
         southTeam.CreateUnits();
-		
+
+        arbiter.Game = this;
         arbiter.StartPlacement();
 
         northTeam.opponent = southTeam;
@@ -98,15 +97,7 @@ public class Game : myMonoBehaviour {
 	public void OnGameEnd(){
 		this.refs.stateMachine.event_OnEndSignal();
 	}
-       
-    void Update()
-    {
-        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard(p1.Team)) || refs.xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
-        {
-            disableIA = !disableIA;   
-        }
-    }
-	
+       	
     public void OnScrum()
     {
         arbiter.OnScrum();
