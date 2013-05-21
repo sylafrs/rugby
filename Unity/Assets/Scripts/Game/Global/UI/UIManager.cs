@@ -11,14 +11,9 @@ using XInputDotNetPure;
 [AddComponentMenu("Scripts/Game/UI Manager")]
 public class UIManager : myMonoBehaviour, Debugable {
 	
-<<<<<<< HEAD
-	private Game _game;
-	//private scrumController _scrumController;
-=======
 	private Game game;
-	private ScrumController scrumController;
->>>>>>> 4ab3596edb92e06739582691b69e637199e3fb72
-	public enum UIState{
+
+    public enum UIState{
 		NULL,
 		GameUI,
 		ScrumUI,
