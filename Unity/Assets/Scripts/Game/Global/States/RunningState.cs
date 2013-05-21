@@ -34,6 +34,12 @@ public class RunningState : GameState
         if (p2 != null) p2.myUpdate();
     }
 
+    public override bool OnConversion(But but)
+    {
+        game.Referee.OnDropTransformed(but);
+        return true; // Could call signal
+    }
+
 	//public override void OnEnter ()
 	//{
 	//	OnNewOwner(null, firstOwner);

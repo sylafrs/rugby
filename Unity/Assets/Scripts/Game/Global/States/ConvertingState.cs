@@ -17,6 +17,7 @@ public class ConvertingState : GameState {
 
     public override void OnEnter()
     {
+        Camera_OnEnter();
         sm.state_change_son(this, new AimingConversionState(sm, cam, game, zone));
     }
 
@@ -24,5 +25,43 @@ public class ConvertingState : GameState {
     {
         sm.state_change_son(this, new ConversionFlyState(sm, cam, game, zone));
         return true;
+    }
+
+
+	private void Camera_OnEnter ()
+	{
+		cam.setTarget(null);
+		
+		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").
+			FindChild("CameraPlaceHolder");
+		
+		GameObject Goal = null;
+		if(cam.flipedForTeam == cam.game.southTeam)
+		{
+			Goal = GameObject.Find("but_maori");
+			cameraPlaceHolder.LookAt(Goal.transform);
+			
+		}
+		if(cam.flipedForTeam == cam.game.northTeam)
+		{
+			Goal = GameObject.Find("but_jap");
+			cameraPlaceHolder.LookAt(Goal.transform);
+		}
+		
+		cam.transalateToWithFade(Vector3.zero, cameraPlaceHolder.rotation,0f, 1f, 1f, 1f, 
+            (/* OnFinish */) => {
+                CameraFade.wannaDie();
+            }, (/* OnFade */) => {
+				cam.game.Referee.PlacePlayersForTransfo();
+				Vector3 GoalToPlayer = cam.game.Ball.Owner.transform.position - Goal.transform.position;
+				Vector3	GoalToCam	 = cameraPlaceHolder.transform.position - Goal.transform.position;
+				Vector3 Proj		 = Vector3.Project(GoalToCam,GoalToPlayer);
+				float saveY 		 = cameraPlaceHolder.transform.position.y;
+				Vector3 dest		 = new Vector3(Proj.x + Goal.transform.position.x,saveY,Proj.z + Goal.transform.position.z);
+				Camera.mainCamera.transform.position = dest;
+				Camera.mainCamera.transform.LookAt(Goal.transform);
+				cam.game.Referee.EnableTransformation();
+            }
+        );
     }
 }

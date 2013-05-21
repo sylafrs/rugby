@@ -367,6 +367,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
     {
 #if UNITY_EDITOR
         EditorGUILayout.LabelField("Current target", target == null ? "null" : target.name);
+        EditorGUILayout.LabelField("Current zoom", ((int)(this.zoom)).ToString());
 #endif
     }
 }

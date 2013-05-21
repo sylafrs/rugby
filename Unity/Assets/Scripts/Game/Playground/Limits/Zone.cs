@@ -33,7 +33,7 @@ public class Zone : TriggeringTrigger {
                 {                   
                     if (b.Owner.Team.Player == null)
 					{				
-                        b.Game.OnEssai(this);
+                        b.Game.OnTry(this);
 					}
 					else {
 						foreach(Unit u in b.Owner.Team) {

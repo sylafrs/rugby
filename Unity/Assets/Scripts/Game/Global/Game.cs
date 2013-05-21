@@ -99,38 +99,37 @@ public class Game : myMonoBehaviour {
     public void OnScrum()
     {
         Referee.OnScrum();
-        //cameraManager.sm.event_Scrum();
         this.refs.stateMachine.event_Scrum();
     }
     
     public void OnDrop()
     {
         this.refs.stateMachine.event_Drop();
-		//
-		//this.state = State.DROPING;
-        //cameraManager.sm.event_Drop();
-    }
+	}
 	
-	public void OnTouch()
+	public void OnTouch(Touche t)
 	{
-		this.refs.stateMachine.event_OnTouch();
+		this.refs.stateMachine.event_OnTouch(t);
 	}
 	
-	public void OnEssai(Zone z) {
+	public void OnTry(Zone z) {
         this.refs.stateMachine.event_Try(z);
-		Referee.OnEssai();
+		Referee.OnTry();
 	}
+
+    public void OnConversionShot()
+    {
+        this.refs.stateMachine.event_ConversionShot();
+    }
 
     public void OnPass(Unit from, Unit to)
     {
-        this.refs.stateMachine.event_Pass(from, to);
-        //cameraManager.sm.event_Pass(from, to);
+        this.refs.stateMachine.event_Pass(from, to);        
     }
 
-    public void OnDropTransformed(But but)
+    public void OnConversion(But but)
     {
-        //cameraManager.sm.event_DropTransformed(but);
-        Referee.OnDropTransformed(but);
+        this.refs.stateMachine.event_Conversion(but);
     }
 
     public void OnOwnerChanged(Unit before, Unit after)
@@ -166,7 +165,7 @@ public class Game : myMonoBehaviour {
 
     public void OnSuper(Team team, SuperList super)
     {
-        //cameraManager.sm.event_Super(team, super);
+        this.refs.stateMachine.event_Super(team, super);
     }
 
     /**
@@ -176,20 +175,17 @@ public class Game : myMonoBehaviour {
     public void OnTackle(Unit tackler, Unit tackled)
     {
         this.refs.stateMachine.event_Tackle();
-        this.Referee.OnTackle(tackler, tackled);
-        //this.cameraManager.sm.event_Tackle();       
+        this.Referee.OnTackle(tackler, tackled);  
     }
 
     public void BallOnGround(bool onGround)
     {
-        //cameraManager.sm.event_BallOnGround(onGround);
-
         this.refs.stateMachine.event_BallOnGround(onGround);
     }
 
     public void OnBallOut()
     {
-       //cameraManager.sm.event_BallOut();
+        this.refs.stateMachine.event_BallOut();
         Referee.OnBallOut();
     }
 

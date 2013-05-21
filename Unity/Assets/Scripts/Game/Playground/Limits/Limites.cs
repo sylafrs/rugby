@@ -15,17 +15,8 @@ public class Limites : TriggeringTrigger
     {
         Ball b = t.GetComponent<Ball>();
         if (b != null)
-        {		
-			/*
-			if(game.state == Game.State.PLAYING) {
-				game.OnBallOut();
-			}
-			
-			if(game.state == Game.State.TRANSFORMATION) {
-				TransformationManager tm = game.GetComponent<TransformationManager>();
-				tm.OnLimit();
-			}
-			*/
+        {
+            game.OnBallOut();
         }
     }
 }

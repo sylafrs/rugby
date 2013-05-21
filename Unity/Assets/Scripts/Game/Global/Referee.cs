@@ -151,7 +151,7 @@ public class Referee : myMonoBehaviour {
 		Team touchTeam = interceptTeam.opponent;
 	
 		//launch the event
-        game.OnTouch();
+        //game.OnTouch(t);
 
 		// Règlage du mini-jeu
         TouchManager tm = this.game.refs.managers.touch;
@@ -334,14 +334,13 @@ public class Referee : myMonoBehaviour {
 		this.game.refs.placeHolders.conversionPlacement.transform.rotation = point.rotation;
 	}
 	
-	public void OnEssai() {
-		
-			
+	public void OnTry() {
+				
 		Team t = game.Ball.Owner.Team;
-		
-		t.fixUnits = t.opponent.fixUnits = true;			
-		if(t.Player != null) t.Player.stopMove();
-		if(t.opponent.Player != null) t.opponent.Player.stopMove();		
+
+        t.fixUnits = t.opponent.fixUnits = true;
+        if (t.Player != null) t.Player.stopMove();
+        if (t.opponent.Player != null) t.opponent.Player.stopMove();		
 				
 		
         t.nbPoints += game.settings.Global.Game.points_essai;
@@ -356,9 +355,7 @@ public class Referee : myMonoBehaviour {
 		tm.ball = game.Ball;
 		tm.gamer = t.Player;	
 		
-		tm.OnLaunch = () => {
-			//this.game.cameraManager.sm.event_TransfoShot();	
-		};
+		tm.OnLaunch = this.game.OnConversionShot;
 		
         // After the transformation is done, according to the result :
 		tm.CallBack = delegate(TransformationManager.Result transformed) {			
@@ -369,30 +366,31 @@ public class Referee : myMonoBehaviour {
 				
 				//transfo super
 				IncreaseSuper(game.settings.Global.Super.conversionWinSuperPoints,t);
-			}else{
-
+			}
+            else {
 				//transfo super
 				IncreaseSuper(game.settings.Global.Super.conversionLooseSuperPoints,t);
 			}
+
 			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
             if (game.settings.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
-            {
-               
-                //game.Ball.setPosition(Vector3.zero);
-				
+            {               
+                //game.Ball.setPosition(Vector3.zero);				
 				UnitToGiveBallTo = opponent[0];
-                //this.StartPlacement();
-			}			
-                  
-
+                this.StartPlacement();
+			}			                  
+            /*
             Timer.AddTimer(3, () => {
                 if (t.Player != null) t.Player.enableMove();
                 if (t.opponent.Player != null) t.opponent.Player.enableMove();
 	            t.fixUnits = t.opponent.fixUnits = false;				    
             });
+            */
+            this.game.OnResumeSignal();
         };
-		PlaceTransfoPlaceholders();
+
+        PlaceTransfoPlaceholders();
 	}
 
     public void OnDropTransformed(But but)

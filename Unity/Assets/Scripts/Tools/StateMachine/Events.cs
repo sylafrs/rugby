@@ -91,7 +91,7 @@ public abstract partial class State
         return (false);
     }
 	
-	public virtual bool OnTouch()
+	public virtual bool OnTouch(Touche t)
 	{
 		return (false);
 	}
@@ -107,7 +107,7 @@ public abstract partial class State
         return (false);
     }
 
-    public virtual bool OnDropConverted(But b)
+    public virtual bool OnConversion(But b)
     {
         return (false);
     }
@@ -210,10 +210,10 @@ public partial class StateMachine
         }
 	}
 	
-	public void event_OnTouch(){
+	public void event_OnTouch(Touche t){
 		foreach (State tmp in list)
         {
-            if (tmp.OnTouch())
+            if (tmp.OnTouch(t))
                 return;
         }
 	}
@@ -262,13 +262,7 @@ public partial class StateMachine
         }
     }
 	
-	public void event_TransfoShot(){
-		foreach (State tmp in list)
-        {
-            if (tmp.OnConversionShot())
-                return;
-        }
-	}
+
 	
     public void event_Drop()
     {
@@ -288,11 +282,20 @@ public partial class StateMachine
         }
     }
 
-    public void event_DropTransformed(But but)
+    public void event_Conversion(But but)
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnDropConverted(but))
+            if (tmp.OnConversion(but))
+                return;
+        }
+    }
+
+    public void event_ConversionShot()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnConversionShot())
                 return;
         }
     }

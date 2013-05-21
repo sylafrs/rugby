@@ -41,7 +41,7 @@ public class TouchUI{
 		
 			for(int i = 0; i < manager.n; i++) {
 				GUI.color = (manager.choixInter == i+1) ? Color.red : c;
-				if(GUILayout.Button (game.settings.Inputs.interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+				if(GUILayout.Button (game.settings.Inputs.touch[i].xbox.ToString(), GUILayout.MinWidth(100))) {
 					manager.choixInter = i+1;
 				}
 			}

@@ -16,7 +16,8 @@ public class Touche : TriggeringTrigger
         Ball ball = t.GetComponent<Ball>();
         if (ball != null)
         {
-            Game.instance.Referee.OnTouch(this);
+            Game.instance.OnTouch(this);
+            //Game.instance.Referee.OnTouch(this);
         
 			//ball.inTouch = this;
 			
