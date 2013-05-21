@@ -11,9 +11,6 @@ using System.Collections.Generic;
 public class Referee : myMonoBehaviour {
 		
 	public Game game {get;set;}
-	
-	public bool ToucheRemiseAuCentre 	= false;
-	public bool TransfoRemiseAuCentre 	= false;
 
     public float IngameTime { get; set; }
     private float GameTimeDuration;
@@ -302,7 +299,7 @@ public class Referee : myMonoBehaviour {
 	
 	public void PlacePlayersForTransfo(){
 		game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
-		float x = game.Ball.transform.position.x;
+		//float x = game.Ball.transform.position.x;
 		
 		Team t = game.Ball.Owner.Team;
 		
@@ -311,7 +308,7 @@ public class Referee : myMonoBehaviour {
 		Team.switchPlaces(t[0], game.Ball.Owner);
 		t.opponent.placeUnits(this.game.refs.placeHolders.conversionPlacement.FindChild("TeamLook"), true);
 		 
-        Team opponent = game.Ball.Owner.Team.opponent;
+        //Team opponent = game.Ball.Owner.Team.opponent;
 		
 		// Joueur face au look At
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
@@ -376,7 +373,7 @@ public class Referee : myMonoBehaviour {
 			}
 			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
-            if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            if (game.settings.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
                
                 //game.Ball.setPosition(Vector3.zero);

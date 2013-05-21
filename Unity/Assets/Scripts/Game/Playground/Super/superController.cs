@@ -34,7 +34,7 @@ public class superController : myMonoBehaviour {
 	
 	//time management for supers
 	private float OffensiveSuperTimeAmount;
-	private float DefensiveSuperTimeAmount;
+	//private float DefensiveSuperTimeAmount;
 	private float SuperTimeLeft;
 	
 	
@@ -44,7 +44,7 @@ public class superController : myMonoBehaviour {
 		currentSuper    = SuperList.superNull;
 		
 		OffensiveSuperTimeAmount = game.settings.Global.Super.OffensiveSuperDurationTime;
-		DefensiveSuperTimeAmount = game.settings.Global.Super.DefensiveSuperDurationTime;
+		//DefensiveSuperTimeAmount = game.settings.Global.Super.DefensiveSuperDurationTime;
 		
 		SuperTimeLeft = 0f;
 	}

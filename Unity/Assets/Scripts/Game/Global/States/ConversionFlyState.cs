@@ -12,8 +12,8 @@ public class ConversionFlyState : GameState
     public ConversionFlyState(StateMachine sm, CameraManager cam, Game game, Zone z)
         : base(sm, cam, game)
     {
-        this.zone = z;
+        //this.zone = z;
     }
 
-    private Zone zone;
+    //private Zone zone;
 }

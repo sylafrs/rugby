@@ -12,7 +12,7 @@ using XInputDotNetPure;
 public class UIManager : myMonoBehaviour, Debugable {
 	
 	private Game _game;
-	private scrumController _scrumController;
+	//private scrumController _scrumController;
 	public enum UIState{
 		NULL,
 		GameUI,
@@ -30,7 +30,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 	void Start () 
     {
 		_game 				= Game.instance;
-		_scrumController 	= _game.refs.managers.scrum;
+		//_scrumController 	= _game.refs.managers.scrum;
        
 		blueProgress = 0f;
 		redProgress  = 0f;
@@ -44,7 +44,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 	
 	void Update()
     {
-		GamePadState pad = GamePad.GetState(_game.southTeam.Player.playerIndex);   
+		//GamePadState pad = GamePad.GetState(_game.southTeam.Player.playerIndex);   
         Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
