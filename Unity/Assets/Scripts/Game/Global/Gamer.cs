@@ -10,7 +10,7 @@ using XInputDotNetPure;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Gamer")]
-public class Gamer : myMonoBehaviour
+public class Gamer
 {
     private static int NextGamerId = 0;
     private int id;
@@ -31,7 +31,6 @@ public class Gamer : myMonoBehaviour
 
     public Unit Controlled;
     public Game Game;
-    public Vector3 PassDirection;
 	private Unit unitTo;
 	private InputDirection.Direction stickDirection;
 
@@ -50,7 +49,7 @@ public class Gamer : myMonoBehaviour
         NextGamerId = 0;
     }
 
-    void Start()
+    public Gamer(Team t)
     {
         canMove = true;
 
@@ -59,7 +58,13 @@ public class Gamer : myMonoBehaviour
         playerIndex = (PlayerIndex)id;
 
         if (XboxController == null)
-            XboxController = Game.xboxInputs.controllers[id];
+            XboxController = Game.refs.xboxInputs.controllers[id];
+
+        this.Game = t.Game;
+        this.Team = t;
+        this.Controlled = t[t.nbUnits / 2];
+        this.Controlled.IndicateSelected(true);
+        this.Inputs = this.Game.settings.Inputs;
 	}
 	
 	/*
@@ -88,7 +93,7 @@ public class Gamer : myMonoBehaviour
     public void myUpdate()
     {
         if(XboxController == null)
-            XboxController = Game.xboxInputs.controllers[id];
+            XboxController = Game.refs.xboxInputs.controllers[id];
 
         if (Inputs == null) 
             return;
@@ -156,7 +161,7 @@ public class Gamer : myMonoBehaviour
                 side = -1;
             }
 
-            if (Game.cameraManager.TeamLooked == Game.left)
+            if (Game.refs.managers.camera.TeamLooked == Game.northTeam)
             {
                 side *= -1;
             }
@@ -249,13 +254,11 @@ public class Gamer : myMonoBehaviour
 
 			if (right)
 			{
-				PassDirection = this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
 				//unitsSide = Controlled.Team.GetRight(Controlled);
 			}
 			else
 			{
-				PassDirection = -this.transform.right;
 				Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
 				//unitsSide = Controlled.Team.GetLeft(Controlled);
 			}
@@ -355,7 +358,7 @@ public class Gamer : myMonoBehaviour
                 {
                     if (u != Controlled)
                     {
-                        u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                        u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.south, typePosition);
                     }
                 }
             }
@@ -366,7 +369,7 @@ public class Gamer : myMonoBehaviour
                 {
                     if (u != Controlled)
                     {
-                        u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.right, typePosition);
+                        u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.south, typePosition);
                     }
                 }
             }
@@ -457,11 +460,11 @@ public class Gamer : myMonoBehaviour
     {
 		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
-            Controlled.Order = Order.OrderDropUpAndUnder(Game.left[0]);
+            Controlled.Order = Order.OrderDropUpAndUnder(Game.northTeam[0]);
         }
 		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
 		{
-			Controlled.Order = Order.OrderDropKick(Game.left[0]);
+			Controlled.Order = Order.OrderDropKick(Game.northTeam[0]);
 		}
     }
 	

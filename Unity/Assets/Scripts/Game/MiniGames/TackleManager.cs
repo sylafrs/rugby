@@ -9,7 +9,7 @@ public class TackleManager: myMonoBehaviour {
     public Unit tackler { get; set; }
 
     private float remainingTime;
-	public Game game;
+    public Game game { get; set; }
     	
     public enum RESULT
     {

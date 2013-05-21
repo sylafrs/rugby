@@ -11,7 +11,7 @@ public class ScrumState : GameState
     public ScrumState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
 	void initCutScene(){
-		cam.setTarget(this.cam.game.ScrumBloc.transform);
+		cam.setTarget(this.cam.game.refs.gameObjects.ScrumBloc.transform);
 	}
 	
 	public override void OnEnter()

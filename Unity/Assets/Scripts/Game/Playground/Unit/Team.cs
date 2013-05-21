@@ -19,7 +19,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Color Color;
 	public Color PlaqueColor;
     public string Name;
-    public bool right;
+    public bool south;
 
 	public bool useColors = false;
 
@@ -192,7 +192,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 				setSpeed();
                 OwnerChangedBallFree();
             }
-            else if (Game.Ball.PreviousOwner.Team == Game.right)
+            else if (Game.Ball.PreviousOwner.Team == Game.southTeam)
             {
 				setSpeed();
                 OwnerChangedOurs();
@@ -219,7 +219,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     {
         foreach (Unit u in units)
         {
-            if (u != Game.p1.Controlled && (Game.p2 == null || u != Game.p2.Controlled))
+            if (u != Game.southTeam.Player.Controlled && (Game.northTeam.Player == null || u != Game.northTeam.Player.Controlled))
             {
                 u.Order = Order.OrderNothing(); // Order.OrderFollowBall();
             }
@@ -311,9 +311,9 @@ public class Team : myMonoBehaviour, IEnumerable {
             owner = Game.Ball.PreviousOwner;
         }
 
-        if (owner != Game.p1.Controlled && (Game.p2 == null || owner != Game.p2.Controlled))
+        if (owner != Game.southTeam.Player.Controlled && (Game.northTeam.Player == null || owner != Game.northTeam.Player.Controlled))
         {
-            Zone z = Game.opponent(this).Zone;
+            Zone z = this.opponent.Zone;
             owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z));
         }
         else
@@ -340,30 +340,47 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
-		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
+        float largeurTerrain = Mathf.Abs(Game.refs.positions.limiteTerrainNordEst.transform.position.x - Game.refs.positions.limiteTerrainSudOuest.transform.position.x);
 		float section = largeurTerrain / 5f;
 
-		if (owner.transform.position.x < Game.limiteTerrainSudOuest.transform.position.x + section)
-			return Order.TYPE_POSITION.EXTRA_LEFT;
-		else if (owner.transform.position.x >= Game.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
-			return Order.TYPE_POSITION.LEFT;
-		else if (owner.transform.position.x > Game.limiteTerrainNordEst.transform.position.x - section)
-			return Order.TYPE_POSITION.EXTRA_RIGHT;
-		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 2*section)
-			return Order.TYPE_POSITION.RIGHT;
+        Transform SO = Game.refs.positions.limiteTerrainSudOuest.transform;
+        Transform NE = Game.refs.positions.limiteTerrainNordEst.transform;
+
+        if (owner.transform.position.x < SO.position.x + section)
+        {
+            return Order.TYPE_POSITION.EXTRA_LEFT;
+        }
+
+        else if (owner.transform.position.x >= SO.position.x + section &&
+                 owner.transform.position.x <= SO.position.x + 2 * section)
+        {
+            return Order.TYPE_POSITION.LEFT;
+        }
+
+        else if (owner.transform.position.x > NE.position.x - section)
+        {
+            return Order.TYPE_POSITION.EXTRA_RIGHT;
+        }
+
+        else if (owner.transform.position.x <= NE.position.x - section &&
+                 owner.transform.position.x >= NE.position.x - 2 * section)
+        {
+            return Order.TYPE_POSITION.RIGHT;
+        }
+
 		return Order.TYPE_POSITION.MIDDLE;
 	}
 
     void OwnerChangedOpponents()
     {
         Unit a;
-        if (Game.p1.Controlled != null && Game.p1.Controlled.Team == this)
+        if (Game.southTeam.Player.Controlled != null && Game.southTeam.Player.Controlled.Team == this)
         {
-            a = Game.p1.Controlled;
+            a = Game.southTeam.Player.Controlled;
         }
-        else if (Game.p2 != null && Game.p2.Controlled.Team == this)
+        else if (Game.northTeam.Player != null && Game.northTeam.Player.Controlled.Team == this)
         {
-            a = Game.p2.Controlled;
+            a = Game.northTeam.Player.Controlled;
         }
         else
         {

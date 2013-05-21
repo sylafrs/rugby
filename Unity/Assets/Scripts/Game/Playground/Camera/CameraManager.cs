@@ -80,7 +80,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		isflipped= false;
 		CancelNextFlip = false;
 		ActionOnFlipFinish = null;
-		flipedForTeam = game.right;
+		flipedForTeam = game.southTeam;
 		zMinForBlue	  = MinfollowOffset.z;
 		zMaxForBlue	  = MaxfollowOffset.z;
 	}
@@ -195,7 +195,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		}
 		else {
 			gameCamera.ResetRotation();			
-			if(game.Ball.Owner.Team == game.left) {
+			if(game.Ball.Owner.Team == Game.northTeam) {
 				game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
 			}
 		}			
@@ -227,12 +227,12 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			if(CancelNextFlip){
 				
 				//here beacause of touch or transfo
-				if(_t == game.right){
+				if(_t == game.southTeam){
 					
 					MinfollowOffset.z	  = zMinForBlue;
 					MaxfollowOffset.z	  = zMaxForBlue;
 				}
-				if(_t == game.left){
+				if(_t == game.northTeam){
 					
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
@@ -251,8 +251,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
-		this.game.p1.stopMove();
-		this.game.p2.stopMove();
+		this.game.southTeam.Player.stopMove();
+		this.game.northTeam.Player.stopMove();
     }
 	
 	void flipUpdate () 
@@ -292,8 +292,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
 		this.ActionOnFlipFinish();
-		this.game.p1.enableMove();
-		this.game.p2.enableMove();
+		this.game.southTeam.Player.enableMove();
+		this.game.northTeam.Player.enableMove();
 	}
 	
 	/*

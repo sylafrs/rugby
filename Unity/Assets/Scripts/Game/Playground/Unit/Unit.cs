@@ -292,7 +292,7 @@ public class Unit : TriggeringTriggered, Debugable
         else
         {
             Gamer g = this.team.Player;
-            if (g)
+            if (g != null)
             {
                 this.IndicateSelected(this == g.Controlled);
             }

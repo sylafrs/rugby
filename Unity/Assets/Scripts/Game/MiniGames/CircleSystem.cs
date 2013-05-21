@@ -26,8 +26,8 @@ public class CircleSystem : MonoBehaviour {
             game.Ball.Owner = GetFirstUnit();
 		}
 		else{
-			unitIn(game.left);
-            unitIn(game.right);
+			unitIn(game.northTeam);
+            unitIn(game.southTeam);
 		}
 	}
 	

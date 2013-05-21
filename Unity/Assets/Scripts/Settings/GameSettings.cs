@@ -163,8 +163,8 @@ public class EndUISettings
  * @brief Classe de reglages
  * @author Sylvain Lafon
  */
-[AddComponentMenu("Scripts/Settings/GameSettings")]
-public class GameSettings : myMonoBehaviour {
+[System.Serializable]
+public class GameSettings {
 	
 	public GlobalSettings 		Global;
 	public GameStatesSettings 	GameStates;

@@ -14,9 +14,6 @@ public class Arbiter : myMonoBehaviour {
 	
 	public bool ToucheRemiseAuCentre 	= false;
 	public bool TransfoRemiseAuCentre 	= false;
-	public Transform TouchPlacement 	= null;
-	public Transform TransfoPlacement 	= null;
-    public Transform ScrumPlacement     = null;
 
     public float IngameTime { get; set; }
     private float GameTimeDuration;
@@ -49,8 +46,8 @@ public class Arbiter : myMonoBehaviour {
         Team touchTeam = interceptTeam.opponent;
 
         // Fixe les unités			
-        if (interceptTeam.Player) interceptTeam.Player.stopMove();
-        if (touchTeam.Player) touchTeam.Player.stopMove();
+        if (interceptTeam.Player != null) interceptTeam.Player.stopMove();
+        if (touchTeam.Player != null) touchTeam.Player.stopMove();
         interceptTeam.fixUnits = touchTeam.fixUnits = true;
 
         // Bouttons pour la touche.			
@@ -71,14 +68,14 @@ public class Arbiter : myMonoBehaviour {
         touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 
         // Touche à droite ?
-        bool right = (TouchPlacement.position.x > 0);
+        bool right = (this.Game.refs.placeHolders.touchPlacement.position.x > 0);
 
         // Place les unités
 
 
         Transform blueTeam, redTeam, rightTeam, leftTeam;
-        rightTeam = TouchPlacement.FindChild("RightTeam");
-        leftTeam = TouchPlacement.FindChild("LeftTeam");
+        rightTeam = this.Game.refs.placeHolders.touchPlacement.FindChild("RightTeam");
+        leftTeam = this.Game.refs.placeHolders.touchPlacement.FindChild("LeftTeam");
 
         if (right)
         {
@@ -91,8 +88,8 @@ public class Arbiter : myMonoBehaviour {
             blueTeam = rightTeam;
         }
 
-        Transform interceptConfiguration = TouchPlacement.FindChild("InterceptionTeam");
-        if (interceptTeam == this.Game.left/*(red)*/)
+        Transform interceptConfiguration = this.Game.refs.placeHolders.touchPlacement.FindChild("InterceptionTeam");
+        if (interceptTeam == this.Game.northTeam/*(red)*/)
         {
             interceptConfiguration.transform.position = redTeam.transform.position;
             interceptConfiguration.transform.rotation = redTeam.transform.rotation;
@@ -105,8 +102,8 @@ public class Arbiter : myMonoBehaviour {
 
         interceptTeam.placeUnits(interceptConfiguration, true);
 
-        Transform passConfiguration = TouchPlacement.FindChild("TouchTeam");
-        if (touchTeam == this.Game.left/*(red)*/)
+        Transform passConfiguration = this.Game.refs.placeHolders.touchPlacement.FindChild("TouchTeam");
+        if (touchTeam == this.Game.northTeam/*(red)*/)
         {
             passConfiguration.transform.position = redTeam.transform.position;
             passConfiguration.transform.rotation = redTeam.transform.rotation;
@@ -119,12 +116,12 @@ public class Arbiter : myMonoBehaviour {
 
         touchTeam.placeUnits(passConfiguration, 1, true);
 
-        Transform passUnitPosition = TouchPlacement.FindChild("TouchPlayer");
+        Transform passUnitPosition = this.Game.refs.placeHolders.touchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0, true);
 
        
         Game.Ball.Owner = touchTeam[0];
-        Game.cameraManager.setTarget(null);
+        Game.refs.managers.camera.setTarget(null);
     }
 	
 	public void OnTouch(Touche t) {
@@ -138,20 +135,20 @@ public class Arbiter : myMonoBehaviour {
 		Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
         pos.y = 0; // A terre           
 			
-		if(TouchPlacement == null) {
+		if(this.Game.refs.placeHolders.touchPlacement == null) {
 			throw new UnityException("I need to know how place the players when a touch occurs");
 		}
 
         bool right = (pos.x > 0);
             			
 		if(right) {
-			TouchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
+			this.Game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
 		}
 		else {
-			TouchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
+			this.Game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
 		}
 			
-		TouchPlacement.position = pos;
+		this.Game.refs.placeHolders.touchPlacement.position = pos;
 						
 		Team interceptTeam = Game.Ball.Team;
 		Team touchTeam = interceptTeam.opponent;
@@ -160,7 +157,7 @@ public class Arbiter : myMonoBehaviour {
         Game.OnTouch();
 
 		// Règlage du mini-jeu
-		TouchManager tm = this.Game.GetComponent<TouchManager>();
+        TouchManager tm = this.Game.refs.managers.touch;
 			
 		// On indique les équipes
 		tm.gamerIntercept = interceptTeam.Player;
@@ -168,8 +165,8 @@ public class Arbiter : myMonoBehaviour {
 			
 		// On indique si l'un ou l'autre sera fait au pif
 		// TODO : patch j2
-		tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
-		tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.p2 && !Game.p2.XboxController.IsConnected));
+		tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.northTeam.Player && !Game.northTeam.Player.XboxController.IsConnected));
+		tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.northTeam.Player && !Game.northTeam.Player.XboxController.IsConnected));
 						
 		// Fonction à appeller à la fin de la touche
 		tm.CallBack = delegate(TouchManager.Result result, int id) {
@@ -199,8 +196,8 @@ public class Arbiter : myMonoBehaviour {
 			// Retour en jeu
 			//Game.state = Game.State.PLAYING;
 			interceptTeam.fixUnits = touchTeam.fixUnits = false;	
-			if(interceptTeam.Player) interceptTeam.Player.enableMove();
-			if(touchTeam.Player) touchTeam.Player.enableMove();
+			if(interceptTeam.Player != null) interceptTeam.Player.enableMove();
+			if(touchTeam.Player != null) touchTeam.Player.enableMove();
 		};			
 			
 		tm.enabled = true;
@@ -218,15 +215,15 @@ public class Arbiter : myMonoBehaviour {
 
     public void NowScrum()
     {
-        Renderer bloc = this.Game.ScrumBloc;
+        Renderer bloc = this.Game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.Game.Ball.transform.position;
 
-        scrumController sc = this.Game.GetComponent<scrumController>();
+        scrumController sc = this.Game.refs.managers.scrum;
         sc.InitialPosition = this.Game.Ball.transform.position;
         sc.ScrumBloc = bloc.transform;        
         
-        this.Game.right.ShowPlayers(false);
-        this.Game.left.ShowPlayers(false);
+        this.Game.southTeam.ShowPlayers(false);
+        this.Game.northTeam.ShowPlayers(false);
         this.Game.Ball.Model.enabled = false;
         bloc.enabled = true;
 
@@ -235,8 +232,8 @@ public class Arbiter : myMonoBehaviour {
             Game.Ball.Owner = t[0];
 
             this.Game.Ball.Model.enabled = true;
-            this.Game.right.ShowPlayers(true);
-            this.Game.left.ShowPlayers(true);
+            this.Game.southTeam.ShowPlayers(true);
+            this.Game.northTeam.ShowPlayers(true);
             bloc.enabled = false;
 
             // this.Game.state = Game.State.PLAYING;
@@ -248,14 +245,14 @@ public class Arbiter : myMonoBehaviour {
     public void ScrumCinematicMovement()
     {
         Vector3 pos = this.Game.Ball.transform.position;
-        Transform cinematic = ScrumPlacement.FindChild("CinematicPlacement");
+        Transform cinematic = this.Game.refs.placeHolders.scrumPlacement.FindChild("CinematicPlacement");
         cinematic.position = new Vector3(pos.x, 0, pos.z);
 
         Transform red = cinematic.FindChild("RedTeam");
         Transform blue = cinematic.FindChild("BlueTeam");
 
-        this.Game.right.placeUnits(red, false);
-        this.Game.left.placeUnits(blue, false);
+        this.Game.southTeam.placeUnits(red, false);
+        this.Game.northTeam.placeUnits(blue, false);
     }
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
@@ -272,15 +269,16 @@ public class Arbiter : myMonoBehaviour {
 
         this.Game.state = Game.State.TACKLE;
 	 	*/
-	 
-	 
-        TackleManager tm = this.Game.GetComponent<TackleManager>();
+
+
+        TackleManager tm = this.Game.refs.managers.tackle;
         if (tm == null)
             throw new UnityException("Game needs a TackleManager !");
         
         if (tackler == null || tackled == null || tackler.Team == tackled.Team)
             throw new UnityException("Error : " + tackler + " cannot tackle " + tackled + " !");
 
+        tm.game = this.Game;
         tm.tackler = tackler;
         tm.tackled = tackled;
 
@@ -329,10 +327,10 @@ public class Arbiter : myMonoBehaviour {
 		
 		Team t = Game.Ball.Owner.Team;
 		
-		t.placeUnits(TransfoPlacement.FindChild("TeamShoot"), 1, true);
-		t.placeUnit(TransfoPlacement.FindChild("ShootPlayer"), 0, true);
+		t.placeUnits(this.Game.refs.placeHolders.conversionPlacement.FindChild("TeamShoot"), 1, true);
+		t.placeUnit(this.Game.refs.placeHolders.conversionPlacement.FindChild("ShootPlayer"), 0, true);
 		Team.switchPlaces(t[0], Game.Ball.Owner);
-		t.opponent.placeUnits(TransfoPlacement.FindChild("TeamLook"), true);
+		t.opponent.placeUnits(this.Game.refs.placeHolders.conversionPlacement.FindChild("TeamLook"), true);
 		 
         Team opponent = Game.Ball.Owner.Team.opponent;
 		
@@ -342,7 +340,7 @@ public class Arbiter : myMonoBehaviour {
 	}
 	
 	public void EnableTransformation(){
-		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
+        TransformationManager tm = this.Game.refs.managers.conversion;
 		tm.enabled = true;
 	}
 	
@@ -353,8 +351,8 @@ public class Arbiter : myMonoBehaviour {
 		Transform point = t.opponent.But.transformationPoint;
 		point.transform.position = new Vector3(x, 0, point.transform.position.z);
 		
-		TransfoPlacement.transform.position = point.position;
-		TransfoPlacement.transform.rotation = point.rotation;
+		this.Game.refs.placeHolders.conversionPlacement.transform.position = point.position;
+		this.Game.refs.placeHolders.conversionPlacement.transform.rotation = point.rotation;
 	}
 	
 	public void OnEssai() {
@@ -367,8 +365,8 @@ public class Arbiter : myMonoBehaviour {
 		Team t = Game.Ball.Owner.Team;
 		
 		t.fixUnits = t.opponent.fixUnits = true;			
-		if(t.Player) t.Player.stopMove();
-		if(t.opponent.Player) t.opponent.Player.stopMove();		
+		if(t.Player != null) t.Player.stopMove();
+		if(t.opponent.Player != null) t.opponent.Player.stopMove();		
 				
 		
         t.nbPoints += Game.settings.score.points_essai;
@@ -377,8 +375,8 @@ public class Arbiter : myMonoBehaviour {
 		//super for try
 		IncreaseSuper(Game.settings.super.tryWinSuperPoints,t);
 		IncreaseSuper(Game.settings.super.tryLooseSuperPoints,opponent);
-		
-		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
+
+        TransformationManager tm = this.Game.refs.managers.conversion;
 		tm.ball = Game.Ball;
 		tm.gamer = t.Player;	
 		
@@ -414,8 +412,8 @@ public class Arbiter : myMonoBehaviour {
             //Game.state = Game.State.PLAYING;           
 
             Timer.AddTimer(3, () => {
-                if (t.Player) t.Player.enableMove();
-                if (t.opponent.Player) t.opponent.Player.enableMove();
+                if (t.Player != null) t.Player.enableMove();
+                if (t.opponent.Player != null) t.opponent.Player.enableMove();
 	            t.fixUnits = t.opponent.fixUnits = false;				    
             });
         };
@@ -454,11 +452,11 @@ public class Arbiter : myMonoBehaviour {
         // Si on est du côté droit
         if (this.Game.Ball.RightSide())
         {
-            NewOwner = Game.right[0];
+            NewOwner = Game.southTeam[0];
         }
         else
         {
-            NewOwner = Game.left[0];
+            NewOwner = Game.northTeam[0];
         }
 		
 		// Remise au centre, donne la balle aux perdants.
@@ -469,8 +467,8 @@ public class Arbiter : myMonoBehaviour {
 
     public void StartPlacement()
     {	
-        Game.right.placeUnits(Game.right.StartPlacement, true);
-        Game.left.placeUnits(Game.left.StartPlacement, true);
+        Game.southTeam.placeUnits(Game.southTeam.StartPlacement, true);
+        Game.northTeam.placeUnits(Game.northTeam.StartPlacement, true);
 		
 
 		GiveBall(UnitToGiveBallTo);
@@ -520,7 +518,7 @@ public class Arbiter : myMonoBehaviour {
                 int right = 0, left = 0;
                 for (int i = 0; i < this.Game.Ball.scrumFieldUnits.Count; i++)
                 {
-                    if (this.Game.Ball.scrumFieldUnits[i].Team == Game.right)
+                    if (this.Game.Ball.scrumFieldUnits[i].Team == Game.southTeam)
                         right++;
                     else
                         left++;

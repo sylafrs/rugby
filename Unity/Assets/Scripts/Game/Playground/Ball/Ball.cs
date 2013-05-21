@@ -221,10 +221,10 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		//Game.right.But		
+		//Game.southTeam.But		
 		Game.OnPass(this.Owner, to);
 
-		pass = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		pass = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		pass.CalculatePass();
 		timeOnPass = 0;
 	}
@@ -339,7 +339,7 @@ public class Ball : TriggeringTriggered {
                 int right = 0, left = 0;
                 for (int i = 0; i < scrumFieldUnits.Count; i++)
                 {
-                    if (scrumFieldUnits[i].Team == Game.right)
+                    if (scrumFieldUnits[i].Team == Game.southTeam)
                         right++;
                     else
                         left++;

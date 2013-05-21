@@ -79,7 +79,7 @@ public class GameUI{
 		if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
 		
 		//score
-		GUI.Label(scoreBox, game.right.nbPoints+"  -  "+game.left.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
+		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
 		
 		//time
 		GUI.Label(timeBox,  "Time : "+(int)game.arbiter.IngameTime, game.settings.UI.GameUI.gameTimeTextStyle);

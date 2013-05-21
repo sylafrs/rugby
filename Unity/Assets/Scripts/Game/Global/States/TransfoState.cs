@@ -18,13 +18,13 @@ public class TransfoState : GameState
 			FindChild("CameraPlaceHolder");
 		
 		GameObject Goal = null;
-		if(cam.flipedForTeam == cam.game.right)
+		if(cam.flipedForTeam == cam.game.southTeam)
 		{
 			Goal = GameObject.Find("but_maori");
 			cameraPlaceHolder.LookAt(Goal.transform);
 			
 		}
-		if(cam.flipedForTeam == cam.game.left)
+		if(cam.flipedForTeam == cam.game.northTeam)
 		{
 			Goal = GameObject.Find("but_jap");
 			cameraPlaceHolder.LookAt(Goal.transform);
@@ -57,13 +57,13 @@ public class TransfoState : GameState
 		//cameraPlaceHolder.LookAt(cam.game.Ball.Owner.transform);
 		
 		GameObject Goal = null;
-		if(cam.flipedForTeam == cam.game.right)
+		if(cam.flipedForTeam == cam.Game.southTeam)
 		{
 			Goal = GameObject.Find("but_maori");
 			cameraPlaceHolder.LookAt(Goal.transform);
 			
 		}
-		if(cam.flipedForTeam == cam.game.left)
+		if(cam.flipedForTeam == cam.Game.northTeam)
 		{
 			Goal = GameObject.Find("but_jap");
 			cameraPlaceHolder.LookAt(Goal.transform);

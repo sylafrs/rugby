@@ -29,8 +29,8 @@ public class UIManager : myMonoBehaviour, Debugable {
 	
 	void Start () 
     {
-		_game 				= gameObject.GetComponent<Game>();
-		_scrumController 	= gameObject.GetComponent<scrumController>();
+		_game 				= Game.instance;
+		_scrumController 	= _game.refs.managers.scrum;
        
 		blueProgress = 0f;
 		redProgress  = 0f;
@@ -44,15 +44,15 @@ public class UIManager : myMonoBehaviour, Debugable {
 	
 	void Update()
     {
-		GamePadState pad = GamePad.GetState(_game.p1.playerIndex);   
+		GamePadState pad = GamePad.GetState(_game.southTeam.Player.playerIndex);   
         Gamer.initGamerId();					
 		UpdateSuperProgress();
 	}
 	
 	void UpdateSuperProgress(){
 
-		float blueCurrent = (float)_game.right.SuperGaugeValue;
-		float redCurrent  = (float)_game.left.SuperGaugeValue;
+		float blueCurrent = (float)_game.southTeam.SuperGaugeValue;
+		float redCurrent  = (float)_game.northTeam.SuperGaugeValue;
 		float max		  = (float)_game.settings.super.superGaugeMaximum;
 		blueProgress = Mathf.Clamp01(blueCurrent/max);
 		redProgress  = Mathf.Clamp01(redCurrent/max);

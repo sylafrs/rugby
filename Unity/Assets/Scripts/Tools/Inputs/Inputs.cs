@@ -10,7 +10,7 @@ public class InputTouch
 	
 	public KeyCode keyboard(Team t) {
 		Game g = t.Game;
-		if(t == g.right)
+		if(t == g.southTeam)
 			return keyboardP1;
 		return keyboardP2;
 	}
@@ -34,7 +34,7 @@ public class InputDirection
 	
 	public KeyBoardDirection keyboard(Team t) {
 		Game g = t.Game;
-		if(t == g.right)
+		if(t == g.southTeam)
 			return keyboardP1;
 		return keyboardP2;
 	}

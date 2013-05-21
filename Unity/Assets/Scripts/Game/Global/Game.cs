@@ -74,36 +74,15 @@ public class Game : myMonoBehaviour {
         }
     }
     */
-	
-	public StateMachine sm;
-	
-    public XboxInputs xboxInputs;
+
+    public GameReferences refs;
     public GameSettings settings;
-	public CameraManager cameraManager;
-	public UIManager guiManager;
-    public IntroManager introManager;
 
-    public Renderer ScrumBloc;
+    public static Game instance { get; private set; }
 
-    public GameObject limiteTerrainNordEst;
-    public GameObject limiteTerrainSudOuest;
-
-    public Team right;
-    public Team left;
-
-    public Team opponent(Team t)
-    {
-        if (t == right) return left;
-        if (t == left) return right;
-        return null;
-    }
-	
-    public Gamer p1 {get; private set;}
-	public Gamer p2 {get; private set;}
-
-    public Ball Ball;
-  
-    private Team Owner;
+    public Ball Ball { get { return refs.gameObjects.ball; } }
+    private Gamer p1, p2;
+	private Team Owner;
 	
     private bool _disableIA = false;
     public bool disableIA
@@ -115,79 +94,65 @@ public class Game : myMonoBehaviour {
         set
         {
             _disableIA = value;
-            this.left.OnOwnerChanged();
-            this.right.OnOwnerChanged(); 
+            this.northTeam.OnOwnerChanged();
+            this.southTeam.OnOwnerChanged(); 
         }
     }
 
-	public bool cpu = false;
-	public KeyCode disableIAKey;
 	public bool tweakMode;
    	
-  //  private bool cameraLocked;
-    
-	public Arbiter arbiter;
+    public Team northTeam { get { return refs.north; } }
+    public Team southTeam { get { return refs.south; } }
+    public Arbiter arbiter { get { return refs.arbiter; } }
 	
 	public void Start ()
     {
+        instance = this;
+
 		arbiter.Game = this;
 		
-        right.Game = this;
-        left.Game = this;
-        right.right = true;
-        left.right = false;
-        right.CreateUnits();
-        left.CreateUnits();
+        northTeam.Game = this;
+        southTeam.Game = this;
+        northTeam.south = true;
+        southTeam.south = false;
+        northTeam.CreateUnits();
+        southTeam.CreateUnits();
 
         arbiter.StartPlacement();
 
-        right.opponent = left;
-        left.opponent = right;
+        northTeam.opponent = southTeam;
+        southTeam.opponent = northTeam;
 
-        p1 = right.gameObject.AddComponent<Gamer>();
-        p1.Game = this;
-        p1.Team = right;
-        p1.Controlled = right[p1.Team.nbUnits/2];
-        p1.Controlled.IndicateSelected(true);
-        p1.Inputs = settings.Inputs;
-
-        if (!cpu)
-        {
-            p2 = left.gameObject.AddComponent<Gamer>();
-            p2.Game = this;
-            p2.Team = left;
-            p2.Controlled = left[0];
-            p2.Controlled.IndicateSelected(true);
-            p2.Inputs = settings.Inputs;
-        }
+        p1 = new Gamer(refs.north);
+        p2 = new Gamer(refs.south);
 
         this.Owner = p1.Controlled.Team;
         Ball.Game = this;
         Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
-        Ball.Owner 			= p1.Controlled;
-		//Ball.PreviousOwner 	= null;
-      
-		//this.cameraLocked = true;
-				       
-        introManager.OnFinish = () => {
+        Ball.Owner = p1.Controlled;
+		
+        this.refs.managers.intro.OnFinish = () =>
+        {
             this._disableIA = true;                  
-            //this.TimedDisableIA(settings.timeToSleepAfterIntro);
             arbiter.OnStart();
-			sm.event_OnStartSignal();
+			this.refs.stateMachine.event_OnStartSignal();
         };
 
-		sm.SetFirstState(new MainState(sm,this.cameraManager,this));
-		introManager.enabled = true;
+        this.refs.stateMachine.SetFirstState(
+            new MainState(this.refs.stateMachine, this.refs.managers.camera, this)
+        );
+
+        this.refs.managers.intro.enabled = true;
     }
 	
 	public void OnGameEnd(){
-		sm.event_OnEndSignal();
+		this.refs.stateMachine.event_OnEndSignal();
 	}
        
     void Update()
     {
-        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard(p1.Team)) || xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
+        if (Input.GetKeyDown(p1.Inputs.enableIA.keyboard(p1.Team)) || refs.xboxInputs.controllers[(int)p1.playerIndex].GetButtonDown(p1.Inputs.enableIA.xbox))
         {
             disableIA = !disableIA;   
         }
@@ -197,12 +162,12 @@ public class Game : myMonoBehaviour {
     {
         arbiter.OnScrum();
         //cameraManager.sm.event_Scrum();
-        sm.event_Scrum();
+        this.refs.stateMachine.event_Scrum();
     }
     
     public void OnDrop()
     {
-        this.sm.event_Drop();
+        this.refs.stateMachine.event_Drop();
 		//
 		//this.state = State.DROPING;
         //cameraManager.sm.event_Drop();
@@ -210,17 +175,17 @@ public class Game : myMonoBehaviour {
 	
 	public void OnTouch()
 	{
-		sm.event_OnTouch();
+		this.refs.stateMachine.event_OnTouch();
 	}
 	
 	public void OnEssai(Zone z) {
-        sm.event_Try(z);
+        this.refs.stateMachine.event_Try(z);
 		arbiter.OnEssai();
 	}
 
     public void OnPass(Unit from, Unit to)
     {
-        sm.event_Pass(from, to);
+        this.refs.stateMachine.event_Pass(from, to);
         //cameraManager.sm.event_Pass(from, to);
     }
 
@@ -232,7 +197,7 @@ public class Game : myMonoBehaviour {
 
     public void OnOwnerChanged(Unit before, Unit after)
     {
-        sm.event_NewOwner(before, after);
+        this.refs.stateMachine.event_NewOwner(before, after);
 
 		if (after != null)
         {
@@ -243,7 +208,7 @@ public class Game : myMonoBehaviour {
 
             // PATCH
             // p1.controlled = after;
-            if (after.Team == right)
+            if (after.Team == southTeam)
             {
                 p1.Controlled.IndicateSelected(false);
                 p1.Controlled = after;
@@ -257,8 +222,8 @@ public class Game : myMonoBehaviour {
             }
         }
         
-        this.left.OnOwnerChanged();
-        this.right.OnOwnerChanged();       
+        this.northTeam.OnOwnerChanged();
+        this.southTeam.OnOwnerChanged();       
     }
 
     public void OnSuper(Team team, SuperList super)
@@ -280,7 +245,7 @@ public class Game : myMonoBehaviour {
     {
         //cameraManager.sm.event_BallOnGround(onGround);
 
-        sm.event_BallOnGround(onGround);
+        this.refs.stateMachine.event_BallOnGround(onGround);
     }
 
     public void OnBallOut()
@@ -296,17 +261,17 @@ public class Game : myMonoBehaviour {
 
     public void OnDodge(Unit u)
     {
-        sm.event_Dodge(u);
+        this.refs.stateMachine.event_Dodge(u);
     }
 
     public void OnDodgeFinished(Unit u)
     {
-        sm.event_DodgeFinished(u);
+        this.refs.stateMachine.event_DodgeFinished(u);
     }
 
     public void OnResumeSignal()
     {
-        sm.event_OnResumeSignal();
+        this.refs.stateMachine.event_OnResumeSignal();
     }
 
     /*public void TimedDisableIA(float time)
@@ -314,7 +279,7 @@ public class Game : myMonoBehaviour {
         this.disableIA = true;
         Timer.AddTimer(time, () =>
         {
-            sm.event_OnStartSignal();
+            this.refs.stateMachine.event_OnStartSignal();
             this.disableIA = false;
         });
     }*/

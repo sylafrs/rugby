@@ -27,7 +27,7 @@ public class scrumController : myMonoBehaviour {
 
     void Start()
     {
-        this.Game = this.GetComponent<Game>();
+        this.Game = Game.instance;
         if (this.Game == null)
         {
             throw new UnityException("[scrumController] : I need a game to work !");
@@ -95,13 +95,13 @@ public class scrumController : myMonoBehaviour {
     {
         float smash = 0;
 
-        if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard(Game.right)))
+        if (Game.southTeam.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard(Game.southTeam)))
         {
             smash += this.tweakSettings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
         }
 
-        if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard(Game.left)))
+        if (Game.northTeam.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard(Game.northTeam)))
         {
             smash -= this.tweakSettings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
@@ -112,13 +112,13 @@ public class scrumController : myMonoBehaviour {
             int super = 0;
             bool used = false;
 
-            if (Game.right.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard(Game.right)))
+            if (Game.southTeam.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard(Game.southTeam)))
             {
                 super += 1;
                 used = true;
             }
 
-            if (Game.left.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard(Game.left)))
+            if (Game.northTeam.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard(Game.northTeam)))
             {
                 super -= 1;
                 used = true;
@@ -165,12 +165,12 @@ public class scrumController : myMonoBehaviour {
     {   
         if (CurrentWinner > 0)
         {
-            return Game.right;
+            return Game.southTeam;
         }
 
         if (CurrentWinner < 0)
         {
-            return Game.left;
+            return Game.northTeam;
         }
 
         throw new UnityException("[scrumController] : Must NEVER happen EVER"); 

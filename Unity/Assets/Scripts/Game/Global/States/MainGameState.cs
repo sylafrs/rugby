@@ -14,7 +14,7 @@ public class MainGameState : GameState {
     public override void OnEnter()
     {
         sm.state_change_son(this, new RunningState(sm, cam, game));
-		game.guiManager.currentState = UIManager.UIState.GameUI;
+		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
     }
 
     public override bool OnPass(Unit from, Unit to)
@@ -51,10 +51,10 @@ public class MainGameState : GameState {
 
     public override void OnUpdate()
     {
-        var p1 = this.game.right.Player;
-        var p2 = this.game.left.Player;
+        var p1 = this.game.southTeam.Player;
+        var p2 = this.game.northTeam.Player;
        
-        if (p1) p1.myUpdate();
-        if (p2) p2.myUpdate();
+        if (p1 != null) p1.myUpdate();
+        if (p2 != null) p2.myUpdate();
     }
 }

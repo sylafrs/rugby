@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -89,6 +89,68 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 19400000, guid: a224ebd95586e2549906ddbae14533ac, type: 2}
+--- !u!1 &3678736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 3678737}
+  - 114: {fileID: 3678738}
+  m_Layer: 0
+  m_Name: References
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3678737
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 3678736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1745840700}
+--- !u!114 &3678738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 3678736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f1632657fa7f042a3b1f726281e910, type: 3}
+  m_Name: 
+  game: {fileID: 2004071851}
+  stateMachine: {fileID: 2004071860}
+  arbiter: {fileID: 2004071857}
+  north: {fileID: 2078013331}
+  south: {fileID: 293398129}
+  managers:
+    camera: {fileID: 1693924984}
+    intro: {fileID: 2004071858}
+    tackle: {fileID: 2004071859}
+    touch: {fileID: 2004071855}
+    transformation: {fileID: 2004071856}
+    scrum: {fileID: 2004071853}
+    ui: {fileID: 2004071854}
+  placeHolders:
+    scrumPlacement: {fileID: 1976457027}
+    startPlacement: {fileID: 311398054}
+    touchPlacement: {fileID: 843848053}
+    conversionPlacement: {fileID: 456611913}
+  gameObjects:
+    ball: {fileID: 661539566}
+    ScrumBloc: {fileID: 1239785093}
+  positions:
+    limiteTerrainNordEst: {fileID: 1206045609}
+    limiteTerrainSudOuest: {fileID: 1181389385}
+  xboxInputs: {fileID: 219502520}
 --- !u!1 &9213360
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,10 +284,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15182802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.0531464, y: 6.48440599, z: 44.6784439}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.69613266, y: .751801014, z: 72.5073471}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children: []
-  m_Father: {fileID: 236162113}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &15182804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2869,7 +2931,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130637485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.6257896, y: 15.3416023, z: -10.8060989}
+  m_LocalPosition: {x: -49.6481895, y: 26.1207771, z: -63.8747025}
   m_LocalScale: {x: 3.68162298, y: 57.930481, z: 18.0215607}
   m_Children: []
   m_Father: {fileID: 1054134496}
@@ -3328,6 +3390,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989bb0a56bf51e14f94ca9e99f613607, type: 3}
   m_Name: 
   animator: {fileID: 1301781091}
+--- !u!1 &160699877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 160699878}
+  m_Layer: 0
+  m_Name: PlaceHolders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160699878
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 160699877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1976457027}
+  - {fileID: 311398054}
+  - {fileID: 843848053}
+  - {fileID: 456611913}
+  m_Father: {fileID: 2004071850}
 --- !u!1 &164478699
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,7 +4312,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 236162113}
   m_Layer: 0
-  m_Name: Limites
+  m_Name: Touches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4233,16 +4325,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236162112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.7891388, y: -5.73260498, z: -5.67992973}
+  m_LocalPosition: {x: 24.7876625, y: -6.72836304, z: 7.51027107}
   m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children:
   - {fileID: 1206045610}
   - {fileID: 1181389386}
-  - {fileID: 431870787}
-  - {fileID: 578357188}
-  - {fileID: 1964732604}
-  - {fileID: 15182803}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 624918735}
 --- !u!1 &236351254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4745,7 +4833,7 @@ GameObject:
   - 114: {fileID: 293398129}
   - 114: {fileID: 293398130}
   m_Layer: 0
-  m_Name: Bleus
+  m_Name: Bleus (south)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4779,7 +4867,7 @@ MonoBehaviour:
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
   Name: Bleu
-  right: 0
+  south: 0
   useColors: 0
   But: {fileID: 841198778}
   Zone: {fileID: 2049065008}
@@ -5115,7 +5203,7 @@ Transform:
   m_Children:
   - {fileID: 1657399149}
   - {fileID: 1727008273}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 160699878}
 --- !u!114 &311398055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6547,7 +6635,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419170433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.9394417, y: 15.3416023, z: 117.294922}
+  m_LocalPosition: {x: 49.9170418, y: 26.1207771, z: 64.2263184}
   m_LocalScale: {x: 3.68162298, y: 57.930481, z: 18.0215607}
   m_Children: []
   m_Father: {fileID: 1054134496}
@@ -6597,7 +6685,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423563788}
   m_Layer: 0
-  m_Name: Joueurs
+  m_Name: Teams
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6615,7 +6703,7 @@ Transform:
   m_Children:
   - {fileID: 2078013330}
   - {fileID: 293398128}
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1407254892}
 --- !u!1 &424454098
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,12 +6780,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 431870786}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 18.2488823, y: 6.23830032, z: 3.23373675}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 56.7246819, y: .505695343, z: -.0208902359}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children:
   - {fileID: 762017080}
   - {fileID: 1146276131}
-  m_Father: {fileID: 236162113}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &431870788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7015,7 +7103,7 @@ Transform:
   - {fileID: 139661136}
   - {fileID: 1644219627}
   - {fileID: 1897204961}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 160699878}
 --- !u!114 &456611914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8233,12 +8321,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578357187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.3658485, y: 6.23829985, z: 3.23373699}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -58.1010971, y: .505694866, z: -.0208902359}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children:
   - {fileID: 2056244999}
   - {fileID: 887974298}
-  m_Father: {fileID: 236162113}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &578357189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9053,6 +9141,33 @@ Transform:
   m_Children:
   - {fileID: 2006992213}
   m_Father: {fileID: 553543793}
+--- !u!1 &624918734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 624918735}
+  m_Layer: 0
+  m_Name: Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624918735
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 624918734}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .00147628784, y: .995758057, z: -13.1902008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 236162113}
+  m_Father: {fileID: 2004071850}
 --- !u!1 &625921433
 GameObject:
   m_ObjectHideFlags: 0
@@ -9452,7 +9567,7 @@ Transform:
   m_Children:
   - {fileID: 1119795517}
   - {fileID: 1353050257}
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1407254892}
 --- !u!114 &661539566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11463,7 +11578,7 @@ Transform:
   m_Children:
   - {fileID: 593178415}
   - {fileID: 57705859}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &841198778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11512,7 +11627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 843848052}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -42.0226364, y: .100000001, z: 1.51532049e-08}
+  m_LocalPosition: {x: -42.0226364, y: .100000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1766545037}
@@ -11521,7 +11636,7 @@ Transform:
   - {fileID: 169643911}
   - {fileID: 1387161910}
   - {fileID: 2063687206}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 160699878}
 --- !u!114 &843848054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15704,7 +15819,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1054134496}
   m_Layer: 0
-  m_Name: Murs Invisibles
+  m_Name: InvisibleWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15717,14 +15832,14 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054134495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0223999023, y: 10.7791748, z: -53.0686035}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1346787887}
-  - {fileID: 130637486}
   - {fileID: 1642869737}
   - {fileID: 419170434}
-  m_Father: {fileID: 1157111314}
+  - {fileID: 130637486}
+  m_Father: {fileID: 2004071850}
 --- !u!1 &1064232530
 GameObject:
   m_ObjectHideFlags: 0
@@ -16612,42 +16727,6 @@ Transform:
   - {fileID: 681932448}
   - {fileID: 1199253755}
   m_Father: {fileID: 554126930}
---- !u!1 &1157111313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100002, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1157111314}
-  m_Layer: 0
-  m_Name: Game
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1157111314
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400002, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157111313}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 841198777}
-  - {fileID: 2078298285}
-  - {fileID: 1054134496}
-  - {fileID: 1976457027}
-  - {fileID: 311398054}
-  - {fileID: 236162113}
-  - {fileID: 843848053}
-  - {fileID: 456611913}
-  - {fileID: 2049065007}
-  - {fileID: 2018489759}
-  m_Father: {fileID: 2004071850}
 --- !u!1 &1160753189
 GameObject:
   m_ObjectHideFlags: 0
@@ -17304,6 +17383,40 @@ Transform:
   m_Children:
   - {fileID: 726783530}
   m_Father: {fileID: 1194668106}
+--- !u!1 &1222526996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1222526997}
+  m_Layer: 0
+  m_Name: Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1222526997
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1222526996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 841198777}
+  - {fileID: 2078298285}
+  - {fileID: 431870787}
+  - {fileID: 578357188}
+  - {fileID: 1964732604}
+  - {fileID: 15182803}
+  - {fileID: 2049065007}
+  - {fileID: 2018489759}
+  m_Father: {fileID: 2004071850}
 --- !u!1 &1224252172
 GameObject:
   m_ObjectHideFlags: 0
@@ -18635,7 +18748,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1346787886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.6543694, y: 15.3416023, z: -10.8060989}
+  m_LocalPosition: {x: 49.6319695, y: 26.1207771, z: -63.8747025}
   m_LocalScale: {x: 3.68162346, y: 57.930481, z: 18.0215607}
   m_Children: []
   m_Father: {fileID: 1054134496}
@@ -20104,6 +20217,35 @@ Transform:
   - {fileID: 950189102}
   - {fileID: 152017849}
   m_Father: {fileID: 1774892247}
+--- !u!1 &1407254891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1407254892}
+  m_Layer: 0
+  m_Name: GameObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407254892
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1407254891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 661539565}
+  - {fileID: 1693924982}
+  - {fileID: 423563788}
+  m_Father: {fileID: 2004071850}
 --- !u!1 &1407731835
 GameObject:
   m_ObjectHideFlags: 0
@@ -22803,7 +22945,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1642869736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.7208138, y: 15.3416023, z: 117.583771}
+  m_LocalPosition: {x: -49.7432137, y: 26.1207771, z: 64.5151672}
   m_LocalScale: {x: 3.68162298, y: 57.930481, z: 18.0215607}
   m_Children: []
   m_Father: {fileID: 1054134496}
@@ -23224,7 +23366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 840478217}
-  m_Father: {fileID: 2004071850}
+  m_Father: {fileID: 1407254892}
 --- !u!114 &1693924983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24368,6 +24510,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392098669}
+  - {fileID: 3678737}
   - {fileID: 1017857853}
   - {fileID: 528087310}
   - {fileID: 219502519}
@@ -27711,10 +27854,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964732603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.0531464, y: 6.48440552, z: -38.1670456}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.69613266, y: .751800537, z: -72.4722595}
+  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children: []
-  m_Father: {fileID: 236162113}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &1964732605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27768,7 +27911,7 @@ Transform:
   m_Children:
   - {fileID: 393058073}
   - {fileID: 818688626}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 160699878}
 --- !u!114 &1976457028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27991,7 +28134,6 @@ GameObject:
   - 114: {fileID: 2004071857}
   - 114: {fileID: 2004071858}
   - 114: {fileID: 2004071859}
-  - 114: {fileID: 2004071852}
   - 114: {fileID: 2004071860}
   m_Layer: 0
   m_Name: GameDesign
@@ -28010,10 +28152,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 661539565}
-  - {fileID: 1693924982}
-  - {fileID: 1157111314}
-  - {fileID: 423563788}
+  - {fileID: 624918735}
+  - {fileID: 1407254892}
+  - {fileID: 1054134496}
+  - {fileID: 160699878}
+  - {fileID: 1222526997}
   m_Father: {fileID: 0}
 --- !u!114 &2004071851
 MonoBehaviour:
@@ -28026,410 +28169,387 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
   m_Name: 
-  sm: {fileID: 2004071860}
-  xboxInputs: {fileID: 219502520}
-  settings: {fileID: 2004071852}
-  cameraManager: {fileID: 1693924984}
-  guiManager: {fileID: 2004071854}
-  introManager: {fileID: 2004071858}
-  ScrumBloc: {fileID: 1239785093}
-  limiteTerrainNordEst: {fileID: 1206045609}
-  limiteTerrainSudOuest: {fileID: 1181389385}
-  right: {fileID: 293398129}
-  left: {fileID: 2078013331}
-  Ball: {fileID: 661539566}
-  cpu: 0
-  disableIAKey: 105
+  refs: {fileID: 3678738}
+  settings:
+    Inputs:
+      shortPass:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      longPass:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      dropUpAndUnder:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      dropKick:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      tackle:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      reset:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      enableIA:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      put:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      superOff:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      changePlayer:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      skipIntro:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      move:
+        keyboardP1:
+          up: 0
+          down: 0
+          right: 0
+          left: 0
+        keyboardP2:
+          up: 0
+          down: 0
+          right: 0
+          left: 0
+        xbox: 0
+      dodge:
+        keyboardP1:
+          up: 0
+          down: 0
+          right: 0
+          left: 0
+        keyboardP2:
+          up: 0
+          down: 0
+          right: 0
+          left: 0
+        xbox: 0
+    UI:
+      GameUI:
+        emptyBar: {fileID: 0}
+        blueBar: {fileID: 0}
+        redBar: {fileID: 0}
+        superOkTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        gameTimeTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        gameScoreTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        timeBeforeScrumStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        ScrumBarMaxDelta: 1.5
+        timeBoxWidthPercentage: 10
+        timeBoxHeightPercentage: 5
+        timeBoxXPercentage: 50
+        timeBoxYPercentage: 10
+        blueGaugeBoxWidthPercentage: 25
+        blueGaugeBoxHeightPercentage: 10
+        blueGaugeBoxXPercentage: 22.5
+        blueGaugeBoxYPercentage: 10
+        redGaugeBoxWidthPercentage: 25
+        redGaugeBoxHeightPercentage: 10
+        redGaugeBoxXPercentage: 77.5
+        redGaugeBoxYPercentage: 10
+        scoreBoxWidthPercentage: 20
+        scoreBoxHeightPercentage: 15
+        scoreBoxXPercentage: 50
+        scoreBoxYPercentage: 10
+        scrumBarBoxWidthPercentage: 50
+        scrumBarBoxHeightPercentage: 16
+        scrumBarBoxXPercentage: 50
+        scrumBarBoxYPercentage: 50
+        scrumSpecialBoxWidthPercentage: 50
+        scrumSpecialBoxHeightPercentage: 16
+        scrumSpecialBoxXPercentage: 50
+        scrumSpecialBoxYPercentage: 66
+        scrumTimeBoxWidthPercentage: 50
+        scrumTimeBoxHeightPercentage: 16
+        scrumTimeBoxXPercentage: 50
+        scrumTimeBoxYPercentage: 34
+    score:
+      points_drop: 5
+      points_essai: 5
+      points_transfo: 3
+      period_time: 120
+    super:
+      superGaugeOffensiveLimitBreak: 200
+      superGaugeDefensiveLimitBreak: 200
+      superGaugeMaximum: 200
+      OffensiveSuperDurationTime: 10
+      DefensiveSuperDurationTime: 10
+      superSpeedScale: 1.5
+      superTackleBoxScale: 1.5
+      superUnblockable: 1
+      passInterceptSuperPoints: 20
+      passWinSuperPoints: 10
+      passLooseSuperPoints: 5
+      dropWinSuperPoints: 20
+      dropLooseSuperPoints: 10
+      tryWinSuperPoints: 30
+      tryLooseSuperPoints: 20
+      conversionWinSuperPoints: 10
+      conversionLooseSuperPoints: 5
+      conversionOpponentSuperPoints: 10
+      touchWinSuperPoints: 20
+      touchInterceptSuperPoints: 20
+      touchLooseSuperPoints: 5
+      tackleWinSuperPoints: 20
+      tackleLooseSuperPoints: 5
+      scrumWinSuperPoints: 30
+      scrumLooseSuperPoints: 10
+    timePlaque: 3
+    Vheight: 1
+    Vwidth: 1
+    LineSpace: 1
+    maxTimeHoldingPassButton: 3
+    timeToSleepAfterIntro: 3
+    timeToGetOutTackleAreaBeforeScrum: 2
+    minPlayersEachTeamToTriggerScrum: 3
   tweakMode: 0
-  arbiter: {fileID: 2004071857}
---- !u!114 &2004071852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004071849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa3031727ccd6045b92962bd69eb5fa, type: 3}
-  m_Name: 
-  Inputs:
-    shortPass:
-      keyboardP1: 49
-      keyboardP2: 0
-      xbox: 0
-    longPass:
-      keyboardP1: 50
-      keyboardP2: 0
-      xbox: 1
-    dropUpAndUnder:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 8
-    dropKick:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 9
-    tackle:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    reset:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 2
-    enableIA:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 7
-    put:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    superOff:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 3
-    changePlayer:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 1
-    skipIntro:
-      keyboardP1: 97
-      keyboardP2: 97
-      xbox: 0
-    move:
-      keyboardP1:
-        up: 122
-        down: 115
-        right: 100
-        left: 113
-      keyboardP2:
-        up: 105
-        down: 107
-        right: 108
-        left: 106
-      xbox: 2
-    dodge:
-      keyboardP1:
-        up: 0
-        down: 0
-        right: 0
-        left: 0
-      keyboardP2:
-        up: 0
-        down: 0
-        right: 0
-        left: 0
-      xbox: 0
-  UI:
-    GameUI:
-      emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
-      blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
-      redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
-      superOkTextStyle:
-        m_Name: 
-        m_Normal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Hover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Active:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Focused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnNormal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnHover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnActive:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnFocused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Border:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Margin:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Padding:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Overflow:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Font: {fileID: 0}
-        m_FontSize: 0
-        m_FontStyle: 0
-        m_Alignment: 0
-        m_WordWrap: 0
-        m_RichText: 1
-        m_TextClipping: 0
-        m_ImagePosition: 0
-        m_ContentOffset: {x: 0, y: 0}
-        m_FixedWidth: 0
-        m_FixedHeight: 0
-        m_StretchWidth: 1
-        m_StretchHeight: 0
-      gameTimeTextStyle:
-        m_Name: 
-        m_Normal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Hover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Active:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Focused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnNormal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnHover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnActive:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnFocused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Border:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Margin:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Padding:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Overflow:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Font: {fileID: 0}
-        m_FontSize: 0
-        m_FontStyle: 0
-        m_Alignment: 0
-        m_WordWrap: 0
-        m_RichText: 1
-        m_TextClipping: 0
-        m_ImagePosition: 0
-        m_ContentOffset: {x: 0, y: 0}
-        m_FixedWidth: 0
-        m_FixedHeight: 0
-        m_StretchWidth: 1
-        m_StretchHeight: 0
-      gameScoreTextStyle:
-        m_Name: 
-        m_Normal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Hover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Active:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Focused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnNormal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnHover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnActive:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnFocused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Border:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Margin:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Padding:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Overflow:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Font: {fileID: 0}
-        m_FontSize: 0
-        m_FontStyle: 0
-        m_Alignment: 0
-        m_WordWrap: 0
-        m_RichText: 1
-        m_TextClipping: 0
-        m_ImagePosition: 0
-        m_ContentOffset: {x: 0, y: 0}
-        m_FixedWidth: 0
-        m_FixedHeight: 0
-        m_StretchWidth: 1
-        m_StretchHeight: 0
-      timeBeforeScrumStyle:
-        m_Name: 
-        m_Normal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Hover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Active:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Focused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnNormal:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnHover:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnActive:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_OnFocused:
-          m_Background: {fileID: 0}
-          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-        m_Border:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Margin:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Padding:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Overflow:
-          m_Left: 0
-          m_Right: 0
-          m_Top: 0
-          m_Bottom: 0
-        m_Font: {fileID: 0}
-        m_FontSize: 0
-        m_FontStyle: 0
-        m_Alignment: 0
-        m_WordWrap: 0
-        m_RichText: 1
-        m_TextClipping: 0
-        m_ImagePosition: 0
-        m_ContentOffset: {x: 0, y: 0}
-        m_FixedWidth: 0
-        m_FixedHeight: 0
-        m_StretchWidth: 1
-        m_StretchHeight: 0
-      ScrumBarMaxDelta: 1.5
-      timeBoxWidthPercentage: 10
-      timeBoxHeightPercentage: 5
-      timeBoxXPercentage: 50
-      timeBoxYPercentage: 10
-      blueGaugeBoxWidthPercentage: 25
-      blueGaugeBoxHeightPercentage: 10
-      blueGaugeBoxXPercentage: 22.5
-      blueGaugeBoxYPercentage: 10
-      redGaugeBoxWidthPercentage: 25
-      redGaugeBoxHeightPercentage: 10
-      redGaugeBoxXPercentage: 77.5
-      redGaugeBoxYPercentage: 10
-      scoreBoxWidthPercentage: 20
-      scoreBoxHeightPercentage: 15
-      scoreBoxXPercentage: 50
-      scoreBoxYPercentage: 10
-      scrumBarBoxWidthPercentage: 50
-      scrumBarBoxHeightPercentage: 16
-      scrumBarBoxXPercentage: 50
-      scrumBarBoxYPercentage: 50
-      scrumSpecialBoxWidthPercentage: 50
-      scrumSpecialBoxHeightPercentage: 16
-      scrumSpecialBoxXPercentage: 50
-      scrumSpecialBoxYPercentage: 66
-      scrumTimeBoxWidthPercentage: 50
-      scrumTimeBoxHeightPercentage: 16
-      scrumTimeBoxXPercentage: 50
-      scrumTimeBoxYPercentage: 34
-  score:
-    points_drop: 3
-    points_essai: 5
-    points_transfo: 2
-    period_time: 120
-  super:
-    superGaugeOffensiveLimitBreak: 200
-    superGaugeDefensiveLimitBreak: 200
-    superGaugeMaximum: 200
-    OffensiveSuperDurationTime: 10
-    DefensiveSuperDurationTime: 10
-    superSpeedScale: 1.5
-    superTackleBoxScale: 1.5
-    superUnblockable: 0
-    passInterceptSuperPoints: 20
-    passWinSuperPoints: 10
-    passLooseSuperPoints: 5
-    dropWinSuperPoints: 20
-    dropLooseSuperPoints: 10
-    tryWinSuperPoints: 30
-    tryLooseSuperPoints: 20
-    conversionWinSuperPoints: 10
-    conversionLooseSuperPoints: 5
-    conversionOpponentSuperPoints: 10
-    touchWinSuperPoints: 20
-    touchInterceptSuperPoints: 20
-    touchLooseSuperPoints: 10
-    tackleWinSuperPoints: 20
-    tackleLooseSuperPoints: 5
-    scrumWinSuperPoints: 30
-    scrumLooseSuperPoints: 10
-  timePlaque: 3
-  Vheight: 10
-  Vwidth: 4
-  LineSpace: 3
-  maxTimeHoldingPassButton: 3
-  timeToSleepAfterIntro: 5
-  timeToGetOutTackleAreaBeforeScrum: 2
-  minPlayersEachTeamToTriggerScrum: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28491,7 +28611,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004071849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
+  m_Script: {fileID: 11500000, guid: aca29ccebb51aa148a07ed4fa512862a, type: 3}
   m_Name: 
 --- !u!114 &2004071855
 MonoBehaviour:
@@ -28626,9 +28746,6 @@ MonoBehaviour:
   m_Name: 
   ToucheRemiseAuCentre: 0
   TransfoRemiseAuCentre: 1
-  TouchPlacement: {fileID: 843848053}
-  TransfoPlacement: {fileID: 456611913}
-  ScrumPlacement: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28649,7 +28766,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8b504803cbe0ce47a0a73833dae60e2, type: 3}
   m_Name: 
-  game: {fileID: 2004071851}
   tempsPlaquage: 1
   ralentiPlaquage: 1
 --- !u!114 &2004071860
@@ -28850,7 +28966,7 @@ Transform:
   m_LocalPosition: {x: -.00871758908, y: 0, z: 63.8262749}
   m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children: []
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &2018489760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29178,7 +29294,7 @@ Transform:
   m_LocalPosition: {x: -.00871755555, y: 0, z: -64.112793}
   m_LocalScale: {x: 1.75, y: 1, z: 1.75}
   m_Children: []
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &2049065008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29459,7 +29575,7 @@ GameObject:
   - 114: {fileID: 2078013331}
   - 114: {fileID: 2078013332}
   m_Layer: 0
-  m_Name: Rouges
+  m_Name: Rouges (north)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29493,7 +29609,7 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
   Name: Rouge
-  right: 0
+  south: 0
   useColors: 0
   But: {fileID: 2078298286}
   Zone: {fileID: 2018489760}
@@ -29554,7 +29670,7 @@ Transform:
   m_Children:
   - {fileID: 1897398168}
   - {fileID: 745536240}
-  m_Father: {fileID: 1157111314}
+  m_Father: {fileID: 1222526997}
 --- !u!114 &2078298286
 MonoBehaviour:
   m_ObjectHideFlags: 0

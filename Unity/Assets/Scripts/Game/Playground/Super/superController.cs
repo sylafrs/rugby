@@ -39,7 +39,7 @@ public class superController : myMonoBehaviour {
 	
 	
 	void Start () {
-		game 	        = GameObject.Find("GameDesign").GetComponent<Game>();
+		game 	        = Game.instance;
 		team			= gameObject.GetComponent<Team>();
 		currentSuper    = SuperList.superNull;
 		
