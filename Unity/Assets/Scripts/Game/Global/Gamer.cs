@@ -271,8 +271,8 @@ public class Gamer
         if (Controlled == Game.Ball.Owner)
         {
             onActionCapture = false;
-            if (timeOnActionCapture > Game.settings.maxTimeHoldingPassButton)
-                timeOnActionCapture = Game.settings.maxTimeHoldingPassButton;
+            if (timeOnActionCapture > Game.settings.Global.Game.maxTimeHoldingPassButton)
+                timeOnActionCapture = Game.settings.Global.Game.maxTimeHoldingPassButton;
             //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 			/*
             if (unitsSide.Count != 0)
@@ -359,7 +359,11 @@ public class Gamer
                 {
                     if (u != Controlled)
                     {
-                        u.Order = Order.OrderOffensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.south, typePosition);
+                        u.Order = Order.OrderOffensiveSide(
+							Controlled, new Vector3(Game.settings.Global.Game.Vheight, 0, Game.settings.Global.Game.Vwidth / 1.5f), 
+							Controlled.Team.south, 
+							typePosition
+						);
                     }
                 }
             }
@@ -370,13 +374,16 @@ public class Gamer
                 {
                     if (u != Controlled)
                     {
-                        u.Order = Order.OrderDefensiveSide(Controlled, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth / 1.5f), Controlled.Team.south, typePosition);
+                        u.Order = Order.OrderDefensiveSide(
+							Controlled, 
+							new Vector3(Game.settings.Global.Game.Vheight, 0, Game.settings.Global.Game.Vwidth / 1.5f), 
+							Controlled.Team.south, 
+							typePosition
+						);
                     }
                 }
             }
-        }
-
-		
+        }		
 	}
 	
 	public Unit GetUnitNear()

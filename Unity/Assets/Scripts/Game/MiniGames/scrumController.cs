@@ -12,15 +12,11 @@ public class scrumController : myMonoBehaviour {
     public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
     public System.Action<Team, Vector3> callback    { private get; set; }   // At the end.      (parameter, optionnal)	
 
-    public TweakSettings tweakSettings;                                     // Tweaks
-    public InputSettings inputSettings;                                     // Inputs
-    public GUISettings guiSettings;                                         // Elems' positions (tweak)
-
     public  bool ChronoLaunched { get; private set; }                       // First smash      (variable, readonly)
     public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
-    private float currentPosition;                                          // -1 to 1          (variable)
+    public float currentPosition;                                          // -1 to 1          (variable)
     private int CurrentWinner;                                              // Winner           (variable)
-    private float SuperLoading;                                             // 0 to 1           (variable)
+    public float SuperLoading;                                             // 0 to 1           (variable)
 
     private Game Game;                                                      // Game             (reference)    
 
@@ -31,8 +27,6 @@ public class scrumController : myMonoBehaviour {
         {
             throw new UnityException("[scrumController] : I need a game to work !");
         }
-
-        this.StartGUI();
     }
     
     void OnEnable()
@@ -46,11 +40,11 @@ public class scrumController : myMonoBehaviour {
             this.ScrumBloc = o.transform;
         }
 
-        this.currentPosition = 0;                                   // Current score.
-        this.TimeRemaining = this.tweakSettings.MaximumDuration;    // Decreased by time after if chrono launched.
-        this.ChronoLaunched = false;                                // Launched at first smash.
-        this.CurrentWinner = 0;                                     // Changed at first smash.
-        this.SuperLoading = 0;                                      // Super Loading
+        this.currentPosition = 0;                                  		   // Current score.
+        this.TimeRemaining =  Game.settings.Global.Game.MaximumDuration;   // Decreased by time after if chrono launched.
+        this.ChronoLaunched = false;                             		   // Launched at first smash.
+        this.CurrentWinner = 0;                                   		   // Changed at first smash.
+        this.SuperLoading = 0;                                    		   // Super Loading
     }
 
     void Update()
@@ -80,7 +74,7 @@ public class scrumController : myMonoBehaviour {
     {
         if (this.ChronoLaunched)
         {
-            float feedsuper = this.tweakSettings.FeedSuperPerSecond * Time.deltaTime;
+            float feedsuper = Game.settings.Global.Game.FeedSuperPerSecond * Time.deltaTime;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + feedsuper);
 
             this.TimeRemaining -= Time.deltaTime;
@@ -94,30 +88,34 @@ public class scrumController : myMonoBehaviour {
     {
         float smash = 0;
 
-        if (Game.southTeam.Player.XboxController.GetButtonDown(this.inputSettings.rightSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSmashButton.keyboard(Game.southTeam)))
+        if (Game.southTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.rightSmashButton.xbox) || 
+			Input.GetKeyDown(Game.settings.Inputs.rightSmashButton.keyboard(Game.southTeam)))
         {
-            smash += this.tweakSettings.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
+            smash += Game.settings.Global.Game.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.Global.Game.FeedSuperPerSmash);
         }
 
-        if (Game.northTeam.Player.XboxController.GetButtonDown(this.inputSettings.leftSmashButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSmashButton.keyboard(Game.northTeam)))
+        if (Game.northTeam.Player.XboxController.GetButtonDown( Game.settings.Inputs.leftSmashButton.xbox) ||
+			Input.GetKeyDown(Game.settings.Inputs.leftSmashButton.keyboard(Game.northTeam)))
         {
-            smash -= this.tweakSettings.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.tweakSettings.FeedSuperPerSmash);
+            smash -= Game.settings.Global.Game.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.Global.Game.FeedSuperPerSmash);
         }
 
         if (this.SuperLoading == 1)
         {
             int super = 0;
             bool used = false;
-
-            if (Game.southTeam.Player.XboxController.GetButtonDown(this.inputSettings.rightSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.rightSuperButton.keyboard(Game.southTeam)))
+	
+            if (Game.southTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.rightSuperButton.xbox) 
+				|| Input.GetKeyDown(Game.settings.Inputs.rightSuperButton.keyboard(Game.southTeam)))
             {
                 super += 1;
                 used = true;
             }
 
-            if (Game.northTeam.Player.XboxController.GetButtonDown(this.inputSettings.leftSuperButton.xbox) || Input.GetKeyDown(this.inputSettings.leftSuperButton.keyboard(Game.northTeam)))
+            if (Game.northTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.leftSuperButton.xbox) 
+				|| Input.GetKeyDown(Game.settings.Inputs.leftSuperButton.keyboard(Game.northTeam)))
             {
                 super -= 1;
                 used = true;
@@ -126,7 +124,7 @@ public class scrumController : myMonoBehaviour {
             if (used)
             {
                 this.SuperLoading = 0;
-                smash += super * this.tweakSettings.SuperMultiplicator * this.tweakSettings.SmashValue;
+                smash += super * Game.settings.Global.Game.SuperMultiplicator * Game.settings.Global.Game.SmashValue;
             }
         }
 
@@ -142,7 +140,7 @@ public class scrumController : myMonoBehaviour {
             currentPosition = -1;
 
         Vector3 pos = InitialPosition;
-        pos.z += currentPosition * this.tweakSettings.MaximumDistance;
+        pos.z += currentPosition * Game.settings.Global.Game.MaximumDistance;
 
         ScrumBloc.transform.position = pos;
     }
@@ -186,105 +184,4 @@ public class scrumController : myMonoBehaviour {
 
         this.enabled = false;
     }
-
-    [System.Serializable]
-    public class GUISettings {
-        public Rect ScrumSpecialRect;
-        public Texture2D ScrumSpecialButton;
-        public Rect ScrumBarRect;
-        public Texture2D ScrumRightBar;
-        public Texture2D ScrumLeftBar;
-        public Texture2D ScrumEmptyBar;
-    }
-
-    [System.Serializable]
-    public class TweakSettings
-    {
-        public float FeedSuperPerSmash;    // 0 to 1           (tweak)
-        public float FeedSuperPerSecond;   // 0 to 1           (tweak)
-        public float MaximumDistance;      // Unity            (tweak)
-        public float MaximumDuration;      // Seconds          (tweak)                                                        
-        public float SmashValue;           // 0 to 1           (tweak)
-        public float SuperMultiplicator;   // Mult             (tweak)  
-    }
-
-    [System.Serializable]
-    public class InputSettings
-    {
-        public InputTouch rightSmashButton;
-        public InputTouch leftSmashButton; 
-        public InputTouch rightSuperButton;
-        public InputTouch leftSuperButton; 
-    }
-
-    void StartGUI()
-    {
-        Rect rect;        
-       
-        rect = UIManager.screenRelativeRect(this.guiSettings.ScrumSpecialRect);
-        this.guiSettings.ScrumSpecialRect = rect;
-
-        rect = UIManager.screenRelativeRect(this.guiSettings.ScrumBarRect);
-        this.guiSettings.ScrumBarRect = rect;    
-    }
-
-    void OnGUI()
-    {
-        if (!ChronoLaunched)
-        {
-            GUILayout.Label("BEGIN !");
-        }
-        else
-        {
-            GUILayout.Label("SMASH UNTIL " + (int)TimeRemaining + " !");
-        }
-
-        this.DrawBar();
-
-        if (SuperLoading == 1)
-        {
-            GUI.DrawTexture(guiSettings.ScrumSpecialRect, guiSettings.ScrumSpecialButton, ScaleMode.ScaleToFit);
-        }
-    }
-
-    void DrawBar()
-    {       
-        float leftPercent = (1 + currentPosition) / 2;
-        float leftWidth = leftPercent * guiSettings.ScrumBarRect.width;
-
-        Rect rightRect = guiSettings.ScrumBarRect;
-        Rect leftRect = guiSettings.ScrumBarRect;
-
-        leftRect.width = leftWidth;
-        rightRect.width -= leftWidth;
-        rightRect.x += leftWidth;
-        
-        GUI.DrawTexture(rightRect, guiSettings.ScrumRightBar);
-        GUI.DrawTexture(leftRect, guiSettings.ScrumLeftBar);
-    }
-    /*
-    void OnDrawGizmos()
-    {
-        InitialPosition = Vector3.zero;
-
-        Color prev = Gizmos.color;
- 
-        Vector3 pos = InitialPosition;
-        pos.z += currentPosition * this.tweakSettings.MaximumDistance * 100;
-       
-        Vector3 posLeft = InitialPosition;
-        pos.z -= this.tweakSettings.MaximumDistance * 100;
-
-        Vector3 posRight = InitialPosition;
-        pos.z += this.tweakSettings.MaximumDistance * 100;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(posLeft, pos);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(posRight, pos);
-        
-        Gizmos.color = prev;
-    }
-    */
 }

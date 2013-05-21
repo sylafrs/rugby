@@ -53,7 +53,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 
 		float blueCurrent = (float)_game.southTeam.SuperGaugeValue;
 		float redCurrent  = (float)_game.northTeam.SuperGaugeValue;
-		float max		  = (float)_game.settings.super.superGaugeMaximum;
+		float max		  = (float)_game.settings.Global.Super.superGaugeMaximum;
 		blueProgress = Mathf.Clamp01(blueCurrent/max);
 		redProgress  = Mathf.Clamp01(redCurrent/max);
 	}

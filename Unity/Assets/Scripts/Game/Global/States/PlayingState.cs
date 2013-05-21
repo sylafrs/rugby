@@ -13,7 +13,8 @@ public class PlayingState : GameState
 	
     public override void OnEnter()
     {        
-		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.timeToSleepAfterIntro));
+		game.guiManager.currentState = UIManager.UIState.GameUI;
+		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.Global.Game.timeToSleepAfterIntro));
     }
 
     public override bool OnTouch()
@@ -42,4 +43,9 @@ public class PlayingState : GameState
 
         return true;
     }
+	
+	public override void OnLeave()
+	{
+		game.guiManager.currentState = UIManager.UIState.NULL;
+	}
 }

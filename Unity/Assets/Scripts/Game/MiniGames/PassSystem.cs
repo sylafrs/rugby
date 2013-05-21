@@ -116,7 +116,12 @@ public class PassSystem {
 			{
 				if (u != target)
 				{
-					u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Vheight, 0, ball.Game.settings.Vwidth), target.Team.south, typePosition);
+					u.Order = Order.OrderOffensiveSide(
+						target, 
+						new Vector3(ball.Game.settings.Global.Game.Vheight, 0, ball.Game.settings.Global.Game.Vwidth), 
+						target.Team.south, 
+						typePosition
+					);
 						//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
 				}
 			}

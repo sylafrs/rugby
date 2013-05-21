@@ -10,63 +10,9 @@ using System.Threading;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Game")]
-/*
- *
- * B
- *  E
- *   S
- *    T
- *   
- *      S
- *       C
- *        R
- *         I
- *          P
- *           T
- * 
- *             N
- *              A
- *               M
- *                E
- *                  
- *                  E
- *                   V
- *                    E
- *                     R
- * 
- */
 public class Game : myMonoBehaviour {
 	
-	/*
-	public enum State {
-        NULL = 0,
-        INTRODUCTION,
-		PAUSED,
-		PLAYING,
-		DROPING,
-		TOUCH,
-		SCRUM,
-		TRANSFORMATION,
-        TACKLE,
-        END
-	}*/
-	
-	/*
-    private State _state = State.PAUSED;
-    public State state
-    {
-        get
-        {
-            return _state;
-        }
-        set
-        {
-			State old = _state;
-			_state = value;
-            cameraManager.sm.event_GameStateChanged(old, value);             
-        }
-    }
-    */
+    public GamePlaySettings settings;
 
     public GameReferences refs;
     public GameSettings settings;
@@ -112,15 +58,15 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-		arbiter.Game = this;
 		
+
         northTeam.Game = this;
         southTeam.Game = this;
-        northTeam.south = true;
-        southTeam.south = false;
+        northTeam.south = false;
+        southTeam.south = true;
         northTeam.CreateUnits();
         southTeam.CreateUnits();
-
+		
         arbiter.StartPlacement();
 
         northTeam.opponent = southTeam;
