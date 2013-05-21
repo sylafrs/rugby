@@ -5,6 +5,11 @@
  */
 public abstract partial class State
 {
+    public virtual bool OnTry(Zone z)
+    {
+        return (false);
+    }
+
 	//unit State Machine
     public virtual bool OnNearUnit(Unit u)
     {
@@ -120,6 +125,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnScrum())
+                return;
+        }
+    }
+
+    public void event_Try(Zone z)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnTry(z))
                 return;
         }
     }

@@ -161,7 +161,8 @@ public class Gamer : myMonoBehaviour
                 side *= -1;
             }
 
-			if (Input.GetKeyDown(Inputs.shortPass.keyboard(Team)) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
+
+			if (Input.GetKeyDown(Inputs.shortPass.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
 				if (side > 0)
 				{
@@ -190,7 +191,7 @@ public class Gamer : myMonoBehaviour
 				}
 
             }
-			else if (Input.GetKeyDown(Inputs.longPass.keyboard(Team)) || XboxController.GetButtonDown(Inputs.longPass.xbox))
+			else if (Input.GetKeyDown(Inputs.longPass.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
 				if (side > 0)
 				{
@@ -223,8 +224,8 @@ public class Gamer : myMonoBehaviour
             }
 				
             else if (
-                Input.GetKeyUp(Inputs.shortPass.keyboard(Team)) ||
-				Input.GetKeyUp(Inputs.longPass.keyboard(Team)) ||
+                Input.GetKeyUp(Inputs.shortPass.keyboard(this.Team)) ||
+				Input.GetKeyUp(Inputs.longPass.keyboard(this.Team)) ||
 				XboxController.GetButtonUp(Inputs.shortPass.xbox) ||
 				XboxController.GetButtonUp(Inputs.longPass.xbox))
             {
@@ -273,7 +274,7 @@ public class Gamer : myMonoBehaviour
             if (unitsSide.Count != 0)
             {
                 int unit = Mathf.FloorToInt(unitsSide.Count * timeOnActionCapture / Game.settings.maxTimeHoldingPassButton);
-                MyDebug.Log(unit);
+                
 
                 if (unit == unitsSide.Count) unit--;
                 Unit u = unitsSide[unit];
@@ -321,7 +322,7 @@ public class Gamer : myMonoBehaviour
             change = true;
         }
         else if (this.Controlled != this.Game.Ball.Owner &&
-				(Input.GetKeyDown(Inputs.changePlayer.keyboard(Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+				(Input.GetKeyDown(Inputs.changePlayer.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
         {
             change = true;
         }
@@ -345,7 +346,7 @@ public class Gamer : myMonoBehaviour
         if (Controlled)
         {
             Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
-            //MyDebug.Log("pos in map : " + typePosition);
+            //
 
             if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
             {
@@ -454,22 +455,23 @@ public class Gamer : myMonoBehaviour
 
     void UpdateDROP()
     {
-		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
+		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
             Controlled.Order = Order.OrderDropUpAndUnder(Game.left[0]);
         }
-		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
+		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
 		{
 			Controlled.Order = Order.OrderDropKick(Game.left[0]);
 		}
     }
 	
 	void UpdateESSAI() {
-		if(Input.GetKeyDown(Inputs.put.keyboard(Team)) || XboxController.GetButtonDown(Inputs.put.xbox)) {
+		if(Input.GetKeyDown(Inputs.put.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.put.xbox)) {
             if (this.Game.Ball.Owner == this.Controlled)
             {
-				if(this.Game.Ball.inZone == this.Team.opponent.Zone) {
-					this.Game.OnEssai();
+                Zone z = this.Game.Ball.inZone;
+				if(z == this.Team.opponent.Zone) {
+					this.Game.OnEssai(z);
 				}			
 			}			
 		}

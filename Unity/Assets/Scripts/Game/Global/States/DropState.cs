@@ -11,6 +11,6 @@ public class DropState : GameState
 	
 	public override void OnEnter ()
 	{
-		Debug.Log("Drop In");
+		
 	}
 }

@@ -38,15 +38,15 @@ public class CircleSystem : MonoBehaviour {
 	
 	void OnDisable()
 	{
-		//Debug.Log("hauteur balle qd 'disable' " + ball.transform.position.y);
+		//
 		//foreach(Unit u in unitInCircle)
-		//	Debug.Log("nom unite " + u + " peut attraper : "+ u.canCatchTheBall);
+		//	
 	}
 	
 	Unit GetFirstUnit(){
 		if (unitInCircle.Count != 0)
 		{
-			Debug.Log(unitInCircle[0]);
+			
 			unitInCircle[0].canCatchTheBall = true;
 			winnerDrop = true;
 			return unitInCircle[0];

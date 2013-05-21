@@ -46,7 +46,7 @@ public class RunningState : GameState
 	//			//cam.OnNextIdealPosition = () => {
 	//			//Timer.AddTimer(1, () => {			
 	//	             cam.flipForTeam(current.Team, () =>{
-	//				 	MyDebug.Log("Hop, fin du flip"); 	
+	//				 	 	
 	//				 });
 	//			//});
 	//				
@@ -79,7 +79,7 @@ public class RunningState : GameState
 	//
 	//public override bool OnDrop()
     //{
-	//	Debug.Log("Drop Cam");
+	//	
     //    sm.state_change_me(this, new DropState(sm, cam, game));
     //    return true;
     //}

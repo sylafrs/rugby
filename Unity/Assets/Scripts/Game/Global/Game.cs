@@ -203,7 +203,7 @@ public class Game : myMonoBehaviour {
     public void OnDrop()
     {
         this.sm.event_Drop();
-		//Debug.Log("Drop");
+		//
 		//this.state = State.DROPING;
         //cameraManager.sm.event_Drop();
     }
@@ -213,7 +213,8 @@ public class Game : myMonoBehaviour {
 		sm.event_OnTouch();
 	}
 	
-	public void OnEssai() {
+	public void OnEssai(Zone z) {
+        sm.event_Try(z);
 		arbiter.OnEssai();
 	}
 

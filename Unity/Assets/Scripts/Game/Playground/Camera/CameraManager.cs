@@ -23,7 +23,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
         set
         {
 			_target = value;
-            MyDebug.Log("Target Changed for "+value);            
+                        
         }
     }
 	
@@ -210,11 +210,11 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public void flipForTeam(Team _t, Action _cb)
 	{
 		/*
-		MyDebug.Log("Fliped for Team "+flipedForTeam);
-		MyDebug.Log("Flip for Team "+_t);
-		MyDebug.Log("target of flip "+this.target);
+		
+		
+		
 		*/
-		MyDebug.Log("Flip start ");
+		
 		
 		this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
@@ -225,15 +225,15 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 		}else{
 			if(CancelNextFlip){
-				MyDebug.Log("Flip for trasnfo/touch ");
+				
 				//here beacause of touch or transfo
 				if(_t == game.right){
-					MyDebug.Log("Flip for blue");
+					
 					MinfollowOffset.z	  = zMinForBlue;
 					MaxfollowOffset.z	  = zMaxForBlue;
 				}
 				if(_t == game.left){
-					MyDebug.Log("Flip for red ");
+					
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}

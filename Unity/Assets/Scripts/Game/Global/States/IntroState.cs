@@ -55,7 +55,7 @@ public class IntroState : GameState
 	public override void OnLeave()
     {
 		//CameraFade.wannaDie();
-		Debug.Log("intro leave");
+		
 		cam.setTarget(cam.game.Ball.Owner.transform);
 		CameraFade.StartAlphaFade(Color.black,true, 2f, 2f, () => {
 			CameraFade.wannaDie();
