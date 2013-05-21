@@ -1,6 +1,6 @@
 /**
   * @class TransfoState
-  * @brief Etat de la caméra durant une transformation
+  * @brief Etat de la camï¿½ra durant une transformation
   * @author Sylvain Lafon
   * @see GameState
   */
@@ -34,7 +34,7 @@ public class TransfoState : GameState
             (/* OnFinish */) => {
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
-				cam.game.arbiter.PlacePlayersForTransfo();
+				cam.game.Referee.PlacePlayersForTransfo();
 				Vector3 GoalToPlayer = cam.game.Ball.Owner.transform.position - Goal.transform.position;
 				Vector3	GoalToCam	 = cameraPlaceHolder.transform.position - Goal.transform.position;
 				Vector3 Proj		 = Vector3.Project(GoalToCam,GoalToPlayer);
@@ -42,7 +42,7 @@ public class TransfoState : GameState
 				Vector3 dest		 = new Vector3(Proj.x + Goal.transform.position.x,saveY,Proj.z + Goal.transform.position.z);
 				Camera.mainCamera.transform.position = dest;
 				Camera.mainCamera.transform.LookAt(Goal.transform);
-				cam.game.arbiter.EnableTransformation();
+				cam.game.Referee.EnableTransformation();
             }
         );
 	}	

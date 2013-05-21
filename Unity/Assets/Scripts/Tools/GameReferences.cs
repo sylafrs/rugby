@@ -47,7 +47,7 @@ public class GameReferences : myMonoBehaviour {
 
     public Game game;
     public StateMachine stateMachine;
-    public Arbiter arbiter;
+    public Referee Referee;
 
     public Team north, south;
 
