@@ -16,11 +16,13 @@ public class Touche : TriggeringTrigger
         Ball ball = t.GetComponent<Ball>();
         if (ball != null)
         {
+            Game.instance.Referee.OnTouch(this);
+        
 			//ball.inTouch = this;
 			
             //if (ball.Game.state == Game.State.PLAYING)
             //{
-                this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
+                //this.gameObject.SendMessageUpwards("OnTouch", this, SendMessageOptions.DontRequireReceiver);
             //}
 			/*
             else if(ball.Game.state == Game.State.TRANSFORMATION)

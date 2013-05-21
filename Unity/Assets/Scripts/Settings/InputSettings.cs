@@ -20,7 +20,7 @@ public class InputSettings
 					rightSmashButton,rightSuperButton,leftSmashButton,leftSuperButton;
 	
 	/* touche */
-	public InputTouch[] touch, interception;
+	public InputTouch[] touch;
 	
 	public InputDirection move, dodge;
 }

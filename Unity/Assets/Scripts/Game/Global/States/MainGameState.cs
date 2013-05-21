@@ -48,13 +48,4 @@ public class MainGameState : GameState {
         sm.state_change_son(this, new RunningState(sm, cam, game));
         return true;
     }
-
-    public override void OnUpdate()
-    {
-        var p1 = this.game.southTeam.Player;
-        var p2 = this.game.northTeam.Player;
-       
-        if (p1 != null) p1.myUpdate();
-        if (p2 != null) p2.myUpdate();
-    }
 }

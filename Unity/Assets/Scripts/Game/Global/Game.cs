@@ -175,6 +175,7 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
+        this.refs.stateMachine.event_Tackle();
         this.Referee.OnTackle(tackler, tackled);
         //this.cameraManager.sm.event_Tackle();       
     }

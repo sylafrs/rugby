@@ -31,5 +31,15 @@ public class WaitingState : GameState
     {
        game.Referee.ResumeIngameTime();
        game.disableIA = false;
+
+       foreach(Unit u in game.northTeam)
+			u.buttonIndicator.target.renderer.enabled = false;
+
+       foreach (Unit u in game.southTeam)
+           u.buttonIndicator.target.renderer.enabled = false;
+
+       game.northTeam.fixUnits = game.southTeam.fixUnits = false;
+       if (game.northTeam.Player != null) game.northTeam.Player.enableMove();
+       if (game.southTeam.Player != null) game.southTeam.Player.enableMove();
     }
 }
