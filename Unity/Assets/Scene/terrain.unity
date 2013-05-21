@@ -6872,6 +6872,8 @@ MonoBehaviour:
         MaximumDuration: 0
         SmashValue: 0
         SuperMultiplicator: 0
+        ToucheRemiseAuCentre: 0
+        TransfoRemiseAuCentre: 0
       Super:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
@@ -6940,6 +6942,10 @@ MonoBehaviour:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 3
+      conversionTouch:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
       reset:
         keyboardP1: 0
         keyboardP2: 0
@@ -7289,8 +7295,6 @@ MonoBehaviour:
         ScrumRightBar: {fileID: 0}
         ScrumLeftBar: {fileID: 0}
         ScrumEmptyBar: {fileID: 0}
-    ToucheRemiseAuCentre: 0
-    TransfoRemiseAuCentre: 0
   refs: {fileID: 3678738}
 --- !u!114 &448441830
 MonoBehaviour:
@@ -28918,10 +28922,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
-  touch:
-    keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
   minPower: 5
