@@ -374,19 +374,13 @@ public class Referee : myMonoBehaviour {
 
 			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
-            if (game.settings.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
-            {               
-                //game.Ball.setPosition(Vector3.zero);				
+
+            if (game.settings.Global.Game.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            {   
 				UnitToGiveBallTo = opponent[0];
                 this.StartPlacement();
-			}			                  
-            /*
-            Timer.AddTimer(3, () => {
-                if (t.Player != null) t.Player.enableMove();
-                if (t.opponent.Player != null) t.opponent.Player.enableMove();
-	            t.fixUnits = t.opponent.fixUnits = false;				    
-            });
-            */
+			}	
+
             this.game.OnResumeSignal();
         };
 

@@ -20,7 +20,7 @@ public class FollowState : UnitState {
         }
         if (o.type == Order.TYPE.SEARCH)
         {
-            target = unit.Game.Ball.gameObject;
+            target = unit.game.Ball.gameObject;
         }
     }
 
@@ -29,7 +29,7 @@ public class FollowState : UnitState {
         Vector3 pos;
         if (target == null)
         {
-            pos = unit.Game.Ball.transform.position;
+            pos = unit.game.Ball.transform.position;
         }
         else
         {

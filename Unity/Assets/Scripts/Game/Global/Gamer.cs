@@ -30,7 +30,7 @@ public class Gamer
     }
 
     public Unit Controlled;
-    public Game Game;
+    public Game game;
 	private Unit unitTo;
 	private InputDirection.Direction stickDirection;
 
@@ -51,7 +51,7 @@ public class Gamer
 
     public Gamer(Team t)
     {
-        this.Game = t.Game;
+        this.game = t.game;
 
         canMove = true;
 
@@ -60,12 +60,12 @@ public class Gamer
         playerIndex = (PlayerIndex)id;
 
         if (XboxController == null)
-            XboxController = this.Game.refs.xboxInputs.controllers[id];
+            XboxController = this.game.refs.xboxInputs.controllers[id];
                 
         this.Team = t;
         this.Controlled = t[t.nbUnits / 2];
         this.Controlled.IndicateSelected(true);
-        this.Inputs = this.Game.settings.Inputs;
+        this.Inputs = this.game.settings.Inputs;
 	}
 	
 	/*
@@ -94,14 +94,10 @@ public class Gamer
     public void myUpdate()
     {
         if(XboxController == null)
-            XboxController = Game.refs.xboxInputs.controllers[id];
+            XboxController = game.refs.xboxInputs.controllers[id];
 
         if (Inputs == null) 
             return;
-		/*
-		if (Game.state != Game.State.PLAYING) 
-            return;
-           */
 
         UpdateDODGE();
 
@@ -121,7 +117,7 @@ public class Gamer
     {
         if (Input.GetKeyUp(Inputs.reset.keyboardP1) || Input.GetKeyUp(Inputs.reset.keyboardP1) || XboxController.GetButtonUp(Inputs.reset.xbox))
         {
-            Game.Reset();
+            game.Reset();
             return true;
         }
 
@@ -144,7 +140,7 @@ public class Gamer
 
     void UpdatePASS()
     {
-        if (Game.Ball.Owner == Controlled && Game.Ball.inZone == null)  
+        if (game.Ball.Owner == Controlled && game.Ball.inZone == null)  
         {
 
             int side = 0;
@@ -158,7 +154,7 @@ public class Gamer
                 side = -1;
             }
 
-            if (Game.refs.managers.camera.TeamLooked == Game.northTeam)
+            if (game.refs.managers.camera.TeamLooked == game.northTeam)
             {
                 side *= -1;
             }
@@ -251,12 +247,12 @@ public class Gamer
 
 			if (right)
 			{
-				Game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
+				game.Ball.transform.position = Controlled.BallPlaceHolderRight.transform.position;
 				//unitsSide = Controlled.Team.GetRight(Controlled);
 			}
 			else
 			{
-				Game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
+				game.Ball.transform.position = Controlled.BallPlaceHolderLeft.transform.position;
 				//unitsSide = Controlled.Team.GetLeft(Controlled);
 			}
 
@@ -264,11 +260,11 @@ public class Gamer
 
     void UpdatePASS_OnRelease()
     {
-        if (Controlled == Game.Ball.Owner)
+        if (Controlled == game.Ball.Owner)
         {
             onActionCapture = false;
-            if (timeOnActionCapture > Game.settings.Global.Game.maxTimeHoldingPassButton)
-                timeOnActionCapture = Game.settings.Global.Game.maxTimeHoldingPassButton;
+            if (timeOnActionCapture > game.settings.Global.Game.maxTimeHoldingPassButton)
+                timeOnActionCapture = game.settings.Global.Game.maxTimeHoldingPassButton;
             //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 			/*
             if (unitsSide.Count != 0)
@@ -282,7 +278,7 @@ public class Gamer
                 Controlled.Order = Order.OrderPass(u);
                 PassDirection = Vector3.zero;
             }*/
-			if ( unitTo != null && unitTo != Game.Ball.Owner )
+			if ( unitTo != null && unitTo != game.Ball.Owner )
 				Controlled.Order = Order.OrderPass(unitTo);
 			//PassDirection = Vector3.zero;
         }
@@ -296,7 +292,7 @@ public class Gamer
     {
         if (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
-            Unit owner = this.Game.Ball.Owner;
+            Unit owner = this.game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
                 if (owner.Dodge && owner.Team.unitInvincibleDodge)
@@ -321,7 +317,7 @@ public class Gamer
         {
             change = true;
         }
-        else if (this.Controlled != this.Game.Ball.Owner &&
+        else if (this.Controlled != this.game.Ball.Owner &&
 				(Input.GetKeyDown(Inputs.changePlayer.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
         {
             change = true;
@@ -348,7 +344,7 @@ public class Gamer
             Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
             //
 
-            if (Game.Ball.Owner == null || Game.Ball.Owner.Team == Team)
+            if (game.Ball.Owner == null || game.Ball.Owner.Team == Team)
             {
                 //offensiveside
                 foreach (Unit u in Controlled.Team)
@@ -356,7 +352,7 @@ public class Gamer
                     if (u != Controlled)
                     {
                         u.Order = Order.OrderOffensiveSide(
-							Controlled, new Vector3(Game.settings.Global.Game.Vheight, 0, Game.settings.Global.Game.Vwidth / 1.5f), 
+							Controlled, new Vector3(game.settings.Global.Game.Vheight, 0, game.settings.Global.Game.Vwidth / 1.5f), 
 							Controlled.Team.south, 
 							typePosition
 						);
@@ -372,7 +368,7 @@ public class Gamer
                     {
                         u.Order = Order.OrderDefensiveSide(
 							Controlled, 
-							new Vector3(Game.settings.Global.Game.Vheight, 0, Game.settings.Global.Game.Vwidth / 1.5f), 
+							new Vector3(game.settings.Global.Game.Vheight, 0, game.settings.Global.Game.Vwidth / 1.5f), 
 							Controlled.Team.south, 
 							typePosition
 						);
@@ -385,12 +381,12 @@ public class Gamer
 	public Unit GetUnitNear()
 	{
 		float dist;
-		float min = Vector3.SqrMagnitude(Game.Ball.transform.position - Controlled.Team[0].transform.position);
+		float min = Vector3.SqrMagnitude(game.Ball.transform.position - Controlled.Team[0].transform.position);
 		Unit near = (Controlled.Team[0].isTackled ? Controlled.Team[1] : Controlled.Team[0]);
 		
 		foreach( Unit u in Controlled.Team )
 		{
-			dist = Vector3.SqrMagnitude(Game.Ball.transform.position - u.transform.position);
+			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 			
 			if ( dist < min && !u.isTackled )
 			{
@@ -403,9 +399,6 @@ public class Gamer
 
     void UpdateMOVE()
     {
-       // if (Game.state != Game.State.PLAYING)
-       //     return;
-
         if (!canMove) return;
         Vector3 direction = Vector3.zero;
         InputDirection.Direction d;
@@ -431,8 +424,6 @@ public class Gamer
 
     void UpdateDODGE()
     {
-       // if (Game.state != Game.State.PLAYING)
-       //     return;
 
         if (!canMove) return;
         if (!Controlled) return;
@@ -464,21 +455,21 @@ public class Gamer
     {
 		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
-            Controlled.Order = Order.OrderDropUpAndUnder(Game.northTeam[0]);
+            Controlled.Order = Order.OrderDropUpAndUnder(game.northTeam[0]);
         }
 		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
 		{
-			Controlled.Order = Order.OrderDropKick(Game.northTeam[0]);
+			Controlled.Order = Order.OrderDropKick(game.northTeam[0]);
 		}
     }
 	
 	void UpdateESSAI() {
 		if(Input.GetKeyDown(Inputs.put.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.put.xbox)) {
-            if (this.Game.Ball.Owner == this.Controlled)
+            if (this.game.Ball.Owner == this.Controlled)
             {
-                Zone z = this.Game.Ball.inZone;
+                Zone z = this.game.Ball.inZone;
 				if(z == this.Team.opponent.Zone) {
-					this.Game.OnTry(z);
+					this.game.OnTry(z);
 				}			
 			}			
 		}

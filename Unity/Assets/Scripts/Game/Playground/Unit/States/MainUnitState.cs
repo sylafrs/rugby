@@ -21,9 +21,9 @@ public class MainUnitState : UnitState
             return false;
         }*/
 
-        if ( unit.Game.Ball.Owner == null && unit.canCatchTheBall /*&& this.unit.Game.state == Game.State.PLAYING*/)
+        if ( unit.game.Ball.Owner == null && unit.canCatchTheBall /*&& this.unit.game.state == Game.State.PLAYING*/)
         {
-			unit.Game.Ball.Owner = unit;
+			unit.game.Ball.Owner = unit;
             return true;
         }
 
@@ -45,19 +45,19 @@ public class MainUnitState : UnitState
 	bool first = true;
     public override void OnUpdate()
     {
-	    if (first && unit.Game.disableIA)
+	    if (first && unit.game.disableIA)
         {
 			first = false;
             sm.state_change_son(this, new IdleState(sm, unit));
             return;
         }   
-		if(!unit.Game.disableIA)
+		if(!unit.game.disableIA)
 			first = true;
     }
 
     public void decide()
     {
-        if (unit.Game.disableIA)
+        if (unit.game.disableIA)
         {
             sm.state_change_son(this, new IdleState(sm, unit));
             return;
@@ -84,18 +84,18 @@ public class MainUnitState : UnitState
                 break;
 
             case Order.TYPE.DROPKICK:
-                if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Drop(DropManager.TYPEOFDROP.KICK);
+                if (unit.Team.game.Ball.Owner == unit)
+					unit.Team.game.Ball.Drop(DropManager.TYPEOFDROP.KICK);
                 break;
 
 			case Order.TYPE.DROPUPANDUNDER:
-				if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Drop(DropManager.TYPEOFDROP.UPANDUNDER);
+				if (unit.Team.game.Ball.Owner == unit)
+					unit.Team.game.Ball.Drop(DropManager.TYPEOFDROP.UPANDUNDER);
 				break;
 
 			case Order.TYPE.PASS:
-				if (unit.Team.Game.Ball.Owner == unit)
-					unit.Team.Game.Ball.Pass(unit.Order.target);
+				if (unit.Team.game.Ball.Owner == unit)
+					unit.Team.game.Ball.Pass(unit.Order.target);
 				break;
 
             case Order.TYPE.TRIANGLE:
@@ -112,7 +112,7 @@ public class MainUnitState : UnitState
                 
             case Order.TYPE.TACKLE:
                 Unit target = unit.Order.target;
-                unit.Game.OnTackle(unit, target);
+                unit.game.OnTackle(unit, target);
                 break;
 
             default:

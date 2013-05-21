@@ -39,7 +39,7 @@ public class Unit : TriggeringTriggered, Debugable
     private Order currentOrder;
     private Team team;
 	
-    public Game Game {get; set;}	
+    public Game game {get; set;}	
     public GameObject[] selectedIndicators;
 
     public bool isTackled { get; set; }
@@ -67,7 +67,7 @@ public class Unit : TriggeringTriggered, Debugable
             remainingTimeDodging -= Time.deltaTime;
             if (remainingTimeDodging <= 0)
             {
-                this.Game.OnDodgeFinished(this);
+                this.game.OnDodgeFinished(this);
             }
         }
         else if (cooldownDodge > 0)
@@ -146,7 +146,7 @@ public class Unit : TriggeringTriggered, Debugable
             {
                 remainingTimeDodging = this.team.unitDodgeDuration;
                 cooldownDodge = this.team.unitDodgeCooldown;
-                this.Game.OnDodge(this);
+                this.game.OnDodge(this);
             }
         }
     }
@@ -155,7 +155,7 @@ public class Unit : TriggeringTriggered, Debugable
     {
         get
         {
-            return !Dodge && cooldownDodge < 0 && this == Game.Ball.Owner;
+            return !Dodge && cooldownDodge < 0 && this == game.Ball.Owner;
         }
     }
 

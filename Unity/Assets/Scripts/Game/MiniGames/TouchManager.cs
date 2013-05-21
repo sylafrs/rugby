@@ -42,7 +42,7 @@ public class TouchManager : myMonoBehaviour {
 		if(randomIntercept)
 			choixInter = Random.Range(0, n) + 1;
 	}
-		
+
 	public void Update() {
 		if(!infiniteTime)
             timeLeft -= Time.deltaTime;

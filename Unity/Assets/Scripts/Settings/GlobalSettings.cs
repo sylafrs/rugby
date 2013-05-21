@@ -32,7 +32,10 @@ public class GameSettings
     public float MaximumDistance;      // Unity            (tweak)
     public float MaximumDuration;      // Seconds          (tweak)                                                        
     public float SmashValue;           // 0 to 1           (tweak)
-    public float SuperMultiplicator;   // Mult             (tweak)  
+    public float SuperMultiplicator;   // Mult             (tweak)
+	
+	public bool ToucheRemiseAuCentre = false;
+    public bool TransfoRemiseAuCentre = false;
 }
 
 [System.Serializable]
