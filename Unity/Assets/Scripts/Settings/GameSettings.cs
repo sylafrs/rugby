@@ -170,9 +170,7 @@ public class GameSettings {
 	public GameStatesSettings 	GameStates;
 	public InputSettings 		Inputs;
 	public UISettings 			UI;
-	
-	
-	
+		
     public ScoreSettings score;     // Attribution des Points
 	public SuperSettings super;     // for super settings
 

@@ -8,7 +8,7 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois, Lafon Sylvain
  */
-[AddComponentMenu("Scripts/Game/UI Manager"), RequireComponent(typeof(Game))]
+[AddComponentMenu("Scripts/Game/UI Manager")]
 public class UIManager : myMonoBehaviour, Debugable {
 	
 	private Game _game;

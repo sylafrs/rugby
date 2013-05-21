@@ -5,8 +5,7 @@ using XInputDotNetPure;
 /*
  *@author Maxens Dubois 
  */
-[AddComponentMenu("Scripts/MiniGames/Scrum"),
-	RequireComponent(typeof(Game))]
+[AddComponentMenu("Scripts/MiniGames/Scrum")]
 public class scrumController : myMonoBehaviour {
 	
     public Transform ScrumBloc                      { private get; set; }   // Object to move   (parameter)

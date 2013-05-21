@@ -9,14 +9,7 @@ using System.Threading;
  * @author Sylvain Lafon
  * @author Guilleminot Florian
  */
-[
-    AddComponentMenu("Scripts/Game/Game"),
-    RequireComponent(typeof(IntroManager)),
-    RequireComponent(typeof(scrumController)),
-    RequireComponent(typeof(TackleManager)),
-    RequireComponent(typeof(TouchManager)),
-    RequireComponent(typeof(TransformationManager))
-]
+[AddComponentMenu("Scripts/Game/Game")]
 /*
  *
  * B
