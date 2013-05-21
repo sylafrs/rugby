@@ -12,17 +12,15 @@ using XInputDotNetPure;
 public class TouchManager : myMonoBehaviour {
 	
 	public System.Action<TouchManager.Result, int> CallBack;
+	public Game game;
 	
 	public Gamer gamerTouch {get; set;}
 	public Gamer gamerIntercept {get; set;}
 
     public bool infiniteTime;
 	
-	private int choixTouche;
-	private int choixInter;
-
-	public InputTouch [] touche;
-	public InputTouch [] interception;
+	private int choixTouche, choixInter;
+	
 	private int n;
 	
 	private float timeLeft;
@@ -35,7 +33,8 @@ public class TouchManager : myMonoBehaviour {
 		choixTouche = 0;
 		choixInter = 0;
 		timeLeft = minTime;
-		n = Mathf.Min (touche.Length, interception.Length);
+		
+		n = Mathf.Min (game.settings.Inputs.touch.Length, game.settings.Inputs.interception.Length);
 		
 		if(randomTouch)
 			choixTouche = Random.Range(0, n) + 1;
@@ -61,7 +60,7 @@ public class TouchManager : myMonoBehaviour {
 			
 				for(int i = 0; i < n; i++) {
 					GUI.color = (choixTouche == i+1) ? Color.red : c;
-					if(GUILayout.Button (touche[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+					if(GUILayout.Button (game.settings.Inputs.touch[i].xbox.ToString(), GUILayout.MinWidth(100))) {
 						choixTouche = i+1;
 					}
 				}
@@ -74,7 +73,7 @@ public class TouchManager : myMonoBehaviour {
 			
 				for(int i = 0; i < n; i++) {
 					GUI.color = (choixInter == i+1) ? Color.red : c;
-					if(GUILayout.Button (interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
+					if(GUILayout.Button (game.settings.Inputs.interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
 						choixInter = i+1;
 					}
 				}
@@ -89,10 +88,10 @@ public class TouchManager : myMonoBehaviour {
             timeLeft -= Time.deltaTime;
 		
 		for(int i = 0; i < n; i++) {
-			if(Input.GetKeyDown(touche[i].keyboard(gamerTouch.Team)) || (gamerTouch != null && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
+			if(Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerTouch.Team)) || (gamerTouch.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox))) {
 				choixTouche = i+1;
 			}
-			if(Input.GetKeyDown(interception[i].keyboard(gamerIntercept.Team)) || (gamerIntercept != null && gamerIntercept.XboxController.GetButtonDown(interception[i].xbox))) {
+			if(Input.GetKeyDown(game.settings.Inputs.interception[i].keyboard(gamerIntercept.Team)) || (gamerIntercept.XboxController.GetButtonDown(game.settings.Inputs.interception[i].xbox))) {
 				choixInter = i+1;
 			}
 		}
@@ -119,7 +118,17 @@ public class TouchManager : myMonoBehaviour {
 		return Result.TOUCH;
 	}
 	
-	public void DoTouch() {		
+	public void DoTouch() {
+		
+		MyDebug.Log("touche : " + choixTouche + " -- inter : " + choixInter);
+		
+		if(choixTouche == choixInter) {
+			MyDebug.Log("interception");	
+		}
+		else {
+			MyDebug.Log("reussite");	
+		}
+		
 		this.enabled = false;
 		
 		if(CallBack != null)

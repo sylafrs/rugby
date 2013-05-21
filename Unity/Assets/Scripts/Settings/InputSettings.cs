@@ -19,5 +19,8 @@ public class InputSettings
 					/* scrum */
 					rightSmashButton,rightSuperButton,FeedSuperPerSmash,leftSmashButton,leftSuperButton;
 	
+	/* touche */
+	public InputTouch[] touch, interception;
+	
 	public InputDirection move, dodge;
 }
