@@ -13,8 +13,5 @@ public class GamePlaySettings {
 	public GameStatesSettings 	GameStates;
 	public InputSettings 		Inputs;
 	public UISettings 			UI;
-
-    public bool ToucheRemiseAuCentre = false;
-    public bool TransfoRemiseAuCentre = false;
 }
 

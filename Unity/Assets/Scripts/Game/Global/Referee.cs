@@ -376,7 +376,7 @@ public class Referee : myMonoBehaviour {
 			}
 			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
-            if (game.settings.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            if (game.settings.Global.Game.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
                
                 //game.Ball.setPosition(Vector3.zero);
