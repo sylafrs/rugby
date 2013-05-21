@@ -4787,9 +4787,9 @@ MonoBehaviour:
   StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 2
-  unitDodgeDuration: .200000003
-  unitDodgeCooldown: 2
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
   unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
@@ -28151,7 +28151,7 @@ MonoBehaviour:
         down: 0
         right: 0
         left: 0
-      xbox: 1
+      xbox: 0
   inputs2:
     shortPass:
       keyboard: 55
@@ -28196,7 +28196,7 @@ MonoBehaviour:
         down: 0
         right: 0
         left: 0
-      xbox: 1
+      xbox: 0
   timePlaque: 3
   Vheight: 10
   Vwidth: 4
@@ -29668,9 +29668,9 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 2
-  unitDodgeDuration: .200000003
-  unitDodgeCooldown: 2
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
   unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
