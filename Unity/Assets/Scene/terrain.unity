@@ -4824,7 +4824,6 @@ MonoBehaviour:
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
-  angleDropKick: 70
   angleDropUpAndUnder: 85
   randomLimitAngle: 5
   accelerationDrop: -.899999976
@@ -6858,22 +6857,6 @@ MonoBehaviour:
         points_essai: 5
         points_transfo: 3
         period_time: 120
-        timePlaque: 3
-        Vheight: 10
-        Vwidth: 5
-        LineSpace: 1
-        maxTimeHoldingPassButton: 3
-        timeToSleepAfterIntro: 3
-        timeToGetOutTackleAreaBeforeScrum: 2
-        minPlayersEachTeamToTriggerScrum: 3
-        FeedSuperPerSmash: 0
-        FeedSuperPerSecond: 0
-        MaximumDistance: 0
-        MaximumDuration: 0
-        SmashValue: 0
-        SuperMultiplicator: 0
-        ToucheRemiseAuCentre: 0
-        TransfoRemiseAuCentre: 0
       Super:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
@@ -6900,15 +6883,39 @@ MonoBehaviour:
         tackleLooseSuperPoints: 5
         scrumWinSuperPoints: 30
         scrumLooseSuperPoints: 10
+      Team:
+        Vheight: 5
+        Vwidth: 5
+        LineSpace: 5
     GameStates:
       MainState:
+        IntroState:
+          timeToSleepAfterIntro: 3
         PlayingState:
           MainGameState:
             RunningState:
               BallHandlingState: {}
-              BallFreeState: {}
+              BallFreeState:
+                BallFlyingState:
+                  angleDropKick: 45
+            PassingState:
+              maxTimeHoldingPassButton: 3
+            TacklingState:
+              tackledTime: 3
           GameActionState:
-            ConvertingState: {}
+            ConvertingState:
+              TransfoRemiseAuCentre: 0
+            ScrumingState:
+              timeToGetOutTackleAreaBeforeScrum: 2
+              minPlayersEachTeamToTriggerScrum: 3
+              FeedSuperPerSmash: 0
+              FeedSuperPerSecond: 0
+              MaximumDistance: 0
+              MaximumDuration: 0
+              SmashValue: 0
+              SuperMultiplicator: 0
+            TouchingSgtate:
+              ToucheRemiseAuCentre: 0
     Inputs:
       shortPass:
         keyboardP1: 0
@@ -6943,7 +6950,7 @@ MonoBehaviour:
         keyboardP2: 0
         xbox: 3
       conversionTouch:
-        keyboardP1: 0
+        keyboardP1: 97
         keyboardP2: 0
         xbox: 0
       reset:

@@ -35,6 +35,7 @@ public class ConvertingState : GameState {
 		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").
 			FindChild("CameraPlaceHolder");
 		
+		Debug.Log("hop "+cam.flipedForTeam);
 		GameObject Goal = null;
 		if(cam.flipedForTeam == cam.game.southTeam)
 		{
