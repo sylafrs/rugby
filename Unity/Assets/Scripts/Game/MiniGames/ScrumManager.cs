@@ -17,6 +17,7 @@ public class ScrumManager : myMonoBehaviour {
     public float currentPosition;                                          // -1 to 1          (variable)
     private int CurrentWinner;                                              // Winner           (variable)
     public float SuperLoading;                                             // 0 to 1           (variable)
+    public float FeedSuperPerSmash;
 
     private Game Game;                                                      // Game             (reference)    
 

@@ -17,10 +17,10 @@ public class InputSettings
 					/* misc */
 					reset, enableIA, skipIntro,
 					/* scrum */
-					rightSmashButton,rightSuperButton,FeedSuperPerSmash,leftSmashButton,leftSuperButton;
+					rightSmashButton,rightSuperButton,leftSmashButton,leftSuperButton;
 	
 	/* touche */
-	public InputTouch[] touch, interception;
+	public InputTouch[] touch;
 	
 	public InputDirection move, dodge;
 }

@@ -31,8 +31,9 @@ public class GameActionState : GameState {
 
     const int N = 4; // To define somewhere else..
 
-    public override void OnLeave() // A remplacer par OnUnAutreTruc
+    public override bool OnResumeSignal() 
     {
-       // sm.state_change_me(this, new WaitingState(sm, cam, game, N)); // BAD IDEA !!!
+       sm.state_change_me(this, new WaitingState(sm, cam, game, N));
+       return true;
     }
 }

@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f1632657fa7f042a3b1f726281e910, type: 3}
   m_Name: 
   game: {fileID: 448441829}
-  stateMachine: {fileID: 2004071860}
+  stateMachine: {fileID: 448441830}
   Referee: {fileID: 2004071857}
   north: {fileID: 613712549}
   south: {fileID: 166411255}
@@ -5308,7 +5308,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 336730881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7}
+  m_LocalPosition: {x: 106.819061, y: -191.071899, z: 191.421021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552660149}
@@ -5316,7 +5316,7 @@ Transform:
   - {fileID: 434231453}
   - {fileID: 557515495}
   - {fileID: 396080501}
-  m_Father: {fileID: 1402728130}
+  m_Father: {fileID: 2058291163}
 --- !u!1 &338363129
 GameObject:
   m_ObjectHideFlags: 0
@@ -6816,6 +6816,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 448441828}
   - 114: {fileID: 448441829}
+  - 114: {fileID: 448441830}
   m_Layer: 0
   m_Name: GameDesign
   m_TagString: Untagged
@@ -6858,8 +6859,8 @@ MonoBehaviour:
         points_transfo: 3
         period_time: 120
         timePlaque: 3
-        Vheight: 1
-        Vwidth: 1
+        Vheight: 10
+        Vwidth: 5
         LineSpace: 1
         maxTimeHoldingPassButton: 3
         timeToSleepAfterIntro: 3
@@ -6930,7 +6931,7 @@ MonoBehaviour:
       changePlayer:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 0
+        xbox: 1
       put:
         keyboardP1: 0
         keyboardP2: 0
@@ -6959,10 +6960,6 @@ MonoBehaviour:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 3
-      FeedSuperPerSmash:
-        keyboardP1: 0
-        keyboardP2: 0
-        xbox: 0
       leftSmashButton:
         keyboardP1: 0
         keyboardP2: 0
@@ -6971,6 +6968,16 @@ MonoBehaviour:
         keyboardP1: 0
         keyboardP2: 0
         xbox: 3
+      touch:
+      - keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
+      - keyboardP1: 0
+        keyboardP2: 0
+        xbox: 1
+      - keyboardP1: 0
+        keyboardP2: 0
+        xbox: 8
       move:
         keyboardP1:
           up: 0
@@ -7285,6 +7292,16 @@ MonoBehaviour:
     ToucheRemiseAuCentre: 0
     TransfoRemiseAuCentre: 0
   refs: {fileID: 3678738}
+--- !u!114 &448441830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 448441827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe11037fcb736b4ba9286d7c74087a7, type: 3}
+  m_Name: 
 --- !u!1 &450770354
 GameObject:
   m_ObjectHideFlags: 0
@@ -20862,8 +20879,7 @@ Transform:
   m_LocalPosition: {x: 29.193882, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 336730882}
-  - {fileID: 1469318606}
+  - {fileID: 2058291163}
   m_Father: {fileID: 1281031929}
 --- !u!114 &1402728131
 MonoBehaviour:
@@ -21698,7 +21714,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1469318605}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 0, y: 0, z: 7}
+  m_LocalPosition: {x: 106.819061, y: -191.071899, z: 205.421021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 184787284}
@@ -21706,7 +21722,7 @@ Transform:
   - {fileID: 156349486}
   - {fileID: 590621449}
   - {fileID: 2002821038}
-  m_Father: {fileID: 1402728130}
+  m_Father: {fileID: 2058291163}
 --- !u!1 &1473317086
 GameObject:
   m_ObjectHideFlags: 0
@@ -28833,7 +28849,6 @@ GameObject:
   - 114: {fileID: 2004071857}
   - 114: {fileID: 2004071858}
   - 114: {fileID: 2004071859}
-  - 114: {fileID: 2004071860}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -28864,13 +28879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
   currentPosition: 0
-  CurrentWinner: 0
   SuperLoading: 0
-  Game: {fileID: 0}
-  <ScrumBloc>k__BackingField: {fileID: 0}
-  <InitialPosition>k__BackingField: {x: 0, y: 0, z: 0}
-  <ChronoLaunched>k__BackingField: 0
-  <TimeRemaining>k__BackingField: 0
+  FeedSuperPerSmash: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28892,29 +28902,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
-  infiniteTime: 0
-  touche:
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 1
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 8
-  interception:
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 0
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 1
-  - keyboardP1: 0
-    keyboardP2: 0
-    xbox: 8
+  infiniteTime: 1
   minTime: 3
-  hideGui: 0
+  hideGui: 1
 --- !u!114 &2004071856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29035,16 +29025,6 @@ MonoBehaviour:
   m_Name: 
   tempsPlaquage: 1
   ralentiPlaquage: 1
---- !u!114 &2004071860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004071849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe11037fcb736b4ba9286d7c74087a7, type: 3}
-  m_Name: 
 --- !u!1 &2005516407
 GameObject:
   m_ObjectHideFlags: 0
@@ -29537,6 +29517,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 545566622}
+--- !u!1 &2058291162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2058291163}
+  m_Layer: 0
+  m_Name: CinematicPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058291163
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2058291162}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -106.819061, y: 191.071899, z: -198.421021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 336730882}
+  - {fileID: 1469318606}
+  m_Father: {fileID: 1402728130}
 --- !u!1 &2060209721
 GameObject:
   m_ObjectHideFlags: 0
