@@ -4787,6 +4787,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -9461,6 +9465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 2004071851}
+  Model: {fileID: 0}
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
@@ -9473,6 +9478,7 @@ MonoBehaviour:
   timeOnDrop: -1
   timeOnPass: -1
   PreviousOwner: {fileID: 0}
+  scrumFieldUnits: []
 --- !u!136 &661539567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27972,6 +27978,7 @@ MonoBehaviour:
   cameraManager: {fileID: 1693924984}
   guiManager: {fileID: 2004071854}
   introManager: {fileID: 2004071858}
+  ScrumBloc: {fileID: 0}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
   right: {fileID: 293398129}
@@ -27999,15 +28006,15 @@ MonoBehaviour:
     longPass:
       keyboardP1: 50
       keyboardP2: 0
-      xbox: 0
+      xbox: 1
     dropUpAndUnder:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
+      xbox: 8
     dropKick:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
+      xbox: 9
     tackle:
       keyboardP1: 0
       keyboardP2: 0
@@ -28015,19 +28022,11 @@ MonoBehaviour:
     reset:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
+      xbox: 2
     enableIA:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
-    scrumNormal:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    scrumExtra:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
+      xbox: 7
     put:
       keyboardP1: 0
       keyboardP2: 0
@@ -28035,11 +28034,11 @@ MonoBehaviour:
     superOff:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
+      xbox: 3
     changePlayer:
       keyboardP1: 0
       keyboardP2: 0
-      xbox: 0
+      xbox: 1
     skipIntro:
       keyboardP1: 97
       keyboardP2: 97
@@ -28055,6 +28054,18 @@ MonoBehaviour:
         down: 107
         right: 108
         left: 106
+      xbox: 2
+    dodge:
+      keyboardP1:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
+      keyboardP2:
+        up: 0
+        down: 0
+        right: 0
+        left: 0
       xbox: 0
   UI:
     GameUI:
@@ -28363,6 +28374,8 @@ MonoBehaviour:
   LineSpace: 3
   maxTimeHoldingPassButton: 3
   timeToSleepAfterIntro: 5
+  timeToGetOutTackleAreaBeforeScrum: 2
+  minPlayersEachTeamToTriggerScrum: 3
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28374,18 +28387,47 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  cam: {fileID: 0}
-  scoreTarget: 1000
-  playerUp: 15
-  cpuUp: .5
-  specialLuck: 20
-  playerSpecialUp: 80
-  frameStart: 30
-  rightGap: -27
-  leftGap: 10
-  IAoffset: -.0500000007
-  playerOffset: .5
-  timer: 10
+  tweakSettings:
+    FeedSuperPerSmash: 0
+    FeedSuperPerSecond: 0
+    MaximumDistance: 0
+    MaximumDuration: 0
+    SmashValue: 0
+    SuperMultiplicator: 0
+  inputSettings:
+    rightSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    rightSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+  guiSettings:
+    ScrumSpecialRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    ScrumSpecialButton: {fileID: 0}
+    ScrumBarRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    ScrumRightBar: {fileID: 0}
+    ScrumLeftBar: {fileID: 0}
+    ScrumEmptyBar: {fileID: 0}
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28532,8 +28574,7 @@ MonoBehaviour:
   TransfoRemiseAuCentre: 1
   TouchPlacement: {fileID: 843848053}
   TransfoPlacement: {fileID: 456611913}
-  IngameTime: 0
-  UnitToGiveBallTo: {fileID: 0}
+  ScrumPlacement: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29405,6 +29446,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 0
+  unitDodgeDuration: 0
+  unitDodgeCooldown: 0
+  unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70

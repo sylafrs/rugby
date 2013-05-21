@@ -161,7 +161,7 @@ public class Gamer : myMonoBehaviour
                 side *= -1;
             }
 
-			if (Input.GetKeyDown(Inputs.shortPass.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
+			if (Input.GetKeyDown(Inputs.shortPass.keyboard(Team)) || XboxController.GetButtonDown(Inputs.shortPass.xbox))
             {
 				if (side > 0)
 				{
@@ -190,7 +190,7 @@ public class Gamer : myMonoBehaviour
 				}
 
             }
-			else if (Input.GetKeyDown(Inputs.longPass.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.longPass.xbox))
+			else if (Input.GetKeyDown(Inputs.longPass.keyboard(Team)) || XboxController.GetButtonDown(Inputs.longPass.xbox))
             {
 				if (side > 0)
 				{
@@ -223,8 +223,8 @@ public class Gamer : myMonoBehaviour
             }
 				
             else if (
-                Input.GetKeyUp(Inputs.shortPass.keyboard(Controlled.Team)) ||
-				Input.GetKeyUp(Inputs.longPass.keyboard(Controlled.Team)) ||
+                Input.GetKeyUp(Inputs.shortPass.keyboard(Team)) ||
+				Input.GetKeyUp(Inputs.longPass.keyboard(Team)) ||
 				XboxController.GetButtonUp(Inputs.shortPass.xbox) ||
 				XboxController.GetButtonUp(Inputs.longPass.xbox))
             {
@@ -293,7 +293,7 @@ public class Gamer : myMonoBehaviour
 
     void UpdateTACKLE()
     {
-        if (Input.GetKeyDown(Inputs.tackle.keyboard(this.Game.Ball.Owner.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
+        if (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
         {
             Unit owner = this.Game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
@@ -321,7 +321,7 @@ public class Gamer : myMonoBehaviour
             change = true;
         }
         else if (this.Controlled != this.Game.Ball.Owner &&
-				(Input.GetKeyDown(Inputs.changePlayer.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
+				(Input.GetKeyDown(Inputs.changePlayer.keyboard(Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
         {
             change = true;
         }
@@ -454,18 +454,18 @@ public class Gamer : myMonoBehaviour
 
     void UpdateDROP()
     {
-		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
+		if (Input.GetKeyDown(Inputs.dropUpAndUnder.keyboard(Team)) || XboxController.GetButtonDown(Inputs.dropUpAndUnder.xbox))
         {
             Controlled.Order = Order.OrderDropUpAndUnder(Game.left[0]);
         }
-		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
+		else if (Input.GetKeyDown(Inputs.dropKick.keyboard(Team)) || XboxController.GetButtonDown(Inputs.dropKick.xbox))
 		{
 			Controlled.Order = Order.OrderDropKick(Game.left[0]);
 		}
     }
 	
 	void UpdateESSAI() {
-		if(Input.GetKeyDown(Inputs.put.keyboard(Controlled.Team)) || XboxController.GetButtonDown(Inputs.put.xbox)) {
+		if(Input.GetKeyDown(Inputs.put.keyboard(Team)) || XboxController.GetButtonDown(Inputs.put.xbox)) {
             if (this.Game.Ball.Owner == this.Controlled)
             {
 				if(this.Game.Ball.inZone == this.Team.opponent.Zone) {
