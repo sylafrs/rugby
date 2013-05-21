@@ -27,5 +27,13 @@ public class MainState : GameState {
 		sm.state_change_son(this, new PlayingState(sm, cam, game));
 		return true;
 	}
+
+    public override void OnUpdate()
+    {
+        if (this.game.northTeam.Player.UpdateRESET())
+            return;
+
+        this.game.southTeam.Player.UpdateRESET();
+    }
 }
 

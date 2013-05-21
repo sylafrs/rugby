@@ -2010,7 +2010,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ea9fc8cbad6bc499ab1a04d4928a5f, type: 3}
   m_Name: 
-  game: {fileID: 0}
   raySquare: 2
   YToDecide: 7
   winnerDrop: 0
@@ -2270,7 +2269,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 86465066}
   - 114: {fileID: 86465068}
-  - 114: {fileID: 86465067}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -2290,16 +2288,6 @@ Transform:
   m_Children:
   - {fileID: 508036065}
   m_Father: {fileID: 2032759012}
---- !u!114 &86465067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 86465065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe11037fcb736b4ba9286d7c74087a7, type: 3}
-  m_Name: 
 --- !u!114 &86465068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7009,9 +6997,9 @@ MonoBehaviour:
         xbox: 0
     UI:
       GameUI:
-        emptyBar: {fileID: 0}
-        blueBar: {fileID: 0}
-        redBar: {fileID: 0}
+        emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+        blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+        redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
         superOkTextStyle:
           m_Name: 
           m_Normal:
@@ -10845,7 +10833,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ea9fc8cbad6bc499ab1a04d4928a5f, type: 3}
   m_Name: 
-  game: {fileID: 0}
   raySquare: 4
   YToDecide: 1
   winnerDrop: 0
