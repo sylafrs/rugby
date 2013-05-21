@@ -4,7 +4,7 @@ using System.Collections;
 public class ScrumUI{
 	
 	private Game game;
-    private ScrumController manager;
+    private ScrumManager manager;
 	
 	public ScrumUI(Game _game)
 	{

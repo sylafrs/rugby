@@ -6,7 +6,7 @@ using XInputDotNetPure;
  *@author Maxens Dubois 
  */
 [AddComponentMenu("Scripts/MiniGames/Scrum")]
-public class ScrumController : myMonoBehaviour {
+public class ScrumManager : myMonoBehaviour {
 	
     public Transform ScrumBloc                      { private get; set; }   // Object to move   (parameter)
     public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
