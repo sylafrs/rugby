@@ -13,49 +13,29 @@ public class IntroState : GameState
 {
     public IntroState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
-	private bool Moving;
-	
+    // Petit tp + fondu
 	public override void OnEnter()
     {
-		
-		this.Moving = true;
-		
-		/*
-        cam.transalateWithFade(new Vector3(0,0,-120), 4f, 1f, 1f ,1f, () =>{
-			
-			//cam.transalateWithFade(new Vector3(-200,0,0), 3f, 1f, 1f ,1f, () =>{
-				//please, kill after usage x)
-			
-				//Moving = false;
-			
-				CameraFade.wannaDie();
-			//});
-			
-		});
-		*/
-		
-		this.stepBack();
+        this.stepBack();
     }
 	
-	private void stepBack(){
-		cam.transalateWithFade(new Vector3(0,0,-10), 4f, 1f, 1f ,1f, () =>{
-			//please, kill after usage x)
-				
-			stepBack();
-			//CameraFade.wannaDie();
+    // Petit tp + fondu, se rappelle quand se termine.
+	private void stepBack()
+    {
+		cam.transalateWithFade(new Vector3(0,0,-10), 4f, 1f, 1f ,1f, () => {				
+			stepBack();			
 		});
 	}
 	
+    // Recule sans arrêt
 	public override void OnUpdate()
     {
-		if(this.Moving)
-			Camera.mainCamera.transform.Translate(0,0,0.08f,Space.Self);
+		Camera.mainCamera.transform.Translate(0,0,0.08f,Space.Self);
     }
 	
+    // On va vers la cible, on fait un fondu (en écrasant le précédent).
 	public override void OnLeave()
     {
-		//CameraFade.wannaDie();
-		
 		cam.setTarget(cam.game.Ball.Owner.transform);
 		CameraFade.StartAlphaFade(Color.black,true, 2f, 2f, () => {
 			CameraFade.wannaDie();

@@ -11,12 +11,14 @@ public class PlayingState : GameState
 {
     public PlayingState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
+    // On passe en mode jeu après une petite pause
     public override void OnEnter()
     {        
 		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.Global.Game.timeToSleepAfterIntro));
     }
 
+    // Action de jeu : touche
     public override bool OnTouch()
     {
         GameActionState newSon = new GameActionState(sm, cam, game);
@@ -26,6 +28,7 @@ public class PlayingState : GameState
         return true;
     }
 
+    // Action de jeu : mêlée
     public override bool OnScrum()
     {
         GameActionState newSon = new GameActionState(sm, cam, game);
@@ -35,6 +38,7 @@ public class PlayingState : GameState
         return true;
     }
 
+    // Action de jeu : essai
     public override bool OnTry(Zone z)
     {
         GameActionState newSon = new GameActionState(sm, cam, game);
@@ -44,6 +48,7 @@ public class PlayingState : GameState
         return true;
     }
 	
+    // Lorsque l'on est plus 'en jeu'
 	public override void OnLeave()
 	{
         game.refs.managers.ui.currentState = UIManager.UIState.NULL;
