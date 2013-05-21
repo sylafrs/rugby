@@ -294,6 +294,16 @@ public class Game : myMonoBehaviour {
         SceneReloader.Go();
     }
 
+    public void OnDodge(Unit u)
+    {
+        sm.event_Dodge(u);
+    }
+
+    public void OnDodgeFinished(Unit u)
+    {
+        sm.event_DodgeFinished(u);
+    }
+
     /*public void TimedDisableIA(float time)
     {
         this.disableIA = true;

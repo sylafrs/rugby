@@ -65,6 +65,10 @@ public class Unit : TriggeringTriggered, Debugable
         if (remainingTimeDodging > 0)
         {
             remainingTimeDodging -= Time.deltaTime;
+            if (remainingTimeDodging <= 0)
+            {
+                this.Game.OnDodgeFinished(this);
+            }
         }
         else if (cooldownDodge > 0)
         {
@@ -142,6 +146,7 @@ public class Unit : TriggeringTriggered, Debugable
             {
                 remainingTimeDodging = this.team.unitDodgeDuration;
                 cooldownDodge = this.team.unitDodgeCooldown;
+                this.Game.OnDodge(this);
             }
         }
     }
