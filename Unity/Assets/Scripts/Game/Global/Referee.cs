@@ -216,7 +216,7 @@ public class Referee : myMonoBehaviour {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.game.Ball.transform.position;
 
-        scrumController sc = this.game.refs.managers.scrum;
+        ScrumController sc = this.game.refs.managers.scrum;
         sc.InitialPosition = this.game.Ball.transform.position;
         sc.ScrumBloc = bloc.transform;        
         
