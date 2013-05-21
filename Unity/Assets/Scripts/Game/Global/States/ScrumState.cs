@@ -17,10 +17,13 @@ public class ScrumState : GameState
 	public override void OnEnter()
     {
 		initCutScene();
-		//
-
        // cam.game.arbiter.ScrumCinematicMovement();
        // cam.game.arbiter.NowScrum();
-
+		game.guiManager.currentState = UIManager.UIState.ScrumUI;
     }
+	
+	public override void OnLeave()
+	{
+		game.guiManager.currentState = UIManager.UIState.NULL;
+	}
 }

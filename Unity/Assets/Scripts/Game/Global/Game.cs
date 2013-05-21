@@ -17,71 +17,18 @@ using System.Threading;
     RequireComponent(typeof(TouchManager)),
     RequireComponent(typeof(TransformationManager))
 ]
-/*
- *
- * B
- *  E
- *   S
- *    T
- *   
- *      S
- *       C
- *        R
- *         I
- *          P
- *           T
- * 
- *             N
- *              A
- *               M
- *                E
- *                  
- *                  E
- *                   V
- *                    E
- *                     R
- * 
- */
+
 public class Game : myMonoBehaviour {
-	
-	/*
-	public enum State {
-        NULL = 0,
-        INTRODUCTION,
-		PAUSED,
-		PLAYING,
-		DROPING,
-		TOUCH,
-		SCRUM,
-		TRANSFORMATION,
-        TACKLE,
-        END
-	}*/
-	
-	/*
-    private State _state = State.PAUSED;
-    public State state
-    {
-        get
-        {
-            return _state;
-        }
-        set
-        {
-			State old = _state;
-			_state = value;
-            cameraManager.sm.event_GameStateChanged(old, value);             
-        }
-    }
-    */
 	
 	public StateMachine sm;
 	
-    public XboxInputs xboxInputs;
-    public GameSettings settings;
-	public CameraManager cameraManager;
-	public UIManager guiManager;
-    public IntroManager introManager;
+    public XboxInputs 		xboxInputs;
+    public GamePlaySettings settings;
+	public CameraManager 	cameraManager;
+	public UIManager 		guiManager;
+    public IntroManager 	introManager;
+	
+	public scrumController scrumController;
 
     public Renderer ScrumBloc;
 
@@ -130,8 +77,10 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-		arbiter.Game = this;
 		
+		scrumController = this.GetComponent<scrumController>();
+		
+		arbiter.Game = this;
         right.Game = this;
         left.Game = this;
         right.right = true;

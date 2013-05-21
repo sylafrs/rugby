@@ -30,8 +30,8 @@ public class Arbiter : myMonoBehaviour {
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
 		IngameTime	 			= 0;
-		GameTimeDuration 		= Game.settings.score.period_time;
-		IntroDelayTime			= Game.settings.timeToSleepAfterIntro;
+		GameTimeDuration 		= Game.settings.Global.Game.period_time;
+		IntroDelayTime			= Game.settings.Global.Game.timeToSleepAfterIntro;
 		PauseIngameTime();
 	}
 	
@@ -180,13 +180,13 @@ public class Arbiter : myMonoBehaviour {
 			if(result == TouchManager.Result.INTERCEPTION) {
 				Game.Ball.Owner = interceptTeam[id];
 				//super
-				this.IncreaseSuper(Game.settings.super.touchInterceptSuperPoints, interceptTeam);
-				this.IncreaseSuper(Game.settings.super.touchLooseSuperPoints, touchTeam); 
+				this.IncreaseSuper(Game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
+				this.IncreaseSuper(Game.settings.Global.Super.touchLooseSuperPoints, touchTeam); 
 			}
 			else {
 				Game.Ball.Owner = touchTeam[id+1];
 				//super
-				this.IncreaseSuper(Game.settings.super.touchWinSuperPoints, touchTeam);
+				this.IncreaseSuper(Game.settings.Global.Super.touchWinSuperPoints, touchTeam);
 			}
 				
 			// Indicateur de bouton
@@ -308,8 +308,7 @@ public class Arbiter : myMonoBehaviour {
                 case TackleManager.RESULT.NORMAL:
 				
 					//super				
-					IncreaseSuper(Game.settings.super.tackleWinSuperPoints,tackler.Team);
-				
+					IncreaseSuper(Game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
                     break;
@@ -371,12 +370,12 @@ public class Arbiter : myMonoBehaviour {
 		if(t.opponent.Player) t.opponent.Player.stopMove();		
 				
 		
-        t.nbPoints += Game.settings.score.points_essai;
+        t.nbPoints += Game.settings.Global.Game.points_essai;
 		Team opponent = Game.Ball.Owner.Team.opponent;
 		
 		//super for try
-		IncreaseSuper(Game.settings.super.tryWinSuperPoints,t);
-		IncreaseSuper(Game.settings.super.tryLooseSuperPoints,opponent);
+		IncreaseSuper(Game.settings.Global.Super.tryWinSuperPoints,t);
+		IncreaseSuper(Game.settings.Global.Super.tryLooseSuperPoints,opponent);
 		
 		TransformationManager tm = this.Game.GetComponent<TransformationManager>();
 		tm.ball = Game.Ball;
@@ -391,16 +390,16 @@ public class Arbiter : myMonoBehaviour {
 			
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
 				MyDebug.Log ("Transformation");
-				t.nbPoints += Game.settings.score.points_transfo;
+				t.nbPoints += Game.settings.Global.Game.points_transfo;
 				
 				//transfo super
-				IncreaseSuper(Game.settings.super.conversionWinSuperPoints,t);
+				IncreaseSuper(Game.settings.Global.Super.conversionWinSuperPoints,t);
 			}else{
 
 				//transfo super
-				IncreaseSuper(Game.settings.super.conversionLooseSuperPoints,t);
+				IncreaseSuper(Game.settings.Global.Super.conversionLooseSuperPoints,t);
 			}
-			IncreaseSuper(Game.settings.super.conversionOpponentSuperPoints,t.opponent);
+			IncreaseSuper(Game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
             if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
@@ -433,7 +432,7 @@ public class Arbiter : myMonoBehaviour {
         */
        
         // On donne les points
-        but.Owner.opponent.nbPoints += this.Game.settings.score.points_drop;
+        but.Owner.opponent.nbPoints += this.Game.settings.Global.Game.points_drop;
 
         // A faire en caméra :
         this.StartPlacement();
@@ -514,7 +513,7 @@ public class Arbiter : myMonoBehaviour {
         if (LastTackle != -1)
         {
             // TODO cte : 2 -> temps pour checker
-            if (Time.time - LastTackle > Game.settings.timeToGetOutTackleAreaBeforeScrum)
+            if (Time.time - LastTackle > Game.settings.Global.Game.timeToGetOutTackleAreaBeforeScrum)
             {
                 LastTackle = -1;
                 int right = 0, left = 0;
@@ -527,8 +526,8 @@ public class Arbiter : myMonoBehaviour {
                 }
 
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-                if (right >= Game.settings.minPlayersEachTeamToTriggerScrum && 
-                    left >= Game.settings.minPlayersEachTeamToTriggerScrum)
+                if (right >= Game.settings.Global.Game.minPlayersEachTeamToTriggerScrum && 
+                    left >= Game.settings.Global.Game.minPlayersEachTeamToTriggerScrum)
                 {
                     Game.OnScrum();
                     //goScrum = true;

@@ -6255,7 +6255,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Gam
+  DebugWindowFilter: u
 --- !u!1 &393058072
 GameObject:
   m_ObjectHideFlags: 0
@@ -27978,6 +27978,7 @@ MonoBehaviour:
   cameraManager: {fileID: 1693924984}
   guiManager: {fileID: 2004071854}
   introManager: {fileID: 2004071858}
+  scrumController: {fileID: 0}
   ScrumBloc: {fileID: 0}
   limiteTerrainNordEst: {fileID: 1206045609}
   limiteTerrainSudOuest: {fileID: 1181389385}
@@ -28008,15 +28009,15 @@ MonoBehaviour:
       keyboardP2: 0
       xbox: 1
     dropUpAndUnder:
-      keyboardP1: 0
+      keyboardP1: 51
       keyboardP2: 0
       xbox: 8
     dropKick:
-      keyboardP1: 0
+      keyboardP1: 52
       keyboardP2: 0
       xbox: 9
     tackle:
-      keyboardP1: 0
+      keyboardP1: 53
       keyboardP2: 0
       xbox: 0
     reset:
@@ -28042,6 +28043,26 @@ MonoBehaviour:
     skipIntro:
       keyboardP1: 97
       keyboardP2: 97
+      xbox: 0
+    rightSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    rightSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    FeedSuperPerSmash:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSmashButton:
+      keyboardP1: 0
+      keyboardP2: 0
+      xbox: 0
+    leftSuperButton:
+      keyboardP1: 0
+      keyboardP2: 0
       xbox: 0
     move:
       keyboardP1:
@@ -28337,6 +28358,23 @@ MonoBehaviour:
       scrumTimeBoxHeightPercentage: 16
       scrumTimeBoxXPercentage: 50
       scrumTimeBoxYPercentage: 34
+    ScrumUI:
+      ScrumSpecialRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      ScrumSpecialButton: {fileID: 0}
+      ScrumBarRect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      ScrumRightBar: {fileID: 0}
+      ScrumLeftBar: {fileID: 0}
+      ScrumEmptyBar: {fileID: 0}
   score:
     points_drop: 3
     points_essai: 5
@@ -28394,40 +28432,8 @@ MonoBehaviour:
     MaximumDuration: 0
     SmashValue: 0
     SuperMultiplicator: 0
-  inputSettings:
-    rightSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSmashButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    rightSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-    leftSuperButton:
-      keyboardP1: 0
-      keyboardP2: 0
-      xbox: 0
-  guiSettings:
-    ScrumSpecialRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumSpecialButton: {fileID: 0}
-    ScrumBarRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumRightBar: {fileID: 0}
-    ScrumLeftBar: {fileID: 0}
-    ScrumEmptyBar: {fileID: 0}
+  currentPosition: 0
+  SuperLoading: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28437,7 +28443,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004071849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8560afecfa114f04db09fb6e3ebec1e7, type: 3}
+  m_Script: {fileID: 11500000, guid: aca29ccebb51aa148a07ed4fa512862a, type: 3}
   m_Name: 
 --- !u!114 &2004071855
 MonoBehaviour:
