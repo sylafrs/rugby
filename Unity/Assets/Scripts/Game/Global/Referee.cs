@@ -10,7 +10,7 @@ using System.Collections.Generic;
 [AddComponentMenu("Scripts/Game/Referee")]
 public class Referee : myMonoBehaviour {
 		
-	public Game Game {get;set;}
+	public Game game {get;set;}
 	
 	public bool ToucheRemiseAuCentre 	= false;
 	public bool TransfoRemiseAuCentre 	= false;
@@ -27,8 +27,8 @@ public class Referee : myMonoBehaviour {
 	void Start(){
 		TimeEllapsedSinceIntro 	= 0;
 		IngameTime	 			= 0;
-		GameTimeDuration 		= Game.settings.Global.Game.period_time;
-		IntroDelayTime			= Game.settings.Global.Game.timeToSleepAfterIntro;
+		GameTimeDuration 		= game.settings.Global.Game.period_time;
+		IntroDelayTime			= game.settings.Global.Game.timeToSleepAfterIntro;
 		PauseIngameTime();
 	}
 	
@@ -42,7 +42,7 @@ public class Referee : myMonoBehaviour {
 
     public void PlacePlayersForTouch()
     {
-        Team interceptTeam = Game.Ball.Team;
+        Team interceptTeam = game.Ball.Team;
         Team touchTeam = interceptTeam.opponent;
 
         // Fixe les unités			
@@ -68,14 +68,14 @@ public class Referee : myMonoBehaviour {
         touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 
         // Touche à droite ?
-        bool right = (this.Game.refs.placeHolders.touchPlacement.position.x > 0);
+        bool right = (this.game.refs.placeHolders.touchPlacement.position.x > 0);
 
         // Place les unités
 
 
         Transform blueTeam, redTeam, rightTeam, leftTeam;
-        rightTeam = this.Game.refs.placeHolders.touchPlacement.FindChild("RightTeam");
-        leftTeam = this.Game.refs.placeHolders.touchPlacement.FindChild("LeftTeam");
+        rightTeam = this.game.refs.placeHolders.touchPlacement.FindChild("RightTeam");
+        leftTeam = this.game.refs.placeHolders.touchPlacement.FindChild("LeftTeam");
 
         if (right)
         {
@@ -88,8 +88,8 @@ public class Referee : myMonoBehaviour {
             blueTeam = rightTeam;
         }
 
-        Transform interceptConfiguration = this.Game.refs.placeHolders.touchPlacement.FindChild("InterceptionTeam");
-        if (interceptTeam == this.Game.northTeam/*(red)*/)
+        Transform interceptConfiguration = this.game.refs.placeHolders.touchPlacement.FindChild("InterceptionTeam");
+        if (interceptTeam == this.game.northTeam/*(red)*/)
         {
             interceptConfiguration.transform.position = redTeam.transform.position;
             interceptConfiguration.transform.rotation = redTeam.transform.rotation;
@@ -102,8 +102,8 @@ public class Referee : myMonoBehaviour {
 
         interceptTeam.placeUnits(interceptConfiguration, true);
 
-        Transform passConfiguration = this.Game.refs.placeHolders.touchPlacement.FindChild("TouchTeam");
-        if (touchTeam == this.Game.northTeam/*(red)*/)
+        Transform passConfiguration = this.game.refs.placeHolders.touchPlacement.FindChild("TouchTeam");
+        if (touchTeam == this.game.northTeam/*(red)*/)
         {
             passConfiguration.transform.position = redTeam.transform.position;
             passConfiguration.transform.rotation = redTeam.transform.rotation;
@@ -116,12 +116,12 @@ public class Referee : myMonoBehaviour {
 
         touchTeam.placeUnits(passConfiguration, 1, true);
 
-        Transform passUnitPosition = this.Game.refs.placeHolders.touchPlacement.FindChild("TouchPlayer");
+        Transform passUnitPosition = this.game.refs.placeHolders.touchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0, true);
 
        
-        Game.Ball.Owner = touchTeam[0];
-        Game.refs.managers.camera.setTarget(null);
+        game.Ball.Owner = touchTeam[0];
+        game.refs.managers.camera.setTarget(null);
     }
 	
 	public void OnTouch(Touche t) {
@@ -132,32 +132,32 @@ public class Referee : myMonoBehaviour {
 		// Indique que le jeu passe en mode "Touche"			
             
 		// Placement dans la scène de la touche.
-		Vector3 pos = Vector3.Project(Game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
+		Vector3 pos = Vector3.Project(game.Ball.transform.position - t.a.position, t.b.position - t.a.position) + t.a.position;
         pos.y = 0; // A terre           
 			
-		if(this.Game.refs.placeHolders.touchPlacement == null) {
+		if(this.game.refs.placeHolders.touchPlacement == null) {
 			throw new UnityException("I need to know how place the players when a touch occurs");
 		}
 
         bool right = (pos.x > 0);
             			
 		if(right) {
-			this.Game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
+			this.game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, -90, 0);
 		}
 		else {
-			this.Game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
+			this.game.refs.placeHolders.touchPlacement.localRotation = Quaternion.Euler(0, 90, 0);
 		}
 			
-		this.Game.refs.placeHolders.touchPlacement.position = pos;
+		this.game.refs.placeHolders.touchPlacement.position = pos;
 						
-		Team interceptTeam = Game.Ball.Team;
+		Team interceptTeam = game.Ball.Team;
 		Team touchTeam = interceptTeam.opponent;
 	
 		//launch the event
-        Game.OnTouch();
+        game.OnTouch();
 
 		// Règlage du mini-jeu
-        TouchManager tm = this.Game.refs.managers.touch;
+        TouchManager tm = this.game.refs.managers.touch;
 			
 		// On indique les équipes
 		tm.gamerIntercept = interceptTeam.Player;
@@ -165,8 +165,8 @@ public class Referee : myMonoBehaviour {
 			
 		// On indique si l'un ou l'autre sera fait au pif
 		// TODO : patch j2
-		tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == Game.northTeam.Player && !Game.northTeam.Player.XboxController.IsConnected));
-		tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == Game.northTeam.Player && !Game.northTeam.Player.XboxController.IsConnected));
+		tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
+		tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
 						
 		// Fonction à appeller à la fin de la touche
 		tm.CallBack = delegate(TouchManager.Result result, int id) {
@@ -175,15 +175,15 @@ public class Referee : myMonoBehaviour {
 			
 			// On donne la balle à la bonne personne
 			if(result == TouchManager.Result.INTERCEPTION) {
-				Game.Ball.Owner = interceptTeam[id];
+				game.Ball.Owner = interceptTeam[id];
 				//super
-				this.IncreaseSuper(Game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
-				this.IncreaseSuper(Game.settings.Global.Super.touchLooseSuperPoints, touchTeam); 
+				this.IncreaseSuper(game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
+				this.IncreaseSuper(game.settings.Global.Super.touchLooseSuperPoints, touchTeam); 
 			}
 			else {
-				Game.Ball.Owner = touchTeam[id+1];
+				game.Ball.Owner = touchTeam[id+1];
 				//super
-				this.IncreaseSuper(Game.settings.Global.Super.touchWinSuperPoints, touchTeam);
+				this.IncreaseSuper(game.settings.Global.Super.touchWinSuperPoints, touchTeam);
 			}
 				
 			// Indicateur de bouton
@@ -194,7 +194,6 @@ public class Referee : myMonoBehaviour {
 				u.buttonIndicator.target.renderer.enabled = false;
 				
 			// Retour en jeu
-			//Game.state = Game.State.PLAYING;
 			interceptTeam.fixUnits = touchTeam.fixUnits = false;	
 			if(interceptTeam.Player != null) interceptTeam.Player.enableMove();
 			if(touchTeam.Player != null) touchTeam.Player.enableMove();
@@ -205,9 +204,8 @@ public class Referee : myMonoBehaviour {
 	}
 
 	public void OnScrum() {
-
-       // this.Game.state = Game.State.SCRUM;
-        this.Game.Ball.Owner = null;
+		
+        this.game.Ball.Owner = null;
 
         ScrumCinematicMovement();
         NowScrum();
@@ -215,28 +213,26 @@ public class Referee : myMonoBehaviour {
 
     public void NowScrum()
     {
-        Renderer bloc = this.Game.refs.gameObjects.ScrumBloc;
-        bloc.transform.position = this.Game.Ball.transform.position;
+        Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
+        bloc.transform.position = this.game.Ball.transform.position;
 
-        scrumController sc = this.Game.refs.managers.scrum;
-        sc.InitialPosition = this.Game.Ball.transform.position;
+        scrumController sc = this.game.refs.managers.scrum;
+        sc.InitialPosition = this.game.Ball.transform.position;
         sc.ScrumBloc = bloc.transform;        
         
-        this.Game.southTeam.ShowPlayers(false);
-        this.Game.northTeam.ShowPlayers(false);
-        this.Game.Ball.Model.enabled = false;
+        this.game.southTeam.ShowPlayers(false);
+        this.game.northTeam.ShowPlayers(false);
+        this.game.Ball.Model.enabled = false;
         bloc.enabled = true;
 
         sc.callback = (Team t, Vector3 endPos) =>
         {
-            Game.Ball.Owner = t[0];
+            game.Ball.Owner = t[0];
 
-            this.Game.Ball.Model.enabled = true;
-            this.Game.southTeam.ShowPlayers(true);
-            this.Game.northTeam.ShowPlayers(true);
+            this.game.Ball.Model.enabled = true;
+            this.game.southTeam.ShowPlayers(true);
+            this.game.northTeam.ShowPlayers(true);
             bloc.enabled = false;
-
-            // this.Game.state = Game.State.PLAYING;
         };
 
         sc.enabled = true;
@@ -244,41 +240,27 @@ public class Referee : myMonoBehaviour {
 
     public void ScrumCinematicMovement()
     {
-        Vector3 pos = this.Game.Ball.transform.position;
-        Transform cinematic = this.Game.refs.placeHolders.scrumPlacement.FindChild("CinematicPlacement");
+        Vector3 pos = this.game.Ball.transform.position;
+        Transform cinematic = this.game.refs.placeHolders.scrumPlacement.FindChild("CinematicPlacement");
         cinematic.position = new Vector3(pos.x, 0, pos.z);
 
         Transform red = cinematic.FindChild("RedTeam");
         Transform blue = cinematic.FindChild("BlueTeam");
 
-        this.Game.southTeam.placeUnits(red, false);
-        this.Game.northTeam.placeUnits(blue, false);
+        this.game.southTeam.placeUnits(red, false);
+        this.game.northTeam.placeUnits(blue, false);
     }
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
 	
-		/*
-        if (Game.state != Game.State.PLAYING)
-            return;
-
-        if (tackled == null)
-        {
-            tackler.sm.event_Tackle();
-            return;
-        }
-
-        this.Game.state = Game.State.TACKLE;
-	 	*/
-
-
-        TackleManager tm = this.Game.refs.managers.tackle;
+        TackleManager tm = this.game.refs.managers.tackle;
         if (tm == null)
             throw new UnityException("Game needs a TackleManager !");
         
         if (tackler == null || tackled == null || tackler.Team == tackled.Team)
             throw new UnityException("Error : " + tackler + " cannot tackle " + tackled + " !");
 
-        tm.game = this.Game;
+        tm.game = this.game;
         tm.tackler = tackler;
         tm.tackled = tackled;
 
@@ -289,13 +271,13 @@ public class Referee : myMonoBehaviour {
             {
                 // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
                 case TackleManager.RESULT.CRITIC:
-                    this.Game.Ball.Owner = tackler;
+                    this.game.Ball.Owner = tackler;
                     break;
 
                 // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
                 case TackleManager.RESULT.PASS:
                     Unit target = tackled.GetNearestAlly();
-                    Game.Ball.Pass(target);
+                    game.Ball.Pass(target);
                     
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
@@ -306,82 +288,76 @@ public class Referee : myMonoBehaviour {
                 case TackleManager.RESULT.NORMAL:
 				
 					//super				
-					IncreaseSuper(Game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
+					IncreaseSuper(game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
                     break;
             }
 
             LastTackle = Time.time;
-
-            //this.Game.state = Game.State.PLAYING;
         };
 
         tm.Tackle();
 	}
 	
 	public void PlacePlayersForTransfo(){
-		Game.Ball.transform.position = Game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
-		float x = Game.Ball.transform.position.x;
+		game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
+		float x = game.Ball.transform.position.x;
 		
-		Team t = Game.Ball.Owner.Team;
+		Team t = game.Ball.Owner.Team;
 		
-		t.placeUnits(this.Game.refs.placeHolders.conversionPlacement.FindChild("TeamShoot"), 1, true);
-		t.placeUnit(this.Game.refs.placeHolders.conversionPlacement.FindChild("ShootPlayer"), 0, true);
-		Team.switchPlaces(t[0], Game.Ball.Owner);
-		t.opponent.placeUnits(this.Game.refs.placeHolders.conversionPlacement.FindChild("TeamLook"), true);
+		t.placeUnits(this.game.refs.placeHolders.conversionPlacement.FindChild("TeamShoot"), 1, true);
+		t.placeUnit(this.game.refs.placeHolders.conversionPlacement.FindChild("ShootPlayer"), 0, true);
+		Team.switchPlaces(t[0], game.Ball.Owner);
+		t.opponent.placeUnits(this.game.refs.placeHolders.conversionPlacement.FindChild("TeamLook"), true);
 		 
-        Team opponent = Game.Ball.Owner.Team.opponent;
+        Team opponent = game.Ball.Owner.Team.opponent;
 		
 		// Joueur face au look At
 		Transform butPoint = t.opponent.But.transform.FindChild("Transformation LookAt");
-		Game.Ball.Owner.transform.LookAt(butPoint);
+		game.Ball.Owner.transform.LookAt(butPoint);
 	}
 	
 	public void EnableTransformation(){
-        TransformationManager tm = this.Game.refs.managers.conversion;
+        TransformationManager tm = this.game.refs.managers.conversion;
 		tm.enabled = true;
 	}
 	
 	private void PlaceTransfoPlaceholders(){
-		Team t = Game.Ball.Owner.Team;
-		float x = Game.Ball.transform.position.x;
+		Team t = game.Ball.Owner.Team;
+		float x = game.Ball.transform.position.x;
 		
 		Transform point = t.opponent.But.transformationPoint;
 		point.transform.position = new Vector3(x, 0, point.transform.position.z);
 		
-		this.Game.refs.placeHolders.conversionPlacement.transform.position = point.position;
-		this.Game.refs.placeHolders.conversionPlacement.transform.rotation = point.rotation;
+		this.game.refs.placeHolders.conversionPlacement.transform.position = point.position;
+		this.game.refs.placeHolders.conversionPlacement.transform.rotation = point.rotation;
 	}
 	
 	public void OnEssai() {
-		/*
-		if(Game.state != Game.State.PLAYING) {
-			return;	
-		}
-		*/
+		
 			
-		Team t = Game.Ball.Owner.Team;
+		Team t = game.Ball.Owner.Team;
 		
 		t.fixUnits = t.opponent.fixUnits = true;			
 		if(t.Player != null) t.Player.stopMove();
 		if(t.opponent.Player != null) t.opponent.Player.stopMove();		
 				
 		
-        t.nbPoints += Game.settings.Global.Game.points_essai;
-		Team opponent = Game.Ball.Owner.Team.opponent;
+        t.nbPoints += game.settings.Global.Game.points_essai;
+		Team opponent = game.Ball.Owner.Team.opponent;
 		
 		//super for try
-		IncreaseSuper(Game.settings.Global.Super.tryWinSuperPoints,t);
-		IncreaseSuper(Game.settings.Global.Super.tryLooseSuperPoints,opponent);
+		IncreaseSuper(game.settings.Global.Super.tryWinSuperPoints,t);
+		IncreaseSuper(game.settings.Global.Super.tryLooseSuperPoints,opponent);
 		
-		TransformationManager tm = this.Game.refs.managers.conversion;
+		TransformationManager tm = this.game.refs.managers.conversion;
 
-		tm.ball = Game.Ball;
+		tm.ball = game.Ball;
 		tm.gamer = t.Player;	
 		
 		tm.OnLaunch = () => {
-			//this.Game.cameraManager.sm.event_TransfoShot();	
+			//this.game.cameraManager.sm.event_TransfoShot();	
 		};
 		
         // After the transformation is done, according to the result :
@@ -389,27 +365,26 @@ public class Referee : myMonoBehaviour {
 			
 			if(transformed == TransformationManager.Result.TRANSFORMED) {
 				MyDebug.Log ("Transformation");
-				t.nbPoints += Game.settings.Global.Game.points_transfo;
+				t.nbPoints += game.settings.Global.Game.points_transfo;
 				
 				//transfo super
-				IncreaseSuper(Game.settings.Global.Super.conversionWinSuperPoints,t);
+				IncreaseSuper(game.settings.Global.Super.conversionWinSuperPoints,t);
 			}else{
 
 				//transfo super
-				IncreaseSuper(Game.settings.Global.Super.conversionLooseSuperPoints,t);
+				IncreaseSuper(game.settings.Global.Super.conversionLooseSuperPoints,t);
 			}
-			IncreaseSuper(Game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
+			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
             if (TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
-                // Game.cameraManager.gameCamera.ResetRotation();
-                //Game.Ball.setPosition(Vector3.zero);
+               
+                //game.Ball.setPosition(Vector3.zero);
 				
 				UnitToGiveBallTo = opponent[0];
                 //this.StartPlacement();
 			}			
-            
-            //Game.state = Game.State.PLAYING;           
+                  
 
             Timer.AddTimer(3, () => {
                 if (t.Player != null) t.Player.enableMove();
@@ -418,30 +393,23 @@ public class Referee : myMonoBehaviour {
             });
         };
 		PlaceTransfoPlaceholders();
-		//Game.state = Game.State.TRANSFORMATION;
 	}
 
     public void OnDropTransformed(But but)
     {
-		/*
-        if (this.Game.state != Game.State.PLAYING)
-        {
-            return;
-        }
-        */
        
         // On donne les points
-        but.Owner.opponent.nbPoints += this.Game.settings.Global.Game.points_drop;
+        but.Owner.opponent.nbPoints += this.game.settings.Global.Game.points_drop;
 
         // A faire en caméra :
         this.StartPlacement();
-        this.Game.Ball.Owner = but.Owner[0];
+        this.game.Ball.Owner = but.Owner[0];
 
-        //this.Game.TimedDisableIA(3);
+        //this.game.TimedDisableIA(3);
     }
 	
 	private void GiveBall(Unit _u){
-		Game.Ball.Owner = _u;
+		game.Ball.Owner = _u;
 	}
 	
     public void OnBallOut()
@@ -450,27 +418,27 @@ public class Referee : myMonoBehaviour {
 		Unit NewOwner = null;
         
         // Si on est du côté droit
-        if (this.Game.Ball.RightSide())
+        if (this.game.Ball.RightSide())
         {
-            NewOwner = Game.southTeam[0];
+            NewOwner = game.southTeam[0];
         }
         else
         {
-            NewOwner = Game.northTeam[0];
+            NewOwner = game.northTeam[0];
         }
 		
 		// Remise au centre, donne la balle aux perdants.
 		UnitToGiveBallTo = NewOwner;
         this.StartPlacement();
-        //this.Game.TimedDisableIA(3);
+        //this.game.TimedDisableIA(3);
     }
 
     public void StartPlacement()
     {	
-        Transform t = Game.refs.placeHolders.startPlacement;
+        Transform t = game.refs.placeHolders.startPlacement;
 
-        Game.southTeam.placeUnits(t.Find("South"), true);
-        Game.northTeam.placeUnits(t.Find("North"), true);	
+        game.southTeam.placeUnits(t.Find("South"), true);
+        game.northTeam.placeUnits(t.Find("North"), true);	
 
 		GiveBall(UnitToGiveBallTo);
     }
@@ -492,15 +460,14 @@ public class Referee : myMonoBehaviour {
     public void Update()
     {
 		
-        //if (this.Game.state != Game.State.INTRODUCTION && this.Game.state != Game.State.END){
 		
-		//if(this.Game.sm.st
+		//if(this.game.sm.st
        		TimeEllapsedSinceIntro += Time.deltaTime;
 			if(TimeEllapsedSinceIntro > IntroDelayTime){			
 				if(TimePaused == false)IngameTime += Time.deltaTime;
 				if(IngameTime > GameTimeDuration){
 					IngameTime = GameTimeDuration;
-					this.Game.OnGameEnd();
+					this.game.OnGameEnd();
 				}
 			}
         //}
@@ -513,23 +480,23 @@ public class Referee : myMonoBehaviour {
         if (LastTackle != -1)
         {
             // TODO cte : 2 -> temps pour checker
-            if (Time.time - LastTackle > Game.settings.Global.Game.timeToGetOutTackleAreaBeforeScrum)
+            if (Time.time - LastTackle > game.settings.Global.Game.timeToGetOutTackleAreaBeforeScrum)
             {
                 LastTackle = -1;
                 int right = 0, left = 0;
-                for (int i = 0; i < this.Game.Ball.scrumFieldUnits.Count; i++)
+                for (int i = 0; i < this.game.Ball.scrumFieldUnits.Count; i++)
                 {
-                    if (this.Game.Ball.scrumFieldUnits[i].Team == Game.southTeam)
+                    if (this.game.Ball.scrumFieldUnits[i].Team == game.southTeam)
                         right++;
                     else
                         left++;
                 }
 
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-                if (right >= Game.settings.Global.Game.minPlayersEachTeamToTriggerScrum && 
-                    left >= Game.settings.Global.Game.minPlayersEachTeamToTriggerScrum)
+                if (right >= game.settings.Global.Game.minPlayersEachTeamToTriggerScrum && 
+                    left >= game.settings.Global.Game.minPlayersEachTeamToTriggerScrum)
                 {
-                    Game.OnScrum();
+                    game.OnScrum();
                     //goScrum = true;
                     //
                 }
