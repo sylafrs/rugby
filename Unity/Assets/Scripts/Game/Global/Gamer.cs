@@ -263,8 +263,8 @@ public class Gamer
         if (Controlled == game.Ball.Owner)
         {
             onActionCapture = false;
-            if (timeOnActionCapture > game.settings.Global.Game.maxTimeHoldingPassButton)
-                timeOnActionCapture = game.settings.Global.Game.maxTimeHoldingPassButton;
+            if (timeOnActionCapture > game.settings.GameStates.MainState.PlayingState.MainGameState.PassingState.maxTimeHoldingPassButton)
+                timeOnActionCapture = game.settings.GameStates.MainState.PlayingState.MainGameState.PassingState.maxTimeHoldingPassButton;
             //Debug.DrawRay(this.transform.position, passDirection, Color.red);
 			/*
             if (unitsSide.Count != 0)
@@ -352,7 +352,7 @@ public class Gamer
                     if (u != Controlled)
                     {
                         u.Order = Order.OrderOffensiveSide(
-							Controlled, new Vector3(game.settings.Global.Game.Vheight, 0, game.settings.Global.Game.Vwidth / 1.5f), 
+							Controlled, new Vector3(game.settings.Global.Team.Vheight, 0, game.settings.Global.Team.Vwidth / 1.5f), 
 							Controlled.Team.south, 
 							typePosition
 						);
@@ -368,7 +368,7 @@ public class Gamer
                     {
                         u.Order = Order.OrderDefensiveSide(
 							Controlled, 
-							new Vector3(game.settings.Global.Game.Vheight, 0, game.settings.Global.Game.Vwidth / 1.5f), 
+							new Vector3(game.settings.Global.Team.Vheight, 0, game.settings.Global.Team.Vwidth / 1.5f), 
 							Controlled.Team.south, 
 							typePosition
 						);

@@ -5,37 +5,25 @@ public class GlobalSettings
 {
 	public GameSettings  Game;
 	public SuperSettings Super;
+	public TeamSettings  Team;
 }
 
 [System.Serializable]
 public class GameSettings
 {
-	public int 	points_drop = 5;
-    public int 	points_essai = 5;
-	public int 	points_transfo = 3;
+	public int 	 points_drop = 5;
+    public int 	 points_essai = 5;
+	public int 	 points_transfo = 3;
 	public float period_time = 120f;
-	
-	public float timePlaque = 3;
+}
 
-    public float Vheight = 1;
+[System.Serializable]
+public class TeamSettings
+{
+	//formation
+	public float Vheight = 1;
     public float Vwidth = 1;
     public float LineSpace = 1;
-
-    public float maxTimeHoldingPassButton = 3; // Seconds
-    public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
-
-    public float timeToGetOutTackleAreaBeforeScrum = 2;
-    public int	 minPlayersEachTeamToTriggerScrum = 3;
-	
-	public float FeedSuperPerSmash;    // 0 to 1           (tweak)
-    public float FeedSuperPerSecond;   // 0 to 1           (tweak)
-    public float MaximumDistance;      // Unity            (tweak)
-    public float MaximumDuration;      // Seconds          (tweak)                                                        
-    public float SmashValue;           // 0 to 1           (tweak)
-    public float SuperMultiplicator;   // Mult             (tweak)
-	
-	public bool ToucheRemiseAuCentre = false;
-    public bool TransfoRemiseAuCentre = false;
 }
 
 [System.Serializable]

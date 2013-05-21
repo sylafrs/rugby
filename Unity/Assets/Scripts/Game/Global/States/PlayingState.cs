@@ -15,7 +15,7 @@ public class PlayingState : GameState
     public override void OnEnter()
     {        
 		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
-		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.Global.Game.timeToSleepAfterIntro));
+		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.GameStates.MainState.IntroState.timeToSleepAfterIntro));
     }
 
     // Action de jeu : touche

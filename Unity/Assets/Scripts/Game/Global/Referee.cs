@@ -25,7 +25,7 @@ public class Referee : myMonoBehaviour {
 		TimeEllapsedSinceIntro 	= 0;
 		IngameTime	 			= 0;
 		GameTimeDuration 		= game.settings.Global.Game.period_time;
-		IntroDelayTime			= game.settings.Global.Game.timeToSleepAfterIntro;
+		IntroDelayTime			= game.settings.GameStates.MainState.IntroState.timeToSleepAfterIntro;
 		PauseIngameTime();
 	}
 	
@@ -376,7 +376,7 @@ public class Referee : myMonoBehaviour {
 			}
 			IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints,t.opponent);
 
-            if (game.settings.Global.Game.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
                
                 //game.Ball.setPosition(Vector3.zero);
@@ -480,7 +480,7 @@ public class Referee : myMonoBehaviour {
         if (LastTackle != -1)
         {
             // TODO cte : 2 -> temps pour checker
-            if (Time.time - LastTackle > game.settings.Global.Game.timeToGetOutTackleAreaBeforeScrum)
+            if (Time.time - LastTackle > game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.timeToGetOutTackleAreaBeforeScrum)
             {
                 LastTackle = -1;
                 int right = 0, left = 0;
@@ -493,8 +493,8 @@ public class Referee : myMonoBehaviour {
                 }
 
                 // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-                if (right >= game.settings.Global.Game.minPlayersEachTeamToTriggerScrum && 
-                    left >= game.settings.Global.Game.minPlayersEachTeamToTriggerScrum)
+                if (right >= game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.minPlayersEachTeamToTriggerScrum && 
+                    left >= game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.minPlayersEachTeamToTriggerScrum)
                 {
                     game.OnScrum();
                     //goScrum = true;

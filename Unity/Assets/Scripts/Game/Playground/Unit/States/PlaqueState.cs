@@ -42,7 +42,7 @@ class PlaqueState : UnitState
     public override void OnUpdate()
     {
         t += UnityEngine.Time.deltaTime;
-        if (t > unit.game.settings.Global.Game.timePlaque)
+        if (t > unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime)
         {
             sm.state_change_me(this, new MainUnitState(sm, unit));
         }

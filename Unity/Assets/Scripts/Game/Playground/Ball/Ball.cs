@@ -34,7 +34,6 @@ public class Ball : TriggeringTriggered {
     public bool onGround { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
-	public float angleDropKick = 45f;
 	public float angleDropUpAndUnder = 70f;
 	public float randomLimitAngle = 5f;
 	public float accelerationDrop = -0.75f;

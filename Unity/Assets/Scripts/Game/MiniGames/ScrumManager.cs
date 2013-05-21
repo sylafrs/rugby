@@ -42,7 +42,7 @@ public class ScrumManager : myMonoBehaviour {
         }
 
         this.currentPosition = 0;                                  		   // Current score.
-        this.TimeRemaining =  Game.settings.Global.Game.MaximumDuration;   // Decreased by time after if chrono launched.
+        this.TimeRemaining =  Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDuration;   // Decreased by time after if chrono launched.
         this.ChronoLaunched = false;                             		   // Launched at first smash.
         this.CurrentWinner = 0;                                   		   // Changed at first smash.
         this.SuperLoading = 0;                                    		   // Super Loading
@@ -75,7 +75,7 @@ public class ScrumManager : myMonoBehaviour {
     {
         if (this.ChronoLaunched)
         {
-            float feedsuper = Game.settings.Global.Game.FeedSuperPerSecond * Time.deltaTime;
+            float feedsuper = Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSecond * Time.deltaTime;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + feedsuper);
 
             this.TimeRemaining -= Time.deltaTime;
@@ -92,15 +92,15 @@ public class ScrumManager : myMonoBehaviour {
         if (Game.southTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.rightSmashButton.xbox) || 
 			Input.GetKeyDown(Game.settings.Inputs.rightSmashButton.keyboard(Game.southTeam)))
         {
-            smash += Game.settings.Global.Game.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.Global.Game.FeedSuperPerSmash);
+            smash += Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSmash);
         }
 
         if (Game.northTeam.Player.XboxController.GetButtonDown( Game.settings.Inputs.leftSmashButton.xbox) ||
 			Input.GetKeyDown(Game.settings.Inputs.leftSmashButton.keyboard(Game.northTeam)))
         {
-            smash -= Game.settings.Global.Game.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.Global.Game.FeedSuperPerSmash);
+            smash -= Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSmash);
         }
 
         if (this.SuperLoading == 1)
@@ -125,7 +125,8 @@ public class ScrumManager : myMonoBehaviour {
             if (used)
             {
                 this.SuperLoading = 0;
-                smash += super * Game.settings.Global.Game.SuperMultiplicator * Game.settings.Global.Game.SmashValue;
+                smash += super * Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SuperMultiplicator * 
+					Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
             }
         }
 
@@ -141,7 +142,7 @@ public class ScrumManager : myMonoBehaviour {
             currentPosition = -1;
 
         Vector3 pos = InitialPosition;
-        pos.z += currentPosition * Game.settings.Global.Game.MaximumDistance;
+        pos.z += currentPosition * Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDistance;
 
         ScrumBloc.transform.position = pos;
     }

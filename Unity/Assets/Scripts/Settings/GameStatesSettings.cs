@@ -17,7 +17,7 @@ public class MainStateSettings
 [System.Serializable]
 public class IntroStateSettings
 {
-		
+	public float timeToSleepAfterIntro    = 3; // Seconds (precision : miliseconds)
 }
 
 [System.Serializable]
@@ -85,7 +85,7 @@ public class BallFlyingStateSettings
 [System.Serializable]
 public class BallDropStateSettings
 {
-		
+	public float angleDropKick = 45f;
 }
 
 [System.Serializable]
@@ -103,13 +103,13 @@ public class GroundBallStateSettings
 [System.Serializable]
 public class PassingStateSettings
 {
-		
+	public float maxTimeHoldingPassButton = 3; // Seconds
 }
 
 [System.Serializable]
 public class TacklingStateSettings
 {
-		
+	public float tackledTime = 3;	
 }
 
 [System.Serializable]
@@ -130,6 +130,7 @@ public class GameActionStateSettings
 [System.Serializable]
 public class ConvertingStateSettings
 {
+	public bool TransfoRemiseAuCentre = false;
 	public AimingConversionStateSettings 	AimingConversion;
 	public ConversionFlyStateSettings		ConversionFly;
 }
@@ -149,11 +150,18 @@ public class ConversionFlyStateSettings
 [System.Serializable]
 public class ScrumingStateSettings
 {
-		
+	public float timeToGetOutTackleAreaBeforeScrum = 2;
+    public int	 minPlayersEachTeamToTriggerScrum = 3;
+	public float FeedSuperPerSmash;    // 0 to 1           (tweak)
+    public float FeedSuperPerSecond;   // 0 to 1           (tweak)
+    public float MaximumDistance;      // Unity            (tweak)
+    public float MaximumDuration;      // Seconds          (tweak)                                                        
+    public float SmashValue;           // 0 to 1           (tweak)
+    public float SuperMultiplicator;   // Mult             (tweak)
 }
 
 [System.Serializable]
 public class TouchingStateSettings
 {
-		
+	public bool ToucheRemiseAuCentre = false;
 }
