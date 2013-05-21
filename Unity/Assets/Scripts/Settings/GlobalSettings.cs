@@ -21,9 +21,9 @@ public class GameSettings
 public class TeamSettings
 {
 	//formation
-	public float Vheight = 1;
-    public float Vwidth = 1;
-    public float LineSpace = 1;
+	public float Vheight 	= 1;
+    public float Vwidth 	= 1;
+    public float LineSpace 	= 1;
 }
 
 [System.Serializable]
