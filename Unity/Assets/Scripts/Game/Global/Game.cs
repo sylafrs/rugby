@@ -47,8 +47,6 @@ public class Game : myMonoBehaviour {
             this.southTeam.OnOwnerChanged(); 
         }
     }
-
-	public bool tweakMode;
    	
     public Team northTeam { get { return refs.north; } }
     public Team southTeam { get { return refs.south; } }
