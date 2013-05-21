@@ -1,22 +1,25 @@
 using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
+#if UNITY_EDITOR
+	using UnityEditor;
+#endif
 
 /*
  *@author Maxens Dubois, Lafon Sylvain
  */
 [AddComponentMenu("Scripts/Game/UI Manager"), RequireComponent(typeof(Game))]
-public class UIManager : myMonoBehaviour {
+public class UIManager : myMonoBehaviour, Debugable {
 	
 	private Game _game;
 	private scrumController _scrumController;
-	private enum UIState{
+	public enum UIState{
 		NULL,
 		GameUI,
 		ScrumUI,
 		EndUI
 	}
-	private UIState currentState{get; set;}
+	public  UIState currentState{ get; set;}
 	private float blueProgress;
 	private float redProgress;
 	
@@ -101,5 +104,10 @@ public class UIManager : myMonoBehaviour {
 				break;
 			}
 		}
+	}
+	public void ForDebugWindow(){
+		#if UNITY_EDITOR
+		EditorGUILayout.LabelField("UI State : " + this.currentState.ToString());
+		#endif
 	}
 }
