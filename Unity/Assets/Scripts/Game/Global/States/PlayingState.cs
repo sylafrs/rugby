@@ -21,7 +21,7 @@ public class PlayingState : GameState
     // Action de jeu : touche
     public override bool OnTouch(Touche t)
     {
-        if (sm.state_has_son(this, typeof(ConversionFlyState)))
+        if (sm.state_has_son(this, typeof(GameActionState)))
         {
             return false;
         }

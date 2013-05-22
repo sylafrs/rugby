@@ -21,6 +21,18 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         return list.Count;
     }
 
+    public bool state_is_last(State current)
+    {
+        int index = list.IndexOf(current);
+        if (index == -1)
+        {
+            Debug.LogError("state_is_last(" + current + ") : " + current + " introuvable !");
+            return false;
+        }
+        
+        return (index == 0);
+    }
+
     public bool state_has_son(State current, System.Type t)
     {
         int index = list.IndexOf(current);

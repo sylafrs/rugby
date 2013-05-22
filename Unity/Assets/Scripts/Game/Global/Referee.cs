@@ -150,9 +150,6 @@ public class Referee : myMonoBehaviour {
 		Team interceptTeam = game.Ball.Team;
 		Team touchTeam = interceptTeam.opponent;
 	
-		//launch the event
-        //game.OnTouch(t);
-
 		// Règlage du mini-jeu
         TouchManager tm = this.game.refs.managers.touch;
 

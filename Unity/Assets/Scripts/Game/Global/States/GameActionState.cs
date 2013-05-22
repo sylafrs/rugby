@@ -13,13 +13,12 @@ public class GameActionState : GameState {
 
     public override bool OnTouch(Touche t)
     {
-        if (sm.state_has_son(this, typeof(ConversionFlyState)))
+        if (!sm.state_is_last(this))
         {
             return false;
         }
         else
-        {
-            game.Referee.OnTouch(t);
+        {            
             sm.state_change_son(this, new TouchState(sm, cam, game));
             return true;
         }        

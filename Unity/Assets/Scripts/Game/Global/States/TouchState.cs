@@ -17,8 +17,7 @@ public class TouchState : GameState
 		Transform cameraPlaceHolder = GameObject.Find("TouchPlacement").transform.FindChild("CameraPlaceHolder");
 
         cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
-            (/* OnFinish */) => {
-                //please, kill after usage x)
+            (/* OnFinish */) => {               
                 CameraFade.wannaDie();
             }, (/* OnFade */) => { 
 				cam.CancelNextFlip = true;
