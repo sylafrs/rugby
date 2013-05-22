@@ -17,7 +17,7 @@ public class InputSettings
 					/* misc */
 					reset, enableIA, skipIntro,
 					/* scrum */
-					rightSmashButton,rightSuperButton,leftSmashButton,leftSuperButton;
+					smashButton, superButton;
 	
 	/* touche */
 	public InputTouch[] touch;

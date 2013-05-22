@@ -155,6 +155,11 @@ public class Unit : TriggeringTriggered, Debugable
     {
         get
         {
+            if (!game)
+                return false;
+            if (!game.Ball)
+                return false;
+
             return !Dodge && cooldownDodge < 0 && this == game.Ball.Owner;
         }
     }
@@ -335,7 +340,7 @@ public class Unit : TriggeringTriggered, Debugable
                 break;
 
         }
-
+                
         if (this.CanDodge)
         {
             EditorGUILayout.LabelField("Can Dodge");

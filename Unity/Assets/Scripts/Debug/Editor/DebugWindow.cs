@@ -11,7 +11,7 @@ using System.Collections.Generic;
   */
 public class DebugWindow : EditorWindow {
 
-    const string root_gameobject = "GameDesign";
+    const string root_gameobject = "ROOT";
     const bool GO_INIT_OPEN = true;
     const bool D_INIT_OPEN = true;
 

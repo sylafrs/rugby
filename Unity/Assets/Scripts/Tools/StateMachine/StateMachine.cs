@@ -31,12 +31,12 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         }
         
         while (index >= 0)
-        {
-            index--;
+        {            
             if (list[index].GetType() == t)
             {
                 return true;
             }
+            index--;
         }
 
         return false;

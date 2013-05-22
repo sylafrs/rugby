@@ -4824,7 +4824,6 @@ MonoBehaviour:
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
-  angleDropKick: 70
   angleDropUpAndUnder: 85
   randomLimitAngle: 5
   accelerationDrop: -.899999976
@@ -6285,7 +6284,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Gam
+  DebugWindowFilter: 
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6581,6 +6580,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 434155317}
+  - 114: {fileID: 434155318}
   m_Layer: 0
   m_Name: GameArtAndDesign
   m_TagString: Untagged
@@ -6595,11 +6595,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434155316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .101911545, y: -4.49281311, z: 4.39622498}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504338350}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1718826727}
+--- !u!114 &434155318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434155316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a09dad89d11389ed000e82b8d76c639, type: 3}
+  m_Name: 
+  timeOut: .100000001
+  detachChildren: 0
 --- !u!1 &434231452
 GameObject:
   m_ObjectHideFlags: 0
@@ -6839,7 +6851,7 @@ Transform:
   - {fileID: 1281560200}
   - {fileID: 1281031929}
   - {fileID: 919816156}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1718826727}
 --- !u!114 &448441829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6858,22 +6870,6 @@ MonoBehaviour:
         points_essai: 5
         points_transfo: 3
         period_time: 120
-        timePlaque: 3
-        Vheight: 10
-        Vwidth: 5
-        LineSpace: 1
-        maxTimeHoldingPassButton: 3
-        timeToSleepAfterIntro: 3
-        timeToGetOutTackleAreaBeforeScrum: 2
-        minPlayersEachTeamToTriggerScrum: 3
-        FeedSuperPerSmash: 0
-        FeedSuperPerSecond: 0
-        MaximumDistance: 0
-        MaximumDuration: 0
-        SmashValue: 0
-        SuperMultiplicator: 0
-        ToucheRemiseAuCentre: 0
-        TransfoRemiseAuCentre: 0
       Super:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
@@ -6900,89 +6896,103 @@ MonoBehaviour:
         tackleLooseSuperPoints: 5
         scrumWinSuperPoints: 30
         scrumLooseSuperPoints: 10
+      Team:
+        Vheight: 10
+        Vwidth: 5
+        LineSpace: 1
     GameStates:
       MainState:
+        IntroState:
+          timeToSleepAfterIntro: 3
         PlayingState:
           MainGameState:
             RunningState:
               BallHandlingState: {}
               BallFreeState: {}
+            PassingState:
+              maxTimeHoldingPassButton: 3
+            TacklingState:
+              tackledTime: 3
           GameActionState:
-            ConvertingState: {}
+            ConvertingState:
+              TransfoRemiseAuCentre: 0
+            ScrumingState:
+              timeToGetOutTackleAreaBeforeScrum: 2
+              minPlayersEachTeamToTriggerScrum: 3
+              FeedSuperPerSmash: .0500000007
+              FeedSuperPerSecond: .200000003
+              test: 5
+              MaximumDistance: 11.5
+              SmashValue: .0500000007
+              SuperMultiplicator: 5
+            TouchingSgtate:
+              ToucheRemiseAuCentre: 0
     Inputs:
       shortPass:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 49
+        keyboardP2: 55
         xbox: 0
       longPass:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 50
+        keyboardP2: 56
         xbox: 1
       dropUpAndUnder:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 51
+        keyboardP2: 57
         xbox: 8
       dropKick:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 52
+        keyboardP2: 48
         xbox: 9
       tackle:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 49
+        keyboardP2: 55
         xbox: 0
       changePlayer:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 50
+        keyboardP2: 56
         xbox: 1
       put:
-        keyboardP1: 97
-        keyboardP2: 0
+        keyboardP1: 49
+        keyboardP2: 55
         xbox: 0
       superOff:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 119
+        keyboardP2: 99
         xbox: 3
       conversionTouch:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 49
+        keyboardP2: 55
         xbox: 0
       reset:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 112
+        keyboardP2: 112
         xbox: 2
       enableIA:
-        keyboardP1: 0
-        keyboardP2: 0
+        keyboardP1: 111
+        keyboardP2: 111
         xbox: 7
       skipIntro:
-        keyboardP1: 97
-        keyboardP2: 0
+        keyboardP1: 55
+        keyboardP2: 49
         xbox: 0
-      rightSmashButton:
-        keyboardP1: 0
-        keyboardP2: 0
+      smashButton:
+        keyboardP1: 49
+        keyboardP2: 55
         xbox: 0
-      rightSuperButton:
-        keyboardP1: 0
-        keyboardP2: 0
-        xbox: 3
-      leftSmashButton:
-        keyboardP1: 0
-        keyboardP2: 0
-        xbox: 0
-      leftSuperButton:
-        keyboardP1: 0
-        keyboardP2: 0
+      superButton:
+        keyboardP1: 119
+        keyboardP2: 99
         xbox: 3
       touch:
-      - keyboardP1: 0
-        keyboardP2: 0
+      - keyboardP1: 97
+        keyboardP2: 117
         xbox: 0
-      - keyboardP1: 0
-        keyboardP2: 0
+      - keyboardP1: 122
+        keyboardP2: 105
         xbox: 1
-      - keyboardP1: 0
-        keyboardP2: 0
+      - keyboardP1: 101
+        keyboardP2: 111
         xbox: 8
       move:
         keyboardP1:
@@ -6991,22 +7001,22 @@ MonoBehaviour:
           right: 100
           left: 113
         keyboardP2:
-          up: 0
-          down: 0
-          right: 0
-          left: 0
+          up: 105
+          down: 107
+          right: 108
+          left: 106
         xbox: 2
       dodge:
         keyboardP1:
-          up: 0
-          down: 0
-          right: 0
-          left: 0
+          up: 103
+          down: 98
+          right: 110
+          left: 118
         keyboardP2:
-          up: 0
-          down: 0
-          right: 0
-          left: 0
+          up: 107
+          down: 46
+          right: 47
+          left: 44
         xbox: 0
     UI:
       GameUI:
@@ -7283,18 +7293,19 @@ MonoBehaviour:
           serializedVersion: 2
           x: 0
           y: 0
-          width: 0
-          height: 0
-        ScrumSpecialButton: {fileID: 0}
+          width: 22.0699997
+          height: 54.1500015
+        ScrumSpecialButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6,
+          type: 3}
         ScrumBarRect:
           serializedVersion: 2
           x: 0
           y: 0
-          width: 0
-          height: 0
-        ScrumRightBar: {fileID: 0}
-        ScrumLeftBar: {fileID: 0}
-        ScrumEmptyBar: {fileID: 0}
+          width: 44.75
+          height: 10.3500004
+        ScrumRightBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+        ScrumLeftBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+        ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
   refs: {fileID: 3678738}
 --- !u!114 &448441830
 MonoBehaviour:
@@ -11178,7 +11189,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 18
+  m_Radius: 103.32
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &750735825
 GameObject:
@@ -21116,7 +21127,7 @@ Transform:
   - {fileID: 1017857853}
   - {fileID: 528087310}
   - {fileID: 219502519}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1718826727}
 --- !u!1 &1420524553
 GameObject:
   m_ObjectHideFlags: 0
@@ -22112,7 +22123,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1504338349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.101911545, y: 4.49281311, z: -4.39622498}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 156800327}
@@ -24717,6 +24728,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1703949692}
   m_GameObject: {fileID: 1718551451}
   m_Mesh: {fileID: 4300002, guid: 21bbb95a078fe774ebce29889ef456fb, type: 3}
+--- !u!1 &1718826726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1718826727}
+  m_Layer: 0
+  m_Name: ROOT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1718826727
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718826726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2027178520}
+  - {fileID: 434155317}
+  - {fileID: 448441828}
+  - {fileID: 1419876916}
+  m_Father: {fileID: 0}
 --- !u!1 &1721776699
 GameObject:
   m_ObjectHideFlags: 0
@@ -28885,6 +28926,15 @@ MonoBehaviour:
   currentPosition: 0
   SuperLoading: 0
   FeedSuperPerSmash: 0
+  settings:
+    timeToGetOutTackleAreaBeforeScrum: 2
+    minPlayersEachTeamToTriggerScrum: 3
+    FeedSuperPerSmash: 0
+    FeedSuperPerSecond: 0
+    test: 0
+    MaximumDistance: 0
+    SmashValue: 0
+    SuperMultiplicator: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29246,7 +29296,7 @@ Transform:
   - {fileID: 642022007}
   - {fileID: 1774892247}
   - {fileID: 1239785092}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1718826727}
 --- !u!1 &2031191950
 GameObject:
   m_ObjectHideFlags: 0

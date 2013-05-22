@@ -233,6 +233,8 @@ public class Referee : myMonoBehaviour {
             this.game.southTeam.ShowPlayers(true);
             this.game.northTeam.ShowPlayers(true);
             bloc.enabled = false;
+
+            game.OnResumeSignal();
         };
 
         sc.enabled = true;

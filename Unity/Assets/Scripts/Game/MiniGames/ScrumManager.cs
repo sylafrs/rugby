@@ -2,11 +2,15 @@ using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /*
  *@author Maxens Dubois 
  */
 [AddComponentMenu("Scripts/MiniGames/Scrum")]
-public class ScrumManager : myMonoBehaviour {
+public class ScrumManager : myMonoBehaviour, Debugable {
 	
     public Transform ScrumBloc                      { private get; set; }   // Object to move   (parameter)
     public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
@@ -14,24 +18,31 @@ public class ScrumManager : myMonoBehaviour {
 
     public  bool ChronoLaunched { get; private set; }                       // First smash      (variable, readonly)
     public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
-    public float currentPosition;                                          // -1 to 1          (variable)
+    public  float currentPosition;                                           // -1 to 1          (variable)
     private int CurrentWinner;                                              // Winner           (variable)
-    public float SuperLoading;                                             // 0 to 1           (variable)
-    public float FeedSuperPerSmash;
+    public  float SuperLoading;                                              // 0 to 1           (variable)
+    public  float FeedSuperPerSmash;
+    public  ScrumingStateSettings settings;
 
-    private Game Game;                                                      // Game             (reference)    
+    private Game game;                                                      // Game             (reference)    
 
-    void Start()
-    {
-        this.Game = Game.instance;
-        if (this.Game == null)
-        {
-            throw new UnityException("[scrumController] : I need a game to work !");
-        }
-    }
-    
     void OnEnable()
     {
+        if (this.game == null || this.settings == null)
+        {
+            this.game = Game.instance;
+
+            this.settings = game.settings.GameStates
+                                          .MainState
+                                          .PlayingState
+                                          .GameActionState
+                                          .ScrumingState;
+            if (this.game == null)
+            {
+                throw new UnityException("[scrumController] : I need a game to work !");
+            }
+        }
+
         if (this.ScrumBloc == null)
         {
             GameObject o = GameObject.Find("SCRUM");
@@ -42,16 +53,17 @@ public class ScrumManager : myMonoBehaviour {
         }
 
         this.currentPosition = 0;                                  		   // Current score.
-        this.TimeRemaining =  Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDuration;   // Decreased by time after if chrono launched.
+        this.TimeRemaining = this.settings.MaximumDuration;                // Decreased by time after if chrono launched.
         this.ChronoLaunched = false;                             		   // Launched at first smash.
         this.CurrentWinner = 0;                                   		   // Changed at first smash.
-        this.SuperLoading = 0;                                    		   // Super Loading
+        this.SuperLoading = 0;                                    		   // Super Loading    
     }
 
     void Update()
     {
         if (this.UpdateChrono())
         {
+            MyDebug.Log("[scrumController] : Chrono !");
             Finish();
         }
         else
@@ -65,6 +77,7 @@ public class ScrumManager : myMonoBehaviour {
 
                 if (currentPosition >= 1 || currentPosition <= -1)
                 {
+                    MyDebug.Log("[scrumController] : Position !");
                     this.Finish();
                 }
             }
@@ -75,7 +88,7 @@ public class ScrumManager : myMonoBehaviour {
     {
         if (this.ChronoLaunched)
         {
-            float feedsuper = Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSecond * Time.deltaTime;
+            float feedsuper = this.settings.FeedSuperPerSecond * Time.deltaTime;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + feedsuper);
 
             this.TimeRemaining -= Time.deltaTime;
@@ -89,18 +102,18 @@ public class ScrumManager : myMonoBehaviour {
     {
         float smash = 0;
 
-        if (Game.southTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.rightSmashButton.xbox) || 
-			Input.GetKeyDown(Game.settings.Inputs.rightSmashButton.keyboard(Game.southTeam)))
+        if (game.southTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.smashButton.xbox) || 
+			Input.GetKeyDown(game.settings.Inputs.smashButton.keyboard(game.southTeam)))
         {
-            smash += Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSmash);
+            smash += this.settings.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
         }
 
-        if (Game.northTeam.Player.XboxController.GetButtonDown( Game.settings.Inputs.leftSmashButton.xbox) ||
-			Input.GetKeyDown(Game.settings.Inputs.leftSmashButton.keyboard(Game.northTeam)))
+        if (game.northTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.smashButton.xbox) ||
+			Input.GetKeyDown(game.settings.Inputs.smashButton.keyboard(game.northTeam)))
         {
-            smash -= Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.FeedSuperPerSmash);
+            smash -= this.settings.SmashValue;
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
         }
 
         if (this.SuperLoading == 1)
@@ -108,15 +121,15 @@ public class ScrumManager : myMonoBehaviour {
             int super = 0;
             bool used = false;
 	
-            if (Game.southTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.rightSuperButton.xbox) 
-				|| Input.GetKeyDown(Game.settings.Inputs.rightSuperButton.keyboard(Game.southTeam)))
+            if (game.southTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.superButton.xbox) 
+				|| Input.GetKeyDown(game.settings.Inputs.superButton.keyboard(game.southTeam)))
             {
                 super += 1;
                 used = true;
             }
 
-            if (Game.northTeam.Player.XboxController.GetButtonDown(Game.settings.Inputs.leftSuperButton.xbox) 
-				|| Input.GetKeyDown(Game.settings.Inputs.leftSuperButton.keyboard(Game.northTeam)))
+            if (game.northTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.superButton.xbox) 
+				|| Input.GetKeyDown(game.settings.Inputs.superButton.keyboard(game.northTeam)))
             {
                 super -= 1;
                 used = true;
@@ -125,8 +138,7 @@ public class ScrumManager : myMonoBehaviour {
             if (used)
             {
                 this.SuperLoading = 0;
-                smash += super * Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SuperMultiplicator * 
-					Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.SmashValue;
+                smash += super * this.settings.SuperMultiplicator * this.settings.SmashValue;
             }
         }
 
@@ -142,7 +154,7 @@ public class ScrumManager : myMonoBehaviour {
             currentPosition = -1;
 
         Vector3 pos = InitialPosition;
-        pos.z += currentPosition * Game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDistance;
+        pos.z += currentPosition * this.settings.MaximumDistance;
 
         ScrumBloc.transform.position = pos;
     }
@@ -164,12 +176,12 @@ public class ScrumManager : myMonoBehaviour {
     {   
         if (CurrentWinner > 0)
         {
-            return Game.southTeam;
+            return game.southTeam;
         }
 
         if (CurrentWinner < 0)
         {
-            return Game.northTeam;
+            return game.northTeam;
         }
 
         throw new UnityException("[scrumController] : Must NEVER happen EVER"); 
@@ -178,6 +190,7 @@ public class ScrumManager : myMonoBehaviour {
     void Finish()
     {
         Team winner = this.GetWinner();
+        MyDebug.Log("[scrumController] : Winner is : " + winner);        
 
         if (callback != null)
         {
@@ -185,5 +198,12 @@ public class ScrumManager : myMonoBehaviour {
         }
 
         this.enabled = false;
+    }
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        EditorGUILayout.LabelField("Chrono", this.ChronoLaunched ? (((int)this.TimeRemaining).ToString() + " seconds") : "Waiting");
+#endif
     }
 }
