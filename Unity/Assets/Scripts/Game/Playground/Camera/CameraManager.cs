@@ -58,7 +58,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private	bool	isflipping;
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
-	private bool    isflipped;
+	//private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
 	public  Team	flipedForTeam;
@@ -77,7 +77,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		resetActualDelay();
 		resetRotationDelay();
 		isflipping = false;
-		isflipped= false;
+		//isflipped= false;
 		CancelNextFlip = false;
 		ActionOnFlipFinish = null;
 		flipedForTeam = game.southTeam;
