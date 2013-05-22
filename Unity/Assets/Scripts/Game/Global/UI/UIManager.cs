@@ -38,7 +38,7 @@ public class UIManager : myMonoBehaviour, Debugable {
 		
 		gameUI 	= new GameUI(game);
 		scrumUI = new ScrumUI(game);
-		endUI 	= new EndUI(game);
+		//endUI 	= new EndUI(game);
 		touchUi = new TouchUI(game);
 		
 		currentState = UIState.NULL;

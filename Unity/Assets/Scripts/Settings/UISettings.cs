@@ -75,5 +75,7 @@ public class ScrumUISettings
 [System.Serializable]
 public class EndUISettings
 {
-	
+    public Rect ResultRect, ResultButtonRect, ResultScoreRect;
+    public GUIStyle ResultStyle, ResultScoreStyle;
+    public int btnFontSize;
 }
