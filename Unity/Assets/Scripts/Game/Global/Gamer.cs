@@ -164,9 +164,22 @@ public class Gamer
             {
 				if (side > 0)
 				{
-					if (Controlled.Team.GetRight(Controlled).Count > 0)
+					List<Unit> lRight = Controlled.Team.GetRight(Controlled);
+					if (lRight.Count > 0)
 					{
-						unitTo = Controlled.Team.GetRight(Controlled)[0];
+						foreach (Unit u in lRight)
+						{
+							if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+							{
+								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
+								{
+									unitTo = u;
+									break;
+								}
+								else
+									unitTo = null;
+							}
+						}
 					}
 					else
 					{
@@ -177,9 +190,22 @@ public class Gamer
 				}
 				else if (side < 0)
 				{
-					if (Controlled.Team.GetLeft(Controlled).Count > 0)
+					List<Unit> lLeft = Controlled.Team.GetLeft(Controlled);
+					if (lLeft.Count > 0)
 					{
-						unitTo = Controlled.Team.GetLeft(Controlled)[0];
+						foreach (Unit u in lLeft)
+						{
+							if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+							{
+								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
+								{
+									unitTo = u;
+									break;
+								}
+								else
+									unitTo = null;
+							}
+						}
 					}
 					else
 					{

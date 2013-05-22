@@ -170,8 +170,10 @@ public class Unit : TriggeringTriggered, Debugable
 	void UpdateOffensivePlacement()
 	{
 		if (this != this.Team.Player.Controlled)
-			this.Order = Order.OrderDefensiveSide(this.Team.Player.Controlled, new Vector3(this.game.settings.Global.Team.distanceMinBetweenDefensePlayer / 2, 0, this.game.settings.Global.Team.distanceMinBetweenDefensePlayer / 2), 
+			this.Order = Order.OrderDefensiveSide(this.Team.Player.Controlled, new Vector3(this.game.settings.Global.Team.distanceMinBetweenDefensePlayer, 0, this.game.settings.Global.Team.distanceMinBetweenDefensePlayer / 2),
 				this.Team.south, this.Team.Player.Controlled.PositionInMap());
+		else if (this.Order.type == global::Order.TYPE.DEFENSIVE_SIDE)
+			this.Order = Order.OrderNothing();
 	}
 	
 	void UpdateDefensePlacement()
@@ -264,10 +266,10 @@ public class Unit : TriggeringTriggered, Debugable
 			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
 			{
-				pos.z = pos.z - (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
+				pos.z -= (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
 			}
 			else
-				pos.z = pos.z + (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
+				pos.z += (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
 		}
 		else if (distZ < this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer)
 		{

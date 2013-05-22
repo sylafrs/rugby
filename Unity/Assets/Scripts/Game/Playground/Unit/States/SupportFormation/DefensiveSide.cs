@@ -42,6 +42,8 @@ public class DefensiveSide : UnitState
 				PositionExtraRightSide();
 				break;
 			}
+			case Order.TYPE_POSITION.MIDDLE_LEFT:
+			case Order.TYPE_POSITION.MIDDLE_RIGHT:
 			case Order.TYPE_POSITION.MIDDLE:
 			{
 				PositionMiddleSide();
