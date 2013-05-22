@@ -261,7 +261,7 @@ public class Unit : TriggeringTriggered, Debugable
 		//Contrainte sur Z
 		if (distZ > this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer)
 		{
-			Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
+			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
 			{
 				pos.z = pos.z - (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
@@ -271,7 +271,7 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 		else if (distZ < this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer)
 		{
-			Debug.Log("too near : " + this);
+			//Debug.Log("too near : " + this);
 			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
 				pos.z -= (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
 			else

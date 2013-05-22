@@ -2010,7 +2010,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ea9fc8cbad6bc499ab1a04d4928a5f, type: 3}
   m_Name: 
-  game: {fileID: 0}
   raySquare: 2
   YToDecide: 7
   winnerDrop: 0
@@ -2315,7 +2314,6 @@ MonoBehaviour:
   flipDelay: .100000001
   flipedForTeam: {fileID: 0}
   CancelNextFlip: 0
-  sm: {fileID: 0}
 --- !u!1 &90340708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,14 +3187,17 @@ MonoBehaviour:
   Color: {r: .0909090042, g: 0, b: 1, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
   Name: Bleu
-  right: 0
+  south: 0
   useColors: 0
   But: {fileID: 1635297309}
   Zone: {fileID: 1508186582}
   nbPoints: 0
-  StartPlacement: {fileID: 0}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 1
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -4169,7 +4170,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 245963774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.66855621, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713467013}
@@ -4822,10 +4823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b755a7053b8cd4389cfb08fcdc4ff9, type: 3}
   m_Name: 
   Game: {fileID: 448441829}
+  Model: {fileID: 1833080987}
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
-  angleDropKick: 45
   angleDropUpAndUnder: 85
   randomLimitAngle: 5
   accelerationDrop: -.899999976
@@ -4833,6 +4834,8 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  PreviousOwner: {fileID: 0}
+  scrumFieldUnits: []
 --- !u!136 &308884796
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5171,7 +5174,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330622610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.38230801, y: 0, z: -3.08292442e-07}
+  m_LocalPosition: {x: 10, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 885581429}
@@ -6861,25 +6864,463 @@ MonoBehaviour:
   m_GameObject: {fileID: 448441827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a198a5e2421063f40aac1441ad713d24, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
-  xboxInputs: {fileID: 0}
-  settings: {fileID: 0}
-  cameraManager: {fileID: 0}
-  introManager: {fileID: 0}
-  limiteTerrainNordEst: {fileID: 0}
-  limiteTerrainSudOuest: {fileID: 0}
+  settings:
+    Global:
+      Game:
+        points_drop: 5
+        points_essai: 5
+        points_transfo: 3
+        period_time: 120
+      Super:
+        superGaugeOffensiveLimitBreak: 200
+        superGaugeDefensiveLimitBreak: 200
+        superGaugeMaximum: 200
+        OffensiveSuperDurationTime: 10
+        DefensiveSuperDurationTime: 10
+        superSpeedScale: 1.5
+        superTackleBoxScale: 1.5
+        superUnblockable: 1
+        passInterceptSuperPoints: 20
+        passWinSuperPoints: 10
+        passLooseSuperPoints: 5
+        dropWinSuperPoints: 20
+        dropLooseSuperPoints: 10
+        tryWinSuperPoints: 30
+        tryLooseSuperPoints: 20
+        conversionWinSuperPoints: 10
+        conversionLooseSuperPoints: 5
+        conversionOpponentSuperPoints: 10
+        touchWinSuperPoints: 20
+        touchInterceptSuperPoints: 20
+        touchLooseSuperPoints: 5
+        tackleWinSuperPoints: 20
+        tackleLooseSuperPoints: 5
+        scrumWinSuperPoints: 30
+        scrumLooseSuperPoints: 10
+      Team:
+        Vheight: 10
+        Vwidth: 5
+        LineSpace: 5
+        distanceMinBetweenDefensePlayer: 10
+        distanceMaxBetweenDefensePlayer: 15
+        distanceMinBetweenOffensiveAndDefensePlayer: 15
+        distanceMaxBetweenOffensiveAndDefensePlayer: 25
+        nbOffensivePlayer: 2
+    GameStates:
+      MainState:
+        IntroState:
+          timeToSleepAfterIntro: 3
+        PlayingState:
+          MainGameState:
+            RunningState:
+              BallHandlingState: {}
+              BallFreeState:
+                BallFlyingState:
+                  angleDropKick: 45
+            PassingState:
+              maxTimeHoldingPassButton: 3
+            TacklingState:
+              tackledTime: 3
+          GameActionState:
+            ConvertingState:
+              TransfoRemiseAuCentre: 0
+            ScrumingState:
+              timeToGetOutTackleAreaBeforeScrum: 2
+              minPlayersEachTeamToTriggerScrum: 3
+              FeedSuperPerSmash: 0
+              FeedSuperPerSecond: 0
+              test: 0
+              MaximumDistance: 0
+              SmashValue: 0
+              SuperMultiplicator: 0
+            TouchingSgtate:
+              ToucheRemiseAuCentre: 0
+    Inputs:
+      shortPass:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      longPass:
+        keyboardP1: 50
+        keyboardP2: 56
+        xbox: 1
+      dropUpAndUnder:
+        keyboardP1: 51
+        keyboardP2: 57
+        xbox: 9
+      dropKick:
+        keyboardP1: 52
+        keyboardP2: 48
+        xbox: 8
+      tackle:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      changePlayer:
+        keyboardP1: 50
+        keyboardP2: 56
+        xbox: 1
+      put:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      superOff:
+        keyboardP1: 32
+        keyboardP2: 13
+        xbox: 3
+      conversionTouch:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      reset:
+        keyboardP1: 8
+        keyboardP2: 8
+        xbox: 2
+      enableIA:
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 7
+      skipIntro:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      smashButton:
+        keyboardP1: 49
+        keyboardP2: 55
+        xbox: 0
+      superButton:
+        keyboardP1: 32
+        keyboardP2: 13
+        xbox: 3
+      touch:
+      - keyboardP1: 97
+        keyboardP2: 117
+        xbox: 0
+      - keyboardP1: 122
+        keyboardP2: 105
+        xbox: 1
+      - keyboardP1: 101
+        keyboardP2: 111
+        xbox: 8
+      move:
+        keyboardP1:
+          up: 122
+          down: 115
+          right: 100
+          left: 113
+        keyboardP2:
+          up: 105
+          down: 107
+          right: 108
+          left: 106
+        xbox: 2
+      dodge:
+        keyboardP1:
+          up: 102
+          down: 118
+          right: 98
+          left: 99
+        keyboardP2:
+          up: 0
+          down: 0
+          right: 0
+          left: 0
+        xbox: 1
+    UI:
+      GameUI:
+        emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+        blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+        redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+        superOkTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        gameTimeTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        gameScoreTextStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        timeBeforeScrumStyle:
+          m_Name: 
+          m_Normal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Hover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Active:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Focused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnNormal:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnHover:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnActive:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_OnFocused:
+            m_Background: {fileID: 0}
+            m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+          m_Border:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Margin:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Padding:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Overflow:
+            m_Left: 0
+            m_Right: 0
+            m_Top: 0
+            m_Bottom: 0
+          m_Font: {fileID: 0}
+          m_FontSize: 0
+          m_FontStyle: 0
+          m_Alignment: 0
+          m_WordWrap: 0
+          m_RichText: 1
+          m_TextClipping: 0
+          m_ImagePosition: 0
+          m_ContentOffset: {x: 0, y: 0}
+          m_FixedWidth: 0
+          m_FixedHeight: 0
+          m_StretchWidth: 1
+          m_StretchHeight: 0
+        ScrumBarMaxDelta: 1.5
+        timeBoxWidthPercentage: 10
+        timeBoxHeightPercentage: 5
+        timeBoxXPercentage: 50
+        timeBoxYPercentage: 10
+        blueGaugeBoxWidthPercentage: 25
+        blueGaugeBoxHeightPercentage: 10
+        blueGaugeBoxXPercentage: 22.5
+        blueGaugeBoxYPercentage: 10
+        redGaugeBoxWidthPercentage: 25
+        redGaugeBoxHeightPercentage: 10
+        redGaugeBoxXPercentage: 77.5
+        redGaugeBoxYPercentage: 10
+        scoreBoxWidthPercentage: 20
+        scoreBoxHeightPercentage: 15
+        scoreBoxXPercentage: 50
+        scoreBoxYPercentage: 10
+        scrumBarBoxWidthPercentage: 50
+        scrumBarBoxHeightPercentage: 16
+        scrumBarBoxXPercentage: 50
+        scrumBarBoxYPercentage: 50
+        scrumSpecialBoxWidthPercentage: 50
+        scrumSpecialBoxHeightPercentage: 16
+        scrumSpecialBoxXPercentage: 50
+        scrumSpecialBoxYPercentage: 66
+        scrumTimeBoxWidthPercentage: 50
+        scrumTimeBoxHeightPercentage: 16
+        scrumTimeBoxXPercentage: 50
+        scrumTimeBoxYPercentage: 34
+      ScrumUI:
+        ScrumSpecialRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 15.6700001
+          height: 3.92000008
+        ScrumSpecialButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6,
+          type: 3}
+        ScrumBarRect:
+          serializedVersion: 2
+          x: 10
+          y: 90
+          width: 80
+          height: 5
+        ScrumRightBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+        ScrumLeftBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+        ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+  refs: {fileID: 3678738}
   largeurTerrain: 0
   section: 0
   xNE: 0
   xSO: 0
-  right: {fileID: 0}
-  left: {fileID: 0}
-  Ball: {fileID: 0}
-  cpu: 0
-  disableIAKey: 0
-  tweakMode: 0
-  arbiter: {fileID: 0}
 --- !u!114 &448441830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8170,7 +8611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 553262598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.78285503, y: 0, z: 3.60698294e-07}
+  m_LocalPosition: {x: -10, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 885581429}
@@ -9042,14 +9483,17 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 0}
   PlaqueColor: {r: 0, g: 0, b: 0, a: 0}
   Name: Rouge
-  right: 0
+  south: 0
   useColors: 0
   But: {fileID: 1522212141}
   Zone: {fileID: 1310373314}
   nbPoints: 0
-  StartPlacement: {fileID: 0}
   speedFactor: 1
   tackleFactor: 1
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 1
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -10439,7 +10883,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ea9fc8cbad6bc499ab1a04d4928a5f, type: 3}
   m_Name: 
-  game: {fileID: 0}
   raySquare: 4
   YToDecide: 1
   winnerDrop: 0
@@ -11889,7 +12332,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 863343909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1703186, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713467013}
@@ -12090,7 +12533,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885581428}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 1.02097226e-06, y: 0, z: 11.6785612}
+  m_LocalPosition: {x: 0, y: 0, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 330622611}
@@ -15019,7 +15462,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 969225375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.96892548, y: 0, z: 3.46974474e-07}
+  m_LocalPosition: {x: 10, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 885581429}
@@ -19612,7 +20055,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1361538814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.8179741, y: 0, z: -7.94857939e-08}
+  m_LocalPosition: {x: -10, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 885581429}
@@ -23856,7 +24299,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697279789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.05821991, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713467013}
@@ -23965,7 +24408,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1703712965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.8506927, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1713467013}
@@ -24120,7 +24563,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1713467012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.7822838}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1697279790}
@@ -28497,18 +28940,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  cam: {fileID: 0}
-  scoreTarget: 1000
-  playerUp: 15
-  cpuUp: .5
-  specialLuck: 20
-  playerSpecialUp: 80
-  frameStart: 30
-  rightGap: -27
-  leftGap: 10
-  IAoffset: -.0500000007
-  playerOffset: .5
-  timer: 10
+  currentPosition: 0
+  SuperLoading: 0
+  FeedSuperPerSmash: 0
+  settings:
+    timeToGetOutTackleAreaBeforeScrum: 2
+    minPlayersEachTeamToTriggerScrum: 3
+    FeedSuperPerSmash: 0
+    FeedSuperPerSecond: 0
+    test: 0
+    MaximumDistance: 0
+    SmashValue: 0
+    SuperMultiplicator: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28530,10 +28973,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
-  touche: []
-  interception: []
+  infiniteTime: 1
+  choixTouche: 0
+  choixInter: 0
+  n: 0
+  timeLeft: 0
   minTime: 3
-  hideGui: 1
 --- !u!114 &2004071856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28544,17 +28989,80 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
-  touch:
-    keyboard: 0
-    xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
-  maxPower: {x: 0, y: 0, z: 0}
+  minPower: 5
+  maxPower: 20
   maxAngle: 70
   infiniteTime: 1
   timeAngle: 3
   timePower: 3
   arrow: {fileID: 100002, guid: 1910a806ebf57b7458961a53719d7ddd, type: 2}
+  timeStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 2800000, guid: 7a8e4beba6b9948e6a6703d30acde416, type: 3}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  timeRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 4.65999985
+    height: 7.05000019
 --- !u!114 &2004071857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28565,12 +29073,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
   m_Name: 
-  ToucheRemiseAuCentre: 0
-  TransfoRemiseAuCentre: 0
-  TouchPlacement: {fileID: 0}
-  TransfoPlacement: {fileID: 0}
-  IngameTime: 0
-  UnitToGiveBallTo: {fileID: 0}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28581,9 +29083,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e50eb0204974454e8bf1c2d7bdaacca, type: 3}
   m_Name: 
-  touch:
-    keyboard: 0
-    xbox: 0
 --- !u!114 &2004071859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28596,9 +29095,6 @@ MonoBehaviour:
   m_Name: 
   tempsPlaquage: 1
   ralentiPlaquage: 1
-  touchPassOnTackle:
-    keyboard: 0
-    xbox: 0
 --- !u!1 &2005516407
 GameObject:
   m_ObjectHideFlags: 0
