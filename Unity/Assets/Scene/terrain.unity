@@ -6908,7 +6908,9 @@ MonoBehaviour:
           MainGameState:
             RunningState:
               BallHandlingState: {}
-              BallFreeState: {}
+              BallFreeState:
+                BallFlyingState:
+                  angleDropKick: 45
             PassingState:
               maxTimeHoldingPassButton: 3
             TacklingState:

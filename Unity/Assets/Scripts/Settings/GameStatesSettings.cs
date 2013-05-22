@@ -78,8 +78,8 @@ public class BallFreeStateSettings
 [System.Serializable]
 public class BallFlyingStateSettings
 {
-	public BallDropStateSettings 		BallDropState;
 	public float angleDropKick = 45f;
+	public BallDropStateSettings 		BallDropState;
 	public BallUpAndUnderStateSettings	BallUpAndUnderState;
 }
 

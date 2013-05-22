@@ -27,7 +27,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Zone Zone;
 
 	private bool _fixUnits = false;
-	public bool fixUnits {
+	public bool  fixUnits {
 		get {
 			return _fixUnits;
 		}
