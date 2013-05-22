@@ -153,6 +153,7 @@ public class TeamFormation : IAManager
 				{
 					min = dist;
 				}
+				
 			}
 		}
 		return min;

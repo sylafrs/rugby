@@ -48,6 +48,8 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public float unitSpeed;
 	public float handicapSpeed = 1;
 	public float unitTackleRange;
+	
+	public int nbOffensivePlayer;
 
     public Unit this[int index]
     {

@@ -94,4 +94,10 @@ public class GameSettings : myMonoBehaviour {
 
     public float maxTimeHoldingPassButton = 3; // Seconds
     public float timeToSleepAfterIntro = 3; // Seconds (precision : miliseconds)
+
+	public float distanceMinBetweenDefensePlayer = 10f;
+	public float distanceMaxBetweenDefensePlayer = 15f;
+	public float distanceMinBetweenOffensiveAndDefensePlayer = 15f;
+	public float distanceMaxBetweenOffensiveAndDefensePlayer = 25f;
+	public float nbOffensivePlayer;
 }

@@ -78,6 +78,13 @@ public class Game : myMonoBehaviour {
 
     public GameObject limiteTerrainNordEst;
     public GameObject limiteTerrainSudOuest;
+	
+	public float largeurTerrain;
+	public float section;
+	public float xNE;
+	public float xSO;
+	
+	public System.Random rand = new System.Random();
 
     public Team right;
     public Team left;
@@ -186,6 +193,11 @@ public class Game : myMonoBehaviour {
 
         state = State.INTRODUCTION;
         introManager.enabled = true;
+		
+		xNE = limiteTerrainNordEst.transform.position.x;
+		xSO = limiteTerrainSudOuest.transform.position.x;
+		largeurTerrain = Mathf.Abs(xNE - xSO);
+		section = largeurTerrain / 7f;
     }
        
     void Update()
@@ -303,4 +315,37 @@ public class Game : myMonoBehaviour {
     {
         SceneReloader.Go();
     }
+	
+	/*
+	 * Cette fonction me retourne le nombre de zone d'écart entre deux positions d'objets.
+	 * Si le retour est négatif, alors "other" est à gauche de "referent"
+	 * Si le retour est positif, alors "other" est à droite de "referent"
+	 **/
+	public int compareZoneInMap( Order.TYPE_POSITION referent, Order.TYPE_POSITION other )
+	{
+		return (int)referent - (int)other;
+	}
+	
+	public int compareZoneInMap(GameObject referent, GameObject other)
+	{
+		return (int)PositionInMap(referent) - (int)PositionInMap(other);
+	}
+	
+	public Order.TYPE_POSITION PositionInMap(GameObject obj)
+	{
+
+		if (obj.transform.position.x >= xSO && obj.transform.position.x < xSO + section)
+			return Order.TYPE_POSITION.EXTRA_LEFT;
+		else if (obj.transform.position.x >= xSO + section && obj.transform.position.x < xSO + 2*section)
+			return Order.TYPE_POSITION.LEFT;
+		else if (obj.transform.position.x <= xNE && obj.transform.position.x > xNE - section)
+			return Order.TYPE_POSITION.EXTRA_RIGHT;
+		else if (obj.transform.position.x <= xNE - section && obj.transform.position.x > xNE - 2*section)
+			return Order.TYPE_POSITION.RIGHT;
+		else if (obj.transform.position.x >= xSO + 2 * section && obj.transform.position.x < xSO + 3*section)
+			return Order.TYPE_POSITION.MIDDLE_LEFT;
+		else if (obj.transform.position.x <= xNE - 2 * section && obj.transform.position.x > xNE - 3*section)
+			return Order.TYPE_POSITION.MIDDLE_RIGHT;
+		return Order.TYPE_POSITION.MIDDLE;
+	}
 }

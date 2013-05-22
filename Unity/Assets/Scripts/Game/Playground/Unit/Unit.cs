@@ -55,9 +55,19 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	public NearUnit triggerTackle {get; set;}
 
-  	public bool canCatchTheBall = true;
+	public bool canCatchTheBall = true;
 	private float timeNoCatch = 0f;
-    	
+	
+	public enum TYPEOFPLAYER
+	{
+		DEFENSE,
+		OFFENSIVE,
+		NONE
+	};
+	
+	public TYPEOFPLAYER typeOfPlayer;
+	public bool ballZone = false;
+	
 	//maxens : c'est très bourrin xD
 	void Update() {
 		if(team == null)
@@ -80,6 +90,197 @@ public class Unit : TriggeringTriggered, Debugable
 			}
 		}
 		
+		if (this.Game.state == Game.State.INTRODUCTION)
+		{
+			UpdateTypeOfPlay();
+		}
+		if (this.Game.state == Game.State.PLAYING)
+		{
+			switch (typeOfPlayer)
+			{
+				case TYPEOFPLAYER.DEFENSE:
+					{
+						UpdateDefensePlacement();
+						break;
+					}
+				case TYPEOFPLAYER.OFFENSIVE:
+					{
+						UpdateOffensivePlacement();
+						break;
+					}
+				case TYPEOFPLAYER.NONE:
+				default: break;
+			}
+		}
+	}
+	
+	void UpdateTypeOfPlay()
+	{
+		if (this.Team.Player.Controlled == this)
+		{
+			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
+		}
+		else
+		{
+			//trouvons les joueurs les plus proche jusqu'à ce que l'on ait 1 + Game.settings.nbOffensivePlayer
+			List<Unit> newList = new List<Unit>();
+			foreach (Unit u in this.Team)
+			{
+				if (u != this.Team.Player.Controlled)
+					newList.Add(u);
+			}
+
+			float dMin = 0f;
+			String s;
+
+			for (int i = 0; i < this.Game.settings.nbOffensivePlayer; ++i)
+			{
+				Unit u = this.Team.Player.Controlled.GetNearestAlly(newList, out dMin, true);
+				s = "";
+				foreach(Unit c in newList)
+				{
+					s += c + " ";
+				}
+				//Debug.Log(s);
+				if (u != null)
+				{
+					u.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
+					this.Team.nbOffensivePlayer++;
+					newList.Remove(u);
+				}
+			}
+
+			foreach (Unit u in newList)
+			{
+				u.typeOfPlayer = TYPEOFPLAYER.DEFENSE;
+			}
+		}
+		
+	}
+
+	void UpdateOffensivePlacement()
+	{
+		if (this != this.Team.Player.Controlled)
+			this.Order = Order.OrderDefensiveSide(this.Team.Player.Controlled, new Vector3(this.Game.settings.distanceMinBetweenDefensePlayer / 2, 0, this.Game.settings.distanceMinBetweenDefensePlayer / 2), 
+				this.Team.right, this.Team.Player.Controlled.PositionInMap());
+	}
+	
+	void UpdateDefensePlacement()
+	{
+		//Variables
+		Vector3 pos = this.transform.position;
+		Vector3 oldPos = pos;
+		float distZ = Mathf.Abs(this.Team.Player.Controlled.transform.position.z - this.transform.position.z); //distance entre moi et le controllé
+		float distX = 0f;
+
+		//Check si je suis dans le même couloir que la balle
+		if (this.Game.compareZoneInMap(this.Game.Ball.gameObject, this.gameObject) == 0)
+		{
+			//je suis dans la même zone que la balle et donc je ne bouge pas sur X sauf si un autre joueur est déjà dans le couloir
+			foreach (Unit u in this.Team)
+			{
+				if (u != this && u.typeOfPlayer == TYPEOFPLAYER.DEFENSE)
+				{
+					if (u.ballZone)
+					{
+						this.ballZone = false;
+						break;
+					}
+					else
+						this.ballZone = true;
+				}
+			}
+		}
+		else // Check si un autre défenseur est dans le couloir de la balle
+		{
+			//Si personne alors je décide d'y aller
+			bool otherDefenseGo = false;
+			foreach (Unit u in this.Team)
+			{
+				if (u != this && u.typeOfPlayer == TYPEOFPLAYER.DEFENSE)
+				{
+					if (u.ballZone)
+					{
+						otherDefenseGo = true;
+						break;
+					}
+				}
+			}
+
+			if (!otherDefenseGo)
+			{
+				this.ballZone = true;
+				//Déplacement sur X
+				pos.x += this.Game.Ball.transform.position.x - this.transform.position.x;
+				this.Order = Order.OrderMove(pos, Order.TYPE_DEPLACEMENT.SPRINT);
+			}
+		}
+
+		if (!this.ballZone)
+		{
+			//Contrainte sur X
+			foreach (Unit u in this.Team)
+			{
+				//Seuls les défenseurs m'intéressent
+				if (u != this && u.typeOfPlayer == TYPEOFPLAYER.DEFENSE)
+				{
+					distX = Mathf.Abs(u.transform.position.x - this.transform.position.x);
+					if (distX > this.Game.settings.distanceMaxBetweenDefensePlayer)
+					{
+						pos.x -= distX - (this.Game.settings.distanceMaxBetweenDefensePlayer + (float)this.Game.rand.NextDouble());
+					}
+					else if (distX < this.Game.settings.distanceMinBetweenDefensePlayer)
+					{
+						pos.x += (this.Game.settings.distanceMaxBetweenDefensePlayer + (float)this.Game.rand.NextDouble()) - distX;
+					}
+					else // cas normal
+					{
+						if (this.Game.rand.Next(100) > 50)
+							pos.x += (float)this.Game.rand.NextDouble();
+						else
+							pos.x -= (float)this.Game.rand.NextDouble();
+					}
+				}
+				if (pos.x != oldPos.x)
+				{
+					this.Order = Order.OrderMove(pos, Order.TYPE_DEPLACEMENT.SPRINT);
+					oldPos = pos;
+				}
+			}
+		}
+
+		//Contrainte sur Z
+		if (distZ > this.Game.settings.distanceMaxBetweenOffensiveAndDefensePlayer)
+		{
+			Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
+			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
+			{
+				pos.z = pos.z - (distZ - (this.Game.settings.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.Game.rand.NextDouble()));
+			}
+			else
+				pos.z = pos.z + (distZ - (this.Game.settings.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.Game.rand.NextDouble()));
+		}
+		else if (distZ < this.Game.settings.distanceMinBetweenOffensiveAndDefensePlayer)
+		{
+			Debug.Log("too near : " + this);
+			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
+				pos.z -= (this.Game.settings.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.Game.rand.NextDouble()) - distZ;
+			else
+				pos.z += (this.Game.settings.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.Game.rand.NextDouble()) - distZ;
+		}
+		else // cas normal
+		{
+			if (this.Game.rand.Next(100) > 50)
+				pos.z += (float)this.Game.rand.NextDouble();
+			else
+				pos.z -= (float)this.Game.rand.NextDouble();
+		}
+
+		if (pos.z != oldPos.z)
+		{
+			this.Order = Order.OrderMove(pos, Order.TYPE_DEPLACEMENT.SPRINT);
+		}
+
 	}
 
     public void IndicateSelected(bool enabled)
@@ -241,6 +442,31 @@ public class Unit : TriggeringTriggered, Debugable
 
         return nearestAlly;
     }
+	
+	public Unit GetNearestAlly(List<Unit> l, out float dMin, bool square = false)
+    {
+        Unit nearestAlly = null;
+        dMin = -1;
+		float d;
+		
+        foreach (Unit u in l)
+        {
+            if (u != this)
+            {
+				if (!square)
+                	d = Vector3.Distance(this.transform.position, u.transform.position);
+				else
+					d = Vector3.SqrMagnitude(this.transform.position - u.transform.position);
+                if (nearestAlly == null || d < dMin)
+                {
+                    nearestAlly = u;
+                    dMin = d;
+                }
+            }
+        }
+
+        return nearestAlly;
+    }
 
 /*
     public void ShowTouch(InputTouch touch)
@@ -311,6 +537,23 @@ public class Unit : TriggeringTriggered, Debugable
 		CurrentButton = str;
 		ButtonVisible = true;
 	}
+	
+	public Order.TYPE_POSITION PositionInMap()
+	{
 
+		if (this.transform.position.x >= this.Game.xSO && this.transform.position.x < this.Game.xSO + this.Game.section)
+			return Order.TYPE_POSITION.EXTRA_LEFT;
+		else if (this.transform.position.x >= this.Game.xSO + this.Game.section && this.transform.position.x < this.Game.xSO + 2*this.Game.section)
+			return Order.TYPE_POSITION.LEFT;
+		else if (this.transform.position.x <= this.Game.xNE && this.transform.position.x > this.Game.xNE - this.Game.section)
+			return Order.TYPE_POSITION.EXTRA_RIGHT;
+		else if (this.transform.position.x <= this.Game.xNE - this.Game.section && this.transform.position.x > this.Game.xNE - 2*this.Game.section)
+			return Order.TYPE_POSITION.RIGHT;
+		else if (this.transform.position.x >= this.Game.xSO + 2 * this.Game.section && this.transform.position.x < this.Game.xSO + 3*this.Game.section)
+			return Order.TYPE_POSITION.MIDDLE_LEFT;
+		else if (this.transform.position.x <= this.Game.xNE - 2 * this.Game.section && this.transform.position.x > this.Game.xNE - 3*this.Game.section)
+			return Order.TYPE_POSITION.MIDDLE_RIGHT;
+		return Order.TYPE_POSITION.MIDDLE;
+	}
 }
 
