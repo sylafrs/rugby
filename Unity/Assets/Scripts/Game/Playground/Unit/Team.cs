@@ -12,14 +12,14 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
-    public Game Game {get; set;}
+    public Game game {get; set;}
 	public float AngleOfFovTackleCrit = 0.0f;
 	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
 	public Color DiscTackle = new Color(0f, 0f, 1f, 0.33f);
     public Color Color;
 	public Color PlaqueColor;
     public string Name;
-    public bool right;
+    public bool south;
 
 	public bool useColors = false;
 
@@ -38,12 +38,16 @@ public class Team : myMonoBehaviour, IEnumerable {
 	}
 
     public int nbPoints = 0;
-	public Transform StartPlacement;
 
     private Unit [] units;
 
 	public float speedFactor;
 	public float tackleFactor;
+
+	public float unitDodgeSpeedFactor;
+	public float unitDodgeDuration;
+	public float unitDodgeCooldown;
+	public bool unitInvincibleDodge;
 
 	public float unitSpeed;
 	public float handicapSpeed = 1;
@@ -130,7 +134,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	//maxens dubois
 	public void increaseSuperGauge(int value){
-		if((SuperGaugeValue += value) > Game.settings.super.superGaugeMaximum) SuperGaugeValue = Game.settings.super.superGaugeMaximum;
+		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
 	}
 
     public void CreateUnits()
@@ -140,7 +144,7 @@ public class Team : myMonoBehaviour, IEnumerable {
         {
             GameObject o = GameObject.Instantiate(Prefab_model) as GameObject;
             units[i] = o.GetComponent<Unit>();
-            units[i].Game = Game;
+            units[i].game = game;
             units[i].name = Name + " " + (i+1).ToString("D2");
             units[i].transform.parent = this.transform;
             units[i].Team = this;
@@ -165,30 +169,30 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public void OnOwnerChanged()
     {
-        if (Game.disableIA)
+        if (game.disableIA)
         {
             return;
         }
 
-        if (Game.Ball.Owner == null)
+        if (game.Ball.Owner == null)
         {
-            if (Game.Ball.PreviousOwner.Team != this && Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
+            if (game.Ball.PreviousOwner.Team != this && game.Ball.NextOwner != null && game.Ball.NextOwner.Team != this)
             {
 				setSpeed();
                 OwnerChangedBallFree();
             }
-            else if (Game.Ball.PreviousOwner.Team == Game.right)
+            else if (game.Ball.PreviousOwner.Team == game.southTeam)
             {
 				setSpeed();
                 OwnerChangedOurs();
             }
-			else if (Game.Ball.NextOwner != null && Game.Ball.NextOwner.Team != this)
+			else if (game.Ball.NextOwner != null && game.Ball.NextOwner.Team != this)
             {
                 OwnerChangedOurs();
             }
 
         }
-        else if (Game.Ball.Owner.Team == this)
+        else if (game.Ball.Owner.Team == this)
         {
 			setHandicapSpeed();
             OwnerChangedOurs();
@@ -204,7 +208,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     {
         foreach (Unit u in units)
         {
-            if (u != Game.p1.Controlled && (Game.p2 == null || u != Game.p2.Controlled))
+            if (u != game.northTeam.Player.Controlled && u != game.southTeam.Player.Controlled)
             {
                 u.Order = Order.OrderNothing(); // Order.OrderFollowBall();
             }
@@ -290,16 +294,16 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     void OwnerChangedOurs()
     {
-        Unit owner = Game.Ball.Owner;
+        Unit owner = game.Ball.Owner;
         if (owner == null)
         {
-            owner = Game.Ball.PreviousOwner;
+            owner = game.Ball.PreviousOwner;
         }
 
-        if (owner != Game.p1.Controlled && (Game.p2 == null || owner != Game.p2.Controlled))
+        if (owner != game.southTeam.Player.Controlled && (game.northTeam.Player == null || owner != game.northTeam.Player.Controlled))
         {
-            Zone z = Game.opponent(this).Zone;
-            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z), Order.TYPE_DEPLACEMENT.SPRINT);
+            Zone z = this.opponent.Zone;
+            owner.Order = Order.OrderMove(new Vector3(owner.transform.position.x, 0, z.transform.position.z));
         }
         else
         {
@@ -325,20 +329,20 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
-		float largeurTerrain = Mathf.Abs(Game.limiteTerrainNordEst.transform.position.x - Game.limiteTerrainSudOuest.transform.position.x);
+		float largeurTerrain = Mathf.Abs(game.refs.positions.limiteTerrainNordEst.transform.position.x - game.refs.positions.limiteTerrainSudOuest.transform.position.x);
 		float section = largeurTerrain / 7f;
 
-		if (owner.transform.position.x < Game.limiteTerrainSudOuest.transform.position.x + section)
+		if (owner.transform.position.x < game.refs.positions.limiteTerrainSudOuest.transform.position.x + section)
 			return Order.TYPE_POSITION.EXTRA_LEFT;
-		else if (owner.transform.position.x >= Game.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
+		else if (owner.transform.position.x >= game.refs.positions.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2*section)
 			return Order.TYPE_POSITION.LEFT;
-		else if (owner.transform.position.x > Game.limiteTerrainNordEst.transform.position.x - section)
+		else if (owner.transform.position.x > game.refs.positions.limiteTerrainNordEst.transform.position.x - section)
 			return Order.TYPE_POSITION.EXTRA_RIGHT;
-		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 2*section)
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= game.refs.positions.limiteTerrainNordEst.transform.position.x - 2 * section)
 			return Order.TYPE_POSITION.RIGHT;
-		else if (owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2 * section && owner.transform.position.x <= Game.limiteTerrainSudOuest.transform.position.x + 2*section)
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2 * section && owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2 * section)
 			return Order.TYPE_POSITION.MIDDLE_LEFT;
-		else if (owner.transform.position.x <= Game.limiteTerrainNordEst.transform.position.x - 2 * section && owner.transform.position.x >= Game.limiteTerrainNordEst.transform.position.x - 3*section)
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainNordEst.transform.position.x - 2 * section && owner.transform.position.x >= game.refs.positions.limiteTerrainNordEst.transform.position.x - 3 * section)
 			return Order.TYPE_POSITION.MIDDLE_RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}
@@ -346,21 +350,21 @@ public class Team : myMonoBehaviour, IEnumerable {
     void OwnerChangedOpponents()
     {
         Unit a;
-        if (Game.p1.Controlled != null && Game.p1.Controlled.Team == this)
+        if (game.southTeam.Player.Controlled != null && game.southTeam.Player.Controlled.Team == this)
         {
-            a = Game.p1.Controlled;
+            a = game.southTeam.Player.Controlled;
         }
-        else if (Game.p2 != null && Game.p2.Controlled.Team == this)
+        else if (game.northTeam.Player != null && game.northTeam.Player.Controlled.Team == this)
         {
-            a = Game.p2.Controlled;
+            a = game.northTeam.Player.Controlled;
         }
         else
         {
             a = units[0];
-            float d = Vector3.Distance(a.transform.position, Game.Ball.Owner.transform.position);
+            float d = Vector3.Distance(a.transform.position, game.Ball.Owner.transform.position);
             for (int i = 0; i < units.Length; i++)
             {
-                float d2 = Vector3.Distance(units[i].transform.position, Game.Ball.Owner.transform.position);
+                float d2 = Vector3.Distance(units[i].transform.position, game.Ball.Owner.transform.position);
                 if (d > d2)
                 {
                     a = units[i];
@@ -368,14 +372,14 @@ public class Team : myMonoBehaviour, IEnumerable {
                 }
             }
 
-            a.Order = Order.OrderFollow(Game.Ball.Owner, Order.TYPE_DEPLACEMENT.COURSE);
+            a.Order = Order.OrderFollow(game.Ball.Owner);
         }
 
         foreach (Unit u in units)
         {
             if (u != a)
             {
-                //u.Order = Order.OrderAttack(a, Game.settings.LineSpace, right);
+                //u.Order = Order.OrderAttack(a, game.settings.LineSpace, right);
 				u.Order = Order.OrderNothing();
             }
         }
@@ -409,42 +413,66 @@ public class Team : myMonoBehaviour, IEnumerable {
 		B.transform.rotation = rot;
 	}
 
-	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to) {
+
+	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to, bool teleport)
+	{
+
+		if (configuration == null)
+		{
+			throw new UnityException("placeUnits configuration is null");
+		}
 
 		int i = 0;
-		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
-		while(t != null && (i + from) < nbUnits && (i + from) < to) {
+		Transform t = configuration.FindChild(pattern.Replace(filter, (i + 1).ToString()));
+		while (t != null && (i + from) < nbUnits && (i + from) < to)
+		{
 
-			this.placeUnit(t, i + from);
+			this.placeUnit(t, i + from, teleport);
 
 			i++;
-			t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
+			t = configuration.FindChild(pattern.Replace(filter, (i + 1).ToString()));
 		}
 	}
 
-	public void placeUnits(Transform configuration, string pattern) {
-		this.placeUnits(configuration, pattern, "#", 0, nbUnits);
+	public void placeUnits(Transform configuration, string pattern, bool teleport)
+	{
+		this.placeUnits(configuration, pattern, "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnits(Transform configuration, int from, int to) {
-		this.placeUnits(configuration, "Player_#", "#", from, to);
+	public void placeUnits(Transform configuration, int from, int to, bool teleport)
+	{
+		this.placeUnits(configuration, "Player_#", "#", from, to, teleport);
 	}
 
-	public void placeUnits(Transform configuration, int from) {
-		this.placeUnits(configuration, "Player_#", "#", from, nbUnits);
+	public void placeUnits(Transform configuration, int from, bool teleport)
+	{
+		this.placeUnits(configuration, "Player_#", "#", from, nbUnits, teleport);
 	}
 
-	public void placeUnits(Transform configuration) {
-		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits);
+	public void placeUnits(Transform configuration, bool teleport)
+	{
+		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnit(Transform t, int index) {
-		if( t == null || index < 0 || index >= nbUnits ) {
+	public void placeUnit(Transform dst, int index, bool teleport)
+	{
+		if (dst == null || index < 0 || index >= nbUnits)
+		{
 			throw new System.ArgumentException();
 		}
 
-		units[index].transform.position = t.position;
-		units[index].transform.rotation = t.rotation;
+		Unit unit = units[index];
+
+		if (teleport)
+		{
+			unit.transform.position = dst.position;
+			unit.transform.rotation = dst.rotation;
+		}
+		else
+		{
+			unit.Order = Order.OrderMove(dst.position);
+			unit.transform.rotation = dst.rotation;
+		}
 	}
 
 	//maxens dubois
@@ -522,5 +550,13 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public IEnumerator GetEnumerator() {
 		return new TeamUnitEnumerator(this);
+	}
+
+	public void ShowPlayers(bool active)
+	{
+		for (int i = 0; i < this.units.Length; i++)
+		{
+			this.units[i].ShowPlayer(active);
+		}
 	}
 }

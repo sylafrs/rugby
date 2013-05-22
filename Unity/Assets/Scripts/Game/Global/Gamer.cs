@@ -295,7 +295,7 @@ public class Gamer
             Unit owner = this.game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                if (owner.Dodge && owner.Team.unitInvincibleDodge)
+				if (owner.Dodge && owner.Team.unitInvincibleDodge)
                     Controlled.Order = Order.OrderPlaquer(null);
                 else
                     Controlled.Order = Order.OrderPlaquer(owner);
@@ -341,13 +341,13 @@ public class Gamer
 
         if (Controlled)
         {
-            Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
+            //Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
             //
 
             if (game.Ball.Owner == null || game.Ball.Owner.Team == Team)
             {
                 //offensiveside
-                foreach (Unit u in Controlled.Team)
+               /* foreach (Unit u in Controlled.Team)
                 {
                     if (u != Controlled)
                     {
@@ -357,12 +357,12 @@ public class Gamer
 							typePosition
 						);
                     }
-                }
+                }*/
             }
             else
             {
                 //defensiveside
-                foreach (Unit u in Controlled.Team)
+                /*foreach (Unit u in Controlled.Team)
                 {
                     if (u != Controlled)
                     {
@@ -373,7 +373,7 @@ public class Gamer
 							typePosition
 						);
                     }
-                }
+                }*/
             }
         }		
 	}

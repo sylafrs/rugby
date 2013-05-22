@@ -110,7 +110,7 @@ public class PassSystem {
 			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
 
-			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
+			//Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
 			//
 			/*foreach (Unit u in target.Team)
 			{
