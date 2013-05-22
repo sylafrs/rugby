@@ -84,8 +84,10 @@ public class GameCamera : myMonoBehaviour {
 		//lancer la rotation du pivot
 		//this.transform.position = cameraManager.game.Ball.Owner.transform.position;
 		
+		/*
 		if(Game.state != Game.State.PLAYING) 
 			return;
+		*/
 		
         this.GetComponent<rotateMe>().BeginRotation(new Vector3(0, 1, 0), 180);
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CircleSystem : MonoBehaviour {
 
-    public Game game;
+    private Game game;
 	public float raySquare;
 	public float YToDecide = 3f;
 	
@@ -13,6 +13,7 @@ public class CircleSystem : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+        game = Game.instance;
 		unitInCircle = new System.Collections.Generic.List<Unit>();
 	}
 	
@@ -26,8 +27,8 @@ public class CircleSystem : MonoBehaviour {
             game.Ball.Owner = GetFirstUnit();
 		}
 		else{
-			unitIn(game.left);
-            unitIn(game.right);
+			unitIn(game.northTeam);
+            unitIn(game.southTeam);
 		}
 	}
 	
@@ -38,15 +39,15 @@ public class CircleSystem : MonoBehaviour {
 	
 	void OnDisable()
 	{
-		//Debug.Log("hauteur balle qd 'disable' " + ball.transform.position.y);
+		//
 		//foreach(Unit u in unitInCircle)
-		//	Debug.Log("nom unite " + u + " peut attraper : "+ u.canCatchTheBall);
+		//	
 	}
 	
 	Unit GetFirstUnit(){
 		if (unitInCircle.Count != 0)
 		{
-			Debug.Log(unitInCircle[0]);
+			
 			unitInCircle[0].canCatchTheBall = true;
 			winnerDrop = true;
 			return unitInCircle[0];

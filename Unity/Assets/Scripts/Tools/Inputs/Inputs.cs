@@ -4,8 +4,16 @@ using System.Collections;
 [System.Serializable]
 public class InputTouch
 {
-    public KeyCode keyboard;
+    public KeyCode keyboardP1;
+	public KeyCode keyboardP2;
     public XBOX_BUTTONS xbox;   
+	
+	public KeyCode keyboard(Team t) {
+		Game g = t.game;
+		if(t == g.southTeam)
+			return keyboardP1;
+		return keyboardP2;
+	}
 }
 
 [System.Serializable]
@@ -21,7 +29,16 @@ public class InputDirection
         }
     }
 
-    public KeyBoardDirection keyboard;
+    public KeyBoardDirection keyboardP1;
+	public KeyBoardDirection keyboardP2;
+	
+	public KeyBoardDirection keyboard(Team t) {
+		Game g = t.game;
+		if(t == g.southTeam)
+			return keyboardP1;
+		return keyboardP2;
+	}
+	
     public XBOX_DIRECTION xbox;   
 }
 

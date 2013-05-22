@@ -17,6 +17,14 @@ public class DropManager {
 		KICK
 	}
 
+    public TYPEOFDROP typeOfDrop
+    {
+        get
+        {
+            return type;
+        }
+    }
+
 	public DropManager(Ball b, TYPEOFDROP t)
 	{
 		ball = b;
@@ -66,7 +74,7 @@ public class DropManager {
 	{
 		
 		ball.transform.position = new Vector3( (ownerDirection.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
-												acceleration * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropKick) * t + initPos.y,
+												acceleration * 9.81f * t * t + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * t + initPos.z);
 	}
 
@@ -81,11 +89,21 @@ public class DropManager {
 	{
 		switch (type)
 		{
-			case TYPEOFDROP.KICK: drawCircle(ball.multiplierDropKick, ball.angleDropKick);
+			case TYPEOFDROP.KICK: 
+                drawCircle(ball.multiplierDropKick, Game.instance.settings.GameStates
+                                                                          .MainState
+                                                                          .PlayingState
+                                                                          .MainGameState
+                                                                          .RunningState
+                                                                          .BallFreeState
+                                                                          .BallFlyingState
+                                                                          .angleDropKick);
 				break;
-			case TYPEOFDROP.UPANDUNDER: drawCircle(ball.multiplierDropUpAndUnder, ball.angleDropUpAndUnder);
+			case TYPEOFDROP.UPANDUNDER: 
+                drawCircle(ball.multiplierDropUpAndUnder, ball.angleDropUpAndUnder);
 				break;
-			default: break;
+			default: 
+                break;
 		}
 	}
 	

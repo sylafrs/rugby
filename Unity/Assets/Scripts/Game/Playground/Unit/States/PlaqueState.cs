@@ -17,9 +17,9 @@ class PlaqueState : UnitState
         unit.isTackled = true;
         unit.nma.Stop();
 
-        if (unit == unit.Game.Ball.Owner)
+        if (unit == unit.game.Ball.Owner)
         {
-            unit.Game.Ball.Put();
+            unit.game.Ball.Put();
         }
 
         if (unit.Team.useColors && unit.Model && unit.Model.renderer)
@@ -31,14 +31,20 @@ class PlaqueState : UnitState
 		}
 
         unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
+
+        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        if (ua != null)
+        {
+            ua.Tackled = true;
+        }
     }
 
     public override void OnUpdate()
     {
         t += UnityEngine.Time.deltaTime;
-        if (t > unit.Game.settings.timePlaque)
+        if (t > unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime)
         {
-            sm.state_change_me(this, new MainState(sm, unit));
+            sm.state_change_me(this, new MainUnitState(sm, unit));
         }
     }
 
@@ -54,6 +60,12 @@ class PlaqueState : UnitState
 		}
 
         unit.Model.transform.localRotation = Quaternion.identity;
+
+        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        if (ua != null)
+        {
+            ua.Tackled = false;
+        }
 	}
 }
 

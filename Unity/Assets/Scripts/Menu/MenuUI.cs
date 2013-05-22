@@ -10,17 +10,17 @@ public class MenuUI : myMonoBehaviour {
 		// int offset		 = 100;
 		
 		//a box for the button to launch the game
-		Rect buttonBox = gameUIManager.screenRelativeRect(50- 40/2, 
+		Rect buttonBox = UIManager.screenRelativeRect(50- 40/2, 
 		50 + 10/2, 
 		40, 10);
 		
 		//title
-		Rect titleBox = gameUIManager.screenRelativeRect(50- 40/2, 
+		Rect titleBox = UIManager.screenRelativeRect(50- 40/2, 
 		0 + 10/2, 
 		40, 10);
 		
 		//patch note
-		Rect patchNoteBox = gameUIManager.screenRelativeRect(50- 40/2, 
+		Rect patchNoteBox = UIManager.screenRelativeRect(50- 40/2, 
 		0 + 40/2, 
 		40, 40);
 		

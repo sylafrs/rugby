@@ -15,17 +15,16 @@ public class TransformationManager : myMonoBehaviour {
 	public Gamer gamer {get; set;}
 	public Ball ball {get; set;}
 	
-	public InputTouch touch;
-	
 	private Quaternion initialRotation;
 	
 	private float angle = 0;
-	public float angleSpeed;
+	public  float angleSpeed;
 	
 	private float power = 0;
-	public float powerSpeed;
-	
-	public Vector3 maxPower;
+	public  float powerSpeed;
+
+    public float minPower;
+	public float maxPower;
 	public float maxAngle;
 	
 	public bool infiniteTime = true;
@@ -57,6 +56,7 @@ public class TransformationManager : myMonoBehaviour {
 	
 	public GameObject arrow;
 	private GameObject myArrow;
+    private GameObject myArrowPower;
 		
 	public void OnEnable() {
 		angle = 0;
@@ -68,21 +68,32 @@ public class TransformationManager : myMonoBehaviour {
 		
 		myArrow = GameObject.Instantiate(arrow) as GameObject;
 		if(!myArrow)
-			throw new UnityException("Erreur : missing arrow");
+			throw new UnityException("Error : missing arrow");
 		
 		myArrow.transform.parent = ball.Owner.transform;
 		myArrow.transform.localPosition = Vector3.zero;
-		myArrow.transform.localRotation = Quaternion.identity;		
+		myArrow.transform.localRotation = Quaternion.identity;
+
+        Transform jaugePower = myArrow.transform.FindChild("Power");
+        if (!jaugePower)
+            throw new UnityException("Error : missing arrow -> power");
+
+        myArrowPower = jaugePower.gameObject;
 	}
-	
-	public void OnGUI() {
-		GUILayout.Space(300);
-		GUILayout.Label ("Transformation");
-		GUILayout.Label ("State : " + state);
-		GUILayout.Label ("Time : " + (infiniteTime ? "Infinite" : remainingTime.ToString()));
-		GUILayout.Label ("Angle : " + angle);
-		GUILayout.Label ("Power : " + power);
-	}
+
+    public GUIStyle timeStyle;
+    public Rect timeRect;
+
+    public void OnGUI()
+    {
+        if (this.state == State.ANGLE || this.state == State.POWER)
+        {
+            Rect rect = UIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
+
+            if (!infiniteTime)
+                GUI.Label(rect, "Time : " + (int)remainingTime, timeStyle);
+        }
+    }
 	
 	public void Update() {
 		
@@ -101,7 +112,7 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime -= Time.deltaTime;	
 			}				
 				
-			if(remainingTime < 0 || Input.GetKeyDown(touch.keyboard) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(touch.xbox))) {
+			if(remainingTime < 0 || Input.GetKeyDown(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team)) || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonDown(Game.instance.settings.Inputs.conversionTouch.xbox))) {
 				remainingTime = timePower;
 				state = State.POWER;	
 			}
@@ -120,12 +131,16 @@ public class TransformationManager : myMonoBehaviour {
 				power = 0;
 				powerSpeed *= -1;
 			}
+
+            Vector3 scale = myArrowPower.transform.localScale;
+            scale.z = power;
+            myArrowPower.transform.localScale = scale;
 			
 			if(!infiniteTime) {
 				remainingTime -= Time.deltaTime;	
 			}
 			
-			if(remainingTime < 0 || (gamer.XboxController.IsConnected && gamer.XboxController.GetButtonUp(touch.xbox)) || Input.GetKeyUp(touch.keyboard)) {
+			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(Game.instance.settings.Inputs.conversionTouch.xbox)) || Input.GetKeyUp(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team))) {
 				Launch();
 			}
 			
@@ -133,15 +148,13 @@ public class TransformationManager : myMonoBehaviour {
 		}
 		
 		if(state == State.WAITING) {
+            timeInAir += Time.deltaTime;
+            doTransfo(timeInAir);
+
 			if(ball.transform.position.y < 0.3f) {
                 transformed = Result.GROUND;
 				Finish ();	
-			}
-			else
-			{
-				timeInAir += Time.deltaTime;
-				doTransfo( timeInAir );
-			}
+			}			
 		}
 	}
 	
@@ -169,24 +182,11 @@ public class TransformationManager : myMonoBehaviour {
 		ball.rigidbody.isKinematic = false;
         
 		ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
-		
-		/*
-		Vector3 force = ball.Owner.transform.forward * power * maxPower.x + 
-						ball.Owner.transform.right * power * maxPower.z +
-						ball.Owner.transform.up * power * maxPower.y;
-		
-		// start fix TODO
-		Vector3 bPos = ball.transform.position;
-		bPos.x = ball.Owner.transform.position.x;
-		bPos.z = ball.Owner.transform.position.z + (ball.Owner.Team == ball.Game.right ? 2 : -2);
-		ball.transform.position = bPos;
-		//stop fix
-		*/
-		
+				
 		pos = ball.Owner.BallPlaceHolderTransformation.transform.position;
 		dir = ball.Owner.transform.forward;
 		
-		Debug.Log("transformation : " + dir);
+		
 		//ball.rigidbody.AddForce(force);
 
 		if(OnLaunch != null) OnLaunch();
@@ -196,9 +196,14 @@ public class TransformationManager : myMonoBehaviour {
 	
 	private void doTransfo(float t)
 	{
-		ball.transform.position = new Vector3( dir.x * maxPower.x * t + pos.x,
-												-0.5f * 9.81f * t * t + maxPower.y * Mathf.Sin(Mathf.Deg2Rad * power * 80f) * t + pos.y,
-												dir.z * maxPower.z * t + pos.z);
+        float X = dir.x * maxPower * t + pos.x;
+        float Y = -0.5f * 9.81f * t * t + minPower + ((maxPower - minPower) * Mathf.Sin(Mathf.Deg2Rad * power * 80f)) * t + pos.y;
+        float Z = dir.z * maxPower * t + pos.z;
+
+        if (Y < 0)
+            Y = 0;
+
+		ball.transform.position = new Vector3(X, Y, Z);
 	}
 	
 	public void Finish() {

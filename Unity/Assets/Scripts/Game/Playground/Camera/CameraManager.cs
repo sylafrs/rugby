@@ -23,7 +23,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
         set
         {
 			_target = value;
-            MyDebug.Log("Target Changed for "+value);            
+                        
         }
     }
 	
@@ -58,7 +58,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private	bool	isflipping;
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
-	private bool    isflipped;
+	//private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
 	public  Team	flipedForTeam;
@@ -68,85 +68,48 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
 
-    public StateMachine sm;
+	//public StateMachine sm;
 
 	// Use this for initialization
 	void Start () {
 
-        sm.SetFirstState(new MainCameraState(sm, this));
+      //  sm.SetFirstState(new MainGameState(sm, this, this.game));
 		resetActualDelay();
 		resetRotationDelay();
 		isflipping = false;
-		isflipped= false;
+		//isflipped= false;
 		CancelNextFlip = false;
 		ActionOnFlipFinish = null;
-		flipedForTeam = game.right;
+		flipedForTeam = game.southTeam;
 		zMinForBlue	  = MinfollowOffset.z;
 		zMaxForBlue	  = MaxfollowOffset.z;
-		
-		/*
-       
-        /*
-		gameCamera.cameraManager = this;
-		scrumCamera.cameraManager = this;
-		*/
-		
 	}
 	
 	void FixedUpdate(){
 		
-		
-		if(isflipping != true)
-		{
-		
-	        if (target != null && Camera.mainCamera != null)
-	        {
-				//Vector3 MinfollowOffset2 = new Vector3();
-				//Vector3 MaxfollowOffset2 = new Vector3();
+        if (target != null && Camera.mainCamera != null)
+        {
+			
+			//rotation
+			targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
+			
+			Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
+			Vector3 tarEuler = targetRotation.eulerAngles;
+			
+			Vector3 angle = new Vector3(
+				Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
+				Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
+				Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
+			);
+			
+			if(isflipping == true){
+				flipUpdate();
+				//manque petite translation
 				
-				if(this.isflipped == true){
-					//Debug.Log ("flip");
-					//z is flipped
-					
-					//MinfollowOffset.z *= -1;
-					//MaxfollowOffset.z *= -1;
-					
-					//MinfollowOffset2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, -MinfollowOffset.z);
-					//MaxfollowOffset2 = new Vector3(MaxfollowOffset.x, MaxfollowOffset.y, -MaxfollowOffset.z);
-					
-				}else{
-					//MinfollowOffset2 = this.MinfollowOffset;
-					//MinfollowOffset2 = this.MaxfollowOffset;
-					//Debug.Log ("pas flip");
-				}	
-				
-				Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-				
-				Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
-				
-				Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-				Vector3 delta  = result- Camera.mainCamera.transform.position;
-	
-				
-				//rotation
-				targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
-				
-				Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
-				Vector3 tarEuler = targetRotation.eulerAngles;
-				
-				Vector3 angle = new Vector3(
-					Mathf.SmoothDampAngle(euler.x, tarEuler.x, ref angleVelocity[0], smoothAngle.x),
-					Mathf.SmoothDampAngle(euler.y, tarEuler.y, ref angleVelocity[1], smoothAngle.y),
-					Mathf.SmoothDampAngle(euler.z, tarEuler.z, ref angleVelocity[2], smoothAngle.z)
-				);
-				
-				
-				
+			}else{
 				if(angle.magnitude > rotationMagnitudeGap){
 					if(rotationCurrentDelay >= rotationDelay){
 						Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
-						//pas besoin, c'est déjà fait !
-	        			//Camera.mainCamera.transform.LookAt(target);
 					}
 					else{
 						rotationCurrentDelay += Time.deltaTime;
@@ -154,32 +117,31 @@ public class CameraManager : myMonoBehaviour, Debugable {
 				}else{
 					resetRotationDelay();
 				}
-				
-				if( delta.magnitude > magnitudeGap){
-					if(actualDelay >= moveDelay){
-						Camera.mainCamera.transform.position = result;
-						
-					}else{
-						actualDelay += Time.deltaTime;
-					}
-				}else{
-					
-					if(OnNextIdealPosition != null) {
-						OnNextIdealPosition();
-						OnNextIdealPosition = null;
-					}
-					
-					resetActualDelay();
-				}		
 			}
-		
-		
-		}else{
-			flipUpdate();
+			
+			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
+			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+			Vector3 delta  = result- Camera.mainCamera.transform.position;
+	
+			
+			
+			if( delta.magnitude > magnitudeGap){
+				if(actualDelay >= moveDelay){
+					Camera.mainCamera.transform.position = result;
+				}else{
+					actualDelay += Time.deltaTime;
+				}
+			}else{
+				
+				if(OnNextIdealPosition != null) {
+					OnNextIdealPosition();
+					OnNextIdealPosition = null;
+				}
+				resetActualDelay();
+			}		
+			
 		}
-		
-		
-		//if(isflipping) flipUpdate();
 	}
 	
 	public void setTarget(Transform _t){
@@ -194,21 +156,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	void resetRotationDelay(){
 		rotationCurrentDelay = 0f;
 	}
-
-    /*
-	public void OnScrum(bool active) {		
-		scrumCamera.gameObject.SetActive(active);
-		if(active) {
-			scrumCamera.Activate();
-		}
-		else {
-			gameCamera.ResetRotation();			
-			if(game.Ball.Owner.Team == game.left) {
-				game.cameraManager.gameCamera.transform.RotateAround(new Vector3(0, 1, 0), Mathf.Deg2Rad * 180);	
-			}
-		}			
-	}		
-     */
 	
 	//flipping camera
 	private void flip(){
@@ -216,14 +163,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	public void flipForTeam(Team _t, Action _cb)
-	{
-		/*
-		MyDebug.Log("Fliped for Team "+flipedForTeam);
-		MyDebug.Log("Flip for Team "+_t);
-		MyDebug.Log("target of flip "+this.target);
-		*/
-		MyDebug.Log("Flip start ");
-		
+	{	
 		this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
 			//on lance le flip seulement si c'est un team différente
@@ -233,15 +173,15 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 		}else{
 			if(CancelNextFlip){
-				MyDebug.Log("Flip for trasnfo/touch ");
+				
 				//here beacause of touch or transfo
-				if(_t == game.right){
-					MyDebug.Log("Flip for blue");
+				if(_t == game.southTeam){
+					
 					MinfollowOffset.z	  = zMinForBlue;
 					MaxfollowOffset.z	  = zMaxForBlue;
 				}
-				if(_t == game.left){
-					MyDebug.Log("Flip for red ");
+				if(_t == game.northTeam){
+					
 					MinfollowOffset.z	  = zMinForBlue * -1;
 					MaxfollowOffset.z	  = zMaxForBlue * -1;
 				}
@@ -251,14 +191,17 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		}
 	}
 	
-	void flipInit(Vector3 axis, float angle){
-		
+	void flipInit(Vector3 axis, float angle)
+	{
 		this.isflipping  			= true;
 		this.flipAxis	 			= axis;
 		this.flipAngle	 			= Mathf.Deg2Rad * angle;
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
+		this.flipZ();
+		this.game.southTeam.Player.stopMove();
+		this.game.northTeam.Player.stopMove();
     }
 	
 	void flipUpdate () 
@@ -276,7 +219,6 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			
             // Get the angle for the current state
 			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
-			
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
@@ -298,6 +240,14 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
 		this.ActionOnFlipFinish();
+		this.flipZ();
+		this.game.southTeam.Player.enableMove();
+		this.game.northTeam.Player.enableMove();
+	}
+	
+	private void flipZ(){
+		this.MinfollowOffset.z *= -1;
+		this.MaxfollowOffset.z *= -1;
 	}
 	
 	/*
@@ -360,11 +310,18 @@ public class CameraManager : myMonoBehaviour, Debugable {
             });
         });
     }
-
+	
+	/*
+	public void OnIntroLaunch(){
+		sm.SendMessage("OnIntroLaunch");
+	}
+	*/
+	
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
         EditorGUILayout.LabelField("Current target", target == null ? "null" : target.name);
+        EditorGUILayout.LabelField("Current zoom", ((int)(this.zoom)).ToString());
 #endif
     }
 }

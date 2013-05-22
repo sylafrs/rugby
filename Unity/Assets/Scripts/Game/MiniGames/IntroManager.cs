@@ -12,19 +12,21 @@ using System;
 public class IntroManager : myMonoBehaviour {
 
     private Game game;
-    public InputTouch touch;
     public Action OnFinish;
 
     void Start()
     {
-        game = this.GetComponent<Game>();
+        game = Game.instance;
         if (!game)
             throw new UnityException("I need the Game !");
     }
     
     void Update()
     {
-        if ((game.p1.XboxController != null && game.p1.XboxController.GetButtonUp(touch.xbox)) || Input.GetKeyUp(touch.keyboard))
+        if ((game.southTeam.Player.XboxController != null && game.southTeam.Player.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) ||
+            (game.northTeam.Player.XboxController != null && game.northTeam.Player.XboxController.GetButtonUp(game.settings.Inputs.skipIntro.xbox)) || 
+			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP1) || 
+			Input.GetKeyUp(game.settings.Inputs.skipIntro.keyboardP2))
         {
             Finish();
         }        

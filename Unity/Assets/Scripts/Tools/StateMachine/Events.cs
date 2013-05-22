@@ -5,17 +5,40 @@
  */
 public abstract partial class State
 {
+    public virtual bool OnTry(Zone z)
+    {
+        return (false);
+    }
+
+	//unit State Machine
     public virtual bool OnNearUnit(Unit u)
     {
         return (false);
     }
-
+	
+	//unit State Machine
     public virtual bool OnNearBall()
     {
         return (false);
     }
-
+	
+	//unit State Machine
     public virtual bool OnNewOrder()
+    {
+        return (false);
+    }
+	
+	public virtual bool OnEndSignal()
+    {
+        return (false);
+    }
+
+    public virtual bool OnResumeSignal()
+    {
+        return (false);
+    }
+	
+	public virtual bool OnStartSignal()
     {
         return (false);
     }
@@ -40,15 +63,23 @@ public abstract partial class State
         return (false);
     }
 
+    public virtual bool OnDodgeFinished(Unit u)
+    {
+        return (false);
+    }
+	    
+	/*
     public virtual bool OnSprint(Unit u, bool sprinting)
     {
         return (false);
     }
-
+	
+	/*
     public virtual bool OnGameStateChanged(Game.State old, Game.State current)
     {
         return (false);
     }
+    */
 
     public virtual bool OnBallOnGround(bool onGround)
     {
@@ -59,23 +90,34 @@ public abstract partial class State
     {
         return (false);
     }
-
+	
+	public virtual bool OnTouch(Touche t)
+	{
+		return (false);
+	}
+	
+	//Team "State Machine"
     public virtual bool OnSuper(Team t, SuperList super)
     {
         return (false);
     }
 	
-	public virtual bool OnTranfoShot()
+	public virtual bool OnConversionShot()
     {
         return (false);
     }
 
-    public virtual bool OnDropTransformed(But b)
+    public virtual bool OnConversion(But b)
     {
         return (false);
     }
 
     public virtual bool OnBallOut()
+    {
+        return (false);
+    }
+
+    public virtual bool OnScrum()
     {
         return (false);
     }
@@ -88,6 +130,24 @@ public abstract partial class State
  */
 public partial class StateMachine
 {
+    public void event_Scrum()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnScrum())
+                return;
+        }
+    }
+
+    public void event_Try(Zone z)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnTry(z))
+                return;
+        }
+    }
+
     public void event_neworder()
     {
         foreach (State tmp in list)
@@ -124,15 +184,40 @@ public partial class StateMachine
         }
     }
 
-    public void event_GameStateChanged(Game.State old, Game.State current)
+    public void event_OnStartSignal()
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnGameStateChanged(old, current))            
-                return;            
+            if (tmp.OnStartSignal())
+                return;
         }
     }
 
+    public void event_OnResumeSignal()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnResumeSignal())
+                return;
+        }
+    }
+
+    public void event_OnEndSignal(){
+		foreach (State tmp in list)
+        {
+            if (tmp.OnEndSignal())
+                return;
+        }
+	}
+	
+	public void event_OnTouch(Touche t){
+		foreach (State tmp in list)
+        {
+            if (tmp.OnTouch(t))
+                return;
+        }
+	}
+	
     public void event_NewOwner(Unit old, Unit current)
     {
         foreach (State tmp in list)
@@ -159,15 +244,6 @@ public partial class StateMachine
         }
     }
 
-    public void event_Sprint(Unit unit, bool sprinting)
-    {
-        foreach (State tmp in list)
-        {
-            if (tmp.OnSprint(unit, sprinting))
-                return;
-        }
-    }
-
     public void event_Dodge(Unit unit)
     {
         foreach (State tmp in list)
@@ -176,14 +252,17 @@ public partial class StateMachine
                 return;
         }
     }
-	
-	public void event_TransfoShot(){
-		foreach (State tmp in list)
+
+    public void event_DodgeFinished(Unit unit)
+    {
+        foreach (State tmp in list)
         {
-            if (tmp.OnTranfoShot())
+            if (tmp.OnDodgeFinished(unit))
                 return;
         }
-	}
+    }
+	
+
 	
     public void event_Drop()
     {
@@ -203,11 +282,20 @@ public partial class StateMachine
         }
     }
 
-    public void event_DropTransformed(But but)
+    public void event_Conversion(But but)
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnDropTransformed(but))
+            if (tmp.OnConversion(but))
+                return;
+        }
+    }
+
+    public void event_ConversionShot()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnConversionShot())
                 return;
         }
     }

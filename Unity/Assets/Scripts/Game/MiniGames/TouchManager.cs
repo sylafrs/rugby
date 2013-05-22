@@ -12,18 +12,18 @@ using XInputDotNetPure;
 public class TouchManager : myMonoBehaviour {
 	
 	public System.Action<TouchManager.Result, int> CallBack;
+    public Game game { get; set; }
 	
 	public Gamer gamerTouch {get; set;}
 	public Gamer gamerIntercept {get; set;}
-	
-	private int choixTouche;
-	private int choixInter;
 
-	public InputTouch [] touche;
-	public InputTouch [] interception;
-	private int n;
+    public bool infiniteTime;
 	
-	private float timeLeft;
+	public int choixTouche, choixInter;
+	
+	public int n;
+	
+	public float timeLeft;
 	public float minTime;
 	
 	public bool randomTouch {get; set;}
@@ -33,7 +33,8 @@ public class TouchManager : myMonoBehaviour {
 		choixTouche = 0;
 		choixInter = 0;
 		timeLeft = minTime;
-		n = Mathf.Min (touche.Length, interception.Length);
+		
+		n = Mathf.Min (game.settings.Inputs.touch.Length, game.settings.Inputs.touch.Length);
 		
 		if(randomTouch)
 			choixTouche = Random.Range(0, n) + 1;
@@ -41,62 +42,24 @@ public class TouchManager : myMonoBehaviour {
 		if(randomIntercept)
 			choixInter = Random.Range(0, n) + 1;
 	}
-	
-	public bool hideGui = true;
-	public void OnGUI() {
-		if(hideGui) {
-			Color c = GUI.color;
-			
-			GUILayout.Space(300);
-					
-			if(timeLeft > 0)
-				GUILayout.Label("Choisissez une touche, il vous reste : " + ((int)timeLeft) + " secondes (minimum)");
-			else
-				GUILayout.Label("Choisissez une touche");
-				
-			GUILayout.BeginHorizontal();
-				GUILayout.Label("J1 : ");
-			
-				for(int i = 0; i < n; i++) {
-					GUI.color = (choixTouche == i+1) ? Color.red : c;
-					if(GUILayout.Button (touche[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-						choixTouche = i+1;
-					}
-				}
-			GUILayout.EndHorizontal();
-			
-			GUI.color = c;
-			
-			GUILayout.BeginHorizontal();
-				GUILayout.Label("J2 : ");
-			
-				for(int i = 0; i < n; i++) {
-					GUI.color = (choixInter == i+1) ? Color.red : c;
-					if(GUILayout.Button (interception[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-						choixInter = i+1;
-					}
-				}
-			GUILayout.EndHorizontal();
-			
-			GUI.color = c;
-		}
-	}
-	
+
 	public void Update() {
-		timeLeft -= Time.deltaTime;
+		if(!infiniteTime)
+            timeLeft -= Time.deltaTime;
 		
 		for(int i = 0; i < n; i++) {
-			if(Input.GetKeyDown(touche[i].keyboard) || (gamerTouch && gamerTouch.XboxController.GetButtonDown(touche[i].xbox))) {
+			if(Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerTouch.Team)) || (gamerTouch.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox))) {
 				choixTouche = i+1;
 			}
-			if(Input.GetKeyDown(interception[i].keyboard) || (gamerIntercept && gamerIntercept.XboxController.GetButtonDown(interception[i].xbox))) {
+			if(Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerIntercept.Team)) || (gamerIntercept.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox))) {
 				choixInter = i+1;
 			}
 		}
-		
-		if(choixTouche != 0 && timeLeft < 0) {
-			DoTouch();	
-		}
+
+        if (choixTouche != 0 && ((timeLeft < 0 && !infiniteTime) || choixInter != 0))
+        {
+            DoTouch();
+        }        
 	}
 		
 	public enum Result {

@@ -40,7 +40,7 @@ public class Unit : TriggeringTriggered, Debugable
     private Order currentOrder;
     private Team team;
 	
-    public Game Game {get; set;}	
+    public Game game {get; set;}	
     public GameObject[] selectedIndicators;
 
     public bool isTackled { get; set; }
@@ -72,6 +72,19 @@ public class Unit : TriggeringTriggered, Debugable
 	void Update() {
 		if(team == null)
 			return;
+
+        if (remainingTimeDodging > 0)
+        {
+            remainingTimeDodging -= Time.deltaTime;
+            if (remainingTimeDodging <= 0)
+            {
+                this.game.OnDodgeFinished(this);
+            }
+        }
+        else if (cooldownDodge > 0)
+        {
+            cooldownDodge -= Time.deltaTime;
+        }
 				
 		if(triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
@@ -315,12 +328,50 @@ public class Unit : TriggeringTriggered, Debugable
         }
     }
 
+    private float remainingTimeDodging = -1;
+    private float cooldownDodge = -1;
+
+    public Vector3 dodgeDirection { get; set; }
+    public bool Dodge
+    {
+        get
+        {
+            return (remainingTimeDodging > 0);
+        }
+        set
+        {
+            if (value == false)
+            {
+                remainingTimeDodging = -1;
+            }
+            else if(CanDodge)
+            {
+                remainingTimeDodging = this.team.unitDodgeDuration;
+                cooldownDodge = this.team.unitDodgeCooldown;
+                this.game.OnDodge(this);
+            }
+        }
+    }
+
+    public bool CanDodge
+    {
+        get
+        {
+            if (!game)
+                return false;
+            if (!game.Ball)
+                return false;
+
+            return !Dodge && cooldownDodge < 0 && this == game.Ball.Owner;
+        }
+    }
+
 	public override void Start () 
     {        
-        sm.SetFirstState(new MainState(sm, this));
+        sm.SetFirstState(new MainUnitState(sm, this));
         base.Start();
 	}
-    
+
     public void ChangeOrderSilency(Order o)
     {
         this.currentOrder = o;
@@ -377,7 +428,7 @@ public class Unit : TriggeringTriggered, Debugable
             if (t.GetType() == typeof(NearUnit))
             {
                 if (other.Team != this.Team)  
-                    this.sm.event_NearUnit(other);// MyDebug.Log(this.name + " : " + other.name + " est dans mon champs d'action !");
+                    this.sm.event_NearUnit(other);// 
             }
         }
     }
@@ -468,12 +519,24 @@ public class Unit : TriggeringTriggered, Debugable
         return nearestAlly;
     }
 
-/*
-    public void ShowTouch(InputTouch touch)
+    public void ShowPlayer(bool active)
     {
+        if (!active)
+        {
+            this.IndicateSelected(false);
+        }
+        else
+        {
+            Gamer g = this.team.Player;
+            if (g != null)
+            {
+                this.IndicateSelected(this == g.Controlled);
+            }
+        }
 
+        this.Model.SetActive(active);        
     }
-*/
+
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
@@ -507,7 +570,23 @@ public class Unit : TriggeringTriggered, Debugable
                 EditorGUILayout.LabelField("Plaque " + o.target.name);
                 break;
 
-        }        
+        }
+                
+        if (this.CanDodge)
+        {
+            EditorGUILayout.LabelField("Can Dodge");
+        }
+        else
+        {
+            if (this.Dodge)
+            {
+                EditorGUILayout.LabelField("Dodging : " + (int)this.remainingTimeDodging);
+            }
+            else
+            {
+                EditorGUILayout.LabelField("Dodge cooldown : " + (int)this.cooldownDodge);
+            }
+        }
 #endif
     }
 	

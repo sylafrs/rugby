@@ -21,6 +21,39 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         return list.Count;
     }
 
+    public bool state_is_last(State current)
+    {
+        int index = list.IndexOf(current);
+        if (index == -1)
+        {
+            Debug.LogError("state_is_last(" + current + ") : " + current + " introuvable !");
+            return false;
+        }
+        
+        return (index == 0);
+    }
+
+    public bool state_has_son(State current, System.Type t)
+    {
+        int index = list.IndexOf(current);
+        if (index == -1)
+        {
+            Debug.LogError("state_has_son(" + current + ", " + t + ") : " + current + " introuvable !");
+            return false;
+        }
+        
+        while (index >= 0)
+        {            
+            if (list[index].GetType() == t)
+            {
+                return true;
+            }
+            index--;
+        }
+
+        return false;
+    }
+
     public string GetStateName(int i)
     {
         if (i < list.Count && i >= 0) 
@@ -60,8 +93,8 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         }
         while (index > 0)
         {
+            index--;  
             list[index].OnLeave();
-            index--;            
         }
         current.OnLeave();
         index = list.IndexOf(current);

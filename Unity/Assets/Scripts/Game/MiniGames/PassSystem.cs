@@ -107,19 +107,19 @@ public class PassSystem {
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
 
-			target.Order = Order.OrderMove(relativePosition, Order.TYPE_DEPLACEMENT.SPRINT);
+			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
 
 			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
-			//MyDebug.Log("pos in map : " + typePosition);
-			foreach (Unit u in target.Team)
+			//
+			/*foreach (Unit u in target.Team)
 			{
 				if (u != target)
 				{
-					//u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Vheight, 0, ball.Game.settings.Vwidth), target.Team.right, typePosition);
-						//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
+					//u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Global.Team.Vheight, 0, ball.Game.settings.Global.Team.Vwidth), target.Team.south, typePosition);
+					//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
 				}
-			}
+			}*/
 		}
 	}
 	

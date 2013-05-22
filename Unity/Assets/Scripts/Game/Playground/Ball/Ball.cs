@@ -28,12 +28,12 @@ public class Ball : TriggeringTriggered {
 			
 		}
 	}
+
+    public Renderer Model;
 	public GameObject CircleDrop;
-	
     public bool onGround { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
-	public float angleDropKick = 45f;
 	public float angleDropUpAndUnder = 70f;
 	public float randomLimitAngle = 5f;
 	public float accelerationDrop = -0.75f;
@@ -87,7 +87,8 @@ public class Ball : TriggeringTriggered {
         }
     }
 
-    public Unit PreviousOwner
+    public Unit PreviousOwner;
+	/*
     {
         get
         {
@@ -98,6 +99,7 @@ public class Ball : TriggeringTriggered {
             _previousOwner = value;
         }
     }
+    */
 
 	public Unit NextOwner
 	{
@@ -115,31 +117,37 @@ public class Ball : TriggeringTriggered {
         onGround = false;
         base.Start();
 	}
-	
+
+    const float epsilonOnGround = 0.3f;
+
     public void Update()
     {
         if (Owner != null)
         {
 			
-            if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
-                this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
-				this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
-            {
-				if ( Game.state == Game.State.TRANSFORMATION )
-					this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
-				else
-                	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
-            }
+           // if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
+           //     this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
+			//	this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
+           // {
+			//	/*
+			//	if ( Game.state == Game.State.TRANSFORMATION )
+			//		this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
+			//	else
+           //     	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
+           //     	*/
+           // }
                        
             this.transform.localRotation = Quaternion.identity;
         }
 
-        if (this.transform.position.y <= 0.6f)
+        if (this.transform.position.y <= epsilonOnGround)
         {
             if (!this.onGround)
             {
                 this.Game.BallOnGround(true);
             }
+
+            this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround, this.transform.position.z);
 
             this.onGround = true;
 			CircleDrop.SetActive(false);
@@ -155,8 +163,7 @@ public class Ball : TriggeringTriggered {
         }
 			
 
-        UpdateTackle();
-		UpdatePass();
+        UpdatePass();
 		UpdateDrop();
     }
 	
@@ -165,15 +172,38 @@ public class Ball : TriggeringTriggered {
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
+        onGround = false;
 
 		Game.OnDrop();
+    }
+
+    public bool isDroping
+    {
+        get
+        {
+            return (timeOnDrop != -1);
+        }
+    }
+
+    public DropManager.TYPEOFDROP? typeOfDrop
+    {
+        get
+        {
+            if (!isDroping)
+                return null;
+
+            if (drop == null)
+                return null;
+
+            return drop.typeOfDrop;
+        }
     }
 
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
 		{
-			if (this.transform.position.y > 0.3f)
+            if (this.transform.position.y > epsilonOnGround)
 			{
 				drop.doDrop(timeOnDrop);
 				timeOnDrop += Time.deltaTime;
@@ -182,8 +212,10 @@ public class Ball : TriggeringTriggered {
 			{
 				timeOnDrop = -1;
 				this.rigidbody.isKinematic = true;
+                this.Game.BallOnGround(true);
 			}
 		}
+
 		if (this.Owner != null && timeOnDrop != -1)
 		{
 			timeOnDrop = -1;
@@ -193,11 +225,10 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		//Game.right.But
-		
+		//Game.southTeam.But		
 		Game.OnPass(this.Owner, to);
 
-		pass = new PassSystem(Game.right.But.transform.position, Game.left.But.transform.position, this.Owner, to, this);
+		pass = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		pass.CalculatePass();
 		timeOnPass = 0;
 	}
@@ -206,7 +237,7 @@ public class Ball : TriggeringTriggered {
 	{
 		if (timeOnPass != -1)
 		{
-			if (this.transform.position.y > 0.6f)
+            if (this.transform.position.y > epsilonOnGround)
 			{
                 pass.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
@@ -230,7 +261,7 @@ public class Ball : TriggeringTriggered {
     {
         if (v.y == 0)
         {
-            v.y = 0.5f;
+            v.y = epsilonOnGround;
         }
 
         this.transform.parent = null;
@@ -245,7 +276,7 @@ public class Ball : TriggeringTriggered {
     private void Taken(Unit u)
     {		
 		
-		MyDebug.Log("i take the ball " + u.name);
+		
 
 		this.rigidbody.useGravity = false;
 		this.rigidbody.isKinematic = true;
@@ -260,7 +291,7 @@ public class Ball : TriggeringTriggered {
         return this.transform.position.x < 0;
     }
 
-    List<Unit> scrumFieldUnits = new List<Unit>();
+    public List<Unit> scrumFieldUnits = new List<Unit>();
     public override void Entered(Triggered o, Trigger t)
     {       
         if (t.GetType() == typeof(NearBall))
@@ -312,7 +343,7 @@ public class Ball : TriggeringTriggered {
                 int right = 0, left = 0;
                 for (int i = 0; i < scrumFieldUnits.Count; i++)
                 {
-                    if (scrumFieldUnits[i].Team == Game.right)
+                    if (scrumFieldUnits[i].Team == Game.southTeam)
                         right++;
                     else
                         left++;
@@ -323,12 +354,11 @@ public class Ball : TriggeringTriggered {
                 {
                     Game.OnScrum();
                     //goScrum = true;
-					//MyDebug.Log("Scruuum");
+					//
                 }else{
 					//goScrum = false;
 				}
             }
         }
     }
-	
 }
