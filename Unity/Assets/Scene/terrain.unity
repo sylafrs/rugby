@@ -3192,10 +3192,10 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 0
-  unitDodgeDuration: 0
-  unitDodgeCooldown: 0
-  unitInvincibleDodge: 0
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 1
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -7019,7 +7019,7 @@ MonoBehaviour:
           down: 46
           right: 47
           left: 44
-        xbox: 0
+        xbox: 1
     UI:
       GameUI:
         emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
@@ -9476,10 +9476,10 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 0
-  unitDodgeDuration: 0
-  unitDodgeCooldown: 0
-  unitInvincibleDodge: 0
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 1
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70

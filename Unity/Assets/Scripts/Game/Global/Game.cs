@@ -175,7 +175,8 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        this.refs.stateMachine.event_Tackle();
+        if(tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+            this.refs.stateMachine.event_Tackle();
         this.Referee.OnTackle(tackler, tackled);  
     }
 
@@ -198,6 +199,12 @@ public class Game : myMonoBehaviour {
     public void OnDodge(Unit u)
     {
         this.refs.stateMachine.event_Dodge(u);
+    }
+
+    // Pour plus tard ?
+    public void OnDodgeSuccess()
+    {
+
     }
 
     public void OnDodgeFinished(Unit u)

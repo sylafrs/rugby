@@ -251,6 +251,13 @@ public class Referee : myMonoBehaviour {
     }
 		
 	public void OnTackle(Unit tackler, Unit tackled) {
+
+        if (tackler != null && tackled == null)
+        {
+            tackler.sm.event_Tackle();
+            game.OnDodgeSuccess();
+            return;
+        }
 	
         TackleManager tm = this.game.refs.managers.tackle;
         if (tm == null)

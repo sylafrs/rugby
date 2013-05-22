@@ -21,7 +21,7 @@ public class GainGroundingState : GameState {
     {
         if (u == this.game.Ball.Owner)
         {
-            sm.state_change_son(this, new DodgingState(sm, cam, this.game));
+            sm.state_change_me(this, new DodgingState(sm, cam, this.game));
             return true;
         }
 
