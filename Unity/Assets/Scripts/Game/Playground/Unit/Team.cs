@@ -484,29 +484,38 @@ public class Team : myMonoBehaviour, IEnumerable {
 	}
 
 	//maxens dubois
+    public GameObject fxSuper;
+    private GameObject[] myFxSuper;
+    public GameObject lightSuper;
+
 	public void PlaySuperParticleSystem(SuperList _super, bool play){
-		switch (_super){
-		case SuperList.superDash:
-			foreach(Unit u in units){
-				if(play == true){
-					u.superDashParticles.Play();
-				}else{
-					u.superDashParticles.Stop();
-				}
-			}
-			break;
-		case SuperList.superTackle:
-			foreach(Unit u in units){
-				if(play == true){
-					u.superTackleParticles.Play();
-				}else{
-					u.superTackleParticles.Stop();
-				}
-			}
-			break;
-		default:
-			break;
-		}
+		
+        myFxSuper = new GameObject[this.nbUnits];
+        int i = 0;
+
+        if (play && lightSuper)
+            lightSuper.SetActive(true);
+
+        foreach (Unit u in this.units)
+        {
+            if (play)
+            {
+                myFxSuper[i] = GameObject.Instantiate(fxSuper) as GameObject;
+                myFxSuper[i].transform.parent = u.transform;
+                myFxSuper[i].transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                if (myFxSuper[i])
+                    GameObject.Destroy(myFxSuper[i]);
+            }
+
+            i++;
+            
+        }
+
+        if (!play && lightSuper)
+            lightSuper.SetActive(false);
 	}
 
     public void ShowPlayers(bool active)
