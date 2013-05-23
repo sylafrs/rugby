@@ -61,18 +61,5 @@ public class PlayingState : GameState
         game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 	}
 
-
-	public override void OnUpdate()
-	{
-		foreach (Unit u in game.northTeam)
-		{
-			u.UpdatePlacement();
-		}
-
-		foreach (Unit u in game.southTeam)
-		{
-			u.UpdatePlacement();
-		}
-	}
 	
 }
