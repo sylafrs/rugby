@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 16940874}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Wrist_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 47553877}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 49325692}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 59076053}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   - 4: {fileID: 66254112}
   - 198: {fileID: 66254113}
   - 199: {fileID: 66254114}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Particle System Super Tackle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2212,7 +2212,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 71461479}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2294,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 73281538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2432,7 +2432,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 84917887}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Armor_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2458,7 +2458,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 90340709}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2986,7 +2986,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 142453949}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_MidSpine_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3013,7 +3013,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 151827833}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Head_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3112,7 +3112,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 152298749}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3187,7 +3187,7 @@ GameObject:
   - 114: {fileID: 156800329}
   - 23: {fileID: 156800333}
   - 114: {fileID: 156800334}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Joueur_Jap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3336,7 +3336,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 164478700}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Belt02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3444,7 +3444,7 @@ GameObject:
   - 4: {fileID: 170850785}
   - 114: {fileID: 170850787}
   - 114: {fileID: 170850786}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3602,7 +3602,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 184371758}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Ultimate_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3710,7 +3710,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 189423488}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3916,7 +3916,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 197871613}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Wrist_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4074,7 +4074,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 208599469}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4251,7 +4251,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 236351255}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4333,7 +4333,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 239685317}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Eyes_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4412,7 +4412,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 248837572}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4438,7 +4438,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 250356590}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:CONTROLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4784,7 +4784,7 @@ MonoBehaviour:
   But: {fileID: 841198778}
   Zone: {fileID: 2049065008}
   nbPoints: 0
-  StartPlacement: {fileID: 0}
+  StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
   unitDodgeSpeedFactor: 2
@@ -4819,7 +4819,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 293866499}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4846,7 +4846,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 301536853}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_MidChest_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5069,7 +5069,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 307048073}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 312903215}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BallPlaceHolderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5565,7 +5565,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 346583977}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5663,7 +5663,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 353733344}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Wrist_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5694,7 +5694,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 354723074}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5895,7 +5895,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 376642891}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ankle_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6037,7 +6037,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 384048466}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Elbow_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6350,7 +6350,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 396221872}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6624,7 +6624,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 424454099}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Belt03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6650,7 +6650,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 426635313}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7615,7 +7615,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 509656383}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BallPlaceHolderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7708,7 +7708,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 513506515}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BallPlaceHolderTransformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7734,7 +7734,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 515282206}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8161,7 +8161,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 546586085}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8241,7 +8241,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 554126930}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PR_jap_captain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8489,7 +8489,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 590568356}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9320,7 +9320,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 635477207}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Pelvis_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9375,7 +9375,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 643874593}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9456,7 +9456,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 659466377}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9522,7 +9522,7 @@ MonoBehaviour:
   CircleDrop: {fileID: 719836395}
   multiplierDropKick: {x: 20, y: 20}
   multiplierDropUpAndUnder: {x: 25, y: 5}
-  angleDropKick: 45
+  angleDropKick: 70
   angleDropUpAndUnder: 85
   randomLimitAngle: 5
   accelerationDrop: -.899999976
@@ -9735,7 +9735,7 @@ GameObject:
   - 4: {fileID: 673655876}
   - 33: {fileID: 673655875}
   - 23: {fileID: 673655874}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9788,7 +9788,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 679857734}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9814,7 +9814,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 681932448}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Belt01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9894,7 +9894,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 688243915}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Eye_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9920,7 +9920,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 688287982}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10157,7 +10157,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 701404174}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10211,7 +10211,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 707053218}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Elbow_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10270,7 +10270,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ea9fc8cbad6bc499ab1a04d4928a5f, type: 3}
   m_Name: 
-  game: {fileID: 0}
+  game: {fileID: 2004071851}
   raySquare: 4
   YToDecide: 1
   winnerDrop: 0
@@ -10337,7 +10337,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 726140390}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10364,7 +10364,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 726783530}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10390,7 +10390,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 729101826}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10619,7 +10619,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 765639864}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Head_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10743,7 +10743,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 772897853}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ball_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10770,7 +10770,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 780041321}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11104,7 +11104,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 801593729}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Belt02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11130,7 +11130,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 801889659}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Elbow_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11287,7 +11287,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 824190654}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11314,7 +11314,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 832098855}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11818,7 +11818,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 867105230}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Clavicle_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13078,7 +13078,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 893251768}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Knee_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13131,7 +13131,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 919876424}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Elbow_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13408,7 +13408,7 @@ GameObject:
   - 4: {fileID: 944888813}
   - 198: {fileID: 944888814}
   - 199: {fileID: 944888815}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Particle System Super Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14517,7 +14517,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 948199955}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14670,7 +14670,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 960144155}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14697,7 +14697,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 966362431}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Clavicule_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14779,7 +14779,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 971838884}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Shoulder_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15154,7 +15154,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 993779714}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Clavicule_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15893,7 +15893,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1090917355}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ankle_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15946,7 +15946,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1113877489}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Chest_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16642,7 +16642,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1154818693}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:SKELETON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16860,7 +16860,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1166333174}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Shoulder_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17121,7 +17121,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1188571953}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17148,7 +17148,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1194668106}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17231,7 +17231,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1199253755}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Belt01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17310,7 +17310,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1217188335}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_ForeArm_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17337,7 +17337,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1220413005}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Thumb03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17515,7 +17515,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1238972276}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17542,7 +17542,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1243462754}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17569,7 +17569,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1243721612}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Jaw_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17637,7 +17637,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1246616080}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Chest_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17789,7 +17789,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1262982996}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Belt_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17900,7 +17900,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1290698465}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Neck_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18006,7 +18006,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1301781094}
   - 95: {fileID: 1301781091}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18072,7 +18072,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1303618594}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18154,7 +18154,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1308932519}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Elbow_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18250,7 +18250,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1314495522}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18276,7 +18276,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1315769948}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Shoulder_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18385,7 +18385,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1329912244}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ball_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18591,7 +18591,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1340622940}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Jaw_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19107,7 +19107,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1361433040}
   - 137: {fileID: 1361433041}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:Jap_cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19243,7 +19243,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1361691135}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Root_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19271,7 +19271,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1361707942}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Eye_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19367,7 +19367,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1367792757}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Belt_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19810,7 +19810,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1382703397}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19837,7 +19837,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1383690168}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BallPlaceHolderDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20247,7 +20247,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1420524554}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Jaw_End_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20354,7 +20354,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1431346254}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20690,7 +20690,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1460976390}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20717,7 +20717,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1473317087}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20744,7 +20744,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1480049286}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Shoulder_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20825,7 +20825,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1491986062}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Clavicule_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20852,7 +20852,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1493221966}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20913,7 +20913,7 @@ GameObject:
   - 15: {fileID: 1502106427}
   - 12: {fileID: 1502106426}
   - 26: {fileID: 1502106425}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: New Particle Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21137,7 +21137,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1512816180}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21232,7 +21232,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1521784295}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Belt_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21259,7 +21259,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1522134346}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21527,7 +21527,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1563337242}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Root_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21557,7 +21557,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1564479655}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22188,7 +22188,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1603220957}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_MidSpine_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22964,7 +22964,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1672949659}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Eye_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22990,7 +22990,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1676971167}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Toe_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23098,7 +23098,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1683060761}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Ring_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23177,7 +23177,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1693321878}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Middle_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23260,7 +23260,7 @@ MonoBehaviour:
   flipDelay: .100000001
   flipedForTeam: {fileID: 0}
   CancelNextFlip: 0
-  sm: {fileID: 0}
+  sm: {fileID: 1693924983}
 --- !u!1 &1694633019
 GameObject:
   m_ObjectHideFlags: 0
@@ -24025,7 +24025,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1730730501}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Thumb_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24134,7 +24134,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1735138594}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Clavicule_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24285,7 +24285,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1738395741}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Pinky_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24564,7 +24564,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1766884929}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Hip_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24761,7 +24761,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1784245062}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Hip_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24883,7 +24883,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1796782112}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Middle_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25142,7 +25142,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1826359418}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Index02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25280,7 +25280,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1843350630}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Wrist_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26601,7 +26601,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1872500782}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Shoulder_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26655,7 +26655,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1888490197}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Wrist_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27084,7 +27084,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1917075900}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky01_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27303,7 +27303,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1926148729}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_ForeArm_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27674,7 +27674,7 @@ GameObject:
   - 4: {fileID: 1962966367}
   - 135: {fileID: 1962966369}
   - 114: {fileID: 1962966368}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27879,7 +27879,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1977801052}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Toe_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27907,7 +27907,7 @@ GameObject:
   - 4: {fileID: 1978565299}
   - 33: {fileID: 1978565301}
   - 23: {fileID: 1978565300}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SelectedIndic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27987,7 +27987,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1997721158}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index02_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28014,7 +28014,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2000000002}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Elbow_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28041,7 +28041,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2001255015}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Pinky04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28123,10 +28123,6 @@ MonoBehaviour:
   disableIAKey: 105
   tweakMode: 0
   arbiter: {fileID: 2004071857}
-  PREFAB1_FX_TEST: {fileID: 100020, guid: ac37f60498f5b274796598998efbca6b, type: 2}
-  PREFAB2_FX_TEST: {fileID: 100002, guid: db293cb59ef6066498060ab7b0e1f112, type: 2}
-  LIGHT_TEST: {fileID: 0}
-  TIME_TEST: 0
 --- !u!114 &2004071852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28278,42 +28274,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
   tweakSettings:
-    FeedSuperPerSmash: 0
-    FeedSuperPerSecond: 0
-    MaximumDistance: 0
-    MaximumDuration: 0
-    SmashValue: 0
-    SuperMultiplicator: 0
+    FeedSuperPerSmash: .0500000007
+    FeedSuperPerSecond: .200000003
+    MaximumDistance: 11.5
+    MaximumDuration: 5
+    SmashValue: .0500000007
+    SuperMultiplicator: 5
   inputSettings:
     rightSmashButton:
-      keyboard: 0
+      keyboard: 119
       xbox: 0
     leftSmashButton:
-      keyboard: 0
+      keyboard: 99
       xbox: 0
     rightSuperButton:
-      keyboard: 0
-      xbox: 0
+      keyboard: 120
+      xbox: 3
     leftSuperButton:
-      keyboard: 0
-      xbox: 0
+      keyboard: 118
+      xbox: 3
   guiSettings:
     ScrumSpecialRect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumSpecialButton: {fileID: 0}
+      x: 42.5
+      y: 78
+      width: 20
+      height: 10
+    ScrumSpecialButton: {fileID: 2800000, guid: 7570174d316a1ea479dbf95bf67eabb6,
+      type: 3}
     ScrumBarRect:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    ScrumRightBar: {fileID: 0}
-    ScrumLeftBar: {fileID: 0}
-    ScrumEmptyBar: {fileID: 0}
+      x: 20
+      y: 90
+      width: 60
+      height: 5
+    ScrumRightBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
+    ScrumLeftBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
+    ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28743,10 +28740,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
   infiniteTime: 0
-  touche: []
-  interception: []
+  touche:
+  - keyboard: 97
+    xbox: 0
+  - keyboard: 122
+    xbox: 1
+  - keyboard: 101
+    xbox: 8
+  interception:
+  - keyboard: 113
+    xbox: 0
+  - keyboard: 115
+    xbox: 1
+  - keyboard: 100
+    xbox: 8
   minTime: 3
-  hideGui: 1
+  hideGui: 0
 --- !u!114 &2004071856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28758,7 +28767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
   touch:
-    keyboard: 0
+    keyboard: 97
     xbox: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
@@ -28860,7 +28869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e50eb0204974454e8bf1c2d7bdaacca, type: 3}
   m_Name: 
   touch:
-    keyboard: 0
+    keyboard: 97
     xbox: 0
 --- !u!114 &2004071859
 MonoBehaviour:
@@ -28875,7 +28884,7 @@ MonoBehaviour:
   tempsPlaquage: .5
   ralentiPlaquage: 1
   touchPassOnTackle:
-    keyboard: 0
+    keyboard: 97
     xbox: 0
 --- !u!1 &2005516407
 GameObject:
@@ -28885,7 +28894,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2005516408}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Clavicle_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29020,7 +29029,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2016267698}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29098,7 +29107,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2021026161}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Pelvis_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29156,7 +29165,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2031191951}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Eyes_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29295,7 +29304,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2038442741}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Head_End_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29321,7 +29330,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2039422256}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:R_Shoulder_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29348,7 +29357,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2041089041}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Ring04_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29505,7 +29514,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2062991942}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Index03_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29562,7 +29571,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2064908411}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Eye_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29588,7 +29597,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2065095903}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:C_Neck_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29713,7 +29722,7 @@ MonoBehaviour:
   But: {fileID: 2078298286}
   Zone: {fileID: 2018489760}
   nbPoints: 0
-  StartPlacement: {fileID: 0}
+  StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
   unitDodgeSpeedFactor: 2
@@ -29803,7 +29812,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2080800720}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Wrist_ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29834,7 +29843,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2085839270}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Belt_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30111,7 +30120,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2120092738}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chara_Japan__2_:L_Knee_jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
