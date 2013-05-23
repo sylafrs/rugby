@@ -11,17 +11,20 @@ public class ScrumState : GameState
     public ScrumState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
 	void initCutScene(){
-		cam.setTarget(this.cam.game.refs.gameObjects.ScrumBloc.transform);
+		cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);
 	}
 	
 	public override void OnEnter()
     {
 		initCutScene();
-      // cam.game.Referee.NowScrum();
-        game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
+
+        Transform cameraPlaceHolder = game.refs.placeHolders.scrumPlacement.FindChild("CameraPlacement");
+
+      // cam.game.Referee.NowScrum();        
         game.Referee.ScrumCinematicMovement();
-        cam.transalateWithFade(Vector3.one, Quaternion.identity, 2, 1, 1, 1, 
+        cam.transalateWithFade(Vector3.one, cameraPlaceHolder.rotation, 2, 1, 1, 1, 
         (/* OnFinish*/) => {
+            game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
             game.Referee.NowScrum();
         }, (/*OnFade*/) => {
             game.Referee.ScrumSwitchToBloc();

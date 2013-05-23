@@ -66,6 +66,35 @@ public partial class Referee
     private void ScrumEndPlacement(Team t, Vector3 endPos)
     {
         Transform placement = this.game.refs.placeHolders.scrumPlacement.FindChild("EndPlacement");
+
+        Transform winners = placement.FindChild("WinnerTeam");
+        Transform loosers = placement.FindChild("LooserTeam");
+
+        if (t == game.northTeam)
+        {
+            Vector3 pos = winners.position;
+            winners.position = loosers.position;
+            loosers.position = pos;
+
+            Quaternion q = winners.rotation;
+            winners.rotation = loosers.rotation;
+            loosers.rotation = q;
+        }
+
+        t.placeUnits(winners, true);
+        t.opponent.placeUnits(loosers, true);
+
+        if (t == game.northTeam)
+        {
+            Vector3 pos = winners.position;
+            winners.position = loosers.position;
+            loosers.position = pos;
+
+            Quaternion q = winners.rotation;
+            winners.rotation = loosers.rotation;
+            loosers.rotation = q;
+
+        }
     }
 
     public void ScrumCinematicMovement()

@@ -14,7 +14,7 @@ public class TouchState : GameState
 	{	
 		cam.setTarget(null);
 		
-		Transform cameraPlaceHolder = GameObject.Find("TouchPlacement").transform.FindChild("CameraPlaceHolder");
+		Transform cameraPlaceHolder = game.refs.placeHolders.touchPlacement.FindChild("CameraPlaceHolder");
 
         cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
             (/* OnFinish */) => {               

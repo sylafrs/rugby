@@ -36,7 +36,7 @@ public class GameActionState : GameState {
         return true;
     }
 
-    const int N = 4; // To define somewhere else..
+    const int N = 5; // To define somewhere else..
 
     public override bool OnResumeSignal() 
     {
