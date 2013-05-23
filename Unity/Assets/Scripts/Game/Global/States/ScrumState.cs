@@ -17,10 +17,16 @@ public class ScrumState : GameState
 	public override void OnEnter()
     {
 		initCutScene();
-       // cam.game.Referee.ScrumCinematicMovement();
-       // cam.game.Referee.NowScrum();
+      // cam.game.Referee.NowScrum();
         game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
-        cam.game.Referee.ScrumCinematicMovement();
+        game.Referee.ScrumCinematicMovement();
+        cam.transalateWithFade(Vector3.one, Quaternion.identity, 2, 1, 1, 1, 
+        (/* OnFinish*/) => {
+            game.Referee.NowScrum();
+        }, (/*OnFade*/) => {
+            game.Referee.SwitchToBloc();
+        });
+        
     }
 	
 	public override void OnLeave()

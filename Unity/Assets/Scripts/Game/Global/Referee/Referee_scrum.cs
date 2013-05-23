@@ -20,28 +20,40 @@ public partial class Referee
         //NowScrum();
     }
 
-    public void NowScrum()
+    public void SwitchToBloc()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.game.Ball.transform.position;
-
-        ScrumManager sc = this.game.refs.managers.scrum;
-        sc.InitialPosition = this.game.Ball.transform.position;
-        sc.ScrumBloc = bloc.transform;
 
         this.game.southTeam.ShowPlayers(false);
         this.game.northTeam.ShowPlayers(false);
         this.game.Ball.Model.enabled = false;
         bloc.enabled = true;
+    }
+
+    public void SwitchToPlayers()
+    {
+        Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
+        
+        this.game.Ball.Model.enabled = true;
+        this.game.southTeam.ShowPlayers(true);
+        this.game.northTeam.ShowPlayers(true);
+        bloc.enabled = false;
+    }
+
+    public void NowScrum()
+    {
+        Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
+
+        ScrumManager sc = this.game.refs.managers.scrum;
+        sc.InitialPosition = this.game.Ball.transform.position;
+        sc.ScrumBloc = bloc.transform;
 
         sc.callback = (Team t, Vector3 endPos) =>
         {
             game.Ball.Owner = t[0];
 
-            this.game.Ball.Model.enabled = true;
-            this.game.southTeam.ShowPlayers(true);
-            this.game.northTeam.ShowPlayers(true);
-            bloc.enabled = false;
+            SwitchToPlayers();
 
             game.OnResumeSignal();
         };

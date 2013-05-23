@@ -470,8 +470,8 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 		else
 		{
-            unit.nma.speed = 6;
-            unit.Order = Order.OrderMove(dst.transform.position);
+            unit.nma.speed = 10;
+            unit.Order = Order.OrderFollow(dst);
 			unit.transform.rotation = dst.rotation;
 		}
 	}
