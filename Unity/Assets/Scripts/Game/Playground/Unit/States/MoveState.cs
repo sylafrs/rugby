@@ -21,8 +21,8 @@ public class MoveState : UnitState {
     {       
         if (unit.nma.remainingDistance < epsilon)
         {
-           // unit.nma.Stop();
-           // unit.Order = Order.OrderNothing();
+            unit.nma.Stop();
+            unit.Order = Order.OrderNothing();
         }
     }
 }
