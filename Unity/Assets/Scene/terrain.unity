@@ -4787,10 +4787,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1727008273}
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 0
-  unitDodgeDuration: 0
-  unitDodgeCooldown: 0
-  unitInvincibleDodge: 0
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 2
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -23276,6 +23276,7 @@ GameObject:
   - 114: {fileID: 1694633025}
   - 114: {fileID: 1694633026}
   - 114: {fileID: 1694633027}
+  - 82: {fileID: 1694633028}
   m_Layer: 0
   m_Name: Intro1
   m_TagString: MainCamera
@@ -23432,6 +23433,62 @@ MonoBehaviour:
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   contrastCompositeShader: {fileID: 4800000, guid: 273404942eede4ea1883ca1fb2942507,
     type: 3}
+--- !u!82 &1694633028
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694633019}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 8f36913a7e252eb4a9607e0367e82858, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1702726451
 GameObject:
   m_ObjectHideFlags: 0
@@ -28085,8 +28142,8 @@ MonoBehaviour:
     superGaugeOffensiveLimitBreak: 200
     superGaugeDefensiveLimitBreak: 200
     superGaugeMaximum: 200
-    OffensiveSuperDurationTime: 10
-    DefensiveSuperDurationTime: 10
+    OffensiveSuperDurationTime: 4
+    DefensiveSuperDurationTime: 4
     superSpeedScale: 1.5
     superTackleBoxScale: 1.5
     superUnblockable: 0
@@ -28095,18 +28152,18 @@ MonoBehaviour:
     passLooseSuperPoints: 5
     dropWinSuperPoints: 20
     dropLooseSuperPoints: 10
-    tryWinSuperPoints: 200
-    tryLooseSuperPoints: 200
-    conversionWinSuperPoints: 10
-    conversionLooseSuperPoints: 5
-    conversionOpponentSuperPoints: 10
-    touchWinSuperPoints: 20
-    touchInterceptSuperPoints: 20
+    tryWinSuperPoints: 100
+    tryLooseSuperPoints: 50
+    conversionWinSuperPoints: 30
+    conversionLooseSuperPoints: 0
+    conversionOpponentSuperPoints: 15
+    touchWinSuperPoints: 30
+    touchInterceptSuperPoints: 30
     touchLooseSuperPoints: 10
     tackleWinSuperPoints: 20
     tackleLooseSuperPoints: 5
-    scrumWinSuperPoints: 30
-    scrumLooseSuperPoints: 10
+    scrumWinSuperPoints: 50
+    scrumLooseSuperPoints: 25
   inputs:
     shortPass:
       keyboard: 49
@@ -28122,7 +28179,7 @@ MonoBehaviour:
       xbox: 9
     tackle:
       keyboard: 51
-      xbox: 0
+      xbox: 8
     reset:
       keyboard: 48
       xbox: 2
@@ -28137,7 +28194,7 @@ MonoBehaviour:
       xbox: 3
     changePlayer:
       keyboard: 49
-      xbox: 1
+      xbox: 0
     move:
       keyboard:
         up: 122
@@ -28151,7 +28208,7 @@ MonoBehaviour:
         down: 0
         right: 0
         left: 0
-      xbox: 0
+      xbox: 1
   inputs2:
     shortPass:
       keyboard: 55
@@ -28167,7 +28224,7 @@ MonoBehaviour:
       xbox: 9
     tackle:
       keyboard: 57
-      xbox: 0
+      xbox: 8
     reset:
       keyboard: 0
       xbox: 2
@@ -28182,7 +28239,7 @@ MonoBehaviour:
       xbox: 3
     changePlayer:
       keyboard: 0
-      xbox: 1
+      xbox: 0
     move:
       keyboard:
         up: 105
@@ -28196,7 +28253,7 @@ MonoBehaviour:
         down: 0
         right: 0
         left: 0
-      xbox: 0
+      xbox: 1
   timePlaque: 3
   Vheight: 10
   Vwidth: 4
@@ -29668,10 +29725,10 @@ MonoBehaviour:
   StartPlacement: {fileID: 1657399149}
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 0
-  unitDodgeDuration: 0
-  unitDodgeCooldown: 0
-  unitInvincibleDodge: 0
+  unitDodgeSpeedFactor: 2
+  unitDodgeDuration: .200000003
+  unitDodgeCooldown: 2
+  unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70

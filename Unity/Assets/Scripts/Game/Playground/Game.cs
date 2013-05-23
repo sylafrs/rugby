@@ -173,6 +173,8 @@ public class Game : myMonoBehaviour {
 		//this.cameraLocked = true;
 				       
         introManager.OnFinish = () => {
+			
+			this.cameraManager.gameCamera.gameCamera.audio.Play();
             
             this._disableIA = true;
 			state = State.PLAYING;                  

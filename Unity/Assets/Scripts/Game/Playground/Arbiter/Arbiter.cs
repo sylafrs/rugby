@@ -487,6 +487,8 @@ public class Arbiter : myMonoBehaviour {
 				if(IngameTime > GameTimeDuration){
 					IngameTime = GameTimeDuration;
                 	this.Game.state = Game.State.END;
+					
+					this.Game.cameraManager.gameCamera.gameCamera.audio.Stop();
 				}
 			}
         }
