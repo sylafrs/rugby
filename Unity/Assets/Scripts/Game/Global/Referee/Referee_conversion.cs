@@ -85,7 +85,7 @@ public partial class Referee
 
             if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
-                UnitToGiveBallTo = opponent[0];
+                UnitToGiveBallTo = opponent[3];
                 this.StartPlacement();
             }
 
@@ -103,7 +103,7 @@ public partial class Referee
 
         // A faire en caméra :
         this.StartPlacement();
-        this.game.Ball.Owner = but.Owner[0];
+        this.game.Ball.Owner = but.Owner[2];
 
         //this.game.TimedDisableIA(3);
     }	

@@ -4886,6 +4886,7 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  passManager: {fileID: 0}
   PreviousOwner: {fileID: 0}
   scrumFieldUnits: []
 --- !u!136 &308884796
@@ -29478,7 +29479,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004071849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
+  m_Script: {fileID: 11500000, guid: 49dc74945d2179e4aa680abf21df93ba, type: 3}
   m_Name: 
 --- !u!114 &2004071858
 MonoBehaviour:

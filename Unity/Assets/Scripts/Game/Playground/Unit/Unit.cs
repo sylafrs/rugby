@@ -108,6 +108,7 @@ public class Unit : TriggeringTriggered, Debugable
 	{
 		if (this.Team.Player.Controlled == this)
 		{
+			Debug.Log(this);
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 		}
 		else
@@ -150,6 +151,7 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public void UpdatePlacement()
 	{
+
 		switch (typeOfPlayer)
 		{
 			case TYPEOFPLAYER.DEFENSE:

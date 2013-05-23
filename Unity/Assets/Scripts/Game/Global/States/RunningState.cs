@@ -44,6 +44,19 @@ public class RunningState : GameState
 		}
     }
 
+	public override void OnLeave()
+	{
+		foreach (Unit u in game.northTeam)
+		{
+			u.Order = Order.OrderNothing();
+		}
+
+		foreach (Unit u in game.southTeam)
+		{
+			u.Order = Order.OrderNothing();
+		}
+	}
+
     public override bool OnConversion(But but)
     {
         game.Referee.OnDropTransformed(but);

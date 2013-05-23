@@ -49,11 +49,11 @@ public partial class Referee : myMonoBehaviour {
         // Si on est du côté droit
         if (this.game.Ball.RightSide())
         {
-            NewOwner = game.southTeam[0];
+            NewOwner = game.southTeam[2];
         }
         else
         {
-            NewOwner = game.northTeam[0];
+            NewOwner = game.northTeam[2];
         }
 		
 		// Remise au centre, donne la balle aux perdants.

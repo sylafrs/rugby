@@ -352,6 +352,11 @@ public class Gamer
         }
         if (change)
         {
+			foreach (Unit u in this.Team)
+			{
+				u.UpdateTypeOfPlay();
+			}
+
             if (Controlled)
             {
                 Controlled.Order = Order.OrderNothing();
