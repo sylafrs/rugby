@@ -190,7 +190,7 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	void UpdateDefensePlacement()
 	{
-        return;
+        //return;
 
 		//Variables
 		Vector3 pos = this.transform.position;
