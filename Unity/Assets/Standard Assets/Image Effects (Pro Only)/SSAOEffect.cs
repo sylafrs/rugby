@@ -188,7 +188,7 @@ public class SSAOEffect : MonoBehaviour
 			table += string.Format("\tfloat3({0},{1},{2}),\n", v.x, v.y, v.z);
 		}
 		table += "};\n";
-		MyDebug.Log(table);
+		Debug.Log (table);
 	}
 	*/
 }

@@ -130,6 +130,66 @@ public class Game : myMonoBehaviour {
   //  private bool cameraLocked;
     
 	public Arbiter arbiter;
+
+    public GameObject PREFAB1_FX_TEST;
+    public GameObject PREFAB2_FX_TEST;
+    public GameObject LIGHT_TEST;
+    public float TIME_TEST;
+
+    int activeU = 0;
+    public void OnGUI()
+    {
+        if (activeU == 0 && GUILayout.Button("TEST FX"))
+        {
+            if (this.right && this.left)
+            {
+                if (LIGHT_TEST)
+                    LIGHT_TEST.SetActive(true);
+
+                foreach (Unit u in this.right)
+                {
+                    GameObject FX = GameObject.Instantiate(PREFAB1_FX_TEST) as GameObject;
+                    FX.transform.parent = u.transform;
+                    FX.transform.localPosition = Vector3.zero;
+                    activeU++;
+
+                    Timer.AddTimer(TIME_TEST, () =>
+                    {
+                        if (FX)
+                            GameObject.Destroy(FX);
+
+                        activeU--;
+                        if (activeU == 0)
+                        {
+                            if (LIGHT_TEST)
+                                LIGHT_TEST.SetActive(false);
+                        }
+                    });
+                }
+
+                foreach (Unit u in this.left)
+                {
+                    GameObject FX = GameObject.Instantiate(PREFAB2_FX_TEST) as GameObject;
+                    FX.transform.parent = u.transform;
+                    FX.transform.localPosition = Vector3.zero;
+                    activeU++;
+
+                    Timer.AddTimer(TIME_TEST, () =>
+                    {
+                        if (FX)
+                            GameObject.Destroy(FX);
+
+                        activeU--;
+                        if (activeU == 0)
+                        {
+                            if (LIGHT_TEST)
+                                LIGHT_TEST.SetActive(false);
+                        }
+                    });
+                }
+            }
+        }
+    }
 	
 	public void Start ()
     {

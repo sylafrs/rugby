@@ -468,7 +468,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					MyDebug.Log("Process complete in: "+processTime.ToString());
+					Debug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -677,7 +677,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					MyDebug.Log("Process complete in: "+processTime.ToString());
+					Debug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -754,7 +754,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					MyDebug.Log("Process complete in: "+processTime.ToString());
+					Debug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -839,7 +839,7 @@ public class TerrainToolkitEditor : Editor {
 					terrain.erodeAllTerrain(erosionProgressDelegate);
 					EditorUtility.ClearProgressBar();
 					TimeSpan processTime = DateTime.Now - startTime;
-					MyDebug.Log("Process complete in: "+processTime.ToString());
+					Debug.Log("Process complete in: "+processTime.ToString());
 					GUIUtility.ExitGUI();
 				}
 				GUI.skin = null;
@@ -860,382 +860,317 @@ public class TerrainToolkitEditor : Editor {
 			drawAdvancedSettingsGUI();
 			break;
 			// -------------------------------------------------------------------------------------------------------- TEXTURING TOOLS
-            case 2:
-            {
-                Terrain ter = (Terrain)terrain.GetComponent(typeof(Terrain));
-                if (ter == null)
-                {
-                    return;
-                }
-                TerrainData terData = ter.terrainData;
-                terrain.splatPrototypes = terData.splatPrototypes;
-                EditorGUILayout.Separator();
-                float mouseX;
-                EditorGUILayout.BeginHorizontal();
-                GUI.skin = terrain.guiSkin;
-                GUILayout.Label("Texture Slope");
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                Rect gradientRect = EditorGUILayout.BeginHorizontal();
-                float gradientWidth = gradientRect.width - 55;
-                gradientRect.width = 15;
-                gradientRect.height = 19;
-                GUI.skin = terrain.guiSkin;
-                // Slope stop 1...
-                if (dragControl == "slopeStop1" && Event.current.type == EventType.MouseDrag)
-                {
-                    mouseX = Event.current.mousePosition.x - 7;
-                    if (mouseX < 20)
-                    {
-                        mouseX = 20;
-                    }
-                    else if (mouseX > 19 + gradientWidth * (terrain.slopeBlendMaxAngle / 90))
-                    {
-                        mouseX = 19 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
-                    }
-                    gradientRect.x = mouseX;
-                    terrain.slopeBlendMinAngle = ((mouseX - 20) / (gradientWidth + 1)) * 90;
-                }
-                else
-                {
-                    gradientRect.x = 20 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
-                }
-                if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition))
-                {
-                    dragControl = "slopeStop1";
-                }
-                if (dragControl == "slopeStop1" && Event.current.type == EventType.MouseUp)
-                {
-                    dragControl = "";
-                }
-                GUI.Box(gradientRect, "", "slopeStop1");
-                // Slope stop 2...
-                if (dragControl == "slopeStop2" && Event.current.type == EventType.MouseDrag)
-                {
-                    mouseX = Event.current.mousePosition.x - 7;
-                    if (mouseX < 21 + gradientWidth * (terrain.slopeBlendMinAngle / 90))
-                    {
-                        mouseX = 21 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
-                    }
-                    else if (mouseX > 21 + gradientWidth)
-                    {
-                        mouseX = 21 + gradientWidth;
-                    }
-                    gradientRect.x = mouseX;
-                    terrain.slopeBlendMaxAngle = ((mouseX - 20) / (gradientWidth + 1)) * 90;
-                }
-                else
-                {
-                    gradientRect.x = 20 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
-                }
-                if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition))
-                {
-                    dragControl = "slopeStop2";
-                }
-                if (dragControl == "slopeStop2" && Event.current.type == EventType.MouseUp)
-                {
-                    dragControl = "";
-                }
-                GUI.Box(gradientRect, "", "slopeStop2");
-                gradientRect.y += 19;
-                gradientRect.width = gradientWidth * (terrain.slopeBlendMinAngle / 90);
-                gradientRect.x = 27;
-                GUI.Box(gradientRect, "", "black");
-                gradientRect.width = gradientWidth * ((terrain.slopeBlendMaxAngle / 90) - (terrain.slopeBlendMinAngle / 90));
-                gradientRect.x = 27 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
-                GUI.Box(gradientRect, "", "blackToWhite");
-                gradientRect.width = gradientWidth - gradientWidth * (terrain.slopeBlendMaxAngle / 90);
-                gradientRect.x = 27 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
-                GUI.Box(gradientRect, "", "white");
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel("Cliff start");
-                terrain.slopeBlendMinAngle = EditorGUILayout.FloatField(terrain.slopeBlendMinAngle);
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PrefixLabel("Cliff end");
-                terrain.slopeBlendMaxAngle = EditorGUILayout.FloatField(terrain.slopeBlendMaxAngle);
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.BeginHorizontal();
-                GUI.skin = terrain.guiSkin;
-                GUILayout.Label("Texture Height");
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                gradientRect = EditorGUILayout.BeginHorizontal();
-                gradientWidth = gradientRect.width - 55;
-                gradientRect.width = 15;
-                gradientRect.height = 19;
-                Rect gradientRect2 = gradientRect;
-                gradientRect2.y += 19;
-                GUI.skin = terrain.guiSkin;
-                string[] gradientStyles = new string[9];
-                gradientStyles[0] = "red";
-                gradientStyles[1] = "redToYellow";
-                gradientStyles[2] = "yellow";
-                gradientStyles[3] = "yellowToGreen";
-                gradientStyles[4] = "green";
-                gradientStyles[5] = "greenToCyan";
-                gradientStyles[6] = "cyan";
-                gradientStyles[7] = "cyanToBlue";
-                gradientStyles[8] = "blue";
-                List<float> heightBlendPoints = terrain.heightBlendPoints;
-                int numPoints = heightBlendPoints.Count;
-                float firstLimit = 1;
-                if (numPoints > 0)
-                {
-                    firstLimit = (float)heightBlendPoints[0];
-                }
-                else
-                {
-                    gradientRect.x = 20;
-                    GUI.Box(gradientRect, "", "greyStop");
-                    gradientRect.x = 20 + gradientWidth;
-                    GUI.Box(gradientRect, "", "greyStop");
-                }
-                gradientRect2.width = gradientWidth * firstLimit;
-                gradientRect2.x = 27;
-                if (terrain.splatPrototypes.Length < 2)
-                {
-                    GUI.Box(gradientRect2, "", "grey");
-                }
-                else
-                {
-                    GUI.Box(gradientRect2, "", "red");
-                }
-                for (i = 0; i < numPoints; i++)
-                {
-                    // Height stop...
-                    float lowerLimit = 0;
-                    float upperLimit = 1;
-                    if (i > 0)
-                    {
-                        lowerLimit = (float)heightBlendPoints[i - 1];
-                    }
-                    if (i < numPoints - 1)
-                    {
-                        upperLimit = (float)heightBlendPoints[i + 1];
-                    }
-                    if (dragControl == "heightStop" + i && Event.current.type == EventType.MouseDrag)
-                    {
-                        mouseX = Event.current.mousePosition.x - 7;
-                        if (mouseX < 20 + gradientWidth * lowerLimit)
-                        {
-                            mouseX = 20 + gradientWidth * lowerLimit;
-                        }
-                        else if (mouseX > 19 + gradientWidth * upperLimit)
-                        {
-                            mouseX = 19 + gradientWidth * upperLimit;
-                        }
-                        gradientRect.x = mouseX;
-                        heightBlendPoints[i] = (mouseX - 20) / (gradientWidth + 1);
-                    }
-                    else
-                    {
-                        gradientRect.x = 20 + gradientWidth * (float)heightBlendPoints[i];
-                    }
-                    if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition))
-                    {
-                        dragControl = "heightStop" + i;
-                    }
-                    if (dragControl == "heightStop" + i && Event.current.type == EventType.MouseUp)
-                    {
-                        dragControl = "";
-                    }
-                    int stopNum = (int)Mathf.Ceil((float)i / 2) + 1;
-                    if (i % 2 == 0)
-                    {
-                        GUI.Box(gradientRect, "" + stopNum, "blackStop");
-                    }
-                    else
-                    {
-                        GUI.Box(gradientRect, "" + stopNum, "whiteStop");
-                    }
-                    gradientRect2.width = gradientWidth * (upperLimit - (float)heightBlendPoints[i]);
-                    gradientRect2.x = 27 + gradientWidth * (float)heightBlendPoints[i];
-                    GUI.Box(gradientRect2, "", gradientStyles[i + 1]);
-                }
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                string startOrEnd = "end";
-                for (i = 0; i < numPoints; i++)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    int floatFieldNum = (int)Mathf.Ceil((float)i / 2) + 1;
-                    EditorGUILayout.PrefixLabel("Texture " + floatFieldNum + " " + startOrEnd);
-                    heightBlendPoints[i] = EditorGUILayout.FloatField((float)heightBlendPoints[i]);
-                    EditorGUILayout.EndHorizontal();
-                    if (startOrEnd == "end")
-                    {
-                        startOrEnd = "start";
-                    }
-                    else
-                    {
-                        startOrEnd = "end";
-                    }
-                }
-                terrain.heightBlendPoints = heightBlendPoints;
-                EditorGUILayout.BeginHorizontal();
-                GUI.skin = terrain.guiSkin;
-                GUILayout.Label("Textures");
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                int nTextures = 0;
-                EditorGUILayout.Separator();
-                if (GUI.changed)
-                {
-                    EditorUtility.SetDirty(terrain);
-                }
-                GUI.changed = false;
-                EditorGUILayout.BeginHorizontal();
-                foreach (SplatPrototype splatPrototype in terrain.splatPrototypes)
-                {
-                    EditorGUIUtility.LookLikeControls(80, 0);
-                    Rect textureRect = EditorGUILayout.BeginHorizontal();
-                    if (nTextures == 0)
-                    {
-                        splatPrototype.texture = EditorGUILayout.ObjectField("Cliff texture", splatPrototype.texture, typeof(Texture2D), true) as Texture2D;
-                    }
-                    else
-                    {
-                        splatPrototype.texture = EditorGUILayout.ObjectField("Texture " + nTextures, splatPrototype.texture, typeof(Texture2D), true) as Texture2D;
-                    }
-                    GUI.skin = terrain.guiSkin;
-                    textureRect.x += 146;
-                    textureRect.width = 18;
-                    textureRect.height = 18;
-                    if (GUI.Button(textureRect, "", "deleteButton"))
-                    {
-                        GUI.changed = true;
-                        terrain.deleteSplatPrototype(terrain.tempTexture, nTextures);
-                        EditorUtility.SetDirty(terrain);
-                    }
-                    GUI.skin = null;
-                    EditorGUIUtility.LookLikeControls();
-                    EditorGUILayout.EndHorizontal();
-                    if (nTextures % 2 == 1)
-                    {
-                        EditorGUILayout.EndHorizontal();
-                        EditorGUILayout.Separator();
-                        EditorGUILayout.BeginHorizontal();
-                    }
-                    nTextures++;
-                    if (nTextures > 5)
-                    {
-                        break;
-                    }
-                }
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                if (GUI.changed)
-                {
-                    terData.splatPrototypes = terrain.splatPrototypes;
-                }
-                if (nTextures == 0 && !assignTexture)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    GUI.skin = terrain.guiSkin;
-                    GUILayout.Label("No textures have been assigned! Assign a texture.", "errorText");
-                    GUI.skin = null;
-                    EditorGUIUtility.LookLikeControls();
-                    EditorGUILayout.EndHorizontal();
-                    EditorGUILayout.Separator();
-                }
-                if (nTextures < 6)
-                {
-                    EditorGUILayout.Separator();
-                    buttonRect = EditorGUILayout.BeginHorizontal();
-                    buttonRect.x = buttonRect.width / 2 - 50;
-                    buttonRect.width = 100;
-                    buttonRect.height = 18;
-                    if (GUI.Button(buttonRect, "Add texture"))
-                    {
-                        terrain.addSplatPrototype(terrain.defaultTexture, nTextures);
-                        terData.splatPrototypes = terrain.splatPrototypes;
-                        EditorUtility.SetDirty(terrain);
-                    }
-                    EditorGUILayout.EndHorizontal();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.Separator();
-                }
-                EditorGUILayout.Separator();
-                buttonRect = EditorGUILayout.BeginHorizontal();
-                buttonRect.x = buttonRect.width / 2 - 100;
-                buttonRect.width = 200;
-                buttonRect.height = 18;
-                GUI.skin = terrain.guiSkin;
-                if (nTextures < 2)
-                {
-                    GUI.Box(buttonRect, "Apply procedural texture", "disabledButton");
-                    EditorGUILayout.EndHorizontal();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.Separator();
-                    EditorGUILayout.BeginHorizontal();
-                    GUILayout.Label("This feature is disabled! You must assign at least 2 textures.", "errorText");
-                }
-                else
-                {
-                    if (GUI.Button(buttonRect, "Apply procedural texture"))
-                    {
-                        // Undo not supported!
-                        TerrainToolkit.TextureProgressDelegate textureProgressDelegate = new TerrainToolkit.TextureProgressDelegate(updateTextureProgress);
-                        terrain.textureTerrain(textureProgressDelegate);
-                        EditorUtility.ClearProgressBar();
-                        GUIUtility.ExitGUI();
-                    }
-                }
-                GUI.skin = null;
-                EditorGUIUtility.LookLikeControls();
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                EditorGUILayout.Separator();
-                drawAdvancedSettingsGUI();
-                // If the user has added or removed textures in the Terrain component, correct the number of blend points...
-                if (Event.current.type == EventType.Repaint)
-                {
-                    if (numPoints % 2 != 0)
-                    {
-                        terrain.deleteAllBlendPoints();
-                    }
-                    int correctNumPoints = (nTextures - 2) * 2;
-                    if (nTextures < 3)
-                    {
-                        correctNumPoints = 0;
-                    }
-                    if (numPoints < correctNumPoints)
-                    {
-                        terrain.addBlendPoints();
-                    }
-                    else if (numPoints > correctNumPoints)
-                    {
-                        terrain.deleteBlendPoints();
-                    }
-                }
-            }
-            break;
+			case 2:
+			Terrain ter = (Terrain) terrain.GetComponent(typeof(Terrain));
+			if (ter == null) {
+				return;
+			}
+			TerrainData terData = ter.terrainData;
+			terrain.splatPrototypes = terData.splatPrototypes;
+			EditorGUILayout.Separator();
+			float mouseX;
+			EditorGUILayout.BeginHorizontal();
+			GUI.skin = terrain.guiSkin;
+			GUILayout.Label("Texture Slope");
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			Rect gradientRect = EditorGUILayout.BeginHorizontal();
+			float gradientWidth = gradientRect.width - 55;
+			gradientRect.width = 15;
+			gradientRect.height = 19;
+			GUI.skin = terrain.guiSkin;
+			// Slope stop 1...
+			if (dragControl == "slopeStop1" && Event.current.type == EventType.MouseDrag) {
+				mouseX = Event.current.mousePosition.x - 7;
+				if (mouseX < 20) {
+					mouseX = 20;
+				} else if (mouseX > 19 + gradientWidth * (terrain.slopeBlendMaxAngle / 90)) {
+					mouseX = 19 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
+				}
+				gradientRect.x = mouseX;
+				terrain.slopeBlendMinAngle = ((mouseX - 20) / (gradientWidth + 1)) * 90;
+			} else {
+				gradientRect.x = 20 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
+			}
+			if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition)) {
+				dragControl = "slopeStop1";
+			}
+			if (dragControl == "slopeStop1" && Event.current.type == EventType.MouseUp) {
+				dragControl = "";
+			}
+			GUI.Box(gradientRect, "", "slopeStop1");
+			// Slope stop 2...
+			if (dragControl == "slopeStop2" && Event.current.type == EventType.MouseDrag) {
+				mouseX = Event.current.mousePosition.x - 7;
+				if (mouseX < 21 + gradientWidth * (terrain.slopeBlendMinAngle / 90)) {
+					mouseX = 21 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
+				} else if (mouseX > 21 + gradientWidth) {
+					mouseX = 21 + gradientWidth;
+				}
+				gradientRect.x = mouseX;
+				terrain.slopeBlendMaxAngle = ((mouseX - 20) / (gradientWidth + 1)) * 90;
+			} else {
+				gradientRect.x = 20 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
+			}
+			if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition)) {
+				dragControl = "slopeStop2";
+			}
+			if (dragControl == "slopeStop2" && Event.current.type == EventType.MouseUp) {
+				dragControl = "";
+			}
+			GUI.Box(gradientRect, "", "slopeStop2");
+			gradientRect.y += 19;
+			gradientRect.width = gradientWidth * (terrain.slopeBlendMinAngle / 90);
+			gradientRect.x = 27;
+			GUI.Box(gradientRect, "", "black");
+			gradientRect.width = gradientWidth * ((terrain.slopeBlendMaxAngle / 90) - (terrain.slopeBlendMinAngle / 90));
+			gradientRect.x = 27 + gradientWidth * (terrain.slopeBlendMinAngle / 90);
+			GUI.Box(gradientRect, "", "blackToWhite");
+			gradientRect.width = gradientWidth - gradientWidth * (terrain.slopeBlendMaxAngle / 90);
+			gradientRect.x = 27 + gradientWidth * (terrain.slopeBlendMaxAngle / 90);
+			GUI.Box(gradientRect, "", "white");
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Cliff start");
+			terrain.slopeBlendMinAngle = EditorGUILayout.FloatField(terrain.slopeBlendMinAngle);
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Cliff end");
+			terrain.slopeBlendMaxAngle = EditorGUILayout.FloatField(terrain.slopeBlendMaxAngle);
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.BeginHorizontal();
+			GUI.skin = terrain.guiSkin;
+			GUILayout.Label("Texture Height");
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			gradientRect = EditorGUILayout.BeginHorizontal();
+			gradientWidth = gradientRect.width - 55;
+			gradientRect.width = 15;
+			gradientRect.height = 19;
+			Rect gradientRect2 = gradientRect;
+			gradientRect2.y += 19;
+			GUI.skin = terrain.guiSkin;
+			string[] gradientStyles = new string[9];
+			gradientStyles[0] = "red";
+			gradientStyles[1] = "redToYellow";
+			gradientStyles[2] = "yellow";
+			gradientStyles[3] = "yellowToGreen";
+			gradientStyles[4] = "green";
+			gradientStyles[5] = "greenToCyan";
+			gradientStyles[6] = "cyan";
+			gradientStyles[7] = "cyanToBlue";
+			gradientStyles[8] = "blue";
+			List<float> heightBlendPoints = terrain.heightBlendPoints;
+			int numPoints = heightBlendPoints.Count;
+			float firstLimit = 1;
+			if (numPoints > 0) {
+				firstLimit = (float) heightBlendPoints[0];
+			} else {
+				gradientRect.x = 20;
+				GUI.Box(gradientRect, "", "greyStop");
+				gradientRect.x = 20 + gradientWidth;
+				GUI.Box(gradientRect, "", "greyStop");
+			}
+			gradientRect2.width = gradientWidth * firstLimit;
+			gradientRect2.x = 27;
+			if (terrain.splatPrototypes.Length < 2) {
+				GUI.Box(gradientRect2, "", "grey");
+			} else {
+				GUI.Box(gradientRect2, "", "red");
+			}
+			for (i = 0; i < numPoints; i++) {
+				// Height stop...
+				float lowerLimit = 0;
+				float upperLimit = 1;
+				if (i > 0) {
+					lowerLimit = (float) heightBlendPoints[i - 1];
+				}
+				if (i < numPoints - 1) {
+					upperLimit = (float) heightBlendPoints[i + 1];
+				}
+				if (dragControl == "heightStop"+i && Event.current.type == EventType.MouseDrag) {
+					mouseX = Event.current.mousePosition.x - 7;
+					if (mouseX < 20 + gradientWidth * lowerLimit) {
+						mouseX = 20 + gradientWidth * lowerLimit;
+					} else if (mouseX > 19 + gradientWidth * upperLimit) {
+						mouseX = 19 + gradientWidth * upperLimit;
+					}
+					gradientRect.x = mouseX;
+					heightBlendPoints[i] = (mouseX - 20) / (gradientWidth + 1);
+				} else {
+					gradientRect.x = 20 + gradientWidth * (float) heightBlendPoints[i];
+				}
+				if (Event.current.type == EventType.MouseDown && gradientRect.Contains(Event.current.mousePosition)) {
+					dragControl = "heightStop"+i;
+				}
+				if (dragControl == "heightStop"+i && Event.current.type == EventType.MouseUp) {
+					dragControl = "";
+				}
+				int stopNum = (int) Mathf.Ceil((float) i / 2) + 1;
+				if (i % 2 == 0) {
+					GUI.Box(gradientRect, ""+stopNum, "blackStop");
+				} else {
+					GUI.Box(gradientRect, ""+stopNum, "whiteStop");
+				}
+				gradientRect2.width = gradientWidth * (upperLimit - (float) heightBlendPoints[i]);
+				gradientRect2.x = 27 + gradientWidth * (float) heightBlendPoints[i];
+				GUI.Box(gradientRect2, "", gradientStyles[i + 1]);
+			}
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			string startOrEnd = "end";
+			for (i = 0; i < numPoints; i++) {
+				EditorGUILayout.BeginHorizontal();
+				int floatFieldNum = (int) Mathf.Ceil((float) i / 2) + 1;
+				EditorGUILayout.PrefixLabel("Texture "+floatFieldNum+" "+startOrEnd);
+				heightBlendPoints[i] = EditorGUILayout.FloatField((float) heightBlendPoints[i]);
+				EditorGUILayout.EndHorizontal();
+				if (startOrEnd == "end") {
+					startOrEnd = "start";
+				} else {
+					startOrEnd = "end";
+				}
+			}
+			terrain.heightBlendPoints = heightBlendPoints;
+			EditorGUILayout.BeginHorizontal();
+			GUI.skin = terrain.guiSkin;
+			GUILayout.Label("Textures");
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			int nTextures = 0;
+			EditorGUILayout.Separator();
+			if (GUI.changed) {
+				EditorUtility.SetDirty(terrain);
+			}
+			GUI.changed = false;
+			EditorGUILayout.BeginHorizontal();
+			foreach (SplatPrototype splatPrototype in terrain.splatPrototypes) {
+				EditorGUIUtility.LookLikeControls(80, 0);
+				Rect textureRect = EditorGUILayout.BeginHorizontal();
+				if (nTextures == 0) {
+					splatPrototype.texture = EditorGUILayout.ObjectField("Cliff texture", splatPrototype.texture, typeof(Texture2D)) as Texture2D;
+				} else {
+					splatPrototype.texture = EditorGUILayout.ObjectField("Texture "+nTextures, splatPrototype.texture, typeof(Texture2D)) as Texture2D;
+				}
+				GUI.skin = terrain.guiSkin;
+				textureRect.x += 146;
+				textureRect.width = 18;
+				textureRect.height = 18;
+				if (GUI.Button(textureRect, "", "deleteButton")) {
+					GUI.changed = true;
+					terrain.deleteSplatPrototype(terrain.tempTexture, nTextures);
+					EditorUtility.SetDirty(terrain);
+				}
+				GUI.skin = null;
+				EditorGUIUtility.LookLikeControls();
+				EditorGUILayout.EndHorizontal();
+				if (nTextures % 2 == 1) {
+					EditorGUILayout.EndHorizontal();
+					EditorGUILayout.Separator();
+					EditorGUILayout.BeginHorizontal();
+				}
+				nTextures++;
+				if (nTextures > 5) {
+					break;
+				}
+			}
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			if (GUI.changed) {
+				terData.splatPrototypes = terrain.splatPrototypes;
+			}
+			if (nTextures == 0 && !assignTexture) {
+				EditorGUILayout.BeginHorizontal();
+				GUI.skin = terrain.guiSkin;
+				GUILayout.Label("No textures have been assigned! Assign a texture.", "errorText");
+				GUI.skin = null;
+				EditorGUIUtility.LookLikeControls();
+				EditorGUILayout.EndHorizontal();
+				EditorGUILayout.Separator();
+			}
+			if (nTextures < 6) {
+				EditorGUILayout.Separator();
+				buttonRect = EditorGUILayout.BeginHorizontal();
+				buttonRect.x = buttonRect.width / 2 - 50;
+				buttonRect.width = 100;
+				buttonRect.height = 18;
+				if (GUI.Button(buttonRect, "Add texture")) {
+					terrain.addSplatPrototype(terrain.defaultTexture, nTextures);
+					terData.splatPrototypes = terrain.splatPrototypes;
+					EditorUtility.SetDirty(terrain);
+				}
+				EditorGUILayout.EndHorizontal();
+				EditorGUILayout.Separator();
+				EditorGUILayout.Separator();
+				EditorGUILayout.Separator();
+				EditorGUILayout.Separator();
+			}
+			EditorGUILayout.Separator();
+			buttonRect = EditorGUILayout.BeginHorizontal();
+			buttonRect.x = buttonRect.width / 2 - 100;
+			buttonRect.width = 200;
+			buttonRect.height = 18;
+			GUI.skin = terrain.guiSkin;
+			if (nTextures < 2) {
+				GUI.Box(buttonRect, "Apply procedural texture", "disabledButton");
+				EditorGUILayout.EndHorizontal();
+				EditorGUILayout.Separator();
+				EditorGUILayout.Separator();
+				EditorGUILayout.Separator();
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Label("This feature is disabled! You must assign at least 2 textures.", "errorText");
+			} else {
+				if (GUI.Button(buttonRect, "Apply procedural texture")) {
+					// Undo not supported!
+					TerrainToolkit.TextureProgressDelegate textureProgressDelegate = new TerrainToolkit.TextureProgressDelegate(updateTextureProgress);
+					terrain.textureTerrain(textureProgressDelegate);
+					EditorUtility.ClearProgressBar();
+					GUIUtility.ExitGUI();
+				}
+			}
+			GUI.skin = null;
+			EditorGUIUtility.LookLikeControls();
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			EditorGUILayout.Separator();
+			drawAdvancedSettingsGUI();
+			// If the user has added or removed textures in the Terrain component, correct the number of blend points...
+			if (Event.current.type == EventType.Repaint) {
+				if (numPoints % 2 != 0) {
+					terrain.deleteAllBlendPoints();
+				}
+				int correctNumPoints = (nTextures - 2) * 2;
+				if (nTextures < 3) {
+					correctNumPoints = 0;
+				}
+				if (numPoints < correctNumPoints) {
+					terrain.addBlendPoints();
+				} else if (numPoints > correctNumPoints) {
+					terrain.deleteBlendPoints();
+				}
+			}
+			break;
 		}
 		if (GUI.changed) {
 			EditorUtility.SetDirty(terrain);
