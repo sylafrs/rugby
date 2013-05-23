@@ -22,6 +22,10 @@ public partial class Referee : myMonoBehaviour {
     public Unit UnitToGiveBallTo { get; set; }
 	
 	void Start(){
+
+        if (!game)
+            game = Game.instance;
+
 		TimeEllapsedSinceIntro 	= 0;
 		IngameTime	 			= 0;
 		GameTimeDuration 		= game.settings.Global.Game.period_time;

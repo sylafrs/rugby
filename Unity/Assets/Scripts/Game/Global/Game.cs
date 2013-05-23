@@ -84,6 +84,8 @@ public class Game : myMonoBehaviour {
         Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.Controlled;
+
+        ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
 		
         this.refs.managers.intro.OnFinish = () =>
         {
@@ -110,8 +112,8 @@ public class Game : myMonoBehaviour {
        	
     public void OnScrum()
     {
-        Referee.OnScrum();
         this.refs.stateMachine.event_Scrum();
+        Referee.OnScrum();        
     }
     
     public void OnDrop()

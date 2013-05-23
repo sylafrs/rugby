@@ -40,7 +40,6 @@ public class Ball : TriggeringTriggered {
 
 	public float passSpeed = 13.0f;
 
-	private Unit _previousOwner;
 	private Unit _nextOwner;
 	private Unit _owner;
 
@@ -88,18 +87,6 @@ public class Ball : TriggeringTriggered {
     }
 
     public Unit PreviousOwner;
-	/*
-    {
-        get
-        {
-            return _previousOwner;
-        }
-        private set
-        {
-            _previousOwner = value;
-        }
-    }
-    */
 
 	public Unit NextOwner
 	{
@@ -123,20 +110,7 @@ public class Ball : TriggeringTriggered {
     public void Update()
     {
         if (Owner != null)
-        {
-			
-           // if (this.transform.position != Owner.BallPlaceHolderRight.transform.position &&
-           //     this.transform.position != Owner.BallPlaceHolderLeft.transform.position && 
-			//	this.transform.position != Owner.BallPlaceHolderTransformation.transform.position)
-           // {
-			//	/*
-			//	if ( Game.state == Game.State.TRANSFORMATION )
-			//		this.transform.position = Owner.BallPlaceHolderTransformation.transform.position;
-			//	else
-           //     	this.transform.position = Owner.BallPlaceHolderRight.transform.position;
-           //     	*/
-           // }
-                       
+        {                       
             this.transform.localRotation = Quaternion.identity;
         }
 

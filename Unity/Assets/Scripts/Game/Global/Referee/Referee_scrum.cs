@@ -4,34 +4,56 @@ public partial class Referee
 {
     public void OnScrum()
     {
-        this.game.Ball.Owner = null;
+        foreach (Unit u in this.game.southTeam)
+        {
+            u.canCatchTheBall = false;
+        }
 
-        ScrumCinematicMovement();
-        NowScrum();
+        foreach (Unit u in this.game.northTeam)
+        {
+            u.canCatchTheBall = false;
+        }
+
+        this.game.Ball.Put();
+        
+        //ScrumCinematicMovement();
+        //NowScrum();
     }
 
-    public void NowScrum()
+    public void SwitchToBloc()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.game.Ball.transform.position;
-
-        ScrumManager sc = this.game.refs.managers.scrum;
-        sc.InitialPosition = this.game.Ball.transform.position;
-        sc.ScrumBloc = bloc.transform;
 
         this.game.southTeam.ShowPlayers(false);
         this.game.northTeam.ShowPlayers(false);
         this.game.Ball.Model.enabled = false;
         bloc.enabled = true;
+    }
+
+    public void SwitchToPlayers()
+    {
+        Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
+        
+        this.game.Ball.Model.enabled = true;
+        this.game.southTeam.ShowPlayers(true);
+        this.game.northTeam.ShowPlayers(true);
+        bloc.enabled = false;
+    }
+
+    public void NowScrum()
+    {
+        Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
+
+        ScrumManager sc = this.game.refs.managers.scrum;
+        sc.InitialPosition = this.game.Ball.transform.position;
+        sc.ScrumBloc = bloc.transform;
 
         sc.callback = (Team t, Vector3 endPos) =>
         {
             game.Ball.Owner = t[0];
 
-            this.game.Ball.Model.enabled = true;
-            this.game.southTeam.ShowPlayers(true);
-            this.game.northTeam.ShowPlayers(true);
-            bloc.enabled = false;
+            SwitchToPlayers();
 
             game.OnResumeSignal();
         };
@@ -48,7 +70,19 @@ public partial class Referee
         Transform red = cinematic.FindChild("RedTeam");
         Transform blue = cinematic.FindChild("BlueTeam");
 
-        this.game.southTeam.placeUnits(red, false);
-        this.game.northTeam.placeUnits(blue, false);
+        const bool teleport = false;
+
+        foreach (Unit u in this.game.southTeam)
+        {
+            u.sm.event_Untackle();
+        }
+
+        foreach (Unit u in this.game.northTeam)
+        {
+            u.sm.event_Untackle();
+        }
+
+        this.game.southTeam.placeUnits(blue, teleport);
+        this.game.northTeam.placeUnits(red, teleport);    
     }
 }

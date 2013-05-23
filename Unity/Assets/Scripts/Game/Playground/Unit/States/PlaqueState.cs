@@ -11,6 +11,12 @@ class PlaqueState : UnitState
 
     float t;
 
+    public override bool OnUntackle()
+    {
+        sm.state_change_me(this, new MainUnitState(sm, unit));
+        return true;
+    }
+
     public override void OnEnter()
     {
         t = 0;
@@ -44,7 +50,7 @@ class PlaqueState : UnitState
         t += UnityEngine.Time.deltaTime;
         if (t > unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime)
         {
-            sm.state_change_me(this, new MainUnitState(sm, unit));
+            this.OnUntackle();
         }
     }
 

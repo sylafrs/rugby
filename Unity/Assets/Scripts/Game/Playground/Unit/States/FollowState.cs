@@ -9,18 +9,18 @@ public class FollowState : UnitState {
 
     public FollowState(StateMachine sm, Unit unit) : base(sm, unit) { }
 
-    GameObject target;
+    Transform target;
 
     public override void OnEnter()
     {
         Order o = unit.Order;
         if (o.type == Order.TYPE.FOLLOW)
         {
-            target = unit.Order.target.gameObject;
+            target = unit.Order.targetT;
         }
         if (o.type == Order.TYPE.SEARCH)
         {
-            target = unit.game.Ball.gameObject;
+            target = unit.game.Ball.transform;
         }
     }
 
