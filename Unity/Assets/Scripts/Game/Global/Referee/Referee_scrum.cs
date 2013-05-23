@@ -20,7 +20,7 @@ public partial class Referee
         //NowScrum();
     }
 
-    public void SwitchToBloc()
+    public void ScrumSwitchToBloc()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.game.Ball.transform.position;
@@ -31,7 +31,7 @@ public partial class Referee
         bloc.enabled = true;
     }
 
-    public void SwitchToPlayers()
+    private void ScrumSwitchToPlayers()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
         
@@ -53,12 +53,19 @@ public partial class Referee
         {
             game.Ball.Owner = t[0];
 
-            SwitchToPlayers();
+            ScrumSwitchToPlayers();
+            ScrumEndPlacement(t, endPos);
+            
 
             game.OnResumeSignal();
         };
 
         sc.enabled = true;
+    }
+
+    private void ScrumEndPlacement(Team t, Vector3 endPos)
+    {
+        Transform placement = this.game.refs.placeHolders.scrumPlacement.FindChild("EndPlacement");
     }
 
     public void ScrumCinematicMovement()
