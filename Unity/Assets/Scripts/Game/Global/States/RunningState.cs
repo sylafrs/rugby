@@ -33,7 +33,7 @@ public class RunningState : GameState
         if (p1 != null) p1.myUpdate();
         if (p2 != null) p2.myUpdate();
 
-        foreach (Unit u in game.northTeam)
+		foreach (Unit u in game.northTeam)
 		{
 			u.UpdatePlacement();
 		}
