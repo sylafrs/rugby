@@ -4,10 +4,20 @@ public partial class Referee
 {
     public void OnScrum()
     {
-        this.game.Ball.Owner = null;
+        foreach (Unit u in this.game.southTeam)
+        {
+            u.canCatchTheBall = false;
+        }
 
-        ScrumCinematicMovement();
-        NowScrum();
+        foreach (Unit u in this.game.northTeam)
+        {
+            u.canCatchTheBall = false;
+        }
+
+        this.game.Ball.Put();
+        
+        //ScrumCinematicMovement();
+        //NowScrum();
     }
 
     public void NowScrum()
@@ -48,7 +58,19 @@ public partial class Referee
         Transform red = cinematic.FindChild("RedTeam");
         Transform blue = cinematic.FindChild("BlueTeam");
 
-        this.game.southTeam.placeUnits(red, false);
-        this.game.northTeam.placeUnits(blue, false);
+        const bool teleport = false;
+
+        foreach (Unit u in this.game.southTeam)
+        {
+            u.sm.event_Untackle();
+        }
+
+        foreach (Unit u in this.game.northTeam)
+        {
+            u.sm.event_Untackle();
+        }
+
+        this.game.southTeam.placeUnits(blue, teleport);
+        this.game.northTeam.placeUnits(red, teleport);    
     }
 }

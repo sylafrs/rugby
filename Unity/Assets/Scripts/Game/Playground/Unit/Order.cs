@@ -43,6 +43,7 @@ public struct Order  {
 	public float pressionCapture;
 	public Vector3 passDirection;
     public Unit target;
+    public Transform targetT;
     public float power;
     public Vector3 point;
 
@@ -68,11 +69,11 @@ public struct Order  {
         return o;
     }
 
-    public static Order OrderFollow(Unit unit)
+    public static Order OrderFollow(Transform unit)
     {
         Order o = new Order();
         o.type = TYPE.FOLLOW;
-        o.target = unit;
+        o.targetT = unit;
         return o;
     }
 	

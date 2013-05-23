@@ -185,6 +185,8 @@ public class Unit : TriggeringTriggered, Debugable
 	
 	void UpdateDefensePlacement()
 	{
+        return;
+
 		//Variables
 		Vector3 pos = this.transform.position;
 		Vector3 oldPos = pos;

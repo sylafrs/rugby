@@ -107,6 +107,7 @@ public class PassSystem {
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
 
+            Debug.Log("yo");
 			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
 

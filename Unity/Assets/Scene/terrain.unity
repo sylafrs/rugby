@@ -30033,6 +30033,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2058291163}
+  - 114: {fileID: 2058291164}
   m_Layer: 0
   m_Name: CinematicPlacement
   m_TagString: Untagged
@@ -30053,6 +30054,24 @@ Transform:
   - {fileID: 336730882}
   - {fileID: 1469318606}
   m_Father: {fileID: 1402728130}
+--- !u!114 &2058291164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2058291162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e871c237412183a4ba65a64e3dd117fa, type: 3}
+  m_Name: 
+  active: 1
+  colorPattern:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  sizePoint: 1
+  lengthForward: 5
 --- !u!1 &2060209721
 GameObject:
   m_ObjectHideFlags: 0

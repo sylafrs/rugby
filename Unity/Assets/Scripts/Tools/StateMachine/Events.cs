@@ -27,6 +27,11 @@ public abstract partial class State
     {
         return (false);
     }
+
+    // unit State Machine
+    public virtual bool OnUntackle() {
+        return (false);
+    }
 	
 	public virtual bool OnEndSignal()
     {
@@ -162,6 +167,15 @@ public partial class StateMachine
         foreach (State tmp in list)
         {
             if (tmp.OnTackle())
+                return;
+        }
+    }
+
+    public void event_Untackle()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnUntackle())
                 return;
         }
     }

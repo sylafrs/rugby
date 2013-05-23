@@ -32,6 +32,16 @@ public class RunningState : GameState
 
         if (p1 != null) p1.myUpdate();
         if (p2 != null) p2.myUpdate();
+
+        foreach (Unit u in game.northTeam)
+		{
+			u.UpdatePlacement();
+		}
+
+		foreach (Unit u in game.southTeam)
+		{
+			u.UpdatePlacement();
+		}
     }
 
     public override bool OnConversion(But but)

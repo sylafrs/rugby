@@ -20,6 +20,7 @@ public class ScrumState : GameState
        // cam.game.Referee.ScrumCinematicMovement();
        // cam.game.Referee.NowScrum();
         game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
+        cam.game.Referee.ScrumCinematicMovement();
     }
 	
 	public override void OnLeave()

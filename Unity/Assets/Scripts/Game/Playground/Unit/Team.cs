@@ -372,7 +372,7 @@ public class Team : myMonoBehaviour, IEnumerable {
                 }
             }
 
-            a.Order = Order.OrderFollow(game.Ball.Owner);
+            a.Order = Order.OrderFollow(game.Ball.Owner.transform);
         }
 
         foreach (Unit u in units)
@@ -470,7 +470,8 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 		else
 		{
-			unit.Order = Order.OrderMove(dst.position);
+            unit.nma.speed = 6;
+            unit.Order = Order.OrderMove(dst.transform.position);
 			unit.transform.rotation = dst.rotation;
 		}
 	}
