@@ -10,6 +10,7 @@ public class ScrumState : GameState
 {
     public ScrumState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
+    private static Vector3 A_METTRE_EN_TWEAK_offset_melee = new Vector3(-1, 1, 0);
     Vector3 offset;
 	
 	public override void OnEnter()
@@ -24,7 +25,7 @@ public class ScrumState : GameState
 
             offset = cam.MinfollowOffset;
 		    cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);
-            cam.MinfollowOffset = new Vector3(-1,1,0);
+            cam.MinfollowOffset = A_METTRE_EN_TWEAK_offset_melee;
 
             game.Referee.ScrumSwitchToBloc();
         });
