@@ -43,8 +43,8 @@ public class ConversionFlyState : GameState
 
     public override void OnLeave ()
     {
-	    cam.zoom = 1f;	
-	    cam.setTarget(null);	
+	    cam.zoom = 1f;
+        cam.setTarget(game.Referee.unitToGiveBallAfterConversion().transform);	
 	    cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)

@@ -61,6 +61,8 @@ public partial class Referee
         tm.ball = game.Ball;
         tm.gamer = t.Player;
 
+        dropBut = t.opponent.But;
+
         tm.OnLaunch = this.game.OnConversionShot;
 
         // After the transformation is done, according to the result :
@@ -85,7 +87,7 @@ public partial class Referee
 
             if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
-                UnitToGiveBallTo = opponent[3];
+                UnitToGiveBallTo = unitToGiveBallAfterConversion();
                 this.StartPlacement();
             }
 
@@ -95,16 +97,23 @@ public partial class Referee
         PlaceTransfoPlaceholders();
     }
 
+    private But dropBut;
     public void OnDropTransformed(But but)
     {
+        dropBut = but;
 
         // On donne les points
         but.Owner.opponent.nbPoints += this.game.settings.Global.Game.points_drop;
 
         // A faire en caméra :
         this.StartPlacement();
-        this.game.Ball.Owner = but.Owner[2];
+        this.game.Ball.Owner = unitToGiveBallAfterConversion();
 
         //this.game.TimedDisableIA(3);
-    }	
+    }
+
+    public Unit unitToGiveBallAfterConversion()
+    {
+        return dropBut.Owner[2];
+    }
 }
