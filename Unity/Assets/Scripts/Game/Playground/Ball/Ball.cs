@@ -46,7 +46,7 @@ public class Ball : TriggeringTriggered {
 	public float lastTackle = -1;
 	public float timeOnDrop = -1;
 	public float timeOnPass = -1;
-	private PassSystem pass;
+	public PassSystem passManager;
 	private DropManager drop;
 	
 	public Zone inZone {get; set;}
@@ -199,11 +199,10 @@ public class Ball : TriggeringTriggered {
 
 	public void Pass(Unit to)
 	{
-		//Game.southTeam.But		
 		Game.OnPass(this.Owner, to);
 
-		pass = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
-		pass.CalculatePass();
+		passManager = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
+		passManager.CalculatePass();
 		timeOnPass = 0;
 	}
 
@@ -213,16 +212,28 @@ public class Ball : TriggeringTriggered {
 		{
             if (this.transform.position.y > epsilonOnGround)
 			{
-                pass.DoPass(timeOnPass);
+				passManager.oPassState = PassSystem.passState.ONPASS;
+                passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
 			else
 			{
+				if (passManager.oPassState == PassSystem.passState.ONPASS)
+					passManager.oPassState = PassSystem.passState.ONGROUND;
+				else
+					passManager.oPassState = PassSystem.passState.NONE;
 				timeOnPass = -1;
 			}
 		}
 		if (this.Owner != null && timeOnPass != -1)
+		{
+			if (passManager.oPassState == PassSystem.passState.ONPASS)
+				passManager.oPassState = PassSystem.passState.ONTARGET;
 			timeOnPass = -1;
+		}
+
+		if (timeOnPass == -1 && passManager != null)
+			passManager.oPassState = PassSystem.passState.NONE;
 	}
 
 	//Poser la balle
