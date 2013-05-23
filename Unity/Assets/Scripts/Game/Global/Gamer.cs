@@ -304,8 +304,10 @@ public class Gamer
                 Controlled.Order = Order.OrderPass(u);
                 PassDirection = Vector3.zero;
             }*/
-			if ( unitTo != null && unitTo != game.Ball.Owner )
+			if (unitTo != null && unitTo != game.Ball.Owner)
+			{
 				Controlled.Order = Order.OrderPass(unitTo);
+			}
 			//PassDirection = Vector3.zero;
         }
         else
@@ -442,7 +444,7 @@ public class Gamer
         direction += Camera.main.transform.forward * d.y;
         direction += Camera.main.transform.right * d.x;
 
-        if (direction != Vector3.zero)
+        if (direction.magnitude > 0.8f)
         {
             Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized);
         }

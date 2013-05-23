@@ -6903,8 +6903,10 @@ MonoBehaviour:
         Vheight: 10
         Vwidth: 5
         LineSpace: 5
-        distanceMinBetweenDefensePlayer: 10
-        distanceMaxBetweenDefensePlayer: 15
+        distanceMinBetweenDefensePlayer: 25
+        distanceMaxBetweenDefensePlayer: 30
+        distanceMinBetweenOffensivePlayer: 10
+        distanceMaxBetweenOffensivePlayer: 15
         distanceMinBetweenOffensiveAndDefensePlayer: 15
         distanceMaxBetweenOffensiveAndDefensePlayer: 25
         nbOffensivePlayer: 2

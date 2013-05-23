@@ -169,11 +169,18 @@ public class Unit : TriggeringTriggered, Debugable
 
 	void UpdateOffensivePlacement()
 	{
-		if (this != this.Team.Player.Controlled)
-			this.Order = Order.OrderDefensiveSide(this.Team.Player.Controlled, new Vector3(this.game.settings.Global.Team.distanceMinBetweenDefensePlayer, 0, this.game.settings.Global.Team.distanceMinBetweenDefensePlayer / 2),
-				this.Team.south, this.Team.Player.Controlled.PositionInMap());
-		else if (this.Order.type == global::Order.TYPE.DEFENSIVE_SIDE)
-			this.Order = Order.OrderNothing();
+		if (this == this.team.Player.Controlled)
+		{
+			return;
+		}
+
+		//Variables
+		Vector3 pos = this.transform.position;
+		Vector3 oldPos = pos;
+		float distZ = Mathf.Abs(this.team.Player.Controlled.transform.position.z - this.transform.position.z); //distance entre moi et le controllé
+		float distX = 0f;
+
+		//Se place en fonction du controllé
 	}
 	
 	void UpdateDefensePlacement()
@@ -238,24 +245,72 @@ public class Unit : TriggeringTriggered, Debugable
 					distX = Mathf.Abs(u.transform.position.x - this.transform.position.x);
 					if (distX > this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer)
 					{
-						pos.x -= distX - (this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + (float)this.game.rand.NextDouble());
+						if (u.transform.position.x > this.transform.position.x)
+						{
+							pos.x = u.transform.position.x - this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + this.game.rand.Next(5);
+						}
+						else
+						{
+							pos.x = u.transform.position.x + this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer - this.game.rand.Next(5);
+						}
 					}
 					else if (distX < this.game.settings.Global.Team.distanceMinBetweenDefensePlayer)
 					{
-						pos.x += (this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + (float)this.game.rand.NextDouble()) - distX;
+						if (u.transform.position.x > this.transform.position.x)
+						{
+							pos.x = u.transform.position.x - (this.game.settings.Global.Team.distanceMinBetweenDefensePlayer + this.game.rand.Next(5));
+						}
+						else
+						{
+							pos.x = u.transform.position.x + (this.game.settings.Global.Team.distanceMinBetweenDefensePlayer + this.game.rand.Next(5));
+						}
 					}
 					else // cas normal
 					{
 						if (this.game.rand.Next(100) > 50)
-							pos.x += (float)this.game.rand.NextDouble();
+							pos.x += this.game.rand.Next(5);
 						else
-							pos.x -= (float)this.game.rand.NextDouble();
+							pos.x -= this.game.rand.Next(5);
 					}
 				}
 				if (pos.x != oldPos.x)
 				{
 					this.Order = Order.OrderMove(pos);
 					oldPos = pos;
+				}
+			}
+		}
+		else
+		{
+			foreach (Unit u in this.team)
+			{
+				//seuls les défenseurs différent de moi m'intéresse
+				if (u != this && u.typeOfPlayer == TYPEOFPLAYER.DEFENSE)
+				{
+					// le joueur est à ma droite
+					Order.TYPE_POSITION posThis = this.PositionInMap();
+					Order.TYPE_POSITION posBall = game.PositionInMap(game.Ball.gameObject);
+					Debug.Log(posThis + " et " + posBall + "donne" + (posThis > posBall));
+
+					//l'autre défenseur est à ma droite
+					if (u.PositionInMap() > posThis)
+					{
+						//si la balle est > milieu alors il devient le défenseur de la balle
+						if (posBall >= Order.TYPE_POSITION.MIDDLE)
+						{
+							this.ballZone = false;
+							u.ballZone = true;
+						}
+					}
+					else
+					{
+						//si la balle est < milieu alors il devient le défenseur de la balle
+						if (posBall <= Order.TYPE_POSITION.MIDDLE)
+						{
+							this.ballZone = false;
+							u.ballZone = true;
+						}
+					}
 				}
 			}
 		}
@@ -266,10 +321,12 @@ public class Unit : TriggeringTriggered, Debugable
 			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
 			{
-				pos.z -= (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
+				pos.z = this.team.Player.Controlled.transform.position.z - 
+					(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
 			}
 			else
-				pos.z += (distZ - (this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()));
+				pos.z = pos.z = this.team.Player.Controlled.transform.position.z +
+					(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
 		}
 		else if (distZ < this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer)
 		{
@@ -278,14 +335,14 @@ public class Unit : TriggeringTriggered, Debugable
 				pos.z -= (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
 			else
 				pos.z += (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
-		}
+		}/*
 		else // cas normal
 		{
 			if (this.game.rand.Next(100) > 50)
-				pos.z += (float)this.game.rand.NextDouble();
+				pos.z += (float)this.game.rand.Next(5);
 			else
-				pos.z -= (float)this.game.rand.NextDouble();
-		}
+				pos.z -= (float)this.game.rand.Next(5);
+		}*/
 
 		if (pos.z != oldPos.z)
 		{

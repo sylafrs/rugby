@@ -27,6 +27,8 @@ public class TeamSettings
 	
 	public float distanceMinBetweenDefensePlayer = 10f;
 	public float distanceMaxBetweenDefensePlayer = 15f;
+	public float distanceMinBetweenOffensivePlayer = 10f;
+	public float distanceMaxBetweenOffensivePlayer = 15f;
 	public float distanceMinBetweenOffensiveAndDefensePlayer = 15f;
 	public float distanceMaxBetweenOffensiveAndDefensePlayer = 25f;
 	public float nbOffensivePlayer;
