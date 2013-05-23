@@ -471,7 +471,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 		else
 		{
             unit.nma.speed = 10;
-            unit.Order = Order.OrderFollow(dst);
+            unit.Order = Order.OrderMove(dst.position);
 			unit.transform.rotation = dst.rotation;
 		}
 	}

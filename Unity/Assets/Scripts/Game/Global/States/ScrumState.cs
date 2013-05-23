@@ -24,7 +24,7 @@ public class ScrumState : GameState
         (/* OnFinish*/) => {
             game.Referee.NowScrum();
         }, (/*OnFade*/) => {
-            game.Referee.SwitchToBloc();
+            game.Referee.ScrumSwitchToBloc();
         });
         
     }
