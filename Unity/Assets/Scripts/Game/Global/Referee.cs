@@ -305,7 +305,7 @@ public class Referee : myMonoBehaviour {
 
         tm.Tackle();
 	}
-	
+
 	public void PlacePlayersForTransfo(){
 		game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
 		//float x = game.Ball.transform.position.x;

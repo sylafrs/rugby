@@ -180,7 +180,10 @@ public class Unit : TriggeringTriggered, Debugable
 		float distZ = Mathf.Abs(this.team.Player.Controlled.transform.position.z - this.transform.position.z); //distance entre moi et le controllé
 		float distX = 0f;
 
-		//Se place en fonction du controllé
+		if (this.game.Ball.passManager!= null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS)
+		{
+			Debug.Log("pass en cours");
+		}
 	}
 	
 	void UpdateDefensePlacement()
@@ -296,7 +299,7 @@ public class Unit : TriggeringTriggered, Debugable
 					if (u.PositionInMap() > posThis)
 					{
 						//si la balle est > milieu alors il devient le défenseur de la balle
-						if (posBall >= Order.TYPE_POSITION.MIDDLE)
+						if (posBall > Order.TYPE_POSITION.MIDDLE)
 						{
 							this.ballZone = false;
 							u.ballZone = true;
@@ -305,7 +308,7 @@ public class Unit : TriggeringTriggered, Debugable
 					else
 					{
 						//si la balle est < milieu alors il devient le défenseur de la balle
-						if (posBall <= Order.TYPE_POSITION.MIDDLE)
+						if (posBall < Order.TYPE_POSITION.MIDDLE)
 						{
 							this.ballZone = false;
 							u.ballZone = true;
