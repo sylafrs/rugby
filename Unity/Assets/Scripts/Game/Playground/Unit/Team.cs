@@ -490,7 +490,9 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public void PlaySuperParticleSystem(SuperList _super, bool play){
 		
-        myFxSuper = new GameObject[this.nbUnits];
+        if(play)
+            myFxSuper = new GameObject[this.nbUnits];
+     
         int i = 0;
 
         if (play && lightSuper)
@@ -516,6 +518,9 @@ public class Team : myMonoBehaviour, IEnumerable {
 
         if (!play && lightSuper)
             lightSuper.SetActive(false);
+
+        if (!play)
+            myFxSuper = null;
 	}
 
     public void ShowPlayers(bool active)
