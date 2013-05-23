@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   game: {fileID: 448441829}
   stateMachine: {fileID: 448441830}
-  Referee: {fileID: 2004071857}
+  Referee: {fileID: 2004071851}
   north: {fileID: 613712549}
   south: {fileID: 166411255}
   managers:
@@ -4886,6 +4886,7 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  passManager: {fileID: 0}
   PreviousOwner: {fileID: 0}
   scrumFieldUnits: []
 --- !u!136 &308884796
@@ -29315,9 +29316,9 @@ GameObject:
   - 114: {fileID: 2004071854}
   - 114: {fileID: 2004071855}
   - 114: {fileID: 2004071856}
-  - 114: {fileID: 2004071857}
   - 114: {fileID: 2004071858}
   - 114: {fileID: 2004071859}
+  - 114: {fileID: 2004071851}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -29336,6 +29337,16 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1419876916}
+--- !u!114 &2004071851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dc74945d2179e4aa680abf21df93ba, type: 3}
+  m_Name: 
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29470,16 +29481,6 @@ MonoBehaviour:
     y: 0
     width: 4.65999985
     height: 7.05000019
---- !u!114 &2004071857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2004071849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37310d6364a97c346b313065514d9d95, type: 3}
-  m_Name: 
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0
