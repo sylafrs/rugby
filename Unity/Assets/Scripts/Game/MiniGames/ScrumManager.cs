@@ -172,7 +172,7 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         }
     }
 
-    private Team GetWinner()
+    public Team GetWinner()
     {   
         if (CurrentWinner > 0)
         {

@@ -41,6 +41,8 @@ public partial class Referee
         bloc.enabled = false;
     }
 
+    private Team scrumWinners;
+    private Vector3 scrumEndPos;
     public void NowScrum()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
@@ -51,16 +53,20 @@ public partial class Referee
 
         sc.callback = (Team t, Vector3 endPos) =>
         {
-            game.Ball.Owner = t[0];
-
-            ScrumSwitchToPlayers();
-            ScrumEndPlacement(t, endPos);
-            
-
+            scrumWinners = t;
+            scrumEndPos = endPos;
             game.OnResumeSignal();
         };
 
         sc.enabled = true;
+    }
+
+    public void ScrumAfter()
+    {
+        game.Ball.Owner = scrumWinners[0];
+
+        ScrumSwitchToPlayers();
+        ScrumEndPlacement(scrumWinners, scrumEndPos);  
     }
 
     private void ScrumEndPlacement(Team t, Vector3 endPos)

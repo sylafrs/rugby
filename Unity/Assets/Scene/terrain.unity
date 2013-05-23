@@ -6995,12 +6995,12 @@ MonoBehaviour:
             ScrumingState:
               timeToGetOutTackleAreaBeforeScrum: 2
               minPlayersEachTeamToTriggerScrum: 3
-              FeedSuperPerSmash: 0
-              FeedSuperPerSecond: 0
-              test: 0
-              MaximumDistance: 0
-              SmashValue: 0
-              SuperMultiplicator: 0
+              FeedSuperPerSmash: .0500000007
+              FeedSuperPerSecond: .0500000007
+              test: 5
+              MaximumDistance: 11.5
+              SmashValue: .0500000007
+              SuperMultiplicator: 5
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
     Inputs:

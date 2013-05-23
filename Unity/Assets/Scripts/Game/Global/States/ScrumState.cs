@@ -9,24 +9,23 @@ using UnityEngine;
 public class ScrumState : GameState
 {
     public ScrumState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
-	
-	void initCutScene(){
-		cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);
-	}
+
+    Vector3 offset;
 	
 	public override void OnEnter()
-    {
-		initCutScene();
-
-        Transform cameraPlaceHolder = game.refs.placeHolders.scrumPlacement.FindChild("CameraPlacement");
-
-      // cam.game.Referee.NowScrum();        
+    {		
         game.Referee.ScrumCinematicMovement();
-        cam.transalateWithFade(Vector3.one, cameraPlaceHolder.rotation, 2, 1, 1, 1, 
+
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 2, 1, 1, 1, 
         (/* OnFinish*/) => {
             game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
             game.Referee.NowScrum();
         }, (/*OnFade*/) => {
+
+            offset = cam.MinfollowOffset;
+		    cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);
+            cam.MinfollowOffset = new Vector3(-1,1,0);
+
             game.Referee.ScrumSwitchToBloc();
         });
         
@@ -34,6 +33,19 @@ public class ScrumState : GameState
 	
 	public override void OnLeave()
 	{
-        game.refs.managers.ui.currentState = UIManager.UIState.NULL;
+        cam.MinfollowOffset = offset;
+        
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 2, 1, 1, 1, 
+            (/* OnFinish*/) => {
+                CameraFade.wannaDie();
+            },
+            (/*OnFade*/) => {
+                cam.setTarget(game.refs.managers.scrum.GetWinner().transform);
+                game.refs.managers.ui.currentState = UIManager.UIState.NULL;
+                game.Referee.ScrumAfter();
+        });
+
+
+        
 	}   
 }
