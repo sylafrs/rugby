@@ -290,7 +290,7 @@ public class Unit : TriggeringTriggered, Debugable
 					// le joueur est à ma droite
 					Order.TYPE_POSITION posThis = this.PositionInMap();
 					Order.TYPE_POSITION posBall = game.PositionInMap(game.Ball.gameObject);
-					Debug.Log(posThis + " et " + posBall + "donne" + (posThis > posBall));
+					//Debug.Log(posThis + " et " + posBall + "donne" + (posThis > posBall));
 
 					//l'autre défenseur est à ma droite
 					if (u.PositionInMap() > posThis)

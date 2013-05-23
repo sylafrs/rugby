@@ -52,7 +52,11 @@ public class UnitAnimator : myMonoBehaviour {
     {
         if (animator)
         {
-            this.Speed = unit.nma.velocity.magnitude;
+            this.Speed = unit.nma.speed;
+			if (unit.Order.type == Order.TYPE.NOTHING)
+			{
+				this.Speed = 0;
+			}
         }
     }
 }
