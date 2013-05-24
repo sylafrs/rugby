@@ -27,13 +27,18 @@ public abstract partial class State
     {
         return (false);
     }
+
+    // unit State Machine
+    public virtual bool OnUntackle() {
+        return (false);
+    }
 	
 	public virtual bool OnEndSignal()
     {
         return (false);
     }
 
-    public virtual bool OnResumeSignal()
+    public virtual bool OnResumeSignal(float time)
     {
         return (false);
     }
@@ -166,6 +171,15 @@ public partial class StateMachine
         }
     }
 
+    public void event_Untackle()
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnUntackle())
+                return;
+        }
+    }
+
     public void event_NearUnit(Unit u)
     {
         foreach (State tmp in list)
@@ -193,11 +207,11 @@ public partial class StateMachine
         }
     }
 
-    public void event_OnResumeSignal()
+    public void event_OnResumeSignal(float time)
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnResumeSignal())
+            if (tmp.OnResumeSignal(time))
                 return;
         }
     }

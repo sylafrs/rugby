@@ -11,7 +11,9 @@ using System.Threading;
  */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : myMonoBehaviour {
-	
+
+    public bool UseFlorianIA = true;
+
     public GamePlaySettings settings;
     public GameReferences refs;
 
@@ -47,7 +49,14 @@ public class Game : myMonoBehaviour {
             this.southTeam.OnOwnerChanged(); 
         }
     }
-   	
+
+	public float largeurTerrain;
+	public float section;
+	public float xNE;
+	public float xSO;
+
+	public System.Random rand = new System.Random();
+
     public Team northTeam { get { return refs.north; } }
     public Team southTeam { get { return refs.south; } }
     public Referee Referee { get { return refs.Referee; } }
@@ -77,6 +86,8 @@ public class Game : myMonoBehaviour {
         Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.Controlled;
+
+        ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
 		
         this.refs.managers.intro.OnFinish = () =>
         {
@@ -90,6 +101,11 @@ public class Game : myMonoBehaviour {
         );
 
         this.refs.managers.intro.enabled = true;
+
+		xNE = refs.positions.limiteTerrainNordEst.transform.position.x;
+		xSO = refs.positions.limiteTerrainSudOuest.transform.position.x;
+		largeurTerrain = Mathf.Abs(xNE - xSO);
+		section = largeurTerrain / 7f;
     }
 	
 	public void OnGameEnd(){
@@ -98,8 +114,8 @@ public class Game : myMonoBehaviour {
        	
     public void OnScrum()
     {
-        Referee.OnScrum();
         this.refs.stateMachine.event_Scrum();
+        Referee.OnScrum();        
     }
     
     public void OnDrop()
@@ -108,8 +124,7 @@ public class Game : myMonoBehaviour {
 	}
 	
 	public void OnTouch(Touche t)
-	{
-        this.Referee.OnTouch(t);
+	{        
 		this.refs.stateMachine.event_OnTouch(t);
 	}
 	
@@ -212,9 +227,9 @@ public class Game : myMonoBehaviour {
         this.refs.stateMachine.event_DodgeFinished(u);
     }
 
-    public void OnResumeSignal()
+    public void OnResumeSignal(float time)
     {
-        this.refs.stateMachine.event_OnResumeSignal();
+        this.refs.stateMachine.event_OnResumeSignal(time);
     }
 
     /*public void TimedDisableIA(float time)
@@ -226,4 +241,37 @@ public class Game : myMonoBehaviour {
             this.disableIA = false;
         });
     }*/
+
+	/*
+	 * Cette fonction me retourne le nombre de zone d'écart entre deux positions d'objets.
+	 * Si le retour est négatif, alors "other" est à gauche de "referent"
+	 * Si le retour est positif, alors "other" est à droite de "referent"
+	 **/
+	public int compareZoneInMap(Order.TYPE_POSITION referent, Order.TYPE_POSITION other)
+	{
+		return (int)referent - (int)other;
+	}
+
+	public int compareZoneInMap(GameObject referent, GameObject other)
+	{
+		return (int)PositionInMap(referent) - (int)PositionInMap(other);
+	}
+
+	public Order.TYPE_POSITION PositionInMap(GameObject obj)
+	{
+
+		if (obj.transform.position.x >= xSO && obj.transform.position.x < xSO + section)
+			return Order.TYPE_POSITION.EXTRA_LEFT;
+		else if (obj.transform.position.x >= xSO + section && obj.transform.position.x < xSO + 2 * section)
+			return Order.TYPE_POSITION.LEFT;
+		else if (obj.transform.position.x <= xNE && obj.transform.position.x > xNE - section)
+			return Order.TYPE_POSITION.EXTRA_RIGHT;
+		else if (obj.transform.position.x <= xNE - section && obj.transform.position.x > xNE - 2 * section)
+			return Order.TYPE_POSITION.RIGHT;
+		else if (obj.transform.position.x >= xSO + 2 * section && obj.transform.position.x < xSO + 3 * section)
+			return Order.TYPE_POSITION.MIDDLE_LEFT;
+		else if (obj.transform.position.x <= xNE - 2 * section && obj.transform.position.x > xNE - 3 * section)
+			return Order.TYPE_POSITION.MIDDLE_RIGHT;
+		return Order.TYPE_POSITION.MIDDLE;
+	}
 }

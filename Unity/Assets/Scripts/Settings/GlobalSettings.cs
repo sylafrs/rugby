@@ -24,6 +24,14 @@ public class TeamSettings
 	public float Vheight 	= 5;
     public float Vwidth 	= 5;
     public float LineSpace 	= 5;
+	
+	public float distanceMinBetweenDefensePlayer = 10f;
+	public float distanceMaxBetweenDefensePlayer = 15f;
+	public float distanceMinBetweenOffensivePlayer = 10f;
+	public float distanceMaxBetweenOffensivePlayer = 15f;
+	public float distanceMinBetweenOffensiveAndDefensePlayer = 15f;
+	public float distanceMaxBetweenOffensiveAndDefensePlayer = 25f;
+	public float nbOffensivePlayer;
 }
 
 [System.Serializable]

@@ -33,6 +33,19 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
         return (index == 0);
     }
 
+	public bool has_state(System.Type t)
+	{
+		foreach (State tmp in list)
+		{
+			if (list.GetType() == t)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
     public bool state_has_son(State current, System.Type t)
     {
         int index = list.IndexOf(current);

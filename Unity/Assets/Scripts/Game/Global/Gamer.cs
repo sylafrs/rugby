@@ -164,9 +164,22 @@ public class Gamer
             {
 				if (side > 0)
 				{
-					if (Controlled.Team.GetRight(Controlled).Count > 0)
+					List<Unit> lRight = Controlled.Team.GetRight(Controlled);
+					if (lRight.Count > 0)
 					{
-						unitTo = Controlled.Team.GetRight(Controlled)[0];
+						foreach (Unit u in lRight)
+						{
+							if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+							{
+								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
+								{
+									unitTo = u;
+									break;
+								}
+								else
+									unitTo = null;
+							}
+						}
 					}
 					else
 					{
@@ -177,9 +190,22 @@ public class Gamer
 				}
 				else if (side < 0)
 				{
-					if (Controlled.Team.GetLeft(Controlled).Count > 0)
+					List<Unit> lLeft = Controlled.Team.GetLeft(Controlled);
+					if (lLeft.Count > 0)
 					{
-						unitTo = Controlled.Team.GetLeft(Controlled)[0];
+						foreach (Unit u in lLeft)
+						{
+							if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+							{
+								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
+								{
+									unitTo = u;
+									break;
+								}
+								else
+									unitTo = null;
+							}
+						}
 					}
 					else
 					{
@@ -278,8 +304,10 @@ public class Gamer
                 Controlled.Order = Order.OrderPass(u);
                 PassDirection = Vector3.zero;
             }*/
-			if ( unitTo != null && unitTo != game.Ball.Owner )
+			if (unitTo != null && unitTo != game.Ball.Owner)
+			{
 				Controlled.Order = Order.OrderPass(unitTo);
+			}
 			//PassDirection = Vector3.zero;
         }
         else
@@ -295,7 +323,7 @@ public class Gamer
             Unit owner = this.game.Ball.Owner;
             if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
             {
-                if (owner.Dodge && owner.Team.unitInvincibleDodge)
+				if (owner.Dodge && owner.Team.unitInvincibleDodge)
                     Controlled.Order = Order.OrderPlaquer(null);
                 else
                     Controlled.Order = Order.OrderPlaquer(owner);
@@ -324,6 +352,11 @@ public class Gamer
         }
         if (change)
         {
+			foreach (Unit u in this.Team)
+			{
+				u.UpdateTypeOfPlay();
+			}
+
             if (Controlled)
             {
                 Controlled.Order = Order.OrderNothing();
@@ -339,11 +372,10 @@ public class Gamer
             }
         }
 
-        if (Controlled)
+        if (Controlled && !game.UseFlorianIA)
         {
             Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
-            //
-
+            
             if (game.Ball.Owner == null || game.Ball.Owner.Team == Team)
             {
                 //offensiveside
@@ -416,7 +448,7 @@ public class Gamer
         direction += Camera.main.transform.forward * d.y;
         direction += Camera.main.transform.right * d.x;
 
-        if (direction != Vector3.zero)
+        if (direction.magnitude > 0.8f)
         {
             Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized);
         }
@@ -442,7 +474,11 @@ public class Gamer
             d = Inputs.dodge.keyboard(Team).GetDirection();
         }
 
-        direction += Camera.main.transform.forward * d.y;
+        //  if (d.y < 0)
+        //  {
+        //      direction += Camera.main.transform.forward * d.y;
+        //  }
+
         direction += Camera.main.transform.right * d.x;
 
         if (direction.magnitude > 0.8f)

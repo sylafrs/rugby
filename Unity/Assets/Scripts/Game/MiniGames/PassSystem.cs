@@ -16,7 +16,6 @@ public class PassSystem {
 	private float magnitude;
 	private Vector3 relativePosition;
 	private Vector3 relativeDirection;
-	//private Vector3 directionFromTarget;
 	private float TimeUpdate;
 	//private float BetaAngle;
 	//private float GammaAngle;
@@ -28,7 +27,18 @@ public class PassSystem {
 	private Vector3 butRouge;
 	private Vector3 butBleuRouge;
 	private float multiplyDirection = 20f;
-	
+
+	public passState oPassState = passState.NONE;
+
+	public enum passState
+	{
+		SETUP,
+		ONPASS,
+		ONGROUND,
+		ONTARGET,
+		NONE
+	}
+
 	// Constructor
 	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball)
 	{
@@ -72,6 +82,11 @@ public class PassSystem {
 
 	public void CalculatePass()
 	{
+		if (oPassState != passState.NONE)
+		{
+			return;
+		}
+		oPassState = passState.SETUP;
 		if (from && target && ball)
 		{
 			velocityPass = this.ball.passSpeed;
@@ -87,22 +102,16 @@ public class PassSystem {
 			}
 			
 			multiplyRelativeDirection();
-			/*
+			
 			Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
-			*/
+			
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
 			ball.Owner = null;
-			
-			//Vector3 tmp = new Vector3(target.transform.position.x, 1.0f, target.transform.position.z);
-			//Vector3 tmp2 = new Vector3(relativePosition.x, 5.0f, relativePosition.z);
-
-			// BetaAngle = Vector3.Angle(Vector3.right, relativeDirection) * Mathf.PI / 180;
-			// GammaAngle = Vector3.Angle(Vector3.right, from.transform.forward) * Mathf.PI / 180;
 
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
@@ -110,16 +119,8 @@ public class PassSystem {
 			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
 
-			Order.TYPE_POSITION typePosition = target.Team.PositionInMap(target);
-			//
-			foreach (Unit u in target.Team)
-			{
-				if (u != target)
-				{
-					u.Order = Order.OrderOffensiveSide(target, new Vector3(ball.Game.settings.Global.Team.Vheight, 0, ball.Game.settings.Global.Team.Vwidth), target.Team.south, typePosition);
-						//u.Order = Order.OrderSupport(owner, new Vector3(Game.settings.Vheight, 0, Game.settings.Vwidth), right);
-				}
-			}
+			target.UpdateTypeOfPlay( true );
+
 		}
 	}
 	
@@ -128,9 +129,11 @@ public class PassSystem {
 	 */
 	public void DoPass(float t)
 	{
+		Vector3 oldPos = ball.transform.position;
 		ball.transform.position = new Vector3(relativeDirection.x * 1.5f * t + initialPosition.x,
 			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
 			relativeDirection.z * 1.5f * t + initialPosition.z);
+
 	}
 	
 	/*
@@ -148,7 +151,7 @@ public class PassSystem {
 
 	private void CorrectPosition()
 	{
-		relativePosition = ball.transform.position + relativeDirection * velocityPass * magnitude / target.nma.velocity.magnitude;
+		relativePosition = ball.transform.position + relativeDirection * velocityPass * magnitude / target.nma.speed;
 	}
 
 	/*
@@ -172,7 +175,19 @@ public class PassSystem {
 	 */
 	private void calculateRelativePosition()
 	{
-		relativePosition =  target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
+		if (target.nma.velocity.magnitude == 0)
+		{
+			Vector3 tmp = Vector3.zero;
+
+			tmp.z = target.nma.speed;
+			Debug.Log(tmp);
+			target.nma.velocity = tmp;
+			Debug.Log(target.nma.velocity);
+			//relativePosition = target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
+		}
+		//else
+			Debug.Log(target.nma.velocity);
+			relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
 	}
 
 	/*
@@ -182,7 +197,7 @@ public class PassSystem {
 	{
 		relativeDirection = (relativePosition - ball.transform.position).normalized;
 	}
-
+	
 	private void multiplyRelativeDirection()
 	{
 		relativeDirection = relativeDirection * multiplyDirection;

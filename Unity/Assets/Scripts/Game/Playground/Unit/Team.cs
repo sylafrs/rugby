@@ -27,7 +27,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     public Zone Zone;
 
 	private bool _fixUnits = false;
-	public bool  fixUnits {
+	public bool fixUnits {
 		get {
 			return _fixUnits;
 		}
@@ -44,14 +44,16 @@ public class Team : myMonoBehaviour, IEnumerable {
 	public float speedFactor;
 	public float tackleFactor;
 
-    public float unitDodgeSpeedFactor;
-    public float unitDodgeDuration;
-    public float unitDodgeCooldown;
-    public bool  unitInvincibleDodge;
+	public float unitDodgeSpeedFactor;
+	public float unitDodgeDuration;
+	public float unitDodgeCooldown;
+	public bool unitInvincibleDodge;
 
 	public float unitSpeed;
 	public float handicapSpeed = 1;
 	public float unitTackleRange;
+	
+	public int nbOffensivePlayer;
 
     public Unit this[int index]
     {
@@ -102,26 +104,14 @@ public class Team : myMonoBehaviour, IEnumerable {
 		foreach(var u in units) {
             if (u.nma)
             {
-                //
-                if (fixUnits)
-                {
-                    u.nma.speed = 0;
-                }
-                else 
-                {
-                    u.nma.speed = unitSpeed * speedFactor;
-                    if (u.Dodge)
-                    {
-                        u.nma.speed *= unitDodgeSpeedFactor;
-                    }
-                }
-                
-                //
+                //MyDebug.Log("a " + u.nma.speed);
+                u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+                //MyDebug.Log("b " + u.nma.speed);
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
             else
             {
-                
+                MyDebug.Log("WAT ?");
             }
 		}
 	}
@@ -130,21 +120,21 @@ public class Team : myMonoBehaviour, IEnumerable {
 		foreach(var u in units) {
             if (u.nma)
             {
-                //
+                //MyDebug.Log("a " + u.nma.speed);
                 u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
-                //MyDebug.Log(
+                //MyDebug.Log("b " + u.nma.speed);
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
             }
             else
             {
-                
+                MyDebug.Log("WAT ?");
             }
 		}
 	}
 
 	//maxens dubois
 	public void increaseSuperGauge(int value){
-		if((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
 	}
 
     public void CreateUnits()
@@ -179,6 +169,11 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public void OnOwnerChanged()
     {
+        if (game.disableIA)
+        {
+            return;
+        }
+
         if (game.Ball.Owner == null)
         {
             if (game.Ball.PreviousOwner.Team != this && game.Ball.NextOwner != null && game.Ball.NextOwner.Team != this)
@@ -213,7 +208,7 @@ public class Team : myMonoBehaviour, IEnumerable {
     {
         foreach (Unit u in units)
         {
-            if (u != game.southTeam.Player.Controlled && (game.northTeam.Player == null || u != game.northTeam.Player.Controlled))
+            if (u != game.northTeam.Player.Controlled && u != game.southTeam.Player.Controlled)
             {
                 u.Order = Order.OrderNothing(); // Order.OrderFollowBall();
             }
@@ -317,7 +312,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 		/*
 		Order.TYPE_POSITION typePosition = PositionInMap( owner );
-		//
+		//MyDebug.Log("pos in map : " + typePosition);
         foreach (Unit u in units)
         {
             // FIX. (TODO)
@@ -334,34 +329,21 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public Order.TYPE_POSITION PositionInMap(Unit owner)
 	{
-        float largeurTerrain = Mathf.Abs(game.refs.positions.limiteTerrainNordEst.transform.position.x - game.refs.positions.limiteTerrainSudOuest.transform.position.x);
-		float section = largeurTerrain / 5f;
+		float largeurTerrain = Mathf.Abs(game.refs.positions.limiteTerrainNordEst.transform.position.x - game.refs.positions.limiteTerrainSudOuest.transform.position.x);
+		float section = largeurTerrain / 7f;
 
-        Transform SO = game.refs.positions.limiteTerrainSudOuest.transform;
-        Transform NE = game.refs.positions.limiteTerrainNordEst.transform;
-
-        if (owner.transform.position.x < SO.position.x + section)
-        {
-            return Order.TYPE_POSITION.EXTRA_LEFT;
-        }
-
-        else if (owner.transform.position.x >= SO.position.x + section &&
-                 owner.transform.position.x <= SO.position.x + 2 * section)
-        {
-            return Order.TYPE_POSITION.LEFT;
-        }
-
-        else if (owner.transform.position.x > NE.position.x - section)
-        {
-            return Order.TYPE_POSITION.EXTRA_RIGHT;
-        }
-
-        else if (owner.transform.position.x <= NE.position.x - section &&
-                 owner.transform.position.x >= NE.position.x - 2 * section)
-        {
-            return Order.TYPE_POSITION.RIGHT;
-        }
-
+		if (owner.transform.position.x < game.refs.positions.limiteTerrainSudOuest.transform.position.x + section)
+			return Order.TYPE_POSITION.EXTRA_LEFT;
+		else if (owner.transform.position.x >= game.refs.positions.limiteTerrainSudOuest.transform.position.x + section && owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2*section)
+			return Order.TYPE_POSITION.LEFT;
+		else if (owner.transform.position.x > game.refs.positions.limiteTerrainNordEst.transform.position.x - section)
+			return Order.TYPE_POSITION.EXTRA_RIGHT;
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainNordEst.transform.position.x - section && owner.transform.position.x >= game.refs.positions.limiteTerrainNordEst.transform.position.x - 2 * section)
+			return Order.TYPE_POSITION.RIGHT;
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2 * section && owner.transform.position.x <= game.refs.positions.limiteTerrainSudOuest.transform.position.x + 2 * section)
+			return Order.TYPE_POSITION.MIDDLE_LEFT;
+		else if (owner.transform.position.x <= game.refs.positions.limiteTerrainNordEst.transform.position.x - 2 * section && owner.transform.position.x >= game.refs.positions.limiteTerrainNordEst.transform.position.x - 3 * section)
+			return Order.TYPE_POSITION.MIDDLE_RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}
 
@@ -390,13 +372,14 @@ public class Team : myMonoBehaviour, IEnumerable {
                 }
             }
 
-            a.Order = Order.OrderFollow(game.Ball.Owner);
+            a.Order = Order.OrderFollow(game.Ball.Owner.transform);
         }
 
         foreach (Unit u in units)
         {
             if (u != a)
             {
+                //u.Order = Order.OrderAttack(a, game.settings.LineSpace, right);
 				u.Order = Order.OrderNothing();
             }
         }
@@ -430,61 +413,67 @@ public class Team : myMonoBehaviour, IEnumerable {
 		B.transform.rotation = rot;
 	}
 
-	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to, bool teleport) {
 
-        if (configuration == null)
-        {
-            throw new UnityException("placeUnits configuration is null");
-        }
+	public void placeUnits(Transform configuration, string pattern, string filter, int from, int to, bool teleport)
+	{
+
+		if (configuration == null)
+		{
+			throw new UnityException("placeUnits configuration is null");
+		}
 
 		int i = 0;
-		Transform t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
-		while(t != null && (i + from) < nbUnits && (i + from) < to) {
+		Transform t = configuration.FindChild(pattern.Replace(filter, (i + 1).ToString()));
+		while (t != null && (i + from) < nbUnits && (i + from) < to)
+		{
 
 			this.placeUnit(t, i + from, teleport);
 
 			i++;
-			t = configuration.FindChild(pattern.Replace(filter, (i+1).ToString()));
+			t = configuration.FindChild(pattern.Replace(filter, (i + 1).ToString()));
 		}
 	}
 
-    public void placeUnits(Transform configuration, string pattern, bool teleport)
-    {
-        this.placeUnits(configuration, pattern, "#", 0, nbUnits, teleport);
+	public void placeUnits(Transform configuration, string pattern, bool teleport)
+	{
+		this.placeUnits(configuration, pattern, "#", 0, nbUnits, teleport);
 	}
 
-    public void placeUnits(Transform configuration, int from, int to, bool teleport)
-    {
-        this.placeUnits(configuration, "Player_#", "#", from, to, teleport);
+	public void placeUnits(Transform configuration, int from, int to, bool teleport)
+	{
+		this.placeUnits(configuration, "Player_#", "#", from, to, teleport);
 	}
 
-    public void placeUnits(Transform configuration, int from, bool teleport)
-    {
-        this.placeUnits(configuration, "Player_#", "#", from, nbUnits, teleport);
+	public void placeUnits(Transform configuration, int from, bool teleport)
+	{
+		this.placeUnits(configuration, "Player_#", "#", from, nbUnits, teleport);
 	}
-    
-    public void placeUnits(Transform configuration, bool teleport)
-    {
+
+	public void placeUnits(Transform configuration, bool teleport)
+	{
 		this.placeUnits(configuration, "Player_#", "#", 0, nbUnits, teleport);
 	}
 
-	public void placeUnit(Transform dst, int index, bool teleport) {
-		if( dst == null || index < 0 || index >= nbUnits ) {
+	public void placeUnit(Transform dst, int index, bool teleport)
+	{
+		if (dst == null || index < 0 || index >= nbUnits)
+		{
 			throw new System.ArgumentException();
 		}
 
-        Unit unit = units[index];
+		Unit unit = units[index];
 
-        if (teleport)
-        {
-            unit.transform.position = dst.position;
-            unit.transform.rotation = dst.rotation;
-        }
-        else
-        {
+		if (teleport)
+		{
+			unit.transform.position = dst.position;
+			unit.transform.rotation = dst.rotation;
+		}
+		else
+		{
+            unit.nma.speed = 10;
             unit.Order = Order.OrderMove(dst.position);
-            unit.transform.rotation = dst.rotation;
-        }
+			unit.transform.rotation = dst.rotation;
+		}
 	}
 
 	//maxens dubois
@@ -498,42 +487,56 @@ public class Team : myMonoBehaviour, IEnumerable {
 		return units[0].renderer.material.color;
 	}
 
-	//maxens dubois
-	public void PlaySuperParticleSystem(SuperList _super, bool play){
-		switch (_super){
-		case SuperList.superDash:
-			foreach(Unit u in units){
-				if(play == true){
-					u.superDashParticles.Play();
-				}else{
-					u.superDashParticles.Stop();
-				}
-			}
-			break;
-		case SuperList.superTackle:
-			foreach(Unit u in units){
-				if(play == true){
-					u.superTackleParticles.Play();
-				}else{
-					u.superTackleParticles.Stop();
-				}
-			}
-			break;
-		default:
-			break;
-		}
-	}
+    public GameObject fxSuper;
+    private GameObject[] myFxSuper;
+    public GameObject lightSuper;
 
-    public void ShowPlayers(bool active)
+    
+    public void PlaySuperParticleSystem(SuperList super, bool play)
     {
-        for (int i = 0; i < this.units.Length; i++)
-        {
-            this.units[i].ShowPlayer(active);
-        }
+        this.PlaySuperParticleSystem(play);
     }
 
-    public class TeamUnitEnumerator : IEnumerator
+
+    public void PlaySuperParticleSystem(bool play)
     {
+
+        if (play)
+            myFxSuper = new GameObject[this.nbUnits];
+
+        int i = 0;
+
+        if (play && lightSuper)
+            lightSuper.SetActive(true);
+
+        if (myFxSuper != null)
+        {
+            foreach (Unit u in this.units)
+            {
+                if (play)
+                {
+                    myFxSuper[i] = GameObject.Instantiate(fxSuper) as GameObject;
+                    myFxSuper[i].transform.parent = u.transform;
+                    myFxSuper[i].transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    if (myFxSuper[i])
+                        GameObject.Destroy(myFxSuper[i]);
+                }
+
+                i++;
+            }
+        }
+
+        if (!play && lightSuper)
+            lightSuper.SetActive(false);
+
+        if (!play)
+            myFxSuper = null;
+    }
+
+	public class TeamUnitEnumerator : IEnumerator {
 		Team t;
 		int current;
 
@@ -571,5 +574,13 @@ public class Team : myMonoBehaviour, IEnumerable {
 
 	public IEnumerator GetEnumerator() {
 		return new TeamUnitEnumerator(this);
+	}
+
+	public void ShowPlayers(bool active)
+	{
+		for (int i = 0; i < this.units.Length; i++)
+		{
+			this.units[i].ShowPlayer(active);
+		}
 	}
 }

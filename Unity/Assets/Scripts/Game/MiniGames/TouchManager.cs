@@ -10,53 +10,61 @@ using XInputDotNetPure;
   */
 [AddComponentMenu("Scripts/MiniGames/Touch")]
 public class TouchManager : myMonoBehaviour {
-	
-	public System.Action<TouchManager.Result, int> CallBack;
-    public Game game { get; set; }
-	
-	public Gamer gamerTouch {get; set;}
-	public Gamer gamerIntercept {get; set;}
+		
+    private Game    game;                                       // The main class                                           (reference)
+    public  bool    infiniteTime;                               // Has the player an infinite ammount of time to choose ?   (tweak)
 
-    public bool infiniteTime;
-	
-	public int choixTouche, choixInter;
-	
-	public int n;
-	
-	public float timeLeft;
-	public float minTime;
-	
-	public bool randomTouch {get; set;}
-	public bool randomIntercept {get; set;}
-	
+    public System.Action<TouchManager.Result, int> CallBack;    // Action to compute after the touch                        (parameter)
+
+	public  Gamer   gamerTouch      { get; set; }               // The gamer who pass                                       (parameter)
+	public  Gamer   gamerIntercept  { get; set; }               // The gamer who tries to take the ball                     (parameter)
+    public  float   minTime         { get; set; }               // The minimum time the intercepter has                     (parameter)
+      
+    public  int     touchChoice     { get; private set; }       // Choice of gamerTouch                                     (variable, readonly)
+    public  int     interChoice     { get; private set; }       // Choice of gamerIntercept                                 (variable, readonly)
+    public  float   timeLeft        { get; private set; }       // The minimum time remaining                               (variable, readonly)
+    public  int     nTouches        { get; private set; }       // The number of buttons allowed                            (variable, readonly)
+
 	public void OnEnable() {
-		choixTouche = 0;
-		choixInter = 0;
+        game = Game.instance;
+
+        touchChoice = 0;
+        interChoice = 0;
 		timeLeft = minTime;
-		
-		n = Mathf.Min (game.settings.Inputs.touch.Length, game.settings.Inputs.touch.Length);
-		
-		if(randomTouch)
-			choixTouche = Random.Range(0, n) + 1;
+
+        nTouches = game.settings.Inputs.touch.Length;
+
+        if (gamerTouch == null)
+            touchChoice = Random.Range(0, nTouches) + 1;
 			
-		if(randomIntercept)
-			choixInter = Random.Range(0, n) + 1;
+		if(gamerIntercept == null)
+            interChoice = Random.Range(0, nTouches) + 1;
 	}
 
 	public void Update() {
 		if(!infiniteTime)
             timeLeft -= Time.deltaTime;
-		
-		for(int i = 0; i < n; i++) {
-			if(Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerTouch.Team)) || (gamerTouch.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox))) {
-				choixTouche = i+1;
-			}
-			if(Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerIntercept.Team)) || (gamerIntercept.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox))) {
-				choixInter = i+1;
-			}
+
+        for (int i = 0; i < nTouches; i++)
+        {
+            if (gamerTouch != null)
+            {
+                if (Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerTouch.Team)) || (gamerTouch.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox)))
+                {
+                    touchChoice = i + 1;
+                }
+            }
+
+            if (gamerIntercept != null)
+            {
+                if (Input.GetKeyDown(game.settings.Inputs.touch[i].keyboard(gamerIntercept.Team)) || (gamerIntercept.XboxController.GetButtonDown(game.settings.Inputs.touch[i].xbox)))
+                {
+                    interChoice = i + 1;
+                }
+            }
 		}
 
-        if (choixTouche != 0 && ((timeLeft < 0 && !infiniteTime) || choixInter != 0))
+        if (touchChoice != 0 && ((timeLeft < 0 && !infiniteTime) || interChoice != 0))
         {
             DoTouch();
         }        
@@ -72,26 +80,18 @@ public class TouchManager : myMonoBehaviour {
 		if(this.enabled) {
 			return Result.PLAYING;	
 		}
-		if(choixTouche == choixInter){
+        if (touchChoice == interChoice)
+        {
 			return Result.INTERCEPTION;	
 		}
 		return Result.TOUCH;
 	}
 	
 	public void DoTouch() {
-		
-		MyDebug.Log("touche : " + choixTouche + " -- inter : " + choixInter);
-		
-		if(choixTouche == choixInter) {
-			MyDebug.Log("interception");	
-		}
-		else {
-			MyDebug.Log("reussite");	
-		}
-		
+			
 		this.enabled = false;
 		
 		if(CallBack != null)
-			CallBack(this.GetResult(), choixTouche - 1);
+			CallBack(this.GetResult(), touchChoice - 1);
 	}
 }

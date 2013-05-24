@@ -15,14 +15,14 @@ public class ScrumUI{
 	
 	public void DrawUI()
 	{
-		if (!manager.ChronoLaunched)
-        {
-            GUILayout.Label("BEGIN !");
-        }
-        else
-        {
-            GUILayout.Label("SMASH UNTIL " + (int)manager.TimeRemaining + " !");
-        }
+		//if (!manager.ChronoLaunched)
+        //{
+        //    GUILayout.Label("BEGIN !");
+        //}
+        //else
+        //{
+        //    GUILayout.Label("SMASH UNTIL " + (int)manager.TimeRemaining + " !");
+        //}
 
         this.DrawBar();
 
