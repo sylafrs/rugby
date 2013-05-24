@@ -108,27 +108,15 @@ public class Team : myMonoBehaviour, IEnumerable {
                 {
                     u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
                 }
+                else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
+                {
+                    u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
+                }
                 else
                 {
                     u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
                 }
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-            }
-		}
-	}
-
-	public void setHandicapSpeed() {
-		foreach(var u in units) {
-            if (u.nma)
-            {
-                //MyDebug.Log("a " + u.nma.speed);
-                u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
-                //MyDebug.Log("b " + u.nma.speed);
-                u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-            }
-            else
-            {
-                MyDebug.Log("WAT ?");
             }
 		}
 	}
@@ -192,12 +180,7 @@ public class Team : myMonoBehaviour, IEnumerable {
                 OwnerChangedOurs();
             }
 
-        }
-        else if (game.Ball.Owner.Team == this)
-        {
-			setHandicapSpeed();
-            OwnerChangedOurs();
-        }
+        }       
         else
         {
 			setSpeed();
