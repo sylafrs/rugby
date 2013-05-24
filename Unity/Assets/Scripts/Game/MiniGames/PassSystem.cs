@@ -6,7 +6,7 @@ using System.Collections;
  * @brief Doing a pass
  * @author Guilleminot Florian
  */
-public class PassSystem : MonoBehaviour {
+public class PassSystem {
 	
 	// Variables
 	private Unit from;

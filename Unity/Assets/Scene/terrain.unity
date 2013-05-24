@@ -2528,7 +2528,6 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
-  passManager: {fileID: 0}
   PreviousOwner: {fileID: 0}
   scrumFieldUnits: []
 --- !u!136 &308884796
@@ -4065,6 +4064,7 @@ MonoBehaviour:
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
+              offsetCamera: {x: 2, y: 1, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
     Inputs:
