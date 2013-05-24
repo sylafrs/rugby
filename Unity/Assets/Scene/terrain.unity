@@ -7010,69 +7010,69 @@ MonoBehaviour:
       shortPass:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       longPass:
         keyboardP1: 50
         keyboardP2: 56
-        xbox: 1
+        xbox: 2
       dropUpAndUnder:
         keyboardP1: 51
         keyboardP2: 57
-        xbox: 9
+        xbox: 0
       dropKick:
         keyboardP1: 52
         keyboardP2: 48
-        xbox: 8
+        xbox: 9
       tackle:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       changePlayer:
         keyboardP1: 50
         keyboardP2: 56
-        xbox: 1
+        xbox: 2
       put:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       superOff:
         keyboardP1: 32
         keyboardP2: 13
-        xbox: 3
+        xbox: 4
       conversionTouch:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       reset:
         keyboardP1: 8
         keyboardP2: 8
-        xbox: 2
+        xbox: 3
       enableIA:
         keyboardP1: 0
         keyboardP2: 0
-        xbox: 7
+        xbox: 0
       skipIntro:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       smashButton:
         keyboardP1: 49
         keyboardP2: 55
-        xbox: 0
+        xbox: 1
       superButton:
         keyboardP1: 32
         keyboardP2: 13
-        xbox: 3
+        xbox: 4
       touch:
       - keyboardP1: 97
         keyboardP2: 117
-        xbox: 0
+        xbox: 1
       - keyboardP1: 122
         keyboardP2: 105
-        xbox: 1
+        xbox: 2
       - keyboardP1: 101
         keyboardP2: 111
-        xbox: 8
+        xbox: 9
       move:
         keyboardP1:
           up: 122
@@ -7084,7 +7084,7 @@ MonoBehaviour:
           down: 107
           right: 108
           left: 106
-        xbox: 2
+        xbox: 3
       dodge:
         keyboardP1:
           up: 102
@@ -7096,7 +7096,7 @@ MonoBehaviour:
           down: 0
           right: 0
           left: 0
-        xbox: 1
+        xbox: 2
     UI:
       GameUI:
         emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
