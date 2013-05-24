@@ -163,31 +163,19 @@ public class PassSystem {
 	}
 
 	/*
-	 * @brief direction between the ball and the target
-	 */
-	/*private void directionFromToTarget()
-	{
-		directionFromTarget = target.transform.position - from.transform.position;
-	}*/
-
-	/*
 	 * @brief relative position of the target
 	 */
 	private void calculateRelativePosition()
 	{
 		if (target.nma.velocity.magnitude == 0)
 		{
-			Vector3 tmp = Vector3.zero;
+			Vector3 nmaSpeed = Vector3.zero;
 
-			tmp.z = target.nma.speed;
-			Debug.Log(tmp);
-			target.nma.velocity = tmp;
-			Debug.Log(target.nma.velocity);
-			//relativePosition = target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
+			nmaSpeed.z = target.nma.speed;
+			target.nma.velocity = nmaSpeed;
 		}
-		//else
-			Debug.Log(target.nma.velocity);
-			relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
+		relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
+		Debug.DrawRay(relativePosition, Vector3.up, Color.red, 10f);
 	}
 
 	/*

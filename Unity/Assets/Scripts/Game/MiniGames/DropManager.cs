@@ -103,7 +103,13 @@ public class DropManager
 	{
 		RaycastHit hit;
 		Debug.DrawRay(ball.transform.position, ownerDirection * posBallEndDrop.magnitude, Color.yellow, 10f);
-		if (Physics.Raycast(ball.transform.position, new Vector3(posBallEndDrop.x - ball.transform.position.x, ball.transform.position.y, posBallEndDrop.z - ball.transform.position.z), out hit, posBallEndDrop.magnitude, ball.poteauLayer.value))
+		Vector3 pos1 = ball.transform.position;
+		pos1.x += 0.5f;
+		Vector3 pos2 = ball.transform.position;
+		pos2.x -= 0.5f;
+		if (Physics.Raycast(ball.transform.position, new Vector3(posBallEndDrop.x - ball.transform.position.x, ball.transform.position.y, posBallEndDrop.z - ball.transform.position.z), out hit, posBallEndDrop.magnitude, ball.poteauLayer.value) ||
+			Physics.Raycast(pos1, new Vector3(posBallEndDrop.x - pos1.x, pos1.y, posBallEndDrop.z - pos1.z), out hit, posBallEndDrop.magnitude, ball.poteauLayer.value) ||
+			Physics.Raycast(pos2, new Vector3(posBallEndDrop.x - pos2.x, pos2.y, posBallEndDrop.z - pos2.z), out hit, posBallEndDrop.magnitude, ball.poteauLayer.value))
 		{
 			hitPosGoalPost = hit.point;
 			Debug.Log("RAYCAST : " + hit.collider.gameObject.name);
