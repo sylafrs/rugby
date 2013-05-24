@@ -122,15 +122,8 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
-        public GamePadState pad
-        {
-            get
-            {
-                return GamePad.GetState(index);
-            }
-
-            private set { }
-        }
+        private GamePadState currentState;
+        public GamePadState pad;
 
         public InputDirection.Direction GetDirection(XBOX_DIRECTION dir)
         {
@@ -150,8 +143,14 @@ public class XboxInputs : myMonoBehaviour{
         {
             return !XboxInputs.GetButton(btn, pad) && prevState[(int)btn];
         }
-        
-        public void UpdateButtons()
+
+        public void Update()
+        {
+            pad = GamePad.GetState(index);
+            this.UpdateButtons();
+        }
+
+        private void UpdateButtons()
         {            
             for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
             {
@@ -192,10 +191,10 @@ public class XboxInputs : myMonoBehaviour{
         // Update number / 2.
         // if (Mathf.PingPong(0, 1) == 1)
         {
+            
             for (int i = 0; i < MAX_CONTROLLERS; i++)
             {
-                if(controllers[i].IsConnected)
-                    controllers[i].UpdateButtons();
+                controllers[i].Update();
             }
         }
     }
