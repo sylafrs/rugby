@@ -104,14 +104,15 @@ public class Team : myMonoBehaviour, IEnumerable {
 		foreach(var u in units) {
             if (u.nma)
             {
-                //MyDebug.Log("a " + u.nma.speed);
-                u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
-                //MyDebug.Log("b " + u.nma.speed);
+                if (u.Dodge)
+                {
+                    u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
+                }
+                else
+                {
+                    u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+                }
                 u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-            }
-            else
-            {
-                MyDebug.Log("WAT ?");
             }
 		}
 	}
