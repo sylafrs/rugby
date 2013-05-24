@@ -13,6 +13,7 @@ using System.Threading;
 public class Game : myMonoBehaviour {
 
     public bool UseFlorianIA = true;
+	public bool alwaysScrum = false;
 
     public GamePlaySettings settings;
     public GameReferences refs;
@@ -86,8 +87,9 @@ public class Game : myMonoBehaviour {
         Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         Ball.transform.localPosition = Vector3.zero;
         Ball.Owner = p1.Controlled;
-
-        ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
+		
+		if(alwaysScrum)
+        	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
 		
         this.refs.managers.intro.OnFinish = () =>
         {

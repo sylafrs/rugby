@@ -4011,6 +4011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
   UseFlorianIA: 0
+  alwaysScrum: 0
   settings:
     Global:
       Game:
@@ -4032,18 +4033,18 @@ MonoBehaviour:
         passLooseSuperPoints: 5
         dropWinSuperPoints: 20
         dropLooseSuperPoints: 10
-        tryWinSuperPoints: 30
-        tryLooseSuperPoints: 20
-        conversionWinSuperPoints: 10
-        conversionLooseSuperPoints: 5
-        conversionOpponentSuperPoints: 10
-        touchWinSuperPoints: 20
+        tryWinSuperPoints: 50
+        tryLooseSuperPoints: 100
+        conversionWinSuperPoints: 30
+        conversionLooseSuperPoints: 0
+        conversionOpponentSuperPoints: 15
+        touchWinSuperPoints: 30
         touchInterceptSuperPoints: 20
-        touchLooseSuperPoints: 5
-        tackleWinSuperPoints: 20
-        tackleLooseSuperPoints: 5
-        scrumWinSuperPoints: 30
-        scrumLooseSuperPoints: 10
+        touchLooseSuperPoints: 0
+        tackleWinSuperPoints: 10
+        tackleLooseSuperPoints: 0
+        scrumWinSuperPoints: 40
+        scrumLooseSuperPoints: 20
       Team:
         Vheight: 10
         Vwidth: 5
