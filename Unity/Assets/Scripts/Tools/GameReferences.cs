@@ -34,8 +34,10 @@ public class GameReferences : myMonoBehaviour {
     [System.Serializable]
     public class Positions
     {
-        public GameObject limiteTerrainNordEst;
-        public GameObject limiteTerrainSudOuest;
+        public Transform limiteTerrainNordEst;
+        public Transform limiteTerrainSudOuest;
+        public Transform scrumFieldNE;
+        public Transform scrumFieldSW;
     }
 
     [System.Serializable]

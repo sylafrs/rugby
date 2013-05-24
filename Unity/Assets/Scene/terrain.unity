@@ -148,8 +148,10 @@ MonoBehaviour:
     ball: {fileID: 308884795}
     ScrumBloc: {fileID: 1239785093}
   positions:
-    limiteTerrainNordEst: {fileID: 908523406}
-    limiteTerrainSudOuest: {fileID: 673607276}
+    limiteTerrainNordEst: {fileID: 908523407}
+    limiteTerrainSudOuest: {fileID: 673607277}
+    scrumFieldNE: {fileID: 451532785}
+    scrumFieldSW: {fileID: 2059085082}
   xboxInputs: {fileID: 219502520}
 --- !u!1 &9213360
 GameObject:
@@ -7564,6 +7566,32 @@ Transform:
   m_Children:
   - {fileID: 920724980}
   m_Father: {fileID: 459764120}
+--- !u!1 &451532784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 451532785}
+  m_Layer: 0
+  m_Name: ScrumFieldNE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451532785
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451532784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.2567749, y: -1.11880493, z: 54.2967491}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2121886553}
 --- !u!1 &456123577
 GameObject:
   m_ObjectHideFlags: 0
@@ -10572,7 +10600,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e871c237412183a4ba65a64e3dd117fa, type: 3}
   m_Name: 
-  active: 1
+  active: 0
   colorPattern:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -21402,6 +21430,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1419876916}
+  - 114: {fileID: 1419876917}
   m_Layer: 0
   m_Name: GameProgrammers
   m_TagString: Untagged
@@ -21426,6 +21455,20 @@ Transform:
   - {fileID: 528087310}
   - {fileID: 219502519}
   m_Father: {fileID: 1718826727}
+--- !u!114 &1419876917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419876915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1168933e68b185478fd8c6fe23d85fd, type: 3}
+  m_Name: 
+  refs: {fileID: 3678738}
+  active: 1
+  color: {r: 0, g: 1, b: .160839319, a: 1}
+  Y: 1.70000005
 --- !u!1 &1420524553
 GameObject:
   m_ObjectHideFlags: 0
@@ -30024,6 +30067,32 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   sizePoint: 1
   lengthForward: 5
+--- !u!1 &2059085081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2059085082}
+  m_Layer: 0
+  m_Name: ScrumFieldSW
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2059085082
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2059085081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.0176506, y: -1.11880505, z: -27.2304993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2121886553}
 --- !u!1 &2060209721
 GameObject:
   m_ObjectHideFlags: 0
@@ -30599,6 +30668,8 @@ Transform:
   m_LocalPosition: {x: .00147628784, y: .995758057, z: -13.1902008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 451532785}
+  - {fileID: 2059085082}
   - {fileID: 908523407}
   - {fileID: 673607277}
   - {fileID: 1883790904}
