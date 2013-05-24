@@ -79,16 +79,7 @@ public class TouchManager : myMonoBehaviour {
 	}
 	
 	public void DoTouch() {
-		
-		MyDebug.Log("touche : " + choixTouche + " -- inter : " + choixInter);
-		
-		if(choixTouche == choixInter) {
-			MyDebug.Log("interception");	
-		}
-		else {
-			MyDebug.Log("reussite");	
-		}
-		
+			
 		this.enabled = false;
 		
 		if(CallBack != null)

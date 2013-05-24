@@ -108,7 +108,7 @@ public class Unit : TriggeringTriggered, Debugable
 	{
 		if (this.Team.Player.Controlled == this)
 		{
-			Debug.Log(this);
+			//Debug.Log(this);
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 		}
 		else

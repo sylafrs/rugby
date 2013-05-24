@@ -90,7 +90,7 @@ public partial class Referee
     {
         if (t == null || t.a == null || t.b == null)
         {
-            return;
+            throw new UnityException("I need the touch to be configured");
         }
 
         // Indique que le jeu passe en mode "Touche"			
@@ -137,7 +137,6 @@ public partial class Referee
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
         {
-
             // Charger le super à la touche
 
             // On donne la balle à la bonne personne

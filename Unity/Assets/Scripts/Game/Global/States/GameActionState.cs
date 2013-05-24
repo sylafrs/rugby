@@ -18,7 +18,7 @@ public class GameActionState : GameState {
             return false;
         }
         else
-        {            
+        {           
             sm.state_change_son(this, new TouchState(sm, cam, game));
             return true;
         }        
