@@ -26,14 +26,28 @@ public class GameActionState : GameState {
 
     public override bool OnScrum()
     {
-        sm.state_change_son(this, new ScrumState(sm, cam, game));
-        return true;
+        if (!sm.state_is_last(this))
+        {
+            return false;
+        }
+        else
+        {
+            sm.state_change_son(this, new ScrumState(sm, cam, game));
+            return true;
+        }
     }
 
     public override bool OnTry(Zone z)
     {
-        sm.state_change_son(this, new ConvertingState(sm, cam, game, z));
-        return true;
+        if (!sm.state_is_last(this))
+        {
+            return false;
+        }
+        else
+        {
+            sm.state_change_son(this, new ConvertingState(sm, cam, game, z));
+            return true;
+        }
     }
         
     public override bool OnResumeSignal(float time) 
