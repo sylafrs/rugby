@@ -43,6 +43,7 @@ public partial class Referee
 
     private Team scrumWinners;
     private Vector3 scrumEndPos;
+    public float FreezeAfterScrum = 5;
     public void NowScrum()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
@@ -55,7 +56,7 @@ public partial class Referee
         {
             scrumWinners = t;
             scrumEndPos = endPos;
-            game.OnResumeSignal();
+            game.OnResumeSignal(FreezeAfterScrum);
         };
 
         sc.enabled = true;

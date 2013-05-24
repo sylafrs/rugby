@@ -123,16 +123,9 @@ public partial class Referee
         // Règlage du mini-jeu
         TouchManager tm = this.game.refs.managers.touch;
 
-        tm.game = this.game;
-
         // On indique les équipes
         tm.gamerIntercept = interceptTeam.Player;
         tm.gamerTouch = touchTeam.Player;
-
-        // On indique si l'un ou l'autre sera fait au pif
-        // TODO : patch j2
-        tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
-        tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
 
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
@@ -166,10 +159,12 @@ public partial class Referee
             // if(interceptTeam.Player != null) interceptTeam.Player.enableMove();
             // if(touchTeam.Player != null) touchTeam.Player.enableMove();
 
-            game.OnResumeSignal();
+            game.OnResumeSignal(freezeAfterTouch);
         };
 
         tm.enabled = true;
     }
+
+    public float freezeAfterTouch = 5;
 
 }

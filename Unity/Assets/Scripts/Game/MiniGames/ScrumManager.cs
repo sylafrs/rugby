@@ -18,13 +18,13 @@ public class ScrumManager : myMonoBehaviour, Debugable {
 
     public  bool ChronoLaunched { get; private set; }                       // First smash      (variable, readonly)
     public  float TimeRemaining { get; private set; }                       // Time to play     (variable, readonly)
-    public  float currentPosition;                                           // -1 to 1          (variable)
-    private int CurrentWinner;                                              // Winner           (variable)
-    public  float SuperLoading;                                              // 0 to 1           (variable)
-    public  float FeedSuperPerSmash;
-    public  ScrumingStateSettings settings;
+    public float currentPosition { get; private set; }                      // -1 to 1          (variable, readonly)
+    private int CurrentWinner;                                              // Winner           (variable, private)
+    public float SuperLoading { get; private set; }                         // 0 to 1           (variable, readonly)
+    public float FeedSuperPerSmash { get; private set; }                    // 0 to 1           (variable, readonly)
 
-    private Game game;                                                      // Game             (reference)    
+    private  ScrumingStateSettings settings;                                // Tweaks           (reference)
+    private  Game game;                                                     // Game             (reference)    
 
     void OnEnable()
     {

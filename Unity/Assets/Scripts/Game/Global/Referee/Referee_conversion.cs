@@ -89,11 +89,13 @@ public partial class Referee
                 this.StartPlacement();
             }
 
-            this.game.OnResumeSignal();
+            this.game.OnResumeSignal(FreezeAfterConversion);
         };
 
         PlaceTransfoPlaceholders();
     }
+
+    public float FreezeAfterConversion = 5;
 
     public void OnDropTransformed(But but)
     {
