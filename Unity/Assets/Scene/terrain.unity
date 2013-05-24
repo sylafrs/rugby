@@ -4083,7 +4083,7 @@ MonoBehaviour:
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
-              offsetCamera: {x: 2, y: 1, z: 0}
+              offsetCamera: {x: 3, y: 1.20000005, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
     Inputs:
