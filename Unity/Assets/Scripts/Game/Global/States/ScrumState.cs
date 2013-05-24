@@ -10,11 +10,12 @@ public class ScrumState : GameState
 {
     public ScrumState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
-    private static Vector3 A_METTRE_EN_TWEAK_offset_melee = new Vector3(-1, 1, 0);
     Vector3 offset;
 	
 	public override void OnEnter()
-    {		
+    {
+        ScrumingStateSettings settings = game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState;
+
         game.Referee.ScrumCinematicMovement();
 
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 2, 1, 1, 1, 
@@ -25,7 +26,7 @@ public class ScrumState : GameState
 
             offset = cam.MinfollowOffset;
 		    cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);
-            cam.MinfollowOffset = A_METTRE_EN_TWEAK_offset_melee;
+            cam.MinfollowOffset = settings.offsetCamera;
 
             game.Referee.ScrumSwitchToBloc();
         });
@@ -36,7 +37,7 @@ public class ScrumState : GameState
 	{
         cam.MinfollowOffset = offset;
         
-        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 2, 1, 1, 1, 
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 1, 1, 1, 1, 
             (/* OnFinish*/) => {
                 CameraFade.wannaDie();
             },

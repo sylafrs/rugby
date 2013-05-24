@@ -509,22 +509,24 @@ public class Team : myMonoBehaviour, IEnumerable {
         if (play && lightSuper)
             lightSuper.SetActive(true);
 
-        foreach (Unit u in this.units)
+        if (myFxSuper != null)
         {
-            if (play)
+            foreach (Unit u in this.units)
             {
-                myFxSuper[i] = GameObject.Instantiate(fxSuper) as GameObject;
-                myFxSuper[i].transform.parent = u.transform;
-                myFxSuper[i].transform.localPosition = Vector3.zero;
-            }
-            else
-            {
-                if (myFxSuper[i])
-                    GameObject.Destroy(myFxSuper[i]);
-            }
+                if (play)
+                {
+                    myFxSuper[i] = GameObject.Instantiate(fxSuper) as GameObject;
+                    myFxSuper[i].transform.parent = u.transform;
+                    myFxSuper[i].transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    if (myFxSuper[i])
+                        GameObject.Destroy(myFxSuper[i]);
+                }
 
-            i++;
-
+                i++;
+            }
         }
 
         if (!play && lightSuper)

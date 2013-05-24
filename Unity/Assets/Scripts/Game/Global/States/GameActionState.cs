@@ -13,7 +13,8 @@ public class GameActionState : GameState {
 
     public override void OnEnter()
     {
-        game.northTeam.PlaySuperParticleSystem(true);
+        game.northTeam.PlaySuperParticleSystem(false);
+        game.southTeam.PlaySuperParticleSystem(false);
     }
 
     public override bool OnTouch(Touche t)
@@ -24,7 +25,7 @@ public class GameActionState : GameState {
         }
         else
         {           
-            sm.state_change_son(this, new TouchState(sm, cam, game));
+            sm.state_change_son(this, new TouchState(sm, cam, game, t));
             return true;
         }        
     }

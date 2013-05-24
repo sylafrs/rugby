@@ -8,10 +8,12 @@ using UnityEngine;
 
 public class TouchState : GameState
 {
-    public TouchState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
+    public TouchState(StateMachine sm, CameraManager cam, Game game, Touche t) : base(sm, cam, game) {
+        game.Referee.OnTouch(t);
+    }
 	
  	public override void OnEnter ()
-	{	
+	{
 		cam.setTarget(null);
 		
 		Transform cameraPlaceHolder = game.refs.placeHolders.touchPlacement.FindChild("CameraPlaceHolder");
