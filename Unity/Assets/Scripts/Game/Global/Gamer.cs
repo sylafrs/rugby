@@ -475,7 +475,11 @@ public class Gamer
             d = Inputs.dodge.keyboard(Team).GetDirection();
         }
 
-        direction += Camera.main.transform.forward * d.y;
+        if (d.y < 0)
+        {
+            direction += Camera.main.transform.forward * d.y;
+        }
+
         direction += Camera.main.transform.right * d.x;
 
         if (direction.magnitude > 0.8f)
