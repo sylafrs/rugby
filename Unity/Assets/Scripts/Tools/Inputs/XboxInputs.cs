@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public enum XBOX_DIRECTION
 {
-    Pad, StickRight, StickLeft
+    NONE, Pad, StickRight, StickLeft
 }
 
 public enum XBOX_BUTTONS
 {
-    A, B, Back, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, TriggerL, TriggerR, PAD_up, PAD_down, PAD_left, PAD_right
+    NONE, A, B, Back, LeftShoulder, LeftStick, RightShoulder, RightStick, Start, X, Y, TriggerL, TriggerR, PAD_up, PAD_down, PAD_left, PAD_right
 }
 
 [AddComponentMenu("Inputs/XboxInputs")]
@@ -27,7 +27,7 @@ public class XboxInputs : myMonoBehaviour{
         }
         
         switch (direction)
-        {
+        {            
             case XBOX_DIRECTION.Pad:
                 if (pad.DPad.Down == ButtonState.Pressed)
                     d.y--;
@@ -62,6 +62,8 @@ public class XboxInputs : myMonoBehaviour{
 
         switch (button)
         {
+            case XBOX_BUTTONS.NONE:
+                return false;
             case XBOX_BUTTONS.A:
                 return pad.Buttons.A == ButtonState.Pressed;
             case XBOX_BUTTONS.B:

@@ -20,10 +20,48 @@ public partial class Referee
         //NowScrum();
     }
 
+    private Vector3 PlaceScrumBloc()
+    {
+        Vector3 pos = this.game.Ball.transform.position;
+
+        Transform ne = this.game.refs.positions.scrumFieldNE;
+        Transform sw = this.game.refs.positions.scrumFieldSW;
+
+        if (ne && sw)
+        {
+            float e = Mathf.Min(ne.position.x, sw.position.x);
+            float w = Mathf.Max(ne.position.x, sw.position.x);
+            float n = Mathf.Max(ne.position.z, sw.position.z);
+            float s = Mathf.Min(ne.position.z, sw.position.z);
+
+            if (pos.x > w)
+            {
+                pos.x = w;
+            }
+
+            if (pos.x < e)
+            {
+                pos.x = e;
+            }
+
+            if (pos.z > n)
+            {
+                pos.z = n;
+            }
+
+            if (pos.z < s)
+            {
+                pos.z = s;
+            }
+        }
+
+        return pos;
+    }
+
     public void ScrumSwitchToBloc()
     {
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
-        bloc.transform.position = this.game.Ball.transform.position;
+        bloc.transform.position = this.PlaceScrumBloc();
 
         this.game.southTeam.ShowPlayers(false);
         this.game.northTeam.ShowPlayers(false);
@@ -49,7 +87,7 @@ public partial class Referee
         Renderer bloc = this.game.refs.gameObjects.ScrumBloc;
 
         ScrumManager sc = this.game.refs.managers.scrum;
-        sc.InitialPosition = this.game.Ball.transform.position;
+        sc.InitialPosition = this.PlaceScrumBloc();
         sc.ScrumBloc = bloc.transform;
 
         sc.callback = (Team t, Vector3 endPos) =>
