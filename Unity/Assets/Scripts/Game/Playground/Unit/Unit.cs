@@ -14,79 +14,81 @@ using System;
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
 public class Unit : TriggeringTriggered, Debugable
 {
-    public StateMachine sm;
+	public StateMachine sm;
 	public GameObject Model;
-    
-    public GameObject BallPlaceHolderRight;
-    public GameObject BallPlaceHolderLeft;
+
+	public GameObject BallPlaceHolderRight;
+	public GameObject BallPlaceHolderLeft;
 	public GameObject BallPlaceHolderTransformation;
 	public GameObject BallPlaceHolderDrop;
-	
+
 	public TextureCollectionner buttonIndicator;
 
-    private NavMeshAgent _nma;
-    public NavMeshAgent nma
-    {
-        get
-        {
-            if (_nma == null)
-            {
-                _nma = this.GetComponent<NavMeshAgent>();
-            }
+	private NavMeshAgent _nma;
+	public NavMeshAgent nma
+	{
+		get
+		{
+			if (_nma == null)
+			{
+				_nma = this.GetComponent<NavMeshAgent>();
+			}
 
-            return _nma;
-        }
-    }
-    private Order currentOrder;
-    private Team team;
-	
-    public Game game {get; set;}	
-    public GameObject[] selectedIndicators;
-
-    public bool isTackled { get; set; }
-		
-	public Unit() {
-		NearUnits = new List<Unit>();	
+			return _nma;
+		}
 	}
-	
+	private Order currentOrder;
+	private Team team;
+
+	public Game game { get; set; }
+	public GameObject[] selectedIndicators;
+
+	public bool isTackled { get; set; }
+
+	public Unit()
+	{
+		NearUnits = new List<Unit>();
+	}
+
 	//particles sytems
 	public ParticleSystem superDashParticles;
 	public ParticleSystem superTackleParticles;
-	
-	public NearUnit triggerTackle {get; set;}
+
+	public NearUnit triggerTackle { get; set; }
 
 	public bool canCatchTheBall = true;
 	private float timeNoCatch = 0f;
-	
+
 	public enum TYPEOFPLAYER
 	{
 		DEFENSE,
 		OFFENSIVE,
 		NONE
 	};
-	
+
 	public TYPEOFPLAYER typeOfPlayer;
 	public bool ballZone = false;
-	
+
 	//maxens : c'est très bourrin xD
-	void Update() {
-		if(team == null)
+	void Update()
+	{
+		if (team == null)
 			return;
 
-        if (remainingTimeDodging > 0)
-        {
-            remainingTimeDodging -= Time.deltaTime;
-            if (remainingTimeDodging <= 0)
-            {
-                this.game.OnDodgeFinished(this);
-            }
-        }
-        else if (cooldownDodge > 0)
-        {
-            cooldownDodge -= Time.deltaTime;
-        }
-				
-		if(triggerTackle)
+		if (remainingTimeDodging > 0)
+		{
+			remainingTimeDodging -= Time.deltaTime;
+			if (remainingTimeDodging <= 0)
+			{
+				this.game.OnDodgeFinished(this);
+			}
+		}
+		else if (cooldownDodge > 0)
+		{
+			cooldownDodge -= Time.deltaTime;
+		}
+
+		if (triggerTackle)
 			triggerTackle.collider.radius = team.unitTackleRange * team.tackleFactor;
 
 
@@ -103,10 +105,10 @@ public class Unit : TriggeringTriggered, Debugable
 			}
 		}
 	}
-	
+
 	public void UpdateTypeOfPlay(bool thisReferent = false)
 	{
-		if ( !thisReferent && this.Team.Player.Controlled == this )
+		if (!thisReferent && this.Team.Player.Controlled == this)
 		{
 			//Debug.Log(this);
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
@@ -144,7 +146,7 @@ public class Unit : TriggeringTriggered, Debugable
 				else
 					u = this.GetNearestAlly(newList, out dMin, true);
 				s = "";
-				foreach(Unit c in newList)
+				foreach (Unit c in newList)
 				{
 					s += c + " ";
 				}
@@ -162,13 +164,13 @@ public class Unit : TriggeringTriggered, Debugable
 				u.typeOfPlayer = TYPEOFPLAYER.DEFENSE;
 			}
 		}
-		
+
 	}
 
 	public void UpdatePlacement()
 	{
-        if (!this.game.UseFlorianIA)
-            return;
+		if (!this.game.UseFlorianIA)
+			return;
 
 		switch (typeOfPlayer)
 		{
@@ -187,33 +189,38 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 	}
 
+	bool isBallNextOwner()
+	{
+		return this.game.Ball.passManager != null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS && this == this.game.Ball.NextOwner;
+	}
+
 	void UpdateOffensivePlacement()
 	{
-		if (this == this.team.Player.Controlled)
+		if (this == this.team.Player.Controlled || this.isBallNextOwner())
 		{
 			return;
 		}
-
+		
 		//Variables
 		Vector3 pos = this.transform.position;
 		Vector3 oldPos = pos;
 		float distZ = Mathf.Abs(this.team.Player.Controlled.transform.position.z - this.transform.position.z); //distance entre moi et le controllé
 		float distX = 0f;
 
-		if (this.game.Ball.passManager!= null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS)
+		if (this.game.Ball.passManager != null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS)
 		{
-			Debug.Log("pass en cours");
 			//Je bouge tout seul si je ne suis pas le destinataire de la passe
 			if (this.game.Ball.NextOwner != this)
 			{
 				Debug.Log("moi : " + this + " nextOwner : " + this.game.Ball.NextOwner);
+				
 			}
 		}
 	}
-	
+
 	void UpdateDefensePlacement()
 	{
-        //return;
+		//return;
 
 		//Variables
 		Vector3 pos = this.transform.position;
@@ -351,7 +358,7 @@ public class Unit : TriggeringTriggered, Debugable
 			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
 			{
-				pos.z = this.team.Player.Controlled.transform.position.z - 
+				pos.z = this.team.Player.Controlled.transform.position.z -
 					(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
 			}
 			else
@@ -381,341 +388,352 @@ public class Unit : TriggeringTriggered, Debugable
 
 	}
 
-    public void IndicateSelected(bool enabled)
-    {
-        for (int i = 0; i < selectedIndicators.Length; i++)
-        {
-            selectedIndicators[i].renderer.enabled = enabled;
-        }
-    }
-
-    public Team Team
-    {
-        get
-        {
-            return team;
-        }
-        set {
-            if (team == null) team = value;
-        }
-    }
-    
-    public Order Order
-    {
-        get
-        {
-            return currentOrder;    
-        }
-        set
-        {
-            ChangeOrderSilency(value);
-            sm.event_neworder();
-        }
-    }
-
-    private float remainingTimeDodging = -1;
-    private float cooldownDodge = -1;
-
-    public Vector3 dodgeDirection { get; set; }
-    public bool Dodge
-    {
-        get
-        {
-            return (remainingTimeDodging > 0);
-        }
-        set
-        {
-            if (value == false)
-            {
-                remainingTimeDodging = -1;
-            }
-            else if(CanDodge)
-            {
-                remainingTimeDodging = this.team.unitDodgeDuration;
-                cooldownDodge = this.team.unitDodgeCooldown;
-                this.game.OnDodge(this);
-            }
-        }
-    }
-
-    public bool CanDodge
-    {
-        get
-        {
-            if (!game)
-                return false;
-            if (!game.Ball)
-                return false;
-
-            return !Dodge && cooldownDodge < 0 && this == game.Ball.Owner;
-        }
-    }
-
-	public override void Start () 
-    {        
-        sm.SetFirstState(new MainUnitState(sm, this));
-        base.Start();
+	public void IndicateSelected(bool enabled)
+	{
+		for (int i = 0; i < selectedIndicators.Length; i++)
+		{
+			selectedIndicators[i].renderer.enabled = enabled;
+		}
 	}
 
-    public void ChangeOrderSilency(Order o)
-    {
-        this.currentOrder = o;
-    }
+	public Team Team
+	{
+		get
+		{
+			return team;
+		}
+		set
+		{
+			if (team == null) team = value;
+		}
+	}
 
-    public List<Unit> NearUnits {get; set;}
+	public Order Order
+	{
+		get
+		{
+			return currentOrder;
+		}
+		set
+		{
+			ChangeOrderSilency(value);
+			sm.event_neworder();
+		}
+	}
 
-    public int getNearAlliesNumber()
-    {
-        int res = 0;
-        foreach (var u in NearUnits)
-        {
-            if (u.Team == this.Team)
-                res++;
-        }
-        return res;
-    }
+	private float remainingTimeDodging = -1;
+	private float cooldownDodge = -1;
 
-    public override void Entered(Triggered o, Trigger t)
-    {
-        Unit other = o.GetComponent<Unit>();
-        if (other != null)
-        {
-            if (t.GetType() == typeof(NearUnit))
-            {
-                if (other.Team != this.Team)
-                {
-                    if (!NearUnits.Contains(other))
-                    {
-                        NearUnits.Add(other);
-                    }
-                }
-            }
-        }
-    }
+	public Vector3 dodgeDirection { get; set; }
+	public bool Dodge
+	{
+		get
+		{
+			return (remainingTimeDodging > 0);
+		}
+		set
+		{
+			if (value == false)
+			{
+				remainingTimeDodging = -1;
+			}
+			else if (CanDodge)
+			{
+				remainingTimeDodging = this.team.unitDodgeDuration;
+				cooldownDodge = this.team.unitDodgeCooldown;
+				this.game.OnDodge(this);
+			}
+		}
+	}
 
-    public override void Left(Triggered o, Trigger t)
-    {
-        Unit other = o.GetComponent<Unit>();
-        if (other != null)
-        {
-            if (NearUnits.Contains(other))
-            {
-                NearUnits.Remove(other);
-            }
-        }
-    }
+	public bool CanDodge
+	{
+		get
+		{
+			if (!game)
+				return false;
+			if (!game.Ball)
+				return false;
 
-    public override void Inside(Triggered o, Trigger t)
-    {
-        Unit other = o.GetComponent<Unit>();
-        if (other != null)
-        {
-            if (t.GetType() == typeof(NearUnit))
-            {
-                if (other.Team != this.Team)  
-                    this.sm.event_NearUnit(other);// 
-            }
-        }
-    }
+			return !Dodge && cooldownDodge < 0 && this == game.Ball.Owner;
+		}
+	}
 
-    public Unit ClosestAlly()
-    {
-        if (Team.nbUnits < 2)
-            return null;
+	public override void Start()
+	{
+		sm.SetFirstState(new MainUnitState(sm, this));
+		base.Start();
+	}
 
-        int i = 0;
-        Unit u = Team[i];
-        if(u == this) {
-            i++;
-            u = Team[i];
-        }
+	public void ChangeOrderSilency(Order o)
+	{
+		this.currentOrder = o;
+	}
 
-        float minDist = Vector3.Distance(this.transform.position, u.transform.position);
-        while(i < Team.nbUnits)
-        {
-            if (Team[i] != this)
-            {
-                float thisDist = Vector3.Distance(this.transform.position, Team[i].transform.position);
-                if(thisDist < minDist) {
-                    minDist = thisDist;
-                    u = Team[i];
-                }              
-            }
+	public List<Unit> NearUnits { get; set; }
 
-            i++;
-        }
-        
-        return u;
-    }
+	public int getNearAlliesNumber()
+	{
+		int res = 0;
+		foreach (var u in NearUnits)
+		{
+			if (u.Team == this.Team)
+				res++;
+		}
+		return res;
+	}
 
-    public Unit GetNearestAlly()
-    {
-        float d;
-        return GetNearestAlly(out d);
-    }
+	public override void Entered(Triggered o, Trigger t)
+	{
+		Unit other = o.GetComponent<Unit>();
+		if (other != null)
+		{
+			if (t.GetType() == typeof(NearUnit))
+			{
+				if (other.Team != this.Team)
+				{
+					if (!NearUnits.Contains(other))
+					{
+						NearUnits.Add(other);
+					}
+				}
+			}
+		}
+	}
 
-    public Unit GetNearestAlly(out float dMin, bool square = false)
-    {
-        Unit nearestAlly = null;
-        dMin = -1;
+	public override void Left(Triggered o, Trigger t)
+	{
+		Unit other = o.GetComponent<Unit>();
+		if (other != null)
+		{
+			if (NearUnits.Contains(other))
+			{
+				NearUnits.Remove(other);
+			}
+		}
+	}
+
+	public override void Inside(Triggered o, Trigger t)
+	{
+		Unit other = o.GetComponent<Unit>();
+		if (other != null)
+		{
+			if (t.GetType() == typeof(NearUnit))
+			{
+				if (other.Team != this.Team)
+					this.sm.event_NearUnit(other);// 
+			}
+		}
+	}
+
+	public Unit ClosestAlly()
+	{
+		if (Team.nbUnits < 2)
+			return null;
+
+		int i = 0;
+		Unit u = Team[i];
+		if (u == this)
+		{
+			i++;
+			u = Team[i];
+		}
+
+		float minDist = Vector3.Distance(this.transform.position, u.transform.position);
+		while (i < Team.nbUnits)
+		{
+			if (Team[i] != this)
+			{
+				float thisDist = Vector3.Distance(this.transform.position, Team[i].transform.position);
+				if (thisDist < minDist)
+				{
+					minDist = thisDist;
+					u = Team[i];
+				}
+			}
+
+			i++;
+		}
+
+		return u;
+	}
+
+	public Unit GetNearestAlly()
+	{
 		float d;
-		
-        foreach (Unit u in this.Team)
-        {
-            if (u != this)
-            {
+		return GetNearestAlly(out d);
+	}
+
+	public Unit GetNearestAlly(out float dMin, bool square = false)
+	{
+		Unit nearestAlly = null;
+		dMin = -1;
+		float d;
+
+		foreach (Unit u in this.Team)
+		{
+			if (u != this)
+			{
 				if (!square)
-                	d = Vector3.Distance(this.transform.position, u.transform.position);
+					d = Vector3.Distance(this.transform.position, u.transform.position);
 				else
 					d = Vector3.SqrMagnitude(this.transform.position - u.transform.position);
-                if (nearestAlly == null || d < dMin)
-                {
-                    nearestAlly = u;
-                    dMin = d;
-                }
-            }
-        }
+				if (nearestAlly == null || d < dMin)
+				{
+					nearestAlly = u;
+					dMin = d;
+				}
+			}
+		}
 
-        return nearestAlly;
-    }
-	
+		return nearestAlly;
+	}
+
 	public Unit GetNearestAlly(List<Unit> l, out float dMin, bool square = false)
-    {
-        Unit nearestAlly = null;
-        dMin = -1;
+	{
+		Unit nearestAlly = null;
+		dMin = -1;
 		float d;
-		
-        foreach (Unit u in l)
-        {
-            if (u != this)
-            {
+
+		foreach (Unit u in l)
+		{
+			if (u != this)
+			{
 				if (!square)
-                	d = Vector3.Distance(this.transform.position, u.transform.position);
+					d = Vector3.Distance(this.transform.position, u.transform.position);
 				else
 					d = Vector3.SqrMagnitude(this.transform.position - u.transform.position);
-                if (nearestAlly == null || d < dMin)
-                {
-                    nearestAlly = u;
-                    dMin = d;
-                }
-            }
-        }
+				if (nearestAlly == null || d < dMin)
+				{
+					nearestAlly = u;
+					dMin = d;
+				}
+			}
+		}
 
-        return nearestAlly;
-    }
+		return nearestAlly;
+	}
 
-    public void ShowPlayer(bool active)
-    {
-        if (!active)
-        {
-            this.IndicateSelected(false);
-        }
-        else
-        {
-            Gamer g = this.team.Player;
-            if (g != null)
-            {
-                this.IndicateSelected(this == g.Controlled);
-            }
-        }
+	public void ShowPlayer(bool active)
+	{
+		if (!active)
+		{
+			this.IndicateSelected(false);
+		}
+		else
+		{
+			Gamer g = this.team.Player;
+			if (g != null)
+			{
+				this.IndicateSelected(this == g.Controlled);
+			}
+		}
 
-        this.Model.SetActive(active);        
-    }
+		this.Model.SetActive(active);
+	}
 
-    public void ForDebugWindow()
-    {
+	public void ForDebugWindow()
+	{
 #if UNITY_EDITOR
-        Order o = this.Order;
-        EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
-        switch (o.type)
-        {
-            case Order.TYPE.MOVE:
-                EditorGUILayout.LabelField("Point : " + o.point.ToString());
-                break;
+		Order o = this.Order;
+		EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
+		switch (o.type)
+		{
+			case Order.TYPE.MOVE:
+				EditorGUILayout.LabelField("Point : " + o.point.ToString());
+				break;
 
-            case Order.TYPE.FOLLOW:
-                EditorGUILayout.LabelField("Cible : " + o.target.name);               
-                break;
+			case Order.TYPE.FOLLOW:
+				EditorGUILayout.LabelField("Cible : " + o.target.name);
+				break;
 
-            case Order.TYPE.LANE:
-                EditorGUILayout.LabelField("Repere : " + o.target.name);
-                EditorGUILayout.LabelField("Espace : " + o.power);
-                break;
+			case Order.TYPE.LANE:
+				EditorGUILayout.LabelField("Repere : " + o.target.name);
+				EditorGUILayout.LabelField("Espace : " + o.power);
+				break;
 
-            case Order.TYPE.TRIANGLE:
-                EditorGUILayout.LabelField("Sommet : " + o.target.name);
-                EditorGUILayout.LabelField("Espace : " + o.point.ToString());
-                break;
+			case Order.TYPE.TRIANGLE:
+				EditorGUILayout.LabelField("Sommet : " + o.target.name);
+				EditorGUILayout.LabelField("Espace : " + o.point.ToString());
+				break;
 
-            case Order.TYPE.SEARCH:
-                EditorGUILayout.LabelField("Cours sur la balle");
-                break;
+			case Order.TYPE.SEARCH:
+				EditorGUILayout.LabelField("Cours sur la balle");
+				break;
 
-            case Order.TYPE.TACKLE:
-                EditorGUILayout.LabelField("Plaque " + o.target.name);
-                break;
+			case Order.TYPE.TACKLE:
+				EditorGUILayout.LabelField("Plaque " + o.target.name);
+				break;
 
-        }
-                
-        if (this.CanDodge)
-        {
-            EditorGUILayout.LabelField("Can Dodge");
-        }
-        else
-        {
-            if (this.Dodge)
-            {
-                EditorGUILayout.LabelField("Dodging : " + (int)this.remainingTimeDodging);
-            }
-            else
-            {
-                EditorGUILayout.LabelField("Dodge cooldown : " + (int)this.cooldownDodge);
-            }
-        }
+		}
+
+		if (this.CanDodge)
+		{
+			EditorGUILayout.LabelField("Can Dodge");
+		}
+		else
+		{
+			if (this.Dodge)
+			{
+				EditorGUILayout.LabelField("Dodging : " + (int)this.remainingTimeDodging);
+			}
+			else
+			{
+				EditorGUILayout.LabelField("Dodge cooldown : " + (int)this.cooldownDodge);
+			}
+		}
 #endif
-    }
-	
-	public bool ButtonVisible {
-		get {
+	}
+
+	public bool ButtonVisible
+	{
+		get
+		{
 			return this.buttonIndicator.target.renderer.enabled;
 		}
-		set {
+		set
+		{
 			this.buttonIndicator.target.renderer.enabled = value;
-		}		
-	}
-	
-	public string CurrentButton {
-		get {
-			return this.buttonIndicator.target.renderer.material.mainTexture.name;	
-		}
-		set {
-			this.buttonIndicator.ApplyTexture(value);	
 		}
 	}
-	
-	public void HideButton() {
+
+	public string CurrentButton
+	{
+		get
+		{
+			return this.buttonIndicator.target.renderer.material.mainTexture.name;
+		}
+		set
+		{
+			this.buttonIndicator.ApplyTexture(value);
+		}
+	}
+
+	public void HideButton()
+	{
 		ButtonVisible = false;
 	}
-	
-	public void ShowButton(string str) {
+
+	public void ShowButton(string str)
+	{
 		CurrentButton = str;
 		ButtonVisible = true;
 	}
-	
+
 	public Order.TYPE_POSITION PositionInMap()
 	{
 
 		if (this.transform.position.x >= this.game.xSO && this.transform.position.x < this.game.xSO + this.game.section)
 			return Order.TYPE_POSITION.EXTRA_LEFT;
-		else if (this.transform.position.x >= this.game.xSO + this.game.section && this.transform.position.x < this.game.xSO + 2*this.game.section)
+		else if (this.transform.position.x >= this.game.xSO + this.game.section && this.transform.position.x < this.game.xSO + 2 * this.game.section)
 			return Order.TYPE_POSITION.LEFT;
 		else if (this.transform.position.x <= this.game.xNE && this.transform.position.x > this.game.xNE - this.game.section)
 			return Order.TYPE_POSITION.EXTRA_RIGHT;
-		else if (this.transform.position.x <= this.game.xNE - this.game.section && this.transform.position.x > this.game.xNE - 2*this.game.section)
+		else if (this.transform.position.x <= this.game.xNE - this.game.section && this.transform.position.x > this.game.xNE - 2 * this.game.section)
 			return Order.TYPE_POSITION.RIGHT;
-		else if (this.transform.position.x >= this.game.xSO + 2 * this.game.section && this.transform.position.x < this.game.xSO + 3*this.game.section)
+		else if (this.transform.position.x >= this.game.xSO + 2 * this.game.section && this.transform.position.x < this.game.xSO + 3 * this.game.section)
 			return Order.TYPE_POSITION.MIDDLE_LEFT;
-		else if (this.transform.position.x <= this.game.xNE - 2 * this.game.section && this.transform.position.x > this.game.xNE - 3*this.game.section)
+		else if (this.transform.position.x <= this.game.xNE - 2 * this.game.section && this.transform.position.x > this.game.xNE - 3 * this.game.section)
 			return Order.TYPE_POSITION.MIDDLE_RIGHT;
 		return Order.TYPE_POSITION.MIDDLE;
 	}

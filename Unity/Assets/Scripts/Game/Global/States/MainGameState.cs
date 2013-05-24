@@ -17,6 +17,19 @@ public class MainGameState : GameState {
 		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
     }
 
+	public override void OnUpdate()
+	{
+		foreach (Unit u in game.northTeam)
+		{
+			u.UpdatePlacement();
+		}
+
+		foreach (Unit u in game.southTeam)
+		{
+			u.UpdatePlacement();
+		}
+	}
+
     public override bool OnPass(Unit from, Unit to)
     {
         sm.state_change_son(this, new PassingState(sm, cam, game, from, to));
