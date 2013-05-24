@@ -11,6 +11,11 @@ public class GameActionState : GameState {
 
     public GameActionState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
+    public override void OnEnter()
+    {
+        game.northTeam.PlaySuperParticleSystem(true);
+    }
+
     public override bool OnTouch(Touche t)
     {
         if (!sm.state_is_last(this))
