@@ -122,8 +122,25 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
-        private GamePadState currentState;
-        public GamePadState pad;
+        private GamePadState currentPad;
+        public GamePadState pad
+        {
+            get
+            {
+                if (padToUpdate)
+                {
+                    padToUpdate = false;
+                    pad = GamePad.GetState(index);
+                }
+
+                return currentPad;
+            }
+            private set
+            {
+                currentPad = value;
+            }
+        }
+        private bool padToUpdate = true;
 
         public InputDirection.Direction GetDirection(XBOX_DIRECTION dir)
         {
@@ -146,7 +163,7 @@ public class XboxInputs : myMonoBehaviour{
 
         public void Update()
         {
-            pad = GamePad.GetState(index);
+            this.padToUpdate = true;
             this.UpdateButtons();
         }
 
