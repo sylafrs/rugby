@@ -6930,6 +6930,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
+  UseFlorianIA: 0
   settings:
     Global:
       Game:
@@ -10601,10 +10602,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673607276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.0018501, y: 5.73260498, z: -28.4291172}
+  m_LocalPosition: {x: -49.5093918, y: -.995758057, z: -42.2406845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1064860992}
+  m_Father: {fileID: 2121886553}
 --- !u!1 &673655873
 GameObject:
   m_ObjectHideFlags: 0
@@ -14009,10 +14010,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 908523406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.185277, y: 5.73260498, z: 34.8552628}
+  m_LocalPosition: {x: 49.6634064, y: -.995758057, z: 68.5069809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1064860992}
+  m_Father: {fileID: 2121886553}
 --- !u!1 &919816155
 GameObject:
   m_ObjectHideFlags: 0
@@ -16934,34 +16935,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 195200870}
---- !u!1 &1064860991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100052, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1064860992}
-  m_Layer: 0
-  m_Name: Touches
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
---- !u!4 &1064860992
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400052, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1064860991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.7876625, y: -6.72836304, z: 7.51027107}
-  m_LocalScale: {x: 1.75, y: 1, z: 1.75}
-  m_Children:
-  - {fileID: 908523407}
-  - {fileID: 673607277}
-  m_Father: {fileID: 2121886553}
 --- !u!1 &1069563502
 GameObject:
   m_ObjectHideFlags: 0
@@ -30626,7 +30599,8 @@ Transform:
   m_LocalPosition: {x: .00147628784, y: .995758057, z: -13.1902008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1064860992}
+  - {fileID: 908523407}
+  - {fileID: 673607277}
   - {fileID: 1883790904}
   - {fileID: 318852051}
   m_Father: {fileID: 448441828}
