@@ -372,15 +372,14 @@ public class Gamer
             }
         }
 
-        if (Controlled)
+        if (Controlled && !game.UseFlorianIA)
         {
-            //Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
-            //
-
+            Order.TYPE_POSITION typePosition = Team.PositionInMap(Controlled);
+            
             if (game.Ball.Owner == null || game.Ball.Owner.Team == Team)
             {
                 //offensiveside
-               /* foreach (Unit u in Controlled.Team)
+                foreach (Unit u in Controlled.Team)
                 {
                     if (u != Controlled)
                     {
@@ -390,12 +389,12 @@ public class Gamer
 							typePosition
 						);
                     }
-                }*/
+                }
             }
             else
             {
                 //defensiveside
-                /*foreach (Unit u in Controlled.Team)
+                foreach (Unit u in Controlled.Team)
                 {
                     if (u != Controlled)
                     {
@@ -406,7 +405,7 @@ public class Gamer
 							typePosition
 						);
                     }
-                }*/
+                }
             }
         }		
 	}

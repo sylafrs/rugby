@@ -151,6 +151,8 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public void UpdatePlacement()
 	{
+        if (!this.game.UseFlorianIA)
+            return;
 
 		switch (typeOfPlayer)
 		{

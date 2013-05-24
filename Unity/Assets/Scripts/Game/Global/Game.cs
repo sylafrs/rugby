@@ -11,7 +11,9 @@ using System.Threading;
  */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : myMonoBehaviour {
-	
+
+    public bool UseFlorianIA = true;
+
     public GamePlaySettings settings;
     public GameReferences refs;
 
