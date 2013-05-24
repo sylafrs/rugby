@@ -37,6 +37,7 @@ public class Ball : TriggeringTriggered {
 	public float angleDropUpAndUnder = 70f;
 	public float randomLimitAngle = 5f;
 	public float accelerationDrop = -0.75f;
+	public LayerMask poteauLayer;
 
 	public float passSpeed = 13.0f;
 

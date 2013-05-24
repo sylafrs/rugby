@@ -103,9 +103,10 @@ public class DropManager
 	{
 		RaycastHit hit;
 		Debug.DrawRay(ball.transform.position, ownerDirection * posBallEndDrop.magnitude, Color.yellow, 10f);
-		if (Physics.Raycast(ball.transform.position, new Vector3(posBallEndDrop.x - ball.transform.position.x, ball.transform.position.y, posBallEndDrop.z - ball.transform.position.z), out hit, posBallEndDrop.magnitude, 1 << owner.game.northTeam.But.gameObject.layer))
+		if (Physics.Raycast(ball.transform.position, new Vector3(posBallEndDrop.x - ball.transform.position.x, ball.transform.position.y, posBallEndDrop.z - ball.transform.position.z), out hit, posBallEndDrop.magnitude, ball.poteauLayer.value))
 		{
 			hitPosGoalPost = hit.point;
+			Debug.Log("RAYCAST : " + hit.collider.gameObject.name);
 			return true;
 		}
 		hitPosGoalPost = Vector3.zero;
@@ -142,7 +143,6 @@ public class DropManager
 						{
 							timeOffset = t;
 							initPos = newPos;
-							//ball.transform.forward = -ball.transform.forward;
 							if (Game.instance.rand.Next(100) > 50)
 								directionAfterCollision.x = (float)Game.instance.rand.NextDouble();
 							else
@@ -152,7 +152,7 @@ public class DropManager
 						}
 						afterCollision = true;
 						newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
-												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * (t - timeOffset) + initPos.y,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick / 2) * (t - timeOffset) + initPos.y,
 												(directionAfterCollision.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
 						ball.transform.position = newPos;
 					}
@@ -162,7 +162,7 @@ public class DropManager
 						{
 							float toto = t - timeOffset;
 							newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
-												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * (t - timeOffset) + initPos.y,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick / 2) * (t - timeOffset) + initPos.y,
 												(directionAfterCollision.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
 							Debug.DrawRay(ball.transform.position, newPos - ball.transform.position, Color.red, 10f);
 							ball.transform.position = newPos;
