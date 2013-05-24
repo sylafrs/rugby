@@ -31,6 +31,12 @@ public class TouchState : GameState
 	
 	public override void OnLeave ()
 	{
+        foreach (Unit u in game.northTeam)
+            u.buttonIndicator.target.renderer.enabled = false;
+
+        foreach (Unit u in game.southTeam)
+            u.buttonIndicator.target.renderer.enabled = false;
+
         cam.setTarget(cam.game.Ball.transform);	
 	}
 }

@@ -130,18 +130,6 @@ public partial class Referee
                 this.IncreaseSuper(game.settings.Global.Super.touchWinSuperPoints, touchTeam);
             }
 
-            // Indicateur de bouton
-            // foreach(Unit u in interceptTeam)
-            // 	u.buttonIndicator.target.renderer.enabled = false;
-            // 	
-            // foreach(Unit u in touchTeam)
-            // 	u.buttonIndicator.target.renderer.enabled = false;
-            // 	
-            // Retour en jeu
-            // interceptTeam.fixUnits = touchTeam.fixUnits = false;	
-            // if(interceptTeam.Player != null) interceptTeam.Player.enableMove();
-            // if(touchTeam.Player != null) touchTeam.Player.enableMove();
-
             game.OnResumeSignal(freezeAfterTouch);
         };
 
