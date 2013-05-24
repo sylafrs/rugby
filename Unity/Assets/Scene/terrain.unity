@@ -824,7 +824,7 @@ MonoBehaviour:
   rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
-  MinfollowOffset: {x: 0, y: 1, z: -1.5}
+  MinfollowOffset: {x: 0, y: 1.20000005, z: -2.70000005}
   flipDuration: 1
   flipDelay: .100000001
   flipedForTeam: {fileID: 0}
@@ -3477,7 +3477,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 2000
-  field of view: 80
+  field of view: 43
   orthographic: 0
   orthographic size: 100
   m_Depth: -1
@@ -16786,9 +16786,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49dc74945d2179e4aa680abf21df93ba, type: 3}
   m_Name: 
-  FreezeAfterConversion: 5
-  FreezeAfterScrum: 5
-  freezeAfterTouch: 5
+  FreezeAfterConversion: 2
+  FreezeAfterScrum: 2
+  freezeAfterTouch: 1
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
