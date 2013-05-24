@@ -123,6 +123,8 @@ public class XboxInputs : myMonoBehaviour{
         }
 
         private GamePadState currentPad;
+        private bool prevWasConnected = false;
+
         public GamePadState pad
         {
             get
@@ -168,10 +170,22 @@ public class XboxInputs : myMonoBehaviour{
         }
 
         private void UpdateButtons()
-        {            
-            for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
+        {
+            if (currentPad.IsConnected)
             {
-                prevState[i] = GetButton((XBOX_BUTTONS)i);
+                prevWasConnected = true;
+                for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
+                {
+                    prevState[i] = GetButton((XBOX_BUTTONS)i);
+                }
+            }
+            else if(prevWasConnected)
+            {
+                prevWasConnected = false;
+                for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
+                {
+                    prevState[i] = false;
+                }
             }
         }
 		
@@ -181,11 +195,16 @@ public class XboxInputs : myMonoBehaviour{
     }
 
     // -------------------------------------------  //
-    
+
     const int MAX_CONTROLLERS = 4;
-    public Controller [] controllers;
+   
+    public int nConnectedControllers;
+
+    public bool [] checkedControllers;
+    public Controller[] controllers;
 
     bool inited = false;
+
     public void Start()
     {
         if(!inited)
@@ -196,23 +215,66 @@ public class XboxInputs : myMonoBehaviour{
     {
         inited = true;
 
+        checkedControllers = new bool[MAX_CONTROLLERS];
         controllers = new Controller[MAX_CONTROLLERS];
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
             controllers[i] = new Controller(i);
         }
+
+        this.CheckAll();
     }
 
     void LateUpdate()
-    {
+    {        
         // Update number / 2.
         // if (Mathf.PingPong(0, 1) == 1)
-        {
-            
+        {            
             for (int i = 0; i < MAX_CONTROLLERS; i++)
             {
-                controllers[i].Update();
+                if (checkedControllers[i])
+                {
+                    controllers[i].Update();
+                }
             }
+        }
+    }
+
+    public void NoNeedToCheck(int index)
+    {
+        if (!inited)
+            init();
+
+        checkedControllers[index] = false;
+    }
+
+    public void NeedToCheck(int index)
+    {
+        if (!inited)
+            init();
+
+        checkedControllers[index] = true;
+    }
+
+    public void CheckAll()
+    {
+        if (!inited)
+            init();
+
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        {
+            checkedControllers[i] = true;
+        }
+    }
+
+    public void CheckNone()
+    {
+        if (!inited)
+            init();
+
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        {
+            checkedControllers[i] = false;
         }
     }
 }

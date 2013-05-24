@@ -59,6 +59,8 @@ public class Gamer
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
+        game.refs.xboxInputs.NeedToCheck(id);
+
         if (XboxController == null)
             XboxController = this.game.refs.xboxInputs.controllers[id];
                 
