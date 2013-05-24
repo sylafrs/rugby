@@ -104,11 +104,15 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 	}
 	
-	public void UpdateTypeOfPlay()
+	public void UpdateTypeOfPlay(bool thisReferent = false)
 	{
-		if (this.Team.Player.Controlled == this)
+		if ( !thisReferent && this.Team.Player.Controlled == this )
 		{
 			//Debug.Log(this);
+			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
+		}
+		else if (thisReferent)
+		{
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 		}
 		else
@@ -117,8 +121,16 @@ public class Unit : TriggeringTriggered, Debugable
 			List<Unit> newList = new List<Unit>();
 			foreach (Unit u in this.Team)
 			{
-				if (u != this.Team.Player.Controlled)
-					newList.Add(u);
+				if (!thisReferent)
+				{
+					if (u != this.Team.Player.Controlled)
+						newList.Add(u);
+				}
+				else
+				{
+					if (u != this)
+						newList.Add(u);
+				}
 			}
 
 			float dMin = 0f;
@@ -126,7 +138,11 @@ public class Unit : TriggeringTriggered, Debugable
 
 			for (int i = 0; i < this.game.settings.Global.Team.nbOffensivePlayer; ++i)
 			{
-				Unit u = this.Team.Player.Controlled.GetNearestAlly(newList, out dMin, true);
+				Unit u;
+				if (!thisReferent)
+					u = this.Team.Player.Controlled.GetNearestAlly(newList, out dMin, true);
+				else
+					u = this.GetNearestAlly(newList, out dMin, true);
 				s = "";
 				foreach(Unit c in newList)
 				{
@@ -187,6 +203,11 @@ public class Unit : TriggeringTriggered, Debugable
 		if (this.game.Ball.passManager!= null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS)
 		{
 			Debug.Log("pass en cours");
+			//Je bouge tout seul si je ne suis pas le destinataire de la passe
+			if (this.game.Ball.NextOwner != this)
+			{
+				Debug.Log("moi : " + this + " nextOwner : " + this.game.Ball.NextOwner);
+			}
 		}
 	}
 	
