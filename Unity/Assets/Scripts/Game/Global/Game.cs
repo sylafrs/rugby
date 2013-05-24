@@ -124,8 +124,7 @@ public class Game : myMonoBehaviour {
 	}
 	
 	public void OnTouch(Touche t)
-	{
-        this.Referee.OnTouch(t);
+	{        
 		this.refs.stateMachine.event_OnTouch(t);
 	}
 	

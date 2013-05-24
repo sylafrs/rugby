@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 [System.Serializable]
 public class GameStatesSettings
@@ -160,7 +161,7 @@ public class ScrumingStateSettings
     public float SmashValue;           // 0 to 1           (tweak)
     public float SuperMultiplicator;   // Mult             (tweak)
 
-
+    public Vector3 offsetCamera = new Vector3(1, 1, 0);
 }
 
 [System.Serializable]
