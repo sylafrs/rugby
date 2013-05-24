@@ -2541,7 +2541,7 @@ MonoBehaviour:
   accelerationDrop: -.899999976
   poteauLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   passSpeed: 18
   lastTackle: -1
   timeOnDrop: -1
@@ -4083,6 +4083,7 @@ MonoBehaviour:
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
+              offsetCamera: {x: 1, y: 1, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
     Inputs:
