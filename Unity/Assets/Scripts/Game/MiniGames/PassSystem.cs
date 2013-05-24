@@ -116,9 +116,10 @@ public class PassSystem : MonoBehaviour {
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
 
-            Debug.Log("yo");
 			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
+
+			target.UpdateTypeOfPlay( true );
 
 		}
 	}
@@ -128,9 +129,11 @@ public class PassSystem : MonoBehaviour {
 	 */
 	public void DoPass(float t)
 	{
+		Vector3 oldPos = ball.transform.position;
 		ball.transform.position = new Vector3(relativeDirection.x * 1.5f * t + initialPosition.x,
 			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
 			relativeDirection.z * 1.5f * t + initialPosition.z);
+
 	}
 	
 	/*
@@ -172,8 +175,19 @@ public class PassSystem : MonoBehaviour {
 	 */
 	private void calculateRelativePosition()
 	{
-		//relativePosition =  target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
-		relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
+		if (target.nma.velocity.magnitude == 0)
+		{
+			Vector3 tmp = Vector3.zero;
+
+			tmp.z = target.nma.speed;
+			Debug.Log(tmp);
+			target.nma.velocity = tmp;
+			Debug.Log(target.nma.velocity);
+			//relativePosition = target.transform.position + target.transform.forward * target.nma.velocity.magnitude * magnitude / velocityPass;
+		}
+		//else
+			Debug.Log(target.nma.velocity);
+			relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
 	}
 
 	/*
@@ -183,7 +197,7 @@ public class PassSystem : MonoBehaviour {
 	{
 		relativeDirection = (relativePosition - ball.transform.position).normalized;
 	}
-
+	
 	private void multiplyRelativeDirection()
 	{
 		relativeDirection = relativeDirection * multiplyDirection;
