@@ -187,6 +187,8 @@ public class Ball : TriggeringTriggered {
 				timeOnDrop = -1;
 				this.rigidbody.isKinematic = true;
                 this.Game.BallOnGround(true);
+				drop.afterCollision = false;
+				drop.timeOffset = 0.0f;
 			}
 		}
 
@@ -194,6 +196,7 @@ public class Ball : TriggeringTriggered {
 		{
 			timeOnDrop = -1;
 			CircleDrop.SetActive(false);
+			drop.afterCollision = false;
 		}
 	}
 

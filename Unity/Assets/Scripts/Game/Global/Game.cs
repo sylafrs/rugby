@@ -11,7 +11,9 @@ using System.Threading;
  */
 [AddComponentMenu("Scripts/Game/Game")]
 public class Game : myMonoBehaviour {
-	
+
+    public bool UseFlorianIA = true;
+
     public GamePlaySettings settings;
     public GameReferences refs;
 
@@ -226,9 +228,9 @@ public class Game : myMonoBehaviour {
         this.refs.stateMachine.event_DodgeFinished(u);
     }
 
-    public void OnResumeSignal()
+    public void OnResumeSignal(float time)
     {
-        this.refs.stateMachine.event_OnResumeSignal();
+        this.refs.stateMachine.event_OnResumeSignal(time);
     }
 
     /*public void TimedDisableIA(float time)

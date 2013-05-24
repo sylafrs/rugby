@@ -33,54 +33,37 @@ public partial class Referee
         bool right = (this.game.refs.placeHolders.touchPlacement.position.x > 0);
 
         // Place les unités
-
-
-        Transform blueTeam, redTeam, rightTeam, leftTeam;
+        Transform southTeam, northTeam, rightTeam, leftTeam, interTeam, passTeam;
         rightTeam = this.game.refs.placeHolders.touchPlacement.FindChild("RightTeam");
         leftTeam = this.game.refs.placeHolders.touchPlacement.FindChild("LeftTeam");
 
         if (right)
         {
-            redTeam = rightTeam;
-            blueTeam = leftTeam;
+            northTeam = rightTeam;
+            southTeam = leftTeam;
         }
         else
         {
-            redTeam = leftTeam;
-            blueTeam = rightTeam;
+            northTeam = leftTeam;
+            southTeam = rightTeam;
+        }
+        
+        if(interceptTeam.south) 
+        {
+            interTeam = southTeam;
+            passTeam = northTeam;
+        }
+        else 
+        {
+            interTeam = northTeam;
+            passTeam = southTeam;
         }
 
-        Transform interceptConfiguration = this.game.refs.placeHolders.touchPlacement.FindChild("InterceptionTeam");
-        if (interceptTeam == this.game.northTeam/*(red)*/)
-        {
-            interceptConfiguration.transform.position = redTeam.transform.position;
-            interceptConfiguration.transform.rotation = redTeam.transform.rotation;
-        }
-        else
-        {
-            interceptConfiguration.transform.position = blueTeam.transform.position;
-            interceptConfiguration.transform.rotation = blueTeam.transform.rotation;
-        }
-
-        interceptTeam.placeUnits(interceptConfiguration, true);
-
-        Transform passConfiguration = this.game.refs.placeHolders.touchPlacement.FindChild("TouchTeam");
-        if (touchTeam == this.game.northTeam/*(red)*/)
-        {
-            passConfiguration.transform.position = redTeam.transform.position;
-            passConfiguration.transform.rotation = redTeam.transform.rotation;
-        }
-        else
-        {
-            passConfiguration.transform.position = blueTeam.transform.position;
-            passConfiguration.transform.rotation = blueTeam.transform.rotation;
-        }
-
-        touchTeam.placeUnits(passConfiguration, 1, true);
+        interceptTeam.placeUnits(interTeam, true);        
+        touchTeam.placeUnits(passTeam, 1, true);
 
         Transform passUnitPosition = this.game.refs.placeHolders.touchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0, true);
-
 
         game.Ball.Owner = touchTeam[0];
         game.refs.managers.camera.setTarget(null);
@@ -90,7 +73,7 @@ public partial class Referee
     {
         if (t == null || t.a == null || t.b == null)
         {
-            return;
+            throw new UnityException("I need the touch to be configured");
         }
 
         // Indique que le jeu passe en mode "Touche"			
@@ -123,21 +106,13 @@ public partial class Referee
         // Règlage du mini-jeu
         TouchManager tm = this.game.refs.managers.touch;
 
-        tm.game = this.game;
-
         // On indique les équipes
         tm.gamerIntercept = interceptTeam.Player;
         tm.gamerTouch = touchTeam.Player;
 
-        // On indique si l'un ou l'autre sera fait au pif
-        // TODO : patch j2
-        tm.randomTouch = (tm.gamerTouch == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
-        tm.randomIntercept = (tm.gamerIntercept == null || (tm.gamerTouch == game.northTeam.Player && !game.northTeam.Player.XboxController.IsConnected));
-
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
         {
-
             // Charger le super à la touche
 
             // On donne la balle à la bonne personne
@@ -167,10 +142,12 @@ public partial class Referee
             // if(interceptTeam.Player != null) interceptTeam.Player.enableMove();
             // if(touchTeam.Player != null) touchTeam.Player.enableMove();
 
-            game.OnResumeSignal();
+            game.OnResumeSignal(freezeAfterTouch);
         };
 
         tm.enabled = true;
     }
+
+    public float freezeAfterTouch = 5;
 
 }

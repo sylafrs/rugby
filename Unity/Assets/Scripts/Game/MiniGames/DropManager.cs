@@ -13,7 +13,9 @@ public class DropManager
 	float acceleration;
 	RESULT res;
 	Vector3 hitPosGoalPost;
-	bool afterCollision = false;
+	public bool afterCollision = false;
+	public float timeOffset = 0f;
+	Vector3 directionAfterCollision;
 
 	public enum TYPEOFDROP
 	{
@@ -133,24 +135,37 @@ public class DropManager
 		{
 			case RESULT.COLLISION:
 				{
-					Debug.DrawRay(new Vector3(hitPosGoalPost.x, 0f, hitPosGoalPost.z), Vector3.up*100f, Color.red, 10f);
 					if (Others.nearlyEqual(newPos.x, hitPosGoalPost.x, 0.01f) && Others.nearlyEqual(newPos.z, hitPosGoalPost.z, 0.01f))
 					{
+						
 						if (!afterCollision)
-							initPos = ball.transform.position;
+						{
+							timeOffset = t;
+							initPos = newPos;
+							//ball.transform.forward = -ball.transform.forward;
+							if (Game.instance.rand.Next(100) > 50)
+								directionAfterCollision.x = (float)Game.instance.rand.NextDouble();
+							else
+								directionAfterCollision.x = -(float)Game.instance.rand.NextDouble();
+
+							directionAfterCollision.z = -(float)Game.instance.rand.NextDouble();
+						}
 						afterCollision = true;
-						Debug.Log("COLLISION");
-						ball.transform.position = new Vector3((-ownerDirection.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
-												acceleration * 9.81f * t * t + ball.multiplierDropKick.x*2 * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * t + initPos.y,
-												(-ownerDirection.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * t + initPos.z);
+						newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * (t - timeOffset) + initPos.y,
+												(directionAfterCollision.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
+						ball.transform.position = newPos;
 					}
 					else
 					{
 						if (afterCollision)
 						{
-							ball.transform.position = new Vector3((-ownerDirection.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
-												acceleration * 9.81f * t * t + ball.multiplierDropKick.x * 2 * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * t + initPos.y,
-												(-ownerDirection.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * t + initPos.z);
+							float toto = t - timeOffset;
+							newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropKick.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropKick.x * Mathf.Sin(Mathf.Deg2Rad * Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallFlyingState.angleDropKick) * (t - timeOffset) + initPos.y,
+												(directionAfterCollision.z * ball.multiplierDropKick.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
+							Debug.DrawRay(ball.transform.position, newPos - ball.transform.position, Color.red, 10f);
+							ball.transform.position = newPos;
 						}
 						else
 						{
@@ -171,9 +186,59 @@ public class DropManager
 
 	private void doUpAndUnder(float t)
 	{
-		ball.transform.position = new Vector3((ownerDirection.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
+		Vector3 newPos = new Vector3((ownerDirection.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * t + initPos.x,
 												acceleration * 9.81f * t * t + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * t + initPos.y,
 												(ownerDirection.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * t + initPos.z);
+		switch (res)
+		{
+			case RESULT.COLLISION:
+				{
+					if (Others.nearlyEqual(newPos.x, hitPosGoalPost.x, 0.01f) && Others.nearlyEqual(newPos.z, hitPosGoalPost.z, 0.01f))
+					{
+
+						if (!afterCollision)
+						{
+							timeOffset = t;
+							initPos = newPos;
+							ball.transform.forward = -ball.transform.forward;
+
+							if (Game.instance.rand.Next(100) > 50)
+								directionAfterCollision.x = (float)Game.instance.rand.NextDouble();
+							else
+								directionAfterCollision.x = -(float)Game.instance.rand.NextDouble();
+
+							directionAfterCollision.z = -(float)Game.instance.rand.NextDouble();
+						}
+						afterCollision = true;
+						newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * (t - timeOffset) + initPos.y,
+												(directionAfterCollision.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
+						ball.transform.position = newPos;
+					}
+					else
+					{
+						if (afterCollision)
+						{
+							newPos = new Vector3((directionAfterCollision.x * ball.multiplierDropUpAndUnder.y + (angleX >= 0f ? Mathf.Cos(angleX) : -Mathf.Cos(angleX))) * (t - timeOffset) + initPos.x,
+												acceleration * 9.81f * (t - timeOffset) * (t - timeOffset) + ball.multiplierDropUpAndUnder.x * Mathf.Sin(Mathf.Deg2Rad * ball.angleDropUpAndUnder) * (t - timeOffset) + initPos.y,
+												(directionAfterCollision.z * ball.multiplierDropUpAndUnder.y + Mathf.Sin(angleX)) * (t - timeOffset) + initPos.z);
+							Debug.DrawRay(ball.transform.position, newPos - ball.transform.position, Color.red, 10f);
+							ball.transform.position = newPos;
+						}
+						else
+						{
+							ball.transform.position = newPos;
+						}
+					}
+					break;
+				}
+			case RESULT.SUCCESS:
+			default:
+				{
+					ball.transform.position = newPos;
+					break;
+				}
+		}
 	}
 
 	private Vector3 positionBallEndDrop(Vector2 multiplier, float angle)

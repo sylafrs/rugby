@@ -38,7 +38,7 @@ public abstract partial class State
         return (false);
     }
 
-    public virtual bool OnResumeSignal()
+    public virtual bool OnResumeSignal(float time)
     {
         return (false);
     }
@@ -207,11 +207,11 @@ public partial class StateMachine
         }
     }
 
-    public void event_OnResumeSignal()
+    public void event_OnResumeSignal(float time)
     {
         foreach (State tmp in list)
         {
-            if (tmp.OnResumeSignal())
+            if (tmp.OnResumeSignal(time))
                 return;
         }
     }

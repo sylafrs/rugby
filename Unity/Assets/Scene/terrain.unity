@@ -4664,6 +4664,7 @@ GameObject:
   - 33: {fileID: 303037528}
   - 23: {fileID: 303037527}
   - 95: {fileID: 303037526}
+  - 64: {fileID: 303037529}
   m_Layer: 8
   m_Name: but_maori
   m_TagString: Untagged
@@ -4722,6 +4723,20 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 1840035032}
   m_GameObject: {fileID: 303037524}
+  m_Mesh: {fileID: 4300052, guid: 76a31255b2e72ff4e92832a22da22e00, type: 3}
+--- !u!64 &303037529
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 3ffb0c0ca1b4df24cb185fe3e7febe05,
+    type: 2}
+  m_PrefabInternal: {fileID: 1840035032}
+  m_GameObject: {fileID: 303037524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300052, guid: 76a31255b2e72ff4e92832a22da22e00, type: 3}
 --- !u!1 &303261643
 GameObject:
@@ -6930,6 +6945,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
+  UseFlorianIA: 1
   settings:
     Global:
       Game:
@@ -7892,6 +7908,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1703949692}
   m_GameObject: {fileID: 480980511}
   m_Mesh: {fileID: 4300014, guid: 2b80ac0caf4e93b4abc673855d3d5745, type: 3}
+--- !u!1 &491448562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100064, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 491448563}
+  m_Layer: 0
+  m_Name: Player_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &491448563
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400064, guid: e244aea1f2d60fa4e915889e5035e306, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 491448562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.09229922, y: 0, z: -5.00000381}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 583402338}
 --- !u!1 &491506231
 GameObject:
   m_ObjectHideFlags: 0
@@ -8982,7 +9024,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 583402338}
   m_Layer: 0
-  m_Name: TouchTeam
+  m_Name: RightTeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9002,6 +9044,7 @@ Transform:
   - {fileID: 641304688}
   - {fileID: 1159076906}
   - {fileID: 674361702}
+  - {fileID: 491448563}
   m_Father: {fileID: 670758525}
 --- !u!1 &586451974
 GameObject:
@@ -10471,6 +10514,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 670758525}
+  - 114: {fileID: 670758526}
   m_Layer: 0
   m_Name: TouchPlacement
   m_TagString: Untagged
@@ -10485,16 +10529,32 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 670758524}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -42.0226364, y: .100000001, z: 0}
+  m_LocalPosition: {x: -49.1009407, y: .100000001, z: 8.43799512e-07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 761943296}
-  - {fileID: 875624395}
   - {fileID: 2078123350}
-  - {fileID: 818957213}
   - {fileID: 648182808}
   - {fileID: 583402338}
   m_Father: {fileID: 1281031929}
+--- !u!114 &670758526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 670758524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e871c237412183a4ba65a64e3dd117fa, type: 3}
+  m_Name: 
+  active: 1
+  colorPattern:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  sizePoint: 1
+  lengthForward: 5
 --- !u!1 &673607276
 GameObject:
   m_ObjectHideFlags: 0
@@ -10598,7 +10658,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 674361701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: -1.7557019, y: 0, z: -5.00000334}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 583402338}
@@ -11478,7 +11538,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 761943296}
   m_Layer: 0
-  m_Name: InterceptionTeam
+  m_Name: LeftTeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12068,32 +12128,6 @@ Transform:
   m_Children:
   - {fileID: 707053218}
   m_Father: {fileID: 1480049286}
---- !u!1 &818957212
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 818957213}
-  m_Layer: 0
-  m_Name: RightTeam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &818957213
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 818957212}
-  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 5, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 670758525}
 --- !u!1 &820290637
 GameObject:
   m_ObjectHideFlags: 0
@@ -12707,32 +12741,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 761943296}
---- !u!1 &875624394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 875624395}
-  m_Layer: 0
-  m_Name: LeftTeam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &875624395
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 875624394}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -5, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 670758525}
 --- !u!1 &878885656
 GameObject:
   m_ObjectHideFlags: 0
@@ -15650,7 +15658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &967857994
 Transform:
   m_ObjectHideFlags: 0
@@ -26010,6 +26018,7 @@ GameObject:
   - 33: {fileID: 1795899139}
   - 23: {fileID: 1795899138}
   - 95: {fileID: 1795899137}
+  - 64: {fileID: 1795899140}
   m_Layer: 8
   m_Name: but_jap
   m_TagString: Untagged
@@ -26067,6 +26076,20 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 1464603163}
   m_GameObject: {fileID: 1795899135}
+  m_Mesh: {fileID: 4300020, guid: 1d7f08eb72726cc4284449ce1709165a, type: 3}
+--- !u!64 &1795899140
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6400000, guid: 6fd44287fd1087e40b07e0dbb67442ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1464603163}
+  m_GameObject: {fileID: 1795899135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300020, guid: 1d7f08eb72726cc4284449ce1709165a, type: 3}
 --- !u!1 &1796782111
 GameObject:
@@ -29347,6 +29370,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49dc74945d2179e4aa680abf21df93ba, type: 3}
   m_Name: 
+  FreezeAfterConversion: 5
+  FreezeAfterScrum: 5
+  freezeAfterTouch: 5
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29358,18 +29384,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da9cae143d6fb8b4c9860dc25005a6fe, type: 3}
   m_Name: 
-  currentPosition: 0
-  SuperLoading: 0
-  FeedSuperPerSmash: 0
-  settings:
-    timeToGetOutTackleAreaBeforeScrum: 2
-    minPlayersEachTeamToTriggerScrum: 3
-    FeedSuperPerSmash: 0
-    FeedSuperPerSecond: 0
-    test: 0
-    MaximumDistance: 0
-    SmashValue: 0
-    SuperMultiplicator: 0
 --- !u!114 &2004071854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29392,11 +29406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638ede33ecd24154f963a635e950775e, type: 3}
   m_Name: 
   infiniteTime: 1
-  choixTouche: 0
-  choixInter: 0
-  n: 0
-  timeLeft: 0
-  minTime: 3
 --- !u!114 &2004071856
 MonoBehaviour:
   m_ObjectHideFlags: 0

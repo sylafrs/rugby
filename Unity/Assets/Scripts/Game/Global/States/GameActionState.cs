@@ -18,7 +18,7 @@ public class GameActionState : GameState {
             return false;
         }
         else
-        {            
+        {           
             sm.state_change_son(this, new TouchState(sm, cam, game));
             return true;
         }        
@@ -35,12 +35,10 @@ public class GameActionState : GameState {
         sm.state_change_son(this, new ConvertingState(sm, cam, game, z));
         return true;
     }
-
-    const int N = 5; // To define somewhere else..
-
-    public override bool OnResumeSignal() 
+        
+    public override bool OnResumeSignal(float time) 
     {
-       sm.state_change_me(this, new WaitingState(sm, cam, game, N));
+       sm.state_change_me(this, new WaitingState(sm, cam, game, time));
        return true;
     }
 }

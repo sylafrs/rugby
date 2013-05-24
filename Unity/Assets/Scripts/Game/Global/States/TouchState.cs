@@ -29,6 +29,6 @@ public class TouchState : GameState
 	
 	public override void OnLeave ()
 	{
-		cam.setTarget(cam.game.Ball.transform);	
+        cam.setTarget(cam.game.Ball.transform);	
 	}
 }

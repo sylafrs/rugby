@@ -14,6 +14,7 @@ public class TouchUI{
 	
 	public void DrawUI()
 	{
+        /*
 		Color c = GUI.color;
 		
 		GUILayout.Space(300);
@@ -26,10 +27,10 @@ public class TouchUI{
 		GUILayout.BeginHorizontal();
 			GUILayout.Label("J1 : ");
 		
-			for(int i = 0; i < manager.n; i++) {
-				GUI.color = (manager.choixTouche == i+1) ? Color.red : c;
+			for(int i = 0; i < manager.nTouches; i++) {
+				GUI.color = (manager.touchChoice == i+1) ? Color.red : c;
 				if(GUILayout.Button (game.settings.Inputs.touch[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-					manager.choixTouche = i+1;
+					manager.touchChoice = i+1;
 				}
 			}
 		GUILayout.EndHorizontal();
@@ -39,14 +40,15 @@ public class TouchUI{
 		GUILayout.BeginHorizontal();
 			GUILayout.Label("J2 : ");
 		
-			for(int i = 0; i < manager.n; i++) {
-				GUI.color = (manager.choixInter == i+1) ? Color.red : c;
+			for(int i = 0; i < manager.nTouches; i++) {
+				GUI.color = (manager.interChoice == i+1) ? Color.red : c;
 				if(GUILayout.Button (game.settings.Inputs.touch[i].xbox.ToString(), GUILayout.MinWidth(100))) {
-					manager.choixInter = i+1;
+					manager.interChoice = i+1;
 				}
 			}
 		GUILayout.EndHorizontal();
 		
 		GUI.color = c;
+        */
 	}
 }
