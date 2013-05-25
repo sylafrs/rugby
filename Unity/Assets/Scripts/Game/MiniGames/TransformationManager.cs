@@ -16,7 +16,9 @@ public class TransformationManager : myMonoBehaviour {
 	public Ball ball {get; set;}
 	
 	private Quaternion initialRotation;
-	
+
+    public bool UseNegativeEdge = false;
+
 	private float angle = 0;
 	public  float angleSpeed;
 	
@@ -120,7 +122,7 @@ public class TransformationManager : myMonoBehaviour {
 			ball.Owner.transform.FindChild("Fleche(Clone)").rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
 		}
 		
-		if(state == State.POWER) {
+		else if(state == State.POWER) {
 					
 			power += powerSpeed * Time.deltaTime;
 			if(power > 1) {
@@ -136,18 +138,32 @@ public class TransformationManager : myMonoBehaviour {
             scale.z = power;
             myArrowPower.transform.localScale = scale;
 			
-			if(!infiniteTime) {
+			if(!infiniteTime) 
+            {
 				remainingTime -= Time.deltaTime;	
 			}
-			
-			if(remainingTime < 0 || (gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(Game.instance.settings.Inputs.conversionTouch.xbox)) || Input.GetKeyUp(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team))) {
-				Launch();
-			}
-			
-			
+
+            if (remainingTime < 0) 
+            {
+                Launch();
+            }
+            else if (UseNegativeEdge)
+            {
+                if ((gamer.XboxController.IsConnected && !gamer.XboxController.GetButton(Game.instance.settings.Inputs.conversionTouch.xbox)) || Input.GetKeyUp(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team)))
+                {
+                    Launch();
+                }
+            }
+            else
+            {
+                if (gamer.XboxController.GetButtonDown(Game.instance.settings.Inputs.conversionTouch.xbox) || Input.GetKeyDown(Game.instance.settings.Inputs.conversionTouch.keyboard(gamer.Team)))
+                {
+                    Launch();
+                }
+            }						
 		}
 		
-		if(state == State.WAITING) {
+		else if(state == State.WAITING) {
             timeInAir += Time.deltaTime;
             doTransfo(timeInAir);
 

@@ -49,16 +49,18 @@ public class ConvertingState : GameState {
 			cameraPlaceHolder.LookAt(Goal.transform);
 		}
 		
-		cam.transalateToWithFade(Vector3.zero, cameraPlaceHolder.rotation,0f, 1f, 1f, 1f, 
+		cam.transalateToWithFade(Vector3.zero, cameraPlaceHolder.rotation, 0f, 1f, 1f, 1f, 
             (/* OnFinish */) => {
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
 				cam.game.Referee.PlacePlayersForTransfo();
+
 				Vector3 GoalToPlayer = cam.game.Ball.Owner.transform.position - Goal.transform.position;
 				Vector3	GoalToCam	 = cameraPlaceHolder.transform.position - Goal.transform.position;
 				Vector3 Proj		 = Vector3.Project(GoalToCam,GoalToPlayer);
 				float saveY 		 = cameraPlaceHolder.transform.position.y;
 				Vector3 dest		 = new Vector3(Proj.x + Goal.transform.position.x,saveY,Proj.z + Goal.transform.position.z);
+
 				Camera.mainCamera.transform.position = dest;
 				Camera.mainCamera.transform.LookAt(Goal.transform);
 				cam.game.Referee.EnableTransformation();
