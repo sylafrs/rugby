@@ -127,10 +127,10 @@ public class XboxInputs : myMonoBehaviour{
         {
             get
             {
-                if (padToUpdate)
+                //if (padToUpdate)
                 {
-                    padToUpdate = false;
-                    pad = GamePad.GetState(index);
+                    //padToUpdate = false;
+                    framePad = GamePad.GetState(index);
                 }
 
                 return framePad;
