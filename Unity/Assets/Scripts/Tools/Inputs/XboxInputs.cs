@@ -122,22 +122,22 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
-        //private GamePadState framePad;        
+        private GamePadState framePad;        
         public GamePadState pad
         {
             get
             {
-                //if (padToUpdate)
-          //      {
-            //        //padToUpdate = false;
-            //        framePad = GamePad.GetState(index);
-            //    }
+                if (padToUpdate)
+                {
+                    padToUpdate = false;
+                    framePad = GamePad.GetState(index);
+                }
 
-                return GamePad.GetState(index);//framePad;
+                return framePad;
             }
             private set
             {
-               // framePad = value;
+                framePad = value;
             }
         }
         private bool padToUpdate = true;
@@ -170,13 +170,13 @@ public class XboxInputs : myMonoBehaviour{
         private void UpdateButtons()
         {
             // Si la manette de la frame précédente était connectée.
-            //if (framePad.IsConnected) 
-            //{
+            if (framePad.IsConnected) 
+            {
                 for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
                 {
                     prevState[i] = GetButton((XBOX_BUTTONS)i);
                 }
-            //}
+            }
         }
 		
 		void Vibrate(float left, float right) {
@@ -217,7 +217,7 @@ public class XboxInputs : myMonoBehaviour{
     {        
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
-            //if (checkedControllers[i])
+            if (checkedControllers[i])
             {
                 controllers[i].Update();
             }
