@@ -1924,6 +1924,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b931afe6e8968c46871ea700a2db461, type: 3}
   m_Name: 
+  nConnectedControllers: 0
+  checkedControllers: 
 --- !u!1 &235184406
 GameObject:
   m_ObjectHideFlags: 0
@@ -16832,6 +16834,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f5d1302a0509c4fa1fe9dd3b6f3992, type: 3}
   m_Name: 
+  UseNegativeEdge: 0
   angleSpeed: 200
   powerSpeed: 1.20000005
   minPower: 5
