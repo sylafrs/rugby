@@ -471,6 +471,8 @@ public class Team : myMonoBehaviour, IEnumerable {
 		return units[0].renderer.material.color;
 	}
 
+    // TODO : faire un effet par super serait mieux.
+    // Cette solution fonctionne mais est pwerk..
     public GameObject fxSuper;
     private GameObject[] myFxSuper;
     public GameObject lightSuper;

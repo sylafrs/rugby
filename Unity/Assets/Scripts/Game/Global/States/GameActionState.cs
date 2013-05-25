@@ -13,8 +13,8 @@ public class GameActionState : GameState {
 
     public override void OnEnter()
     {
-        game.northTeam.PlaySuperParticleSystem(false);
-        game.southTeam.PlaySuperParticleSystem(false);
+        game.northTeam.Super.endSuper();
+        game.southTeam.Super.endSuper();
     }
 
     public override bool OnTouch(Touche t)

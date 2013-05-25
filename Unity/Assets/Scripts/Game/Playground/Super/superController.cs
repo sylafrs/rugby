@@ -68,8 +68,9 @@ public class superController : myMonoBehaviour {
 		}
 	}
 	
-	void endSuper(){
+	public void endSuper(){
 		MyDebug.Log("Super Over");
+        SuperTimeLeft = 0;
 		currentSuper = SuperList.superNull;
 		team.speedFactor 	= 1f;
 		team.tackleFactor 	= 1f;
@@ -104,12 +105,14 @@ public class superController : myMonoBehaviour {
 				MyDebug.Log("Dash Super attack !");
 				launchDashAttackFeedback();
 				team.speedFactor = game.settings.Global.Super.superSpeedScale;
+                team.setSpeed();
 			    break;
 			
 			case SuperList.superTackle:
 				MyDebug.Log("Tackle Super attack !");
 				launchTackleAttackFeedback();
 				team.tackleFactor = game.settings.Global.Super.superTackleBoxScale;
+                team.setSpeed();
 			    break;
 					
 			default:
