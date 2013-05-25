@@ -82,6 +82,6 @@ public class GameUI{
 		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
 		
 		//time
-		GUI.Label(timeBox,  "Time : "+(int)game.Referee.IngameTime, game.settings.UI.GameUI.gameTimeTextStyle);
+		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
 	}
 }
