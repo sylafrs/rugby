@@ -42,6 +42,12 @@ public class MainUnitState : UnitState
         return true;
     }
 
+    public override bool OnStun(float d)
+    {
+        sm.state_change_me(this, new PlaqueState(sm, unit, d));
+        return true;
+    }
+
 	bool first = true;
     public override void OnUpdate()
     {

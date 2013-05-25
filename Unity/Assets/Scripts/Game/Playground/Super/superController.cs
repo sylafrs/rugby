@@ -4,14 +4,14 @@ using System.Collections;
 public enum SuperList{
 	superNull,
 	superTackle,
-	superDash
+	superDash,
+    superStun
 };
 
 [AddComponentMenu("Scripts/Supers/Controller")]
 public class superController : myMonoBehaviour {
 	
-	public SuperList OffensiveSuper;
-	public SuperList DefensiveSuper;
+    public SuperList Super;
 	
 	private Game game;
 	private Team team;
@@ -25,26 +25,20 @@ public class superController : myMonoBehaviour {
             return currentSuper != SuperList.superNull;
         }
     }
-	
-	//super color
-	public Color superTackleColor;
-	public Color superDashColor;
-	
+
+    private SuperSettings settings;
+		
 	//time management for supers
-	private float OffensiveSuperTimeAmount;
-	//private float DefensiveSuperTimeAmount;
-	private float SuperTimeLeft;
-	
+    private float SuperTimeLeft;	
 	
 	void Start () {
 		game 	        = Game.instance;
 		team			= gameObject.GetComponent<Team>();
 		currentSuper    = SuperList.superNull;
-		
-		OffensiveSuperTimeAmount = game.settings.Global.Super.OffensiveSuperDurationTime;
-		//DefensiveSuperTimeAmount = game.settings.Global.Super.DefensiveSuperDurationTime;
-		
-		SuperTimeLeft = 0f;
+
+        settings = this.game.settings.Global.Super;
+
+        SuperTimeLeft = 0f;
 	}
 	
 	void Update () {
@@ -75,8 +69,9 @@ public class superController : myMonoBehaviour {
 		team.speedFactor 	= 1f;
 		team.tackleFactor 	= 1f;
 		team.ChangePlayersColor(colorSave);
-		stopDashAttackFeedback();
-		stopTackleAttackFeedback();
+
+        StopFeedBack(SuperList.superDash);
+        StopFeedBack(SuperList.superTackle);
 	}
 
     public void launchSuper()
@@ -84,9 +79,9 @@ public class superController : myMonoBehaviour {
         if (this.team.SuperGaugeValue == game.settings.Global.Super.superGaugeOffensiveLimitBreak)
         {
             MyDebug.Log("Offensive Super attack !");
-            this.launchSuper(this.OffensiveSuper, this.OffensiveSuperTimeAmount);
+            this.launchSuper(this.Super);
             this.team.SuperGaugeValue -= game.settings.Global.Super.superGaugeOffensiveLimitBreak;
-            this.game.OnSuper(team, SuperList.superDash);
+            this.game.OnSuper(team, this.Super);
         }
         else
         {
@@ -96,47 +91,45 @@ public class superController : myMonoBehaviour {
         }        
     }
 	
-	void launchSuper(SuperList super, float duration){
+	void launchSuper(SuperList super){
 		colorSave = team.GetPlayerColor();
-		SuperTimeLeft = duration;
 		currentSuper  = super;
 		switch (super){
 			case SuperList.superDash:
 				MyDebug.Log("Dash Super attack !");
-				launchDashAttackFeedback();
 				team.speedFactor = game.settings.Global.Super.superSpeedScale;
                 team.setSpeed();
+
+                this.SuperTimeLeft = settings.SuperDashDurationTime;
 			    break;
 			
 			case SuperList.superTackle:
 				MyDebug.Log("Tackle Super attack !");
-				launchTackleAttackFeedback();
 				team.tackleFactor = game.settings.Global.Super.superTackleBoxScale;
                 team.setSpeed();
 			    break;
+
+            case SuperList.superStun:
+                MyDebug.Log("Stun Super attack !");
+                team.opponent.StunEverybodyForSeconds(settings.SuperStunDurationTime);
+
+                this.SuperTimeLeft = settings.SuperStunDurationTime;
+                break;
 					
 			default:
 				break;			
 		}
+
+        LauchFeedBack(super);
 	}
-	
-	void launchDashAttackFeedback(){		
-		team.ChangePlayersColor(superDashColor);
-		team.PlaySuperParticleSystem(SuperList.superDash, true);
-	}
-	
-	void launchTackleAttackFeedback(){
-		team.ChangePlayersColor(superTackleColor);
-		team.PlaySuperParticleSystem(SuperList.superTackle, true);
-	}
-	
-	void stopDashAttackFeedback(){
-		team.ChangePlayersColor(colorSave);
-		team.PlaySuperParticleSystem(SuperList.superDash, false);
-	}
-	
-	void stopTackleAttackFeedback(){
-		team.ChangePlayersColor(colorSave);
-		team.PlaySuperParticleSystem(SuperList.superTackle, false);
-	}
+
+    void LauchFeedBack(SuperList super)
+    {
+        team.PlaySuperParticleSystem(super, true);
+    }
+
+    void StopFeedBack(SuperList super)
+    {
+        team.PlaySuperParticleSystem(super, false);
+    }
 }

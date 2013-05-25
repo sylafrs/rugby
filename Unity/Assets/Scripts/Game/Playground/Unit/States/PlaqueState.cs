@@ -7,9 +7,32 @@ using UnityEngine;
   */
 class PlaqueState : UnitState
 {
-    public PlaqueState(StateMachine sm, Unit u) : base(sm, u) { }
+    // Tackle
+    public PlaqueState(StateMachine sm, Unit u) : base(sm, u) 
+    {
+        this.tMax = unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime;
+        this.rotate = true;
+    }
 
+    // Stun
+    public PlaqueState(StateMachine sm, Unit u, float duration) : base(sm, u) 
+    {
+        this.tMax = duration;
+        this.rotate = false;
+    }
+
+    // Remise à zero :p
+    public override bool OnStun(float d)
+    {
+        this.t = 0;
+        this.tMax = d;
+
+        return false;
+    }
+    
     float t;
+    float tMax;
+    bool rotate;
 
     public override bool OnUntackle()
     {
@@ -36,7 +59,8 @@ class PlaqueState : UnitState
 			}
 		}
 
-        unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        if(rotate)
+            unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
 
         UnitAnimator ua = unit.GetComponent<UnitAnimator>();
         if (ua != null)
@@ -48,7 +72,7 @@ class PlaqueState : UnitState
     public override void OnUpdate()
     {
         t += UnityEngine.Time.deltaTime;
-        if (t > unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime)
+        if (t > tMax)
         {
             this.OnUntackle();
         }
@@ -65,7 +89,8 @@ class PlaqueState : UnitState
 			}
 		}
 
-        unit.Model.transform.localRotation = Quaternion.identity;
+        if(rotate)
+            unit.Model.transform.localRotation = Quaternion.identity;
 
         UnitAnimator ua = unit.GetComponent<UnitAnimator>();
         if (ua != null)

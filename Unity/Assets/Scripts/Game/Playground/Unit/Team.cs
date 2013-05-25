@@ -122,6 +122,14 @@ public class Team : myMonoBehaviour, IEnumerable {
 		}
 	}
 
+    public void StunEverybodyForSeconds(float stunDuration)
+    {
+        foreach (Unit u in units)
+        {
+            u.sm.event_stun(stunDuration);
+        }
+    }
+
 	//maxens dubois
 	public void increaseSuperGauge(int value){
 		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;

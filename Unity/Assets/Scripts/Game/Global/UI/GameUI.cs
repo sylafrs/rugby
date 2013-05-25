@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class GameUI{
@@ -43,30 +44,6 @@ public class GameUI{
 			game.settings.UI.GameUI.redGaugeBoxWidthPercentage * redProgress, 
 			game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
 		
-		//scrum bars
-		//Rect scrumBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-        //
-		//Rect scrumRedBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-		//
-		////scrum special
-		//Rect scrumSpecialBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumSpecialBoxXPercentage - game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumSpecialBoxYPercentage -game.settings.UI.GameUI. scrumSpecialBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage, game.settings.UI.GameUI.scrumSpecialBoxHeightPercentage);
-		//
-		//Time before Scrum
-		//Rect scrumTimeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumTimeBoxXPercentage - game.settings.UI.GameUI.scrumTimeBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumTimeBoxYPercentage - game.settings.UI.GameUI.scrumTimeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumTimeBoxWidthPercentage, game.settings.UI.GameUI.scrumTimeBoxHeightPercentage);
-		
-		//player on left Box
-		//float playerLeftBoxWidth  = 25;
-		//float playerLeftBoxHeight = 10;	
-		//Rect playerLeftBox = UIManager.screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
-	
 		//superbars
 		//blue 
 		GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
@@ -84,4 +61,34 @@ public class GameUI{
 		//time
 		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
 	}
+
+    public void ShowOutsideScreenUnit()
+    {
+        try
+        {
+            Unit[] units = new Unit[2];
+            units[0] = game.southTeam.Player.Controlled;
+            units[1] = game.northTeam.Player.Controlled;
+
+            Camera cam;
+            cam = game.refs.managers.camera.gameCamera.camera;
+
+            foreach (Unit u in units)
+            {
+                if (!u.renderer.isVisible)
+                {
+                    Debug.Log("Je ne vois pas " + u);
+                }
+            }
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
+
 }

@@ -42,8 +42,12 @@ public class SuperSettings
 	public int superGaugeMaximum				= 200;
 	//for the effect
 	//Duration in s
-	public float OffensiveSuperDurationTime	= 10f;
-	public float DefensiveSuperDurationTime	= 10f;
+
+    public float SuperDashDurationTime = 10f;
+    public float SuperStunDurationTime = 2f;
+
+    //public float OffensiveSuperDurationTime	= 10f;
+	//public float DefensiveSuperDurationTime	= 10f;
 	public float superSpeedScale            = 1.5f;
 	public float superTackleBoxScale        = 1.5f;
 	public bool  superUnblockable           = true;

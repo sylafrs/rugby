@@ -15,6 +15,7 @@ public class GameActionState : GameState {
     {
         game.northTeam.Super.endSuper();
         game.southTeam.Super.endSuper();
+        game.Referee.PauseIngameTime();
     }
 
     public override bool OnTouch(Touche t)

@@ -106,6 +106,7 @@ public class Gamer
         if (!Controlled.Dodge)
         {
             UpdateStickDirection();
+            UpdateSUPER();
             UpdateMOVE();
             UpdateTACKLE();
             UpdatePASS();
