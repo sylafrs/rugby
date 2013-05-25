@@ -39,7 +39,9 @@ public class Tackle : Editor
 	{
         EditorGUIUtility.LookLikeInspector();
         DrawDefaultInspector();
-		team.ConeTackle = EditorGUILayout.ColorField("[Handles] Cone tackle color", team.ConeTackle);
-        team.DiscTackle = EditorGUILayout.ColorField("[Handles] Disc tackle color", team.DiscTackle);
+		
+        // In Team vars ^^
+        // team.ConeTackle = EditorGUILayout.ColorField("[Handles] Cone tackle color", team.ConeTackle);
+        // team.DiscTackle = EditorGUILayout.ColorField("[Handles] Disc tackle color", team.DiscTackle);
 	}
 }
