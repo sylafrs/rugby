@@ -38,8 +38,8 @@ public class Tackle : Editor
 	public override void OnInspectorGUI()
 	{
         EditorGUIUtility.LookLikeInspector();
-		DrawDefaultInspector();
-		team.ConeTackle = EditorGUILayout.ColorField(team.ConeTackle, GUILayout.Width(200));
-		team.DiscTackle = EditorGUILayout.ColorField(team.DiscTackle, GUILayout.Width(200));
+        DrawDefaultInspector();
+		team.ConeTackle = EditorGUILayout.ColorField("[Handles] Cone tackle color", team.ConeTackle);
+        team.DiscTackle = EditorGUILayout.ColorField("[Handles] Disc tackle color", team.DiscTackle);
 	}
 }
