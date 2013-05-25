@@ -123,8 +123,7 @@ public class XboxInputs : myMonoBehaviour{
         }
 
         private GamePadState currentPad;
-        private bool prevWasConnected = false;
-
+        
         public GamePadState pad
         {
             get
@@ -173,18 +172,9 @@ public class XboxInputs : myMonoBehaviour{
         {
             if (currentPad.IsConnected)
             {
-                prevWasConnected = true;
                 for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
                 {
                     prevState[i] = GetButton((XBOX_BUTTONS)i);
-                }
-            }
-            else if(prevWasConnected)
-            {
-                prevWasConnected = false;
-                for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
-                {
-                    prevState[i] = false;
                 }
             }
         }
@@ -211,7 +201,7 @@ public class XboxInputs : myMonoBehaviour{
             this.init();
     }
    
-    public void init()
+    void init()
     {
         inited = true;
 
@@ -227,17 +217,13 @@ public class XboxInputs : myMonoBehaviour{
 
     void LateUpdate()
     {        
-        // Update number / 2.
-        // if (Mathf.PingPong(0, 1) == 1)
-        {            
-            for (int i = 0; i < MAX_CONTROLLERS; i++)
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        {
+            if (checkedControllers[i])
             {
-                if (checkedControllers[i])
-                {
-                    controllers[i].Update();
-                }
+                controllers[i].Update();
             }
-        }
+        }        
     }
 
     public void NoNeedToCheck(int index)

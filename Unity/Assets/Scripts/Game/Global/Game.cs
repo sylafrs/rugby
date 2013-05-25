@@ -64,7 +64,7 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-        //this.refs.xboxInputs.CheckNone();
+        this.refs.xboxInputs.CheckNone();
 
         this.northTeam.game = this;
         this.southTeam.game = this;
