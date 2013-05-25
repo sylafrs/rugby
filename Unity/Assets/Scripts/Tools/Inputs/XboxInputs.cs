@@ -122,22 +122,22 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
-        private GamePadState framePad;        
+        //private GamePadState framePad;        
         public GamePadState pad
         {
             get
             {
                 //if (padToUpdate)
-                {
-                    //padToUpdate = false;
-                    framePad = GamePad.GetState(index);
-                }
+          //      {
+            //        //padToUpdate = false;
+            //        framePad = GamePad.GetState(index);
+            //    }
 
-                return framePad;
+                return GamePad.GetState(index);//framePad;
             }
             private set
             {
-                framePad = value;
+               // framePad = value;
             }
         }
         private bool padToUpdate = true;
