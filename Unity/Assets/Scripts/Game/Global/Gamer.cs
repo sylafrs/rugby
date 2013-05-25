@@ -115,6 +115,17 @@ public class Gamer
         }
     }
 
+    public void UpdateSUPER()
+    {
+        if (this.XboxController != null)
+        {
+            if (Input.GetKeyDown(game.settings.Inputs.superOff.keyboard(this.Team)) || this.XboxController.GetButtonDown(game.settings.Inputs.superOff.xbox))
+            {
+                this.Team.Super.launchSuper();                
+            }
+        }
+    }
+
     public bool UpdateRESET()
     {
         if (Input.GetKeyUp(Inputs.reset.keyboardP1) || Input.GetKeyUp(Inputs.reset.keyboardP1) || XboxController.GetButtonUp(Inputs.reset.xbox))

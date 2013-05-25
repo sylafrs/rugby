@@ -2,11 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 public enum SuperList{
-	//null is the base status
 	superNull,
 	superTackle,
-	superDash,
-	superWall
+	superDash
 };
 
 [AddComponentMenu("Scripts/Supers/Controller")]
@@ -50,15 +48,7 @@ public class superController : myMonoBehaviour {
 	}
 	
 	void Update () {
-		/*
-        if (this.game.state == Game.State.INTRODUCTION)
-        {
-            return;
-        }
-        */
-
 		updateSuperValue();
-        updateSuperInput();
 		updateSuperStatus();
 	}
 	
@@ -67,71 +57,10 @@ public class superController : myMonoBehaviour {
 			team.increaseSuperGauge(0);
 		}
 	}
-	
-	void updateSuperInput(){
 		
-		//InputTouch superOff = game.settings.inputs.superOff;
-		//InputTouch superDef = game.settings.inputs.superDef;
-		
-		//if(game.state == Game.State.PLAYING) {
-		
-			//offense
-			if(team.Player.XboxController != null){
-				if(Input.GetKeyDown(game.settings.Inputs.superOff.keyboard(team)) || team.Player.XboxController.GetButtonDown(game.settings.Inputs.superOff.xbox)){
-					if(team.SuperGaugeValue == game.settings.Global.Super.superGaugeOffensiveLimitBreak){
-						MyDebug.Log("Offensive Super attack !");
-						launchSuper(OffensiveSuper, OffensiveSuperTimeAmount);
-						team.SuperGaugeValue -= game.settings.Global.Super.superGaugeOffensiveLimitBreak;
-                        game.OnSuper(team, SuperList.superDash);
-					}else{
-						MyDebug.Log("Need more Power to lauch the offensive super");
-						MyDebug.Log("Current Power : "+team.SuperGaugeValue);
-						MyDebug.Log("Needed  Power : "+game.settings.Global.Super.superGaugeOffensiveLimitBreak);
-					}
-				}
-				
-				//defense
-				/*
-				if(Input.GetKeyDown(superDef.keyboard) || team.Player.XboxController.GetButtonDown(superDef.xbox)){
-					if(team.SuperGaugeValue == game.settings.super.superGaugeDefensiveLimitBreak){
-						MyDebug.Log("Defensive Super attack !");
-							launchSuper(DefensiveSuper, DefensiveSuperTimeAmount);
-							team.SuperGaugeValue -= game.settings.super.superGaugeDefensiveLimitBreak;
-                            game.OnSuper(team, SuperList.superWall);
-					}else{
-						MyDebug.Log("Need more Power to lauch the defensive super");
-						MyDebug.Log("Current Power : "+team.SuperGaugeValue);
-						MyDebug.Log("Needed  Power : "+game.settings.super.superGaugeDefensiveLimitBreak);
-					}
-				}
-				*/
-			}
-		//}
-	}
-	
 	void updateSuperStatus(){
 		if(currentSuper != SuperList.superNull){
-			//maj super time
 			SuperTimeLeft -= Time.deltaTime;
-			//MyDebug.Log("Super Time left  : "+SuperTimeLeft);
-			/*if(SuperTimeLeft > 0f){
-				switch(currentSuper){
-					case SuperList.superDash:{
-						break;
-					}
-					case SuperList.superTackle:{
-						break;
-					}
-					case SuperList.superWall:{
-						break;
-					}
-					default:{
-						break;
-					}
-				}
-			}else{
-				endSuper();
-			}*/
 
             if (SuperTimeLeft <= 0) {
                 endSuper();
@@ -148,34 +77,43 @@ public class superController : myMonoBehaviour {
 		stopDashAttackFeedback();
 		stopTackleAttackFeedback();
 	}
+
+    public void launchSuper()
+    {
+        if (this.team.SuperGaugeValue == game.settings.Global.Super.superGaugeOffensiveLimitBreak)
+        {
+            MyDebug.Log("Offensive Super attack !");
+            this.launchSuper(this.OffensiveSuper, this.OffensiveSuperTimeAmount);
+            this.team.SuperGaugeValue -= game.settings.Global.Super.superGaugeOffensiveLimitBreak;
+            this.game.OnSuper(team, SuperList.superDash);
+        }
+        else
+        {
+            MyDebug.Log("Need more Power to lauch the offensive super");
+            MyDebug.Log("Current Power : " + team.SuperGaugeValue);
+            MyDebug.Log("Needed  Power : " + game.settings.Global.Super.superGaugeOffensiveLimitBreak);
+        }        
+    }
 	
 	void launchSuper(SuperList super, float duration){
 		colorSave = team.GetPlayerColor();
 		SuperTimeLeft = duration;
 		currentSuper  = super;
 		switch (super){
-			case SuperList.superDash:{
+			case SuperList.superDash:
 				MyDebug.Log("Dash Super attack !");
 				launchDashAttackFeedback();
 				team.speedFactor = game.settings.Global.Super.superSpeedScale;
-				//dash
-			break;
-			}
-			case SuperList.superTackle:{
+			    break;
+			
+			case SuperList.superTackle:
 				MyDebug.Log("Tackle Super attack !");
 				launchTackleAttackFeedback();
 				team.tackleFactor = game.settings.Global.Super.superTackleBoxScale;
-				//tackle
-			break;
-			}
-			case SuperList.superWall:{
-				MyDebug.Log("Wall Super attack !");
-				//wall
-			break;
-			}
-			default:{
-				break;
-			}
+			    break;
+					
+			default:
+				break;			
 		}
 	}
 	
