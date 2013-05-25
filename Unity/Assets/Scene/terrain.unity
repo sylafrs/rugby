@@ -6677,7 +6677,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 688928108}
   - 33: {fileID: 688928111}
-  - 65: {fileID: 688928110}
   - 23: {fileID: 688928109}
   m_Layer: 9
   m_Name: Cube
@@ -6715,18 +6714,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &688928110
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 688928107}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &688928111
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13378,7 +13365,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1577200577}
   - 33: {fileID: 1577200580}
-  - 65: {fileID: 1577200579}
   - 23: {fileID: 1577200578}
   m_Layer: 9
   m_Name: Cube
@@ -13416,18 +13402,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &1577200579
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577200576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1577200580
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15557,7 +15531,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1803153107}
   - 33: {fileID: 1803153110}
-  - 65: {fileID: 1803153109}
   - 23: {fileID: 1803153108}
   m_Layer: 9
   m_Name: Cube
@@ -15595,18 +15568,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &1803153109
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1803153106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1803153110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15748,7 +15709,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1827117789}
   - 33: {fileID: 1827117792}
-  - 65: {fileID: 1827117791}
   - 23: {fileID: 1827117790}
   m_Layer: 9
   m_Name: Cube
@@ -15786,18 +15746,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &1827117791
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1827117788}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1827117792
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16129,7 +16077,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1875913890}
   - 33: {fileID: 1875913893}
-  - 65: {fileID: 1875913892}
   - 23: {fileID: 1875913891}
   m_Layer: 9
   m_Name: Cube
@@ -16167,18 +16114,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &1875913892
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1875913889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1875913893
 MeshFilter:
   m_ObjectHideFlags: 0
