@@ -108,7 +108,8 @@ public class Team : myMonoBehaviour, IEnumerable {
                 {
                     u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
                 }
-                else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
+                //else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
+                else if(game.Ball.Team == this)
                 {
                     u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
                 }
