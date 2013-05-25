@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -1333,10 +1333,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuper: 2
-  DefensiveSuper: 1
-  superTackleColor: {r: 0, g: 0, b: 0, a: 0}
-  superDashColor: {r: 0, g: 0, b: 0, a: 0}
+  Super: 2
 --- !u!114 &166411255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1924,7 +1921,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b931afe6e8968c46871ea700a2db461, type: 3}
   m_Name: 
-  nConnectedControllers: 0
   checkedControllers: 
 --- !u!1 &235184406
 GameObject:
@@ -4025,8 +4021,8 @@ MonoBehaviour:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
         superGaugeMaximum: 200
-        OffensiveSuperDurationTime: 10
-        DefensiveSuperDurationTime: 10
+        SuperDashDurationTime: 10
+        SuperStunDurationTime: 2
         superSpeedScale: 1.5
         superTackleBoxScale: 1.5
         superUnblockable: 1
@@ -6057,10 +6053,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d96d111c29150bb49b5419f85ccc437c, type: 3}
   m_Name: 
-  OffensiveSuper: 2
-  DefensiveSuper: 0
-  superTackleColor: {r: 0, g: 0, b: 0, a: 0}
-  superDashColor: {r: 0, g: 0, b: 0, a: 0}
+  Super: 3
 --- !u!114 &613712549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12438,7 +12431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1168933e68b185478fd8c6fe23d85fd, type: 3}
   m_Name: 
   refs: {fileID: 3678738}
-  active: 1
+  show: 0
   color: {r: 0, g: 1, b: .160839319, a: 1}
   Y: 1.70000005
 --- !u!1 &1424604741
