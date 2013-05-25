@@ -60,7 +60,9 @@ public class GameUI{
 		
 		//time
 		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
-	}
+
+        ShowOutsideScreenUnit();
+    }
 
     public void ShowOutsideScreenUnit()
     {
@@ -68,18 +70,12 @@ public class GameUI{
         {
             Unit[] units = new Unit[2];
             units[0] = game.southTeam.Player.Controlled;
-            units[1] = game.northTeam.Player.Controlled;
-
-            Camera cam;
-            cam = game.refs.managers.camera.gameCamera.camera;
-
+            units[1] = game.northTeam.Player.Controlled;            
+            
             foreach (Unit u in units)
             {
-                if (!u.renderer.isVisible)
-                {
-                    Debug.Log("Je ne vois pas " + u);
-                }
-            }
+                ShowOutsideScreenUnit(u);
+            }            
         }
         catch (NullReferenceException e)
         {
@@ -88,6 +84,45 @@ public class GameUI{
         catch (Exception e)
         {
             Debug.LogError(e.Message);
+        }
+    }
+
+    private void ShowOutsideScreenUnit(Unit u) {
+        float w = Screen.width;
+        float h = Screen.height;
+
+        Camera cam = game.refs.managers.camera.gameCamera.camera;
+        Vector3 test = cam.WorldToScreenPoint(u.transform.position);
+
+        bool inside = true;
+
+        if (test.x < 0)
+        {
+            inside = false;
+            test.x = 0;
+        }
+
+        if (test.y < 0)
+        {
+            inside = false;
+            test.y = 0;
+        }
+
+        if (test.x > w)
+        {
+            inside = false;
+            test.x = w;
+        }
+
+        if (test.y > h)
+        {
+            inside = false;
+            test.x = h;
+        }
+
+        if (!inside)
+        {
+            Debug.Log(u + " est hors vision !\n" + test);
         }
     }
 
