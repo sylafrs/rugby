@@ -9,8 +9,8 @@ using System;
 public class CameraManager : myMonoBehaviour, Debugable {
 
     public Game game;
-	public GameCamera gameCamera;
-		
+
+    public Camera gameCamera;
 	//private Transform 	target;
 	
 	private Transform _target = null;
@@ -61,7 +61,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	//private bool    isflipped;
 	private float 	zMinForBlue;
 	private float 	zMaxForBlue;
-	public  Team	flipedForTeam;
+    public  Team    flipedForTeam { get; private set; }
     public  Team 	TeamLooked { get { return flipedForTeam; } }
 	
 	public bool 	CancelNextFlip;
@@ -87,13 +87,13 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	
 	void FixedUpdate(){
 		
-        if (target != null && Camera.mainCamera != null)
+        if (target != null && this.gameCamera != null)
         {
 			
 			//rotation
-			targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
+			targetRotation = Quaternion.LookRotation(target.position - this.gameCamera.transform.position, Vector3.up);
 			
-			Vector3 euler =  Camera.mainCamera.transform.rotation.eulerAngles;
+			Vector3 euler =  this.gameCamera.transform.rotation.eulerAngles;
 			Vector3 tarEuler = targetRotation.eulerAngles;
 			
 			Vector3 angle = new Vector3(
@@ -109,7 +109,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}else{
 				if(angle.magnitude > rotationMagnitudeGap){
 					if(rotationCurrentDelay >= rotationDelay){
-						Camera.mainCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
+						this.gameCamera.transform.rotation = Quaternion.Euler(angle.x, angle.y, angle.z);
 					}
 					else{
 						rotationCurrentDelay += Time.deltaTime;
@@ -120,15 +120,15 @@ public class CameraManager : myMonoBehaviour, Debugable {
 			}
 			
 			Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-			Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+			Vector3 offset = this.gameCamera.transform.position+(MinfollowOffset)*zoom;
 			Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-			Vector3 delta  = result- Camera.mainCamera.transform.position;
+			Vector3 delta  = result- this.gameCamera.transform.position;
 	
 			
 			
 			if( delta.magnitude > magnitudeGap){
 				if(actualDelay >= moveDelay){
-					Camera.mainCamera.transform.position = result;
+					this.gameCamera.transform.position = result;
 				}else{
 					actualDelay += Time.deltaTime;
 				}
@@ -222,7 +222,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
-				Camera.mainCamera.transform.RotateAround(target.position, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
+				this.gameCamera.transform.RotateAround(target.position, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
 			}
 			
             // This current state becomes the next previous one
@@ -263,7 +263,7 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		float blackScreenDuration, Action Onfinish){
 		
 		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
-			Camera.mainCamera.transform.Translate(destination); 
+			this.gameCamera.transform.Translate(destination); 
 			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
 				Onfinish();
 			});
@@ -275,8 +275,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		
 		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
 			OnFade();
-			Camera.mainCamera.transform.Translate(destination); 
-			Camera.mainCamera.transform.rotation = _rotation;
+			this.gameCamera.transform.Translate(destination); 
+			this.gameCamera.transform.rotation = _rotation;
 			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
 				Onfinish();
 			});
@@ -287,8 +287,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 		float blackScreenDuration, Action Onfinish){
 		
 		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
-			Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World); 
-			Camera.mainCamera.transform.rotation = _rotation;
+			this.gameCamera.transform.Translate(destination - this.gameCamera.transform.position, Space.World); 
+			this.gameCamera.transform.rotation = _rotation;
 			CameraFade.StartAlphaFade(Color.black,true, fadeOutDuration, blackScreenDuration, () => {
 				Onfinish();
 			});
@@ -301,8 +301,8 @@ public class CameraManager : myMonoBehaviour, Debugable {
 
         CameraFade.StartAlphaFade(Color.black, false, fadeiInDuration, delay, () =>
         {
-            Camera.mainCamera.transform.Translate(destination - Camera.mainCamera.transform.position, Space.World);
-            Camera.mainCamera.transform.rotation = _rotation;
+            this.gameCamera.transform.Translate(destination - this.gameCamera.transform.position, Space.World);
+            this.gameCamera.transform.rotation = _rotation;
 			OnFade();
             CameraFade.StartAlphaFade(Color.black, true, fadeOutDuration, blackScreenDuration, () =>
             {

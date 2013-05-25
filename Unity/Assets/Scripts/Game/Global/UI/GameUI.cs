@@ -71,7 +71,7 @@ public class GameUI{
             units[1] = game.northTeam.Player.Controlled;
 
             Camera cam;
-            cam = game.refs.managers.camera.gameCamera.gameCamera.camera;
+            cam = game.refs.managers.camera.gameCamera.camera;
 
             foreach (Unit u in units)
             {
