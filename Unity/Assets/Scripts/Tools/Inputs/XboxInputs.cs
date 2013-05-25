@@ -122,8 +122,7 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
-        private GamePadState currentPad;
-        
+        private GamePadState framePad;        
         public GamePadState pad
         {
             get
@@ -134,11 +133,11 @@ public class XboxInputs : myMonoBehaviour{
                     pad = GamePad.GetState(index);
                 }
 
-                return currentPad;
+                return framePad;
             }
             private set
             {
-                currentPad = value;
+                framePad = value;
             }
         }
         private bool padToUpdate = true;
@@ -170,7 +169,8 @@ public class XboxInputs : myMonoBehaviour{
 
         private void UpdateButtons()
         {
-            if (currentPad.IsConnected)
+            // Si la manette de la frame précédente était connectée.
+            if (framePad.IsConnected) 
             {
                 for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
                 {
