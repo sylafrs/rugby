@@ -6693,7 +6693,7 @@ Transform:
   m_GameObject: {fileID: 688928107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51.0042763, y: 26.1207771, z: .179519996}
-  m_LocalScale: {x: 1.33814597, y: 57.930481, z: 204.124344}
+  m_LocalScale: {x: 1.33814597, y: 57.930481, z: 166.562363}
   m_Children: []
   m_Father: {fileID: 1340503061}
 --- !u!23 &688928109
@@ -10631,6 +10631,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1281560200}
+  - 114: {fileID: 1281560201}
   m_Layer: 0
   m_Name: InvisibleWalls
   m_TagString: Untagged
@@ -10652,6 +10653,16 @@ Transform:
   - {fileID: 1340503061}
   - {fileID: 332587732}
   m_Father: {fileID: 448441828}
+--- !u!114 &1281560201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1281560199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514e330c24b48d7468a470c3e82c67c2, type: 3}
+  m_Name: 
 --- !u!1 &1286922232
 GameObject:
   m_ObjectHideFlags: 0
@@ -15725,7 +15736,7 @@ Transform:
   m_GameObject: {fileID: 1827117788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -53.1653976, y: 26.1207771, z: .179519653}
-  m_LocalScale: {x: 1.33814561, y: 57.930481, z: 204.124344}
+  m_LocalScale: {x: 1.33814561, y: 57.930481, z: 166.562363}
   m_Children: []
   m_Father: {fileID: 1340503061}
 --- !u!23 &1827117790
