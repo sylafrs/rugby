@@ -53,6 +53,11 @@ public abstract partial class State
         return (false);
     }
 
+    public virtual bool OnStun(float d)
+    {
+        return (false);
+    }
+
     public virtual bool OnNewOwner(Unit old, Unit current)
     {
         return (false);
@@ -135,6 +140,15 @@ public abstract partial class State
  */
 public partial class StateMachine
 {
+    public void event_stun(float duration)
+    {
+        foreach (State tmp in list)
+        {
+            if (tmp.OnStun(duration))
+                return;
+        }
+    }
+
     public void event_Scrum()
     {
         foreach (State tmp in list)

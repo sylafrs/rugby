@@ -4,12 +4,15 @@ using System.Collections;
 public enum SuperList{
 	superNull,
 	superTackle,
-	superDash
+	superDash,
+    superStun
 };
 
 [AddComponentMenu("Scripts/Supers/Controller")]
 public class superController : myMonoBehaviour {
 	
+    const float STUN_SUPER_SECONDS = 2;
+
 	public SuperList OffensiveSuper;
 	public SuperList DefensiveSuper;
 	
@@ -75,8 +78,9 @@ public class superController : myMonoBehaviour {
 		team.speedFactor 	= 1f;
 		team.tackleFactor 	= 1f;
 		team.ChangePlayersColor(colorSave);
-		stopDashAttackFeedback();
-		stopTackleAttackFeedback();
+
+        StopFeedBack(SuperList.superDash);
+        StopFeedBack(SuperList.superTackle);
 	}
 
     public void launchSuper()
@@ -86,7 +90,7 @@ public class superController : myMonoBehaviour {
             MyDebug.Log("Offensive Super attack !");
             this.launchSuper(this.OffensiveSuper, this.OffensiveSuperTimeAmount);
             this.team.SuperGaugeValue -= game.settings.Global.Super.superGaugeOffensiveLimitBreak;
-            this.game.OnSuper(team, SuperList.superDash);
+            this.game.OnSuper(team, this.OffensiveSuper);
         }
         else
         {
@@ -103,40 +107,35 @@ public class superController : myMonoBehaviour {
 		switch (super){
 			case SuperList.superDash:
 				MyDebug.Log("Dash Super attack !");
-				launchDashAttackFeedback();
 				team.speedFactor = game.settings.Global.Super.superSpeedScale;
                 team.setSpeed();
 			    break;
 			
 			case SuperList.superTackle:
 				MyDebug.Log("Tackle Super attack !");
-				launchTackleAttackFeedback();
 				team.tackleFactor = game.settings.Global.Super.superTackleBoxScale;
                 team.setSpeed();
 			    break;
+
+            case SuperList.superStun:
+                MyDebug.Log("Stun Super attack !");
+                team.opponent.StunEverybodyForSeconds(STUN_SUPER_SECONDS);
+                break;
 					
 			default:
 				break;			
 		}
+
+        LauchFeedBack(super);
 	}
-	
-	void launchDashAttackFeedback(){		
-		team.ChangePlayersColor(superDashColor);
-		team.PlaySuperParticleSystem(SuperList.superDash, true);
-	}
-	
-	void launchTackleAttackFeedback(){
-		team.ChangePlayersColor(superTackleColor);
-		team.PlaySuperParticleSystem(SuperList.superTackle, true);
-	}
-	
-	void stopDashAttackFeedback(){
-		team.ChangePlayersColor(colorSave);
-		team.PlaySuperParticleSystem(SuperList.superDash, false);
-	}
-	
-	void stopTackleAttackFeedback(){
-		team.ChangePlayersColor(colorSave);
-		team.PlaySuperParticleSystem(SuperList.superTackle, false);
-	}
+
+    void LauchFeedBack(SuperList super)
+    {
+        team.PlaySuperParticleSystem(super, true);
+    }
+
+    void StopFeedBack(SuperList super)
+    {
+        team.PlaySuperParticleSystem(super, false);
+    }
 }

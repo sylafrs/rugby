@@ -9,12 +9,12 @@ using System.Collections.Generic;
   */
 public class ShowScrumField : myMonoBehaviour {
     public GameReferences refs;
-    public bool active = false;
+    public bool show = false;
     public Color color;
     public float Y = 0;
 
     public void OnDrawGizmos() {
-        if(!refs || !active)
+        if (!refs || !show)
             return;
 
         Transform north = refs.positions.scrumFieldNE;
