@@ -219,7 +219,7 @@ public class XboxInputs : myMonoBehaviour{
     {        
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
-            if (checkedControllers[i])
+            //if (checkedControllers[i])
             {
                 controllers[i].Update();
             }
