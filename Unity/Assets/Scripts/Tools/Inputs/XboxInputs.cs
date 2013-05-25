@@ -188,8 +188,6 @@ public class XboxInputs : myMonoBehaviour{
 
     const int MAX_CONTROLLERS = 4;
    
-    public int nConnectedControllers;
-
     public bool [] checkedControllers;
     public Controller[] controllers;
 
@@ -215,7 +213,7 @@ public class XboxInputs : myMonoBehaviour{
         this.CheckAll();
     }
 
-    void Update()
+    void LateUpdate()
     {        
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
