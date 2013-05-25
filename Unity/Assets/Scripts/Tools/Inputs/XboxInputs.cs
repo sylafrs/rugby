@@ -215,7 +215,7 @@ public class XboxInputs : myMonoBehaviour{
         this.CheckAll();
     }
 
-    void LateUpdate()
+    void Update()
     {        
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
