@@ -94,27 +94,23 @@ public class GameUI{
         const float wTex = 20;
 
         Camera cam = game.refs.managers.camera.gameCamera.camera;
+
         Vector3 side = cam.WorldToScreenPoint(u.transform.position);
         side.y = h - side.y;
 
+        Vector3 real = side;
+
         bool inside = true;
-
-        if (side.x < 0)
-        {
-            inside = false;
-            side.x = 0;
-        }
-
-        if (side.y < 0)
-        {
-            inside = false;
-            side.y = 0;
-        }
 
         if (side.x > w)
         {
             inside = false;
             side.x = w - wTex;
+        }
+        else if (side.x < 0)
+        {
+            inside = false;
+            side.x = 0;            
         }
 
         if (side.y > h)
@@ -122,9 +118,27 @@ public class GameUI{
             inside = false;
             side.y = h - wTex;
         }
+        else if (side.y < 0)
+        {
+            inside = false;
+            side.y = 0;
+        }
 
+        if (side.z < 0)
+        {
+            inside = false;
+            side.y = h - wTex;
+            side.x = w - side.x - wTex;
+        }
+
+        side.z = 0;
+                
         if (!inside)
         {
+            Vector3 delta = real - side; // Must be used for rotation.
+
+            //Debug.Log(side);
+
             GUI.Box(new Rect(side.x, side.y, wTex, wTex), u.name);
             //Debug.Log(u + " est hors vision !\n" + test);
         }
