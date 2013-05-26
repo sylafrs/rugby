@@ -91,38 +91,42 @@ public class GameUI{
         float w = Screen.width;
         float h = Screen.height;
 
+        const float wTex = 20;
+
         Camera cam = game.refs.managers.camera.gameCamera.camera;
-        Vector3 test = cam.WorldToScreenPoint(u.transform.position);
+        Vector3 side = cam.WorldToScreenPoint(u.transform.position);
+        side.y = h - side.y;
 
         bool inside = true;
 
-        if (test.x < 0)
+        if (side.x < 0)
         {
             inside = false;
-            test.x = 0;
+            side.x = 0;
         }
 
-        if (test.y < 0)
+        if (side.y < 0)
         {
             inside = false;
-            test.y = 0;
+            side.y = 0;
         }
 
-        if (test.x > w)
+        if (side.x > w)
         {
             inside = false;
-            test.x = w;
+            side.x = w - wTex;
         }
 
-        if (test.y > h)
+        if (side.y > h)
         {
             inside = false;
-            test.x = h;
+            side.y = h - wTex;
         }
 
         if (!inside)
         {
-            Debug.Log(u + " est hors vision !\n" + test);
+            GUI.Box(new Rect(side.x, side.y, wTex, wTex), u.name);
+            //Debug.Log(u + " est hors vision !\n" + test);
         }
     }
 
