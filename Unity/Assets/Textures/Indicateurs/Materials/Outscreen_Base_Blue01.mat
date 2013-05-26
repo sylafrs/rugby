@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Outscreen_Base_Blue01
-  m_Shader: {fileID: 7, guid: 0000000000000000e000000000000000, type: 0}
+  m_Shader: {fileID: 203, guid: 0000000000000000e000000000000000, type: 0}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -15,12 +15,20 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
+          m_Texture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .5, g: .5, b: .5, a: .5}
