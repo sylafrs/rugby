@@ -10,6 +10,9 @@ using System.Collections.Generic;
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : myMonoBehaviour, IEnumerable {
 
+    public Texture2D UIIndicator;
+    public Texture2D UIPlayerIndicator;
+
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
     public Game game {get; set;}
