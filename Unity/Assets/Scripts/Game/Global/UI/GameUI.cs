@@ -66,43 +66,27 @@ public class GameUI{
 
     public void ShowOutsideScreenUnit()
     {
-        try
-        {
-            Unit[] units = new Unit[2];
-            units[0] = game.southTeam.Player.Controlled;
-            units[1] = game.northTeam.Player.Controlled;            
+        Unit[] units = new Unit[2];
+        units[0] = game.southTeam.Player.Controlled;
+        units[1] = game.northTeam.Player.Controlled;            
             
-            foreach (Unit u in units)
-            {
-                ShowOutsideScreenUnit(u);
-            }            
-        }
-        catch (NullReferenceException e)
+        foreach (Unit u in units)
         {
-            Debug.Log(e.Message);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
+            ShowOutsideScreenUnit(u);
+        }               
     }
 
-    private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)
-    {
-        float w = Screen.width;
-        float h = Screen.height;
-               
+    private Vector2? GetOutsideIndicationPosition(Vector3 position)
+    {               
         Camera cam = game.refs.managers.camera.gameCamera.camera;
-
-        Vector3 screenPoint = cam.WorldToScreenPoint(position);
-        screenPoint.y = h - screenPoint.y;
-        
+        Vector3 screenPoint = cam.WorldToViewportPoint(position);
+                
         bool inside = true;
 
-        if (screenPoint.x > w)
+        if (screenPoint.x > 1)
         {
             inside = false;
-            screenPoint.x = w - offset.x;
+            screenPoint.x = 1;
         }
         else if (screenPoint.x < 0)
         {
@@ -110,10 +94,10 @@ public class GameUI{
             screenPoint.x = 0;
         }
 
-        if (screenPoint.y > h)
+        if (screenPoint.y > 1)
         {
             inside = false;
-            screenPoint.y = h - offset.y;
+            screenPoint.y = 1;
         }
         else if (screenPoint.y < 0)
         {
@@ -121,18 +105,18 @@ public class GameUI{
             screenPoint.y = 0;
         }
 
-        if (screenPoint.z < 0)
+        if (screenPoint.z <= 0)
         {
             inside = false;
-            screenPoint.y = h - offset.y;
-            screenPoint.x = w - screenPoint.x - offset.x;
+            screenPoint.y = 0;
+            screenPoint.x = 1 - screenPoint.x;
         }
 
         screenPoint.z = 0;
 
         if (inside)
         {
-            return Vector2.zero;
+            return null;
         }
 
         return screenPoint;
@@ -140,19 +124,27 @@ public class GameUI{
 
     private void ShowOutsideScreenUnit(Unit u) {
 
-        Team.HiddenPositionIndicator ind = u.Team.hiddenPositionIndicator;
-
-        Texture2D rot = ind.rotatedTexture;
-        
-        float scale = ind.rotatedTextureScale;
-        if(scale == 0) scale = 1;
-
-        Vector2 size = new Vector2(rot.width, rot.height) / scale;
-
-        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, size);
-        if (pos != Vector2.zero)
+        GameObject ind = u.Team.hiddenPositionIndicator;
+        Transform rot = ind.transform.FindChild("rotate");
+                
+        Vector2? pos = this.GetOutsideIndicationPosition(u.transform.position);
+        if (pos != null)
         {
-            GUI.DrawTexture(new Rect(pos.x, pos.y, size.x, size.y), ind.rotatedTexture);
+            Vector2 Pos = (Vector2)pos;
+
+            Debug.Log(pos);
+
+            ind.SetActive(true);
+            Camera cam = game.refs.managers.camera.gameCamera.camera;
+
+            float z = ind.transform.localPosition.z;
+            Vector3 indPos = cam.ViewportToWorldPoint(Pos);
+
+            ind.transform.localPosition = new Vector3(indPos.x, indPos.y, z);
+        }
+        else
+        {
+            ind.SetActive(false);
         }
     }
 

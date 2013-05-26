@@ -10,16 +10,7 @@ using System.Collections.Generic;
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : myMonoBehaviour, IEnumerable {
 
-    [System.Serializable]
-    public class HiddenPositionIndicator {
-        public Texture2D rotatedTexture;
-        public Texture2D centerTexture;
-        public Vector2 startRotation;
-        public float rotatedTextureScale;
-        public Rect centerTextureRect;
-    }
-
-    public HiddenPositionIndicator hiddenPositionIndicator;
+    public GameObject hiddenPositionIndicator;
 
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
