@@ -12,6 +12,7 @@ public class Team : myMonoBehaviour, IEnumerable {
 
     public Texture2D UIIndicator;
     public Texture2D UIPlayerIndicator;
+    public Vector2 UIIndicatorStartRotation;
 
     public Team opponent {get; set;}
     public Gamer Player {get; set;}
