@@ -9,7 +9,7 @@ using System.Collections.Generic;
  */
 [System.Serializable, AddComponentMenu("Scripts/Models/Team")]
 public class Team : myMonoBehaviour, IEnumerable {
-
+  
     public GameObject hiddenPositionIndicator;
 
     public Team opponent {get; set;}

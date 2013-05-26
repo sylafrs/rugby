@@ -98,6 +98,8 @@ public class Gamer
         if(XboxController == null)
             XboxController = game.refs.xboxInputs.controllers[id];
 
+        ShowHiddenPlayer();
+
         if (Inputs == null) 
             return;
 
@@ -524,4 +526,53 @@ public class Gamer
 			}			
 		}
 	}
+
+    void ShowHiddenPlayer() {
+        if(this.Controlled)
+            ShowOutsideScreenUnit(this.Controlled);
+    }
+    
+    public static bool IsVisibleByCamera(Camera cam, Vector3 position)
+    {
+        float w = cam.pixelWidth, h = cam.pixelHeight;
+        Vector3 screenPoint = cam.WorldToScreenPoint(position);
+        bool inside = true;
+
+        if (screenPoint.x > w)
+        {
+            inside = false;
+        }
+        else if (screenPoint.x < 0)
+        {
+            inside = false;
+        }
+
+        if (screenPoint.y > h)
+        {
+            inside = false;
+        }
+        else if (screenPoint.y < 0)
+        {
+            inside = false;
+        }
+
+        return inside;
+    }
+
+
+    private void ShowOutsideScreenUnit(Unit u)
+    {
+        Camera cam = this.game.refs.managers.camera.gameCamera.camera;
+        GameObject ind = u.Team.hiddenPositionIndicator;
+        //Transform rot = ind.transform.FindChild("RotateMe");
+
+        if(!IsVisibleByCamera(cam, u.transform.position)) 
+        {
+            ind.SetActive(true);
+        }
+        else
+        {
+            ind.SetActive(false);
+        }
+    }
 }
