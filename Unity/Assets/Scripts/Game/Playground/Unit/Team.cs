@@ -15,8 +15,8 @@ public class Team : myMonoBehaviour, IEnumerable {
         public Texture2D rotatedTexture;
         public Texture2D centerTexture;
         public Vector2 startRotation;
-        public Vector2 rotatedTextureSize;
-        public Vector2 centerTextureSize;
+        public float rotatedTextureScale;
+        public Rect centerTextureRect;
     }
 
     public HiddenPositionIndicator hiddenPositionIndicator;

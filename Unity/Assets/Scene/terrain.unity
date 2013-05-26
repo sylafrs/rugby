@@ -1295,8 +1295,13 @@ MonoBehaviour:
     rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
     centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
     startRotation: {x: 0, y: -1}
-    rotatedTextureSize: {x: 20, y: 20}
-    centerTextureSize: {x: 15, y: 15}
+    rotatedTextureScale: .200000003
+    centerTextureRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 70
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
@@ -5937,8 +5942,13 @@ MonoBehaviour:
     rotatedTexture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
     centerTexture: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
     startRotation: {x: 0, y: -1}
-    rotatedTextureSize: {x: 20, y: 20}
-    centerTextureSize: {x: 15, y: 15}
+    rotatedTextureScale: .200000003
+    centerTextureRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 70
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
