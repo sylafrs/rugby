@@ -139,20 +139,12 @@ public class GameUI{
     }
 
     private void ShowOutsideScreenUnit(Unit u) {
-
-        Team.HiddenPositionIndicator ind = u.Team.hiddenPositionIndicator;
-
-        Texture2D rot = ind.rotatedTexture;
-        
-        float scale = ind.rotatedTextureScale;
-        if(scale == 0) scale = 1;
-
-        Vector2 size = new Vector2(rot.width, rot.height) / scale;
-
-        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, size);
+       
+        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, Vector2.one*20);
         if (pos != Vector2.zero)
         {
-            GUI.DrawTexture(new Rect(pos.x, pos.y, size.x, size.y), ind.rotatedTexture);
+            GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
+            //Debug.Log(u + " est hors vision !\n" + test);
         }
     }
 
