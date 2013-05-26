@@ -1291,9 +1291,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
-  UIIndicator: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
-  UIPlayerIndicator: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
-  UIIndicatorStartRotation: {x: 0, y: -1}
+  hiddenPositionIndicator:
+    rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
+    centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
+    startRotation: {x: 0, y: -1}
+    rotatedTextureSize: {x: 20, y: 20}
+    centerTextureSize: {x: 15, y: 15}
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
@@ -5930,9 +5933,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
-  UIIndicator: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
-  UIPlayerIndicator: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
-  UIIndicatorStartRotation: {x: 0, y: -1}
+  hiddenPositionIndicator:
+    rotatedTexture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
+    centerTexture: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
+    startRotation: {x: 0, y: -1}
+    rotatedTextureSize: {x: 20, y: 20}
+    centerTextureSize: {x: 15, y: 15}
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
