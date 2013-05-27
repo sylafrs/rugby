@@ -40,6 +40,9 @@ public class UnitAnimator : myMonoBehaviour {
         }
     }
 
+
+
+
     public void Start()
     {
         unit = this.GetComponent<Unit>();
@@ -50,7 +53,6 @@ public class UnitAnimator : myMonoBehaviour {
     }
 
 	private int delayStop = DELAY;
-
     public void Update()
     {
         if (animator)

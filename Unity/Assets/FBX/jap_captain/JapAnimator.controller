@@ -89,7 +89,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: jap_run
-  m_Speed: .800000012
+  m_Speed: .899999976
   m_Motions:
   - {fileID: 7400000, guid: 9e8a49d19fed8f041b4f070c41bdbb1b, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
