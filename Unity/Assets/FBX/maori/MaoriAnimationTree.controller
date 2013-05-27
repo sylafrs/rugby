@@ -77,11 +77,11 @@ AnimatorController:
     m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
-    m_DefaultInt: 5
+    m_DefaultInt: 8
     m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
-    m_Name: Base Layer
+    m_Name: Maori
     m_Type: 0
     m_StateMachine: {fileID: 110700000}
     m_HumanMask: {fileID: 0}
@@ -529,7 +529,7 @@ StateMachine:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Maori
   m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110208468}
@@ -546,10 +546,48 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_LocalTransitions:
     data:
+      first: {fileID: 0}
+      second: []
+    data:
+      first: {fileID: 110200000}
+      second:
+      - {fileID: 110100000}
+      - {fileID: 110131084}
+      - {fileID: 110166202}
+    data:
+      first: {fileID: 110208468}
+      second:
+      - {fileID: 110146972}
+      - {fileID: 110131984}
+    data:
+      first: {fileID: 110275423}
+      second:
+      - {fileID: 110188629}
+    data:
+      first: {fileID: 110246519}
+      second:
+      - {fileID: 110157732}
+    data:
+      first: {fileID: 110266262}
+      second:
+      - {fileID: 110116528}
+      - {fileID: 110173655}
+      - {fileID: 110100293}
+      - {fileID: 110169374}
+    data:
+      first: {fileID: 110277665}
+      second:
+      - {fileID: 110156463}
+    data:
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
       first: {fileID: 110258181}
       second:
       - {fileID: 110155330}
       - {fileID: 110129123}
+  m_OrderedTransitions:
     data:
       first: {fileID: 0}
       second: []
@@ -565,13 +603,13 @@ StateMachine:
       - {fileID: 110146972}
       - {fileID: 110131984}
     data:
+      first: {fileID: 110275423}
+      second:
+      - {fileID: 110188629}
+    data:
       first: {fileID: 110246519}
       second:
       - {fileID: 110157732}
-    data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
     data:
       first: {fileID: 110266262}
       second:
@@ -580,62 +618,24 @@ StateMachine:
       - {fileID: 110100293}
       - {fileID: 110169374}
     data:
-      first: {fileID: 110275423}
-      second:
-      - {fileID: 110188629}
-    data:
       first: {fileID: 110277665}
       second:
       - {fileID: 110156463}
-  m_OrderedTransitions:
     data:
-      first: {fileID: 110224055}
-      second: []
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
+      first: {fileID: 110258181}
+      second:
+      - {fileID: 110155330}
+      - {fileID: 110129123}
     data:
       first: {fileID: 110250913}
       second: []
     data:
-      first: {fileID: 110258181}
-      second:
-      - {fileID: 110155330}
-      - {fileID: 110129123}
-    data:
-      first: {fileID: 0}
+      first: {fileID: 110224055}
       second: []
-    data:
-      first: {fileID: 110200000}
-      second:
-      - {fileID: 110100000}
-      - {fileID: 110131084}
-      - {fileID: 110166202}
-    data:
-      first: {fileID: 110208468}
-      second:
-      - {fileID: 110146972}
-      - {fileID: 110131984}
-    data:
-      first: {fileID: 110246519}
-      second:
-      - {fileID: 110157732}
-    data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
-    data:
-      first: {fileID: 110266262}
-      second:
-      - {fileID: 110116528}
-      - {fileID: 110173655}
-      - {fileID: 110100293}
-      - {fileID: 110169374}
-    data:
-      first: {fileID: 110275423}
-      second:
-      - {fileID: 110188629}
-    data:
-      first: {fileID: 110277665}
-      second:
-      - {fileID: 110156463}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -36, y: 132, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

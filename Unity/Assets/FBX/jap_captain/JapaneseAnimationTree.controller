@@ -77,11 +77,11 @@ AnimatorController:
     m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
-    m_DefaultInt: 2
+    m_DefaultInt: 8
     m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
-    m_Name: Base Layer
+    m_Name: Japanese
     m_Type: 0
     m_StateMachine: {fileID: 110700000}
     m_HumanMask: {fileID: 0}
@@ -472,7 +472,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PassLeft
-  m_Speed: .200000003
+  m_Speed: 1
   m_Motions:
   - {fileID: 7400002, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
@@ -524,7 +524,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PassRight
-  m_Speed: .200000003
+  m_Speed: 1
   m_Motions:
   - {fileID: 7400000, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
@@ -537,7 +537,7 @@ StateMachine:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Japanese
   m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110208468}
@@ -568,18 +568,13 @@ StateMachine:
       - {fileID: 110146972}
       - {fileID: 110131984}
     data:
+      first: {fileID: 110275423}
+      second:
+      - {fileID: 110188629}
+    data:
       first: {fileID: 110246519}
       second:
       - {fileID: 110157732}
-    data:
-      first: {fileID: 110258181}
-      second:
-      - {fileID: 110155330}
-      - {fileID: 110129123}
-    data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
     data:
       first: {fileID: 110266262}
       second:
@@ -588,13 +583,18 @@ StateMachine:
       - {fileID: 110100293}
       - {fileID: 110169374}
     data:
-      first: {fileID: 110275423}
-      second:
-      - {fileID: 110188629}
-    data:
       first: {fileID: 110277665}
       second:
       - {fileID: 110156463}
+    data:
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
+      first: {fileID: 110258181}
+      second:
+      - {fileID: 110155330}
+      - {fileID: 110129123}
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
@@ -611,24 +611,13 @@ StateMachine:
       - {fileID: 110146972}
       - {fileID: 110131984}
     data:
-      first: {fileID: 110224055}
-      second: []
+      first: {fileID: 110275423}
+      second:
+      - {fileID: 110188629}
     data:
       first: {fileID: 110246519}
       second:
       - {fileID: 110157732}
-    data:
-      first: {fileID: 110250913}
-      second: []
-    data:
-      first: {fileID: 110258181}
-      second:
-      - {fileID: 110155330}
-      - {fileID: 110129123}
-    data:
-      first: {fileID: 110259589}
-      second:
-      - {fileID: 110199236}
     data:
       first: {fileID: 110266262}
       second:
@@ -637,13 +626,24 @@ StateMachine:
       - {fileID: 110100293}
       - {fileID: 110169374}
     data:
-      first: {fileID: 110275423}
-      second:
-      - {fileID: 110188629}
-    data:
       first: {fileID: 110277665}
       second:
       - {fileID: 110156463}
+    data:
+      first: {fileID: 110259589}
+      second:
+      - {fileID: 110199236}
+    data:
+      first: {fileID: 110258181}
+      second:
+      - {fileID: 110155330}
+      - {fileID: 110129123}
+    data:
+      first: {fileID: 110250913}
+      second: []
+    data:
+      first: {fileID: 110224055}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -36, y: 132, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
