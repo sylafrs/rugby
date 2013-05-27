@@ -110,7 +110,6 @@ public class Unit : TriggeringTriggered, Debugable
 	{
 		if (!thisReferent && this.Team.Player.Controlled == this)
 		{
-			//Debug.Log(this);
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 		}
 		else if (thisReferent)
@@ -153,6 +152,8 @@ public class Unit : TriggeringTriggered, Debugable
 				//Debug.Log(s);
 				if (u != null)
 				{
+					u.canCatchTheBall = true;
+					u.ballZone = false;
 					u.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 					this.Team.nbOffensivePlayer++;
 					newList.Remove(u);
@@ -212,7 +213,7 @@ public class Unit : TriggeringTriggered, Debugable
 			//Je bouge tout seul si je ne suis pas le destinataire de la passe
 			if (this.game.Ball.NextOwner != this)
 			{
-				Debug.Log("moi : " + this + " nextOwner : " + this.game.Ball.NextOwner);
+				//Debug.Log("moi : " + this + " nextOwner : " + this.game.Ball.NextOwner);
 				
 			}
 		}
@@ -267,7 +268,13 @@ public class Unit : TriggeringTriggered, Debugable
 				this.ballZone = true;
 				//Déplacement sur X
 				pos.x += this.game.Ball.transform.position.x - this.transform.position.x;
-				this.Order = Order.OrderMove(pos);
+				if (pos.x != oldPos.x)
+				{
+					//je bouge
+					//Debug.Log("premier orderMove " + this + " bouge a la position : " + pos);
+					this.Order = Order.OrderMove(pos);
+					oldPos = pos;
+				}
 			}
 		}
 
@@ -284,11 +291,11 @@ public class Unit : TriggeringTriggered, Debugable
 					{
 						if (u.transform.position.x > this.transform.position.x)
 						{
-							pos.x = u.transform.position.x - this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + this.game.rand.Next(5);
+							pos.x = u.transform.position.x - (this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + this.game.rand.Next(5));
 						}
 						else
 						{
-							pos.x = u.transform.position.x + this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer - this.game.rand.Next(5);
+							pos.x = u.transform.position.x + (this.game.settings.Global.Team.distanceMaxBetweenDefensePlayer + this.game.rand.Next(5));
 						}
 					}
 					else if (distX < this.game.settings.Global.Team.distanceMinBetweenDefensePlayer)
@@ -302,6 +309,7 @@ public class Unit : TriggeringTriggered, Debugable
 							pos.x = u.transform.position.x + (this.game.settings.Global.Team.distanceMinBetweenDefensePlayer + this.game.rand.Next(5));
 						}
 					}
+					/*
 					else // cas normal
 					{
 						if (this.game.rand.Next(100) > 50)
@@ -309,9 +317,12 @@ public class Unit : TriggeringTriggered, Debugable
 						else
 							pos.x -= this.game.rand.Next(5);
 					}
+					*/
 				}
 				if (pos.x != oldPos.x)
 				{
+					//je bouge
+					//Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
 					this.Order = Order.OrderMove(pos);
 					oldPos = pos;
 				}
@@ -352,39 +363,39 @@ public class Unit : TriggeringTriggered, Debugable
 			}
 		}
 
-		//Contrainte sur Z
-		if (distZ > this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer)
-		{
-			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
-			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
-			{
-				pos.z = this.team.Player.Controlled.transform.position.z -
-					(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
-			}
-			else
-				pos.z = pos.z = this.team.Player.Controlled.transform.position.z +
-					(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
-		}
-		else if (distZ < this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer)
-		{
-			//Debug.Log("too near : " + this);
-			if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
-				pos.z -= (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
-			else
-				pos.z += (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
-		}/*
-		else // cas normal
-		{
-			if (this.game.rand.Next(100) > 50)
-				pos.z += (float)this.game.rand.Next(5);
-			else
-				pos.z -= (float)this.game.rand.Next(5);
-		}*/
+		////Contrainte sur Z
+		//if (distZ > this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer)
+		//{
+		//	//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
+		//	if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
+		//	{
+		//		pos.z = this.team.Player.Controlled.transform.position.z -
+		//			(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
+		//	}
+		//	else
+		//		pos.z = pos.z = this.team.Player.Controlled.transform.position.z +
+		//			(this.game.settings.Global.Team.distanceMaxBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble());
+		//}
+		//else if (distZ < this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer)
+		//{
+		//	//Debug.Log("too near : " + this);
+		//	if (this.Team.Player.Controlled.transform.position.z > this.transform.position.z)
+		//		pos.z -= (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
+		//	else
+		//		pos.z += (this.game.settings.Global.Team.distanceMinBetweenOffensiveAndDefensePlayer + (float)this.game.rand.NextDouble()) - distZ;
+		//}/*
+		//else // cas normal
+		//{
+		//	if (this.game.rand.Next(100) > 50)
+		//		pos.z += (float)this.game.rand.Next(5);
+		//	else
+		//		pos.z -= (float)this.game.rand.Next(5);
+		//}*/
 
-		if (pos.z != oldPos.z)
-		{
-			this.Order = Order.OrderMove(pos);
-		}
+		//if (pos.z != oldPos.z)
+		//{
+		//	this.Order = Order.OrderMove(pos);
+		//}
 
 	}
 

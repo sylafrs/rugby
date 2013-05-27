@@ -224,7 +224,8 @@ public class Ball : TriggeringTriggered
 		{
 			if (this.transform.position.y > epsilonOnGround)
 			{
-				passManager.oPassState = PassSystem.passState.ONPASS;
+				if (passManager.oPassState == PassSystem.passState.SETUP)
+					passManager.oPassState = PassSystem.passState.ONPASS;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
@@ -249,7 +250,7 @@ public class Ball : TriggeringTriggered
 			timeOnPass = -1;
 		}
 
-		if (timeOnPass == -1 && passManager != null)
+		if (timeOnPass == -1 && passManager != null && passManager.oPassState != PassSystem.passState.NONE)
 		{
 			passManager.oPassState = PassSystem.passState.NONE;
 		}
