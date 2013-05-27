@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -152,6 +152,9 @@ MonoBehaviour:
     limiteTerrainSudOuest: {fileID: 673607277}
     scrumFieldNE: {fileID: 451532785}
     scrumFieldSW: {fileID: 2059085082}
+    cameraFirstPosition: {fileID: 1169664533}
+    fieldCenter: {fileID: 352579018}
+    rotationCenter: {fileID: 1436533199}
   xboxInputs: {fileID: 219502520}
 --- !u!1 &9213360
 GameObject:
@@ -1869,6 +1872,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b931afe6e8968c46871ea700a2db461, type: 3}
   m_Name: 
   checkedControllers: 
+--- !u!1 &227774842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 227774843}
+  m_Layer: 0
+  m_Name: Intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &227774843
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227774842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 12.7435341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 352579018}
+  - {fileID: 1436533199}
+  m_Father: {fileID: 2121886553}
 --- !u!1 &235184406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,6 +3080,32 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!1 &352579017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 352579018}
+  m_Layer: 0
+  m_Name: TerrainCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352579018
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352579017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 227774843}
 --- !u!1 &355882710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,7 +3639,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: 
+  DebugWindowFilter: R
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,7 +4015,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
-  UseFlorianIA: 0
+  UseFlorianIA: 1
   alwaysScrum: 0
   settings:
     Global:
@@ -3997,21 +4054,26 @@ MonoBehaviour:
         Vheight: 10
         Vwidth: 5
         LineSpace: 5
-        distanceMinBetweenDefensePlayer: 25
-        distanceMaxBetweenDefensePlayer: 30
-        distanceMinBetweenOffensivePlayer: 10
-        distanceMaxBetweenOffensivePlayer: 15
-        distanceMinBetweenOffensiveAndDefensePlayer: 15
-        distanceMaxBetweenOffensiveAndDefensePlayer: 25
+        dMinDefensePlayer: 30
+        dMaxDefensePlayer: 35
+        dMinControlledDefense: 25
+        dMaxControlledDefense: 30
+        dMinOffensivePlayer: 15
+        dMaxOffensivePlayer: 25
+        dMinControlledOffensive: 5
+        dMaxControlledOffensive: 10
         nbOffensivePlayer: 2
     GameStates:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
+          rotationSpeed: 10
         PlayingState:
           MainGameState:
             RunningState:
-              BallHandlingState: {}
+              BallHandlingState:
+                GainingGrounCamSettings:
+                  zoom: 1
               BallFreeState:
                 BallFlyingState:
                   angleDropKick: 45
@@ -4022,6 +4084,9 @@ MonoBehaviour:
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
+              ConversionFly:
+                ConversionFlyCam:
+                  zoom: .300000012
             ScrumingState:
               timeToGetOutTackleAreaBeforeScrum: 2
               minPlayersEachTeamToTriggerScrum: 3
@@ -4034,6 +4099,8 @@ MonoBehaviour:
               offsetCamera: {x: 3, y: 1.20000005, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
+              TouchCamSettings:
+                zoom: 1
     Inputs:
       shortPass:
         keyboardP1: 49
@@ -9272,6 +9339,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1069563503}
+  - 114: {fileID: 1069563504}
   m_Layer: 0
   m_Name: TransfoPlacement
   m_TagString: Untagged
@@ -9293,6 +9361,24 @@ Transform:
   - {fileID: 187177887}
   - {fileID: 1210672507}
   m_Father: {fileID: 1281031929}
+--- !u!114 &1069563504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069563502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e871c237412183a4ba65a64e3dd117fa, type: 3}
+  m_Name: 
+  active: 1
+  colorPattern:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  sizePoint: 1
+  lengthForward: 5
 --- !u!1 &1072405197
 GameObject:
   m_ObjectHideFlags: 0
@@ -10025,6 +10111,32 @@ Transform:
   - {fileID: 2032367093}
   - {fileID: 1581890522}
   m_Father: {fileID: 1774892247}
+--- !u!1 &1169664532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1169664533}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169664533
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169664532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -60.4548531, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1436533199}
 --- !u!1 &1174807241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12655,6 +12767,33 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!1 &1436533198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1436533199}
+  m_Layer: 0
+  m_Name: RotationCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1436533199
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436533198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 24.4653206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1169664533}
+  m_Father: {fileID: 227774843}
 --- !u!1 &1437403889
 GameObject:
   m_ObjectHideFlags: 0
@@ -15567,8 +15706,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a8721f455e991f14693dc0b29d64d42b, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1774938419}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.4399996, z: -10}
+  m_LocalRotation: {x: .0544837378, y: .0335413143, z: -.00183121115, w: .997949481}
+  m_LocalPosition: {x: -1.79999995, y: 12, z: -24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1601971140}
@@ -17716,7 +17855,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e871c237412183a4ba65a64e3dd117fa, type: 3}
   m_Name: 
-  active: 1
+  active: 0
   colorPattern:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
@@ -18105,6 +18244,7 @@ Transform:
   m_LocalPosition: {x: .00147628784, y: .995758057, z: -13.1902008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 227774843}
   - {fileID: 451532785}
   - {fileID: 2059085082}
   - {fileID: 908523407}

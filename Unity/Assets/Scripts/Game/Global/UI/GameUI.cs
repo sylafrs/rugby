@@ -61,4 +61,65 @@ public class GameUI{
 		//time
 		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
     }
+
+    private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)
+    {
+        float w = Screen.width;
+        float h = Screen.height;
+               
+        Camera cam = game.refs.managers.camera.gameCamera.camera;
+
+        Vector3 screenPoint = cam.WorldToScreenPoint(position);
+        screenPoint.y = h - screenPoint.y;
+        
+        bool inside = true;
+
+        if (screenPoint.x > w)
+        {
+            inside = false;
+            screenPoint.x = w - offset.x;
+        }
+        else if (screenPoint.x < 0)
+        {
+            inside = false;
+            screenPoint.x = 0;
+        }
+
+        if (screenPoint.y > h)
+        {
+            inside = false;
+            screenPoint.y = h - offset.y;
+        }
+        else if (screenPoint.y < 0)
+        {
+            inside = false;
+            screenPoint.y = 0;
+        }
+
+        if (screenPoint.z < 0)
+        {
+            inside = false;
+            screenPoint.y = h - offset.y;
+            screenPoint.x = w - screenPoint.x - offset.x;
+        }
+
+        screenPoint.z = 0;
+
+        if (inside)
+        {
+            return Vector2.zero;
+        }
+
+        return screenPoint;
+    }
+
+    private void ShowOutsideScreenUnit(Unit u) {
+       
+        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, Vector2.one*20);
+        if (pos != Vector2.zero)
+        {
+            GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
+            //Debug.Log(u + " est hors vision !\n" + test);
+        }
+    }
 }

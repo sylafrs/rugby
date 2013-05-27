@@ -19,6 +19,7 @@ public class MainStateSettings
 public class IntroStateSettings
 {
 	public float timeToSleepAfterIntro    = 3; // Seconds (precision : miliseconds)
+	public float rotationSpeed		   	  = 10; // Seconds (precision : miliseconds)
 }
 
 [System.Serializable]
@@ -53,14 +54,10 @@ public class RunningStateSettings
 [System.Serializable]
 public class BallHandlingStateSettings
 {
-	public GainGroundingStateSettings 	GainGroundingState;
+	//public GainGroundingStateSettings 	GainGroundingState;
+	public CamSettings					GainingGrounCamSettings;	
+	
 	public DodgingStateSettings			DodgingState;
-}
-
-[System.Serializable]
-public class GainGroundingStateSettings
-{
-		
 }
 
 [System.Serializable]
@@ -145,7 +142,7 @@ public class AimingConversionStateSettings
 [System.Serializable]
 public class ConversionFlyStateSettings
 {
-		
+	public CamSettings ConversionFlyCam;
 }
 
 [System.Serializable]
@@ -168,4 +165,6 @@ public class ScrumingStateSettings
 public class TouchingStateSettings
 {
 	public bool ToucheRemiseAuCentre = false;
+	
+	public CamSettings TouchCamSettings;
 }

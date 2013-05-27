@@ -8,47 +8,47 @@ using System.Collections;
  */
 public class DefensiveSide : UnitState
 {
-    public DefensiveSide(StateMachine sm, Unit unit) : base(sm, unit) { }
+	public DefensiveSide(StateMachine sm, Unit unit) : base(sm, unit) { }
 
-    Order o;
+	Order o;
 
-    public override void OnEnter()
-    {
-        o = unit.Order;
-    }
-
-    public override void OnUpdate()
+	public override void OnEnter()
 	{
-		Order.TYPE_POSITION typePosition = o.target.Team.PositionInMap( o.target );
-		switch ( typePosition )
+		o = unit.Order;
+	}
+
+	public override void OnUpdate()
+	{
+		Order.TYPE_POSITION typePosition = o.target.Team.PositionInMap(o.target);
+		switch (typePosition)
 		{
 			case Order.TYPE_POSITION.EXTRA_LEFT:
-			{
-				PositionExtraLeftSide();
-				break;
-			}
+				{
+					PositionExtraLeftSide();
+					break;
+				}
 			case Order.TYPE_POSITION.LEFT:
-			{
-				PositionLeftSide();
-				break;
-			}
+				{
+					PositionLeftSide();
+					break;
+				}
 			case Order.TYPE_POSITION.RIGHT:
-			{
-				PositionRightSide();
-				break;
-			}
+				{
+					PositionRightSide();
+					break;
+				}
 			case Order.TYPE_POSITION.EXTRA_RIGHT:
-			{
-				PositionExtraRightSide();
-				break;
-			}
+				{
+					PositionExtraRightSide();
+					break;
+				}
 			case Order.TYPE_POSITION.MIDDLE_LEFT:
 			case Order.TYPE_POSITION.MIDDLE_RIGHT:
 			case Order.TYPE_POSITION.MIDDLE:
-			{
-				PositionMiddleSide();
-				break;
-			}
+				{
+					PositionMiddleSide();
+					break;
+				}
 			default: break;
 		}
 	}
@@ -76,7 +76,7 @@ public class DefensiveSide : UnitState
 		int dif = unit.Team.GetLineNumber(unit, o.target);
 		float x;
 		float z;
-		
+
 		if (o.point.z < 0)
 		{
 			x = o.point.x * dif;
@@ -99,7 +99,7 @@ public class DefensiveSide : UnitState
 		unit.nma.stoppingDistance = 0;
 		unit.nma.SetDestination(new Vector3(tPos.x + x, 0, tPos.z + z));
 	}
-	
+
 	public void PositionExtraRightSide()
 	{
 		Vector3 tPos = o.target.transform.position;

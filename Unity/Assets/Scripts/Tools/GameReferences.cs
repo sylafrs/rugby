@@ -38,6 +38,9 @@ public class GameReferences : myMonoBehaviour {
         public Transform limiteTerrainSudOuest;
         public Transform scrumFieldNE;
         public Transform scrumFieldSW;
+		public Transform cameraFirstPosition;
+        public Transform fieldCenter;
+        public Transform rotationCenter;
     }
 
     [System.Serializable]

@@ -143,7 +143,7 @@ public class Game : myMonoBehaviour {
     }
 
     public void OnPass(Unit from, Unit to)
-    {
+    {        
         this.refs.stateMachine.event_Pass(from, to);        
     }
 
@@ -235,16 +235,6 @@ public class Game : myMonoBehaviour {
     {
         this.refs.stateMachine.event_OnResumeSignal(time);
     }
-
-    /*public void TimedDisableIA(float time)
-    {
-        this.disableIA = true;
-        Timer.AddTimer(time, () =>
-        {
-            this.refs.stateMachine.event_OnStartSignal();
-            this.disableIA = false;
-        });
-    }*/
 
 	/*
 	 * Cette fonction me retourne le nombre de zone d'écart entre deux positions d'objets.

@@ -41,7 +41,6 @@ public struct Order  {
     public TYPE type;
 	public TYPE_POSITION position;
 	public float pressionCapture;
-	public Vector3 passDirection;
     public Unit target;
     public Transform targetT;
     public float power;

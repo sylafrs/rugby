@@ -13,6 +13,7 @@ public class BallFreeState : GameState {
     public override void OnEnter()
     {
         this.decide();
+		
     }
 
     public override bool OnBallOnGround(bool onGround)

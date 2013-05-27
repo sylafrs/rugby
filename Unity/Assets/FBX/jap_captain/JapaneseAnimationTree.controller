@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MaoriAnimationTree
+  m_Name: JapaneseAnimationTree
   m_AnimatorEvents:
   - m_Name: in_speed
     m_Type: 1
@@ -81,7 +81,7 @@ AnimatorController:
     m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
-    m_Name: Maori
+    m_Name: Japanese
     m_Type: 0
     m_StateMachine: {fileID: 110700000}
     m_HumanMask: {fileID: 0}
@@ -149,6 +149,10 @@ Transition:
     m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .673913002
+  - m_ConditionMode: 2
+    m_ConditionEvent: in_pass
+    m_EventTreshold: 0
+    m_ExitTime: .673913002
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -207,6 +211,10 @@ Transition:
   m_TransitionDuration: .326086968
   m_TransitionOffset: 0
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: in_pass
+    m_EventTreshold: 0
+    m_ExitTime: .673913002
   - m_ConditionMode: 1
     m_ConditionEvent: in_ball
     m_EventTreshold: 0
@@ -385,10 +393,10 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Maori_Idle
+  m_Name: Idle
   m_Speed: 1
   m_Motions:
-  - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
+  - {fileID: 7400000, guid: 26d409397d11f134f9e6e581b56d7853, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 24, y: -24, z: 0}
   m_IKOnFeet: 1
@@ -398,10 +406,10 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Maori_Run
-  m_Speed: 1
+  m_Name: Run
+  m_Speed: .800000012
   m_Motions:
-  - {fileID: 7400000, guid: dae1f63e4b163c346b44d3b038951e9e, type: 3}
+  - {fileID: 7400000, guid: 9e8a49d19fed8f041b4f070c41bdbb1b, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 24, y: -84, z: 0}
   m_IKOnFeet: 1
@@ -529,7 +537,7 @@ StateMachine:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Maori
+  m_Name: Japanese
   m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110208468}
