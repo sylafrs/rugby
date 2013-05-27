@@ -11,15 +11,34 @@ using UnityEngine;
 
 public class IntroState : GameState
 {
-	public IntroState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
-
-	// Petit tp + fondu
+    public IntroState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
+	
+	private Transform cameraFirstPosition;
+	private Transform fieldCenter;
+	private Transform rotationCenter;
+	
+	private float	 rotationSpeed;
+	private float	 rotationAngle;
+	
+    // Petit tp + fondu
 	public override void OnEnter()
-	{
-		this.stepBack();
-	}
-
-	// Petit tp + fondu, se rappelle quand se termine.
+    {
+        //this.stepBack()
+		
+		cameraFirstPosition = game.refs.positions.cameraFirstPosition;
+		fieldCenter			= game.refs.positions.fieldCenter;
+		rotationCenter		= game.refs.positions.rotationCenter;
+		
+		rotationSpeed = cam.game.settings.GameStates.MainState.IntroState.rotationSpeed;
+		
+		rotationAngle = 1 * rotationSpeed;
+		
+		//tp la camera au place holder
+		Camera.mainCamera.transform.position = cameraFirstPosition.position;
+		
+    }
+	
+    // Petit tp + fondu, se rappelle quand se termine.
 	private void stepBack()
 	{
 		cam.transalateWithFade(new Vector3(0, 0, -10), 4f, 1f, 1f, 1f, () =>
@@ -30,18 +49,12 @@ public class IntroState : GameState
 
 	// Recule sans arrêt
 	public override void OnUpdate()
-	{
-		Camera.mainCamera.transform.Translate(0, 0, 0.08f, Space.Self);
-
-		//foreach (Unit u in game.northTeam)
-		//{
-		//	u.UpdateTypeOfPlay();
-		//}
-
-		//foreach (Unit u in game.southTeam)
-		//{
-		//	u.UpdateTypeOfPlay();
-		//}
+    {		
+		//rotate Around
+		Camera.mainCamera.transform.RotateAround(rotationCenter.position,new Vector3(0,1,0),rotationAngle * Mathf.Deg2Rad);
+		
+		//lookat
+		Camera.mainCamera.transform.LookAt(fieldCenter);
 	}
 
 	// On va vers la cible, on fait un fondu (en écrasant le précédent).

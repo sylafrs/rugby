@@ -19,6 +19,7 @@ public class MainStateSettings
 public class IntroStateSettings
 {
 	public float timeToSleepAfterIntro    = 3; // Seconds (precision : miliseconds)
+	public float rotationSpeed		   	  = 10; // Seconds (precision : miliseconds)
 }
 
 [System.Serializable]
