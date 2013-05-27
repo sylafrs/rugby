@@ -1637,6 +1637,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1703949692}
   m_GameObject: {fileID: 195989357}
   m_Mesh: {fileID: 4300008, guid: 2b80ac0caf4e93b4abc673855d3d5745, type: 3}
+--- !u!1 &198748045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 198748046}
+  - 114: {fileID: 198748047}
+  m_Layer: 0
+  m_Name: GetAnimators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &198748046
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198748045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1419876916}
+--- !u!114 &198748047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198748045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c98a37ae52745498f809e387285a5a, type: 3}
+  m_Name: 
 --- !u!1 &200896249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,7 +3657,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: R
+  DebugWindowFilter: Get
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -12506,6 +12543,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392098669}
+  - {fileID: 198748046}
   - {fileID: 2004071850}
   - {fileID: 3678737}
   - {fileID: 1017857853}

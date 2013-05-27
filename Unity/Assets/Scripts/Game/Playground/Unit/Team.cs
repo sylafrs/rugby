@@ -576,7 +576,7 @@ public class Team : myMonoBehaviour, IEnumerable
     {
         foreach (Unit u in units)
         {
-            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            UnitAnimator a = u.unitAnimator;
             if (a != null)
                 a.OnTouch();
         }
@@ -586,7 +586,7 @@ public class Team : myMonoBehaviour, IEnumerable
     {
         foreach (Unit u in units)
         {
-            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            UnitAnimator a = u.unitAnimator;
             if (a != null)
                 a.OnTouchAction();
         }

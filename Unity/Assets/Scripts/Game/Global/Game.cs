@@ -134,7 +134,6 @@ public class Game : myMonoBehaviour {
 	
 	public void OnTry(Zone z) {
         this.refs.stateMachine.event_Try(z);
-		Referee.OnTry();
 	}
 
     public void OnConversionShot()

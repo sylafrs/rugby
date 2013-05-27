@@ -12,16 +12,28 @@ public class UnitAnimator : myMonoBehaviour
 {
     private Unit unit;
     public Animator animator;
+
+    public const string IdleState = "Idle";
+    public const string BallIdleState = "IdleBall";
+
+    public const string lblSpeed = "in_float_speed";
+    public const string lblTackled = "in_bool_tackled";
+    public const string lblBall = "in_bool_ball";
+    public const string lblPass = "in_bool_pass";
+    public const string lblTouch = "in_bool_touch";
+    public const string lblPut = "in_bool_put";
+    public const string lblBallRight = "in_bool_ballRight";
+    public const string lblDelay = "out_int_delaySpeed";
     	
     public float Speed
     {
         get
         {
-            return animator.GetFloat("in_speed");
+            return animator.GetFloat(lblSpeed);
         }
         set
         {
-            animator.SetFloat("in_speed", value);
+            animator.SetFloat(lblSpeed, value);
         }
     }
 
@@ -29,11 +41,11 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return animator.GetBool("in_tackled");
+            return animator.GetBool(lblTackled);
         }
         set
         {
-            animator.SetBool("in_tackled", value);
+            animator.SetBool(lblTackled, value);
         }
     }
 
@@ -41,11 +53,11 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return animator.GetBool("in_ball");
+            return animator.GetBool(lblBall);
         }
         set
         {
-            animator.SetBool("in_ball", value);
+            animator.SetBool(lblBall, value);
         }
     }
 
@@ -53,11 +65,11 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return animator.GetBool("in_pass");
+            return animator.GetBool(lblPass);
         }
         set
         {
-            animator.SetBool("in_pass", value);
+            animator.SetBool(lblPass, value);
         }
     }
 
@@ -65,11 +77,23 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return animator.GetBool("in_touch");
+            return animator.GetBool(lblTouch);
         }
         set
         {
-            animator.SetBool("in_touch", value);
+            animator.SetBool(lblTouch, value);
+        }
+    }
+
+    public bool Put
+    {
+        get
+        {
+            return animator.GetBool(lblPut);
+        }
+        set
+        {
+            animator.SetBool(lblPut, value);
         }
     }
 
@@ -77,11 +101,11 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return animator.GetBool("in_ballRight");
+            return animator.GetBool(lblBallRight);
         }
         set
         {
-            animator.SetBool("in_ballRight", value);
+            animator.SetBool(lblBallRight, value);
         }
     }
 
@@ -89,15 +113,7 @@ public class UnitAnimator : myMonoBehaviour
     {
         get
         {
-            return (int)animator.GetInteger("out_delayPass");
-        }
-    }
-
-    public int DELAY_PASS
-    {
-        get
-        {
-            return (int)animator.GetInteger("out_delayPass");
+            return (int)animator.GetInteger(lblDelay);
         }
     }
     
@@ -110,7 +126,14 @@ public class UnitAnimator : myMonoBehaviour
     }
     
     private int delayStop;
-    private int delayPass;
+    private bool launchUpdate;
+
+    private string LayerName;
+
+    public bool isInState(string state)
+    {
+        return this.animator.GetCurrentAnimatorStateInfo(0).IsName(LayerName + "." + state);
+    }
 
     public void Start()
     {
@@ -120,8 +143,10 @@ public class UnitAnimator : myMonoBehaviour
             throw new UnityException("I need a unit");
         }
 
+        LayerName = animator.GetLayerName(0);
+
         delayStop = DELAY_SPEED;
-        delayPass = DELAY_PASS;
+        launchUpdate = false;
     }
 
     public void Update()
@@ -145,15 +170,21 @@ public class UnitAnimator : myMonoBehaviour
 			
 			bool hasBall = (unit == unit.game.Ball.Owner);
             HasBall = hasBall;
-            
-            if (Pass && !hasBall)
+
+            if (!launchUpdate)
             {
-                this.delayPass--;
-                if (this.delayPass <= 0)
+                if (Pass && !hasBall)
                 {
                     Pass = false;
                 }
+            
+                if (Put)
+                {
+                    Put = false;
+                }
             }
+
+            launchUpdate = false;
 		}
 	}
 	
@@ -167,9 +198,15 @@ public class UnitAnimator : myMonoBehaviour
 
     public void OnPass(bool right)
     {
-        this.delayPass = DELAY_PASS;
+        launchUpdate = true;
         this.Pass = true;
         this.BallAtRight = right;
+    }
+
+    public void OnPut()
+    {
+        launchUpdate = true;
+        this.Put = true;
     }
 
     public void OnTacklePass()

@@ -335,7 +335,10 @@ public class Gamer
             }*/
 			if (unitTo != null && unitTo != game.Ball.Owner)
 			{
-                Controlled.GetComponent<UnitAnimator>().OnPass(passSide > 0);
+                if (Controlled.unitAnimator)
+                {
+                    Controlled.unitAnimator.OnPass(passSide > 0);
+                }
 				Controlled.Order = Order.OrderPass(unitTo);
 			}
 			//PassDirection = Vector3.zero;
@@ -538,6 +541,10 @@ public class Gamer
 				Zone z = this.game.Ball.inZone;
 				if (z == this.Team.opponent.Zone)
 				{
+                    if (this.Controlled.unitAnimator)
+                    {
+                        this.Controlled.unitAnimator.OnPut();
+                    }
 					this.game.OnTry(z);
 				}
 			}

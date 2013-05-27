@@ -24,6 +24,20 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public TextureCollectionner buttonIndicator;
 
+    private UnitAnimator _unitAnimator;
+    public UnitAnimator unitAnimator
+    {
+        get
+        {
+            if (_unitAnimator == null)
+            {
+                _unitAnimator = this.GetComponent<UnitAnimator>();
+            }
+
+            return _unitAnimator;
+        }
+    }
+
 	private NavMeshAgent _nma;
 	public NavMeshAgent nma
 	{

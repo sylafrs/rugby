@@ -62,7 +62,7 @@ class PlaqueState : UnitState
         if(rotate)
             unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
 
-        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
         {
             ua.Tackled = true;
@@ -92,7 +92,7 @@ class PlaqueState : UnitState
         if(rotate)
             unit.Model.transform.localRotation = Quaternion.identity;
 
-        UnitAnimator ua = unit.GetComponent<UnitAnimator>();
+        UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
         {
             ua.Tackled = false;
