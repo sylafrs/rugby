@@ -15,6 +15,7 @@ public class TouchState : GameState
  	public override void OnEnter ()
 	{
 		cam.setTarget(null);
+		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.TouchingSgtate.TouchCamSettings);
 		
 		Transform cameraPlaceHolder = game.refs.placeHolders.touchPlacement.FindChild("CameraPlaceHolder");
 

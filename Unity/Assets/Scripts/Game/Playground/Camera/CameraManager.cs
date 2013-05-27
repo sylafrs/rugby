@@ -311,11 +311,10 @@ public class CameraManager : myMonoBehaviour, Debugable {
         });
     }
 	
-	/*
-	public void OnIntroLaunch(){
-		sm.SendMessage("OnIntroLaunch");
+	public void LoadParameters(CamSettings settings)
+	{
+		this.zoom = settings.zoom;
 	}
-	*/
 	
     public void ForDebugWindow()
     {
