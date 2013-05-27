@@ -4072,7 +4072,6 @@ MonoBehaviour:
         keyboardP1: 32
         keyboardP2: 13
         xbox: 4
-      debugPause: 8
       touch:
       - keyboardP1: 97
         keyboardP2: 117

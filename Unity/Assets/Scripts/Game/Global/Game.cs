@@ -111,17 +111,6 @@ public class Game : myMonoBehaviour {
 		largeurTerrain = Mathf.Abs(xNE - xSO);
 		section = largeurTerrain / 7f;
     }
-
-#if UNITY_EDITOR
-    public void Update()
-    {
-        if (southTeam.Player.XboxController.GetButtonDown(settings.Inputs.debugPause) ||
-           northTeam.Player.XboxController.GetButtonDown(settings.Inputs.debugPause))
-        {
-            UnityEditor.EditorApplication.isPaused = true;
-        }
-    }
-#endif
 	
 	public void OnGameEnd(){
 		this.refs.stateMachine.event_OnEndSignal();

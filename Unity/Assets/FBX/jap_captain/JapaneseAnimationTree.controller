@@ -7,7 +7,7 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: JapaneseAnimationTree
   m_AnimatorEvents:
-  - m_Name: speed
+  - m_Name: in_speed
     m_Type: 1
     m_Min: -1
     m_Max: 1
@@ -15,7 +15,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: touch
+  - m_Name: in_touch
     m_Type: 4
     m_Min: -1
     m_Max: 1
@@ -23,7 +23,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: ball
+  - m_Name: in_ball
     m_Type: 4
     m_Min: -1
     m_Max: 1
@@ -31,7 +31,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: ballRight
+  - m_Name: in_ballRight
     m_Type: 4
     m_Min: -1
     m_Max: 1
@@ -39,7 +39,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: pass
+  - m_Name: in_pass
     m_Type: 4
     m_Min: -1
     m_Max: 1
@@ -47,7 +47,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: tackled
+  - m_Name: in_tackled
     m_Type: 4
     m_Min: -1
     m_Max: 1
@@ -55,13 +55,29 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-  - m_Name: passTime
+  - m_Name: out_passTime
     m_Type: 1
     m_Min: -1
     m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 11
     m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: out_delaySpeed
+    m_Type: 3
+    m_Min: 1e+06
+    m_Max: -1e+06
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: 0
+    m_DefaultInt: 1
+    m_DefaultBool: 0
+  - m_Name: out_delayPass
+    m_Type: 3
+    m_Min: 1e+06
+    m_Max: -1e+06
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: 0
+    m_DefaultInt: 2
     m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
@@ -86,11 +102,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: speed
+    m_ConditionEvent: in_speed
     m_EventTreshold: .100000001
     m_ExitTime: .875
   - m_ConditionMode: 2
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: .100000001
     m_ExitTime: .875
   m_Atomic: 1
@@ -108,11 +124,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: ballRight
+    m_ConditionEvent: in_ballRight
     m_EventTreshold: 0
     m_ExitTime: .673913002
   - m_ConditionMode: 1
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .673913002
   m_Atomic: 1
@@ -130,11 +146,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .673913002
   - m_ConditionMode: 2
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .673913002
   m_Atomic: 1
@@ -152,11 +168,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .875
   - m_ConditionMode: 3
-    m_ConditionEvent: speed
+    m_ConditionEvent: in_speed
     m_EventTreshold: .100000001
     m_ExitTime: .875
   m_Atomic: 1
@@ -174,11 +190,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: touch
+    m_ConditionEvent: in_touch
     m_EventTreshold: 0
     m_ExitTime: .875
   - m_ConditionMode: 1
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .875
   m_Atomic: 1
@@ -196,11 +212,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .673913002
   - m_ConditionMode: 1
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .673913002
   m_Atomic: 1
@@ -218,7 +234,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: speed
+    m_ConditionEvent: in_speed
     m_EventTreshold: .100000001
     m_ExitTime: .673913002
   m_Atomic: 1
@@ -236,7 +252,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .875
   m_Atomic: 1
@@ -254,7 +270,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .375
   m_Atomic: 1
@@ -272,7 +288,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: passTime
+    m_ConditionEvent: out_passTime
     m_EventTreshold: 0
     m_ExitTime: .699999988
   m_Atomic: 1
@@ -290,7 +306,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ball
+    m_ConditionEvent: in_ball
     m_EventTreshold: 0
     m_ExitTime: .872340441
   m_Atomic: 1
@@ -308,7 +324,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: speed
+    m_ConditionEvent: in_speed
     m_EventTreshold: .100000001
     m_ExitTime: .5
   m_Atomic: 1
@@ -326,11 +342,11 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ballRight
+    m_ConditionEvent: in_ballRight
     m_EventTreshold: 0
     m_ExitTime: .673913002
   - m_ConditionMode: 1
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .673913002
   m_Atomic: 1
@@ -348,7 +364,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: touch
+    m_ConditionEvent: in_touch
     m_EventTreshold: 0
     m_ExitTime: .872340441
   m_Atomic: 1
@@ -366,7 +382,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: pass
+    m_ConditionEvent: in_pass
     m_EventTreshold: 0
     m_ExitTime: .375
   m_Atomic: 1

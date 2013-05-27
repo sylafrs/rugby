@@ -12,27 +12,16 @@ public class UnitAnimator : myMonoBehaviour {
 
     private Unit unit;
     public Animator animator;
-
-	public const int DELAY = 1;
-	
-    public void Start()
-    {
-        unit = this.GetComponent<Unit>();
-        if (unit == null)
-        {
-            throw new UnityException("I need a unit");
-        }
-    }
-
+    	
     public float Speed
     {
         get
         {
-            return animator.GetFloat("speed");
+            return animator.GetFloat("in_speed");
         }
         set
         {
-            animator.SetFloat("speed", value);
+            animator.SetFloat("in_speed", value);
         }
     }
 
@@ -40,11 +29,11 @@ public class UnitAnimator : myMonoBehaviour {
     {
         get
         {
-            return animator.GetBool("tackled");
+            return animator.GetBool("in_tackled");
         }
         set
         {
-            animator.SetBool("tackled", value);
+            animator.SetBool("in_tackled", value);
         }
     }
 
@@ -52,11 +41,11 @@ public class UnitAnimator : myMonoBehaviour {
     {
         get
         {
-            return animator.GetBool("ball");
+            return animator.GetBool("in_ball");
         }
         set
         {
-            animator.SetBool("ball", value);
+            animator.SetBool("in_ball", value);
         }
     }
 
@@ -64,11 +53,11 @@ public class UnitAnimator : myMonoBehaviour {
     {
         get
         {
-            return animator.GetBool("pass");
+            return animator.GetBool("in_pass");
         }
         set
         {
-            animator.SetBool("pass", value);
+            animator.SetBool("in_pass", value);
         }
     }
 
@@ -76,11 +65,11 @@ public class UnitAnimator : myMonoBehaviour {
     {
         get
         {
-            return animator.GetBool("touch");
+            return animator.GetBool("in_touch");
         }
         set
         {
-            animator.SetBool("touch", value);
+            animator.SetBool("in_touch", value);
         }
     }
 
@@ -88,11 +77,27 @@ public class UnitAnimator : myMonoBehaviour {
     {
         get
         {
-            return animator.GetBool("ballRight");
+            return animator.GetBool("in_ballRight");
         }
         set
         {
-            animator.SetBool("ballRight", value);
+            animator.SetBool("in_ballRight", value);
+        }
+    }
+
+    public int DELAY_SPEED
+    {
+        get
+        {
+            return (int)animator.GetInteger("out_delayPass");
+        }
+    }
+
+    public int DELAY_PASS
+    {
+        get
+        {
+            return (int)animator.GetInteger("out_delayPass");
         }
     }
     
@@ -103,8 +108,22 @@ public class UnitAnimator : myMonoBehaviour {
             Touch = true;
         }
     }
+    
+    private int delayStop;
+    private int delayPass;
 
-	private int delayStop = DELAY;
+    public void Start()
+    {
+        unit = this.GetComponent<Unit>();
+        if (unit == null)
+        {
+            throw new UnityException("I need a unit");
+        }
+
+        delayStop = DELAY_SPEED;
+        delayPass = DELAY_PASS;
+    }
+
     public void Update()
     {
         if (animator)
@@ -117,7 +136,7 @@ public class UnitAnimator : myMonoBehaviour {
 			else if (s != 0)
 			{
 				this.Speed = s;
-				delayStop = DELAY;
+				delayStop = DELAY_SPEED;
 			}
 			else
 			{
@@ -126,9 +145,14 @@ public class UnitAnimator : myMonoBehaviour {
 			
 			bool hasBall = (unit == unit.game.Ball.Owner);
             HasBall = hasBall;
-            if (!hasBall)
+            
+            if (Pass && !hasBall)
             {
-                Pass = false;
+                this.delayPass--;
+                if (this.delayPass <= 0)
+                {
+                    Pass = false;
+                }
             }
 		}
 	}
@@ -143,6 +167,7 @@ public class UnitAnimator : myMonoBehaviour {
 
     public void OnPass(bool right)
     {
+        this.delayPass = DELAY_PASS;
         this.Pass = true;
         this.BallAtRight = right;
     }
