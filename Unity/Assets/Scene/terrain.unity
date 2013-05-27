@@ -152,6 +152,9 @@ MonoBehaviour:
     limiteTerrainSudOuest: {fileID: 673607277}
     scrumFieldNE: {fileID: 451532785}
     scrumFieldSW: {fileID: 2059085082}
+    cameraFirstPosition: {fileID: 1169664533}
+    fieldCenter: {fileID: 352579018}
+    rotationCenter: {fileID: 1436533199}
   xboxInputs: {fileID: 219502520}
 --- !u!1 &9213360
 GameObject:
@@ -1879,6 +1882,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b931afe6e8968c46871ea700a2db461, type: 3}
   m_Name: 
   checkedControllers: 
+--- !u!1 &227774842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 227774843}
+  m_Layer: 0
+  m_Name: Intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &227774843
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227774842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 12.7435341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 352579018}
+  - {fileID: 1436533199}
+  m_Father: {fileID: 2121886553}
 --- !u!1 &235184406
 GameObject:
   m_ObjectHideFlags: 0
@@ -3032,6 +3063,32 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!1 &352579017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 352579018}
+  m_Layer: 0
+  m_Name: TerrainCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352579018
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352579017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 227774843}
 --- !u!1 &355882710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3989,6 +4046,7 @@ MonoBehaviour:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
+          rotationSpeed: 10
         PlayingState:
           MainGameState:
             RunningState:
@@ -9962,6 +10020,32 @@ Transform:
   - {fileID: 2032367093}
   - {fileID: 1581890522}
   m_Father: {fileID: 1774892247}
+--- !u!1 &1169664532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1169664533}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169664533
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169664532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -60.4548531, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1436533199}
 --- !u!1 &1174807241
 GameObject:
   m_ObjectHideFlags: 0
@@ -12539,6 +12623,33 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!1 &1436533198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1436533199}
+  m_Layer: 0
+  m_Name: RotationCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1436533199
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436533198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 24.4653206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1169664533}
+  m_Father: {fileID: 227774843}
 --- !u!1 &1437403889
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,6 +17937,7 @@ Transform:
   m_LocalPosition: {x: .00147628784, y: .995758057, z: -13.1902008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 227774843}
   - {fileID: 451532785}
   - {fileID: 2059085082}
   - {fileID: 908523407}

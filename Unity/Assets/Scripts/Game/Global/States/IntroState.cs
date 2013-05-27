@@ -13,10 +13,29 @@ public class IntroState : GameState
 {
     public IntroState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
+	private Transform cameraFirstPosition;
+	private Transform fieldCenter;
+	private Transform rotationCenter;
+	
+	private float	 rotationSpeed;
+	private float	 rotationAngle;
+	
     // Petit tp + fondu
 	public override void OnEnter()
     {
-        this.stepBack();
+        //this.stepBack()
+		
+		cameraFirstPosition = game.refs.positions.cameraFirstPosition;
+		fieldCenter			= game.refs.positions.fieldCenter;
+		rotationCenter		= game.refs.positions.rotationCenter;
+		
+		rotationSpeed = cam.game.settings.GameStates.MainState.IntroState.rotationSpeed;
+		
+		rotationAngle = 1 * rotationSpeed;
+		
+		//tp la camera au place holder
+		Camera.mainCamera.transform.position = cameraFirstPosition.position;
+		
     }
 	
     // Petit tp + fondu, se rappelle quand se termine.
@@ -30,7 +49,16 @@ public class IntroState : GameState
     // Recule sans arrêt
 	public override void OnUpdate()
     {
-		Camera.mainCamera.transform.Translate(0,0,0.08f,Space.Self);
+		//Camera.mainCamera.transform.Translate(0,0,0.08f,Space.Self);
+		
+		//update angle
+		//this.rotationAngle += rotationSpeed;
+		
+		//rotate Around
+		Camera.mainCamera.transform.RotateAround(rotationCenter.position,new Vector3(0,1,0),rotationAngle * Mathf.Deg2Rad);
+		
+		//lookat
+		Camera.mainCamera.transform.LookAt(fieldCenter);
 
 		foreach (Unit u in game.northTeam)
 		{
