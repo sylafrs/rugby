@@ -41,7 +41,7 @@ public struct Order  {
     public TYPE type;
 	public TYPE_POSITION position;
 	public float pressionCapture;
-	public int passDirection;
+    public bool passR;
     public Unit target;
     public Transform targetT;
     public float power;
@@ -105,12 +105,12 @@ public struct Order  {
 		return o;
 	}
 
-	public static Order OrderPass(Unit unit, int passSide)
+	public static Order OrderPass(Unit unit, bool right)
 	{
 		Order o = new Order();
 		o.type = TYPE.PASS;
 		o.target = unit;
-        o.passDirection = passSide;
+        o.passR = right;
 		return o;
 	}
 

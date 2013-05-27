@@ -118,7 +118,7 @@ public class Game : myMonoBehaviour {
         if (southTeam.Player.XboxController.GetButtonDown(XBOX_BUTTONS.TriggerR) ||
            northTeam.Player.XboxController.GetButtonDown(XBOX_BUTTONS.TriggerR))
         {
-            UnityEditor.EditorApplication.isPaused = !UnityEditor.EditorApplication.isPaused;
+            UnityEditor.EditorApplication.isPaused = true;
         }
     }
 #endif
@@ -153,8 +153,9 @@ public class Game : myMonoBehaviour {
         this.refs.stateMachine.event_ConversionShot();
     }
 
-    public void OnPass(Unit from, Unit to)
+    public void OnPass(Unit from, Unit to, bool right)
     {
+        from.GetComponent<UnitAnimator>().OnPass(right);
         this.refs.stateMachine.event_Pass(from, to);        
     }
 
@@ -246,16 +247,6 @@ public class Game : myMonoBehaviour {
     {
         this.refs.stateMachine.event_OnResumeSignal(time);
     }
-
-    /*public void TimedDisableIA(float time)
-    {
-        this.disableIA = true;
-        Timer.AddTimer(time, () =>
-        {
-            this.refs.stateMachine.event_OnStartSignal();
-            this.disableIA = false;
-        });
-    }*/
 
 	/*
 	 * Cette fonction me retourne le nombre de zone d'écart entre deux positions d'objets.

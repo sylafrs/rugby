@@ -101,7 +101,7 @@ public class MainUnitState : UnitState
 
 			case Order.TYPE.PASS:
 				if (unit.Team.game.Ball.Owner == unit)
-					unit.Team.game.Ball.Pass(unit.Order.target);
+					unit.Team.game.Ball.Pass(unit.Order.target, unit.Order.passR);
 				break;
 
             case Order.TYPE.TRIANGLE:
