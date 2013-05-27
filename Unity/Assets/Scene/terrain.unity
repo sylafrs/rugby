@@ -3992,7 +3992,9 @@ MonoBehaviour:
         PlayingState:
           MainGameState:
             RunningState:
-              BallHandlingState: {}
+              BallHandlingState:
+                GainingGrounCamSettings:
+                  zoom: 1
               BallFreeState:
                 BallFlyingState:
                   angleDropKick: 45
@@ -4003,6 +4005,9 @@ MonoBehaviour:
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
+              ConversionFly:
+                ConversionFlyCam:
+                  zoom: .300000012
             ScrumingState:
               timeToGetOutTackleAreaBeforeScrum: 2
               minPlayersEachTeamToTriggerScrum: 3
@@ -4015,6 +4020,8 @@ MonoBehaviour:
               offsetCamera: {x: 3, y: 1.20000005, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
+              TouchCamSettings:
+                zoom: 1
     Inputs:
       shortPass:
         keyboardP1: 49

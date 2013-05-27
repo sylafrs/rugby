@@ -38,12 +38,11 @@ public class ConversionFlyState : GameState
     public override void OnEnter ()
     {
 	    cam.setTarget(cam.game.Ball.transform);
-	    cam.zoom = 0.1f;
+		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
     }
 
     public override void OnLeave ()
     {
-	    cam.zoom = 1f;
         cam.setTarget(game.Ball.Owner.transform);	
 	    cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
             (/* OnFinish */) => {
