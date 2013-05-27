@@ -52,11 +52,18 @@ public class UnitAnimator : myMonoBehaviour {
     {
         if (animator)
         {
-            this.Speed = unit.nma.speed;
-			if (unit.Order.type == Order.TYPE.NOTHING)
-			{
-				this.Speed = 0;
-			}
+            if (unit.game.UseFlorianIA)
+            {
+                this.Speed = unit.nma.speed;
+                if (unit.Order.type == Order.TYPE.NOTHING)
+                {
+                    this.Speed = 0;
+                }
+            }
+            else
+            {
+                this.Speed = unit.nma.desiredVelocity.magnitude;
+            }
         }
     }
 }

@@ -87,42 +87,64 @@ public class GameUI{
         }
     }
 
-    private void ShowOutsideScreenUnit(Unit u) {
+    private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)
+    {
         float w = Screen.width;
         float h = Screen.height;
-
+               
         Camera cam = game.refs.managers.camera.gameCamera.camera;
-        Vector3 test = cam.WorldToScreenPoint(u.transform.position);
 
+        Vector3 screenPoint = cam.WorldToScreenPoint(position);
+        screenPoint.y = h - screenPoint.y;
+        
         bool inside = true;
 
-        if (test.x < 0)
+        if (screenPoint.x > w)
         {
             inside = false;
-            test.x = 0;
+            screenPoint.x = w - offset.x;
         }
-
-        if (test.y < 0)
+        else if (screenPoint.x < 0)
         {
             inside = false;
-            test.y = 0;
+            screenPoint.x = 0;
         }
 
-        if (test.x > w)
+        if (screenPoint.y > h)
         {
             inside = false;
-            test.x = w;
+            screenPoint.y = h - offset.y;
         }
-
-        if (test.y > h)
+        else if (screenPoint.y < 0)
         {
             inside = false;
-            test.x = h;
+            screenPoint.y = 0;
         }
 
-        if (!inside)
+        if (screenPoint.z < 0)
         {
-            Debug.Log(u + " est hors vision !\n" + test);
+            inside = false;
+            screenPoint.y = h - offset.y;
+            screenPoint.x = w - screenPoint.x - offset.x;
+        }
+
+        screenPoint.z = 0;
+
+        if (inside)
+        {
+            return Vector2.zero;
+        }
+
+        return screenPoint;
+    }
+
+    private void ShowOutsideScreenUnit(Unit u) {
+       
+        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, Vector2.one*20);
+        if (pos != Vector2.zero)
+        {
+            GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
+            //Debug.Log(u + " est hors vision !\n" + test);
         }
     }
 

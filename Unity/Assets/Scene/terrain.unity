@@ -1291,6 +1291,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  hiddenPositionIndicator:
+    rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
+    centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
+    startRotation: {x: 0, y: -1}
+    rotatedTextureScale: .200000003
+    centerTextureRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 70
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
@@ -2858,7 +2869,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 332587732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walkable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5927,6 +5938,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  hiddenPositionIndicator:
+    rotatedTexture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
+    centerTexture: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
+    startRotation: {x: 0, y: -1}
+    rotatedTextureScale: .200000003
+    centerTextureRect:
+      serializedVersion: 2
+      x: 5
+      y: 5
+      width: 90
+      height: 70
   AngleOfFovTackleCrit: 0
   ConeTackle: {r: 1, g: 1, b: 1, a: .330000013}
   DiscTackle: {r: 0, g: 0, b: 1, a: .330000013}
@@ -6702,7 +6724,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 688928107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -7320,7 +7342,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 772418175}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ToucheEssai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8365,7 +8387,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967857993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00885009766, y: .000818481669, z: .00207519531}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 13.7966223, y: 1, z: 18.2117233}
   m_Children: []
   m_Father: {fileID: 332587732}
@@ -8375,7 +8397,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967857993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -8691,7 +8713,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 987104164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -9023,7 +9045,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1026978808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -10549,7 +10571,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1270286799}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -10632,7 +10654,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1281560200}
   - 114: {fileID: 1281560201}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InvisibleWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11149,7 +11171,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1340503061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Limites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11549,7 +11571,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1364844147}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -13401,7 +13423,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1577200576}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -15567,7 +15589,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1803153106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -15745,7 +15767,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1827117788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -16113,7 +16135,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875913889}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
