@@ -22,6 +22,7 @@ public class UnitAnimator : myMonoBehaviour
     public const string lblPass = "in_bool_pass";
     public const string lblTouch = "in_bool_touch";
     public const string lblPut = "in_bool_put";
+    public const string lblDrop = "in_bool_drop";
     public const string lblBallRight = "in_bool_ballRight";
     public const string lblDelay = "out_int_delaySpeed";
     	
@@ -94,6 +95,18 @@ public class UnitAnimator : myMonoBehaviour
         set
         {
             animator.SetBool(lblPut, value);
+        }
+    }
+
+    public bool Drop
+    {
+        get
+        {
+            return animator.GetBool(lblDrop);
+        }
+        set
+        {
+            animator.SetBool(lblDrop, value);
         }
     }
 
@@ -182,6 +195,11 @@ public class UnitAnimator : myMonoBehaviour
                 {
                     Put = false;
                 }
+
+                if (Drop && !hasBall)
+                {
+                    Drop = false;
+                }
             }
 
             launchUpdate = false;
@@ -207,6 +225,12 @@ public class UnitAnimator : myMonoBehaviour
     {
         launchUpdate = true;
         this.Put = true;
+    }
+
+    public void OnDrop()
+    {
+        launchUpdate = true;
+        this.Drop = true;
     }
 
     public void OnTacklePass()
