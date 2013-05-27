@@ -21,11 +21,13 @@ public class MainGameState : GameState {
 	{
 		foreach (Unit u in game.northTeam)
 		{
+			u.UpdateTypeOfPlay();
 			u.UpdatePlacement();
 		}
 
 		foreach (Unit u in game.southTeam)
 		{
+			u.UpdateTypeOfPlay();
 			u.UpdatePlacement();
 		}
 	}

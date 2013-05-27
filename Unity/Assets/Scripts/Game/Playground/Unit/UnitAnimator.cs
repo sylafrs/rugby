@@ -8,8 +8,8 @@ using System.Collections.Generic;
   * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Animations/Unit Animator (require Unit)"), RequireComponent(typeof(Unit))]
-public class UnitAnimator : myMonoBehaviour {
-
+public class UnitAnimator : myMonoBehaviour
+{
     private Unit unit;
     public Animator animator;
     	
