@@ -122,15 +122,25 @@ public class XboxInputs : myMonoBehaviour{
             prevState = new bool[XboxInputs.NB_BUTTONS];
         }
 
+        //private GamePadState framePad;        
         public GamePadState pad
         {
             get
             {
-                return GamePad.GetState(index);
-            }
+                //if (padToUpdate)
+          //      {
+            //        //padToUpdate = false;
+            //        framePad = GamePad.GetState(index);
+            //    }
 
-            private set { }
+                return GamePad.GetState(index);//framePad;
+            }
+            private set
+            {
+               // framePad = value;
+            }
         }
+        private bool padToUpdate = true;
 
         public InputDirection.Direction GetDirection(XBOX_DIRECTION dir)
         {
@@ -150,13 +160,23 @@ public class XboxInputs : myMonoBehaviour{
         {
             return !XboxInputs.GetButton(btn, pad) && prevState[(int)btn];
         }
-        
-        public void UpdateButtons()
-        {            
-            for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
-            {
-                prevState[i] = GetButton((XBOX_BUTTONS)i);
-            }
+
+        public void Update()
+        {
+            this.padToUpdate = true;
+            this.UpdateButtons();
+        }
+
+        private void UpdateButtons()
+        {
+            // Si la manette de la frame précédente était connectée.
+            //if (framePad.IsConnected) 
+            //{
+                for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
+                {
+                    prevState[i] = GetButton((XBOX_BUTTONS)i);
+                }
+            //}
         }
 		
 		void Vibrate(float left, float right) {
@@ -165,38 +185,80 @@ public class XboxInputs : myMonoBehaviour{
     }
 
     // -------------------------------------------  //
-    
+
     const int MAX_CONTROLLERS = 4;
-    public Controller [] controllers;
+   
+    public bool [] checkedControllers;
+    public Controller[] controllers;
 
     bool inited = false;
+
     public void Start()
     {
         if(!inited)
             this.init();
     }
    
-    public void init()
+    void init()
     {
         inited = true;
 
+        checkedControllers = new bool[MAX_CONTROLLERS];
         controllers = new Controller[MAX_CONTROLLERS];
         for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
             controllers[i] = new Controller(i);
         }
+
+        this.CheckAll();
     }
 
     void LateUpdate()
-    {
-        // Update number / 2.
-        // if (Mathf.PingPong(0, 1) == 1)
+    {        
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
         {
-            for (int i = 0; i < MAX_CONTROLLERS; i++)
+            //if (checkedControllers[i])
             {
-                if(controllers[i].IsConnected)
-                    controllers[i].UpdateButtons();
+                controllers[i].Update();
             }
+        }        
+    }
+
+    public void NoNeedToCheck(int index)
+    {
+        if (!inited)
+            init();
+
+        checkedControllers[index] = false;
+    }
+
+    public void NeedToCheck(int index)
+    {
+        if (!inited)
+            init();
+
+        checkedControllers[index] = true;
+    }
+
+    public void CheckAll()
+    {
+        if (!inited)
+            init();
+
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        {
+            checkedControllers[i] = true;
+        }
+    }
+
+    public void CheckNone()
+    {
+        if (!inited)
+            init();
+
+        for (int i = 0; i < MAX_CONTROLLERS; i++)
+        {
+            checkedControllers[i] = false;
         }
     }
 }

@@ -59,6 +59,8 @@ public class Gamer
         NextGamerId++;
         playerIndex = (PlayerIndex)id;
 
+        game.refs.xboxInputs.NeedToCheck(id);
+
         if (XboxController == null)
             XboxController = this.game.refs.xboxInputs.controllers[id];
                 
@@ -104,12 +106,24 @@ public class Gamer
         if (!Controlled.Dodge)
         {
             UpdateStickDirection();
+            UpdateSUPER();
             UpdateMOVE();
             UpdateTACKLE();
             UpdatePASS();
             UpdateDROP();
             UpdateESSAI();
             UpdatePLAYER();
+        }
+    }
+
+    public void UpdateSUPER()
+    {
+        if (this.XboxController != null)
+        {
+            if (Input.GetKeyDown(game.settings.Inputs.superOff.keyboard(this.Team)) || this.XboxController.GetButtonDown(game.settings.Inputs.superOff.xbox))
+            {
+                this.Team.Super.launchSuper();                
+            }
         }
     }
 

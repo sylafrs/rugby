@@ -13,6 +13,7 @@ using System.Threading;
 public class Game : myMonoBehaviour {
 
     public bool UseFlorianIA = true;
+	public bool alwaysScrum = false;
 
     public GamePlaySettings settings;
     public GameReferences refs;
@@ -63,36 +64,39 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
-        northTeam.game = this;
-        southTeam.game = this;
-        northTeam.south = false;
-        southTeam.south = true;
-        northTeam.CreateUnits();
-        southTeam.CreateUnits();
+        this.refs.xboxInputs.CheckNone();
 
-        Referee.game = this;
-        Referee.StartPlacement();
-
-        northTeam.opponent = southTeam;
-        southTeam.opponent = northTeam;
+        this.northTeam.game = this;
+        this.southTeam.game = this;
+        this.northTeam.south = false;
+        this.southTeam.south = true;
+        this.northTeam.CreateUnits();
+        this.southTeam.CreateUnits();
+       
+        this.Referee.game = this;
+        this.Referee.StartPlacement();
+        
+        this.northTeam.opponent = southTeam;
+        this.southTeam.opponent = northTeam;
 
         this.refs.xboxInputs.Start();
 
-        p1 = new Gamer(refs.south);
-        p2 = new Gamer(refs.north);
+        this.p1 = new Gamer(refs.south);
+        this.p2 = new Gamer(refs.north);
 
         this.Owner = p1.Controlled.Team;
-        Ball.Game = this;
-        Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
-        Ball.transform.localPosition = Vector3.zero;
-        Ball.Owner = p1.Controlled;
-
-        ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
+        this.Ball.Game = this;
+        this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
+        this.Ball.transform.localPosition = Vector3.zero;
+        this.Ball.Owner = p1.Controlled;
+		
+		if(alwaysScrum)
+        	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
 		
         this.refs.managers.intro.OnFinish = () =>
         {
             this._disableIA = true;                  
-            Referee.OnStart();
+            this.Referee.OnStart();
 			this.refs.stateMachine.event_OnStartSignal();
         };
 

@@ -11,9 +11,21 @@ using System.Collections.Generic;
 public class Team : myMonoBehaviour, IEnumerable
 {
 
-	public Team opponent { get; set; }
-	public Gamer Player { get; set; }
-	public Game game { get; set; }
+    [System.Serializable]
+    public class HiddenPositionIndicator {
+        public Texture2D rotatedTexture;
+        public Texture2D centerTexture;
+        public Vector2 startRotation;
+        public float rotatedTextureScale;
+        public Rect centerTextureRect;
+    }
+
+    public HiddenPositionIndicator hiddenPositionIndicator;
+
+    public Team opponent {get; set;}
+    public Gamer Player {get; set;}
+    public Game game {get; set;}
+
 	public float AngleOfFovTackleCrit = 0.0f;
 	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
 	public Color DiscTackle = new Color(0f, 0f, 1f, 0.33f);
@@ -104,41 +116,35 @@ public class Team : myMonoBehaviour, IEnumerable
 		tackleFactor = 1f;
 	}
 
-	public void setSpeed()
-	{
-		foreach (var u in units)
-		{
-			if (u.nma)
-			{
-				//MyDebug.Log("a " + u.nma.speed);
-				u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
-				//MyDebug.Log("b " + u.nma.speed);
-				u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-			}
-			else
-			{
-				MyDebug.Log("WAT ?");
-			}
+	public void setSpeed() {
+		foreach(var u in units) {
+            if (u.nma)
+            {
+                if (u.Dodge)
+                {
+                    u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
+                }
+                //else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
+                else if(game.Ball.Team == this)
+                {
+                    u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
+                }
+                else
+                {
+                    u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+                }
+                u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
+            }
 		}
 	}
 
-	public void setHandicapSpeed()
-	{
-		foreach (var u in units)
-		{
-			if (u.nma)
-			{
-				//MyDebug.Log("a " + u.nma.speed);
-				u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
-				//MyDebug.Log("b " + u.nma.speed);
-				u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-			}
-			else
-			{
-				MyDebug.Log("WAT ?");
-			}
-		}
-	}
+    public void StunEverybodyForSeconds(float stunDuration)
+    {
+        foreach (Unit u in units)
+        {
+            u.sm.event_stun(stunDuration);
+        }
+    }
 
 	//maxens dubois
 	public void increaseSuperGauge(int value)
@@ -200,14 +206,9 @@ public class Team : myMonoBehaviour, IEnumerable
 				OwnerChangedOurs();
 			}
 
-		}
-		else if (game.Ball.Owner.Team == this)
-		{
-			setHandicapSpeed();
-			OwnerChangedOurs();
-		}
-		else
-		{
+        }       
+        else
+        {
 			setSpeed();
 			OwnerChangedOpponents();
 		}
@@ -501,9 +502,12 @@ public class Team : myMonoBehaviour, IEnumerable
 		return units[0].renderer.material.color;
 	}
 
-	public GameObject fxSuper;
-	private GameObject[] myFxSuper;
-	public GameObject lightSuper;
+    // TODO : faire un effet par super serait mieux.
+    // Cette solution fonctionne mais est pwerk..
+    public GameObject fxSuper;
+    private GameObject[] myFxSuper;
+    public GameObject lightSuper;
+
 
 
 	public void PlaySuperParticleSystem(SuperList super, bool play)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class GameUI{
@@ -43,30 +44,6 @@ public class GameUI{
 			game.settings.UI.GameUI.redGaugeBoxWidthPercentage * redProgress, 
 			game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
 		
-		//scrum bars
-		//Rect scrumBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-        //
-		//Rect scrumRedBarBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumBarBoxXPercentage - game.settings.UI.GameUI.scrumBarBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumBarBoxYPercentage - game.settings.UI.GameUI.scrumBarBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumBarBoxWidthPercentage, game.settings.UI.GameUI.scrumBarBoxHeightPercentage);
-		//
-		////scrum special
-		//Rect scrumSpecialBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumSpecialBoxXPercentage - game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumSpecialBoxYPercentage -game.settings.UI.GameUI. scrumSpecialBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumSpecialBoxWidthPercentage, game.settings.UI.GameUI.scrumSpecialBoxHeightPercentage);
-		//
-		//Time before Scrum
-		//Rect scrumTimeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scrumTimeBoxXPercentage - game.settings.UI.GameUI.scrumTimeBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.scrumTimeBoxYPercentage - game.settings.UI.GameUI.scrumTimeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.scrumTimeBoxWidthPercentage, game.settings.UI.GameUI.scrumTimeBoxHeightPercentage);
-		
-		//player on left Box
-		//float playerLeftBoxWidth  = 25;
-		//float playerLeftBoxHeight = 10;	
-		//Rect playerLeftBox = UIManager.screenRelativeRect(5 - playerLeftBoxWidth/2, 0 + playerLeftBoxHeight/2, playerLeftBoxWidth, playerLeftBoxHeight);
-	
 		//superbars
 		//blue 
 		GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
@@ -82,6 +59,93 @@ public class GameUI{
 		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
 		
 		//time
-		GUI.Label(timeBox,  "Time : "+(int)game.Referee.IngameTime, game.settings.UI.GameUI.gameTimeTextStyle);
-	}
+		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
+
+        ShowOutsideScreenUnit();
+    }
+
+    public void ShowOutsideScreenUnit()
+    {
+        try
+        {
+            Unit[] units = new Unit[2];
+            units[0] = game.southTeam.Player.Controlled;
+            units[1] = game.northTeam.Player.Controlled;            
+            
+            foreach (Unit u in units)
+            {
+                ShowOutsideScreenUnit(u);
+            }            
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
+
+    private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)
+    {
+        float w = Screen.width;
+        float h = Screen.height;
+               
+        Camera cam = game.refs.managers.camera.gameCamera.camera;
+
+        Vector3 screenPoint = cam.WorldToScreenPoint(position);
+        screenPoint.y = h - screenPoint.y;
+        
+        bool inside = true;
+
+        if (screenPoint.x > w)
+        {
+            inside = false;
+            screenPoint.x = w - offset.x;
+        }
+        else if (screenPoint.x < 0)
+        {
+            inside = false;
+            screenPoint.x = 0;
+        }
+
+        if (screenPoint.y > h)
+        {
+            inside = false;
+            screenPoint.y = h - offset.y;
+        }
+        else if (screenPoint.y < 0)
+        {
+            inside = false;
+            screenPoint.y = 0;
+        }
+
+        if (screenPoint.z < 0)
+        {
+            inside = false;
+            screenPoint.y = h - offset.y;
+            screenPoint.x = w - screenPoint.x - offset.x;
+        }
+
+        screenPoint.z = 0;
+
+        if (inside)
+        {
+            return Vector2.zero;
+        }
+
+        return screenPoint;
+    }
+
+    private void ShowOutsideScreenUnit(Unit u) {
+       
+        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, Vector2.one*20);
+        if (pos != Vector2.zero)
+        {
+            GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
+            //Debug.Log(u + " est hors vision !\n" + test);
+        }
+    }
+
 }
