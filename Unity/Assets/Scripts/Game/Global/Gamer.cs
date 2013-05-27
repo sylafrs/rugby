@@ -32,6 +32,7 @@ public class Gamer
     public Unit Controlled;
     public Game game;
 	private Unit unitTo;
+    private int passSide;
 	private InputDirection.Direction stickDirection;
 
     public InputSettings Inputs;
@@ -188,6 +189,7 @@ public class Gamer
 								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
 								{
 									unitTo = u;
+                                    passSide = 1;
 									break;
 								}
 								else
@@ -214,6 +216,7 @@ public class Gamer
 								if (Vector3.Dot(u.transform.position - Controlled.transform.position, game.southTeam.But.transform.position - game.northTeam.But.transform.position) > 0 ? true : false)
 								{
 									unitTo = u;
+                                    passSide = -1;
 									break;
 								}
 								else
@@ -320,7 +323,7 @@ public class Gamer
             }*/
 			if (unitTo != null && unitTo != game.Ball.Owner)
 			{
-				Controlled.Order = Order.OrderPass(unitTo);
+				Controlled.Order = Order.OrderPass(unitTo, passSide);
 			}
 			//PassDirection = Vector3.zero;
         }

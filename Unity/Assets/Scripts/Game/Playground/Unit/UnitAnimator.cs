@@ -124,7 +124,7 @@ public class UnitAnimator : myMonoBehaviour {
 				this.Speed = 0;
 			}
 			
-			bool hasBall = (unit == unit.Game.Ball.Owner);
+			bool hasBall = (unit == unit.game.Ball.Owner);
             HasBall = hasBall;
             if (!hasBall)
             {
