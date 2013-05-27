@@ -33,15 +33,15 @@ public class IntroState : GameState
 	{
 		Camera.mainCamera.transform.Translate(0, 0, 0.08f, Space.Self);
 
-		foreach (Unit u in game.northTeam)
-		{
-			u.UpdateTypeOfPlay();
-		}
+		//foreach (Unit u in game.northTeam)
+		//{
+		//	u.UpdateTypeOfPlay();
+		//}
 
-		foreach (Unit u in game.southTeam)
-		{
-			u.UpdateTypeOfPlay();
-		}
+		//foreach (Unit u in game.southTeam)
+		//{
+		//	u.UpdateTypeOfPlay();
+		//}
 	}
 
 	// On va vers la cible, on fait un fondu (en écrasant le précédent).

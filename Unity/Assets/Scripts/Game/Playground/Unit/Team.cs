@@ -11,20 +11,21 @@ using System.Collections.Generic;
 public class Team : myMonoBehaviour, IEnumerable
 {
 
-    [System.Serializable]
-    public class HiddenPositionIndicator {
-        public Texture2D rotatedTexture;
-        public Texture2D centerTexture;
-        public Vector2 startRotation;
-        public float rotatedTextureScale;
-        public Rect centerTextureRect;
-    }
+	[System.Serializable]
+	public class HiddenPositionIndicator
+	{
+		public Texture2D rotatedTexture;
+		public Texture2D centerTexture;
+		public Vector2 startRotation;
+		public float rotatedTextureScale;
+		public Rect centerTextureRect;
+	}
 
-    public HiddenPositionIndicator hiddenPositionIndicator;
+	public HiddenPositionIndicator hiddenPositionIndicator;
 
-    public Team opponent {get; set;}
-    public Gamer Player {get; set;}
-    public Game game {get; set;}
+	public Team opponent { get; set; }
+	public Gamer Player { get; set; }
+	public Game game { get; set; }
 
 	public float AngleOfFovTackleCrit = 0.0f;
 	public Color ConeTackle = new Color(1f, 1f, 1f, 0.33f);
@@ -116,35 +117,37 @@ public class Team : myMonoBehaviour, IEnumerable
 		tackleFactor = 1f;
 	}
 
-	public void setSpeed() {
-		foreach(var u in units) {
-            if (u.nma)
-            {
-                if (u.Dodge)
-                {
-                    u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
-                }
-                //else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
-                else if(game.Ball.Team == this)
-                {
-                    u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
-                }
-                else
-                {
-                    u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
-                }
-                u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
-            }
+	public void setSpeed()
+	{
+		foreach (var u in units)
+		{
+			if (u.nma)
+			{
+				if (u.Dodge)
+				{
+					u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
+				}
+				//else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
+				else if (game.Ball.Team == this)
+				{
+					u.nma.speed = fixUnits ? 0 : (unitSpeed - handicapSpeed) * speedFactor;
+				}
+				else
+				{
+					u.nma.speed = fixUnits ? 0 : unitSpeed * speedFactor;
+				}
+				u.nma.acceleration = (u.nma.speed == 0) ? 10000 : 100; // Valeur "à l'arrache" TODO
+			}
 		}
 	}
 
-    public void StunEverybodyForSeconds(float stunDuration)
-    {
-        foreach (Unit u in units)
-        {
-            u.sm.event_stun(stunDuration);
-        }
-    }
+	public void StunEverybodyForSeconds(float stunDuration)
+	{
+		foreach (Unit u in units)
+		{
+			u.sm.event_stun(stunDuration);
+		}
+	}
 
 	//maxens dubois
 	public void increaseSuperGauge(int value)
@@ -206,12 +209,27 @@ public class Team : myMonoBehaviour, IEnumerable
 				OwnerChangedOurs();
 			}
 
-        }       
-        else
-        {
+		}
+		else
+		{
 			setSpeed();
 			OwnerChangedOpponents();
 		}
+	}
+
+	//Retourne le nombre de joueur de type offensif sans le controllé
+	public int GetNumberOffensivePlayer()
+	{
+		int nb = 0;
+
+		foreach (Unit u in this)
+		{
+			if (u != Player.Controlled && u.typeOfPlayer== Unit.TYPEOFPLAYER.OFFENSIVE)
+			{
+				nb++;
+			}
+		}
+		return nb;
 	}
 
 	void OwnerChangedBallFree()
@@ -502,11 +520,11 @@ public class Team : myMonoBehaviour, IEnumerable
 		return units[0].renderer.material.color;
 	}
 
-    // TODO : faire un effet par super serait mieux.
-    // Cette solution fonctionne mais est pwerk..
-    public GameObject fxSuper;
-    private GameObject[] myFxSuper;
-    public GameObject lightSuper;
+	// TODO : faire un effet par super serait mieux.
+	// Cette solution fonctionne mais est pwerk..
+	public GameObject fxSuper;
+	private GameObject[] myFxSuper;
+	public GameObject lightSuper;
 
 
 

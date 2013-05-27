@@ -6,8 +6,9 @@ using System.Collections;
  * @brief Doing a pass
  * @author Guilleminot Florian
  */
-public class PassSystem {
-	
+public class PassSystem
+{
+
 	// Variables
 	private Unit from;
 	private Unit target;
@@ -42,10 +43,11 @@ public class PassSystem {
 	// Constructor
 	public PassSystem(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball)
 	{
-		Init(b1, b2, from, target, ball);	
+		Init(b1, b2, from, target, ball);
 	}
-		
-	private void Init(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball) {
+
+	private void Init(Vector3 b1, Vector3 b2, Unit from, Unit target, Ball ball)
+	{
 		this.from = from;
 		this.target = target;
 		this.ball = ball;
@@ -94,20 +96,20 @@ public class PassSystem {
 			//directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
-			
+
 			if (!passValidity())
 			{
 				CorrectTrajectory();
 				CorrectPosition();
 			}
-			
+
 			multiplyRelativeDirection();
-			
+
 			Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
-			
+
 			ball.transform.parent = null;
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
@@ -119,11 +121,9 @@ public class PassSystem {
 			target.Order = Order.OrderMove(relativePosition);
 			ball.NextOwner = target;
 
-			target.UpdateTypeOfPlay( true );
-
 		}
 	}
-	
+
 	/*
 	 * TODO : keep in mind that the curve on Y in the pass depends of the passSpeed
 	 */
@@ -135,7 +135,7 @@ public class PassSystem {
 			relativeDirection.z * 1.5f * t + initialPosition.z);
 
 	}
-	
+
 	/*
 	 * Correct the relativeDirection to send at the initial position of the target
 	 * TODO : Tweak the passSpeed or the NMA velocity max if this case is too much present;
@@ -174,7 +174,7 @@ public class PassSystem {
 			nmaSpeed.z = target.nma.speed;
 			target.nma.velocity = nmaSpeed;
 		}
-		relativePosition = target.transform.position + Vector3.forward * target.nma.speed * magnitude / velocityPass;
+		relativePosition = target.transform.position + Vector3.forward * target.nma.speed * 0.5f * magnitude / velocityPass;
 		Debug.DrawRay(relativePosition, Vector3.up, Color.red, 10f);
 	}
 
@@ -185,7 +185,7 @@ public class PassSystem {
 	{
 		relativeDirection = (relativePosition - ball.transform.position).normalized;
 	}
-	
+
 	private void multiplyRelativeDirection()
 	{
 		relativeDirection = relativeDirection * multiplyDirection;

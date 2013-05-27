@@ -8,53 +8,54 @@ using System.Collections.Generic;
   * @see myMonoBehaviour
   */
 [AddComponentMenu("Scripts/Animations/Unit Animator (require Unit)"), RequireComponent(typeof(Unit))]
-public class UnitAnimator : myMonoBehaviour {
+public class UnitAnimator : myMonoBehaviour
+{
 
-    private Unit unit;
-    public Animator animator;
+	private Unit unit;
+	public Animator animator;
 
 	public const int DELAY = 1;
-    public bool Tackled
-    {
-        get
-        {
-            return animator.GetBool("tackled"); 
-        }
+	public bool Tackled
+	{
+		get
+		{
+			return animator.GetBool("tackled");
+		}
 
-        set
-        {
-            animator.SetBool("tackled", value); 
-        }
-    }
+		set
+		{
+			animator.SetBool("tackled", value);
+		}
+	}
 
-    public float Speed
-    {
-        get
-        {
-            return animator.GetFloat("speed");
-        }
+	public float Speed
+	{
+		get
+		{
+			return animator.GetFloat("speed");
+		}
 
-        set
-        {
-            animator.SetFloat("speed", value);
-        }
-    }
+		set
+		{
+			animator.SetFloat("speed", value);
+		}
+	}
 
-    public void Start()
-    {
-        unit = this.GetComponent<Unit>();
-        if (unit == null)
-        {
-            throw new UnityException("I need a unit");
-        }
-    }
+	public void Start()
+	{
+		unit = this.GetComponent<Unit>();
+		if (unit == null)
+		{
+			throw new UnityException("I need a unit");
+		}
+	}
 
 	private int delayStop = DELAY;
 
-    public void Update()
-    {
-        if (animator)
-        {
+	public void Update()
+	{
+		if (animator)
+		{
 			//if (unit.game.UseFlorianIA)
 			//{
 			//	this.Speed = unit.nma.speed;
@@ -82,6 +83,6 @@ public class UnitAnimator : myMonoBehaviour {
 			{
 				this.Speed = 0;
 			}
-        }
-    }
+		}
+	}
 }
