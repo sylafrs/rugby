@@ -209,9 +209,9 @@ public class Ball : TriggeringTriggered
 		}
 	}
 
-	public void Pass(Unit to, bool right)
+	public void Pass(Unit to)
 	{
-		Game.OnPass(this.Owner, to, right);
+		Game.OnPass(this.Owner, to);
 
 		passManager = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		passManager.CalculatePass();

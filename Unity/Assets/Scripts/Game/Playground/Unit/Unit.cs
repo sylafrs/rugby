@@ -205,7 +205,7 @@ public class Unit : TriggeringTriggered, Debugable
 		Vector3 pos = this.transform.position;
 		Vector3 oldPos = pos;
 		float distZ = Mathf.Abs(this.team.Player.Controlled.transform.position.z - this.transform.position.z); //distance entre moi et le controllé
-		float distX = 0f;
+		//float distX = 0f;
 
 		if (this.game.Ball.passManager != null && this.game.Ball.passManager.oPassState == PassSystem.passState.ONPASS)
 		{

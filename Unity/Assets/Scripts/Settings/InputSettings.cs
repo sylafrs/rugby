@@ -18,6 +18,8 @@ public class InputSettings
 					reset, enableIA, skipIntro,
 					/* scrum */
 					smashButton, superButton;
+
+    public XBOX_BUTTONS debugPause;
 	
 	/* touche */
 	public InputTouch[] touch;

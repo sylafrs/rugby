@@ -323,7 +323,8 @@ public class Gamer
             }*/
 			if (unitTo != null && unitTo != game.Ball.Owner)
 			{
-				Controlled.Order = Order.OrderPass(unitTo, passSide > 0);
+                Controlled.GetComponent<UnitAnimator>().OnPass(passSide > 0);
+				Controlled.Order = Order.OrderPass(unitTo);
 			}
 			//PassDirection = Vector3.zero;
         }

@@ -133,6 +133,10 @@ Transition:
     m_ConditionEvent: ball
     m_EventTreshold: 0
     m_ExitTime: .673913002
+  - m_ConditionMode: 2
+    m_ConditionEvent: pass
+    m_EventTreshold: 0
+    m_ExitTime: .673913002
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -191,6 +195,10 @@ Transition:
   m_TransitionDuration: .326086968
   m_TransitionOffset: 0
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: pass
+    m_EventTreshold: 0
+    m_ExitTime: .673913002
   - m_ConditionMode: 1
     m_ConditionEvent: ball
     m_EventTreshold: 0
@@ -383,9 +391,9 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Run
-  m_Speed: 1
+  m_Speed: .800000012
   m_Motions:
-  - {fileID: 7400000, guid: 75dadd60485b2fa428d346b4b9440e30, type: 3}
+  - {fileID: 7400000, guid: 9e8a49d19fed8f041b4f070c41bdbb1b, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 24, y: -84, z: 0}
   m_IKOnFeet: 1
@@ -448,9 +456,9 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PassLeft
-  m_Speed: 1
+  m_Speed: .200000003
   m_Motions:
-  - {fileID: 7400002, guid: 41f7b490753e3474c8a7030a4483e6cc, type: 3}
+  - {fileID: 7400002, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -288, y: -228, z: 0}
   m_IKOnFeet: 1
@@ -500,9 +508,9 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PassRight
-  m_Speed: 1
+  m_Speed: .200000003
   m_Motions:
-  - {fileID: 7400000, guid: 41f7b490753e3474c8a7030a4483e6cc, type: 3}
+  - {fileID: 7400000, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -72, y: -228, z: 0}
   m_IKOnFeet: 1

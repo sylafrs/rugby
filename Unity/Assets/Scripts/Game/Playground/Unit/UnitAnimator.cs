@@ -146,4 +146,8 @@ public class UnitAnimator : myMonoBehaviour {
         this.Pass = true;
         this.BallAtRight = right;
     }
+
+    public void OnTacklePass()
+    {
+    }
 }

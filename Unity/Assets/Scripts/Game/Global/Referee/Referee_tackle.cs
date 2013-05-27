@@ -36,7 +36,8 @@ public partial class Referee
                 // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
                 case TackleManager.RESULT.PASS:
                     Unit target = tackled.GetNearestAlly();
-                    game.Ball.Pass(target, true); // droite.. mais bon..
+                    tackled.GetComponent<UnitAnimator>().OnTacklePass();
+                    game.Ball.Pass(target);
 
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();

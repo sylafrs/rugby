@@ -115,8 +115,8 @@ public class Game : myMonoBehaviour {
 #if UNITY_EDITOR
     public void Update()
     {
-        if (southTeam.Player.XboxController.GetButtonDown(XBOX_BUTTONS.TriggerR) ||
-           northTeam.Player.XboxController.GetButtonDown(XBOX_BUTTONS.TriggerR))
+        if (southTeam.Player.XboxController.GetButtonDown(settings.Inputs.debugPause) ||
+           northTeam.Player.XboxController.GetButtonDown(settings.Inputs.debugPause))
         {
             UnityEditor.EditorApplication.isPaused = true;
         }
@@ -153,9 +153,8 @@ public class Game : myMonoBehaviour {
         this.refs.stateMachine.event_ConversionShot();
     }
 
-    public void OnPass(Unit from, Unit to, bool right)
-    {
-        from.GetComponent<UnitAnimator>().OnPass(right);
+    public void OnPass(Unit from, Unit to)
+    {        
         this.refs.stateMachine.event_Pass(from, to);        
     }
 
