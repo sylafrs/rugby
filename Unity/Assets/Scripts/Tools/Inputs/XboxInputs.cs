@@ -163,8 +163,8 @@ public class XboxInputs : myMonoBehaviour{
 
         public void Update()
         {
-            this.padToUpdate = true;
             this.UpdateButtons();
+            this.padToUpdate = true;            
         }
 
         private void UpdateButtons()
@@ -174,7 +174,7 @@ public class XboxInputs : myMonoBehaviour{
             {
                 for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
                 {
-                    prevState[i] = GetButton((XBOX_BUTTONS)i);
+                    prevState[i] = GetButton((XBOX_BUTTONS)i);                    
                 }
             }
         }
