@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 76cfc2e35c1271042a1768dd32cbd56b
+guid: 8cdbe456f13fd504fa161931729ecfd0
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -31,109 +31,109 @@ ModelImporter:
     100050: Chara_Maori
     100052: CONTROLS
     100054: GEO
-    100056: Head_Direction
-    100058: L_Ankle_jnt
-    100060: L_Ball_jnt
-    100062: L_Clavicle_ctrl
-    100064: L_Clavicle_GRP
-    100066: L_Clavicle_jnt
-    100068: L_Elbow_ctrl
-    100070: L_Elbow_GRP
-    100072: L_Elbow_jnt
-    100074: L_Eye_ctrl
-    100076: L_Eye_jnt
-    100078: L_ForeArm_jnt
-    100080: L_Hip_jnt
-    100082: L_Index01_jnt
-    100084: L_Index02_jnt
-    100086: L_Index03_jnt
-    100088: L_Index04_jnt
-    100090: L_Index_ctrl
-    100092: L_Index_GRP
-    100094: L_Knee_jnt
-    100096: L_Middle01_jnt
-    100098: L_Middle02_jnt
-    100100: L_Middle03_jnt
-    100102: L_Middle04_jnt
-    100104: L_Middle_ctrl
-    100106: L_Middle_GRP
-    100108: L_Pinky01_jnt
-    100110: L_Pinky02_jnt
-    100112: L_Pinky03_jnt
-    100114: L_Pinky04_jnt
-    100116: L_Pinky_ctrl
-    100118: L_Pinky_GRP
-    100120: L_Ring01_jnt
-    100122: L_Ring02_jnt
-    100124: L_Ring03_jnt
-    100126: L_Ring04_jnt
-    100128: L_Ring_ctrl
-    100130: L_Ring_GRP
-    100132: L_Shoulder_ctrl
-    100134: L_Shoulder_GRP
-    100136: L_Shoulder_jnt
-    100138: L_Thumb01_jnt
-    100140: L_Thumb02_jnt
-    100142: L_Thumb03_jnt
-    100144: L_Thumb04_jnt
-    100146: L_Thumb_ctrl
-    100148: L_Thumb_GRP
-    100150: L_Toe_jnt
-    100152: L_Wrist_ctrl
-    100154: L_Wrist_GRP
-    100156: L_Wrist_jnt
-    100158: //RootNode
-    100160: R_Ankle_jnt
-    100162: R_Ball_jnt
-    100164: R_Clavicle_ctrl
-    100166: R_Clavicle_GRP
-    100168: R_Clavicle_jnt
-    100170: R_Elbow_ctrl
-    100172: R_Elbow_GRP
-    100174: R_Elbow_jnt
-    100176: R_Eye_ctrl
-    100178: R_Eye_jnt
-    100180: R_ForeArm_jnt
-    100182: R_Hip_jnt
-    100184: R_Index01_jnt
-    100186: R_Index02_jnt
-    100188: R_Index03_jnt
-    100190: R_Index04_jnt
-    100192: R_Index_ctrl
-    100194: R_Index_GRP
-    100196: R_Knee_jnt
-    100198: R_Middle01_jnt
-    100200: R_Middle02_jnt
-    100202: R_Middle03_jnt
-    100204: R_Middle04_jnt
-    100206: R_Middle_ctrl
-    100208: R_Middle_GRP
-    100210: R_Pinky01_jnt
-    100212: R_Pinky02_jnt
-    100214: R_Pinky03_jnt
-    100216: R_Pinky04_jnt
-    100218: R_Pinky_ctrl
-    100220: R_Pinky_GRP
-    100222: R_Ring01_jnt
-    100224: R_Ring02_jnt
-    100226: R_Ring03_jnt
-    100228: R_Ring04_jnt
-    100230: R_Ring_ctrl
-    100232: R_Ring_GRP
-    100234: R_Shoulder_ctrl
-    100236: R_Shoulder_GRP
-    100238: R_Shoulder_jnt
-    100240: R_Thumb01_jnt
-    100242: R_Thumb02_jnt
-    100244: R_Thumb03_jnt
-    100246: R_Thumb04_jnt
-    100248: R_Thumb_ctrl
-    100250: R_Thumb_GRP
-    100252: R_Toe_jnt
-    100254: R_Wrist_ctrl
-    100256: R_Wrist_GRP
-    100258: R_Wrist_jnt
-    100260: SKELETON
+    100056: L_Ankle_jnt
+    100058: L_Ball_jnt
+    100060: L_Clavicle_ctrl
+    100062: L_Clavicle_GRP
+    100064: L_Clavicle_jnt
+    100066: L_Elbow_ctrl
+    100068: L_Elbow_GRP
+    100070: L_Elbow_jnt
+    100072: L_Eye_ctrl
+    100074: L_Eye_jnt
+    100076: L_ForeArm_jnt
+    100078: L_Hip_jnt
+    100080: L_Index01_jnt
+    100082: L_Index02_jnt
+    100084: L_Index03_jnt
+    100086: L_Index04_jnt
+    100088: L_Index_ctrl
+    100090: L_Index_GRP
+    100092: L_Knee_jnt
+    100094: L_Middle01_jnt
+    100096: L_Middle02_jnt
+    100098: L_Middle03_jnt
+    100100: L_Middle04_jnt
+    100102: L_Middle_ctrl
+    100104: L_Middle_GRP
+    100106: L_Pinky01_jnt
+    100108: L_Pinky02_jnt
+    100110: L_Pinky03_jnt
+    100112: L_Pinky04_jnt
+    100114: L_Pinky_ctrl
+    100116: L_Pinky_GRP
+    100118: L_Ring01_jnt
+    100120: L_Ring02_jnt
+    100122: L_Ring03_jnt
+    100124: L_Ring04_jnt
+    100126: L_Ring_ctrl
+    100128: L_Ring_GRP
+    100130: L_Shoulder_ctrl
+    100132: L_Shoulder_GRP
+    100134: L_Shoulder_jnt
+    100136: L_Thumb01_jnt
+    100138: L_Thumb02_jnt
+    100140: L_Thumb03_jnt
+    100142: L_Thumb04_jnt
+    100144: L_Thumb_ctrl
+    100146: L_Thumb_GRP
+    100148: L_Toe_jnt
+    100150: L_Wrist_ctrl
+    100152: L_Wrist_GRP
+    100154: L_Wrist_jnt
+    100156: //RootNode
+    100158: R_Ankle_jnt
+    100160: R_Ball_jnt
+    100162: R_Clavicle_ctrl
+    100164: R_Clavicle_GRP
+    100166: R_Clavicle_jnt
+    100168: R_Elbow_ctrl
+    100170: R_Elbow_GRP
+    100172: R_Elbow_jnt
+    100174: R_Eye_ctrl
+    100176: R_Eye_jnt
+    100178: R_ForeArm_jnt
+    100180: R_Hip_jnt
+    100182: R_Index01_jnt
+    100184: R_Index02_jnt
+    100186: R_Index03_jnt
+    100188: R_Index04_jnt
+    100190: R_Index_ctrl
+    100192: R_Index_GRP
+    100194: R_Knee_jnt
+    100196: R_Middle01_jnt
+    100198: R_Middle02_jnt
+    100200: R_Middle03_jnt
+    100202: R_Middle04_jnt
+    100204: R_Middle_ctrl
+    100206: R_Middle_GRP
+    100208: R_Pinky01_jnt
+    100210: R_Pinky02_jnt
+    100212: R_Pinky03_jnt
+    100214: R_Pinky04_jnt
+    100216: R_Pinky_ctrl
+    100218: R_Pinky_GRP
+    100220: R_Ring01_jnt
+    100222: R_Ring02_jnt
+    100224: R_Ring03_jnt
+    100226: R_Ring04_jnt
+    100228: R_Ring_ctrl
+    100230: R_Ring_GRP
+    100232: R_Shoulder_ctrl
+    100234: R_Shoulder_GRP
+    100236: R_Shoulder_jnt
+    100238: R_Thumb01_jnt
+    100240: R_Thumb02_jnt
+    100242: R_Thumb03_jnt
+    100244: R_Thumb04_jnt
+    100246: R_Thumb_ctrl
+    100248: R_Thumb_GRP
+    100250: R_Toe_jnt
+    100252: R_Wrist_ctrl
+    100254: R_Wrist_GRP
+    100256: R_Wrist_jnt
+    100258: SKELETON
+    100260: Head_Direction
     400000: _C_Ultimate_ctrl
     400002: C_Chest_ctrl
     400004: C_Chest_jnt
@@ -162,118 +162,118 @@ ModelImporter:
     400050: Chara_Maori
     400052: CONTROLS
     400054: GEO
-    400056: Head_Direction
-    400058: L_Ankle_jnt
-    400060: L_Ball_jnt
-    400062: L_Clavicle_ctrl
-    400064: L_Clavicle_GRP
-    400066: L_Clavicle_jnt
-    400068: L_Elbow_ctrl
-    400070: L_Elbow_GRP
-    400072: L_Elbow_jnt
-    400074: L_Eye_ctrl
-    400076: L_Eye_jnt
-    400078: L_ForeArm_jnt
-    400080: L_Hip_jnt
-    400082: L_Index01_jnt
-    400084: L_Index02_jnt
-    400086: L_Index03_jnt
-    400088: L_Index04_jnt
-    400090: L_Index_ctrl
-    400092: L_Index_GRP
-    400094: L_Knee_jnt
-    400096: L_Middle01_jnt
-    400098: L_Middle02_jnt
-    400100: L_Middle03_jnt
-    400102: L_Middle04_jnt
-    400104: L_Middle_ctrl
-    400106: L_Middle_GRP
-    400108: L_Pinky01_jnt
-    400110: L_Pinky02_jnt
-    400112: L_Pinky03_jnt
-    400114: L_Pinky04_jnt
-    400116: L_Pinky_ctrl
-    400118: L_Pinky_GRP
-    400120: L_Ring01_jnt
-    400122: L_Ring02_jnt
-    400124: L_Ring03_jnt
-    400126: L_Ring04_jnt
-    400128: L_Ring_ctrl
-    400130: L_Ring_GRP
-    400132: L_Shoulder_ctrl
-    400134: L_Shoulder_GRP
-    400136: L_Shoulder_jnt
-    400138: L_Thumb01_jnt
-    400140: L_Thumb02_jnt
-    400142: L_Thumb03_jnt
-    400144: L_Thumb04_jnt
-    400146: L_Thumb_ctrl
-    400148: L_Thumb_GRP
-    400150: L_Toe_jnt
-    400152: L_Wrist_ctrl
-    400154: L_Wrist_GRP
-    400156: L_Wrist_jnt
-    400158: //RootNode
-    400160: R_Ankle_jnt
-    400162: R_Ball_jnt
-    400164: R_Clavicle_ctrl
-    400166: R_Clavicle_GRP
-    400168: R_Clavicle_jnt
-    400170: R_Elbow_ctrl
-    400172: R_Elbow_GRP
-    400174: R_Elbow_jnt
-    400176: R_Eye_ctrl
-    400178: R_Eye_jnt
-    400180: R_ForeArm_jnt
-    400182: R_Hip_jnt
-    400184: R_Index01_jnt
-    400186: R_Index02_jnt
-    400188: R_Index03_jnt
-    400190: R_Index04_jnt
-    400192: R_Index_ctrl
-    400194: R_Index_GRP
-    400196: R_Knee_jnt
-    400198: R_Middle01_jnt
-    400200: R_Middle02_jnt
-    400202: R_Middle03_jnt
-    400204: R_Middle04_jnt
-    400206: R_Middle_ctrl
-    400208: R_Middle_GRP
-    400210: R_Pinky01_jnt
-    400212: R_Pinky02_jnt
-    400214: R_Pinky03_jnt
-    400216: R_Pinky04_jnt
-    400218: R_Pinky_ctrl
-    400220: R_Pinky_GRP
-    400222: R_Ring01_jnt
-    400224: R_Ring02_jnt
-    400226: R_Ring03_jnt
-    400228: R_Ring04_jnt
-    400230: R_Ring_ctrl
-    400232: R_Ring_GRP
-    400234: R_Shoulder_ctrl
-    400236: R_Shoulder_GRP
-    400238: R_Shoulder_jnt
-    400240: R_Thumb01_jnt
-    400242: R_Thumb02_jnt
-    400244: R_Thumb03_jnt
-    400246: R_Thumb04_jnt
-    400248: R_Thumb_ctrl
-    400250: R_Thumb_GRP
-    400252: R_Toe_jnt
-    400254: R_Wrist_ctrl
-    400256: R_Wrist_GRP
-    400258: R_Wrist_jnt
-    400260: SKELETON
+    400056: L_Ankle_jnt
+    400058: L_Ball_jnt
+    400060: L_Clavicle_ctrl
+    400062: L_Clavicle_GRP
+    400064: L_Clavicle_jnt
+    400066: L_Elbow_ctrl
+    400068: L_Elbow_GRP
+    400070: L_Elbow_jnt
+    400072: L_Eye_ctrl
+    400074: L_Eye_jnt
+    400076: L_ForeArm_jnt
+    400078: L_Hip_jnt
+    400080: L_Index01_jnt
+    400082: L_Index02_jnt
+    400084: L_Index03_jnt
+    400086: L_Index04_jnt
+    400088: L_Index_ctrl
+    400090: L_Index_GRP
+    400092: L_Knee_jnt
+    400094: L_Middle01_jnt
+    400096: L_Middle02_jnt
+    400098: L_Middle03_jnt
+    400100: L_Middle04_jnt
+    400102: L_Middle_ctrl
+    400104: L_Middle_GRP
+    400106: L_Pinky01_jnt
+    400108: L_Pinky02_jnt
+    400110: L_Pinky03_jnt
+    400112: L_Pinky04_jnt
+    400114: L_Pinky_ctrl
+    400116: L_Pinky_GRP
+    400118: L_Ring01_jnt
+    400120: L_Ring02_jnt
+    400122: L_Ring03_jnt
+    400124: L_Ring04_jnt
+    400126: L_Ring_ctrl
+    400128: L_Ring_GRP
+    400130: L_Shoulder_ctrl
+    400132: L_Shoulder_GRP
+    400134: L_Shoulder_jnt
+    400136: L_Thumb01_jnt
+    400138: L_Thumb02_jnt
+    400140: L_Thumb03_jnt
+    400142: L_Thumb04_jnt
+    400144: L_Thumb_ctrl
+    400146: L_Thumb_GRP
+    400148: L_Toe_jnt
+    400150: L_Wrist_ctrl
+    400152: L_Wrist_GRP
+    400154: L_Wrist_jnt
+    400156: //RootNode
+    400158: R_Ankle_jnt
+    400160: R_Ball_jnt
+    400162: R_Clavicle_ctrl
+    400164: R_Clavicle_GRP
+    400166: R_Clavicle_jnt
+    400168: R_Elbow_ctrl
+    400170: R_Elbow_GRP
+    400172: R_Elbow_jnt
+    400174: R_Eye_ctrl
+    400176: R_Eye_jnt
+    400178: R_ForeArm_jnt
+    400180: R_Hip_jnt
+    400182: R_Index01_jnt
+    400184: R_Index02_jnt
+    400186: R_Index03_jnt
+    400188: R_Index04_jnt
+    400190: R_Index_ctrl
+    400192: R_Index_GRP
+    400194: R_Knee_jnt
+    400196: R_Middle01_jnt
+    400198: R_Middle02_jnt
+    400200: R_Middle03_jnt
+    400202: R_Middle04_jnt
+    400204: R_Middle_ctrl
+    400206: R_Middle_GRP
+    400208: R_Pinky01_jnt
+    400210: R_Pinky02_jnt
+    400212: R_Pinky03_jnt
+    400214: R_Pinky04_jnt
+    400216: R_Pinky_ctrl
+    400218: R_Pinky_GRP
+    400220: R_Ring01_jnt
+    400222: R_Ring02_jnt
+    400224: R_Ring03_jnt
+    400226: R_Ring04_jnt
+    400228: R_Ring_ctrl
+    400230: R_Ring_GRP
+    400232: R_Shoulder_ctrl
+    400234: R_Shoulder_GRP
+    400236: R_Shoulder_jnt
+    400238: R_Thumb01_jnt
+    400240: R_Thumb02_jnt
+    400242: R_Thumb03_jnt
+    400244: R_Thumb04_jnt
+    400246: R_Thumb_ctrl
+    400248: R_Thumb_GRP
+    400250: R_Toe_jnt
+    400252: R_Wrist_ctrl
+    400254: R_Wrist_GRP
+    400256: R_Wrist_jnt
+    400258: SKELETON
+    400260: Head_Direction
     4300000: Chara_Maori
-    7400000: Take 001
+    7400000: Maori_Run
     9500000: //RootNode
     11100000: //RootNode
     13700000: Chara_Maori
   materials:
     importMaterials: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 1
+    materialSearch: 2
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -281,8 +281,30 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 0
-    clipAnimations: []
+    animationWrapMode: 2
+    clipAnimations:
+    - name: Maori_Run
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -302,8 +324,8 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
-  copyAvatar: 0
+  importAnimation: 1
+  copyAvatar: 1
   humanDescription:
     human:
     - boneName: C_Root_jnt
@@ -1226,7 +1248,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 76cfc2e35c1271042a1768dd32cbd56b,
+    type: 3}
   additionalBone: 1
   animationType: 3
   userData: 
