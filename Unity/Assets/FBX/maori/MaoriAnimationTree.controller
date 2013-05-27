@@ -17,8 +17,8 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: tackled
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -78,7 +78,7 @@ State:
   m_Name: Maori_Idle
   m_Speed: 1
   m_Motions:
-  - {fileID: 7400000, guid: e694b0511cb812a46b572a26f6cca7fd, type: 3}
+  - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 36, y: 48, z: 0}
   m_IKOnFeet: 1
@@ -91,7 +91,7 @@ State:
   m_Name: Maori_Run
   m_Speed: 1
   m_Motions:
-  - {fileID: 7400000, guid: 8cdbe456f13fd504fa161931729ecfd0, type: 3}
+  - {fileID: 7400000, guid: dae1f63e4b163c346b44d3b038951e9e, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 36, y: -48, z: 0}
   m_IKOnFeet: 1
