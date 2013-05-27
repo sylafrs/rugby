@@ -65,16 +65,16 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: out_delaySpeed
     m_Type: 3
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 1
     m_DefaultBool: 0
   - m_Name: out_delayPass
     m_Type: 3
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 5
