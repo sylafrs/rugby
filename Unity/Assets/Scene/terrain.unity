@@ -1327,7 +1327,7 @@ MonoBehaviour:
   unitTackleRange: 70
   nbOffensivePlayer: 0
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
-  Prefab_capitaine: {fileID: 100020, guid: f4de280f8c1a3e347b29076d4b0e73e3, type: 2}
+  Prefab_capitaine: {fileID: 0}
   SuperGaugeValue: 0
   nbUnits: 5
   fxSuper: {fileID: 100020, guid: ac37f60498f5b274796598998efbca6b, type: 2}
@@ -4093,9 +4093,16 @@ MonoBehaviour:
               BallHandlingState:
                 GainingGrounCamSettings:
                   zoom: 1
+                  target: 0
               BallFreeState:
-                BallFlyingState:
-                  angleDropKick: 45
+                angleDropKick: 45
+                angleDropUpAndUnder: 70
+                BallDropCamSettings:
+                  zoom: 0
+                  target: 0
+                GroundBallCamSettings:
+                  zoom: 0
+                  target: 0
             PassingState:
               maxTimeHoldingPassButton: 3
             TacklingState:
@@ -4106,6 +4113,7 @@ MonoBehaviour:
               ConversionFly:
                 ConversionFlyCam:
                   zoom: .300000012
+                  target: 0
             ScrumingState:
               timeToGetOutTackleAreaBeforeScrum: 2
               minPlayersEachTeamToTriggerScrum: 3
@@ -4120,6 +4128,7 @@ MonoBehaviour:
               ToucheRemiseAuCentre: 0
               TouchCamSettings:
                 zoom: 1
+                target: 0
     Inputs:
       shortPass:
         keyboardP1: 49

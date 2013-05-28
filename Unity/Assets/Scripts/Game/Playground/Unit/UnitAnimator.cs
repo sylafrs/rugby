@@ -25,7 +25,8 @@ public class UnitAnimator : myMonoBehaviour
     public const string lblDrop = "in_bool_drop";
     public const string lblBallRight = "in_bool_ballRight";
     public const string lblDelay = "out_int_delaySpeed";
-    	
+    public const string lblSuper = "in_bool_super";	
+	
     public float Speed
     {
         get
@@ -121,6 +122,17 @@ public class UnitAnimator : myMonoBehaviour
             animator.SetBool(lblBallRight, value);
         }
     }
+	
+	public bool Super {
+		get
+        {
+            return animator.GetBool(lblSuper);
+        }
+        set
+        {
+            animator.SetBool(lblSuper, value);
+        }
+	}
 
     public int DELAY_SPEED
     {
@@ -232,6 +244,17 @@ public class UnitAnimator : myMonoBehaviour
         launchUpdate = true;
         this.Drop = true;
     }
+	
+	public void PrepareSuper() {
+		Super = true;
+	}
+	
+	public void LaunchSuper() {
+		if(!Super) {
+			Debug.LogWarning("UnitAnimator : Super was not prepared");	
+		}
+		Super = false;	
+	}
 
     public void OnTacklePass()
     {
