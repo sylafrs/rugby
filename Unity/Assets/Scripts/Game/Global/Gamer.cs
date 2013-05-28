@@ -410,7 +410,7 @@ public class Gamer
 				Controlled.IndicateSelected(false);
 			}
 
-			Controlled = GetUnitNear();
+			Controlled = GetUnitNear(false);
 
 			if (Controlled)
 			{
@@ -457,22 +457,25 @@ public class Gamer
 		}
 	}
 
-	public Unit GetUnitNear()
+	public Unit GetUnitNear(bool countControlled)
 	{
 		float dist;
-		float min = Vector3.SqrMagnitude(game.Ball.transform.position - Controlled.Team[0].transform.position);
-		Unit near = (Controlled.Team[0].isTackled ? Controlled.Team[1] : Controlled.Team[0]);
+
+		float min = 0;
+		Unit near = null;
 
 		foreach (Unit u in Controlled.Team)
 		{
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 
-			if (dist < min && !u.isTackled)
+            // Si on a pas de near ou qu'on est le plus proche, si countControlled est mis : peut pas être Controlée; ne doit pas etre tacklé
+			if ((near == null || dist < min) && !u.isTackled && (countControlled || u != Controlled))
 			{
 				near = u;
 				min = dist;
 			}
 		}
+
 		return near;
 	}
 

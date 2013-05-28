@@ -146,7 +146,7 @@ public class Ball : TriggeringTriggered, Debugable
 				this.Game.BallOnGround(true);
 			}
 
-			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround, this.transform.position.z);
+			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround - 0.1f, this.transform.position.z);
 
 			this.onGroundFired = true;
 			CircleDrop.SetActive(false);
