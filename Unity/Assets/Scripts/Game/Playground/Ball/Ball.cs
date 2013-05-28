@@ -127,6 +127,11 @@ public class Ball : TriggeringTriggered, Debugable
 
 	const float epsilonOnGround = 0.3f;
 
+    public bool isOnGround()
+    {
+        return this.transform.position.y <= epsilonOnGround;
+    }
+
 	public void Update()
 	{
 		if (Owner != null)
@@ -134,7 +139,7 @@ public class Ball : TriggeringTriggered, Debugable
 			this.transform.localRotation = Quaternion.identity;
 		}
 
-		if (this.transform.position.y <= epsilonOnGround)
+        if (this.isOnGround())
 		{
 			if (!this.onGround)
 			{
@@ -197,7 +202,7 @@ public class Ball : TriggeringTriggered, Debugable
 	{
 		if (timeOnDrop != -1)
 		{
-			if (this.transform.position.y > epsilonOnGround)
+			if (!this.isOnGround())
 			{
 				drop.doDrop(timeOnDrop);
 				timeOnDrop += Time.deltaTime;
@@ -233,7 +238,7 @@ public class Ball : TriggeringTriggered, Debugable
 	{
 		if (timeOnPass != -1)
 		{
-			if (this.transform.position.y > epsilonOnGround)
+			if (!this.isOnGround())
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
 					passManager.oPassState = PassSystem.passState.ONPASS;
