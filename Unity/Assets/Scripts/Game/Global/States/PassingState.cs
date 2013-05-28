@@ -18,11 +18,14 @@ public class PassingState : GameState {
 
     public override void OnUpdate()
     {
-		var p1 = this.game.southTeam.Player;
-        var p2 = this.game.northTeam.Player;
- 
-        if (p1 != null) p1.myUpdate();
-        if (p2 != null) p2.myUpdate();
+		//var p1 = this.game.southTeam.Player;
+        //var p2 = this.game.northTeam.Player;
+        //
+        //if (p1 != null) p1.myUpdate();
+        //if (p2 != null) p2.myUpdate();
+
+        var p = this.game.Ball.Team.opponent.Player;
+        if (p != null) p.myUpdate(); 
     }
 	
 	public override bool OnNewOwner(Unit old, Unit current)

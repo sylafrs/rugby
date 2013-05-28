@@ -3659,7 +3659,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: 
+  DebugWindowFilter: Ball
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -17185,6 +17185,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}
   m_Name: 
+  step: 0
   game: {fileID: 448441829}
   gameCamera: {fileID: 381927179}
   rotationDelay: .300000012

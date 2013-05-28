@@ -125,7 +125,7 @@ public class Ball : TriggeringTriggered, Debugable
         this.transform.parent = root;
     }
 
-	const float epsilonOnGround = 0.3f;
+	const float epsilonOnGround = 0.4f;
 
     public bool isOnGround()
     {
@@ -243,6 +243,7 @@ public class Ball : TriggeringTriggered, Debugable
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
 					passManager.oPassState = PassSystem.passState.ONPASS;
+
 				//Time.timeScale = 0.1f;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
@@ -393,6 +394,15 @@ public class Ball : TriggeringTriggered, Debugable
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
+        EditorGUILayout.Toggle("On ground", isOnGround());
+        if (this.passManager != null)
+        {
+            EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Pass state", "null");
+        }
         EditorGUILayout.ObjectField("Owner (unit)", this.Owner, typeof(Unit), true);
         EditorGUILayout.ObjectField("Owner (team)", this.Team, typeof(Team), true);
         EditorGUILayout.ObjectField("Ball", this, typeof(Ball), true);
