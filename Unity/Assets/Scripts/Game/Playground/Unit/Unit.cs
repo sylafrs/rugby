@@ -632,8 +632,8 @@ public class Unit : TriggeringTriggered, Debugable
 			}
 			else if (CanDodge)
 			{
-				remainingTimeDodging = this.team.unitDodgeDuration;
-				cooldownDodge = this.team.unitDodgeCooldown;
+				remainingTimeDodging = this.team.settings.unitDodgeDuration;
+				cooldownDodge = this.team.settings.unitDodgeCooldown;
 				this.game.OnDodge(this);
 			}
 		}
