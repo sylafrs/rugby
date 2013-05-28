@@ -3085,7 +3085,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 352579017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 9.6105423, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 227774843}
@@ -3620,7 +3620,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: R
+  DebugWindowFilter: Gam
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4035,12 +4035,12 @@ MonoBehaviour:
         Vheight: 10
         Vwidth: 5
         LineSpace: 5
-        dMinDefensePlayer: 30
-        dMaxDefensePlayer: 35
-        dMinControlledDefense: 25
-        dMaxControlledDefense: 30
-        dMinOffensivePlayer: 15
-        dMaxOffensivePlayer: 25
+        dMinDefensePlayer: 10
+        dMaxDefensePlayer: 15
+        dMinControlledDefense: 15
+        dMaxControlledDefense: 25
+        dMinOffensivePlayer: 5
+        dMaxOffensivePlayer: 15
         dMinControlledOffensive: 5
         dMaxControlledOffensive: 10
         nbOffensivePlayer: 2
@@ -4056,8 +4056,10 @@ MonoBehaviour:
                 GainingGrounCamSettings:
                   zoom: 1
               BallFreeState:
-                BallFlyingState:
-                  angleDropKick: 45
+                angleDropKick: 45
+                angleDropUpAndUnder: 70
+                BallDropCamSettings:
+                  zoom: .5
             PassingState:
               maxTimeHoldingPassButton: 3
             TacklingState:
