@@ -25,14 +25,6 @@ public class WaitingState : GameState
 		remainingTime -= UnityEngine.Time.deltaTime;
 		if (remainingTime <= 0)
 		{
-			foreach (Unit u in game.northTeam)
-			{
-				u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-			}
-			foreach (Unit u in game.southTeam)
-			{
-				u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-			}
 			sm.state_change_me(this, new MainGameState(sm, cam, game));
 		}
 	}
