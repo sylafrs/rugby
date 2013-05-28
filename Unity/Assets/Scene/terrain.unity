@@ -2558,7 +2558,7 @@ MonoBehaviour:
   Game: {fileID: 448441829}
   Model: {fileID: 1833080987}
   CircleDrop: {fileID: 719836395}
-  multiplierDropKick: {x: 20, y: 20}
+  multiplierDropKick: {x: 30, y: 25}
   multiplierDropUpAndUnder: {x: 25, y: 5}
   angleDropUpAndUnder: 85
   randomLimitAngle: 5
@@ -4093,15 +4093,15 @@ MonoBehaviour:
               BallHandlingState:
                 GainingGrounCamSettings:
                   zoom: 1
-                  target: 0
+                  target: 1
               BallFreeState:
                 angleDropKick: 45
                 angleDropUpAndUnder: 70
                 BallDropCamSettings:
-                  zoom: 0
+                  zoom: 1.70000005
                   target: 0
                 GroundBallCamSettings:
-                  zoom: 0
+                  zoom: 1.5
                   target: 0
             PassingState:
               maxTimeHoldingPassButton: 3
@@ -17739,7 +17739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2078123349}
   m_LocalRotation: {x: .2079117, y: 0, z: 0, w: .978147626}
-  m_LocalPosition: {x: 1.11322879e-06, y: 11.1756392, z: -10.8046541}
+  m_LocalPosition: {x: 5.53032123e-07, y: 19.1239395, z: -20.9447308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 670758525}
