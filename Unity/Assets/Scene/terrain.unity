@@ -4060,6 +4060,8 @@ MonoBehaviour:
                 angleDropUpAndUnder: 70
                 BallDropCamSettings:
                   zoom: .5
+                GroundBallCamSettings:
+                  zoom: 1
             PassingState:
               maxTimeHoldingPassButton: 3
             TacklingState:

@@ -70,16 +70,10 @@ public class DodgingStateSettings
 public class BallFreeStateSettings
 {
 	//public BallFlyingStateSettings BallFlyingState;
-	public float angleDropKick = 45f;
-	public float angleDropUpAndUnder = 70f;
+	public float angleDropKick 			= 45f;
+	public float angleDropUpAndUnder 	= 70f;
 	public CamSettings BallDropCamSettings;	
-	
-	public GroundBallStateSettings GroundBallState;
-}
-
-[System.Serializable]
-public class GroundBallStateSettings
-{
+	public CamSettings GroundBallCamSettings;
 }
 
 [System.Serializable]
