@@ -91,8 +91,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			*/
 			
 			if(isflipping == true){
-				this.flipUpdate();
 				this.TranslateCam2();
+				this.flipUpdate();
 			}else{
 				this.RotateCam();
 				this.TranslateCam();
@@ -102,12 +102,13 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	
 	private void TranslateCam()
 	{
-		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-		//Vector3 targetPosition	 = target.position+MaxfollowOffset;
-		Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
-		Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-		Vector3 delta  = result- Camera.mainCamera.transform.position;
+		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
+		Vector3 offset 			= Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 		
+		Vector3 result 			= Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+		Vector3 delta  			= result- Camera.mainCamera.transform.position;
+		
+		//Debug.Log("Delta : "+delta.magnitude);
 		if( delta.magnitude > magnitudeGap){
 			if(actualDelay >= moveDelay){
 				Camera.mainCamera.transform.position = result;
@@ -123,41 +124,6 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			}
 			resetActualDelay();
 		}
-	}
-	
-	private void TranslateCam2()
-	{
-		/*
-		Vector3 targetPosition = target.TransformPoint(MaxfollowOffset);
-		Vector3 UnitToTarget = targetPosition - target.transform.position;
-		Vector3 UnitToCamera = Camera.mainCamera.transform.position - target.transform.position;
-		
-		targetPosition = UnitToCamera * UnitToTarget.magnitude;
-			
-		Vector3 offset = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
-		Vector3 result = Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
-		Vector3 delta  = result- Camera.mainCamera.transform.position;
-		
-		if( delta.magnitude > magnitudeGap){
-			if(actualDelay >= moveDelay){
-				Camera.mainCamera.transform.position = result;
-			}else{
-				actualDelay += Time.deltaTime;
-			}
-		}
-		else
-		{
-			if(OnNextIdealPosition != null) 
-			{
-				OnNextIdealPosition();
-				OnNextIdealPosition = null;
-			}
-			resetActualDelay();	
-		}
-		*/
-		
-		//Camera.mainCamera.transform.position = Vector3.MoveTowards(Camera.mainCamera.transform.position, target.position, step);
-
 	}
 	
 	private void RotateCam()
