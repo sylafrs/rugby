@@ -59,15 +59,6 @@ public class GameActionState : GameState {
         
     public override bool OnResumeSignal(float time) 
     {
-        foreach (Unit u in game.northTeam)
-        {
-            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-        }
-        foreach (Unit u in game.southTeam)
-        {
-            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-        }
-
         sm.state_change_me(this, new WaitingState(sm, cam, game, time));
        
         return true;
