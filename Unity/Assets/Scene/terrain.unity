@@ -1320,7 +1320,7 @@ MonoBehaviour:
   tackleFactor: 1
   unitDodgeSpeedFactor: 2
   unitDodgeDuration: .200000003
-  unitDodgeCooldown: 1
+  unitDodgeCooldown: 2
   unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
@@ -4039,7 +4039,7 @@ MonoBehaviour:
   settings:
     Global:
       Game:
-        points_drop: 5
+        points_drop: 2
         points_essai: 5
         points_transfo: 3
         period_time: 120
@@ -4086,7 +4086,7 @@ MonoBehaviour:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
-          rotationSpeed: 10
+          rotationSpeed: 2000
         PlayingState:
           MainGameState:
             RunningState:
@@ -4106,7 +4106,7 @@ MonoBehaviour:
             PassingState:
               maxTimeHoldingPassButton: 3
               PassingCamSettings:
-                zoom: 1
+                zoom: 1.39999998
                 target: 0
             TacklingState:
               tackledTime: 3
@@ -6081,7 +6081,7 @@ MonoBehaviour:
   tackleFactor: 1
   unitDodgeSpeedFactor: 2
   unitDodgeDuration: .200000003
-  unitDodgeCooldown: 1
+  unitDodgeCooldown: 2
   unitInvincibleDodge: 1
   unitSpeed: 15
   handicapSpeed: 2.5
