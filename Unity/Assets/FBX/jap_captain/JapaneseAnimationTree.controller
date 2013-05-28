@@ -730,7 +730,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: RunBall
-  m_Speed: .800000012
+  m_Speed: 1
   m_Motions:
   - {fileID: 7400000, guid: f20ecfcc5242079478fd24d600abb12d, type: 3}
   m_ParentStateMachine: {fileID: 110700000}

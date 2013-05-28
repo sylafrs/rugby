@@ -269,7 +269,7 @@ ModelImporter:
     - name: RunBall
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 15
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
