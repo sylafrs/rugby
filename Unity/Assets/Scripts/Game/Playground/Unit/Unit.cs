@@ -357,7 +357,9 @@ public class Unit : TriggeringTriggered, Debugable
 
 	void UpdateDefensePlacement()
 	{
-		//return;
+		//Check si je suis le destinataire d'une passe ou si je me replace
+		if (this.game.Ball.NextOwner || replacement)
+			return;
 
 		//Variables
 		Vector3 pos = this.transform.position;
@@ -366,10 +368,6 @@ public class Unit : TriggeringTriggered, Debugable
 		float distX = 0f;
 		int offsetZ = Mathf.RoundToInt(this.oTS.dMaxControlledDefense - this.oTS.dMinControlledDefense);
 		int offsetX = Mathf.RoundToInt(this.oTS.dMaxDefensePlayer - this.oTS.dMinDefensePlayer);
-
-		//Check si je suis le destinataire d'une passe ou si je me replace
-		if (this.game.Ball.NextOwner || replacement)
-			return;
 
 		//Check si je suis dans le même couloir que la balle
 		if (this.game.compareZoneInMap(this.game.Ball.gameObject, this.gameObject) == 0)

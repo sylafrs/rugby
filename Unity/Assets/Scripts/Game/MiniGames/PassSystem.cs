@@ -121,7 +121,6 @@ public class PassSystem
 			angle = Mathf.Deg2Rad * 25.0f;
 
 			target.Order = Order.OrderMove(relativePosition);
-			ball.NextOwner = target;
 
 		}
 	}
