@@ -18,14 +18,40 @@ public class UnitAnimator : myMonoBehaviour
 
     public const string lblSpeed = "in_float_speed";
     public const string lblTackled = "in_bool_tackled";
+    public const string lblTackling = "in_bool_tackling";
+    public const string lblTackleFail = "in_bool_tackleFail";
     public const string lblBall = "in_bool_ball";
     public const string lblPass = "in_bool_pass";
     public const string lblTouch = "in_bool_touch";
     public const string lblPut = "in_bool_put";
-    public const string lblDrop = "in_bool_drop";
+    public const string lblDrop = "in_bool_drop";    
     public const string lblBallRight = "in_bool_ballRight";
     public const string lblDelay = "out_int_delaySpeed";
-    public const string lblSuper = "in_bool_super";	
+    public const string lblSuper = "in_bool_super";
+
+    public bool Tackling
+    {
+        get
+        {
+            return animator.GetBool(lblTackling);
+        }
+        set
+        {
+            animator.SetBool(lblTackling, value);
+        }
+    }
+
+    public bool TackleFail
+    {
+        get
+        {
+            return animator.GetBool(lblTackleFail);
+        }
+        set
+        {
+            animator.SetBool(lblTackleFail, value);
+        }
+    }
 	
     public float Speed
     {
@@ -258,5 +284,11 @@ public class UnitAnimator : myMonoBehaviour
 
     public void OnTacklePass()
     {
+    }
+
+    public void OnTackleStart(bool success)
+    {
+        this.TackleFail = !success;
+        this.Tackling = true;        
     }
 }

@@ -11,14 +11,14 @@ class PlaqueState : UnitState
     public PlaqueState(StateMachine sm, Unit u) : base(sm, u) 
     {
         this.tMax = unit.game.settings.GameStates.MainState.PlayingState.MainGameState.TacklingState.tackledTime;
-        this.rotate = true;
+        //this.rotate = true;
     }
 
     // Stun
     public PlaqueState(StateMachine sm, Unit u, float duration) : base(sm, u) 
     {
         this.tMax = duration;
-        this.rotate = false;
+        //this.rotate = false;
     }
 
     // Remise à zero :p
@@ -32,7 +32,7 @@ class PlaqueState : UnitState
     
     float t;
     float tMax;
-    bool rotate;
+    //bool rotate;
 
     public override bool OnUntackle()
     {
@@ -59,8 +59,8 @@ class PlaqueState : UnitState
 			}
 		}
 
-        if(rotate)
-            unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
+        //if(rotate)
+        //    unit.Model.transform.localRotation = Quaternion.Euler(90, 0, 0);
 
         UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
@@ -89,12 +89,13 @@ class PlaqueState : UnitState
 			}
 		}
 
-        if(rotate)
-            unit.Model.transform.localRotation = Quaternion.identity;
+        //if(rotate)
+        //    unit.Model.transform.localRotation = Quaternion.identity;
 
         UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
         {
+            ua.Tackling = false;            
             ua.Tackled = false;
         }
 	}

@@ -232,6 +232,7 @@ public class Ball : TriggeringTriggered, Debugable
 		passManager = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		passManager.CalculatePass();
 		timeOnPass = 0;
+		NextOwner = to;
 	}
 
 	public void UpdatePass()
@@ -242,7 +243,7 @@ public class Ball : TriggeringTriggered, Debugable
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
 					passManager.oPassState = PassSystem.passState.ONPASS;
-				Time.timeScale = 1f;
+				//Time.timeScale = 0.1f;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}

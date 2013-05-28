@@ -61,7 +61,7 @@ public class RunningState : GameState
                 //please, kill after usage x)
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
-				cam.setTarget(game.Ball.Owner.transform);
+				cam.setTarget(game.Ball.Team[2].transform);
                 game.Referee.OnDropTransformed(but);
             }
         );

@@ -52,6 +52,7 @@ public class PassSystem
 		this.target = target;
 		this.ball = ball;
 		this.initialPosition = ball.transform.position;
+		this.initialPosition.y -= 0.5f;
 		this.butBleu = b1;
 		this.butRouge = b2;
 		/*
@@ -99,8 +100,9 @@ public class PassSystem
 
 			if (!passValidity())
 			{
-				CorrectTrajectory();
+				//CorrectTrajectory();
 				CorrectPosition();
+				calculateRelativeDirection();
 			}
 
 			multiplyRelativeDirection();
@@ -119,7 +121,6 @@ public class PassSystem
 			angle = Mathf.Deg2Rad * 25.0f;
 
 			target.Order = Order.OrderMove(relativePosition);
-			ball.NextOwner = target;
 
 		}
 	}
@@ -151,7 +152,7 @@ public class PassSystem
 
 	private void CorrectPosition()
 	{
-		relativePosition = ball.transform.position + relativeDirection * velocityPass * magnitude / target.nma.speed;
+		relativePosition = new Vector3(target.transform.position.x, from.transform.position.y, from.transform.position.z);
 	}
 
 	/*
