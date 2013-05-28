@@ -60,12 +60,9 @@ public class Team : myMonoBehaviour, IEnumerable
 
 	public float speedFactor;
 	public float tackleFactor;
-
-	public float unitDodgeSpeedFactor;
-	public float unitDodgeDuration;
-	public float unitDodgeCooldown;
-	public bool unitInvincibleDodge;
-
+	
+	public DodgingStateSettings settings;
+	
 	public float unitSpeed;
 	public float handicapSpeed = 1;
 	public float unitTackleRange;
@@ -114,6 +111,7 @@ public class Team : myMonoBehaviour, IEnumerable
 	{
 		But.Owner = this;
 		Zone.Owner = this;
+		this.settings = Game.instance.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallHandlingState.DodgingState;
 
 		speedFactor = 1f;
 		tackleFactor = 1f;
@@ -127,7 +125,7 @@ public class Team : myMonoBehaviour, IEnumerable
 			{
 				if (u.Dodge)
 				{
-					u.nma.speed = fixUnits ? 0 : unitSpeed * this.unitDodgeSpeedFactor;
+					u.nma.speed = fixUnits ? 0 : unitSpeed * this.settings.unitDodgeSpeedFactor;
 				}
 				//else if (game.Ball.Owner != null && game.Ball.Owner.Team == this)
 				else if (game.Ball.Team == this)

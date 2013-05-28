@@ -63,7 +63,10 @@ public class BallHandlingStateSettings
 [System.Serializable]
 public class DodgingStateSettings
 {
-		
+	public float unitDodgeSpeedFactor;
+	public float unitDodgeDuration;
+	public float unitDodgeCooldown;
+	public bool  unitInvincibleDodge;	
 }
 
 [System.Serializable]

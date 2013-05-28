@@ -356,7 +356,7 @@ public class Gamer
 			Unit owner = this.game.Ball.Owner;
 			if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
 			{
-				if (owner.Dodge && owner.Team.unitInvincibleDodge)
+				if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
 					Controlled.Order = Order.OrderPlaquer(null);
 				else
 					Controlled.Order = Order.OrderPlaquer(owner);

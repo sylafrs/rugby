@@ -170,7 +170,7 @@ public class XboxInputs : myMonoBehaviour{
         private void UpdateButtons()
         {
             // Si la manette de la frame précédente était connectée.
-            if (framePad.IsConnected) 
+            if (pad.IsConnected) 
             {
                 for (int i = 0; i < XboxInputs.NB_BUTTONS; i++)
                 {
