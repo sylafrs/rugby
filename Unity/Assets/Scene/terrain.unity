@@ -1318,10 +1318,11 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 2
-  unitDodgeDuration: .200000003
-  unitDodgeCooldown: 1
-  unitInvincibleDodge: 1
+  settings:
+    unitDodgeSpeedFactor: 0
+    unitDodgeDuration: 0
+    unitDodgeCooldown: 0
+    unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
@@ -4039,7 +4040,7 @@ MonoBehaviour:
   settings:
     Global:
       Game:
-        points_drop: 5
+        points_drop: 2
         points_essai: 5
         points_transfo: 3
         period_time: 120
@@ -4086,7 +4087,7 @@ MonoBehaviour:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
-          rotationSpeed: 10
+          rotationSpeed: 2000
         PlayingState:
           MainGameState:
             RunningState:
@@ -4094,6 +4095,11 @@ MonoBehaviour:
                 GainingGrounCamSettings:
                   zoom: 1
                   target: 1
+                DodgingState:
+                  unitDodgeSpeedFactor: 2
+                  unitDodgeDuration: .200000003
+                  unitDodgeCooldown: 2
+                  unitInvincibleDodge: 1
               BallFreeState:
                 angleDropKick: 45
                 angleDropUpAndUnder: 70
@@ -4106,7 +4112,7 @@ MonoBehaviour:
             PassingState:
               maxTimeHoldingPassButton: 3
               PassingCamSettings:
-                zoom: 0
+                zoom: 1.39999998
                 target: 0
             TacklingState:
               tackledTime: 3
@@ -6079,10 +6085,11 @@ MonoBehaviour:
   nbPoints: 0
   speedFactor: 1
   tackleFactor: 1
-  unitDodgeSpeedFactor: 2
-  unitDodgeDuration: .200000003
-  unitDodgeCooldown: 1
-  unitInvincibleDodge: 1
+  settings:
+    unitDodgeSpeedFactor: 0
+    unitDodgeDuration: 0
+    unitDodgeCooldown: 0
+    unitInvincibleDodge: 0
   unitSpeed: 15
   handicapSpeed: 2.5
   unitTackleRange: 70
