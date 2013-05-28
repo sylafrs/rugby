@@ -34,6 +34,25 @@ public class WaitingState : GameState
 		game.Referee.ResumeIngameTime();
 		game.disableIA = false;
 
+        foreach (Unit u in game.northTeam)
+        {
+            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
+        }
+        foreach (Unit u in game.southTeam)
+        {
+            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
+        }
+        foreach (Unit u in game.northTeam)
+        {
+            u.UpdateTypeOfPlay();
+            u.UpdatePlacement();
+        }
+        foreach (Unit u in game.southTeam)
+        {
+            u.UpdateTypeOfPlay();
+            u.UpdatePlacement();
+        }
+
 		foreach (Unit u in game.northTeam)
 			u.buttonIndicator.target.renderer.enabled = false;
 
