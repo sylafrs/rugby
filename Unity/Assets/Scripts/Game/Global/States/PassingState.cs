@@ -9,16 +9,11 @@ using System.Collections.Generic;
   */
 public class PassingState : GameState {
     public PassingState(StateMachine sm, CameraManager cam, Game game, Unit from, Unit to) : base(sm, cam, game) {
-      //  this.from = from;
-      //  this.to = to;
     }
-
-    //private Unit from, to;
 
     public override void OnEnter()
     {
-		Debug.Log("In pass state");
-        cam.setTarget(cam.game.Ball.transform);
+		cam.LoadParameters(cam.game.settings.GameStates.MainState.PlayingState.MainGameState.PassingState.PassingCamSettings);
     }
 
     public override void OnUpdate()
@@ -33,8 +28,7 @@ public class PassingState : GameState {
 	public override bool OnNewOwner(Unit old, Unit current)
     {
         if (current)
-        {
-			Debug.Log("New Owner");	
+        {	
             sm.state_change_son(this, new RunningState(sm, cam, game));
             return true;
         }
