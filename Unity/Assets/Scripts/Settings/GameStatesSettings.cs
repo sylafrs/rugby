@@ -80,6 +80,7 @@ public class BallFreeStateSettings
 public class PassingStateSettings
 {
 	public float maxTimeHoldingPassButton = 3; // Seconds
+	public CamSettings PassingCamSettings;
 }
 
 [System.Serializable]

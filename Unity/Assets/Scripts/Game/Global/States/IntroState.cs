@@ -51,7 +51,7 @@ public class IntroState : GameState
 	public override void OnUpdate()
     {		
 		//rotate Around
-		Camera.mainCamera.transform.RotateAround(rotationCenter.position,new Vector3(0,1,0),rotationAngle * Mathf.Deg2Rad);
+		Camera.mainCamera.transform.RotateAround(rotationCenter.position,new Vector3(0,1,0),rotationAngle * Mathf.Deg2Rad * Time.deltaTime);
 		
 		//lookat
 		Camera.mainCamera.transform.LookAt(fieldCenter);
