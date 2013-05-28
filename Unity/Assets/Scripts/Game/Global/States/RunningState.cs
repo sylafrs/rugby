@@ -24,15 +24,19 @@ public class RunningState : GameState
 			sm.state_change_son(this, new BallFreeState(sm, cam, game));
 		}
 	}
-
+	
+	public override bool OnDrop(){
+		sm.state_change_son(this, new BallFreeState(sm, cam, game));
+		return true;
+	}
+	
 	public override void OnUpdate()
 	{
 		var p1 = this.game.southTeam.Player;
-		var p2 = this.game.northTeam.Player;
-
-		if (p1 != null) p1.myUpdate();
-		if (p2 != null) p2.myUpdate();
-
+        var p2 = this.game.northTeam.Player;
+ 
+        if (p1 != null) p1.myUpdate();
+        if (p2 != null) p2.myUpdate();
 	}
 
 	public override void OnLeave()
