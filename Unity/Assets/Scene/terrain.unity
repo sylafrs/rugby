@@ -3658,7 +3658,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Get
+  DebugWindowFilter: 
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0

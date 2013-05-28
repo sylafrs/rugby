@@ -110,7 +110,7 @@ public class PassSystem
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
 
-			ball.transform.parent = null;
+			ball.AttachToRoot();
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
 			ball.Owner = null;

@@ -51,7 +51,7 @@ public class DropManager
 		if (ball != null)
 		{
 			owner = ball.Owner;
-			ball.transform.parent = null;
+			ball.AttachToRoot();
 			ball.rigidbody.isKinematic = false;
 			ball.rigidbody.useGravity = false;
 

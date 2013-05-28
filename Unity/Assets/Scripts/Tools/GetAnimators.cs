@@ -18,7 +18,25 @@ public class GetAnimators : myMonoBehaviour, Debugable
         Object [] objs = GameObject.FindObjectsOfType(typeof(UnitAnimator));
         foreach (var o in objs)
         {
-            EditorGUILayout.ObjectField(o.name, ((UnitAnimator)o).animator, typeof(Animator), true);
+            UnitAnimator ua = (UnitAnimator)o;
+            bool isOwner = false, isControlled = false;
+            Color c = GUI.color;
+            if(ua.unit.isOwner()) {
+                isOwner = true;
+            }
+            if(ua.unit.isControlled()) {
+                isControlled = true;
+            }
+
+            if(isOwner)
+                GUI.color = Color.cyan;
+            else if(isControlled)
+                GUI.color = Color.yellow;
+
+            EditorGUILayout.ObjectField(o.name, ua.animator, typeof(Animator), true);
+        
+            if(isOwner || isControlled)
+                GUI.color = c;
         }
 #endif
     }

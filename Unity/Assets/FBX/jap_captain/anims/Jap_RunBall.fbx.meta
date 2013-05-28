@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e8a49d19fed8f041b4f070c41bdbb1b
+guid: f20ecfcc5242079478fd24d600abb12d
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -251,7 +251,7 @@ ModelImporter:
     400242: R_Toe_jnt
     400244: R_Wrist_jnt
     400246: SKELETON
-    7400000: RunTEST
+    7400000: RunBall
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -266,7 +266,7 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations:
-    - name: RunTEST
+    - name: RunBall
       takeName: Take 001
       firstFrame: 1
       lastFrame: 16

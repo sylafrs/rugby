@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 /**
  * @class Ball
@@ -9,8 +12,10 @@ using System.Collections.Generic;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
-public class Ball : TriggeringTriggered
+public class Ball : TriggeringTriggered, Debugable
 {
+    const string rootName = "ROOT";
+    private Transform root;
 
 	public Game Game;
 	public Team Team
@@ -111,8 +116,14 @@ public class Ball : TriggeringTriggered
 	new void Start()
 	{
 		onGround = false;
+        root = GameObject.Find(rootName).transform;
 		base.Start();
 	}
+
+    public void AttachToRoot()
+    {
+        this.transform.parent = root;
+    }
 
 	const float epsilonOnGround = 0.3f;
 
@@ -273,7 +284,7 @@ public class Ball : TriggeringTriggered
 			v.y = epsilonOnGround;
 		}
 
-		this.transform.parent = null;
+		this.AttachToRoot();
 		this.transform.position = v;
 		this.rigidbody.useGravity = true;
 		this.rigidbody.isKinematic = false;
@@ -372,4 +383,13 @@ public class Ball : TriggeringTriggered
 			}
 		}
 	}
+
+    public void ForDebugWindow()
+    {
+#if UNITY_EDITOR
+        EditorGUILayout.ObjectField("Owner (unit)", this.Owner, typeof(Unit), true);
+        EditorGUILayout.ObjectField("Owner (team)", this.Team, typeof(Team), true);
+        EditorGUILayout.ObjectField("Ball", this, typeof(Ball), true);
+#endif
+    }
 }
