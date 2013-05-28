@@ -193,7 +193,7 @@ public class TransformationManager : myMonoBehaviour {
 		
 		GameObject.Destroy(myArrow);
 					
-		ball.transform.parent = null;
+		ball.AttachToRoot();
         ball.rigidbody.useGravity = false;
 		ball.rigidbody.isKinematic = false;
         

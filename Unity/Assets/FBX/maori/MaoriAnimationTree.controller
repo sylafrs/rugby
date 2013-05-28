@@ -205,6 +205,10 @@ Transition:
     m_ConditionEvent: in_float_speed
     m_EventTreshold: .100000001
     m_ExitTime: 0
+  - m_ConditionMode: 5
+    m_ConditionEvent: in_float_speed
+    m_EventTreshold: .100000001
+    m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -507,6 +511,10 @@ Transition:
     m_ConditionEvent: in_bool_drop
     m_EventTreshold: .100000001
     m_ExitTime: 0
+  - m_ConditionMode: 5
+    m_ConditionEvent: in_bool_drop
+    m_EventTreshold: .100000001
+    m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
