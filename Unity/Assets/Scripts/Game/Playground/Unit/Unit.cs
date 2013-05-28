@@ -26,6 +26,19 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public TextureCollectionner buttonIndicator;
 
+    public bool isOwner()
+    {
+        return this.game.Ball.Owner == this;
+    }
+
+    public bool isControlled()
+    {
+        Gamer g = this.team.Player;
+        if (g == null)
+            return false;
+        return g.Controlled == this;
+    }
+
     private UnitAnimator _unitAnimator;
     public UnitAnimator unitAnimator
     {

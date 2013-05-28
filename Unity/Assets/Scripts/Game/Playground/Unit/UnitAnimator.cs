@@ -10,7 +10,7 @@ using System.Collections.Generic;
 [AddComponentMenu("Scripts/Animations/Unit Animator (require Unit)"), RequireComponent(typeof(Unit))]
 public class UnitAnimator : myMonoBehaviour
 {
-    private Unit unit;
+    public Unit unit { get; private set; }
     public Animator animator;
 
     public const string IdleState = "Idle";

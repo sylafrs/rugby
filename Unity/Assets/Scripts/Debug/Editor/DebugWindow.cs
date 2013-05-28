@@ -14,6 +14,7 @@ public class DebugWindow : EditorWindow {
     const string root_gameobject = "ROOT";
     const bool GO_INIT_OPEN = true;
     const bool D_INIT_OPEN = true;
+    const bool T_INIT_OPEN = true;
 
     List<Component> toDebug = new List<Component>();
     Dictionary<System.Type, System.Boolean> registeredTypes = new Dictionary<System.Type, System.Boolean>();
@@ -177,7 +178,7 @@ public class DebugWindow : EditorWindow {
                 t = c.GetType();
                 if (!registeredTypes.ContainsKey(t))
                 {
-                    registeredTypes.Add(t, false);
+                    registeredTypes.Add(t, T_INIT_OPEN);
                 }
                 registeredTypes[t] = EditorGUILayout.Foldout(registeredTypes[t], t.Name);
             }
@@ -190,7 +191,7 @@ public class DebugWindow : EditorWindow {
 
                 if (!registeredD.ContainsKey(d))
                 {
-                    registeredD.Add(d, true);
+                    registeredD.Add(d, D_INIT_OPEN);
                 }
 
                 registeredD[d] = EditorGUILayout.Foldout(registeredD[d], c.gameObject.name);
