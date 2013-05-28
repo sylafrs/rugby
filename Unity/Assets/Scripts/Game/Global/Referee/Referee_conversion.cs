@@ -2,13 +2,14 @@ using UnityEngine;
 
 public partial class Referee
 {
+    
     public void PlacePlayersForTransfo()
     {
         game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
         //float x = game.Ball.transform.position.x;
 
         Team t = game.Ball.Owner.Team;
-
+                
         t.placeUnits(this.game.refs.placeHolders.conversionPlacement.FindChild("TeamShoot"), 1, true);
         t.placeUnit(this.game.refs.placeHolders.conversionPlacement.FindChild("ShootPlayer"), 0, true);
         Team.switchPlaces(t[0], game.Ball.Owner);
@@ -41,9 +42,8 @@ public partial class Referee
 
     public void OnTry()
     {
-
         Team t = game.Ball.Owner.Team;
-
+        
         t.fixUnits = t.opponent.fixUnits = true;
         if (t.Player != null) t.Player.stopMove();
         if (t.opponent.Player != null) t.opponent.Player.stopMove();

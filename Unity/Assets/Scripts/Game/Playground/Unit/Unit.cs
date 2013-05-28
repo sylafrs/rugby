@@ -17,12 +17,28 @@ public class Unit : TriggeringTriggered, Debugable
 	public StateMachine sm;
 	public GameObject Model;
 
+    public bool isCapitaine { get; set; }
+
 	public GameObject BallPlaceHolderRight;
 	public GameObject BallPlaceHolderLeft;
 	public GameObject BallPlaceHolderTransformation;
 	public GameObject BallPlaceHolderDrop;
 
 	public TextureCollectionner buttonIndicator;
+
+    private UnitAnimator _unitAnimator;
+    public UnitAnimator unitAnimator
+    {
+        get
+        {
+            if (_unitAnimator == null)
+            {
+                _unitAnimator = this.GetComponent<UnitAnimator>();
+            }
+
+            return _unitAnimator;
+        }
+    }
 
 	private NavMeshAgent _nma;
 	public NavMeshAgent nma

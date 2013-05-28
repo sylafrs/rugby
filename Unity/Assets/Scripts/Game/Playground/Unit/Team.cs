@@ -87,7 +87,9 @@ public class Team : myMonoBehaviour, IEnumerable
 
 		}
 	}
-	public GameObject Prefab_model;
+	
+    public GameObject Prefab_model;
+    public GameObject Prefab_capitaine;
 
 	private superController _super;
 	public superController Super
@@ -160,12 +162,18 @@ public class Team : myMonoBehaviour, IEnumerable
 		units = new Unit[nbUnits];
 		for (int i = 0; i < nbUnits; i++)
 		{
-			GameObject o = GameObject.Instantiate(Prefab_model) as GameObject;
+            GameObject prefab = Prefab_model;
+            if (i == 2 && Prefab_capitaine != null)
+                prefab = Prefab_capitaine;
+
+			GameObject o = GameObject.Instantiate(prefab) as GameObject;
 			units[i] = o.GetComponent<Unit>();
 			units[i].game = game;
 			units[i].name = Name + " " + (i + 1).ToString("D2");
 			units[i].transform.parent = this.transform;
 			units[i].Team = this;
+            units[i].isCapitaine = (i == 2);
+
 			//units[i].renderer.material.color = Color;
 		}
 
@@ -576,7 +584,7 @@ public class Team : myMonoBehaviour, IEnumerable
     {
         foreach (Unit u in units)
         {
-            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            UnitAnimator a = u.unitAnimator;
             if (a != null)
                 a.OnTouch();
         }
@@ -586,7 +594,7 @@ public class Team : myMonoBehaviour, IEnumerable
     {
         foreach (Unit u in units)
         {
-            UnitAnimator a = u.GetComponent<UnitAnimator>();
+            UnitAnimator a = u.unitAnimator;
             if (a != null)
                 a.OnTouchAction();
         }

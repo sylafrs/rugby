@@ -67,7 +67,7 @@ public class DebugWindow : EditorWindow {
         {
             foreach (var c in components)
             {
-                if (mem.DebugWindowFilter == string.Empty || c.name.Contains(mem.DebugWindowFilter))
+                if (mem.DebugWindowFilter == string.Empty || c.name.ToUpper().Contains(mem.DebugWindowFilter.ToUpper()))
                     toDebug.Add(c);
             }
         }
@@ -149,7 +149,11 @@ public class DebugWindow : EditorWindow {
     void Print()
     {
         sort = (SORT)EditorGUILayout.EnumPopup("Trier par :", sort);
-        mem.DebugWindowFilter = EditorGUILayout.TextField("Filtre :", mem.DebugWindowFilter);
+        string test = EditorGUILayout.TextField("Filtre :", mem.DebugWindowFilter);
+        if (test != mem.DebugWindowFilter)
+        {
+            mem.DebugWindowFilter = test;
+        }
 
         switch (sort)
         {

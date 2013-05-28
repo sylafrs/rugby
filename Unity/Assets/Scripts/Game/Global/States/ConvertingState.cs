@@ -17,8 +17,9 @@ public class ConvertingState : GameState {
 
     public override void OnEnter()
     {
-        Camera_OnEnter();
-        sm.state_change_son(this, new AimingConversionState(sm, cam, game, zone));
+        camera_edited = false;
+        game.Referee.OnTry();
+        sm.state_change_son(this, new AimingConversionState(sm, cam, game, zone));        
     }
 
     public override bool OnConversionShot()
@@ -27,9 +28,24 @@ public class ConvertingState : GameState {
         return true;
     }
 
+    bool camera_edited;
+    public override void OnUpdate()
+    {
+        if (!camera_edited)
+        {
+            UnitAnimator ua = this.game.Ball.Owner.unitAnimator;
+            if (ua == null || ua.isInState(UnitAnimator.BallIdleState))
+            {
+                EditCamera();
+            }            
+        }
+    }
 
-	private void Camera_OnEnter ()
+
+	private void EditCamera ()
 	{
+        camera_edited = true;
+
 		cam.setTarget(null);
 		
 		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").

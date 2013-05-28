@@ -91,7 +91,13 @@ public class MainUnitState : UnitState
 
             case Order.TYPE.DROPKICK:
                 if (unit.Team.game.Ball.Owner == unit)
-					unit.Team.game.Ball.Drop(DropManager.TYPEOFDROP.KICK);
+                {
+                    if (unit.unitAnimator)
+                    {
+                        unit.unitAnimator.OnDrop();
+                    }
+                    unit.Team.game.Ball.Drop(DropManager.TYPEOFDROP.KICK);
+                }
                 break;
 
 			case Order.TYPE.DROPUPANDUNDER:

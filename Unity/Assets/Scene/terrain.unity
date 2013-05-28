@@ -13,7 +13,7 @@ SceneSettings:
     memoryUsage: 10485760
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: .51303184, g: .617732227, b: .701492548, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
@@ -1327,6 +1327,7 @@ MonoBehaviour:
   unitTackleRange: 70
   nbOffensivePlayer: 0
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
+  Prefab_capitaine: {fileID: 100020, guid: f4de280f8c1a3e347b29076d4b0e73e3, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
   fxSuper: {fileID: 100020, guid: ac37f60498f5b274796598998efbca6b, type: 2}
@@ -1637,6 +1638,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1703949692}
   m_GameObject: {fileID: 195989357}
   m_Mesh: {fileID: 4300008, guid: 2b80ac0caf4e93b4abc673855d3d5745, type: 3}
+--- !u!1 &198748045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 198748046}
+  - 114: {fileID: 198748047}
+  m_Layer: 0
+  m_Name: GetAnimators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &198748046
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198748045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1419876916}
+--- !u!114 &198748047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198748045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c98a37ae52745498f809e387285a5a, type: 3}
+  m_Name: 
 --- !u!1 &200896249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,7 +3123,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 352579017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.6105423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 227774843}
@@ -3620,7 +3658,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
   m_Name: 
-  DebugWindowFilter: Gam
+  DebugWindowFilter: Get
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4035,12 +4073,12 @@ MonoBehaviour:
         Vheight: 10
         Vwidth: 5
         LineSpace: 5
-        dMinDefensePlayer: 10
-        dMaxDefensePlayer: 15
-        dMinControlledDefense: 15
-        dMaxControlledDefense: 25
-        dMinOffensivePlayer: 5
-        dMaxOffensivePlayer: 15
+        dMinDefensePlayer: 30
+        dMaxDefensePlayer: 35
+        dMinControlledDefense: 25
+        dMaxControlledDefense: 30
+        dMinOffensivePlayer: 15
+        dMaxOffensivePlayer: 25
         dMinControlledOffensive: 5
         dMaxControlledOffensive: 10
         nbOffensivePlayer: 2
@@ -4056,12 +4094,8 @@ MonoBehaviour:
                 GainingGrounCamSettings:
                   zoom: 1
               BallFreeState:
-                angleDropKick: 45
-                angleDropUpAndUnder: 70
-                BallDropCamSettings:
-                  zoom: .5
-                GroundBallCamSettings:
-                  zoom: 1
+                BallFlyingState:
+                  angleDropKick: 45
             PassingState:
               maxTimeHoldingPassButton: 3
             TacklingState:
@@ -6042,6 +6076,7 @@ MonoBehaviour:
   unitTackleRange: 70
   nbOffensivePlayer: 0
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
+  Prefab_capitaine: {fileID: 0}
   SuperGaugeValue: 0
   nbUnits: 5
   fxSuper: {fileID: 100002, guid: db293cb59ef6066498060ab7b0e1f112, type: 2}
@@ -12510,6 +12545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392098669}
+  - {fileID: 198748046}
   - {fileID: 2004071850}
   - {fileID: 3678737}
   - {fileID: 1017857853}
