@@ -314,6 +314,28 @@ public class CameraManager : myMonoBehaviour, Debugable {
 	public void LoadParameters(CamSettings settings)
 	{
 		this.zoom = settings.zoom;
+		switch (settings.target)
+		{
+			case CameraTargetList.BALL:
+			{
+				this.setTarget(game.Ball.transform);
+				break;
+			}
+			case CameraTargetList.OWNER:
+			{
+				this.setTarget(game.Ball.PreviousOwner.transform );
+				break;
+			}
+			case CameraTargetList.NULL:
+			{
+				this.setTarget(null);
+				break;
+			}
+			default :
+			{
+				break;
+			}	
+		}
 	}
 	
     public void ForDebugWindow()

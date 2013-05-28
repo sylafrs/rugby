@@ -46,13 +46,13 @@ public class MainGameState : GameState {
 
     public override bool OnNewOwner(Unit old, Unit current)
     {
-        if (current)
-        {
+        //if (current)
+        //{
             sm.state_change_son(this, new RunningState(sm, cam, game));
             return true;
-        }
+        //}
 
-        return false;
+        // return false;
     }
 
     public override bool OnBallOnGround(bool onGround)

@@ -13,29 +13,29 @@ public class BallFreeState : GameState {
     public override void OnEnter()
     {
         this.decide();
-		
     }
 
     public override bool OnBallOnGround(bool onGround)
     {
-        this.decide();
+        //this.decide();
+		sm.state_change_son(this, new GroundBallState(sm, cam, game));
         return true;
     }
 
     public void decide()
-    {
+    {		
+		sm.state_change_son(this, new BallFlyingState(sm, cam, game));
+		//ball flying ou ground ball
+		/*
         DropManager.TYPEOFDROP? drop = this.game.Ball.typeOfDrop;
         if (drop == DropManager.TYPEOFDROP.KICK)
         {
-            sm.state_change_son(this, new BallDropState(sm, cam, game));
+            sm.state_change_son(this, new BallFlyingState(sm, cam, game));
         }
         else if (drop == DropManager.TYPEOFDROP.UPANDUNDER)
         {
             sm.state_change_son(this, new BallUpAndUnderState(sm, cam, game));
         }
-        else // null or strange value
-        {
-            sm.state_change_son(this, new GroundBallState(sm, cam, game));
-        }
+        */
     }
 }

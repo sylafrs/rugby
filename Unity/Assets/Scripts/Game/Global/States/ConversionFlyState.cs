@@ -37,7 +37,6 @@ public class ConversionFlyState : GameState
 
     public override void OnEnter ()
     {
-	    cam.setTarget(cam.game.Ball.transform);
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
     }
 

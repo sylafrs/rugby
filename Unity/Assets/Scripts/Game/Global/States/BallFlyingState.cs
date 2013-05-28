@@ -9,4 +9,9 @@ using System.Collections.Generic;
   */
 public class BallFlyingState : GameState {
     public BallFlyingState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
+	
+	public override void OnEnter ()
+	{
+		sm.state_change_son(this, new BallDropState(sm, cam, game));
+	}
 }

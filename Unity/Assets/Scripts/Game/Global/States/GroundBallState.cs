@@ -13,6 +13,6 @@ public class GroundBallState : GameState {
 	
 	public override void OnEnter()
     {
- 
+ 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.GroundBallCamSettings);
     }
 }

@@ -9,4 +9,9 @@ using System.Collections.Generic;
   */
 public class BallDropState : GameState {
     public BallDropState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
+	
+	public override void OnEnter ()
+	{
+		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallDropCamSettings);
+	}
 }
