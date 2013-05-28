@@ -360,8 +360,6 @@ public class Gamer
 					Controlled.Order = Order.OrderPlaquer(null);
 				else
 					Controlled.Order = Order.OrderPlaquer(owner);
-
-
 			}
 		}
 	}

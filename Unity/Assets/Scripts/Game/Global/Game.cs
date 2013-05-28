@@ -193,8 +193,16 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        if(tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+        if (tackler.unitAnimator)
+        {
+            tackler.unitAnimator.OnTackleStart(tackled != null);
+        }
+
+        if (tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+        {
             this.refs.stateMachine.event_Tackle();
+        }
+
         this.Referee.OnTackle(tackler, tackled);  
     }
 
