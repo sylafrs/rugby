@@ -208,6 +208,7 @@ public class Gamer
 								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
+									u.canCatchTheBall = true;
 									unitTo = u;
 									break;
 								}
@@ -243,7 +244,7 @@ public class Gamer
 						{
 							if (Controlled.Team == game.southTeam)
 							{
-								if (u.transform.position.z < Controlled.transform.position.z)
+								if (u.transform.position.z < Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
 									unitTo = u;
@@ -254,9 +255,10 @@ public class Gamer
 							}
 							else if (Controlled.Team == game.northTeam)
 							{
-								if (u.transform.position.z > Controlled.transform.position.z)
+								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
+									u.canCatchTheBall = true;
 									unitTo = u;
 									break;
 								}

@@ -226,7 +226,6 @@ public class Ball : TriggeringTriggered
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
 					passManager.oPassState = PassSystem.passState.ONPASS;
-				Time.timeScale = 1f;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
@@ -254,7 +253,6 @@ public class Ball : TriggeringTriggered
 
 		if (timeOnPass == -1 && passManager != null && passManager.oPassState != PassSystem.passState.NONE)
 		{
-			Time.timeScale = 1f;
 			passManager.oPassState = PassSystem.passState.NONE;
 		}
 
