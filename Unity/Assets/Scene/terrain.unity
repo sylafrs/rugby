@@ -4105,6 +4105,9 @@ MonoBehaviour:
                   target: 0
             PassingState:
               maxTimeHoldingPassButton: 3
+              PassingCamSettings:
+                zoom: 1
+                target: 0
             TacklingState:
               tackledTime: 3
           GameActionState:
