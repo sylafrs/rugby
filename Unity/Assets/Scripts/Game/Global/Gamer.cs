@@ -353,7 +353,7 @@ public class Gamer
 	{
         Unit owner = this.game.Ball.Owner;
 
-        if (owner != null && owner.Team != this.Team && Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
+        if (owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
 		{            
             Unit tackled = owner;
             if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)

@@ -776,7 +776,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Tackled
+  m_Name: Get_up
   m_Speed: 1
   m_Motions:
   - {fileID: 0}
