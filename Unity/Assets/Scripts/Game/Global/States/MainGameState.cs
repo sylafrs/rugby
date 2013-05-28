@@ -53,4 +53,15 @@ public class MainGameState : GameState {
         sm.state_change_son(this, new RunningState(sm, cam, game));
         return true;
     }
+	
+	public override bool OnNewOwner(Unit old, Unit current)
+    {
+        if (current)
+        {	
+            sm.state_change_son(this, new RunningState(sm, cam, game));
+            return true;
+        }
+
+        return false;
+    }
 }

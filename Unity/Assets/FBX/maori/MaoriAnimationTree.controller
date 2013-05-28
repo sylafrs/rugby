@@ -577,7 +577,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Maori_Run
-  m_Speed: .800000012
+  m_Speed: .899999976
   m_Motions:
   - {fileID: 7400000, guid: dae1f63e4b163c346b44d3b038951e9e, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
@@ -655,7 +655,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: RunBall
-  m_Speed: .800000012
+  m_Speed: .699999988
   m_Motions:
   - {fileID: 7400000, guid: 507839f094d0b594093b7bafde6210cd, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
