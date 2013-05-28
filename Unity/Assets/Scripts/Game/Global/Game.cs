@@ -111,7 +111,13 @@ public class Game : myMonoBehaviour {
 		largeurTerrain = Mathf.Abs(xNE - xSO);
 		section = largeurTerrain / 7f;
     }
-	
+
+    void Update()
+    {
+        p1.newFrame();
+        p2.newFrame();
+    }
+
 	public void OnGameEnd(){
 		this.refs.stateMachine.event_OnEndSignal();
 	}

@@ -97,6 +97,11 @@ public class Gamer
 
 	//List<Unit> unitsSide;
 
+    public void newFrame()
+    {
+        this.canTackle = true;
+    }
+
 	public void myUpdate()
 	{
 		if (XboxController == null)
@@ -351,12 +356,16 @@ public class Gamer
 		}
 	}
 
+    bool canTackle = true;
+
 	void UpdateTACKLE()
 	{
         Unit owner = this.game.Ball.Owner;
 
-        if (owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
-		{            
+        if (canTackle && owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
+		{
+            canTackle = false;
+
             Unit tackled = owner;
             if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
                 tackled = null;
