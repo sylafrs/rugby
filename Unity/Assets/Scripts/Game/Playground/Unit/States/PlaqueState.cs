@@ -65,7 +65,6 @@ class PlaqueState : UnitState
         UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
         {
-            ua.Tackling = false;
             ua.Tackled = true;
         }
     }
@@ -96,6 +95,7 @@ class PlaqueState : UnitState
         UnitAnimator ua = unit.unitAnimator;
         if (ua != null)
         {
+            ua.Tackling = false;            
             ua.Tackled = false;
         }
 	}

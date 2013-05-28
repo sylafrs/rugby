@@ -288,7 +288,7 @@ public class UnitAnimator : myMonoBehaviour
 
     public void OnTackleStart(bool success)
     {
-        this.Tackling = true;
         this.TackleFail = !success;
+        this.Tackling = true;        
     }
 }

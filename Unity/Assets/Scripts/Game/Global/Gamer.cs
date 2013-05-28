@@ -351,16 +351,21 @@ public class Gamer
 
 	void UpdateTACKLE()
 	{
-		if (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
-		{
-			Unit owner = this.game.Ball.Owner;
-			if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
-			{
-				if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
-					Controlled.Order = Order.OrderPlaquer(null);
-				else
-					Controlled.Order = Order.OrderPlaquer(owner);
-			}
+        Unit owner = this.game.Ball.Owner;
+
+        if (owner != null && owner.Team != this.Team && Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
+		{            
+            Unit tackled = owner;
+            if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
+                tackled = null;
+
+            if (!Controlled.NearUnits.Contains(owner))
+                tackled = null;//return;
+
+            if (Controlled.unitAnimator)
+                Controlled.unitAnimator.OnTackleStart(tackled != null);
+
+            Controlled.Order = Order.OrderPlaquer(tackled);            
 		}
 	}
 
