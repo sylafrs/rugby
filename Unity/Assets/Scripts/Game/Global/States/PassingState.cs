@@ -17,15 +17,28 @@ public class PassingState : GameState {
 
     public override void OnEnter()
     {
+		Debug.Log("In pass state");
         cam.setTarget(cam.game.Ball.transform);
     }
 
     public override void OnUpdate()
     {
-        var p1 = this.game.southTeam.Player;
+		var p1 = this.game.southTeam.Player;
         var p2 = this.game.northTeam.Player;
-
+ 
         if (p1 != null) p1.myUpdate();
         if (p2 != null) p2.myUpdate();
+    }
+	
+	public override bool OnNewOwner(Unit old, Unit current)
+    {
+        if (current)
+        {
+			Debug.Log("New Owner");	
+            sm.state_change_son(this, new RunningState(sm, cam, game));
+            return true;
+        }
+
+        return false;
     }
 }

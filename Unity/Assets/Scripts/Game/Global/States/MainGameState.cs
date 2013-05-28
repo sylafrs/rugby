@@ -34,6 +34,7 @@ public class MainGameState : GameState {
 
     public override bool OnPass(Unit from, Unit to)
     {
+		Debug.Log("Pass !");
         sm.state_change_son(this, new PassingState(sm, cam, game, from, to));
         return true;
     }
@@ -42,17 +43,6 @@ public class MainGameState : GameState {
     {
         sm.state_change_son(this, new TacklingState(sm, cam, game));
         return true;
-    }
-
-    public override bool OnNewOwner(Unit old, Unit current)
-    {
-        //if (current)
-        //{
-            sm.state_change_son(this, new RunningState(sm, cam, game));
-            return true;
-        //}
-
-        // return false;
     }
 
     public override bool OnBallOnGround(bool onGround)
