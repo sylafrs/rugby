@@ -42,7 +42,7 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public Renderer Model;
 	public GameObject CircleDrop;
-	public bool onGround { get; set; }
+	public bool onGroundFired { get; set; }
 	public Vector2 multiplierDropKick = new Vector2(15.0f, 15.0f);
 	public Vector2 multiplierDropUpAndUnder = new Vector2(20.0f, 10.0f);
 	public float angleDropUpAndUnder = 70f;
@@ -115,7 +115,7 @@ public class Ball : TriggeringTriggered, Debugable
 
 	new void Start()
 	{
-		onGround = false;
+		onGroundFired = false;
         root = GameObject.Find(rootName).transform;
 		base.Start();
 	}
@@ -141,24 +141,24 @@ public class Ball : TriggeringTriggered, Debugable
 
         if (this.isOnGround())
 		{
-			if (!this.onGround)
+			if (!this.onGroundFired)
 			{
 				this.Game.BallOnGround(true);
 			}
 
 			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround, this.transform.position.z);
 
-			this.onGround = true;
+			this.onGroundFired = true;
 			CircleDrop.SetActive(false);
 		}
 		else
 		{
-			if (this.onGround)
+			if (this.onGroundFired)
 			{
 				this.Game.BallOnGround(false);
 			}
 
-			this.onGround = false;
+			this.onGroundFired = false;
 		}
 
 
@@ -171,7 +171,7 @@ public class Ball : TriggeringTriggered, Debugable
 		drop = new DropManager(this, t);
 		drop.setupDrop();
 		timeOnDrop = 0;
-		onGround = false;
+		onGroundFired = false;
 
 		Game.OnDrop();
 	}
