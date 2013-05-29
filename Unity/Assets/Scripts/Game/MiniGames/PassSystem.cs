@@ -29,6 +29,11 @@ public class PassSystem
 	private Vector3 butBleuRouge;
 	private float multiplyDirection = 20f;
 
+	float timeToShortPass = 1.5f;
+	float timeToLongPass = 3f;
+
+	int index;
+
 	public passState oPassState = passState.NONE;
 
 	public enum passState
@@ -55,6 +60,15 @@ public class PassSystem
 		this.initialPosition.y -= 0.5f;
 		this.butBleu = b1;
 		this.butRouge = b2;
+
+		index = (from.Team == Game.instance.southTeam ? 0 : 1);
+#if UNITY_EDITOR
+		Game.instance.logTeam[index].WriteLine("Pass State : " + oPassState);
+		Game.instance.logTeam[index].WriteLine("From : " + from + " " + from.transform.position);
+		Game.instance.logTeam[index].WriteLine("To : " + target + " " + target.transform.position);
+		Game.instance.logTeam[index].WriteLine("Position initial of Ball : " + ball.transform.position);
+		Game.instance.logTeam[index].WriteLine("Position modify of Ball : " + initialPosition);
+#endif
 		/*
 		Debug.DrawRay(this.target.transform.position, new Vector3(-1f, this.target.transform.position.y, 0), Color.yellow, 100f);
 		Debug.DrawRay(this.target.transform.position, new Vector3(1f, this.target.transform.position.y, 0), Color.yellow, 100f);
@@ -97,16 +111,25 @@ public class PassSystem
 			//directionFromToTarget();
 			calculateRelativePosition();
 			calculateRelativeDirection();
-
+#if UNITY_EDITOR
+			Game.instance.logTeam[index].WriteLine("Pass State : " + oPassState);
+			Game.instance.logTeam[index].WriteLine("velocity Pass : " + velocityPass);
+			Game.instance.logTeam[index].WriteLine("magnitude Pass before relative Position: " + magnitude);
+			Game.instance.logTeam[index].WriteLine("relative Position before validity check : " + relativePosition);
+			Game.instance.logTeam[index].WriteLine("relative Direction before validity check : " + relativeDirection);
+#endif
 			if (!passValidity())
 			{
 				//CorrectTrajectory();
 				CorrectPosition();
 				calculateRelativeDirection();
+#if UNITY_EDITOR
+				Game.instance.logTeam[index].WriteLine("relative Position after validity check : " + relativePosition);
+				Game.instance.logTeam[index].WriteLine("relative Direction after validity check : " + relativeDirection);
+#endif
 			}
 
 			multiplyRelativeDirection();
-
 			Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
 			Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
@@ -119,9 +142,13 @@ public class PassSystem
 
 			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
 			angle = Mathf.Deg2Rad * 25.0f;
-
 			target.Order = Order.OrderMove(relativePosition);
-
+#if UNITY_EDITOR
+			Game.instance.logTeam[index].WriteLine("magnitude Pass after relative Position : " + magnitude);
+			Game.instance.logTeam[index].WriteLine("angle Impulsion Pass : " + angle);
+			Game.instance.logTeam[index].WriteLine("order target : " + target.Order.point);
+#endif
+			
 		}
 	}
 
@@ -134,7 +161,9 @@ public class PassSystem
 		ball.transform.position = new Vector3(relativeDirection.x * 1.5f * t + initialPosition.x,
 			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
 			relativeDirection.z * 1.5f * t + initialPosition.z);
-
+#if UNITY_EDITOR
+		Game.instance.logTeam[index].WriteLine("Time : " + t + " Ball Position : " + ball.transform.position + "\tTarget : pos : " + target.transform.position + " speed : " + target.nma.velocity.magnitude);
+#endif
 	}
 
 	/*
@@ -175,8 +204,11 @@ public class PassSystem
 			nmaSpeed.z = target.nma.speed;
 			target.nma.velocity = nmaSpeed;
 		}
-		relativePosition = target.transform.position + Vector3.forward * target.nma.speed * 0.5f * magnitude / velocityPass;
-		Debug.DrawRay(relativePosition, Vector3.up, Color.red, 10f);
+		if (target.Team == target.game.southTeam)
+			relativePosition = target.transform.position + Vector3.forward * target.nma.speed * 0.5f * magnitude / velocityPass;
+		else
+			relativePosition = target.transform.position - Vector3.forward * target.nma.speed * 0.5f * magnitude / velocityPass;
+		//Debug.DrawRay(relativePosition, Vector3.up, Color.red, 10f);
 	}
 
 	/*
@@ -200,7 +232,10 @@ public class PassSystem
 	{
 		//Debug.DrawRay(ball.Owner.transform.position, relativeDirection * 100f, Color.red, 100f);
 		//Debug.DrawRay(target.transform.position, target.transform.forward * 100f, Color.red, 100f);
+		if (Game.instance.southTeam == from.Team)
 		butBleuRouge = butBleu - butRouge;
+		else
+			butBleuRouge = -butBleu + butRouge;
 		return Vector3.Dot(relativeDirection, butBleuRouge) > 0 ? true : false;
 	}
 }

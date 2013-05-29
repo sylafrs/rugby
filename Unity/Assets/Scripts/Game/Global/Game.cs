@@ -10,46 +10,49 @@ using System.Threading;
  * @author Guilleminot Florian
  */
 [AddComponentMenu("Scripts/Game/Game")]
-public class Game : myMonoBehaviour {
+public class Game : myMonoBehaviour
+{
 
-    public bool UseFlorianIA = true;
+	public LogFile[] logTeam;
+
+	public bool UseFlorianIA = true;
 	public bool alwaysScrum = false;
 
-    public GamePlaySettings settings;
-    public GameReferences refs;
+	public GamePlaySettings settings;
+	public GameReferences refs;
 
-    private static Game _instance;
-    public static Game instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                return _instance = (GameObject.FindObjectOfType(typeof(Game)) as Game);
-            }
+	private static Game _instance;
+	public static Game instance
+	{
+		get
+		{
+			if (_instance == null)
+			{
+				return _instance = (GameObject.FindObjectOfType(typeof(Game)) as Game);
+			}
 
-            return _instance;
-        }
-    }
-    
-    public Ball Ball { get { return refs.gameObjects.ball; } }
-    private Gamer p1, p2;
+			return _instance;
+		}
+	}
+
+	public Ball Ball { get { return refs.gameObjects.ball; } }
+	private Gamer p1, p2;
 	private Team Owner;
-	
-    private bool _disableIA = false;
-    public bool disableIA
-    {
-        get
-        {
-            return _disableIA;
-        }
-        set
-        {
-            _disableIA = value;
-            this.northTeam.OnOwnerChanged();
-            this.southTeam.OnOwnerChanged(); 
-        }
-    }
+
+	private bool _disableIA = false;
+	public bool disableIA
+	{
+		get
+		{
+			return _disableIA;
+		}
+		set
+		{
+			_disableIA = value;
+			this.northTeam.OnOwnerChanged();
+			this.southTeam.OnOwnerChanged();
+		}
+	}
 
 	public float largeurTerrain;
 	public float section;
@@ -64,6 +67,13 @@ public class Game : myMonoBehaviour {
 	
 	public void Start ()
     {
+	#if UNITY_EDITOR
+		logTeam = new LogFile[2];
+		for (int i = 0; i < 2; ++i)
+			logTeam[i] = new LogFile();
+		logTeam[0].SetName("Assets/Scripts/Game/Autres/LOG/SouthTeam");
+		logTeam[1].SetName("Assets/Scripts/Game/Autres/LOG/NorthTeam");
+#endif
         this.refs.xboxInputs.CheckNone();
 
         this.northTeam.game = this;
@@ -112,68 +122,70 @@ public class Game : myMonoBehaviour {
             this._disableIA = true;                  
             this.Referee.OnStart();
 			this.refs.stateMachine.event_OnStartSignal();
-        };
+		};
 
-        this.refs.stateMachine.SetFirstState(
-            new MainState(this.refs.stateMachine, this.refs.managers.camera, this)
-        );
+		this.refs.stateMachine.SetFirstState(
+			new MainState(this.refs.stateMachine, this.refs.managers.camera, this)
+		);
 
-        this.refs.managers.intro.enabled = true;
+		this.refs.managers.intro.enabled = true;
 
 		xNE = refs.positions.limiteTerrainNordEst.transform.position.x;
 		xSO = refs.positions.limiteTerrainSudOuest.transform.position.x;
 		largeurTerrain = Mathf.Abs(xNE - xSO);
 		section = largeurTerrain / 7f;
-    }
+	}
 
-    void Update()
-    {
-        p1.newFrame();
-        p2.newFrame();
-    }
+	void Update()
+	{
+		p1.newFrame();
+		p2.newFrame();
+	}
 
-	public void OnGameEnd(){
+	public void OnGameEnd()
+	{
 		this.refs.stateMachine.event_OnEndSignal();
 	}
-       	
-    public void OnScrum()
-    {
-        this.refs.stateMachine.event_Scrum();
-        Referee.OnScrum();        
-    }
-    
-    public void OnDrop()
-    {
-        this.refs.stateMachine.event_Drop();
+
+	public void OnScrum()
+	{
+		this.refs.stateMachine.event_Scrum();
+		Referee.OnScrum();
 	}
-	
+
+	public void OnDrop()
+	{
+		this.refs.stateMachine.event_Drop();
+	}
+
 	public void OnTouch(Touche t)
-	{        
+	{
 		this.refs.stateMachine.event_OnTouch(t);
 	}
-	
-	public void OnTry(Zone z) {
-        this.refs.stateMachine.event_Try(z);
+
+	public void OnTry(Zone z)
+	{
+		this.refs.stateMachine.event_Try(z);
 	}
 
-    public void OnConversionShot()
-    {
-        this.refs.stateMachine.event_ConversionShot();
-    }
+	public void OnConversionShot()
+	{
+		this.refs.stateMachine.event_ConversionShot();
+	}
 
-    public void OnPass(Unit from, Unit to)
-    {        
-        this.refs.stateMachine.event_Pass(from, to);        
-    }
+	public void OnPass(Unit from, Unit to)
+	{
+		this.refs.stateMachine.event_Pass(from, to);
+	}
 
-    public void OnConversion(But but)
-    {
-        this.refs.stateMachine.event_Conversion(but);
-    }
+	public void OnConversion(But but)
+	{
+		this.refs.stateMachine.event_Conversion(but);
+	}
 
-    public void OnOwnerChanged(Unit before, Unit after)
-    {
-        this.refs.stateMachine.event_NewOwner(before, after);
+	public void OnOwnerChanged(Unit before, Unit after)
+	{
+		this.refs.stateMachine.event_NewOwner(before, after);
 
 		if (after != null)
         {
