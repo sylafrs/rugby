@@ -24,11 +24,14 @@ public class SuperCutSceneState : GameState
 
 	public override void OnEnter ()
 	{
-		foreach(Unit u in teamOnSuper)
-		{
-			if (u.unitAnimator)
-          	  u.unitAnimator.LaunchSuper();
-		}        
+        if (teamOnSuper.Super.Super == SuperList.superStun)
+        {
+            teamOnSuper.Super.LaunchFeedback();
+        }
+
+        if(teamOnSuper.captain.unitAnimator)
+            teamOnSuper.captain.unitAnimator.LaunchSuper();
+
 		
 		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
 			this.cam.zoom	= 0.5f;
@@ -71,6 +74,7 @@ public class SuperCutSceneState : GameState
 	public override void OnLeave ()
 	{
 		//se remettre derrière
+        teamOnSuper.Super.LaunchSuperEffects();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 	}
 }

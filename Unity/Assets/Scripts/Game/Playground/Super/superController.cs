@@ -72,7 +72,7 @@ public class superController : myMonoBehaviour {
         if (this.team.SuperGaugeValue == game.settings.Global.Super.superGaugeOffensiveLimitBreak)
         {
             MyDebug.Log("Offensive Super attack !");
-            this.launchSuper(this.Super);
+            //this.launchSuper(this.Super);
             this.team.SuperGaugeValue -= game.settings.Global.Super.superGaugeOffensiveLimitBreak;
             this.game.OnSuper(team, this.Super);
         }
@@ -82,6 +82,11 @@ public class superController : myMonoBehaviour {
             MyDebug.Log("Current Power : " + team.SuperGaugeValue);
             MyDebug.Log("Needed  Power : " + game.settings.Global.Super.superGaugeOffensiveLimitBreak);
         }        
+    }
+
+    public void LaunchSuperEffects()
+    {
+        this.launchSuper(this.Super);        
     }
 	
 	void launchSuper(SuperList super){
