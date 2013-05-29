@@ -41,18 +41,18 @@ public class superController : myMonoBehaviour {
         SuperTimeLeft = 0f;
 	}
 	
-	void Update () {
-		updateSuperValue();
-		updateSuperStatus();
-	}
+	//void Update () {
+	//	updateSuperValue();
+	//	updateSuperStatus(); //< Now in the StateMachine ! :D
+	//}
 	
-	void updateSuperValue(){
-		if( (Random.Range(1,20) == 1) && (currentSuper == SuperList.superNull) ){
-			team.increaseSuperGauge(0);
-		}
-	}
+	//void updateSuperValue(){
+	//	if( (Random.Range(1,20) == 1) && (currentSuper == SuperList.superNull) ){
+	//		team.increaseSuperGauge(0); //< Isn't this a bit useless ? :O
+	//	}
+	//}
 		
-	void updateSuperStatus(){
+	public void updateSuperStatus(){
 		if(currentSuper != SuperList.superNull){
 			SuperTimeLeft -= Time.deltaTime;
 

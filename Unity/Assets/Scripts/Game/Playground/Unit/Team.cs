@@ -152,7 +152,8 @@ public class Team : myMonoBehaviour, IEnumerable
 	//maxens dubois
 	public void increaseSuperGauge(int value)
 	{
-		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) 
+            SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
 	}
 
 	public void CreateUnits()
