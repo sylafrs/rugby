@@ -65,6 +65,7 @@ public class superController : myMonoBehaviour {
 
         StopFeedBack(SuperList.superDash);
         StopFeedBack(SuperList.superTackle);
+        team.setSpeed();
 	}
 
     public void launchSuper()
