@@ -119,6 +119,14 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+  - m_Name: out_float_fxSuperTime
+    m_Type: 1
+    m_Min: -1
+    m_Max: 1
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: .5
+    m_DefaultInt: 0
+    m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
     m_Name: Japan
@@ -925,7 +933,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Super_jap
+  m_Name: Super
   m_Speed: 1
   m_Motions:
   - {fileID: 7400000, guid: e02196d29b3a31e469a170002b3c0b25, type: 3}
@@ -959,7 +967,7 @@ State:
   - {fileID: 0}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 420, y: 336, z: 0}
+  m_Position: {x: 456, y: 204, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110213140
@@ -973,7 +981,7 @@ State:
   - {fileID: 7400000, guid: 280db6e6df5fef34c97a8203095f1b24, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 180, y: 204, z: 0}
+  m_Position: {x: 216, y: 84, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110224055
@@ -1014,7 +1022,7 @@ State:
   - {fileID: 7400000, guid: 26d409397d11f134f9e6e581b56d7853, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 96, y: 408, z: 0}
+  m_Position: {x: 456, y: 348, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110235217
@@ -1070,7 +1078,7 @@ State:
   - {fileID: 0}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 648, y: 204, z: 0}
+  m_Position: {x: 684, y: 84, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110247660
@@ -1166,7 +1174,7 @@ State:
   - {fileID: 7400000, guid: a51f77a9cec99d54dbb141588f9aefc2, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 420, y: 408, z: 0}
+  m_Position: {x: 456, y: 276, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110277105
@@ -1194,7 +1202,7 @@ State:
   - {fileID: 7400000, guid: 353383466c92b5d4ea365dcd888487bd, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
-  m_Position: {x: 420, y: 84, z: 0}
+  m_Position: {x: 456, y: -36, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1107 &110700000
@@ -1622,5 +1630,5 @@ StateMachine:
       second:
       - {fileID: 110126788}
   m_MotionSetCount: 2
-  m_AnyStatePosition: {x: 120, y: 288, z: 0}
-  m_ParentStateMachinePosition: {x: 420, y: 204, z: 0}
+  m_AnyStatePosition: {x: 480, y: 420, z: 0}
+  m_ParentStateMachinePosition: {x: 456, y: 84, z: 0}

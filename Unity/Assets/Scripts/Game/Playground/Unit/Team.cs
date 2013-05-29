@@ -538,6 +538,7 @@ public class Team : myMonoBehaviour, IEnumerable
 	public GameObject fxSuper;
 	private GameObject[] myFxSuper;
 	public GameObject lightSuper;
+    private bool prevFX = false;
 
 	public void PlaySuperParticleSystem(SuperList super, bool play)
 	{
@@ -546,6 +547,10 @@ public class Team : myMonoBehaviour, IEnumerable
 
 	public void PlaySuperParticleSystem(bool play)
 	{
+        if (prevFX == play)
+            return;
+
+        prevFX = play;
 
 		if (play)
 			myFxSuper = new GameObject[this.nbUnits];
