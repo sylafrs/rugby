@@ -42,8 +42,7 @@ public class superController : myMonoBehaviour {
 	}
 	
 	void Update () {
-        if (team.SuperGaugeValue > game.settings.Global.Super.superGaugeMaximum)
-            team.SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+        team.increaseSuperGauge(0); // clamp
 	}
 				
 	public void updateSuperStatus(){
@@ -114,8 +113,13 @@ public class superController : myMonoBehaviour {
 				break;			
 		}
 
-        LauchFeedBack(super);
+        //LauchFeedBack(super);
 	}
+
+    public void LaunchFeedback()
+    {
+        LauchFeedBack(Super);
+    }
 
     void LauchFeedBack(SuperList super)
     {

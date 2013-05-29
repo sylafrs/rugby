@@ -19,7 +19,13 @@ public class Unit : TriggeringTriggered, Debugable
 	public StateMachine sm;
 	public GameObject Model;
 
-	public bool isCapitaine { get; set; }
+    public bool isCapitaine
+    {
+        get
+        {
+            return team.captain == this;
+        }
+    }
 
 	public GameObject BallPlaceHolderRight;
 	public GameObject BallPlaceHolderLeft;
