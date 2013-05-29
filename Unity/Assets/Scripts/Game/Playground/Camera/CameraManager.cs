@@ -13,6 +13,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
     public Camera gameCamera;
 	//private Transform 	target;
 	
+	private Transform 	savedTarget;
+	
 	private Transform _target = null;
 	private Transform target
     {
@@ -69,41 +71,99 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	private Action	ActionOnFlipFinish;
 	public Action	OnNextIdealPosition {get;set;}
 	
+	public enum CameraState
+	{
+		//FREE 		: no target, no zoom, no move
+		FREE,
+		//FOLLOWING : target, zoom, translation to follow
+		FOLLOWING,
+		//FLIPPING  : rotation, zoom, transaltion to get closer
+		FLIPPING,
+		//ONLYZOOM  : zoom to target
+		ONLYZOOM
+	};
+	private CameraState currentCameraState;
+	
 	// Use this for initialization
 	void Start () {
 		resetActualDelay();
 		resetRotationDelay();
-		isflipping = false;
-		//isflipped= false;
-		CancelNextFlip = false;
-		ActionOnFlipFinish = null;
-		flipedForTeam = game.southTeam;
-		zMinForBlue	  = MinfollowOffset.z;
-		zMaxForBlue	  = MaxfollowOffset.z;
+		
+		isflipping          = false;
+		CancelNextFlip      = false;
+		ActionOnFlipFinish  = null;
+		flipedForTeam       = game.southTeam;
+		zMinForBlue	        = MinfollowOffset.z;
+		zMaxForBlue	  		= MaxfollowOffset.z;
+		currentCameraState  = CameraState.FREE;
+	}
+	
+	public void ChangeCameraState(CameraState newState)
+	{
+		this.currentCameraState = newState;
 	}
 	
 	void FixedUpdate(){
-		
-        if (target != null && Camera.mainCamera != null)
-        {
-			/*
-			this.RotateCam();
-			this.TranslateCam();
-			*/
-			
-			if(isflipping == true){
+		switch (currentCameraState)
+		{
+			case CameraState.FREE:
+			{
+				//nothing ! Someone is moving the camera elsewhere !
+				break;
+			}
+			case CameraState.FLIPPING:
+			{
 				this.TranslateCam2();
 				this.flipUpdate();
-			}else{
+				break;	
+			}
+			case CameraState.FOLLOWING:
+			{
 				this.RotateCam();
 				this.TranslateCam();
+				break;
+			}
+			case CameraState.ONLYZOOM:
+			{
+				this.TranslateCam2();
+				break;
+			}
+			default :
+			{
+				break;
 			}
 		}
-	}
+	}		
 	
 	private void TranslateCam()
 	{
 		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
+		Vector3 offset 			= Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+		
+		Vector3 result 			= Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
+		Vector3 delta  			= result- Camera.mainCamera.transform.position;
+		
+		//Debug.Log("Delta : "+delta.magnitude);
+		if( delta.magnitude > magnitudeGap){
+			if(actualDelay >= moveDelay){
+				Camera.mainCamera.transform.position = result;
+			}else{
+				actualDelay += Time.deltaTime;
+			}
+		}else{
+			
+			if(OnNextIdealPosition != null) 
+			{
+				OnNextIdealPosition();
+				OnNextIdealPosition = null;
+			}
+			resetActualDelay();
+		}
+	}
+	
+	private void TranslateCam3()
+	{
+		Vector3 targetPosition  = target.position;
 		Vector3 offset 			= Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 		
 		Vector3 result 			= Vector3.SmoothDamp(offset, targetPosition, ref velocity, smoothTime);
