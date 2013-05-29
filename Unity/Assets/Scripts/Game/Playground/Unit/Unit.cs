@@ -362,7 +362,7 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 		if (pos.z != oldPos.z)
 		{
-			Debug.Log("CONSTRAINT ON Z");
+			//Debug.Log("CONSTRAINT ON Z");
 			this.Order = Order.OrderMove(pos);
 		}
 	}

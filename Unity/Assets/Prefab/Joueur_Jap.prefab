@@ -4100,7 +4100,7 @@ Animator:
   m_GameObject: {fileID: 100168}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8ae6976ab242b374f9d55320389ce432, type: 3}
-  m_Controller: {fileID: 9100000, guid: 6612c4b47c2e0f0448ca789dbc7fd746, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1ab94ec8f4c522342a4f1e9d39854d56, type: 2}
   m_CullingMode: 1
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -4114,6 +4114,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91abe38ba2410ce448f6d0e14fe39b6c, type: 3}
   m_Name: 
+  index: 0
   sm: {fileID: 11400002}
   Model: {fileID: 100168}
   BallPlaceHolderRight: {fileID: 100052}
@@ -4126,8 +4127,8 @@ MonoBehaviour:
   superDashParticles: {fileID: 19800002}
   superTackleParticles: {fileID: 19800000}
   canCatchTheBall: 1
+  invariantMove: 0
   typeOfPlayer: 0
-  ballZone: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
