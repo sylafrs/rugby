@@ -8,13 +8,13 @@ using UnityEngine;
   */
 public class SuperCutSceneState : GameState
 {	
-	private Team 		teamOnSuper;
+	//private Team 		teamOnSuper;
 	private float		angle;
 	
 	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper)
 		: base(sm, cam, game)
 	{
-		this.teamOnSuper = TeamOnSuper;
+		//this.teamOnSuper = TeamOnSuper;
 	}
 	
 	public override void OnEnter ()
