@@ -65,3 +65,129 @@ Time : 0.6916971 Ball Position : (-21.4, 5.8, -31.2)	Target : pos : (-21.5, 0.1,
 Pass State : ONTARGET
 Pass State : NONE
 
+--------------------
+PASS
+Pass State : NONE
+From : Bleu 03 (Unit) (-2.1, 0.2, -11.0)
+To : Bleu 02 (Unit) (17.3, 0.2, -21.0)
+Position initial of Ball : (-1.0, 3.1, -10.8)
+Position modify of Ball : (-1.0, 2.6, -10.8)
+Pass State : SETUP
+velocity Pass : 18
+magnitude Pass before relative Position: 21.87872
+relative Position before validity check : (17.3, 0.2, -13.4)
+relative Direction before validity check : (1.0, -0.2, -0.1)
+magnitude Pass after relative Position : 19.59711
+angle Impulsion Pass : 0.4363323
+order target : (17.3, 0.2, -13.4)
+Pass State : ONPASS
+Time : 0 Ball Position : (-1.0, 2.6, -10.8)	Target : pos : (17.3, 0.2, -19.8) speed : 12.5
+Time : 0.0961042 Ball Position : (1.8, 3.3, -11.2)	Target : pos : (17.3, 0.2, -19.4) speed : 12.50004
+Time : 0.1270035 Ball Position : (2.7, 3.5, -11.3)	Target : pos : (17.3, 0.2, -19.1) speed : 12.50002
+Time : 0.15744 Ball Position : (3.6, 3.7, -11.5)	Target : pos : (17.3, 0.2, -18.6) speed : 12.5
+Time : 0.1905122 Ball Position : (4.5, 3.9, -11.6)	Target : pos : (17.3, 0.2, -18.1) speed : 12.50001
+Time : 0.2336514 Ball Position : (5.8, 4.1, -11.8)	Target : pos : (17.3, 0.2, -17.5) speed : 12.49999
+Time : 0.2824427 Ball Position : (7.2, 4.4, -12.0)	Target : pos : (17.3, 0.2, -16.8) speed : 12.49999
+Time : 0.3370708 Ball Position : (8.8, 4.6, -12.2)	Target : pos : (17.3, 0.2, -16.3) speed : 12.50001
+Time : 0.381309 Ball Position : (10.1, 4.8, -12.4)	Target : pos : (17.3, 0.2, -15.6) speed : 12.50001
+Time : 0.4304679 Ball Position : (11.6, 5.0, -12.6)	Target : pos : (17.3, 0.2, -15.0) speed : 12.50001
+Time : 0.480181 Ball Position : (13.0, 5.1, -12.8)	Target : pos : (17.3, 0.2, -14.4) speed : 12.50001
+Time : 0.5269015 Ball Position : (14.4, 5.3, -13.0)	Target : pos : (17.3, 0.2, -13.8) speed : 12.50001
+Time : 0.5763944 Ball Position : (15.9, 5.4, -13.2)	Target : pos : (17.3, 0.2, -13.4) speed : 0
+Pass State : ONTARGET
+Pass State : NONE
+
+--------------------
+PASS
+Pass State : NONE
+From : Bleu 02 (Unit) (16.7, 0.2, -8.7)
+To : Bleu 03 (Unit) (0.1, 0.2, -13.9)
+Position initial of Ball : (16.7, 3.1, -7.5)
+Position modify of Ball : (16.7, 2.6, -7.5)
+Pass State : SETUP
+velocity Pass : 18
+magnitude Pass before relative Position: 17.43618
+relative Position before validity check : (0.1, 0.2, -7.8)
+relative Direction before validity check : (-1.0, -0.2, 0.0)
+magnitude Pass after relative Position : 16.68014
+angle Impulsion Pass : 0.4363323
+order target : (0.1, 0.2, -7.8)
+Pass State : ONPASS
+Time : 0 Ball Position : (16.7, 2.6, -7.5)	Target : pos : (1.2, 0.2, -13.9) speed : 12.50002
+Time : 0.08670058 Ball Position : (14.2, 3.3, -7.6)	Target : pos : (1.4, 0.2, -13.8) speed : 8.466543
+Time : 0.1192662 Ball Position : (13.2, 3.5, -7.6)	Target : pos : (1.5, 0.2, -13.6) speed : 8.387537
+Time : 0.1498198 Ball Position : (12.3, 3.7, -7.6)	Target : pos : (1.6, 0.2, -13.2) speed : 9.277933
+Time : 0.1881508 Ball Position : (11.2, 3.9, -7.6)	Target : pos : (1.5, 0.2, -12.7) speed : 11.35972
+Time : 0.230274 Ball Position : (9.9, 4.1, -7.6)	Target : pos : (1.3, 0.2, -12.2) speed : 12.50001
+Time : 0.2775711 Ball Position : (8.5, 4.4, -7.7)	Target : pos : (1.2, 0.2, -11.6) speed : 12.5
+Time : 0.3276984 Ball Position : (7.1, 4.6, -7.7)	Target : pos : (1.0, 0.2, -11.0) speed : 12.5
+Time : 0.3723243 Ball Position : (5.7, 4.8, -7.7)	Target : pos : (0.8, 0.2, -10.4) speed : 12.50001
+Time : 0.4225817 Ball Position : (4.3, 5.0, -7.7)	Target : pos : (0.7, 0.2, -9.8) speed : 12.5
+Time : 0.4731322 Ball Position : (2.8, 5.1, -7.8)	Target : pos : (0.5, 0.2, -9.2) speed : 12.49999
+Time : 0.5243557 Ball Position : (1.2, 5.3, -7.8)	Target : pos : (0.3, 0.2, -8.6) speed : 12.50001
+Pass State : ONTARGET
+Pass State : NONE
+
+--------------------
+PASS
+Pass State : NONE
+From : Bleu 03 (Unit) (-4.8, 0.2, -5.0)
+To : Bleu 04 (Unit) (-21.4, 0.1, -16.3)
+Position initial of Ball : (-5.1, 3.1, -3.9)
+Position modify of Ball : (-5.1, 2.6, -3.9)
+Pass State : SETUP
+velocity Pass : 18
+magnitude Pass before relative Position: 19.99589
+relative Position before validity check : (-21.4, 0.1, -9.3)
+relative Direction before validity check : (-0.9, -0.2, -0.3)
+magnitude Pass after relative Position : 17.06828
+angle Impulsion Pass : 0.4363323
+order target : (-21.4, 0.1, -9.3)
+Pass State : ONPASS
+Time : 0 Ball Position : (-5.1, 2.6, -3.9)	Target : pos : (-21.4, 0.1, -15.2) speed : 12.50001
+Time : 0.08259682 Ball Position : (-7.4, 3.2, -4.6)	Target : pos : (-21.4, 0.1, -14.9) speed : 12.50002
+Time : 0.1120677 Ball Position : (-8.2, 3.4, -4.9)	Target : pos : (-21.4, 0.1, -14.5) speed : 12.50001
+Time : 0.1406168 Ball Position : (-9.0, 3.6, -5.2)	Target : pos : (-21.4, 0.1, -14.0) speed : 12.50001
+Time : 0.1811478 Ball Position : (-10.1, 3.8, -5.6)	Target : pos : (-21.4, 0.1, -13.5) speed : 12.50001
+Time : 0.2228161 Ball Position : (-11.3, 4.1, -6.0)	Target : pos : (-21.4, 0.1, -12.9) speed : 12.5
+Time : 0.2696812 Ball Position : (-12.6, 4.3, -6.4)	Target : pos : (-21.4, 0.1, -12.3) speed : 12.5
+Time : 0.3153955 Ball Position : (-13.9, 4.5, -6.8)	Target : pos : (-21.4, 0.1, -11.7) speed : 12.50001
+Time : 0.3630121 Ball Position : (-15.2, 4.7, -7.3)	Target : pos : (-21.4, 0.1, -11.1) speed : 12.5
+Time : 0.4115151 Ball Position : (-16.6, 4.9, -7.7)	Target : pos : (-21.4, 0.1, -10.0) speed : 12.50001
+Time : 0.4963235 Ball Position : (-19.0, 5.2, -8.5)	Target : pos : (-21.4, 0.1, -9.4) speed : 12.5
+Time : 0.5456578 Ball Position : (-20.4, 5.3, -9.0)	Target : pos : (-21.4, 0.1, -9.3) speed : 0
+Pass State : ONTARGET
+Pass State : NONE
+
+--------------------
+PASS
+Pass State : NONE
+From : Bleu 04 (Unit) (-21.0, 0.1, -24.3)
+To : Bleu 05 (Unit) (-21.2, 0.1, -47.0)
+Position initial of Ball : (-21.7, 3.0, -25.2)
+Position modify of Ball : (-21.7, 2.5, -25.2)
+Pass State : SETUP
+velocity Pass : 18
+magnitude Pass before relative Position: 22.68886
+relative Position before validity check : (-21.2, 0.1, -39.1)
+relative Direction before validity check : (0.0, -0.2, -1.0)
+magnitude Pass after relative Position : 14.81136
+angle Impulsion Pass : 0.4363323
+order target : (-21.2, 0.1, -39.1)
+Pass State : ONPASS
+Time : 0 Ball Position : (-21.7, 2.5, -25.2)	Target : pos : (-21.2, 0.1, -48.0) speed : 12.49998
+Time : 0.084286 Ball Position : (-21.6, 3.1, -27.7)	Target : pos : (-21.2, 0.1, -48.2) speed : 4.07143
+Time : 0.1189089 Ball Position : (-21.6, 3.4, -28.7)	Target : pos : (-21.2, 0.1, -48.2) speed : 0.60918
+Time : 0.1471193 Ball Position : (-21.6, 3.6, -29.5)	Target : pos : (-21.2, 0.1, -48.1) speed : 2.211928
+Time : 0.1813475 Ball Position : (-21.5, 3.8, -30.5)	Target : pos : (-21.2, 0.1, -47.8) speed : 5.634772
+Time : 0.2310834 Ball Position : (-21.5, 4.0, -32.0)	Target : pos : (-21.2, 0.1, -47.4) speed : 10.60829
+Time : 0.2710845 Ball Position : (-21.4, 4.2, -33.2)	Target : pos : (-21.2, 0.1, -46.7) speed : 12.50001
+Time : 0.3248094 Ball Position : (-21.4, 4.5, -34.7)	Target : pos : (-21.2, 0.1, -45.6) speed : 12.5
+Time : 0.4125218 Ball Position : (-21.3, 4.8, -37.3)	Target : pos : (-21.2, 0.1, -45.0) speed : 12.49998
+Time : 0.4643373 Ball Position : (-21.2, 5.0, -38.8)	Target : pos : (-21.2, 0.1, -44.4) speed : 12.50004
+Time : 0.513061 Ball Position : (-21.2, 5.2, -40.3)	Target : pos : (-21.2, 0.1, -43.7) speed : 12.50001
+Time : 0.5656201 Ball Position : (-21.1, 5.3, -41.8)	Target : pos : (-21.2, 0.1, -43.4) speed : 12.50007
+Time : 0.5926839 Ball Position : (-21.1, 5.3, -42.6)	Target : pos : (-21.2, 0.1, -42.9) speed : 12.5
+Pass State : ONTARGET
+Pass State : NONE
+

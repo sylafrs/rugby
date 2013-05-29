@@ -1,0 +1,29 @@
+IA:
+
+Formation/Placement à l'engagement
+Formation après une touche
+Formation après une passe
+Formation sur une transformation
+
+FormationManager
+
+enum formation{
+	INLINE,
+	LEFTAHEAD,
+	RIGHTAHEAD,
+	MIDDLEAHEAD
+};
+
+nbArrière
+nbDivision
+distanceMaxBeforeGroup //Distance maximum entre le porteur du ballon et un joueur*nbJoueur entre lui et 
+le ballon (genre si dist = 5, le mec à droite de la droite du porteur sera max à 10 et pas à 5) Pour les avants pas les arrières
+
+distanceMaxBetweenDefenseAttack  //Distance max entre le porteur du ballon et les arrières
+distanceMinBetweenDefenseAttack
+
+si le joueur controlé change de division -> adapter formation/replacement
+
+Joueur dans une division, plus ou moins autonome
+
+terrain divisés en X section de taille largeurTerrain/nbDivision
