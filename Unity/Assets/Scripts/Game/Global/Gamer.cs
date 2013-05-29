@@ -109,20 +109,24 @@ public class Gamer
 
 		if (Inputs == null)
 			return;
+        
+        if (Controlled)
+        {
+            UpdateDODGE();
 
-		UpdateDODGE();
+            if (!Controlled.Dodge)
+            {
+                UpdateStickDirection();
+                UpdateSUPER();
+                UpdateMOVE();
+                UpdateTACKLE();
+                UpdatePASS();
+                UpdateDROP();
+                UpdateESSAI();                
+            }
+        }
 
-		if (!Controlled.Dodge)
-		{
-			UpdateStickDirection();
-			UpdateSUPER();
-			UpdateMOVE();
-			UpdateTACKLE();
-			UpdatePASS();
-			UpdateDROP();
-			UpdateESSAI();
-			UpdatePLAYER();
-		}
+        UpdatePLAYER();
 	}
 
 	public void UpdateSUPER()
@@ -464,7 +468,7 @@ public class Gamer
 		float min = 0;
 		Unit near = null;
 
-		foreach (Unit u in Controlled.Team)
+		foreach (Unit u in Team)
 		{
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 

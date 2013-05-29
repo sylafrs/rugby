@@ -60,7 +60,7 @@ public partial class CameraManager{
 		Vector3 result 			= Vector3.SmoothDamp(offset2, targetPosition2, ref velocity, smoothTime);
 		Vector3 delta  			= result- Camera.mainCamera.transform.position;
 		
-		Debug.Log("Delta : "+delta.magnitude);
+		//Debug.Log("Delta : "+delta.magnitude);
 		
 		/*
 		Camera.mainCamera.transform.position = Vector3.MoveTowards(Camera.mainCamera.transform.position,

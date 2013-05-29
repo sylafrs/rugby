@@ -33,34 +33,34 @@ public class WaitingState : GameState
 	{
 		game.Referee.ResumeIngameTime();
 		game.disableIA = false;
+         
+        Team[] teams = new Team[2];
+        teams[0] = game.southTeam;
+        teams[1] = game.northTeam;
 
-        foreach (Unit u in game.northTeam)
+        foreach (Team t in teams)
         {
-            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-        }
-        foreach (Unit u in game.southTeam)
-        {
-            u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-        }
-        foreach (Unit u in game.northTeam)
-        {
-            u.UpdateTypeOfPlay();
-            u.UpdatePlacement();
-        }
-        foreach (Unit u in game.southTeam)
-        {
-            u.UpdateTypeOfPlay();
-            u.UpdatePlacement();
+            foreach (Unit u in t)
+            {
+                u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
+            }
         }
 
-		foreach (Unit u in game.northTeam)
-			u.buttonIndicator.target.renderer.enabled = false;
+        foreach (Team t in teams)
+        {            
+            foreach (Unit u in t)
+            {
+                if (t.Player.Controlled && game.Ball.NextOwner != u)
+                {
+                    u.UpdateTypeOfPlay();
+                    u.UpdatePlacement();                        
+                }
 
-		foreach (Unit u in game.southTeam)
-			u.buttonIndicator.target.renderer.enabled = false;
+                u.buttonIndicator.target.renderer.enabled = false;
+            }
 
-		game.northTeam.fixUnits = game.southTeam.fixUnits = false;
-		if (game.northTeam.Player != null) game.northTeam.Player.enableMove();
-		if (game.southTeam.Player != null) game.southTeam.Player.enableMove();
+            t.fixUnits = false;
+            t.Player.enableMove();
+        }        
 	}
 }
