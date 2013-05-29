@@ -60,4 +60,16 @@ public class PlayingState : GameState
 	{
 		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 	}
+	
+	public override bool OnSuper(Team t, SuperList super)
+	{
+		//freeze les gens
+		sm.state_change_son(this, new WaitingState(sm,cam,game,4,t));
+		
+		//cam stuff
+		
+		
+		
+		return true;
+	}
 }

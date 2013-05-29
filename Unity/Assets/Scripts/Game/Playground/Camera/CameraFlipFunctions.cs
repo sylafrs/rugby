@@ -5,8 +5,9 @@ using System;
 public partial class CameraManager{
 	
 	//flipping camera
-	private void flip(){
+	private void flip (){
 		flipInit(new Vector3(0,1,0), 180);
+		this.ChangeCameraState(CameraState.FLIPPING);
 	}
 	
 	public void flipForTeam(Team _t, Action _cb)
@@ -38,6 +39,35 @@ public partial class CameraManager{
 		}
 	}
 	
+	public  float step = 0f;
+	private void TranslateCam2()
+	{	
+		step += game.settings.Global.GlobalCamera.flipMovingStep;
+		//Vector3 NewMin = new Vector3(MinfollowOffset.x, min
+		//Vector3 min2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, MinfollowOffset.z * -1);
+		//Vector3 offset = Camera.mainCamera.transform.position+(min2)*zoom;
+		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
+		
+		
+		Camera.mainCamera.transform.position = Vector3.MoveTowards(Camera.mainCamera.transform.position,
+			targetPosition , step);
+		
+		Camera.mainCamera.transform.LookAt(target);
+		
+		//Vector3 targetPosition2  = target.TransformPoint(MaxfollowOffset);
+		//Vector3 offset2 		 = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+		//
+		//Vector3 result 			= Vector3.SmoothDamp(offset2, targetPosition2, ref velocity, smoothTime);
+		//Vector3 delta  			= result- Camera.mainCamera.transform.position;
+		
+		//Debug.Log("Delta : "+delta.magnitude);
+		
+		/*
+		Camera.mainCamera.transform.position = Vector3.MoveTowards(Camera.mainCamera.transform.position,
+			targetPosition + min2*5, step);
+		*/
+	}
+	
 	void flipInit(Vector3 axis, float angle)
 	{
 		this.isflipping  			= true;
@@ -46,7 +76,7 @@ public partial class CameraManager{
 		this.flipTime	 			= 0;
 		this.flipLastAngle			= 0;
 		this.flipWaiting			= 0;
-		this.flipZ();
+		this.step 					= 0f;
 		this.game.southTeam.Player.stopMove();
 		this.game.northTeam.Player.stopMove();
     }
@@ -65,7 +95,8 @@ public partial class CameraManager{
                 this.flipTime = this.flipDuration;
 			
             // Get the angle for the current state
-			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			//float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			float angleFromZero = Mathf.SmoothDampAngle(this.flipLastAngle, this.flipAngle, ref velocityFloat,game.settings.Global.GlobalCamera.flipSmoothTime);
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
@@ -87,12 +118,13 @@ public partial class CameraManager{
 		this.MaxfollowOffset.z *= -1;
 		this.isflipping  		= false;
 		this.ActionOnFlipFinish();
-		this.flipZ();
 		this.game.southTeam.Player.enableMove();
 		this.game.northTeam.Player.enableMove();
+		this.ChangeCameraState(CameraState.FOLLOWING);
 	}
 	
 	private void flipZ(){
+		Debug.Log("flipZ");
 		this.MinfollowOffset.z *= -1;
 		this.MaxfollowOffset.z *= -1;
 	}

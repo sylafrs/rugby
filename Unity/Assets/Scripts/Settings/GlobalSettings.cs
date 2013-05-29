@@ -6,6 +6,7 @@ public class GlobalSettings
 	public GameSettings Game;
 	public SuperSettings Super;
 	public TeamSettings Team;
+	public GlobalCameraSettings	GlobalCamera;
 }
 
 [System.Serializable]
@@ -25,15 +26,15 @@ public class TeamSettings
 	public float Vwidth = 5;
 	public float LineSpace = 5;
 
-	public float dMinDefensePlayer = 10f;
-	public float dMaxDefensePlayer = 15f;
-	public float dMinControlledDefense = 15f;
-	public float dMaxControlledDefense = 25f;
+	public float dMinDefensePlayer = 10f; //sur X
+	public float dMaxDefensePlayer = 15f; //sur X
+	public float dMinControlledDefense = 15f; //sur Z
+	public float dMaxControlledDefense = 25f; //sur Z
 
-	public float dMinOffensivePlayer = 5f;
-	public float dMaxOffensivePlayer = 15f;
-	public float dMinControlledOffensive = 5f;
-	public float dMaxControlledOffensive = 10f;
+	public float dMinOffensivePlayer = 5f; //sur X
+	public float dMaxOffensivePlayer = 15f; //sur X
+	public float dMinControlledOffensive = 5f; //sur Z
+	public float dMaxControlledOffensive = 10f; //sur Z
 
 	public float nbOffensivePlayer;
 }
@@ -79,4 +80,11 @@ public class SuperSettings
 	//scrum = melee
 	public int scrumWinSuperPoints = 30;
 	public int scrumLooseSuperPoints = 10;
+}
+
+[System.Serializable]
+public class GlobalCameraSettings
+{
+	public float flipSmoothTime;
+	public float flipMovingStep;
 }

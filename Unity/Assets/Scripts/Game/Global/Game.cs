@@ -79,6 +79,20 @@ public class Game : myMonoBehaviour {
         this.northTeam.opponent = southTeam;
         this.southTeam.opponent = northTeam;
 
+        // A changer de place
+        //this.northTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        //{
+        //    this.northTeam.Super.LaunchFeedback();        
+        //    return false;
+        //}, UnitAnimator.SuperState, this.northTeam.captain.unitAnimator.TIME_SUPER_FX);
+
+        // A changer de place
+        this.southTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        {
+            this.southTeam.Super.LaunchFeedback();
+            return false;
+        }, UnitAnimator.SuperState, this.southTeam.captain.unitAnimator.TIME_SUPER_FX);
+        
         this.refs.xboxInputs.Start();
 
         this.p1 = new Gamer(refs.south);
@@ -111,7 +125,13 @@ public class Game : myMonoBehaviour {
 		largeurTerrain = Mathf.Abs(xNE - xSO);
 		section = largeurTerrain / 7f;
     }
-	
+
+    void Update()
+    {
+        p1.newFrame();
+        p2.newFrame();
+    }
+
 	public void OnGameEnd(){
 		this.refs.stateMachine.event_OnEndSignal();
 	}
@@ -184,6 +204,9 @@ public class Game : myMonoBehaviour {
 
     public void OnSuper(Team team, SuperList super)
     {
+        if(team.captain.unitAnimator)
+            team.captain.unitAnimator.PrepareSuper();
+
         this.refs.stateMachine.event_Super(team, super);
     }
 
@@ -193,8 +216,11 @@ public class Game : myMonoBehaviour {
      */
     public void OnTackle(Unit tackler, Unit tackled)
     {
-        if(tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+        if (tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+        {
             this.refs.stateMachine.event_Tackle();
+        }
+
         this.Referee.OnTackle(tackler, tackled);  
     }
 

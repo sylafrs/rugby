@@ -97,6 +97,11 @@ public class Gamer
 
 	//List<Unit> unitsSide;
 
+    public void newFrame()
+    {
+        this.canTackle = true;
+    }
+
 	public void myUpdate()
 	{
 		if (XboxController == null)
@@ -104,20 +109,24 @@ public class Gamer
 
 		if (Inputs == null)
 			return;
+        
+        if (Controlled)
+        {
+            UpdateDODGE();
 
-		UpdateDODGE();
+            if (!Controlled.Dodge)
+            {
+                UpdateStickDirection();
+                UpdateSUPER();
+                UpdateMOVE();
+                UpdateTACKLE();
+                UpdatePASS();
+                UpdateDROP();
+                UpdateESSAI();                
+            }
+        }
 
-		if (!Controlled.Dodge)
-		{
-			UpdateStickDirection();
-			UpdateSUPER();
-			UpdateMOVE();
-			UpdateTACKLE();
-			UpdatePASS();
-			UpdateDROP();
-			UpdateESSAI();
-			UpdatePLAYER();
-		}
+        UpdatePLAYER();
 	}
 
 	public void UpdateSUPER()
@@ -210,6 +219,7 @@ public class Gamer
 								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
+									u.canCatchTheBall = true;
 									unitTo = u;
                                     passSide = -1;
 									break;
@@ -246,7 +256,7 @@ public class Gamer
 						{
 							if (Controlled.Team == game.southTeam)
 							{
-								if (u.transform.position.z < Controlled.transform.position.z)
+								if (u.transform.position.z < Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
 									unitTo = u;
@@ -257,9 +267,10 @@ public class Gamer
 							}
 							else if (Controlled.Team == game.northTeam)
 							{
-								if (u.transform.position.z > Controlled.transform.position.z)
+								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
 									Debug.Log("try to pass to " + u);
+									u.canCatchTheBall = true;
 									unitTo = u;
 									break;
 								}
@@ -349,20 +360,27 @@ public class Gamer
 		}
 	}
 
+    bool canTackle = true;
+
 	void UpdateTACKLE()
 	{
-		if (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox))
+        Unit owner = this.game.Ball.Owner;
+
+        if (canTackle && owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
 		{
-			Unit owner = this.game.Ball.Owner;
-			if (owner != null && owner.Team != this.Team && Controlled.NearUnits.Contains(owner))
-			{
-				if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
-					Controlled.Order = Order.OrderPlaquer(null);
-				else
-					Controlled.Order = Order.OrderPlaquer(owner);
+            canTackle = false;
 
+            Unit tackled = owner;
+            if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
+                tackled = null;
 
-			}
+            if (!Controlled.NearUnits.Contains(owner))
+                tackled = null;//return;
+
+            if (Controlled.unitAnimator)
+                Controlled.unitAnimator.OnTackleStart(tackled != null);
+
+            Controlled.Order = Order.OrderPlaquer(tackled);            
 		}
 	}
 
@@ -383,6 +401,7 @@ public class Gamer
 		{
 			change = true;
 		}
+
 		if (change)
 		{
 			//foreach (Unit u in this.Team)
@@ -396,7 +415,7 @@ public class Gamer
 				Controlled.IndicateSelected(false);
 			}
 
-			Controlled = GetUnitNear();
+			Controlled = GetUnitNear(false);
 
 			if (Controlled)
 			{
@@ -443,22 +462,25 @@ public class Gamer
 		}
 	}
 
-	public Unit GetUnitNear()
+	public Unit GetUnitNear(bool countControlled)
 	{
 		float dist;
-		float min = Vector3.SqrMagnitude(game.Ball.transform.position - Controlled.Team[0].transform.position);
-		Unit near = (Controlled.Team[0].isTackled ? Controlled.Team[1] : Controlled.Team[0]);
 
-		foreach (Unit u in Controlled.Team)
+		float min = 0;
+		Unit near = null;
+
+		foreach (Unit u in Team)
 		{
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 
-			if (dist < min && !u.isTackled)
+            // Si on a pas de near ou qu'on est le plus proche, si countControlled est mis : peut pas être Controlée; ne doit pas etre tacklé
+			if ((near == null || dist < min) && !u.isTackled && (countControlled || u != Controlled))
 			{
 				near = u;
 				min = dist;
 			}
 		}
+
 		return near;
 	}
 

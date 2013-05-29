@@ -125,7 +125,7 @@ public class Ball : TriggeringTriggered, Debugable
         this.transform.parent = root;
     }
 
-	const float epsilonOnGround = 0.3f;
+	const float epsilonOnGround = 0.4f;
 
     public bool isOnGround()
     {
@@ -146,7 +146,7 @@ public class Ball : TriggeringTriggered, Debugable
 				this.Game.BallOnGround(true);
 			}
 
-			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround, this.transform.position.z);
+			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround - 0.1f, this.transform.position.z);
 
 			this.onGroundFired = true;
 			CircleDrop.SetActive(false);
@@ -232,6 +232,7 @@ public class Ball : TriggeringTriggered, Debugable
 		passManager = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		passManager.CalculatePass();
 		timeOnPass = 0;
+		NextOwner = to;
 	}
 
 	public void UpdatePass()
@@ -242,7 +243,8 @@ public class Ball : TriggeringTriggered, Debugable
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
 					passManager.oPassState = PassSystem.passState.ONPASS;
-				Time.timeScale = 1f;
+
+				//Time.timeScale = 0.1f;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
 			}
@@ -392,6 +394,15 @@ public class Ball : TriggeringTriggered, Debugable
     public void ForDebugWindow()
     {
 #if UNITY_EDITOR
+        EditorGUILayout.Toggle("On ground", isOnGround());
+        if (this.passManager != null)
+        {
+            EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Pass state", "null");
+        }
         EditorGUILayout.ObjectField("Owner (unit)", this.Owner, typeof(Unit), true);
         EditorGUILayout.ObjectField("Owner (team)", this.Team, typeof(Team), true);
         EditorGUILayout.ObjectField("Ball", this, typeof(Ball), true);

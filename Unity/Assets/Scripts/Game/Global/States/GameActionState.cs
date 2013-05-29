@@ -59,7 +59,8 @@ public class GameActionState : GameState {
         
     public override bool OnResumeSignal(float time) 
     {
-       sm.state_change_me(this, new WaitingState(sm, cam, game, time));
-       return true;
+        sm.state_change_me(this, new WaitingState(sm, cam, game, time));
+       
+        return true;
     }
 }

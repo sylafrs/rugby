@@ -61,6 +61,7 @@ public class IntroState : GameState
 	public override void OnLeave()
 	{
 		cam.setTarget(cam.game.Ball.Owner.transform);
+		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		CameraFade.StartAlphaFade(Color.black, true, 2f, 2f, () =>
 		{
 			CameraFade.wannaDie();

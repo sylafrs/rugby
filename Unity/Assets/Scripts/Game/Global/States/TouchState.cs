@@ -16,6 +16,7 @@ public class TouchState : GameState
 	{
 		cam.setTarget(null);
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.TouchingSgtate.TouchCamSettings);
+		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		
 		Transform cameraPlaceHolder = game.refs.placeHolders.touchPlacement.FindChild("CameraPlaceHolder");
 
@@ -27,7 +28,6 @@ public class TouchState : GameState
                 cam.game.Referee.PlacePlayersForTouch();
             }
         );
-		
 	}
 	
 	public override void OnLeave ()
@@ -38,6 +38,7 @@ public class TouchState : GameState
         foreach (Unit u in game.southTeam)
             u.buttonIndicator.target.renderer.enabled = false;
 
-        cam.setTarget(cam.game.Ball.transform);	
+        cam.setTarget(cam.game.Ball.transform);
+		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 	}
 }

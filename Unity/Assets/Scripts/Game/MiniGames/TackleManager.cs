@@ -78,17 +78,17 @@ public class TackleManager: myMonoBehaviour {
         if (result == RESULT.QTE)
         {
             /* Effect fall */
-            float ratio = remainingTime / tempsPlaquage;
-            float angle = 90 - (ratio * 90);
+            //float ratio = remainingTime / tempsPlaquage;
+            //float angle = 90 - (ratio * 90);
 
-            Vector3 rot = Vector3.zero;
+            //Vector3 rot = Vector3.zero;
 
-            if (tackled.Model)
-            {
-                rot = tackled.Model.transform.localRotation.eulerAngles;
-                rot.x = angle;
-                tackled.Model.transform.localRotation = Quaternion.Euler(rot);
-            }
+            //if (tackled.Model)
+            //{
+            //    rot = tackled.Model.transform.localRotation.eulerAngles;
+            //    rot.x = angle;
+            //    tackled.Model.transform.localRotation = Quaternion.Euler(rot);
+            //}
 
             /* Pass On Tackle */
             if (

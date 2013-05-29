@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using FuncBool = System.Func<bool>;
 
 /**
   * @class UnitAnimator
@@ -13,19 +14,47 @@ public class UnitAnimator : myMonoBehaviour
     public Unit unit { get; private set; }
     public Animator animator;
 
-    public const string IdleState = "Idle";
-    public const string BallIdleState = "IdleBall";
-
+    public const string IdleState = "WithoutBall.Idle";
+    public const string BallIdleState = "WithBall.IdleBall";
+    public const string SuperState = "Super.Super";
+    
     public const string lblSpeed = "in_float_speed";
     public const string lblTackled = "in_bool_tackled";
+    public const string lblTackling = "in_bool_tackling";
+    public const string lblTackleFail = "in_bool_tackleFail";
     public const string lblBall = "in_bool_ball";
     public const string lblPass = "in_bool_pass";
     public const string lblTouch = "in_bool_touch";
     public const string lblPut = "in_bool_put";
-    public const string lblDrop = "in_bool_drop";
+    public const string lblDrop = "in_bool_drop";    
     public const string lblBallRight = "in_bool_ballRight";
     public const string lblDelay = "out_int_delaySpeed";
-    public const string lblSuper = "in_bool_super";	
+    public const string lblSuper = "in_bool_super";
+    public const string lblFxTime = "out_float_fxSuperTime";
+
+    public bool Tackling
+    {
+        get
+        {
+            return animator.GetBool(lblTackling);
+        }
+        set
+        {
+            animator.SetBool(lblTackling, value);
+        }
+    }
+
+    public bool TackleFail
+    {
+        get
+        {
+            return animator.GetBool(lblTackleFail);
+        }
+        set
+        {
+            animator.SetBool(lblTackleFail, value);
+        }
+    }
 	
     public float Speed
     {
@@ -141,7 +170,15 @@ public class UnitAnimator : myMonoBehaviour
             return (int)animator.GetInteger(lblDelay);
         }
     }
-    
+
+    public float TIME_SUPER_FX
+    {
+        get
+        {
+            return animator.GetFloat(lblFxTime);
+        }
+    }
+
     public void OnTouch()
     {
         if (animator)
@@ -152,12 +189,73 @@ public class UnitAnimator : myMonoBehaviour
     
     private int delayStop;
     private bool launchUpdate;
+    private bool launchSuper;
 
     private string LayerName;
 
+    private class MyEvent
+    {
+        public string name;
+        public FuncBool callback;
+        public string state;
+        public float time;
+    }
+
+    List<MyEvent> events = new List<MyEvent>();
+
+    private MyEvent GetEventByName(string name)
+    {
+        foreach (MyEvent e in events)
+        {
+            if (e.name.Equals(name))
+            {
+                return e;
+            }
+        }
+
+        return null;
+    }
+
+    public bool AddEvent(string name, FuncBool action, string state, float time)
+    {
+        if (GetEventByName(name) != null)
+        {
+            return false;
+        }
+
+        MyEvent e = new MyEvent();
+        e.callback = action;
+        e.state = state;
+        e.time = time;
+        e.name = name;
+        events.Add(e);
+
+        return true;
+    }
+
+    public AnimatorStateInfo? GetStateInfo()
+    {
+        if (this.animator == null)
+            return null;
+
+        return this.animator.GetCurrentAnimatorStateInfo(0);
+    }
+
+    public float GetTime()
+    {
+        AnimatorStateInfo? a = this.GetStateInfo();
+        if(a == null)
+            return -1;
+        return ((AnimatorStateInfo)a).normalizedTime;
+    }
+
     public bool isInState(string state)
     {
-        return this.animator.GetCurrentAnimatorStateInfo(0).IsName(LayerName + "." + state);
+        AnimatorStateInfo? a = this.GetStateInfo();
+        if (a == null)
+            return false;
+
+        return ((AnimatorStateInfo)a).IsName(state);
     }
 
     public void Start()
@@ -172,6 +270,29 @@ public class UnitAnimator : myMonoBehaviour
 
         delayStop = DELAY_SPEED;
         launchUpdate = false;
+    }
+
+    private void UpdateEvent()
+    {
+        int n = events.Count;
+        for (int i = 0; i < n; i++)
+        {
+            MyEvent e = events[i];
+            AnimatorStateInfo infos = (AnimatorStateInfo)this.GetStateInfo();
+            
+            if (Mathf.Abs(infos.normalizedTime - e.time) < 0.05 && infos.IsName(e.state))
+            {
+                if (e.callback())
+                {
+                    events.RemoveAt(i);
+                    n--;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
     }
 
     public void Update()
@@ -212,9 +333,17 @@ public class UnitAnimator : myMonoBehaviour
                 {
                     Drop = false;
                 }
+
+                if (Super && launchSuper)
+                {
+                    Super = false;
+                    launchSuper = false;
+                }
             }
 
             launchUpdate = false;
+
+            UpdateEvent();
 		}
 	}
 	
@@ -253,10 +382,17 @@ public class UnitAnimator : myMonoBehaviour
 		if(!Super) {
 			Debug.LogWarning("UnitAnimator : Super was not prepared");	
 		}
-		Super = false;	
+        launchUpdate = true;
+		launchSuper = true;	
 	}
 
     public void OnTacklePass()
     {
+    }
+
+    public void OnTackleStart(bool success)
+    {
+        this.TackleFail = !success;
+        this.Tackling = true;        
     }
 }

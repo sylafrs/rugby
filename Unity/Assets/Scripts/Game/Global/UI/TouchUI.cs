@@ -3,13 +3,13 @@ using System.Collections;
 
 public class TouchUI{
 	
-	private Game game;
-	private TouchManager manager;
+	//private Game game;
+	//private TouchManager manager;
 	
 	public TouchUI(Game _game)
 	{
-		game = _game;
-        manager = _game.refs.managers.touch;
+		//game = _game;
+        //manager = _game.refs.managers.touch;
 	}
 	
 	public void DrawUI()

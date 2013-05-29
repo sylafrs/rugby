@@ -6,40 +6,72 @@
   */
 public class WaitingState : GameState
 {
-    public WaitingState(StateMachine sm, CameraManager cam, Game game, float time) : base(sm, cam, game) {
-        remainingTime = time;
-    }
+	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time)
+		: base(sm, cam, game)
+	{
+		this.remainingTime = time;
+		this.TeamOnSuper = null;
+	}
 
-    private float remainingTime;
-	
+	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time, Team TeamOnSuper)
+		: base(sm, cam, game)
+	{
+		this.remainingTime = time;
+		this.TeamOnSuper = TeamOnSuper;
+	}
+
+	private float remainingTime;
+	private Team TeamOnSuper;
+
 	public override void OnEnter()
-    {       
-       game.disableIA = true;
-       game.Referee.PauseIngameTime();
-    }
+	{
+		game.disableIA = true;
+		game.Referee.PauseIngameTime();
+		if(TeamOnSuper)
+			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper));
+	}
 
-    public override void OnUpdate()
-    {
-        remainingTime -= UnityEngine.Time.deltaTime;
-        if (remainingTime <= 0)
-        {
-            sm.state_change_me(this, new MainGameState(sm, cam, game));
-        }
-    }
-	
+	public override void OnUpdate()
+	{
+		remainingTime -= UnityEngine.Time.deltaTime;
+		if (remainingTime <= 0)
+		{
+			sm.state_change_me(this, new MainGameState(sm, cam, game));
+		}
+	}
+
 	public override void OnLeave()
-    {
-       game.Referee.ResumeIngameTime();
-       game.disableIA = false;
+	{
+		game.Referee.ResumeIngameTime();
+		game.disableIA = false;
+         
+        Team[] teams = new Team[2];
+        teams[0] = game.southTeam;
+        teams[1] = game.northTeam;
 
-       foreach(Unit u in game.northTeam)
-			u.buttonIndicator.target.renderer.enabled = false;
+        foreach (Team t in teams)
+        {
+            foreach (Unit u in t)
+            {
+                u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
+            }
+        }
 
-       foreach (Unit u in game.southTeam)
-           u.buttonIndicator.target.renderer.enabled = false;
+        foreach (Team t in teams)
+        {            
+            foreach (Unit u in t)
+            {
+                if (t.Player.Controlled && game.Ball.NextOwner != u)
+                {
+                    u.UpdateTypeOfPlay();
+                    u.UpdatePlacement();                        
+                }
 
-       game.northTeam.fixUnits = game.southTeam.fixUnits = false;
-       if (game.northTeam.Player != null) game.northTeam.Player.enableMove();
-       if (game.southTeam.Player != null) game.southTeam.Player.enableMove();
-    }
+                u.buttonIndicator.target.renderer.enabled = false;
+            }
+
+            t.fixUnits = false;
+            t.Player.enableMove();
+        }        
+	}
 }
