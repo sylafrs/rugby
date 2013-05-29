@@ -4229,7 +4229,7 @@ MonoBehaviour:
               TouchCamSettings:
                 zoom: 1
                 target: 0
-                nearClip: .300000012
+                nearClip: 12
     Inputs:
       shortPass:
         keyboardP1: 49
