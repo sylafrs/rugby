@@ -75,6 +75,7 @@ public class SuperCutSceneState : GameState
 	{
 		//se remettre derrière
         teamOnSuper.Super.LaunchSuperEffects();
+        teamOnSuper.PlaySuperGroundEffect();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 	}
 }

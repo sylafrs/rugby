@@ -121,8 +121,8 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: out_float_fxSuperTime
     m_Type: 1
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -933,7 +933,7 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Super_jap
+  m_Name: Super
   m_Speed: 1
   m_Motions:
   - {fileID: 7400000, guid: e02196d29b3a31e469a170002b3c0b25, type: 3}
@@ -1287,14 +1287,6 @@ StateMachine:
       - {fileID: 110149657}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110224347}
-      second:
-      - {fileID: 110132278}
-    data:
-      first: {fileID: 110212502}
-      second:
-      - {fileID: 110174023}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110137876}
@@ -1359,6 +1351,14 @@ StateMachine:
       first: {fileID: 110207590}
       second:
       - {fileID: 110149657}
+    data:
+      first: {fileID: 110224347}
+      second:
+      - {fileID: 110132278}
+    data:
+      first: {fileID: 110212502}
+      second:
+      - {fileID: 110174023}
     data:
       first: {fileID: 110233779}
       second:
@@ -1573,6 +1573,13 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_LocalTransitions:
     data:
+      first: {fileID: 0}
+      second:
+      - {fileID: 110151687}
+    data:
+      first: {fileID: 110207590}
+      second: []
+    data:
       first: {fileID: 110224347}
       second:
       - {fileID: 110132278}
@@ -1580,13 +1587,6 @@ StateMachine:
       first: {fileID: 110212502}
       second:
       - {fileID: 110174023}
-    data:
-      first: {fileID: 0}
-      second:
-      - {fileID: 110151687}
-    data:
-      first: {fileID: 110207590}
-      second: []
     data:
       first: {fileID: 110243934}
       second:
@@ -1602,6 +1602,13 @@ StateMachine:
       - {fileID: 110169783}
   m_OrderedTransitions:
     data:
+      first: {fileID: 0}
+      second:
+      - {fileID: 110151687}
+    data:
+      first: {fileID: 110207590}
+      second: []
+    data:
       first: {fileID: 110224347}
       second:
       - {fileID: 110132278}
@@ -1609,13 +1616,6 @@ StateMachine:
       first: {fileID: 110212502}
       second:
       - {fileID: 110174023}
-    data:
-      first: {fileID: 0}
-      second:
-      - {fileID: 110151687}
-    data:
-      first: {fileID: 110207590}
-      second: []
     data:
       first: {fileID: 110243934}
       second:
