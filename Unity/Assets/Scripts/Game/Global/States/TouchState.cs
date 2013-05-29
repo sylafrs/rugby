@@ -39,6 +39,6 @@ public class TouchState : GameState
             u.buttonIndicator.target.renderer.enabled = false;
 
         cam.setTarget(cam.game.Ball.transform);
-		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 	}
 }
