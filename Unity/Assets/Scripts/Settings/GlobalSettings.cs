@@ -6,6 +6,7 @@ public class GlobalSettings
 	public GameSettings Game;
 	public SuperSettings Super;
 	public TeamSettings Team;
+	public GlobalCameraSettings	GlobalCamera;
 }
 
 [System.Serializable]
@@ -79,4 +80,11 @@ public class SuperSettings
 	//scrum = melee
 	public int scrumWinSuperPoints = 30;
 	public int scrumLooseSuperPoints = 10;
+}
+
+[System.Serializable]
+public class GlobalCameraSettings
+{
+	public float flipSmoothTime;
+	public float flipMovingStep;
 }

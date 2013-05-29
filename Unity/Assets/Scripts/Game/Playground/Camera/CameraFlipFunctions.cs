@@ -39,10 +39,13 @@ public partial class CameraManager{
 	}
 	
 	private float stepSpeed = 0.0183f;
+	// / <summary>
+	// / 100000
+	/// </summary>
 	public  float step = 0f;
 	private void TranslateCam2()
 	{	
-		step += stepSpeed;
+		step += game.settings.Global.GlobalCamera.flipMovingStep;
 		//Vector3 NewMin = new Vector3(MinfollowOffset.x, min
 		Vector3 min2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, MinfollowOffset.z * -1);
 		Vector3 offset = Camera.mainCamera.transform.position+(min2)*zoom;
@@ -96,7 +99,7 @@ public partial class CameraManager{
 			
             // Get the angle for the current state
 			//float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
-			float angleFromZero = Mathf.SmoothDampAngle(this.flipLastAngle, this.flipAngle, ref velocityFloat,smoothTime);
+			float angleFromZero = Mathf.SmoothDampAngle(this.flipLastAngle, this.flipAngle, ref velocityFloat,game.settings.Global.GlobalCamera.flipSmoothTime);
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
