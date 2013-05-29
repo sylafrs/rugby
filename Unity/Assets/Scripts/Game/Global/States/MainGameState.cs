@@ -44,7 +44,7 @@ public class MainGameState : GameState
 
 	public override bool OnPass(Unit from, Unit to)
 	{
-		Debug.Log("Pass !");
+		//Debug.Log("Pass !");
 		sm.state_change_son(this, new PassingState(sm, cam, game, from, to));
 		return true;
 	}

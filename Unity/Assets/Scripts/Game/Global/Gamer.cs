@@ -32,7 +32,7 @@ public class Gamer
 	public Unit Controlled;
 	public Game game;
 	private Unit unitTo;
-    private int passSide;
+	private int passSide;
 	private InputDirection.Direction stickDirection;
 
 	public InputSettings Inputs;
@@ -97,10 +97,10 @@ public class Gamer
 
 	//List<Unit> unitsSide;
 
-    public void newFrame()
-    {
-        this.canTackle = true;
-    }
+	public void newFrame()
+	{
+		this.canTackle = true;
+	}
 
 	public void myUpdate()
 	{
@@ -109,24 +109,24 @@ public class Gamer
 
 		if (Inputs == null)
 			return;
-        
-        if (Controlled)
-        {
-            UpdateDODGE();
 
-            if (!Controlled.Dodge)
-            {
-                UpdateStickDirection();
-                UpdateSUPER();
-                UpdateMOVE();
-                UpdateTACKLE();
-                UpdatePASS();
-                UpdateDROP();
-                UpdateESSAI();                
-            }
-        }
+		if (Controlled)
+		{
+			UpdateDODGE();
 
-        UpdatePLAYER();
+			if (!Controlled.Dodge)
+			{
+				UpdateStickDirection();
+				UpdateSUPER();
+				UpdateMOVE();
+				UpdateTACKLE();
+				UpdatePASS();
+				UpdateDROP();
+				UpdateESSAI();
+			}
+		}
+
+		UpdatePLAYER();
 	}
 
 	public void UpdateSUPER()
@@ -206,9 +206,9 @@ public class Gamer
 							{
 								if (u.transform.position.z < Controlled.transform.position.z && u.canCatchTheBall)
 								{
-									Debug.Log("try to pass to " + u);
+									//Debug.Log("try to pass to " + u);
 									unitTo = u;
-                                    passSide = 1;
+									passSide = 1;
 									break;
 								}
 								else
@@ -218,10 +218,10 @@ public class Gamer
 							{
 								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
-									Debug.Log("try to pass to " + u);
+									//Debug.Log("try to pass to " + u);
 									u.canCatchTheBall = true;
 									unitTo = u;
-                                    passSide = -1;
+									passSide = -1;
 									break;
 								}
 								else
@@ -258,7 +258,7 @@ public class Gamer
 							{
 								if (u.transform.position.z < Controlled.transform.position.z && u.canCatchTheBall)
 								{
-									Debug.Log("try to pass to " + u);
+									//Debug.Log("try to pass to " + u);
 									unitTo = u;
 									break;
 								}
@@ -269,7 +269,7 @@ public class Gamer
 							{
 								if (u.transform.position.z > Controlled.transform.position.z && u.canCatchTheBall)
 								{
-									Debug.Log("try to pass to " + u);
+									//Debug.Log("try to pass to " + u);
 									u.canCatchTheBall = true;
 									unitTo = u;
 									break;
@@ -346,10 +346,10 @@ public class Gamer
             }*/
 			if (unitTo != null && unitTo != game.Ball.Owner)
 			{
-                if (Controlled.unitAnimator)
-                {
-                    Controlled.unitAnimator.OnPass(passSide > 0);
-                }
+				if (Controlled.unitAnimator)
+				{
+					Controlled.unitAnimator.OnPass(passSide > 0);
+				}
 				Controlled.Order = Order.OrderPass(unitTo);
 			}
 			//PassDirection = Vector3.zero;
@@ -360,27 +360,27 @@ public class Gamer
 		}
 	}
 
-    bool canTackle = true;
+	bool canTackle = true;
 
 	void UpdateTACKLE()
 	{
-        Unit owner = this.game.Ball.Owner;
+		Unit owner = this.game.Ball.Owner;
 
-        if (canTackle && owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
+		if (canTackle && owner != null && owner.Team != this.Team && (Input.GetKeyDown(Inputs.tackle.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.tackle.xbox)))
 		{
-            canTackle = false;
+			canTackle = false;
 
-            Unit tackled = owner;
-            if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
-                tackled = null;
+			Unit tackled = owner;
+			if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
+				tackled = null;
 
-            if (!Controlled.NearUnits.Contains(owner))
-                tackled = null;//return;
+			if (!Controlled.NearUnits.Contains(owner))
+				tackled = null;//return;
 
-            if (Controlled.unitAnimator)
-                Controlled.unitAnimator.OnTackleStart(tackled != null);
+			if (Controlled.unitAnimator)
+				Controlled.unitAnimator.OnTackleStart(tackled != null);
 
-            Controlled.Order = Order.OrderPlaquer(tackled);            
+			Controlled.Order = Order.OrderPlaquer(tackled);
 		}
 	}
 
@@ -473,7 +473,7 @@ public class Gamer
 		{
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 
-            // Si on a pas de near ou qu'on est le plus proche, si countControlled est mis : peut pas être Controlée; ne doit pas etre tacklé
+			// Si on a pas de near ou qu'on est le plus proche, si countControlled est mis : peut pas être Controlée; ne doit pas etre tacklé
 			if ((near == null || dist < min) && !u.isTackled && (countControlled || u != Controlled))
 			{
 				near = u;
@@ -563,10 +563,10 @@ public class Gamer
 				Zone z = this.game.Ball.inZone;
 				if (z == this.Team.opponent.Zone)
 				{
-                    if (this.Controlled.unitAnimator)
-                    {
-                        this.Controlled.unitAnimator.OnPut();
-                    }
+					if (this.Controlled.unitAnimator)
+					{
+						this.Controlled.unitAnimator.OnPut();
+					}
 					this.game.OnTry(z);
 				}
 			}

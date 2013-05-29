@@ -243,7 +243,7 @@ public class Unit : TriggeringTriggered, Debugable
 			{
 				pos.x = this.team.Player.Controlled.transform.position.x - (this.oTS.dMinOffensivePlayer + this.game.rand.Next(offsetX));
 			}
-			Debug.Log("SAME COL THAN CONTROLLED");
+			//Debug.Log("SAME COL THAN CONTROLLED");
 			this.Order = Order.OrderMove(pos);
 			oldPos = pos;
 		}
@@ -264,7 +264,7 @@ public class Unit : TriggeringTriggered, Debugable
 			if (oldPos.x != pos.x)
 			{
 				this.Order = Order.OrderMove(pos);
-				Debug.Log("CHANGE FORMATION");
+				//Debug.Log("CHANGE FORMATION");
 				oldPos = pos;
 			}
 		}
@@ -298,7 +298,7 @@ public class Unit : TriggeringTriggered, Debugable
 
 					if (distX > this.oTS.dMaxOffensivePlayer)
 					{
-						Debug.Log("CONSTRAINT ON X > dMAX");
+						//Debug.Log("CONSTRAINT ON X > dMAX");
 						if ((u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) > this.transform.position.x)
 						{
 							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) -
@@ -312,7 +312,7 @@ public class Unit : TriggeringTriggered, Debugable
 					}
 					else if (distX < this.oTS.dMinOffensivePlayer)
 					{
-						Debug.Log("CONSTRAINT ON X < dMIN");
+						//Debug.Log("CONSTRAINT ON X < dMIN");
 						if ((u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) > this.transform.position.x)
 						{
 							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) -
@@ -334,8 +334,8 @@ public class Unit : TriggeringTriggered, Debugable
 			if (pos.x != oldPos.x)
 			{
 				//je bouge
-				//Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
-				Debug.Log("CONSTRAINT ON X");
+				////Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
+				//Debug.Log("CONSTRAINT ON X");
 				this.Order = Order.OrderMove(pos);
 				oldPos = pos;
 			}
@@ -344,7 +344,7 @@ public class Unit : TriggeringTriggered, Debugable
 		//Contrainte sur Z ave le controllé
 		if (distZ > this.oTS.dMaxControlledOffensive)
 		{
-			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
+			////Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.team == this.game.southTeam)
 			{
 				pos.z = this.team.Player.Controlled.transform.position.z - (this.oTS.dMinControlledOffensive + this.game.rand.Next(offsetZ));
@@ -356,7 +356,7 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 		else if (distZ < this.oTS.dMinControlledOffensive)
 		{
-			//Debug.Log("too near : " + this);
+			////Debug.Log("too near : " + this);
 			if (this.team == this.game.southTeam)
 			{
 				pos.z = this.team.Player.Controlled.transform.position.z - (this.oTS.dMaxControlledOffensive - this.game.rand.Next(offsetZ));
@@ -405,7 +405,7 @@ public class Unit : TriggeringTriggered, Debugable
 		if (oldPos.z != pos.z)
 		{
 			this.Order = Order.OrderMove(pos);
-			//Debug.Log("REPLACEMENT DE " + this);
+			////Debug.Log("REPLACEMENT DE " + this);
 			replacement = true;
 			ballZone = false;
 		}
@@ -519,7 +519,7 @@ public class Unit : TriggeringTriggered, Debugable
 				if (pos.x != oldPos.x)
 				{
 					//je bouge
-					//Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
+					////Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
 					this.Order = Order.OrderMove(pos);
 					oldPos = pos;
 				}
@@ -535,7 +535,7 @@ public class Unit : TriggeringTriggered, Debugable
 					// le joueur est à ma droite
 					Order.TYPE_POSITION posThis = this.PositionInMap();
 					Order.TYPE_POSITION posBall = game.PositionInMap(game.Ball.gameObject);
-					//Debug.Log(posThis + " et " + posBall + "donne" + (posThis > posBall));
+					////Debug.Log(posThis + " et " + posBall + "donne" + (posThis > posBall));
 
 					//l'autre défenseur est à ma droite
 					if (u.PositionInMap() > posThis)
@@ -563,7 +563,7 @@ public class Unit : TriggeringTriggered, Debugable
 		//Contrainte sur Z
 		if (distZ > this.oTS.dMaxControlledDefense)
 		{
-			//Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
+			////Debug.Log("too far : pos controllé : " + this.Team.Player.Controlled.transform.position.z + " autre pos : " + this.transform.position.z);
 			if (this.team == this.game.southTeam)
 			{
 				pos.z = this.team.Player.Controlled.transform.position.z - (this.oTS.dMinControlledDefense + this.game.rand.Next(offsetZ));
@@ -575,7 +575,7 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 		else if (distZ < this.oTS.dMinControlledDefense)
 		{
-			//Debug.Log("too near : " + this);
+			////Debug.Log("too near : " + this);
 			if (this.team == this.game.southTeam)
 			{
 				pos.z = this.team.Player.Controlled.transform.position.z - (this.oTS.dMaxControlledDefense - this.game.rand.Next(offsetZ));

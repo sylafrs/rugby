@@ -14,8 +14,8 @@ using UnityEditor;
 [AddComponentMenu("Scripts/Game/Ball"), RequireComponent(typeof(Rigidbody))]
 public class Ball : TriggeringTriggered, Debugable
 {
-    const string rootName = "ROOT";
-    private Transform root;
+	const string rootName = "ROOT";
+	private Transform root;
 
 	public Game Game;
 	public Team Team
@@ -116,14 +116,14 @@ public class Ball : TriggeringTriggered, Debugable
 	new void Start()
 	{
 		onGroundFired = false;
-        root = GameObject.Find(rootName).transform;
+		root = GameObject.Find(rootName).transform;
 		base.Start();
 	}
 
-    public void AttachToRoot()
-    {
-        this.transform.parent = root;
-    }
+	public void AttachToRoot()
+	{
+		this.transform.parent = root;
+	}
 
 	const float epsilonOnGround = 0.4f;
 
@@ -146,7 +146,7 @@ public class Ball : TriggeringTriggered, Debugable
 			this.transform.localRotation = Quaternion.identity;
 		}
 
-        if (this.isOnGround())
+		if (this.isOnGround())
 		{
 			if (!this.onGroundFired)
 			{
@@ -236,6 +236,11 @@ public class Ball : TriggeringTriggered, Debugable
 	{
 		Game.OnPass(this.Owner, to);
 
+		int index = (this.Owner.Team == Game.instance.southTeam ? 0 : 1);
+#if UNITY_EDITOR
+		Game.instance.logTeam[index].WriteLine("--------------------");
+		Game.instance.logTeam[index].WriteLine("PASS");
+#endif
 		passManager = new PassSystem(Game.southTeam.But.transform.position, Game.northTeam.But.transform.position, this.Owner, to, this);
 		passManager.CalculatePass();
 		timeOnPass = 0;
@@ -244,13 +249,20 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public void UpdatePass()
 	{
+		int index = (this.PreviousOwner.Team == Game.instance.southTeam ? 0 : 1);
 		if (timeOnPass != -1)
 		{
 			if (!this.isOnGround())
 			{
 				if (passManager.oPassState == PassSystem.passState.SETUP)
+				{
 					passManager.oPassState = PassSystem.passState.ONPASS;
+#if UNITY_EDITOR
+					Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
+#endif
+				}
 
+				passManager.GetFrom().canCatchTheBall = false;
 				//Time.timeScale = 0.1f;
 				passManager.DoPass(timeOnPass);
 				timeOnPass += Time.deltaTime;
@@ -260,6 +272,9 @@ public class Ball : TriggeringTriggered, Debugable
 				if (passManager.oPassState == PassSystem.passState.ONPASS)
 				{
 					passManager.oPassState = PassSystem.passState.ONGROUND;
+#if UNITY_EDITOR
+					Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
+#endif
 				}
 
 				timeOnPass = -1;
@@ -271,6 +286,10 @@ public class Ball : TriggeringTriggered, Debugable
 			if (passManager.oPassState == PassSystem.passState.ONPASS)
 			{
 				passManager.oPassState = PassSystem.passState.ONTARGET;
+#if UNITY_EDITOR
+				Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
+#endif
+				passManager.GetFrom().canCatchTheBall = true;
 				NextOwner = null;
 			}
 
@@ -281,6 +300,10 @@ public class Ball : TriggeringTriggered, Debugable
 		{
 			Time.timeScale = 1f;
 			passManager.oPassState = PassSystem.passState.NONE;
+#if UNITY_EDITOR
+			Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState + "\n");
+#endif
+			//Game.instance.logTeam[index].CloseFile();
 		}
 
 	}
@@ -398,21 +421,21 @@ public class Ball : TriggeringTriggered, Debugable
 		}
 	}
 
-    public void ForDebugWindow()
-    {
+	public void ForDebugWindow()
+	{
 #if UNITY_EDITOR
-        EditorGUILayout.Toggle("On ground", isOnGround());
-        if (this.passManager != null)
-        {
-            EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
-        }
-        else
-        {
-            EditorGUILayout.LabelField("Pass state", "null");
-        }
-        EditorGUILayout.ObjectField("Owner (unit)", this.Owner, typeof(Unit), true);
-        EditorGUILayout.ObjectField("Owner (team)", this.Team, typeof(Team), true);
-        EditorGUILayout.ObjectField("Ball", this, typeof(Ball), true);
+		EditorGUILayout.Toggle("On ground", isOnGround());
+		if (this.passManager != null)
+		{
+			EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
+		}
+		else
+		{
+			EditorGUILayout.LabelField("Pass state", "null");
+		}
+		EditorGUILayout.ObjectField("Owner (unit)", this.Owner, typeof(Unit), true);
+		EditorGUILayout.ObjectField("Owner (team)", this.Team, typeof(Team), true);
+		EditorGUILayout.ObjectField("Ball", this, typeof(Ball), true);
 #endif
-    }
+	}
 }
