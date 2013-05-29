@@ -78,10 +78,10 @@ public class TackleManager: myMonoBehaviour {
         if (result == RESULT.QTE)
         {
             /* Effect fall */
-            float ratio = remainingTime / tempsPlaquage;
-            float angle = 90 - (ratio * 90);
+            //float ratio = remainingTime / tempsPlaquage;
+            //float angle = 90 - (ratio * 90);
 
-            Vector3 rot = Vector3.zero;
+            //Vector3 rot = Vector3.zero;
 
             //if (tackled.Model)
             //{

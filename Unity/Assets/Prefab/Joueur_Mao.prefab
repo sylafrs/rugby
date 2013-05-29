@@ -4108,6 +4108,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91abe38ba2410ce448f6d0e14fe39b6c, type: 3}
   m_Name: 
+  index: 0
   sm: {fileID: 11400002}
   Model: {fileID: 100280}
   BallPlaceHolderRight: {fileID: 100002}
@@ -4120,6 +4121,8 @@ MonoBehaviour:
   superDashParticles: {fileID: 19800000}
   superTackleParticles: {fileID: 19800002}
   canCatchTheBall: 1
+  invariantMove: 0
+  typeOfPlayer: 2
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

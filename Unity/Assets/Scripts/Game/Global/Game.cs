@@ -61,52 +61,66 @@ public class Game : myMonoBehaviour
 
 	public System.Random rand = new System.Random();
 
-	public Team northTeam { get { return refs.north; } }
-	public Team southTeam { get { return refs.south; } }
-	public Referee Referee { get { return refs.Referee; } }
-
-	public void Start()
-	{
-#if UNITY_EDITOR
+    public Team northTeam { get { return refs.north; } }
+    public Team southTeam { get { return refs.south; } }
+    public Referee Referee { get { return refs.Referee; } }
+	
+	public void Start ()
+    {
+	#if UNITY_EDITOR
 		logTeam = new LogFile[2];
 		for (int i = 0; i < 2; ++i)
 			logTeam[i] = new LogFile();
 		logTeam[0].SetName("Assets/Scripts/Game/Autres/LOG/SouthTeam");
 		logTeam[1].SetName("Assets/Scripts/Game/Autres/LOG/NorthTeam");
 #endif
-		this.refs.xboxInputs.CheckNone();
+        this.refs.xboxInputs.CheckNone();
 
-		this.northTeam.game = this;
-		this.southTeam.game = this;
-		this.northTeam.south = false;
-		this.southTeam.south = true;
-		this.northTeam.CreateUnits();
-		this.southTeam.CreateUnits();
+        this.northTeam.game = this;
+        this.southTeam.game = this;
+        this.northTeam.south = false;
+        this.southTeam.south = true;
+        this.northTeam.CreateUnits();
+        this.southTeam.CreateUnits();
+       
+        this.Referee.game = this;
+        this.Referee.StartPlacement();
+        
+        this.northTeam.opponent = southTeam;
+        this.southTeam.opponent = northTeam;
 
-		this.Referee.game = this;
-		this.Referee.StartPlacement();
+        // A changer de place
+        //this.northTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        //{
+        //    this.northTeam.Super.LaunchFeedback();        
+        //    return false;
+        //}, UnitAnimator.SuperState, this.northTeam.captain.unitAnimator.TIME_SUPER_FX);
 
-		this.northTeam.opponent = southTeam;
-		this.southTeam.opponent = northTeam;
+        // A changer de place
+        this.southTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        {
+            this.southTeam.Super.LaunchFeedback();
+            return false;
+        }, UnitAnimator.SuperState, this.southTeam.captain.unitAnimator.TIME_SUPER_FX);
+        
+        this.refs.xboxInputs.Start();
 
-		this.refs.xboxInputs.Start();
+        this.p1 = new Gamer(refs.south);
+        this.p2 = new Gamer(refs.north);
 
-		this.p1 = new Gamer(refs.south);
-		this.p2 = new Gamer(refs.north);
-
-		this.Owner = p1.Controlled.Team;
-		this.Ball.Game = this;
-		this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
-		this.Ball.transform.localPosition = Vector3.zero;
-		this.Ball.Owner = p1.Controlled;
-
-		if (alwaysScrum)
-			((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
-
-		this.refs.managers.intro.OnFinish = () =>
-		{
-			this._disableIA = true;
-			this.Referee.OnStart();
+        this.Owner = p1.Controlled.Team;
+        this.Ball.Game = this;
+        this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
+        this.Ball.transform.localPosition = Vector3.zero;
+        this.Ball.Owner = p1.Controlled;
+		
+		if(alwaysScrum)
+        	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
+		
+        this.refs.managers.intro.OnFinish = () =>
+        {
+            this._disableIA = true;                  
+            this.Referee.OnStart();
 			this.refs.stateMachine.event_OnStartSignal();
 		};
 
@@ -174,98 +188,90 @@ public class Game : myMonoBehaviour
 		this.refs.stateMachine.event_NewOwner(before, after);
 
 		if (after != null)
-		{
-			if (after.Team != Owner)
-			{
-				Owner = after.Team;
-			}
+        {
+            if (after.Team != Owner)
+            {
+                Owner = after.Team;				
+            }
 
-			// PATCH
-			// p1.controlled = after;
-			if (after.Team == southTeam)
-			{
-				p1.Controlled.IndicateSelected(false);
-				p1.Controlled = after;
-				p1.Controlled.IndicateSelected(true);
-			}
-			else if (p2 != null)
-			{
-				p2.Controlled.IndicateSelected(false);
-				p2.Controlled = after;
-				p2.Controlled.IndicateSelected(true);
-			}
-		}
+            // PATCH
+            // p1.controlled = after;
+            if (after.Team == southTeam)
+            {
+                p1.Controlled.IndicateSelected(false);
+                p1.Controlled = after;
+                p1.Controlled.IndicateSelected(true);
+            }
+            else if (p2 != null)
+            {
+                p2.Controlled.IndicateSelected(false);
+                p2.Controlled = after;
+                p2.Controlled.IndicateSelected(true);
+            }
+        }
+        
+        this.northTeam.OnOwnerChanged();
+        this.southTeam.OnOwnerChanged();       
+    }
 
-		this.northTeam.OnOwnerChanged();
-		this.southTeam.OnOwnerChanged();
-	}
+    public void OnSuper(Team team, SuperList super)
+    {
+        if(team.captain.unitAnimator)
+            team.captain.unitAnimator.PrepareSuper();
 
-	public void OnSuper(Team team, SuperList super)
-	{
-		foreach (Unit u in team)
-		{
-			if (u.isCapitaine)
-			{
-				if (u.unitAnimator)
-				{
-					u.unitAnimator.PrepareSuper();
-					u.unitAnimator.LaunchSuper();
-				}
-			}
-		}
-		this.refs.stateMachine.event_Super(team, super);
-	}
+        this.refs.stateMachine.event_Super(team, super);
+    }
 
-	/**
-	 * @author Sylvain Lafon
-	 * @brief Se déclenche quand il y a plaquage
-	 */
-	public void OnTackle(Unit tackler, Unit tackled)
-	{
-		if (tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
-		{
-			this.refs.stateMachine.event_Tackle();
-		}
+    /**
+     * @author Sylvain Lafon
+     * @brief Se déclenche quand il y a plaquage
+     */
+    public void OnTackle(Unit tackler, Unit tackled)
+    {
+        if (tackled) // < A virer plus tard et utiliser OnDodgeSuccess ?
+        {
+            this.refs.stateMachine.event_Tackle();
+        }
 
-		this.Referee.OnTackle(tackler, tackled);
-	}
+        this.Referee.OnTackle(tackler, tackled);  
+    }
 
-	public void BallOnGround(bool onGround)
-	{
-		this.refs.stateMachine.event_BallOnGround(onGround);
-	}
+    public void BallOnGround(bool onGround)
+    {
+        this.refs.stateMachine.event_BallOnGround(onGround);
+    }
 
-	public void OnBallOut()
-	{
-		this.refs.stateMachine.event_BallOut();
-		Referee.OnBallOut();
-	}
+    public void OnBallOut()
+    {
+        this.refs.stateMachine.event_BallOut();
+        Referee.OnBallOut();
+    }
 
-	public void Reset()
-	{
-		SceneReloader.Go();
-	}
+    public void Reset()
+    {
+        SceneReloader.Go();
+    }
 
-	public void OnDodge(Unit u)
-	{
-		this.refs.stateMachine.event_Dodge(u);
-	}
+    public void OnDodge(Unit u)
+    {
+        this.refs.stateMachine.event_Dodge(u);
+    }
 
-	// Pour plus tard ?
-	public void OnDodgeSuccess()
-	{
+    // Pour plus tard ?
+    public void OnDodgeSuccess()
+    {
 
-	}
+    }
 
-	public void OnDodgeFinished(Unit u)
-	{
-		this.refs.stateMachine.event_DodgeFinished(u);
-	}
+    public void OnDodgeFinished(Unit u)
+    {
+        this.refs.stateMachine.event_DodgeFinished(u);
+    }
 
-	public void OnResumeSignal(float time)
-	{
-		this.refs.stateMachine.event_OnResumeSignal(time);
-	}
+    public void OnResumeSignal(float time)
+    {
+        this.refs.stateMachine.event_OnResumeSignal(time);
+    }
 
 	/*
 	 * Cette fonction me retourne le nombre de zone d'écart entre deux positions d'objets.

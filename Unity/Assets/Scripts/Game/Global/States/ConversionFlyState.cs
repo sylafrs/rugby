@@ -38,6 +38,7 @@ public class ConversionFlyState : GameState
     public override void OnEnter ()
     {
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
+		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
     }
 
     public override void OnLeave ()
@@ -49,14 +50,7 @@ public class ConversionFlyState : GameState
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
                 cam.game.Referee.StartPlacement();
-                if (game.Ball.Owner)
-                {
-                    cam.setTarget(game.Ball.Owner.transform);
-                }
-                else
-                {
-                    cam.setTarget(game.southTeam[2].transform);
-                }
+                cam.setTarget(game.Ball.Team[2].transform);
             }
         );
     }    

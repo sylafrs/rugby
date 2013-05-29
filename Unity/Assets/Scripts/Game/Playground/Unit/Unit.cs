@@ -19,7 +19,13 @@ public class Unit : TriggeringTriggered, Debugable
 	public StateMachine sm;
 	public GameObject Model;
 
-	public bool isCapitaine { get; set; }
+    public bool isCapitaine
+    {
+        get
+        {
+            return team.captain == this;
+        }
+    }
 
 	public GameObject BallPlaceHolderRight;
 	public GameObject BallPlaceHolderLeft;
@@ -216,7 +222,7 @@ public class Unit : TriggeringTriggered, Debugable
 		int offsetX = Mathf.RoundToInt(this.oTS.dMaxOffensivePlayer - this.oTS.dMinOffensivePlayer);
 		Order.TYPE_POSITION typePosControlled = this.Team.Player.Controlled.PositionInMap();
 		Order.TYPE_POSITION typePosThis = this.PositionInMap();
-		int diffPos = Mathf.Abs(this.game.compareZoneInMap(typePosControlled, typePosThis));
+		//int diffPos = Mathf.Abs(this.game.compareZoneInMap(typePosControlled, typePosThis));
 
 		//si je suis dans la même zone que le controllé et que je ne suis pas en train de changer de coté
 		if (this.game.compareZoneInMap(typePosControlled, typePosThis) == 0 && !invariantMove)

@@ -9,15 +9,26 @@ public class WaitingState : GameState
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time)
 		: base(sm, cam, game)
 	{
-		remainingTime = time;
+		this.remainingTime = time;
+		this.TeamOnSuper = null;
+	}
+
+	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time, Team TeamOnSuper)
+		: base(sm, cam, game)
+	{
+		this.remainingTime = time;
+		this.TeamOnSuper = TeamOnSuper;
 	}
 
 	private float remainingTime;
+	private Team TeamOnSuper;
 
 	public override void OnEnter()
 	{
 		game.disableIA = true;
 		game.Referee.PauseIngameTime();
+		if(TeamOnSuper)
+			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper));
 	}
 
 	public override void OnUpdate()

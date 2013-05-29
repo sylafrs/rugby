@@ -47,6 +47,7 @@ public class ConvertingState : GameState {
         camera_edited = true;
 
 		cam.setTarget(null);
+		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		
 		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").
 			FindChild("CameraPlaceHolder");

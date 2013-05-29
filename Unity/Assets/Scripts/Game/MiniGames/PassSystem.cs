@@ -157,7 +157,7 @@ public class PassSystem
 	 */
 	public void DoPass(float t)
 	{
-		Vector3 oldPos = ball.transform.position;
+		//Vector3 oldPos = ball.transform.position;
 		ball.transform.position = new Vector3(relativeDirection.x * 1.5f * t + initialPosition.x,
 			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
 			relativeDirection.z * 1.5f * t + initialPosition.z);
