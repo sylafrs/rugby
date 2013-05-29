@@ -105,8 +105,8 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: in_bool_super
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1130,10 +1130,6 @@ StateMachine:
   - {x: 156, y: 84, z: 0}
   m_LocalTransitions:
     data:
-      first: {fileID: 110200000}
-      second:
-      - {fileID: 110106808}
-    data:
       first: {fileID: 110277105}
       second:
       - {fileID: 110114205}
@@ -1148,6 +1144,10 @@ StateMachine:
       first: {fileID: 110224055}
       second:
       - {fileID: 110156433}
+    data:
+      first: {fileID: 110200000}
+      second:
+      - {fileID: 110106808}
     data:
       first: {fileID: 110242428}
       second:
@@ -1185,14 +1185,6 @@ StateMachine:
       - {fileID: 110149657}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110233779}
-      second:
-      - {fileID: 110127861}
-    data:
-      first: {fileID: 110200000}
-      second:
-      - {fileID: 110106808}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110137876}
@@ -1212,6 +1204,10 @@ StateMachine:
       first: {fileID: 110224055}
       second:
       - {fileID: 110156433}
+    data:
+      first: {fileID: 110200000}
+      second:
+      - {fileID: 110106808}
     data:
       first: {fileID: 110242428}
       second:
@@ -1253,6 +1249,10 @@ StateMachine:
       second:
       - {fileID: 110149657}
     data:
+      first: {fileID: 110233779}
+      second:
+      - {fileID: 110127861}
+    data:
       first: {fileID: 110207306}
       second:
       - {fileID: 110127776}
@@ -1270,7 +1270,7 @@ StateMachine:
       - {fileID: 110112685}
       - {fileID: 110169783}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: -324, y: 408, z: 0}
+  m_AnyStatePosition: {x: 84, y: 276, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
 --- !u!1107 &110734055
 StateMachine:
@@ -1287,14 +1287,25 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_LocalTransitions:
     data:
+      first: {fileID: 0}
+      second:
+      - {fileID: 110137876}
+    data:
       first: {fileID: 110233779}
       second:
       - {fileID: 110127861}
+  m_OrderedTransitions:
     data:
       first: {fileID: 0}
       second:
       - {fileID: 110137876}
-  m_OrderedTransitions: {}
+    data:
+      first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110233779}
+      second:
+      - {fileID: 110127861}
   m_MotionSetCount: 2
   m_AnyStatePosition: {x: 456, y: -156, z: 0}
   m_ParentStateMachinePosition: {x: 432, y: 60, z: 0}

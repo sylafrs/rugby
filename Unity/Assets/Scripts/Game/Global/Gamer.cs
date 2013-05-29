@@ -401,6 +401,7 @@ public class Gamer
 		{
 			change = true;
 		}
+
 		if (change)
 		{
 			//foreach (Unit u in this.Team)

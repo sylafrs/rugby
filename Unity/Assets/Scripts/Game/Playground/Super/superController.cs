@@ -41,19 +41,13 @@ public class superController : myMonoBehaviour {
         SuperTimeLeft = 0f;
 	}
 	
-	//void Update () {
-	//	updateSuperValue();
-	//	updateSuperStatus(); //< Now in the StateMachine ! :D
-	//}
-	
-	//void updateSuperValue(){
-	//	if( (Random.Range(1,20) == 1) && (currentSuper == SuperList.superNull) ){
-	//		team.increaseSuperGauge(0); //< Isn't this a bit useless ? :O
-	//	}
-	//}
-		
+	void Update () {
+        if (team.SuperGaugeValue > game.settings.Global.Super.superGaugeMaximum)
+            team.SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+	}
+				
 	public void updateSuperStatus(){
-		if(currentSuper != SuperList.superNull){
+        if(currentSuper != SuperList.superNull){
 			SuperTimeLeft -= Time.deltaTime;
 
             if (SuperTimeLeft <= 0) {
