@@ -5,8 +5,12 @@ using System;
 public partial class CameraManager{
 	
 	//flipping camera
-	private void flip(){
+	private void flip (){
 		flipInit(new Vector3(0,1,0), 180);
+	}
+	
+	public void turnAround (){
+		flipInit(new Vector3(0,1,0), 360);
 	}
 	
 	public void flipForTeam(Team _t, Action _cb)
@@ -38,10 +42,6 @@ public partial class CameraManager{
 		}
 	}
 	
-	private float stepSpeed = 0.0183f;
-	// / <summary>
-	// / 100000
-	/// </summary>
 	public  float step = 0f;
 	private void TranslateCam2()
 	{	
