@@ -37,7 +37,7 @@ public partial class StateMachine : myMonoBehaviour, Debugable {
 	{
 		foreach (State tmp in list)
 		{
-			if (list.GetType() == t)
+			if (tmp.GetType() == t)
 			{
 				return true;
 			}

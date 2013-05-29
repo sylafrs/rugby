@@ -38,7 +38,7 @@ public partial class CameraManager{
 		}
 	}
 	
-	private float stepSpeed = 0.0183f;
+	//private float stepSpeed = 0.0183f;
 	// / <summary>
 	// / 100000
 	/// </summary>
@@ -47,8 +47,8 @@ public partial class CameraManager{
 	{	
 		step += game.settings.Global.GlobalCamera.flipMovingStep;
 		//Vector3 NewMin = new Vector3(MinfollowOffset.x, min
-		Vector3 min2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, MinfollowOffset.z * -1);
-		Vector3 offset = Camera.mainCamera.transform.position+(min2)*zoom;
+		//Vector3 min2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, MinfollowOffset.z * -1);
+		//Vector3 offset = Camera.mainCamera.transform.position+(min2)*zoom;
 		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
 		
 		
@@ -57,11 +57,11 @@ public partial class CameraManager{
 		
 		Camera.mainCamera.transform.LookAt(target);
 		
-		Vector3 targetPosition2  = target.TransformPoint(MaxfollowOffset);
-		Vector3 offset2 		 = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
-		
-		Vector3 result 			= Vector3.SmoothDamp(offset2, targetPosition2, ref velocity, smoothTime);
-		Vector3 delta  			= result- Camera.mainCamera.transform.position;
+		//Vector3 targetPosition2  = target.TransformPoint(MaxfollowOffset);
+		//Vector3 offset2 		 = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+		//
+		//Vector3 result 			= Vector3.SmoothDamp(offset2, targetPosition2, ref velocity, smoothTime);
+		//Vector3 delta  			= result- Camera.mainCamera.transform.position;
 		
 		//Debug.Log("Delta : "+delta.magnitude);
 		

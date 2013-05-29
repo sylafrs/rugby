@@ -26,6 +26,8 @@ public class MainGameState : GameState
 
         foreach (Team t in teams)
         {
+            t.Super.updateSuperStatus();
+
             if (t.Player.Controlled)
             {
                 foreach (Unit u in t)
