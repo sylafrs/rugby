@@ -55,7 +55,7 @@ public partial class CameraManager{
 		Camera.mainCamera.transform.LookAt(target);
 		
 		Vector3 targetPosition2  = target.TransformPoint(MaxfollowOffset);
-		Vector3 offset2 			= Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
+		Vector3 offset2 		 = Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 		
 		Vector3 result 			= Vector3.SmoothDamp(offset2, targetPosition2, ref velocity, smoothTime);
 		Vector3 delta  			= result- Camera.mainCamera.transform.position;
@@ -95,7 +95,8 @@ public partial class CameraManager{
                 this.flipTime = this.flipDuration;
 			
             // Get the angle for the current state
-			float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			//float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			float angleFromZero = Mathf.SmoothDampAngle(this.flipLastAngle, this.flipAngle, ref velocityFloat,smoothTime);
 
             // Rotates the camera from his previous state to the current one
 			if(target != null){
