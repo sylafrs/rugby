@@ -14,12 +14,12 @@ using System;
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
 public class Unit : TriggeringTriggered, Debugable
 {
-    public int index;
+	public int index;
 
 	public StateMachine sm;
 	public GameObject Model;
 
-    public bool isCapitaine { get; set; }
+	public bool isCapitaine { get; set; }
 
 	public GameObject BallPlaceHolderRight;
 	public GameObject BallPlaceHolderLeft;
@@ -28,32 +28,32 @@ public class Unit : TriggeringTriggered, Debugable
 
 	public TextureCollectionner buttonIndicator;
 
-    public bool isOwner()
-    {
-        return this.game.Ball.Owner == this;
-    }
+	public bool isOwner()
+	{
+		return this.game.Ball.Owner == this;
+	}
 
-    public bool isControlled()
-    {
-        Gamer g = this.team.Player;
-        if (g == null)
-            return false;
-        return g.Controlled == this;
-    }
+	public bool isControlled()
+	{
+		Gamer g = this.team.Player;
+		if (g == null)
+			return false;
+		return g.Controlled == this;
+	}
 
-    private UnitAnimator _unitAnimator;
-    public UnitAnimator unitAnimator
-    {
-        get
-        {
-            if (_unitAnimator == null)
-            {
-                _unitAnimator = this.GetComponent<UnitAnimator>();
-            }
+	private UnitAnimator _unitAnimator;
+	public UnitAnimator unitAnimator
+	{
+		get
+		{
+			if (_unitAnimator == null)
+			{
+				_unitAnimator = this.GetComponent<UnitAnimator>();
+			}
 
-            return _unitAnimator;
-        }
-    }
+			return _unitAnimator;
+		}
+	}
 
 	private NavMeshAgent _nma;
 	public NavMeshAgent nma
@@ -199,12 +199,12 @@ public class Unit : TriggeringTriggered, Debugable
 			default: break;
 		}
 	}
-    
+
 	void UpdateOffensivePlacement()
 	{
 		if (this == this.team.Player.Controlled || this.game.Ball.NextOwner || replacement)
 		{
-            return;
+			return;
 		}
 
 		//Variables
@@ -237,6 +237,7 @@ public class Unit : TriggeringTriggered, Debugable
 			{
 				pos.x = this.team.Player.Controlled.transform.position.x - (this.oTS.dMinOffensivePlayer + this.game.rand.Next(offsetX));
 			}
+			Debug.Log("SAME COL THAN CONTROLLED");
 			this.Order = Order.OrderMove(pos);
 			oldPos = pos;
 		}
@@ -257,6 +258,7 @@ public class Unit : TriggeringTriggered, Debugable
 			if (oldPos.x != pos.x)
 			{
 				this.Order = Order.OrderMove(pos);
+				Debug.Log("CHANGE FORMATION");
 				oldPos = pos;
 			}
 		}
@@ -285,41 +287,49 @@ public class Unit : TriggeringTriggered, Debugable
 						pos.x = (u.invariantMove ? u.transform.position.x + (this.oTS.dMinOffensivePlayer + this.game.rand.Next(offsetX)) :
 								this.team.Player.Controlled.transform.position.x - (this.oTS.dMinOffensivePlayer + this.game.rand.Next(offsetX)));
 					}
-					distX = Mathf.Abs((u.invariantMove? u.transform.position.x : this.team.Player.Controlled.transform.position.x) - pos.x);
+					oldPos = pos;
+					distX = Mathf.Abs((u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) - pos.x);
 
 					if (distX > this.oTS.dMaxOffensivePlayer)
 					{
+						Debug.Log("CONSTRAINT ON X > dMAX");
 						if ((u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) > this.transform.position.x)
 						{
-							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) - 
+							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) -
 								(this.game.settings.Global.Team.dMaxOffensivePlayer + this.game.rand.Next(offsetX));
 						}
 						else
 						{
-							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) + 
+							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) +
 								(this.game.settings.Global.Team.dMaxOffensivePlayer + this.game.rand.Next(offsetX));
 						}
 					}
 					else if (distX < this.oTS.dMinOffensivePlayer)
 					{
-						if ((u.invariantMove? u.transform.position.x : this.team.Player.Controlled.transform.position.x) > this.transform.position.x)
+						Debug.Log("CONSTRAINT ON X < dMIN");
+						if ((u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) > this.transform.position.x)
 						{
-							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) - 
+							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) -
 								(this.game.settings.Global.Team.dMinOffensivePlayer + this.game.rand.Next(offsetX));
 						}
 						else
 						{
-							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) + 
+							pos.x = (u.invariantMove ? u.transform.position.x : this.team.Player.Controlled.transform.position.x) +
 								(this.game.settings.Global.Team.dMinOffensivePlayer + this.game.rand.Next(offsetX));
 						}
 					}
+					//Comportement normal
+					else
+					{
+					}
 				}
 			}
-			
+
 			if (pos.x != oldPos.x)
 			{
 				//je bouge
 				//Debug.Log("second orderMove " + this + " bouge a la position : " + pos + " ancienne position : " + oldPos);
+				Debug.Log("CONSTRAINT ON X");
 				this.Order = Order.OrderMove(pos);
 				oldPos = pos;
 			}
@@ -352,19 +362,20 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 		if (pos.z != oldPos.z)
 		{
+			Debug.Log("CONSTRAINT ON Z");
 			this.Order = Order.OrderMove(pos);
 		}
 	}
 
-    //void OnGUI()
-    //{
-    //    if (this.team == this.game.southTeam)
-    //    {
-    //        GUILayout.Space(200);
-    //    }
-    //    GUILayout.Space(this.index * 30);
-    //    GUILayout.Label(this.name + " " + replacement);
-    //}
+	//void OnGUI()
+	//{
+	//    if (this.team == this.game.southTeam)
+	//    {
+	//        GUILayout.Space(200);
+	//    }
+	//    GUILayout.Space(this.index * 30);
+	//    GUILayout.Label(this.name + " " + replacement);
+	//}
 
 	void Replacement(float dMin)
 	{
