@@ -113,8 +113,8 @@ AnimatorController:
     m_DefaultBool: 0
   - m_Name: in_bool_beingtackled
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1593,6 +1593,18 @@ StateMachine:
       - {fileID: 110112685}
       - {fileID: 110169783}
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110230692}
+      second:
+      - {fileID: 110122167}
+    data:
+      first: {fileID: 110276833}
+      second:
+      - {fileID: 110126788}
+    data:
+      first: {fileID: 0}
+      second:
+      - {fileID: 110176597}
     data:
       first: {fileID: 110207590}
       second: []
