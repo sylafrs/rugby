@@ -20,23 +20,24 @@ public class MainGameState : GameState
 
 	public override void OnUpdate()
 	{
-		foreach (Unit u in game.northTeam)
-		{
-			if (game.Ball.NextOwner != u)
-			{
-				u.UpdateTypeOfPlay();
-				u.UpdatePlacement();
-			}
-		}
+        Team [] teams = new Team[2];
+        teams[0] = game.southTeam;
+        teams[1] = game.northTeam;
 
-		foreach (Unit u in game.southTeam)
-		{
-			if (game.Ball.NextOwner != u)
-			{
-				u.UpdateTypeOfPlay();
-				u.UpdatePlacement();
-			}
-		}
+        foreach (Team t in teams)
+        {
+            if (t.Player.Controlled)
+            {
+                foreach (Unit u in t)
+                {
+                    if (game.Ball.NextOwner != u)
+                    {
+                        u.UpdateTypeOfPlay();
+                        u.UpdatePlacement();
+                    }
+                }
+            }
+        }
 	}
 
 	public override bool OnPass(Unit from, Unit to)
