@@ -84,6 +84,8 @@ public class Team : myMonoBehaviour, IEnumerable
 
 		}
 	}
+
+    public Unit captain;
 	
     public GameObject Prefab_model;
     public GameObject Prefab_capitaine;
@@ -149,13 +151,6 @@ public class Team : myMonoBehaviour, IEnumerable
 		}
 	}
 
-	//maxens dubois
-	public void increaseSuperGauge(int value)
-	{
-		if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum) 
-            SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
-	}
-
 	public void CreateUnits()
 	{
 		units = new Unit[nbUnits];
@@ -171,8 +166,12 @@ public class Team : myMonoBehaviour, IEnumerable
 			units[i].name = Name + " " + (i + 1).ToString("D2");
 			units[i].transform.parent = this.transform;
 			units[i].Team = this;
-            units[i].isCapitaine = (i == 2);
             units[i].index = i;
+
+            if (i == 2)
+            {
+                captain = units[i];
+            }
 
 			//units[i].renderer.material.color = Color;
 		}
@@ -224,6 +223,12 @@ public class Team : myMonoBehaviour, IEnumerable
 			OwnerChangedOpponents();
 		}
 	}
+
+    public void increaseSuperGauge(int value)
+    {
+        if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum)
+            SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+    }
 
 	//Retourne le nombre de joueur de type offensif sans le controllé
 	public int GetNumberOffensivePlayer()

@@ -1327,9 +1327,10 @@ MonoBehaviour:
   handicapSpeed: 2.5
   unitTackleRange: 70
   nbOffensivePlayer: 0
+  captain: {fileID: 0}
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
   Prefab_capitaine: {fileID: 100020, guid: f4de280f8c1a3e347b29076d4b0e73e3, type: 2}
-  SuperGaugeValue: 0
+  SuperGaugeValue: 200
   nbUnits: 5
   fxSuper: {fileID: 100020, guid: ac37f60498f5b274796598998efbca6b, type: 2}
   lightSuper: {fileID: 1509721268}
@@ -6103,9 +6104,10 @@ MonoBehaviour:
   handicapSpeed: 2.5
   unitTackleRange: 70
   nbOffensivePlayer: 0
+  captain: {fileID: 0}
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   Prefab_capitaine: {fileID: 0}
-  SuperGaugeValue: 0
+  SuperGaugeValue: 200
   nbUnits: 5
   fxSuper: {fileID: 100002, guid: db293cb59ef6066498060ab7b0e1f112, type: 2}
   lightSuper: {fileID: 0}

@@ -178,6 +178,7 @@ public class UnitAnimator : myMonoBehaviour
     
     private int delayStop;
     private bool launchUpdate;
+    private bool launchSuper;
 
     private string LayerName;
 
@@ -238,6 +239,12 @@ public class UnitAnimator : myMonoBehaviour
                 {
                     Drop = false;
                 }
+
+                if (Super && launchSuper)
+                {
+                    Super = false;
+                    launchSuper = false;
+                }
             }
 
             launchUpdate = false;
@@ -279,7 +286,8 @@ public class UnitAnimator : myMonoBehaviour
 		if(!Super) {
 			Debug.LogWarning("UnitAnimator : Super was not prepared");	
 		}
-		Super = false;	
+        launchUpdate = true;
+		launchSuper = true;	
 	}
 
     public void OnTacklePass()
