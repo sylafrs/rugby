@@ -235,6 +235,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	{
 		this.zoom = settings.zoom;
 		Transform	target = null;
+		Camera.mainCamera.nearClipPlane = settings.nearClip;
 		switch (settings.target)
 		{
 			case CameraTargetList.BALL:
