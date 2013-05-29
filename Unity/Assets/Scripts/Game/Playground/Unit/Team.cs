@@ -89,7 +89,7 @@ public class Team : myMonoBehaviour, IEnumerable
     public GameObject Prefab_capitaine;
 
 	private superController _super;
-	public superController Super
+	public  superController Super
 	{
 		get
 		{
@@ -533,13 +533,10 @@ public class Team : myMonoBehaviour, IEnumerable
 	private GameObject[] myFxSuper;
 	public GameObject lightSuper;
 
-
-
 	public void PlaySuperParticleSystem(SuperList super, bool play)
 	{
 		this.PlaySuperParticleSystem(play);
 	}
-
 
 	public void PlaySuperParticleSystem(bool play)
 	{

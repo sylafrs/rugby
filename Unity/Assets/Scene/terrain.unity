@@ -4083,6 +4083,9 @@ MonoBehaviour:
         dMinControlledOffensive: 5
         dMaxControlledOffensive: 10
         nbOffensivePlayer: 2
+      GlobalCamera:
+        flipSmoothTime: .300000012
+        flipMovingStep: .0183000006
     GameStates:
       MainState:
         IntroState:
@@ -4095,6 +4098,7 @@ MonoBehaviour:
                 GainingGrounCamSettings:
                   zoom: 1
                   target: 1
+                  nearClip: .300000012
                 DodgingState:
                   unitDodgeSpeedFactor: 2
                   unitDodgeDuration: .200000003
@@ -4106,14 +4110,17 @@ MonoBehaviour:
                 BallDropCamSettings:
                   zoom: 1.70000005
                   target: 0
+                  nearClip: .300000012
                 GroundBallCamSettings:
                   zoom: 1.5
                   target: 0
+                  nearClip: .300000012
             PassingState:
               maxTimeHoldingPassButton: 3
               PassingCamSettings:
                 zoom: 1.39999998
                 target: 0
+                nearClip: .300000012
             TacklingState:
               tackledTime: 3
           GameActionState:
@@ -4123,6 +4130,7 @@ MonoBehaviour:
                 ConversionFlyCam:
                   zoom: .300000012
                   target: 0
+                  nearClip: .300000012
             ScrumingState:
               timeToGetOutTackleAreaBeforeScrum: 2
               minPlayersEachTeamToTriggerScrum: 3
@@ -4138,6 +4146,7 @@ MonoBehaviour:
               TouchCamSettings:
                 zoom: 1
                 target: 0
+                nearClip: .300000012
     Inputs:
       shortPass:
         keyboardP1: 49

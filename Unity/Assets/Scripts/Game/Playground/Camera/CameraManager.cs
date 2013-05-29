@@ -28,6 +28,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
     }
 	
 	private Vector3 	velocity = Vector3.zero;
+	private float		velocityFloat = 0f;
 	private float[]		angleVelocity = new float[3];
 	private float		angleVelocityX;
 	private float		angleVelocityY;
@@ -234,6 +235,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	{
 		this.zoom = settings.zoom;
 		Transform	target = null;
+		Camera.mainCamera.nearClipPlane = settings.nearClip;
 		switch (settings.target)
 		{
 			case CameraTargetList.BALL:
