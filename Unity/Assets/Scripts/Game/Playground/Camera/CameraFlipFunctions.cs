@@ -5,8 +5,9 @@ using System;
 public partial class CameraManager{
 	
 	//flipping camera
-	private void flip(){
+	private void flip (){
 		flipInit(new Vector3(0,1,0), 180);
+		this.ChangeCameraState(CameraState.FLIPPING);
 	}
 	
 	public void flipForTeam(Team _t, Action _cb)
@@ -38,10 +39,6 @@ public partial class CameraManager{
 		}
 	}
 	
-	//private float stepSpeed = 0.0183f;
-	// / <summary>
-	// / 100000
-	/// </summary>
 	public  float step = 0f;
 	private void TranslateCam2()
 	{	
@@ -123,6 +120,7 @@ public partial class CameraManager{
 		this.ActionOnFlipFinish();
 		this.game.southTeam.Player.enableMove();
 		this.game.northTeam.Player.enableMove();
+		this.ChangeCameraState(CameraState.FOLLOWING);
 	}
 	
 	private void flipZ(){

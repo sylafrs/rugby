@@ -38,6 +38,7 @@ public class ConversionFlyState : GameState
     public override void OnEnter ()
     {
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
+		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
     }
 
     public override void OnLeave ()
