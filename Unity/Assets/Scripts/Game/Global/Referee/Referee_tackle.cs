@@ -50,7 +50,8 @@ public partial class Referee
                 // /!\ Mêlée possible /!\
                 case TackleManager.RESULT.NORMAL:
 
-                    //super				
+                    //super			
+                    game.Ball.TeleportOnGround();
                     IncreaseSuper(game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();

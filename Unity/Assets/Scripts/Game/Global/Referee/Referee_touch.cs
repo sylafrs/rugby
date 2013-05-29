@@ -113,8 +113,6 @@ public partial class Referee
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
         {
-            // Charger le super à la touche
-
             // On donne la balle à la bonne personne
             if (result == TouchManager.Result.INTERCEPTION)
             {

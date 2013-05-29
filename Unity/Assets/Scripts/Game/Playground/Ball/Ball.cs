@@ -127,6 +127,13 @@ public class Ball : TriggeringTriggered, Debugable
 
 	const float epsilonOnGround = 0.4f;
 
+    public void TeleportOnGround()
+    {
+        Vector3 pos = this.transform.position;
+        pos.y = 0;
+        this.transform.position = pos;
+    }
+
     public bool isOnGround()
     {
         return this.transform.position.y <= epsilonOnGround;
