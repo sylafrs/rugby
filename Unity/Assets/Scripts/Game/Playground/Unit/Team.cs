@@ -538,14 +538,29 @@ public class Team : myMonoBehaviour, IEnumerable
 	public GameObject fxSuper;
 	private GameObject[] myFxSuper;
 	public GameObject lightSuper;
+    public GameObject groundSuperPrefab;
+    public static GameObject groundSuper;
+    private bool prevFX = false;
 
 	public void PlaySuperParticleSystem(SuperList super, bool play)
 	{
 		this.PlaySuperParticleSystem(play);
 	}
 
+    public void PlaySuperGroundEffect()
+    {
+        if (groundSuper)
+            GameObject.Destroy(groundSuper);
+        if(groundSuperPrefab) 
+            groundSuper = GameObject.Instantiate(groundSuperPrefab) as GameObject;
+    }
+
 	public void PlaySuperParticleSystem(bool play)
 	{
+        if (prevFX == play)
+            return;
+
+        prevFX = play;
 
 		if (play)
 			myFxSuper = new GameObject[this.nbUnits];

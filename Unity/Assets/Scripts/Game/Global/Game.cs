@@ -79,6 +79,20 @@ public class Game : myMonoBehaviour {
         this.northTeam.opponent = southTeam;
         this.southTeam.opponent = northTeam;
 
+        // A changer de place
+        //this.northTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        //{
+        //    this.northTeam.Super.LaunchFeedback();        
+        //    return false;
+        //}, UnitAnimator.SuperState, this.northTeam.captain.unitAnimator.TIME_SUPER_FX);
+
+        // A changer de place
+        this.southTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
+        {
+            this.southTeam.Super.LaunchFeedback();
+            return false;
+        }, UnitAnimator.SuperState, this.southTeam.captain.unitAnimator.TIME_SUPER_FX);
+        
         this.refs.xboxInputs.Start();
 
         this.p1 = new Gamer(refs.south);
