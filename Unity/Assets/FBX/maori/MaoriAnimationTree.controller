@@ -124,7 +124,7 @@ AnimatorController:
     m_Min: -1
     m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
-    m_DefaultFloat: 0
+    m_DefaultFloat: .670000017
     m_DefaultInt: 0
     m_DefaultBool: 0
   m_Layers:
@@ -936,7 +936,7 @@ State:
   m_Name: Super
   m_Speed: 1
   m_Motions:
-  - {fileID: 7400000, guid: e02196d29b3a31e469a170002b3c0b25, type: 3}
+  - {fileID: 7400000, guid: fe7a5f532ce59944c9680ed95247c28d, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110734055}
   m_Position: {x: 432, y: -12, z: 0}
