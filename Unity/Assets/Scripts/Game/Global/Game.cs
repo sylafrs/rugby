@@ -190,6 +190,17 @@ public class Game : myMonoBehaviour {
 
     public void OnSuper(Team team, SuperList super)
     {
+        foreach (Unit u in team)
+        {
+            if (u.isCapitaine)
+            {
+                if (u.unitAnimator)
+                {
+                    u.unitAnimator.PrepareSuper(); 
+                    u.unitAnimator.LaunchSuper();
+                }
+            }
+        }
         this.refs.stateMachine.event_Super(team, super);
     }
 

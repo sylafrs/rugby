@@ -83,7 +83,7 @@ public partial class Referee
 
             IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints, t.opponent);
 
-            if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
+            //if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             {
                 UnitToGiveBallTo = opponent[3];
                 this.StartPlacement();

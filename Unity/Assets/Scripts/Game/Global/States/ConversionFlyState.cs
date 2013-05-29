@@ -49,7 +49,14 @@ public class ConversionFlyState : GameState
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
                 cam.game.Referee.StartPlacement();
-				cam.setTarget(game.Ball.Owner.transform);                
+                if (game.Ball.Owner)
+                {
+                    cam.setTarget(game.Ball.Owner.transform);
+                }
+                else
+                {
+                    cam.setTarget(game.southTeam[2].transform);
+                }
             }
         );
     }    

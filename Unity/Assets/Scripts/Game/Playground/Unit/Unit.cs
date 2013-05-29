@@ -14,6 +14,8 @@ using System;
 [System.Serializable, AddComponentMenu("Scripts/Models/Unit"), RequireComponent(typeof(NavMeshAgent))]
 public class Unit : TriggeringTriggered, Debugable
 {
+    public int index;
+
 	public StateMachine sm;
 	public GameObject Model;
 
@@ -197,12 +199,12 @@ public class Unit : TriggeringTriggered, Debugable
 			default: break;
 		}
 	}
-
+    
 	void UpdateOffensivePlacement()
 	{
 		if (this == this.team.Player.Controlled || this.game.Ball.NextOwner || replacement)
 		{
-			return;
+            return;
 		}
 
 		//Variables
@@ -353,6 +355,16 @@ public class Unit : TriggeringTriggered, Debugable
 			this.Order = Order.OrderMove(pos);
 		}
 	}
+
+    //void OnGUI()
+    //{
+    //    if (this.team == this.game.southTeam)
+    //    {
+    //        GUILayout.Space(200);
+    //    }
+    //    GUILayout.Space(this.index * 30);
+    //    GUILayout.Label(this.name + " " + replacement);
+    //}
 
 	void Replacement(float dMin)
 	{

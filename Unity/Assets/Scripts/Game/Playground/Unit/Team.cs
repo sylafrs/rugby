@@ -171,6 +171,7 @@ public class Team : myMonoBehaviour, IEnumerable
 			units[i].transform.parent = this.transform;
 			units[i].Team = this;
             units[i].isCapitaine = (i == 2);
+            units[i].index = i;
 
 			//units[i].renderer.material.color = Color;
 		}

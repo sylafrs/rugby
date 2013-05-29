@@ -167,7 +167,7 @@ public class TransformationManager : myMonoBehaviour {
             timeInAir += Time.deltaTime;
             doTransfo(timeInAir);
 
-			if(ball.transform.position.y < 0.3f) {
+			if(ball.isOnGround()) {
                 transformed = Result.GROUND;
 				Finish ();	
 			}			

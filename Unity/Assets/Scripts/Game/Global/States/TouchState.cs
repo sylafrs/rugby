@@ -27,7 +27,6 @@ public class TouchState : GameState
                 cam.game.Referee.PlacePlayersForTouch();
             }
         );
-		
 	}
 	
 	public override void OnLeave ()
