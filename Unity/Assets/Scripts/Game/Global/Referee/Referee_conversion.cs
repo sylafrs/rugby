@@ -106,7 +106,25 @@ public partial class Referee
         // A faire en caméra :
         this.StartPlacement();
         this.game.Ball.Owner = but.Owner[2];
-		
+
+        IncreaseSuper(game.settings.Global.Super.dropWinSuperPoints, but.Owner.opponent);
+
         //this.game.TimedDisableIA(3);
-    }	
+    }
+
+    public void OnDropFinished(Ball.DropResult res)
+    {
+        Team t = this.game.Ball.PreviousOwner.Team;
+        SuperSettings settings = game.settings.Global.Super;
+
+        if (res == Ball.DropResult.GROUND)
+        {
+            IncreaseSuper(settings.dropLooseSuperPoints, t);
+        }
+        if (res == Ball.DropResult.INTERCEPTED)
+        {
+            IncreaseSuper(settings.dropLooseSuperPoints, t);
+            //IncreaseSuper(settings.?????, t.opponent);
+        }
+    }
 }

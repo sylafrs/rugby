@@ -85,13 +85,15 @@ public class Unit : TriggeringTriggered, Debugable
 	public Unit()
 	{
 		NearUnits = new List<Unit>();
+        RangeUnits = new List<Unit>();
 	}
 
 	//particles sytems
 	public ParticleSystem superDashParticles;
 	public ParticleSystem superTackleParticles;
 
-	public NearUnit triggerTackle { get; set; }
+    public NearUnit triggerTackle { get; set; }
+    public RangeUnit triggerTackleFail { get; set; }
 
 	public bool canCatchTheBall = true;
 	private float timeNoCatch = 0f;
@@ -107,7 +109,7 @@ public class Unit : TriggeringTriggered, Debugable
 	};
 
 	public TYPEOFPLAYER typeOfPlayer = TYPEOFPLAYER.NONE;
-	private bool ballZone = false; //variable me permettant de dire si je ne bouge plus de mon couloir, utile uniquement pour les défenseurs
+	public bool ballZone = false; //variable me permettant de dire si je ne bouge plus de mon couloir, utile uniquement pour les défenseurs
 
 	//maxens : c'est très bourrin xD
 	void Update()
@@ -675,7 +677,8 @@ public class Unit : TriggeringTriggered, Debugable
 		this.currentOrder = o;
 	}
 
-	public List<Unit> NearUnits { get; set; }
+    public List<Unit> NearUnits { get; set; }
+    public List<Unit> RangeUnits { get; set; }
 
 	public int getNearAlliesNumber()
 	{
@@ -703,19 +706,40 @@ public class Unit : TriggeringTriggered, Debugable
 					}
 				}
 			}
+            if (t.GetType() == typeof(RangeUnit))
+            {
+                if (other.Team != this.Team)
+                {
+                    if (!RangeUnits.Contains(other))
+                    {
+                        RangeUnits.Add(other);
+                    }
+                }
+            }
 		}
 	}
 
 	public override void Left(Triggered o, Trigger t)
 	{
-		Unit other = o.GetComponent<Unit>();
-		if (other != null)
-		{
-			if (NearUnits.Contains(other))
-			{
-				NearUnits.Remove(other);
-			}
-		}
+        Unit other = o.GetComponent<Unit>();
+        if (other != null)
+        {
+            if (t.GetType() == typeof(NearUnit))
+            {
+                if (NearUnits.Contains(other))
+                {
+                    NearUnits.Remove(other);
+                }
+            }
+            if (t.GetType() == typeof(RangeUnit))
+            {
+                if (RangeUnits.Contains(other))
+                {
+                    RangeUnits.Remove(other);
+                }
+            }
+        }
+
 	}
 
 	public override void Inside(Triggered o, Trigger t)
@@ -867,7 +891,14 @@ public class Unit : TriggeringTriggered, Debugable
 				break;
 
 			case Order.TYPE.TACKLE:
-				EditorGUILayout.LabelField("Plaque " + o.target.name);
+                if (o.target)
+                {
+                    EditorGUILayout.LabelField("Plaque " + o.target.name);
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("Plaque dans le vide");
+                }
 				break;
 
 		}

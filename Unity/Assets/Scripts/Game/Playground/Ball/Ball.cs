@@ -59,7 +59,7 @@ public class Ball : TriggeringTriggered, Debugable
 	public float timeOnDrop = -1;
 	public float timeOnPass = -1;
 	public PassSystem passManager;
-	private DropManager drop;
+	public DropManager drop;
 
 	public Zone inZone { get; set; }
 	//public Touche inTouch {get; set;}
@@ -225,6 +225,11 @@ public class Ball : TriggeringTriggered, Debugable
 		}
 	}
 
+    public enum DropResult
+    {
+        NULL, GROUND, INTERCEPTED
+    }
+
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
@@ -241,6 +246,7 @@ public class Ball : TriggeringTriggered, Debugable
 				this.Game.BallOnGround(true);
 				drop.afterCollision = false;
 				drop.timeOffset = 0.0f;
+                this.Game.OnDropFinished(DropResult.GROUND);
 			}
 		}
 
@@ -249,13 +255,18 @@ public class Ball : TriggeringTriggered, Debugable
 			timeOnDrop = -1;
 			CircleDrop.SetActive(false);
 			drop.afterCollision = false;
+            this.Game.OnDropFinished(DropResult.INTERCEPTED);
 		}
 	}
 
 	public void Pass(Unit to)
 	{
-		Game.OnPass(this.Owner, to);
+        if (this.Owner == null)
+        {
+            return;
+        }
 
+		Game.OnPass(this.Owner, to);
 		int index = (this.Owner.Team == Game.instance.southTeam ? 0 : 1);
 #if UNITY_EDITOR
 		Game.instance.logTeam[index].WriteLine("--------------------");
@@ -267,6 +278,11 @@ public class Ball : TriggeringTriggered, Debugable
 		NextOwner = to;
 	}
 
+    public enum PassResult
+    {
+        NULL, GROUND, MANAGED, OPPONENT
+    }
+    
 	public void UpdatePass()
 	{
 		int index = (this.PreviousOwner.Team == Game.instance.southTeam ? 0 : 1);
@@ -292,6 +308,7 @@ public class Ball : TriggeringTriggered, Debugable
 				if (passManager.oPassState == PassSystem.passState.ONPASS)
 				{
 					passManager.oPassState = PassSystem.passState.ONGROUND;
+                    this.Game.OnPassFinished(PassResult.GROUND);
 #if UNITY_EDITOR
 					Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
 #endif
@@ -309,6 +326,16 @@ public class Ball : TriggeringTriggered, Debugable
 #if UNITY_EDITOR
 				Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
 #endif
+                if (this.Owner.Team == this.PreviousOwner.Team)
+                {
+                    this.Game.OnPassFinished(PassResult.MANAGED);
+                }
+                else
+                {
+                    this.Game.OnPassFinished(PassResult.OPPONENT);
+                }
+
+
 				passManager.GetFrom().canCatchTheBall = true;
 				NextOwner = null;
 			}

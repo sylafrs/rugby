@@ -95,7 +95,7 @@ public class Game : myMonoBehaviour
             this.northTeam.Super.LaunchFeedback();        
             return false;
         }, UnitAnimator.SuperState, this.northTeam.captain.unitAnimator.TIME_SUPER_FX);
-
+        
         // A changer de place
         this.southTeam.captain.unitAnimator.AddEvent("SuperEffect", () =>
         {
@@ -158,6 +158,11 @@ public class Game : myMonoBehaviour
 		this.refs.stateMachine.event_Drop();
 	}
 
+    public void OnDropFinished(Ball.DropResult res)
+    {
+        this.Referee.OnDropFinished(res);
+    }
+
 	public void OnTouch(Touche t)
 	{
 		this.refs.stateMachine.event_OnTouch(t);
@@ -177,6 +182,11 @@ public class Game : myMonoBehaviour
 	{
 		this.refs.stateMachine.event_Pass(from, to);
 	}
+
+    public void OnPassFinished(Ball.PassResult res)
+    {
+        this.Referee.OnPassFinished(res);
+    }
 
 	public void OnConversion(But but)
 	{
@@ -215,10 +225,15 @@ public class Game : myMonoBehaviour
     }
 
     public void OnSuper(Team team, SuperList super)
-    {
-        if(team.captain.unitAnimator)
-            team.captain.unitAnimator.PrepareSuper();
+    {       
+        //if (team.captain.unitAnimator)
+        //{
+        //    team.captain.unitAnimator.PrepareSuper();
+        //}
 
+        foreach (Unit u in team)
+            u.unitAnimator.PrepareSuper();
+        
         this.refs.stateMachine.event_Super(team, super);
     }
 
