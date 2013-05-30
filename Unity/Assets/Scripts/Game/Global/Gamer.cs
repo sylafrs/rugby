@@ -388,18 +388,24 @@ public class Gamer
 		}
 	}
 
+    public void UpdateControlled()
+    {
+        this.Controlled.IndicateSelected(false);
+        this.Controlled = null;
+    }
+
 	void UpdatePLAYER()
 	{
 		bool change = false;
-
+        
 		if (this.Controlled == null)
 		{
 			change = true;
 		}
-		/*else if (this.Controlled.isTackled)
-		{
-			change = true;
-		}*/
+		//else if (this.Controlled.isTackled)
+		//{
+		//	change = true;
+		//}
 		else if (this.Controlled != this.game.Ball.Owner &&
 				(Input.GetKeyDown(Inputs.changePlayer.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
 		{

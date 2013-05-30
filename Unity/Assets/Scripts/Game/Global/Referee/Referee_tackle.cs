@@ -60,6 +60,9 @@ public partial class Referee
                     break;
             }
 
+            tackler.Team.Player.UpdateControlled();
+            tackled.Team.Player.UpdateControlled();
+
             LastTackle = Time.time;
         };
 
