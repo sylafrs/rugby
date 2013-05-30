@@ -28,36 +28,24 @@ public class DebugWindow : EditorWindow {
     }
 
     Vector2 scrollPosition = Vector2.zero;
-    EditorMemory mem;
+    string filter = string.Empty;
 
     void OnGUI()
     {
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-
-        if (mem == null)
+        
+        toDebug.Clear();
+        GameObject root = GameObject.Find(root_gameobject);
+        if (root != null)
         {
-            mem = EditorMemory.Get();
-        }
-
-        if (mem == null)
-        {
-            EditorGUILayout.LabelField("Mémoire non detectée");
+            Search(root);
+            Print();
         }
         else
         {
-            toDebug.Clear();
-            GameObject root = GameObject.Find(root_gameobject);
-            if (root != null)
-            {
-                Search(root);
-                Print();
-            }
-            else
-            {
-                EditorGUILayout.LabelField("Aucun GameObject detecte");
-            }
+            EditorGUILayout.LabelField("Aucun GameObject detecte");
         }
-
+        
         EditorGUILayout.EndScrollView();
     }
 
@@ -68,7 +56,7 @@ public class DebugWindow : EditorWindow {
         {
             foreach (var c in components)
             {
-                if (mem.DebugWindowFilter == string.Empty || c.name.ToUpper().Contains(mem.DebugWindowFilter.ToUpper()))
+                if (filter == string.Empty || c.name.ToUpper().Contains(filter.ToUpper()))
                     toDebug.Add(c);
             }
         }
@@ -150,12 +138,8 @@ public class DebugWindow : EditorWindow {
     void Print()
     {
         sort = (SORT)EditorGUILayout.EnumPopup("Trier par :", sort);
-        string test = EditorGUILayout.TextField("Filtre :", mem.DebugWindowFilter);
-        if (test != mem.DebugWindowFilter)
-        {
-            mem.DebugWindowFilter = test;
-        }
-
+        filter = EditorGUILayout.TextField("Filtre :", filter);
+        
         switch (sort)
         {
             case SORT.COMPONENTS:
