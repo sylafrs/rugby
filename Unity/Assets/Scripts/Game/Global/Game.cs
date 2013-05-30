@@ -226,20 +226,11 @@ public class Game : myMonoBehaviour
 
     public void OnSuper(Team team, SuperList super)
     {       
-        if (team.Player.Controlled)
+        if (team.captain.unitAnimator)
         {
-            if (team.Player.Controlled.unitAnimator)
-            {
-                team.captain.unitAnimator.PrepareSuper();
-            }
+            team.captain.unitAnimator.PrepareSuper();
         }
-        else
-        {
-            if (team.captain.unitAnimator)
-            {
-                team.captain.unitAnimator.PrepareSuper();
-            }
-        }
+        
         this.refs.stateMachine.event_Super(team, super);
     }
 
