@@ -21,6 +21,7 @@ public class TackleManager: myMonoBehaviour {
     }
 
     public Action<RESULT> callback;
+    public Action<Unit, Unit> atUpdate;
 
     public float tempsPlaquage = 1; // Seconds
     public float ralentiPlaquage = 1; // [0 .. 1]
@@ -49,27 +50,6 @@ public class TackleManager: myMonoBehaviour {
             result = RESULT.QTE;
 
             tackled.ShowButton("A");
-
-
-            // Le plaqu� a une dur�e avant de tomber			    => time.timeScale (attention cam�ra !)
-            // Pendant la tomb�e : QTE => Cut sc�ne peut-�tre		=> code reusable
-            // UI : bouton A (pos tweakable)				        => �
-
-            // QTE :
-            // * Si pas appui sur A : Plaquage - M�l�e		=> voil� quoi ^^ 
-            // * Sinon : Passe
-
-
-
-
-			//TODO : Launch CutScene
-			/*	
-                if (System.range(0,1) > 0.5f)
-				{
-					//ball.Owner = tackler;
-					//ball.transform.parent = tackler;
-				}
-            */
 		}		
     }
 
@@ -77,19 +57,8 @@ public class TackleManager: myMonoBehaviour {
     {
         if (result == RESULT.QTE)
         {
-            /* Effect fall */
-            //float ratio = remainingTime / tempsPlaquage;
-            //float angle = 90 - (ratio * 90);
-
-            //Vector3 rot = Vector3.zero;
-
-            //if (tackled.Model)
-            //{
-            //    rot = tackled.Model.transform.localRotation.eulerAngles;
-            //    rot.x = angle;
-            //    tackled.Model.transform.localRotation = Quaternion.Euler(rot);
-            //}
-
+            if (this.atUpdate != null) this.atUpdate(tackler, tackled);
+           
             /* Pass On Tackle */
             if (
                 tackled.Team.Player != null && 
@@ -135,11 +104,6 @@ public class TackleManager: myMonoBehaviour {
 	
 	private bool IsCrit()
 	{
-        //float angle = Vector3.Angle(tackled.transform.position - tackler.transform.position, tackler.transform.forward);
-        //bool supporte = tackled.getNearAlliesNumber() > 0;
-
-		//return angle <= tackler.Team.AngleOfFovTackleCrit && !supporte;
-
         bool superTackler = tackler.Team.Super.SuperActive;
         if (superTackler)
         {

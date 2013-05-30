@@ -23,10 +23,11 @@ public class SuperCutSceneState : GameState
 	}
 
 	public override void OnEnter ()
-	{        
-        if(teamOnSuper.captain.unitAnimator)
+	{              
+        if (teamOnSuper.captain.unitAnimator)
+        {
             teamOnSuper.captain.unitAnimator.LaunchSuper();
-
+        }
 		
 		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
 			this.cam.zoom	= 0.5f;

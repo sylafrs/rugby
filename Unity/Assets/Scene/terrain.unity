@@ -3705,44 +3705,6 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
---- !u!1 &392098668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 392098669}
-  - 114: {fileID: 392098670}
-  m_Layer: 0
-  m_Name: EditorMemory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &392098669
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 392098668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1419876916}
---- !u!114 &392098670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 392098668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d5dd19d9c6ff21489d96709d993c8cf, type: 3}
-  m_Name: 
-  DebugWindowFilter: Ball
 --- !u!1 &394908208
 GameObject:
   m_ObjectHideFlags: 0
@@ -13749,7 +13711,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 392098669}
   - {fileID: 198748046}
   - {fileID: 2004071850}
   - {fileID: 3678737}
@@ -14537,6 +14498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
   transformationPoint: {fileID: 1380620484}
+  model: {fileID: 303037527}
 --- !u!65 &1522212142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15678,6 +15640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
   transformationPoint: {fileID: 830239404}
+  model: {fileID: 1795899138}
 --- !u!65 &1635297310
 BoxCollider:
   m_ObjectHideFlags: 0

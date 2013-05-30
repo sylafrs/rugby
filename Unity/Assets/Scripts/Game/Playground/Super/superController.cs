@@ -15,17 +15,17 @@ public class superController : myMonoBehaviour {
 	
 	private Game game;
 	private Team team;
-	private SuperList currentSuper;
 	private Color colorSave;
+    private bool superActive;
 
     public bool SuperActive
     {
         get
         {
-            return currentSuper != SuperList.superNull;
+            return superActive;
         }
     }
-
+    
     private SuperSettings settings;
 		
 	//time management for supers
@@ -34,8 +34,7 @@ public class superController : myMonoBehaviour {
 	void Start () {
 		game 	        = Game.instance;
 		team			= gameObject.GetComponent<Team>();
-		currentSuper    = SuperList.superNull;
-
+        superActive     = false;
         settings = this.game.settings.Global.Super;
 
         SuperTimeLeft = 0f;
@@ -46,7 +45,7 @@ public class superController : myMonoBehaviour {
 	}
 				
 	public void updateSuperStatus(){
-        if(currentSuper != SuperList.superNull){
+        if(superActive){
 			SuperTimeLeft -= Time.deltaTime;
 
             if (SuperTimeLeft <= 0) {
@@ -57,8 +56,8 @@ public class superController : myMonoBehaviour {
 	
 	public void endSuper(){
 		MyDebug.Log("Super Over");
+        superActive = false;
         SuperTimeLeft = 0;
-		currentSuper = SuperList.superNull;
 		team.speedFactor 	= 1f;
 		team.tackleFactor 	= 1f;
 		team.ChangePlayersColor(colorSave);
@@ -91,8 +90,8 @@ public class superController : myMonoBehaviour {
     }
 	
 	void launchSuper(SuperList super){
+        superActive = true;
 		colorSave = team.GetPlayerColor();
-		currentSuper  = super;
 		switch (super){
 			case SuperList.superDash:
 				MyDebug.Log("Dash Super attack !");

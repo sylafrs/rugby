@@ -26,6 +26,8 @@ public partial class Referee
         // End of a tackle, according to the result
         tm.callback = (TackleManager.RESULT res) =>
         {
+            TacklePlaceUnitsAtEnd(tackler, tackled);
+
             switch (res)
             {
                 // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
@@ -61,7 +63,26 @@ public partial class Referee
             LastTackle = Time.time;
         };
 
+        this.TacklePlaceUnitsAtStart(tackler, tackled);
+        tm.atUpdate = TacklePlaceUnitsAtUpdate;
+
         tm.Tackle();
+    }
+
+    private void TacklePlaceUnitsAtStart(Unit tackler, Unit tackled)
+    {
+        tackler.transform.LookAt(tackled.transform, Vector3.up);
+    }
+
+    private void TacklePlaceUnitsAtUpdate(Unit tackler, Unit tackled)
+    {
+        tackler.transform.LookAt(tackled.transform, Vector3.up);
+        tackler.transform.position = Vector3.Lerp(tackler.transform.position, tackled.transform.position, Time.deltaTime * 5);
+    }
+
+    private void TacklePlaceUnitsAtEnd(Unit tackler, Unit tackled)
+    {
+        tackler.transform.forward = Vector3.forward;
     }
 	
     public void UpdateTackle()

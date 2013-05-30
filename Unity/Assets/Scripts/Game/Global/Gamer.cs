@@ -408,30 +408,35 @@ public class Gamer
 
 		if (change)
 		{
+            Debug.Log("CHANGE PLAYER");
 			//foreach (Unit u in this.Team)
 			//{
 			//	u.UpdateTypeOfPlay();
 			//}
+
+            Unit nextControlled = null;
+            if (BallSkipOurOffensive())
+            {
+                if (BallGoOurBut())
+                {
+                    nextControlled = GetDefensivePlayer();
+                }
+                else
+                {
+                    nextControlled = GetUnitNear(false);
+                }
+            }
+            else
+            {
+                nextControlled = GetUnitNear(false);
+            }
 
 			if (Controlled)
 			{
 				Controlled.Order = Order.OrderNothing();
 				Controlled.IndicateSelected(false);
 			}
-
-			Unit nextControlled = null;
-			if (BallSkipOurOffensive())
-			{
-				if (BallGoOurBut())
-				{
-					nextControlled = GetDefensivePlayer();
-				}
-				else
-				{
-					nextControlled = GetUnitNear(false);
-				}
-			}
-
+            
 			if (nextControlled)
 				Controlled = nextControlled;
 

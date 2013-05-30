@@ -891,7 +891,14 @@ public class Unit : TriggeringTriggered, Debugable
 				break;
 
 			case Order.TYPE.TACKLE:
-				EditorGUILayout.LabelField("Plaque " + o.target.name);
+                if (o.target)
+                {
+                    EditorGUILayout.LabelField("Plaque " + o.target.name);
+                }
+                else
+                {
+                    EditorGUILayout.LabelField("Plaque dans le vide");
+                }
 				break;
 
 		}

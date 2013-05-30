@@ -225,10 +225,12 @@ public class Game : myMonoBehaviour
     }
 
     public void OnSuper(Team team, SuperList super)
-    {
-        if(team.captain.unitAnimator)
+    {       
+        if (team.captain.unitAnimator)
+        {
             team.captain.unitAnimator.PrepareSuper();
-
+        }
+        
         this.refs.stateMachine.event_Super(team, super);
     }
 

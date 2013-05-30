@@ -19,23 +19,41 @@ public class GetAnimators : myMonoBehaviour, Debugable
         foreach (var o in objs)
         {
             UnitAnimator ua = (UnitAnimator)o;
-            bool isOwner = false, isControlled = false;
+            bool isOwner = false, isControlled = false, isTackled = false;
             Color c = GUI.color;
             if(ua.unit.isOwner()) {
                 isOwner = true;
+            }
+            if(ua.unit.isTackled) {
+                isTackled = true;
             }
             if(ua.unit.isControlled()) {
                 isControlled = true;
             }
 
-            if(isOwner)
+            if (isOwner)
+            {
                 GUI.color = Color.cyan;
-            else if(isControlled)
+            }
+            else if (isTackled)
+            {
+                if (isControlled)
+                {
+                    GUI.color = new Color(1f, 0.54f, 0f);
+                }
+                else
+                {
+                    GUI.color = Color.red;
+                }
+            }
+            else if (isControlled)
+            {
                 GUI.color = Color.yellow;
+            }
 
             EditorGUILayout.ObjectField(o.name, ua.animator, typeof(Animator), true);
         
-            if(isOwner || isControlled)
+            if(isOwner || isControlled || isTackled)
                 GUI.color = c;
         }
 #endif
