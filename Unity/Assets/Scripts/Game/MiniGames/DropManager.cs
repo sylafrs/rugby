@@ -7,7 +7,7 @@ public class DropManager
 	Ball ball;
 	Unit owner;
 	TYPEOFDROP type;
-	Vector3 ownerDirection;
+	public Vector3 ownerDirection;
 	Vector3 initPos;
 	float angleX;
 	float acceleration;
