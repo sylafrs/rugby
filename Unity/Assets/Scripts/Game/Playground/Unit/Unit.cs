@@ -887,6 +887,9 @@ public class Unit : TriggeringTriggered, Debugable
 				EditorGUILayout.LabelField("Dodge cooldown : " + (int)this.cooldownDodge);
 			}
 		}
+
+        EditorGUILayout.LabelField("IsTackled", this.isTackled.ToString());
+        EditorGUILayout.LabelField("IsCaptain", this.isCapitaine.ToString());
 #endif
 	}
 
