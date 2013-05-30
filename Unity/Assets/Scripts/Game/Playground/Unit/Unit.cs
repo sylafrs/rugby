@@ -85,6 +85,7 @@ public class Unit : TriggeringTriggered, Debugable
 	public Unit()
 	{
 		NearUnits = new List<Unit>();
+        RangeUnits = new List<Unit>();
 	}
 
 	//particles sytems
