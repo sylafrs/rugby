@@ -4167,7 +4167,7 @@ MonoBehaviour:
                 target: 0
                 nearClip: .300000012
             TacklingState:
-              tackledTime: 3
+              tackledTime: 1.5
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
