@@ -374,6 +374,9 @@ public class Gamer
 			if (owner.Dodge && owner.Team.settings.unitInvincibleDodge)
 				tackled = null;
 
+            if (!Controlled.RangeUnits.Contains(owner))
+                return;
+
 			if (!Controlled.NearUnits.Contains(owner))
 				tackled = null;
                 //return;

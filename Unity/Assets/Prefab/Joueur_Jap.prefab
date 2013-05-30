@@ -1918,9 +1918,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400252}
   - 135: {fileID: 13500000}
-  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400012}
   m_Layer: 8
-  m_Name: Trigger
+  m_Name: Trigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2154,6 +2154,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400284}
+  - 135: {fileID: 13500002}
+  - 114: {fileID: 11400008}
+  m_Layer: 8
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &100290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2344,6 +2361,7 @@ Transform:
   - {fileID: 400008}
   - {fileID: 400168}
   - {fileID: 400256}
+  - {fileID: 400284}
   - {fileID: 400252}
   m_Father: {fileID: 0}
 --- !u!4 &400026
@@ -3889,6 +3907,17 @@ Transform:
   - {fileID: 400278}
   - {fileID: 400276}
   m_Father: {fileID: 400168}
+--- !u!4 &400284
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400024}
 --- !u!4 &400290
 Transform:
   m_ObjectHideFlags: 1
@@ -4129,6 +4158,7 @@ MonoBehaviour:
   canCatchTheBall: 1
   invariantMove: 0
   typeOfPlayer: 0
+  ballZone: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4176,7 +4206,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100252}
+  m_GameObject: {fileID: 100284}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12cb0c6d439d4ba49b5b0800698705a7, type: 3}
@@ -4193,12 +4223,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989bb0a56bf51e14f94ca9e99f613607, type: 3}
   m_Name: 
   animator: {fileID: 9500000}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df9040d57f821468bf1de63521bb27, type: 3}
+  m_Name: 
+  theUnit: {fileID: 11400000}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13500002
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100284}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
