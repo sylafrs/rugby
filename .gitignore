@@ -1,6 +1,8 @@
 Temp/
 obj/
 
+Assets/Scripts/Game/Autres/LOG
+
 Library/cache
 Library/metadata
 Library/previews
