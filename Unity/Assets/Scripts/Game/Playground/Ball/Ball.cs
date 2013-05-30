@@ -241,8 +241,12 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public void Pass(Unit to)
 	{
-		Game.OnPass(this.Owner, to);
+        if (this.Owner == null)
+        {
+            return;
+        }
 
+		Game.OnPass(this.Owner, to);
 		int index = (this.Owner.Team == Game.instance.southTeam ? 0 : 1);
 #if UNITY_EDITOR
 		Game.instance.logTeam[index].WriteLine("--------------------");

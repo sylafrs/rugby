@@ -24,8 +24,20 @@ public class SuperCutSceneState : GameState
 
 	public override void OnEnter ()
 	{        
-        if(teamOnSuper.captain.unitAnimator)
-            teamOnSuper.captain.unitAnimator.LaunchSuper();
+        if (teamOnSuper.Player.Controlled)
+        {
+            if (teamOnSuper.Player.Controlled.unitAnimator)
+            {
+                teamOnSuper.Player.Controlled.unitAnimator.LaunchSuper();
+            }
+        }
+        else
+        {
+            if (teamOnSuper.captain.unitAnimator)
+            {
+                teamOnSuper.captain.unitAnimator.LaunchSuper();
+            }
+        }
 
 		
 		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
