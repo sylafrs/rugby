@@ -158,6 +158,11 @@ public class Game : myMonoBehaviour
 		this.refs.stateMachine.event_Drop();
 	}
 
+    public void OnDropFinished(Ball.DropResult res)
+    {
+        this.Referee.OnDropFinished(res);
+    }
+
 	public void OnTouch(Touche t)
 	{
 		this.refs.stateMachine.event_OnTouch(t);

@@ -205,6 +205,11 @@ public class Ball : TriggeringTriggered, Debugable
 		}
 	}
 
+    public enum DropResult
+    {
+        NULL, GROUND, INTERCEPTED
+    }
+
 	public void UpdateDrop()
 	{
 		if (timeOnDrop != -1)
@@ -221,6 +226,7 @@ public class Ball : TriggeringTriggered, Debugable
 				this.Game.BallOnGround(true);
 				drop.afterCollision = false;
 				drop.timeOffset = 0.0f;
+                this.Game.OnDropFinished(DropResult.GROUND);
 			}
 		}
 
@@ -229,6 +235,7 @@ public class Ball : TriggeringTriggered, Debugable
 			timeOnDrop = -1;
 			CircleDrop.SetActive(false);
 			drop.afterCollision = false;
+            this.Game.OnDropFinished(DropResult.INTERCEPTED);
 		}
 	}
 

@@ -114,7 +114,7 @@ public class Gamer
 		{
 			UpdateDODGE();
 
-			if (!Controlled.Dodge)
+			if (!Controlled.Dodge && !Controlled.isTackled)
 			{
 				UpdateStickDirection();
 				UpdateSUPER();
@@ -375,8 +375,8 @@ public class Gamer
 				tackled = null;
 
 			if (!Controlled.NearUnits.Contains(owner))
-				//tackled = null;
-                return;
+				tackled = null;
+                //return;
 
 			if (Controlled.unitAnimator)
 				Controlled.unitAnimator.OnTackleStart(tackled != null);
@@ -393,10 +393,10 @@ public class Gamer
 		{
 			change = true;
 		}
-		else if (this.Controlled.isTackled)
+		/*else if (this.Controlled.isTackled)
 		{
 			change = true;
-		}
+		}*/
 		else if (this.Controlled != this.game.Ball.Owner &&
 				(Input.GetKeyDown(Inputs.changePlayer.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.changePlayer.xbox)))
 		{
