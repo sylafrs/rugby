@@ -42,6 +42,9 @@ class PlaqueState : UnitState
 
     public override void OnEnter()
     {
+        unit.Order = Order.OrderNothing();
+        //Debug.Log(unit.name + " enters in plaqueState");  
+
         t = 0;
         unit.isTackled = true;
         unit.nma.Stop();
