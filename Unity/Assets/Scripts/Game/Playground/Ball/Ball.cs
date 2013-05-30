@@ -59,7 +59,7 @@ public class Ball : TriggeringTriggered, Debugable
 	public float timeOnDrop = -1;
 	public float timeOnPass = -1;
 	public PassSystem passManager;
-	private DropManager drop;
+	public DropManager drop;
 
 	public Zone inZone { get; set; }
 	//public Touche inTouch {get; set;}
