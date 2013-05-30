@@ -94,10 +94,21 @@ public partial class Referee
         {
             scrumWinners = t;
             scrumEndPos = endPos;
+
+            this.ScrumGiveSuperPoints(t);
+
             game.OnResumeSignal(FreezeAfterScrum);
         };
 
         sc.enabled = true;
+    }
+
+    private void ScrumGiveSuperPoints(Team winner)
+    {
+        SuperSettings settings = this.game.settings.Global.Super;
+
+        this.IncreaseSuper(settings.scrumWinSuperPoints, winner);
+        this.IncreaseSuper(settings.scrumLooseSuperPoints, winner.opponent);
     }
 
     public void ScrumAfter()

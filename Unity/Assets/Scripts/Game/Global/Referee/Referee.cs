@@ -105,4 +105,24 @@ public partial class Referee : myMonoBehaviour {
 
         this.UpdateTackle(); // Referee_tackle.cs
     }
+
+    public void OnPassFinished(Ball.PassResult res) {
+        Team prev = this.game.Ball.PreviousOwner.Team;
+        
+        SuperSettings settings = this.game.settings.Global.Super;
+        
+        if (res == Ball.PassResult.GROUND)
+        {
+            this.IncreaseSuper(settings.passLooseSuperPoints,prev);
+        }
+        if (res == Ball.PassResult.MANAGED)
+        {
+            this.IncreaseSuper(settings.passWinSuperPoints, prev);
+        }
+        if (res == Ball.PassResult.OPPONENT)
+        {
+            this.IncreaseSuper(settings.passLooseSuperPoints, prev);
+            this.IncreaseSuper(settings.passInterceptSuperPoints, prev.opponent);
+        }
+    }
 }
