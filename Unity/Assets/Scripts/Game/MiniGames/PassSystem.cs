@@ -30,10 +30,8 @@ public class PassSystem
 	private Vector3 butBleuRouge;
 	private float multiplyDirection = 20f;
 
-	float timeToShortPass = 1.5f;
-	float timeToLongPass = 3f;
-
-	int index;
+	//float timeToShortPass = 1.5f;
+	//float timeToLongPass = 3f;
 
 	public passState oPassState = passState.NONE;
 
@@ -62,8 +60,9 @@ public class PassSystem
 		this.butBleu = b1;
 		this.butRouge = b2;
 
-		index = (from.Team == Game.instance.southTeam ? 0 : 1);
+		
 #if UNITY_EDITOR && DEBUG       
+        int index = (from.Team == Game.instance.southTeam ? 0 : 1);
             Game.instance.logTeam[index].WriteLine("Pass State : " + oPassState);
             Game.instance.logTeam[index].WriteLine("From : " + from + " " + from.transform.position);
             Game.instance.logTeam[index].WriteLine("To : " + target + " " + target.transform.position);
