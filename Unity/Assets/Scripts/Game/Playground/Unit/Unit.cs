@@ -107,7 +107,7 @@ public class Unit : TriggeringTriggered, Debugable
 	};
 
 	public TYPEOFPLAYER typeOfPlayer = TYPEOFPLAYER.NONE;
-	private bool ballZone = false; //variable me permettant de dire si je ne bouge plus de mon couloir, utile uniquement pour les défenseurs
+	public bool ballZone = false; //variable me permettant de dire si je ne bouge plus de mon couloir, utile uniquement pour les défenseurs
 
 	//maxens : c'est très bourrin xD
 	void Update()

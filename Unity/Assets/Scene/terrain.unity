@@ -7681,58 +7681,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!1 &724440459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 724440460}
-  - 136: {fileID: 724440461}
-  - 114: {fileID: 724440462}
-  m_Layer: 0
-  m_Name: ChangePlayerZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &724440460
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 724440459}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 919816156}
---- !u!136 &724440461
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 724440459}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 15.3999996
-  m_Height: 56.6699982
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 16}
---- !u!114 &724440462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 724440459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3346b07b315e9164ea69f6860483d792, type: 3}
-  m_Name: 
-  ball: {fileID: 308884795}
 --- !u!1 &736366311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8909,7 +8857,6 @@ Transform:
   m_Children:
   - {fileID: 1635297308}
   - {fileID: 1522212140}
-  - {fileID: 724440460}
   - {fileID: 1440524989}
   - {fileID: 374254973}
   - {fileID: 1353134355}
