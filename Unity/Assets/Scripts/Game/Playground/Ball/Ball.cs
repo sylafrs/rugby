@@ -63,7 +63,27 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public Zone inZone { get; set; }
 	//public Touche inTouch {get; set;}
-
+	
+	// TODO : state machine pour la ball
+	//utilité : plus de facilité à utiliser, débugger
+	public enum ballState{
+		NULL,
+		ONGROUND,
+		FLYING,
+		CONTROLLED
+	};
+	
+	private ballState currentState;
+	
+	public void changeBallState(ballState newState){
+		currentState = newState;
+	}
+	
+	public ballState getBallState()
+	{
+		return currentState;
+	}
+	
 	public Ball()
 	{
 		inZone = null;

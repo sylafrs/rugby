@@ -106,7 +106,7 @@ public partial class Referee
         // A faire en caméra :
         this.StartPlacement();
         this.game.Ball.Owner = but.Owner[2];
-
+		
         //this.game.TimedDisableIA(3);
     }	
 }

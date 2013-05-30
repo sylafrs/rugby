@@ -12,8 +12,7 @@ public partial class CameraManager{
 	 * Onfinish				: Action to do on finish
 	 * 
 	 */
-	public void transalateWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,
-		float blackScreenDuration, Action Onfinish){
+	public void transalateWithFade(Vector3 destination,float delay,float fadeiInDuration, float fadeOutDuration,float blackScreenDuration, Action Onfinish){
 		
 		CameraFade.StartAlphaFade(Color.black,false, fadeiInDuration, delay, () => { 
 			this.gameCamera.transform.Translate(destination); 

@@ -42,22 +42,17 @@ public class ConversionFlyState : GameState
     }
 
     public override void OnLeave ()
-    {   	
+    {   			
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);
-	    cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
+		
+	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,3.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
+				cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				cam.zoom = 1; //TODO cam settings
                 cam.game.Referee.StartPlacement();
-                if (game.Ball.Owner)
-                {
-                    cam.setTarget(game.Ball.Owner.transform);
-                }
-                else
-                {
-                    cam.setTarget(game.southTeam[2].transform);
-                }
             }
         );
     }    
