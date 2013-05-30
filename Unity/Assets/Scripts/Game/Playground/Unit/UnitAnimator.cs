@@ -191,8 +191,6 @@ public class UnitAnimator : myMonoBehaviour
     private bool launchUpdate;
     private bool launchSuper;
 
-    private string LayerName;
-
     private class MyEvent
     {
         public string name;
@@ -265,8 +263,6 @@ public class UnitAnimator : myMonoBehaviour
         {
             throw new UnityException("I need a unit");
         }
-
-        LayerName = animator.GetLayerName(0);
 
         delayStop = DELAY_SPEED;
         launchUpdate = false;
