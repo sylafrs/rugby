@@ -180,7 +180,7 @@ public class Game : myMonoBehaviour
 
     public void OnPassFinished(Ball.PassResult res)
     {
-        this.Referee.OnPassManaged(res);
+        this.Referee.OnPassFinished(res);
     }
 
 	public void OnConversion(But but)
