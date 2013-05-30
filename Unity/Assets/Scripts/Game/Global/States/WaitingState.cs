@@ -25,6 +25,8 @@ public class WaitingState : GameState
 
 	public override void OnEnter()
 	{
+		cam.setTarget(game.Ball.Owner.transform);
+		//cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		game.disableIA = true;
 		game.Referee.PauseIngameTime();
 		if(TeamOnSuper)

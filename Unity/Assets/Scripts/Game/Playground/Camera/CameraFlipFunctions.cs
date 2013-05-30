@@ -47,10 +47,10 @@ public partial class CameraManager{
 		//Vector3 min2 = new Vector3(MinfollowOffset.x, MinfollowOffset.y, MinfollowOffset.z * -1);
 		//Vector3 offset = Camera.mainCamera.transform.position+(min2)*zoom;
 		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
+		Vector3 result			= Vector3.MoveTowards(Camera.mainCamera.transform.position, targetPosition , step);
 		
-		
-		Camera.mainCamera.transform.position = Vector3.MoveTowards(Camera.mainCamera.transform.position,
-			targetPosition , step);
+		Debug.Log("Result for translate2 "+result);
+		Camera.mainCamera.transform.position = result;
 		
 		Camera.mainCamera.transform.LookAt(target);
 		
