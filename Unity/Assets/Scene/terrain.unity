@@ -4131,7 +4131,7 @@ MonoBehaviour:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
         superGaugeMaximum: 200
-        SuperDashDurationTime: 10
+        SuperDashDurationTime: 2
         SuperStunDurationTime: 2
         superSpeedScale: 1.5
         superTackleBoxScale: 1.5
@@ -19785,7 +19785,7 @@ MonoBehaviour:
   angleSpeed: 200
   powerSpeed: 1.20000005
   minPower: 5
-  maxPower: 20
+  maxPower: 23
   maxAngle: 70
   infiniteTime: 1
   timeAngle: 3
