@@ -52,7 +52,6 @@ public class ConvertingState : GameState {
 		Transform cameraPlaceHolder = GameObject.Find("TransfoPlacement").transform.FindChild("ShootPlayer").
 			FindChild("CameraPlaceHolder");
 		
-		Debug.Log("hop "+cam.flipedForTeam);
 		GameObject Goal = null;
 		if(cam.flipedForTeam == cam.game.southTeam)
 		{
@@ -66,7 +65,7 @@ public class ConvertingState : GameState {
 			cameraPlaceHolder.LookAt(Goal.transform);
 		}
 		
-		cam.transalateToWithFade(Vector3.zero, cameraPlaceHolder.rotation, 0f, 1f, 1f, 1f, 
+		cam.transalateWithFade(Vector3.zero, cameraPlaceHolder.rotation, 0f, 1f, 1f, 1f, 
             (/* OnFinish */) => {
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
