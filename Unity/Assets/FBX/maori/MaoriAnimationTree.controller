@@ -1025,6 +1025,20 @@ State:
   m_Position: {x: 396, y: 444, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
+--- !u!1102 &110228587
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Dodge
+  m_Speed: 1
+  m_Motions:
+  - {fileID: 7400000, guid: 1f486faf76155b04aae70a19ef65cf3b, type: 3}
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110780803}
+  m_Position: {x: -24, y: 12, z: 0}
+  m_IKOnFeet: 1
+  m_Tag: 
 --- !u!1102 &110228660
 State:
   m_ObjectHideFlags: 3
@@ -1459,10 +1473,11 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: WithBall
-  m_DefaultState: {fileID: 0}
+  m_DefaultState: {fileID: 110228587}
   m_States:
   - {fileID: 110235217}
   - {fileID: 110243506}
+  - {fileID: 110228587}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_LocalTransitions:
