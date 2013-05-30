@@ -375,7 +375,8 @@ public class Gamer
 				tackled = null;
 
 			if (!Controlled.NearUnits.Contains(owner))
-				tackled = null;//return;
+				//tackled = null;
+                return;
 
 			if (Controlled.unitAnimator)
 				Controlled.unitAnimator.OnTackleStart(tackled != null);
