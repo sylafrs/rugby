@@ -23,12 +23,7 @@ public class SuperCutSceneState : GameState
 	}
 
 	public override void OnEnter ()
-	{
-        if (teamOnSuper.Super.Super == SuperList.superStun)
-        {
-            teamOnSuper.Super.LaunchFeedback();
-        }
-
+	{        
         if(teamOnSuper.captain.unitAnimator)
             teamOnSuper.captain.unitAnimator.LaunchSuper();
 
