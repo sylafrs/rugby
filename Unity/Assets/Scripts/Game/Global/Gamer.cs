@@ -416,9 +416,25 @@ public class Gamer
 				Controlled.IndicateSelected(false);
 			}
 
-            Unit nearFromBall = GetUnitNear(false);
-            if (nearFromBall)
-                Controlled = nearFromBall;
+			Unit nextControlled = null;
+			if (BallSkipOurOffensive())
+			{
+				if (BallGoOurBut())
+				{
+					nextControlled = GetDefensivePlayer();
+				}
+				else
+				{
+					nextControlled = GetUnitNear(false);
+				}
+			}
+
+			if (nextControlled)
+				Controlled = nextControlled;
+
+			//Unit nearFromBall = GetUnitNear(false);
+			//if (nearFromBall)
+			//	Controlled = nearFromBall;
 
 			if (Controlled)
 			{
@@ -465,22 +481,77 @@ public class Gamer
 		}
 	}
 
+	public bool BallSkipOurOffensive()
+	{
+		bool result = false;
+
+		foreach (Unit u in this.Team)
+		{
+			if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+			{
+				if (this.Team == this.game.southTeam)
+				{
+					if (this.game.Ball.transform.position.z < u.transform.position.z)
+						result = true;
+				}
+				else
+				{
+					if (this.game.Ball.transform.position.z > u.transform.position.z)
+						result = true;
+				}
+			}
+		}
+		return result;
+	}
+
+	public bool BallGoOurBut()
+	{
+		if (this.game.Ball.Owner != null)
+		{
+			if (Vector3.Dot(this.Team.But.transform.position - this.game.Ball.Owner.transform.position, this.game.Ball.Owner.transform.forward) < 0)
+				return false;
+		}
+		else
+		{
+			if (this.game.Ball.isDroping)
+			{
+				if (Vector3.Dot(this.Team.But.transform.position - this.game.Ball.transform.position, this.game.Ball.drop.ownerDirection) < 0)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	public Unit GetDefensivePlayer()
+	{
+		foreach (Unit u in this.Team)
+		{
+			if (u.typeOfPlayer == Unit.TYPEOFPLAYER.DEFENSE)
+			{
+				if (u.ballZone)
+					return u;
+			}
+		}
+		return null;
+	}
+
 	public Unit GetUnitNear(bool countControlled)
 	{
 		float dist;         //< Distance
 		float min = 0;      //< Distance minimum trouvée
 		Unit near = null;   //< Unité la plus proche trouvée
 
-        // Pour chaque unité de notre équipe
+		// Pour chaque unité de notre équipe
 		foreach (Unit u in this.Team)
 		{
-            // On récupère la distance unité <-> balle (au carré, pour économiser une racine)
+
+			// On récupère la distance unité <-> balle (au carré, pour économiser une racine)
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 
-            // Si :
-            // - Aucune unité matchée ou distance plus petite que les précédentes
-            // - Unité pas plaquée
-            // - On peut prendre le controllé ou il ne s'agit pas du contrôlé
+			// Si :
+			// - Aucune unité matchée ou distance plus petite que les précédentes
+			// - Unité pas plaquée
+			// - On peut prendre le controllé ou il ne s'agit pas du contrôlé
 			if ((near == null || dist < min) && !u.isTackled && (countControlled || u != Controlled))
 			{
 				near = u;   // On change le résultat
@@ -488,7 +559,7 @@ public class Gamer
 			}
 		}
 
-        // On retourne l'unité
+		// On retourne l'unité
 		return near; // Peut être null si aucune trouvée
 	}
 
