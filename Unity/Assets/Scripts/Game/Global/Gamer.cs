@@ -415,7 +415,9 @@ public class Gamer
 				Controlled.IndicateSelected(false);
 			}
 
-			Controlled = GetUnitNear(false);
+            Unit nearFromBall = GetUnitNear(false);
+            if (nearFromBall)
+                Controlled = nearFromBall;
 
 			if (Controlled)
 			{
@@ -464,24 +466,29 @@ public class Gamer
 
 	public Unit GetUnitNear(bool countControlled)
 	{
-		float dist;
+		float dist;         //< Distance
+		float min = 0;      //< Distance minimum trouvée
+		Unit near = null;   //< Unité la plus proche trouvée
 
-		float min = 0;
-		Unit near = null;
-
-		foreach (Unit u in Team)
+        // Pour chaque unité de notre équipe
+		foreach (Unit u in this.Team)
 		{
+            // On récupère la distance unité <-> balle (au carré, pour économiser une racine)
 			dist = Vector3.SqrMagnitude(game.Ball.transform.position - u.transform.position);
 
-			// Si on a pas de near ou qu'on est le plus proche, si countControlled est mis : peut pas être Controlée; ne doit pas etre tacklé
+            // Si :
+            // - Aucune unité matchée ou distance plus petite que les précédentes
+            // - Unité pas plaquée
+            // - On peut prendre le controllé ou il ne s'agit pas du contrôlé
 			if ((near == null || dist < min) && !u.isTackled && (countControlled || u != Controlled))
 			{
-				near = u;
-				min = dist;
+				near = u;   // On change le résultat
+				min = dist; // La distance minimum est mise à jour
 			}
 		}
 
-		return near;
+        // On retourne l'unité
+		return near; // Peut être null si aucune trouvée
 	}
 
 	void UpdateMOVE()

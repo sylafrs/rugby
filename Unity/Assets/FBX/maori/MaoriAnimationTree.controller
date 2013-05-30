@@ -1188,7 +1188,7 @@ State:
   - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110789661}
-  m_Position: {x: -24, y: 168, z: 0}
+  m_Position: {x: -24, y: 156, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110280936
@@ -1224,7 +1224,7 @@ StateMachine:
   - {fileID: 110782116}
   - {fileID: 110734055}
   m_ChildStateMachinePosition:
-  - {x: -156, y: -84, z: 0}
+  - {x: -144, y: -84, z: 0}
   - {x: -432, y: -84, z: 0}
   - {x: -432, y: 0, z: 0}
   - {x: 120, y: 0, z: 0}
