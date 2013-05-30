@@ -33,8 +33,6 @@ Assembly-UnityScript-vs.unityproj
 Assembly-UnityScript.pidb
 Assembly-UnityScript.unityProj
 
-ProjectSettings.asset
-
 *.svd
 *.userprefs
 *.suo
