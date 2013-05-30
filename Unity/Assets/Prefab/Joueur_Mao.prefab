@@ -2169,6 +2169,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400286}
+  - 135: {fileID: 13500002}
+  - 114: {fileID: 11400012}
+  m_Layer: 8
+  m_Name: Trigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -2288,6 +2305,7 @@ Transform:
   - {fileID: 400010}
   - {fileID: 400022}
   - {fileID: 400000}
+  - {fileID: 400286}
   m_Father: {fileID: 0}
 --- !u!4 &400020
 Transform:
@@ -3884,6 +3902,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400018}
+--- !u!4 &400286
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400018}
 --- !u!12 &1200000
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -4123,6 +4152,7 @@ MonoBehaviour:
   canCatchTheBall: 1
   invariantMove: 0
   typeOfPlayer: 2
+  ballZone: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4166,6 +4196,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989bb0a56bf51e14f94ca9e99f613607, type: 3}
   m_Name: 
   animator: {fileID: 9500000}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df9040d57f821468bf1de63521bb27, type: 3}
+  m_Name: 
+  theUnit: {fileID: 11400004}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4177,6 +4218,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 50
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13500002
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 100
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
