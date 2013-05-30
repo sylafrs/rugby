@@ -108,8 +108,7 @@ public partial class Referee : myMonoBehaviour {
 
     public void OnPassFinished(Ball.PassResult res) {
         Team prev = this.game.Ball.PreviousOwner.Team;
-        Team opponent = prev.opponent;
-
+        
         SuperSettings settings = this.game.settings.Global.Super;
         
         if (res == Ball.PassResult.GROUND)
@@ -123,7 +122,7 @@ public partial class Referee : myMonoBehaviour {
         if (res == Ball.PassResult.OPPONENT)
         {
             this.IncreaseSuper(settings.passLooseSuperPoints, prev);
-            this.IncreaseSuper(settings.passInterceptSuperPoints ,opponent);
+            this.IncreaseSuper(settings.passInterceptSuperPoints, prev.opponent);
         }
     }
 }
