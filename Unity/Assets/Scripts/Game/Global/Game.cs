@@ -178,6 +178,11 @@ public class Game : myMonoBehaviour
 		this.refs.stateMachine.event_Pass(from, to);
 	}
 
+    public void OnPassFinished(Ball.PassResult res)
+    {
+        this.Referee.OnPassManaged(res);
+    }
+
 	public void OnConversion(But but)
 	{
 		this.refs.stateMachine.event_Conversion(but);

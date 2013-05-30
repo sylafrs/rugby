@@ -247,6 +247,11 @@ public class Ball : TriggeringTriggered, Debugable
 		NextOwner = to;
 	}
 
+    public enum PassResult
+    {
+        NULL, GROUND, MANAGED, OPPONENT
+    }
+    
 	public void UpdatePass()
 	{
 		int index = (this.PreviousOwner.Team == Game.instance.southTeam ? 0 : 1);
@@ -272,6 +277,7 @@ public class Ball : TriggeringTriggered, Debugable
 				if (passManager.oPassState == PassSystem.passState.ONPASS)
 				{
 					passManager.oPassState = PassSystem.passState.ONGROUND;
+                    this.Game.OnPassFinished(PassResult.GROUND);
 #if UNITY_EDITOR
 					Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
 #endif
@@ -289,6 +295,16 @@ public class Ball : TriggeringTriggered, Debugable
 #if UNITY_EDITOR
 				Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState);
 #endif
+                if (this.Owner.Team == this.PreviousOwner.Team)
+                {
+                    this.Game.OnPassFinished(PassResult.MANAGED);
+                }
+                else
+                {
+                    this.Game.OnPassFinished(PassResult.OPPONENT);
+                }
+
+
 				passManager.GetFrom().canCatchTheBall = true;
 				NextOwner = null;
 			}
