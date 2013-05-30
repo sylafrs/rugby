@@ -20,6 +20,7 @@ public class But : TriggeringTrigger
     }
 	
 	public Transform transformationPoint;
+    public Renderer model;
 
     public override void Left(Triggered t)
     {

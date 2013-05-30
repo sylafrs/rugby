@@ -14498,6 +14498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
   transformationPoint: {fileID: 1380620484}
+  model: {fileID: 303037527}
 --- !u!65 &1522212142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15639,6 +15640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
   transformationPoint: {fileID: 830239404}
+  model: {fileID: 1795899138}
 --- !u!65 &1635297310
 BoxCollider:
   m_ObjectHideFlags: 0
