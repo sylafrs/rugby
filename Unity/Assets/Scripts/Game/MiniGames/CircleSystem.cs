@@ -22,7 +22,7 @@ public class CircleSystem : MonoBehaviour {
 		if (winnerDrop)
 			return;
 		
-		if (game.Ball.transform.position.y < YToDecide && !winnerDrop)
+		if (game.Ball.transform.position.y < YToDecide/* && !winnerDrop*/)
 		{
             game.Ball.Owner = GetFirstUnit();
 		}
@@ -46,8 +46,7 @@ public class CircleSystem : MonoBehaviour {
 	
 	Unit GetFirstUnit(){
 		if (unitInCircle.Count != 0)
-		{
-			
+		{			
 			unitInCircle[0].canCatchTheBall = true;
 			winnerDrop = true;
 			return unitInCircle[0];
