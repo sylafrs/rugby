@@ -596,8 +596,8 @@ public class Gamer
 		direction += Camera.main.transform.forward * d.y;
 		direction += Camera.main.transform.right * d.x;
 
-		if (direction.magnitude > 0.8f)
-		{
+        if (direction.magnitude > 0.8f)
+		{            
 			Controlled.Order = Order.OrderMove(Controlled.transform.position + direction.normalized);
 		}
 	}

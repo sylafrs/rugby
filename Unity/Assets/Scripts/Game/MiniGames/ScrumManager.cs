@@ -166,12 +166,14 @@ public class ScrumManager : myMonoBehaviour, Debugable {
                 {
                     this.MalusSouth = Time.time;
                     smash -= this.settings.SmashValue * this.settings.MalusValue;
+                    southCtrl.SetLeftVibration(0.8f, 0.4f);
                 }
 
                 if (superNorth)
                 {
                     this.MalusNorth = Time.time;
                     smash += this.settings.SmashValue * this.settings.MalusValue;
+                    northCtrl.SetLeftVibration(0.8f, 0.4f);
                 }
             }
         }
