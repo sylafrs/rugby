@@ -4193,7 +4193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
   UseFlorianIA: 1
-  alwaysScrum: 0
+  alwaysScrum: 1
   settings:
     Global:
       Game:
@@ -4297,6 +4297,8 @@ MonoBehaviour:
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
+              MalusValue: 2.5
+              InvincibleCooldown: .5
               offsetCamera: {x: 3, y: 1.20000005, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
@@ -4684,6 +4686,21 @@ MonoBehaviour:
         ScrumRightBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
         ScrumLeftBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
         ScrumEmptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
+        ScrumSpecialFailedButton: {fileID: 2800000, guid: b571b81ed97aff640b58b71297d79b49,
+          type: 3}
+        ScrumLeftSpecialFailedButtonRect:
+          serializedVersion: 2
+          x: 5
+          y: 82
+          width: 10
+          height: 5
+        ScrumRightSpecialFailedButtonRect:
+          serializedVersion: 2
+          x: 85
+          y: 82
+          width: 10
+          height: 5
+        MalusDuration: 2
       EndUI:
         ResultRect:
           serializedVersion: 2

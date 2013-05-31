@@ -105,14 +105,15 @@ public class PassSystem
 		}
 		oPassState = passState.SETUP;
 		if (from && target && ball)
-		{
-			velocityPass = this.ball.passSpeed;
-			this.magnitude = calculateMagnitude(from.transform.position, target.transform.position);
-			//directionFromToTarget();
-			calculateRelativePosition();
-			calculateRelativeDirection();
+        {
+            velocityPass = this.ball.passSpeed;
+            this.magnitude = calculateMagnitude(from.transform.position, target.transform.position);
+            //directionFromToTarget();
+            calculateRelativePosition();
+            calculateRelativeDirection();
 #if UNITY_EDITOR && DEBUG
             {
+                int index = (from.Team == Game.instance.southTeam ? 0 : 1);
                 Game.instance.logTeam[index].WriteLine("Pass State : " + oPassState);
                 Game.instance.logTeam[index].WriteLine("velocity Pass : " + velocityPass);
                 Game.instance.logTeam[index].WriteLine("magnitude Pass before relative Position: " + magnitude);
@@ -120,40 +121,44 @@ public class PassSystem
                 Game.instance.logTeam[index].WriteLine("relative Direction before validity check : " + relativeDirection);
             }
 #endif
-			if (!passValidity())
-			{
-				//CorrectTrajectory();
-				CorrectPosition();
-				calculateRelativeDirection();
-#if UNITY_EDITOR && DEBUG                
-                    Game.instance.logTeam[index].WriteLine("relative Position after validity check : " + relativePosition);
-                    Game.instance.logTeam[index].WriteLine("relative Direction after validity check : " + relativeDirection);                
+            if (!passValidity())
+            {
+                //CorrectTrajectory();
+                CorrectPosition();
+                calculateRelativeDirection();
+#if UNITY_EDITOR && DEBUG
+                int index = (from.Team == Game.instance.southTeam ? 0 : 1);
+                Game.instance.logTeam[index].WriteLine("relative Position after validity check : " + relativePosition);
+                Game.instance.logTeam[index].WriteLine("relative Direction after validity check : " + relativeDirection);
 #endif
-			}
+            }
 
-			multiplyRelativeDirection();
-#if DEBUG            
-                Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
-                Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
-                Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
-                Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);            
+            multiplyRelativeDirection();
+#if DEBUG
+            Debug.DrawRay(relativePosition, new Vector3(-1f, relativePosition.y, 0), Color.yellow, 100f);
+            Debug.DrawRay(relativePosition, new Vector3(1f, relativePosition.y, 0), Color.yellow, 100f);
+            Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, 1f), Color.yellow, 100f);
+            Debug.DrawRay(relativePosition, new Vector3(0f, relativePosition.y, -1f), Color.yellow, 100f);
 #endif
 
-			ball.AttachToRoot();
-			ball.rigidbody.isKinematic = false;
-			ball.rigidbody.useGravity = false;
-			ball.Owner = null;
+            ball.AttachToRoot();
+            ball.rigidbody.isKinematic = false;
+            ball.rigidbody.useGravity = false;
+            ball.Owner = null;
 
-			this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
-			angle = Mathf.Deg2Rad * 25.0f;
-			target.Order = Order.OrderMove(relativePosition);
-#if UNITY_EDITOR && DEBUG            
+            this.magnitude = calculateMagnitude(from.transform.position, relativePosition);
+            angle = Mathf.Deg2Rad * 25.0f;
+            target.Order = Order.OrderMove(relativePosition);
+#if UNITY_EDITOR && DEBUG
+            {
+                int index = (from.Team == Game.instance.southTeam ? 0 : 1);
                 Game.instance.logTeam[index].WriteLine("magnitude Pass after relative Position : " + magnitude);
                 Game.instance.logTeam[index].WriteLine("angle Impulsion Pass : " + angle);
-                Game.instance.logTeam[index].WriteLine("order target : " + target.Order.point);            
+                Game.instance.logTeam[index].WriteLine("order target : " + target.Order.point);
+            }
 #endif
-			
-		}
+
+        }
 	}
 
 	/*
@@ -166,6 +171,7 @@ public class PassSystem
 			-0.5f * 9.81f * t * t + velocityPass * Mathf.Sin(angle) * t + initialPosition.y,
 			relativeDirection.z * 1.5f * t + initialPosition.z);
 #if UNITY_EDITOR && DEBUG
+        int index = (from.Team == Game.instance.southTeam ? 0 : 1);
             Game.instance.logTeam[index].WriteLine("Time : " + t + " Ball Position : " + ball.transform.position + "\tTarget : pos : " + target.transform.position + " speed : " + target.nma.velocity.magnitude);
 #endif
 	}
