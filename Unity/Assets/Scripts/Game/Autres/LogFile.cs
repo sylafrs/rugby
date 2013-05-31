@@ -24,10 +24,11 @@ public class LogFile {
 		return nameFile;
 	}
 
-	public void WriteLine(string line)
+	public void WriteLine(string line, bool onlyCreate = false)
 	{
 		if (line == "")
 			return;
+
 		if (!File.Exists(nameFile + ".txt"))
 			writer = File.CreateText(nameFile + ".txt");
 		else
@@ -36,5 +37,13 @@ public class LogFile {
 		}
 		writer.WriteLine(line);
 		writer.Close();
+	}
+	
+	public void ClearFile()
+	{
+		if (!File.Exists(nameFile + ".txt"))
+			return;
+		
+		File.WriteAllText(nameFile + ".txt", "");
 	}
 }

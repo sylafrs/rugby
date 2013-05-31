@@ -2,7 +2,7 @@ using UnityEngine;
 
 /**
   * @class FollowPlayerState
-  * @brief Etat de la caméra lorsqu'elle doit suivre un joueur.
+  * @brief Etat de la camï¿½ra lorsqu'elle doit suivre un joueur.
   * @author Sylvain Lafon
   * @see myMonoBehaviour
   */
@@ -10,7 +10,8 @@ public class GainGroundingState : GameState {
     public GainGroundingState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
     public override void OnEnter()
-    {
+    {  
+		base.OnEnter();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallHandlingState.GainingGrounCamSettings);
 		cam.flipForTeam(this.game.Ball.Owner.Team, () => {
