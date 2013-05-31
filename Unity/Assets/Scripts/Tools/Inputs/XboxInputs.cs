@@ -115,6 +115,30 @@ public class XboxInputs : myMonoBehaviour{
             }
             private set { }
         }
+
+        float remainingRightVibrationTime;
+        float remainingLeftVibrationTime;
+        float LeftVibrationPower;
+        float RightVibrationPower;
+
+        private void SetVibration()
+        {
+            GamePad.SetVibration(index, LeftVibrationPower, RightVibrationPower);
+        }
+
+        public void SetLeftVibration(float power, float duration)
+        {
+            this.LeftVibrationPower = power;
+            this.remainingLeftVibrationTime = duration;
+            this.SetVibration();
+        }
+
+        public void SetRightVibration(float power, float duration)
+        {
+            this.RightVibrationPower = power;
+            this.remainingRightVibrationTime = duration;
+            this.SetVibration();
+        }
         
         public Controller(int i)
         {
@@ -163,6 +187,26 @@ public class XboxInputs : myMonoBehaviour{
 
         public void Update()
         {
+            if (remainingLeftVibrationTime > 0)
+            {
+                remainingLeftVibrationTime -= Time.deltaTime;
+                if (remainingLeftVibrationTime <= 0)
+                {
+                    LeftVibrationPower = 0;
+                    this.SetVibration();
+                }
+            }
+
+            if (remainingRightVibrationTime > 0)
+            {
+                remainingRightVibrationTime -= Time.deltaTime;
+                if (remainingRightVibrationTime <= 0)
+                {
+                    RightVibrationPower = 0;
+                    this.SetVibration();
+                }
+            }
+
             this.UpdateButtons();
             this.padToUpdate = true;            
         }
