@@ -70,6 +70,10 @@ public class ScrumUISettings
     public Texture2D ScrumRightBar;
     public Texture2D ScrumLeftBar;
     public Texture2D ScrumEmptyBar;
+    public Texture2D ScrumSpecialFailedButton;
+    public Rect ScrumLeftSpecialFailedButtonRect;
+    public Rect ScrumRightSpecialFailedButtonRect;
+    public float MalusDuration;
 }
 
 [System.Serializable]

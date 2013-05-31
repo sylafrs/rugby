@@ -414,7 +414,7 @@ public class Gamer
 
 		if (change)
 		{
-            Debug.Log("CHANGE PLAYER");
+            //Debug.Log("CHANGE PLAYER");
 			//foreach (Unit u in this.Team)
 			//{
 			//	u.UpdateTypeOfPlay();

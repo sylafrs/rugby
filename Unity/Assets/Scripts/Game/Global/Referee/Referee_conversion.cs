@@ -5,6 +5,11 @@ public partial class Referee
     
     public void PlacePlayersForTransfo()
     {
+        if (game.Ball.Owner == null)
+        {
+            throw new UnityException("Ball.Owner n'est pas réglé ? Dafuq ?!");
+        }
+
         game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderTransformation.transform.position;
         //float x = game.Ball.transform.position.x;
 

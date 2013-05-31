@@ -22,6 +22,9 @@ public class ScrumManager : myMonoBehaviour, Debugable {
     private int CurrentWinner;                                              // Winner           (variable, private)
     public float SuperLoading { get; private set; }                         // 0 to 1           (variable, readonly)
     public float FeedSuperPerSmash { get; private set; }                    // 0 to 1           (variable, readonly)
+    public float InvincibleTime { get; private set; }                       // Time without malus (variable, readonly)
+    public float MalusSouth { get; private set; }                           // when south failed  (variable, readonly)
+    public float MalusNorth { get; private set; }                           // when north failed  (variable, readonly)    
 
     private  ScrumingStateSettings settings;                                // Tweaks           (reference)
     private  Game game;                                                     // Game             (reference)    
@@ -57,6 +60,9 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         this.ChronoLaunched = false;                             		   // Launched at first smash.
         this.CurrentWinner = 0;                                   		   // Changed at first smash.
         this.SuperLoading = 0;                                    		   // Super Loading    
+
+        this.MalusNorth = -1;
+        this.MalusSouth = -1;
     }
 
     void Update()
@@ -102,15 +108,23 @@ public class ScrumManager : myMonoBehaviour, Debugable {
     {
         float smash = 0;
 
-        if (game.southTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.smashButton.xbox) || 
-			Input.GetKeyDown(game.settings.Inputs.smashButton.keyboard(game.southTeam)))
+        InputSettings inputs = game.settings.Inputs;
+        XboxInputs.Controller southCtrl = game.southTeam.Player.XboxController;
+        XboxInputs.Controller northCtrl = game.northTeam.Player.XboxController;
+
+        bool smashSouth = southCtrl.GetButtonDown(inputs.smashButton.xbox) || Input.GetKeyDown(inputs.smashButton.keyboard(game.southTeam));
+        bool smashNorth = northCtrl.GetButtonDown(inputs.smashButton.xbox) || Input.GetKeyDown(inputs.smashButton.keyboard(game.northTeam));
+
+        bool superSouth = southCtrl.GetButtonDown(inputs.superButton.xbox) || Input.GetKeyDown(inputs.superButton.keyboard(game.southTeam));
+        bool superNorth = northCtrl.GetButtonDown(inputs.superButton.xbox) || Input.GetKeyDown(inputs.superButton.keyboard(game.northTeam));
+        
+        if (smashSouth)
         {
             smash += this.settings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
         }
 
-        if (game.northTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.smashButton.xbox) ||
-			Input.GetKeyDown(game.settings.Inputs.smashButton.keyboard(game.northTeam)))
+        if (smashNorth)
         {
             smash -= this.settings.SmashValue;
             this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
@@ -119,17 +133,15 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         if (this.SuperLoading == 1)
         {
             int super = 0;
-            bool used = false;
-	
-            if (game.southTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.superButton.xbox) 
-				|| Input.GetKeyDown(game.settings.Inputs.superButton.keyboard(game.southTeam)))
+            bool used = false;        
+
+            if (superSouth)
             {
                 super += 1;
                 used = true;
             }
 
-            if (game.northTeam.Player.XboxController.GetButtonDown(game.settings.Inputs.superButton.xbox) 
-				|| Input.GetKeyDown(game.settings.Inputs.superButton.keyboard(game.northTeam)))
+            if (superNorth)
             {
                 super -= 1;
                 used = true;
@@ -137,11 +149,33 @@ public class ScrumManager : myMonoBehaviour, Debugable {
 
             if (used)
             {
+                this.InvincibleTime = settings.InvincibleCooldown;
                 this.SuperLoading = 0;
                 smash += super * this.settings.SuperMultiplicator * this.settings.SmashValue;
             }
         }
+        else 
+        {
+            if (InvincibleTime > 0)
+            {
+                InvincibleTime -= Time.deltaTime;
+            }
+            else 
+            {
+                if (superSouth)
+                {
+                    this.MalusSouth = Time.time;
+                    smash -= this.settings.SmashValue * this.settings.MalusValue;
+                }
 
+                if (superNorth)
+                {
+                    this.MalusNorth = Time.time;
+                    smash += this.settings.SmashValue * this.settings.MalusValue;
+                }
+            }
+        }
+        
         return smash;
     }
 
