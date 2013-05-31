@@ -27,7 +27,20 @@ public class WaitingState : GameState
 	{
 		base.OnEnter();
 		cam.setTarget(game.Ball.Owner.transform);
-		//cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+        if (game.Ball.Owner)
+        {
+            cam.setTarget(game.Ball.Owner.transform);
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("Error : ball owner is null !");
+            if (game.Ball.PreviousOwner)
+                cam.setTarget(game.Ball.PreviousOwner.transform);
+            else
+                cam.setTarget(game.Ball.transform);
+        }
+        	
+        //cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		game.disableIA = true;
 		game.Referee.PauseIngameTime();
 		if(TeamOnSuper)

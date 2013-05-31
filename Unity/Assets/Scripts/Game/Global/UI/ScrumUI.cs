@@ -5,14 +5,16 @@ public class ScrumUI{
 	
 	private Game game;
     private ScrumManager manager;
+    private ScrumUISettings settings;
 	
 	public ScrumUI(Game _game)
 	{
 		game = _game;
         manager = _game.refs.managers.scrum;
-		StartGUI();
+        settings = _game.settings.UI.ScrumUI;
+        StartGUI();
 	}
-	
+    
 	public void DrawUI()
 	{
 		//if (!manager.ChronoLaunched)
@@ -28,36 +30,57 @@ public class ScrumUI{
 
         if (manager.SuperLoading == 1)
         {
-            GUI.DrawTexture(game.settings.UI.ScrumUI.ScrumSpecialRect, 
-				game.settings.UI.ScrumUI.ScrumSpecialButton, 
+            GUI.DrawTexture(settings.ScrumSpecialRect,
+                settings.ScrumSpecialButton, 
 				ScaleMode.ScaleToFit);
         }
+
+        ManageMalus();       
 	}
 	
 	void StartGUI()
     {
-        Rect rect;        
-       
-        rect = UIManager.screenRelativeRect(game.settings.UI.ScrumUI.ScrumSpecialRect);
-		game.settings.UI.ScrumUI.ScrumSpecialRect = rect;
+        Rect rect;
 
-        rect = UIManager.screenRelativeRect(game.settings.UI.ScrumUI.ScrumBarRect);
-		game.settings.UI.ScrumUI.ScrumBarRect = rect;
-    }
+        rect = UIManager.screenRelativeRect(settings.ScrumSpecialRect);
+        settings.ScrumSpecialRect = rect;
+
+        rect = UIManager.screenRelativeRect(settings.ScrumBarRect);
+        settings.ScrumBarRect = rect;
+
+        rect = UIManager.screenRelativeRect(settings.ScrumLeftSpecialFailedButtonRect);
+        settings.ScrumLeftSpecialFailedButtonRect = rect;
+
+        rect = UIManager.screenRelativeRect(settings.ScrumRightSpecialFailedButtonRect);
+        settings.ScrumRightSpecialFailedButtonRect = rect;
+    }   
 
     void DrawBar()
     {       
         float leftPercent = (1 + manager.currentPosition) / 2;
-        float leftWidth = leftPercent * game.settings.UI.ScrumUI.ScrumBarRect.width;
+        float leftWidth = leftPercent * settings.ScrumBarRect.width;
 
-        Rect rightRect = game.settings.UI.ScrumUI.ScrumBarRect;
-        Rect leftRect  = game.settings.UI.ScrumUI.ScrumBarRect;
+        Rect rightRect = settings.ScrumBarRect;
+        Rect leftRect  = settings.ScrumBarRect;
 
         leftRect.width = leftWidth;
         rightRect.width -= leftWidth;
         rightRect.x += leftWidth;
         
-        GUI.DrawTexture(rightRect, game.settings.UI.ScrumUI.ScrumRightBar);
-        GUI.DrawTexture(leftRect,  game.settings.UI.ScrumUI.ScrumLeftBar);
+        GUI.DrawTexture(rightRect, settings.ScrumRightBar);
+        GUI.DrawTexture(leftRect,  settings.ScrumLeftBar);
+    }
+
+    void ManageMalus()
+    {
+        float t = Time.time;
+
+        if(manager.MalusSouth != -1 && (t - manager.MalusSouth < settings.MalusDuration)) {
+            GUI.DrawTexture(settings.ScrumRightSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+        }
+
+        if(manager.MalusNorth != -1 && (t - manager.MalusNorth < settings.MalusDuration) ){
+            GUI.DrawTexture(settings.ScrumLeftSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+        }
     }
 }

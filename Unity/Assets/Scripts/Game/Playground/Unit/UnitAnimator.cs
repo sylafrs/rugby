@@ -31,6 +31,7 @@ public class UnitAnimator : myMonoBehaviour
     public const string lblDelay = "out_int_delaySpeed";
     public const string lblSuper = "in_bool_super";
     public const string lblFxTime = "out_float_fxSuperTime";
+    public const string lblDodge = "in_bool_dodge";
 
     public bool Tackling
     {
@@ -137,6 +138,18 @@ public class UnitAnimator : myMonoBehaviour
         set
         {
             animator.SetBool(lblDrop, value);
+        }
+    }
+
+    public bool Dodge
+    {
+        get
+        {
+            return animator.GetBool(lblDodge);
+        }
+        set
+        {
+            animator.SetBool(lblDodge, value);
         }
     }
 
@@ -335,6 +348,11 @@ public class UnitAnimator : myMonoBehaviour
                     Super = false;
                     launchSuper = false;
                 }
+
+                if (Dodge)
+                {
+                    Dodge = false;  
+                }
             }
 
             launchUpdate = false;
@@ -369,7 +387,13 @@ public class UnitAnimator : myMonoBehaviour
         launchUpdate = true;
         this.Drop = true;
     }
-	
+
+    public void OnDodge()
+    {
+        launchUpdate = true;
+        Dodge = true;
+    }
+
 	public void PrepareSuper() {
 		Super = true;
 	}

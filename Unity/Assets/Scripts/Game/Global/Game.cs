@@ -273,6 +273,7 @@ public class Game : myMonoBehaviour
 
     public void OnDodge(Unit u)
     {
+        u.unitAnimator.OnDodge();
         this.refs.stateMachine.event_Dodge(u);
     }
 

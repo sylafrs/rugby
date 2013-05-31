@@ -112,7 +112,7 @@ public class Ball : TriggeringTriggered, Debugable
 					PreviousOwner = _owner;
 				}
 
-				_owner = value;
+             	_owner = value;
 				if (value) this.Taken(value);
 				Game.OnOwnerChanged(PreviousOwner, value);
 			}
