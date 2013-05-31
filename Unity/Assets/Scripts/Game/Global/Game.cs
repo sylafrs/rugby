@@ -208,13 +208,17 @@ public class Game : myMonoBehaviour
             // p1.controlled = after;
             if (after.Team == southTeam)
             {
-                p1.Controlled.IndicateSelected(false);
+                if(p1.Controlled)
+                    p1.Controlled.IndicateSelected(false);
+
                 p1.Controlled = after;
                 p1.Controlled.IndicateSelected(true);
             }
             else if (p2 != null)
             {
-                p2.Controlled.IndicateSelected(false);
+                if(p2.Controlled)
+                    p2.Controlled.IndicateSelected(false);
+
                 p2.Controlled = after;
                 p2.Controlled.IndicateSelected(true);
             }
