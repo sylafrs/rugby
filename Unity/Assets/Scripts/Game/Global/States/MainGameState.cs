@@ -14,6 +14,7 @@ public class MainGameState : GameState
 
 	public override void OnEnter()
 	{
+		base.OnEnter();
 		sm.state_change_son(this, new RunningState(sm, cam, game));
 		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 	}

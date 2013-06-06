@@ -139,6 +139,8 @@ public class ScrumingStateSettings
     public float MaximumDuration { get { return test; } set { MyDebug.Log(value); test = value; } }       // Seconds          (tweak)                                                        
     public float SmashValue;           // 0 to 1           (tweak)
     public float SuperMultiplicator;   // Mult             (tweak)
+    public float MalusValue;           // Mult            (tweak)
+    public float InvincibleCooldown;    // Seconds (tweak)
 
     public Vector3 offsetCamera = new Vector3(1, 1, 0);
 }

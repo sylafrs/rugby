@@ -14,6 +14,7 @@ public class TouchState : GameState
 	
  	public override void OnEnter ()
 	{
+		base.OnEnter();
 		cam.setTarget(null);
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.TouchingSgtate.TouchCamSettings);
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);

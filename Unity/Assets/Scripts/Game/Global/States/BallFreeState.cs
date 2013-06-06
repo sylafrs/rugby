@@ -11,7 +11,8 @@ public class BallFreeState : GameState {
     public BallFreeState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 
     public override void OnEnter()
-    {
+    {  
+		base.OnEnter();
         this.decide();
     }
 

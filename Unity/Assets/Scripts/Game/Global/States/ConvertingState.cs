@@ -16,7 +16,8 @@ public class ConvertingState : GameState {
     private Zone zone;
 
     public override void OnEnter()
-    {       
+    {  
+		base.OnEnter();
         camera_edited = false;
         game.Referee.OnTry();
         sm.state_change_son(this, new AimingConversionState(sm, cam, game, zone));        
@@ -32,12 +33,12 @@ public class ConvertingState : GameState {
     public override void OnUpdate()
     {
         if (!camera_edited)
-        {            
+        {
             UnitAnimator ua = this.game.Ball.Owner.unitAnimator;
             if (ua == null || ua.isInState(UnitAnimator.BallIdleState))
             {
                 EditCamera();
-            }
+            }            
         }
     }
 

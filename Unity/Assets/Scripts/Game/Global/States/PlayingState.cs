@@ -14,6 +14,7 @@ public class PlayingState : GameState
 	// On passe en mode jeu après une petite pause
 	public override void OnEnter()
 	{
+		base.OnEnter();
 		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 		sm.state_change_son(this, new WaitingState(sm, cam, game, game.settings.GameStates.MainState.IntroState.timeToSleepAfterIntro));
 	}

@@ -1,6 +1,6 @@
 /**
   * @class IntroState
-  * @brief Etat de la caméra au départ
+  * @brief Etat de la camï¿½ra au dï¿½part
   * @author Sylvain Lafon
   * @see GameState
   */
@@ -22,9 +22,8 @@ public class IntroState : GameState
 	
     // Petit tp + fondu
 	public override void OnEnter()
-    {
-        //this.stepBack()
-		
+    {  
+		base.OnEnter();
 		cameraFirstPosition = game.refs.positions.cameraFirstPosition;
 		fieldCenter			= game.refs.positions.fieldCenter;
 		rotationCenter		= game.refs.positions.rotationCenter;
@@ -47,7 +46,7 @@ public class IntroState : GameState
 		});
 	}
 
-	// Recule sans arrêt
+	// Recule sans arrï¿½t
 	public override void OnUpdate()
     {		
 		//rotate Around
@@ -57,7 +56,7 @@ public class IntroState : GameState
 		Camera.mainCamera.transform.LookAt(fieldCenter);
 	}
 
-	// On va vers la cible, on fait un fondu (en écrasant le précédent).
+	// On va vers la cible, on fait un fondu (en ï¿½crasant le prï¿½cï¿½dent).
 	public override void OnLeave()
 	{
 		cam.setTarget(cam.game.Ball.Owner.transform);

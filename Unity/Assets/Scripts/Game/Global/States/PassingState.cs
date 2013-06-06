@@ -13,6 +13,7 @@ public class PassingState : GameState {
 
     public override void OnEnter()
     {
+		base.OnEnter();
 		cam.LoadParameters(cam.game.settings.GameStates.MainState.PlayingState.MainGameState.PassingState.PassingCamSettings);
     }
 
