@@ -26,15 +26,23 @@ public class LogFile {
 
 	public void WriteLine(string line)
 	{
-		if (line == "")
-			return;
-		if (!File.Exists(nameFile + ".txt"))
-			writer = File.CreateText(nameFile + ".txt");
-		else
-		{
-			writer = File.AppendText(nameFile + ".txt");
+		try {
+			if (line == "")
+				return;
+			if (!File.Exists(nameFile + ".txt")) 
+			{
+				writer = File.CreateText(nameFile + ".txt");
+			}
+			else
+			{
+				writer = File.AppendText(nameFile + ".txt");
+			}
+			writer.WriteLine(line);
+			writer.Close();
 		}
-		writer.WriteLine(line);
-		writer.Close();
+		catch(Exception e) 
+		{
+			Debug.LogWarning(e.Message);
+		}
 	}
 }
