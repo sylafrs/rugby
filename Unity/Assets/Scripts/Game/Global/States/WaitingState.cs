@@ -25,6 +25,8 @@ public class WaitingState : GameState
 
 	public override void OnEnter()
 	{
+		base.OnEnter();
+		cam.setTarget(game.Ball.Owner.transform);
         if (game.Ball.Owner)
         {
             cam.setTarget(game.Ball.Owner.transform);

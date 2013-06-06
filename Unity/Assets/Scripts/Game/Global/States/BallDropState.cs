@@ -12,6 +12,7 @@ public class BallDropState : GameState {
 	
 	public override void OnEnter ()
 	{
+		base.OnEnter();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallDropCamSettings);
 	}
 }

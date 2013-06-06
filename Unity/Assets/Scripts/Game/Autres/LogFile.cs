@@ -6,6 +6,7 @@ public class LogFile {
 
 	string nameFile;
 	StreamWriter writer;
+	long length;
 
 	public LogFile()
 	{
@@ -23,26 +24,40 @@ public class LogFile {
 	{
 		return nameFile;
 	}
-
-	public void WriteLine(string line)
+	
+	public long GetLength()
 	{
-		try {
+		return length;
+	}
+
+	public void WriteLine(string line, bool onlyCreate = false)
+	{
+		try 
+		{
 			if (line == "")
 				return;
-			if (!File.Exists(nameFile + ".txt")) 
-			{
+
+			if (!File.Exists(nameFile + ".txt"))
 				writer = File.CreateText(nameFile + ".txt");
-			}
 			else
-			{
-				writer = File.AppendText(nameFile + ".txt");
-			}
-			writer.WriteLine(line);
+				writer.WriteLine(line);
+				
 			writer.Close();
+			
+			FileInfo info = new FileInfo(nameFile + ".txt");
+			length = info.Length;
 		}
 		catch(Exception e) 
 		{
 			Debug.LogWarning(e.Message);
 		}
+	}
+	
+	public void ClearFile()
+	{
+		if (!File.Exists(nameFile + ".txt"))
+			return;
+		
+		File.WriteAllText(nameFile + ".txt", "");
 	}
 }

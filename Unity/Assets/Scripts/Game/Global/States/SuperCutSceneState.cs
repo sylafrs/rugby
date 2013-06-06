@@ -24,11 +24,7 @@ public class SuperCutSceneState : GameState
 
 	public override void OnEnter ()
 	{              
-        //if (teamOnSuper.captain.unitAnimator)
-        //{
-        //    teamOnSuper.captain.unitAnimator.LaunchSuper();
-        //}
-
+       	base.OnEnter();
         foreach (Unit u in teamOnSuper)
         {
             u.unitAnimator.LaunchSuper();

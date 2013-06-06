@@ -13,6 +13,8 @@ public class RunningState : GameState
 
 	public override void OnEnter()
 	{
+		base.OnEnter();
+		
 		Unit owner = this.game.Ball.Owner;
 
 		if (owner)
