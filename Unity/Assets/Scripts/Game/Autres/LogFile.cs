@@ -47,7 +47,7 @@ public class LogFile {
 			FileInfo info = new FileInfo(nameFile + ".txt");
 			length = info.Length;
 		}
-		catch(Exception e) 
+		catch(System.Exception e) 
 		{
 			Debug.LogWarning(e.Message); // Ex : Directory not found ;)
 		}
