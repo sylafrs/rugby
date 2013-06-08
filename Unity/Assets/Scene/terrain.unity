@@ -3495,6 +3495,8 @@ GameObject:
   - 114: {fileID: 381927173}
   - 114: {fileID: 381927181}
   - 114: {fileID: 381927182}
+  - 114: {fileID: 381927183}
+  - 114: {fileID: 381927184}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3806,6 +3808,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b32529cb63d88e541b504df09ded2337, type: 3}
+  m_Name: 
+--- !u!114 &381927183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f255e151733034b92aa6e1df082c06, type: 3}
+  m_Name: 
+--- !u!114 &381927184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7dfb28b3001d6429028ffe9fd8cacc, type: 3}
   m_Name: 
 --- !u!1 &385681878
 GameObject:
@@ -20067,6 +20089,7 @@ MonoBehaviour:
   step: 0
   game: {fileID: 448441829}
   gameCamera: {fileID: 381927179}
+  publicTarget: {fileID: 0}
   rotationDelay: .300000012
   smoothTime: .300000012
   smoothAngle: {x: .300000012, y: .300000012, z: .300000012}
@@ -20080,6 +20103,8 @@ MonoBehaviour:
   flipDelay: .100000001
   CancelNextFlip: 0
   CameraShakeComponent: {fileID: 0}
+  CameraZoomComponent: {fileID: 0}
+  CameraRotatingAroundComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0

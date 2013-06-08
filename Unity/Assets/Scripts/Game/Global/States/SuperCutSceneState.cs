@@ -23,8 +23,12 @@ public class SuperCutSceneState : GameState
 	}
 
 	public override void OnEnter ()
-	{              
+	{
+		
+		
        	base.OnEnter();
+		
+		
         foreach (Unit u in teamOnSuper)
         {
             u.unitAnimator.LaunchSuper();
@@ -37,6 +41,10 @@ public class SuperCutSceneState : GameState
 			this.period 	= 3.3f;
 			this.rotating	= true;
 			cam.ChangeCameraState(CameraManager.CameraState.FREE);
+			
+			this.cam.CameraShakeComponent.Shake(0.2f,1);
+			this.cam.CameraZoomComponent.StartZoom(0.9f,0.3f);
+			
 		}else{
 			this.rotating	= false;
 		}
@@ -59,6 +67,8 @@ public class SuperCutSceneState : GameState
 			Camera.mainCamera.transform.RotateAround(game.Ball.Owner.transform.position,
 				new Vector3(0,1,0), 
 				Mathf.Rad2Deg * (angleFromZero - this.lastAngle));
+			
+			Debug.Log("Has rotated");
 			
 			// This current state becomes the next previous one
 		    this.lastAngle = angleFromZero;

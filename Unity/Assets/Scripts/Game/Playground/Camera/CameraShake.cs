@@ -24,7 +24,6 @@ public class CameraShake : MonoBehaviour{
 	IEnumerator EndShake(float duration) {
   		yield return new WaitForSeconds(duration);
 		this.enabled = false;
-		this.OnFinish();
 	}
 	
 	void Start(){
@@ -32,11 +31,13 @@ public class CameraShake : MonoBehaviour{
 	}
 	
 	void Update(){
+		this.originPosition = this.transform.position;
+    	this.originRotation = this.transform.rotation;
     	transform.position = originPosition + Random.insideUnitSphere * ShakeAmount;
-    	transform.rotation =  Quaternion(
-	        originRotation.x + Random.Range(-ShakeAmount,ShakeAmount)*.2,
-	        originRotation.y + Random.Range(-ShakeAmount,ShakeAmount)*.2,
-	        originRotation.z + Random.Range(-ShakeAmount,ShakeAmount)*.2,
-	        originRotation.w + Random.Range(-ShakeAmount,ShakeAmount)*.2);
+    	transform.rotation =  new Quaternion(
+	        originRotation.x + Random.Range(-ShakeAmount,ShakeAmount)*.02f,
+	        originRotation.y + Random.Range(-ShakeAmount,ShakeAmount)*.02f,
+	        originRotation.z + Random.Range(-ShakeAmount,ShakeAmount)*.02f,
+	        originRotation.w + Random.Range(-ShakeAmount,ShakeAmount)*.02f);
 	}
 }

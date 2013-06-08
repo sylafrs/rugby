@@ -28,6 +28,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
                         
         }
     }
+	public Transform publicTarget;
 	
 	private Vector3 	velocity = Vector3.zero;
 	private float		velocityFloat = 0f;
@@ -87,7 +88,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	private CameraState currentCameraState;
 	
 	//Cam component
-	private CameraShake CameraShakeComponent;
+	public CameraShake 			CameraShakeComponent;
+	public CameraZoom  			CameraZoomComponent;
+	public CameraRotatingAround CameraRotatingAroundComponent;
 	
 	// Use this for initialization
 	void Start () {
@@ -104,8 +107,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		
 		
 		//get Component
-		this.CameraShakeComponent = Camera.mainCamera.GetComponent<CameraShake>();
-		
+		this.CameraShakeComponent 			= Camera.mainCamera.GetComponent<CameraShake>();
+		this.CameraZoomComponent  			= Camera.mainCamera.GetComponent<CameraZoom>();
+		this.CameraRotatingAroundComponent  = Camera.mainCamera.GetComponent<CameraRotatingAround>();
 	}
 	
 	public void ChangeCameraState(CameraState newState)
@@ -114,6 +118,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	}
 	
 	void FixedUpdate(){
+		this.publicTarget = this.target;
 		switch (currentCameraState)
 		{
 			case CameraState.FREE:
