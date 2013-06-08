@@ -86,6 +86,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	};
 	private CameraState currentCameraState;
 	
+	//Cam component
+	private CameraShake CameraShakeComponent;
+	
 	// Use this for initialization
 	void Start () {
 		resetActualDelay();
@@ -98,6 +101,11 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		zMinForBlue	        = MinfollowOffset.z;
 		zMaxForBlue	  		= MaxfollowOffset.z;
 		currentCameraState  = CameraState.FREE;
+		
+		
+		//get Component
+		this.CameraShakeComponent = Camera.mainCamera.GetComponent<CameraShake>();
+		
 	}
 	
 	public void ChangeCameraState(CameraState newState)

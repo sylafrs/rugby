@@ -1,35 +1,42 @@
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class CameraShake : MonoBehaviour{
 	
-	private float  ShakeAmount;
-	private Action OnFinish;
+	float  
+					ShakeAmount, 
+					duration;
+	System.Action	OnFinish;
+	Vector3 		originPosition;
+	Quaternion 		originRotation;
 	
-	public void Start(){
+	
+	
+	public void Shake(float _shakeAmount, float _duration){
+		this.originPosition = this.transform.position;
+    	this.originRotation = this.transform.rotation;
+		this.ShakeAmount 	= _shakeAmount;
+		this.duration	 	= _duration;
+		this.enabled 	 	= true;
+		StartCoroutine(EndShake(this.duration));
+	}
+	
+	IEnumerator EndShake(float duration) {
+  		yield return new WaitForSeconds(duration);
+		this.enabled = false;
+		this.OnFinish();
+	}
+	
+	void Start(){
 		this.enabled = false;
 	}
 	
-	public void Shake(float _shakeAmount){
-		this.ShakeAmount = _shakeAmount;
-		//this.ChangeCameraState(CameraState.SHAKING);
-	}
-	
-	private void ShakeUpdate(){
-		//float quakeAmt = Random.value*jiggleAmt*2 - jiggleAmt;
-		
-		//Random.value
-		
-  		Vector3 pp = transform.position;
-  		pp.y+= ShakeAmount; // can also add to x and/or z
-  		transform.position = pp;
-	}
-	
-	IEnumerator jiggleCam2(float duration) {
-  		yield return new WaitForSeconds(duration);
- 		ShakeAmount = 0;
-		//this.ChangeCameraState(CameraState.FREE);
-		OnFinish();
+	void Update(){
+    	transform.position = originPosition + Random.insideUnitSphere * ShakeAmount;
+    	transform.rotation =  Quaternion(
+	        originRotation.x + Random.Range(-ShakeAmount,ShakeAmount)*.2,
+	        originRotation.y + Random.Range(-ShakeAmount,ShakeAmount)*.2,
+	        originRotation.z + Random.Range(-ShakeAmount,ShakeAmount)*.2,
+	        originRotation.w + Random.Range(-ShakeAmount,ShakeAmount)*.2);
 	}
 }
