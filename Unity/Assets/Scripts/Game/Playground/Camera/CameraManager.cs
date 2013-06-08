@@ -79,6 +79,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		FOLLOWING,
 		//FLIPPING  : rotation, zoom, transaltion to get closer
 		FLIPPING,
+		//SHAKING 	: Shake !
+		SHAKING,
 		//ONLYZOOM  : zoom to target
 		ONLYZOOM
 	};
@@ -126,6 +128,11 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			case CameraState.ONLYZOOM:
 			{
 				this.TranslateCam2();
+				break;
+			}
+			case CameraState.SHAKING:
+			{
+				this.ShakeUpdate();
 				break;
 			}
 			default :

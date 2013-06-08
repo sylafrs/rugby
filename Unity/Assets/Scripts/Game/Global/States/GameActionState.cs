@@ -13,6 +13,7 @@ public class GameActionState : GameState {
 
     public override void OnEnter()
     {
+		base.OnEnter();	
         game.northTeam.Super.endSuper();
         game.southTeam.Super.endSuper();
         game.Referee.PauseIngameTime();

@@ -13,6 +13,7 @@ public class BallHandlingState : GameState
 
     public override void OnEnter()
     {
+		base.OnEnter();
         sm.state_change_son(this, new GainGroundingState(sm, cam, game));
     }
 

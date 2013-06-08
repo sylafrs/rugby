@@ -11,6 +11,7 @@ public class EndState : GameState
     // On entre dans l'état de fin
 	public override void OnEnter()
     {
+		base.OnEnter();
 		game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
     }
 	

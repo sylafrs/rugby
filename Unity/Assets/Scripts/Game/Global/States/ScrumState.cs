@@ -14,6 +14,7 @@ public class ScrumState : GameState
 	
 	public override void OnEnter()
     {
+		base.OnEnter();
         ScrumingStateSettings settings = game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState;
 
         game.Referee.ScrumCinematicMovement();
