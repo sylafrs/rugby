@@ -2,15 +2,18 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public partial class CameraManager{
-	
+public class CameraShake : MonoBehaviour{
 	
 	private float  ShakeAmount;
 	private Action OnFinish;
 	
+	public void Start(){
+		this.enabled = false;
+	}
+	
 	public void Shake(float _shakeAmount){
 		this.ShakeAmount = _shakeAmount;
-		this.ChangeCameraState(CameraState.SHAKING);
+		//this.ChangeCameraState(CameraState.SHAKING);
 	}
 	
 	private void ShakeUpdate(){
@@ -26,7 +29,7 @@ public partial class CameraManager{
 	IEnumerator jiggleCam2(float duration) {
   		yield return new WaitForSeconds(duration);
  		ShakeAmount = 0;
-		this.ChangeCameraState(CameraState.FREE);
+		//this.ChangeCameraState(CameraState.FREE);
 		OnFinish();
 	}
 }

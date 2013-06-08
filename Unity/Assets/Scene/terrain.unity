@@ -3494,6 +3494,7 @@ GameObject:
   - 114: {fileID: 381927180}
   - 114: {fileID: 381927173}
   - 114: {fileID: 381927181}
+  - 114: {fileID: 381927182}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3796,6 +3797,16 @@ MonoBehaviour:
   JapGoal:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &381927182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b32529cb63d88e541b504df09ded2337, type: 3}
+  m_Name: 
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0

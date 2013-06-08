@@ -132,7 +132,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			}
 			case CameraState.SHAKING:
 			{
-				this.ShakeUpdate();
+				//this.ShakeUpdate();
 				break;
 			}
 			default :
