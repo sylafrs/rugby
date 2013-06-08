@@ -32,20 +32,25 @@ public class LogFile {
 
 	public void WriteLine(string line, bool onlyCreate = false)
 	{
-		if (line == "")
-			return;
-
-		if (!File.Exists(nameFile + ".txt"))
-			writer = File.CreateText(nameFile + ".txt");
-		else
+		try 
 		{
-			writer = File.AppendText(nameFile + ".txt");
+			if (line == "")
+				return;
+
+			if (!File.Exists(nameFile + ".txt"))
+				writer = File.CreateText(nameFile + ".txt");
+			else
+				writer.WriteLine(line);
+				
+			writer.Close();
+			
+			FileInfo info = new FileInfo(nameFile + ".txt");
+			length = info.Length;
 		}
-		writer.WriteLine(line);
-		writer.Close();
-		
-		FileInfo info = new FileInfo(nameFile + ".txt");
-		length = info.Length;
+		catch(System.Exception e) 
+		{
+			Debug.LogWarning(e.Message); // Ex : Directory not found ;)
+		}
 	}
 	
 	public void ClearFile()
