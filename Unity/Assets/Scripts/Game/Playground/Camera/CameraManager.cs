@@ -1,3 +1,5 @@
+#define USE_FIXEDUPDATE
+
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -105,7 +107,11 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		this.currentCameraState = newState;
 	}
 	
+#if USE_FIXEDUPDATE
 	void FixedUpdate(){
+#else
+    void Update() {
+#endif
 		switch (currentCameraState)
 		{
 			case CameraState.FREE:
