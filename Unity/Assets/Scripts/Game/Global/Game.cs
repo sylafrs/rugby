@@ -112,7 +112,7 @@ public class Game : myMonoBehaviour
         this.Ball.Game = this;
         this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         this.Ball.transform.localPosition = Vector3.zero;
-        this.Ball.Owner = null;
+        this.Ball.Owner = p1.Controlled;
 		
 		if(alwaysScrum)
         	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
