@@ -1,59 +1,56 @@
 using UnityEngine;
 
 /**
-  * @class Waiting state
-  * @brief Etat de la caméra à la fin du jeu
-  * @author Sylvain Lafon
+  * @class SuperCutSceneState
+  * @brief State du jeu au moment de la cutscene pour les supers
+  * @author TEAM
   * @see GameState
   */
 public class SuperCutSceneState : GameState
 {	
-	private Team 		teamOnSuper;
-	private float		angle;
-	private float		lastAngle;
-	private float 		time;
-	private float 		period;
-	private float 		velocity;
-	private bool		rotating;
+	Team 	team;
+	float	angle,
+			lastAngle,
+	 		time,
+	 		period,
+	 		velocity;
+	bool	rotating;
+	Vector3 axis;
 	
 	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper)
 		: base(sm, cam, game)
 	{
-		this.teamOnSuper = TeamOnSuper;
+		this.team = TeamOnSuper;
 	}
 
 	public override void OnEnter ()
 	{
-		
-		
-       	base.OnEnter();
-		
-		
-        foreach (Unit u in teamOnSuper)
-        {
+       	base.OnEnter();	
+        foreach (Unit u in team){
             u.unitAnimator.LaunchSuper();
         }
-
-		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
-			this.cam.zoom	= 0.5f;
-			this.angle  	= 360 * Mathf.Deg2Rad;
-			this.lastAngle	= 0;
-			this.period 	= 3.3f;
-			this.rotating	= true;
+		
+		//if( (game.Ball.Owner != null) && (team == game.Ball.Owner.Team) ){
+			SuperCutsceneStateSettings settings = cam.game.settings.GameStates.MainState.PlayingState.WaintingState.superCutsceneState;
+			this.period     = settings.duration;
+			this.angle  	= settings.finalAngle * Mathf.Deg2Rad;
+			this.axis		= settings.rotationAxis;
 			cam.ChangeCameraState(CameraManager.CameraState.FREE);
-			
-			this.cam.CameraShakeComponent.Shake(0.2f,1);
-			this.cam.CameraZoomComponent.StartZoom(0.9f,0.3f);
-			
-		}else{
-			this.rotating	= false;
-		}
+		
+			/*		
+			cam.CameraRotatingAroundComponent.StartTimedRotation(game.Ball.Owner.transform, 
+				this.axis,
+				game.Ball.Owner.transform,
+				this.transform,
+				this.angle,
+				this.period);
+			*/
+		//}
 	}
-	//Rotation spéciale capitaine
-	//Rotation normale
 	
 	public override void OnUpdate()
 	{
+		/*
 		if(this.rotating)
 		{
 			time += Time.deltaTime;
@@ -76,13 +73,13 @@ public class SuperCutSceneState : GameState
 			//lookat
 		    Camera.mainCamera.transform.LookAt(game.Ball.Owner.transform.position);
 		}
+		*/
 	}
 	
 	public override void OnLeave ()
 	{
-		//se remettre derrière
-        teamOnSuper.Super.LaunchSuperEffects();
-        teamOnSuper.PlaySuperGroundEffect();
+        team.Super.LaunchSuperEffects();
+        team.PlaySuperGroundEffect();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 	}
 }

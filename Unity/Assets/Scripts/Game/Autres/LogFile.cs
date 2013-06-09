@@ -49,7 +49,7 @@ public class LogFile {
 		}
 		catch(System.Exception e) 
 		{
-			Debug.LogWarning(e.Message); // Ex : Directory not found ;)
+			//Debug.LogWarning(e.Message); // Ex : Directory not found ;)
 		}
 	}
 	

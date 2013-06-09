@@ -18,8 +18,9 @@ public class MainStateSettings
 [System.Serializable]
 public class IntroStateSettings
 {
-	public float timeToSleepAfterIntro    = 3; // Seconds (precision : miliseconds)
-	public float rotationSpeed		   	  = 10; // Seconds (precision : miliseconds)
+	public float 	timeToSleepAfterIntro    = 3; // Seconds (precision : miliseconds)
+	public float 	rotationSpeed		   	  = 10; // Seconds (precision : miliseconds)
+	public Vector3	rotationAxis;
 }
 
 [System.Serializable]
@@ -95,7 +96,15 @@ public class TacklingStateSettings
 [System.Serializable]
 public class WaitingStateSettings
 {
-		
+	public SuperCutsceneStateSettings superCutsceneState;
+}
+
+[System.Serializable]
+public class SuperCutsceneStateSettings
+{
+	public Vector3	rotationAxis;
+	public float 	duration,
+					finalAngle;
 }
 
 [System.Serializable]

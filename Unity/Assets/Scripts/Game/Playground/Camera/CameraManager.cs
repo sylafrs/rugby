@@ -92,6 +92,13 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	public CameraZoom  			CameraZoomComponent;
 	public CameraRotatingAround CameraRotatingAroundComponent;
 	
+	void Awake(){
+		//get Component
+		this.CameraShakeComponent 			= Camera.mainCamera.GetComponent<CameraShake>();
+		this.CameraZoomComponent  			= Camera.mainCamera.GetComponent<CameraZoom>();
+		this.CameraRotatingAroundComponent  = Camera.mainCamera.GetComponent<CameraRotatingAround>();
+	}
+	
 	// Use this for initialization
 	void Start () {
 		resetActualDelay();
@@ -106,10 +113,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		currentCameraState  = CameraState.FREE;
 		
 		
-		//get Component
-		this.CameraShakeComponent 			= Camera.mainCamera.GetComponent<CameraShake>();
-		this.CameraZoomComponent  			= Camera.mainCamera.GetComponent<CameraZoom>();
-		this.CameraRotatingAroundComponent  = Camera.mainCamera.GetComponent<CameraRotatingAround>();
+		
 	}
 	
 	public void ChangeCameraState(CameraState newState)
