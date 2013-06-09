@@ -139,6 +139,7 @@ MonoBehaviour:
     conversion: {fileID: 2004071856}
     scrum: {fileID: 2004071853}
     ui: {fileID: 2004071854}
+    coin: {fileID: 2004071857}
   placeHolders:
     scrumPlacement: {fileID: 1402728130}
     startPlacement: {fileID: 578248106}
@@ -3785,17 +3786,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4187fb18c3e8d7409119afa2d7a1484, type: 3}
   m_Name: 
-  Fade: 1
-  TimeToFade: 1
-  NewShader: Transparent/Diffuse
-  NewAlphaJap: 128
-  NewAlphaMao: 128
-  MaoGoal:
-    serializedVersion: 2
-    m_Bits: 4096
-  JapGoal:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
@@ -20012,6 +20002,7 @@ GameObject:
   - 114: {fileID: 2004071859}
   - 114: {fileID: 2004071851}
   - 114: {fileID: 2004071852}
+  - 114: {fileID: 2004071857}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -20186,6 +20177,19 @@ MonoBehaviour:
     y: 0
     width: 4.65999985
     height: 7.05000019
+--- !u!114 &2004071857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2004071849}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5988162383988cd4385e03b09a2f34e1, type: 3}
+  m_Name: 
+  timeFlipping: 1
+  pile: {fileID: 166411255}
+  face: {fileID: 613712549}
 --- !u!114 &2004071858
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class GameReferences : myMonoBehaviour {
         public TransformationManager conversion;
         public ScrumManager scrum;
         public UIManager ui;
+        public CoinFlipManager coin;
     }
 
     [System.Serializable]
