@@ -112,16 +112,22 @@ public class Game : myMonoBehaviour
         this.Ball.Game = this;
         this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         this.Ball.transform.localPosition = Vector3.zero;
-        this.Ball.Owner = p1.Controlled;
+        this.Ball.Owner = null;
 		
 		if(alwaysScrum)
         	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
 		
         this.refs.managers.intro.OnFinish = () =>
         {
-            this._disableIA = true;                  
-            this.Referee.OnStart();
-			this.refs.stateMachine.event_OnStartSignal();
+            this.refs.managers.coin.callBack = (Team t) =>
+            {
+                this.Ball.Owner = t.Player.Controlled;
+                this._disableIA = true;
+                this.Referee.OnStart();
+                this.refs.stateMachine.event_OnStartSignal();
+            };
+
+            this.refs.managers.coin.enabled = true;
 		};
 
 		this.refs.stateMachine.SetFirstState(
