@@ -37,14 +37,11 @@ public class SuperCutSceneState : GameState
 			this.axis		= settings.rotationAxis;
 			cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		
-			/*		
-			cam.CameraRotatingAroundComponent.StartTimedRotation(game.Ball.Owner.transform, 
-				this.axis,
-				game.Ball.Owner.transform,
-				this.transform,
+					
+			cam.CameraRotatingAroundComponent.StartTimedRotation(game.Ball.Owner.transform, this.axis, game.Ball.Owner.transform, 
+				Camera.mainCamera.transform,
 				this.angle,
 				this.period);
-			*/
 		//}
 	}
 	
