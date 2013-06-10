@@ -33,7 +33,7 @@ public class SuperCutSceneState : GameState
 		//if( (game.Ball.Owner != null) && (team == game.Ball.Owner.Team) ){
 			SuperCutsceneStateSettings settings = cam.game.settings.GameStates.MainState.PlayingState.WaintingState.superCutsceneState;
 			this.period     = settings.duration;
-			this.angle  	= settings.finalAngle * Mathf.Deg2Rad;
+			this.angle  	= settings.finalAngle;
 			this.axis		= settings.rotationAxis;
 			cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		

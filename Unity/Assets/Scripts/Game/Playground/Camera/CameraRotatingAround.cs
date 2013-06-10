@@ -47,11 +47,12 @@ public class CameraRotatingAround : MonoBehaviour {
 		this.enabled = false;
 	}
 	
-	void Update () {
+	void FixedUpdate () {
 		float angle = 0f;
 		if(duration != Mathf.Infinity){
 			if(this.timeElapsed <= this.duration){
 				this.timeElapsed        += Time.deltaTime;
+				Debug.Log("target : "+this.targetAngle);
 				float angleFromZero = Mathf.LerpAngle(0, this.targetAngle, this.timeElapsed/this.duration);
 				Debug.Log("angle from zero : "+angleFromZero);
 				angle = angleFromZero - this.lastAngle;
@@ -62,7 +63,7 @@ public class CameraRotatingAround : MonoBehaviour {
 		}else{
 			angle = this.targetAngle;	
 		}
-		this.transform.RotateAround(this.center.position,this.axis,angle * Mathf.Deg2Rad * Time.deltaTime);
+		this.transform.RotateAround(this.center.position,this.axis,angle * Mathf.Deg2Rad);
 		this.transform.LookAt(this.focus);
 	}
 }

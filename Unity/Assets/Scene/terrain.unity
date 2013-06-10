@@ -4408,7 +4408,7 @@ MonoBehaviour:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
-          rotationSpeed: 2000
+          rotationSpeed: 35
           rotationAxis: {x: 0, y: 1, z: 0}
         PlayingState:
           MainGameState:
@@ -4446,7 +4446,7 @@ MonoBehaviour:
             superCutsceneState:
               rotationAxis: {x: 0, y: 1, z: 0}
               duration: 3.29999995
-              finalAngle: 360
+              finalAngle: 180
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
