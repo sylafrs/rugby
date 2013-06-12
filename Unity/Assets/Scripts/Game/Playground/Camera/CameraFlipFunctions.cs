@@ -96,14 +96,16 @@ public partial class CameraManager{
 			
             // Get the angle for the current state
 			//float angleFromZero = Mathf.LerpAngle(0, this.flipAngle, this.flipTime/this.flipDuration);
+			Debug.Log("target : "+this.flipAngle);
 			float angleFromZero = Mathf.SmoothDampAngle(this.flipLastAngle, this.flipAngle, ref velocityFloat,game.settings.Global.GlobalCamera.flipSmoothTime);
-
+			Debug.Log("angle from zero : "+angleFromZero);
+			
             // Rotates the camera from his previous state to the current one
 			if(target != null){
 				this.gameCamera.transform.RotateAround(target.position, this.flipAxis, Mathf.Rad2Deg * (angleFromZero - flipLastAngle));
 			}
 			
-            // This current state becomes the next previous one
+            // This current state becomes the next previous one, I to to try to speak to english
             this.flipLastAngle = angleFromZero;
 			
             // If the rotation is finished

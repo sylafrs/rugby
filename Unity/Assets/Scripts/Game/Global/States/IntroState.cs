@@ -20,21 +20,24 @@ public class IntroState : GameState
 			 	rotationAngle;
 	Vector3		rotationAxis;
 	
-	public override void OnEnter()
-    {  
+	public override void OnEnter(){  
 		base.OnEnter();
 		cameraFirstPosition = game.refs.positions.cameraFirstPosition;
 		fieldCenter			= game.refs.positions.fieldCenter;
 		rotationCenter		= game.refs.positions.rotationCenter;
 		rotationSpeed 		= cam.game.settings.GameStates.MainState.IntroState.rotationSpeed;
 		rotationAxis 		= cam.game.settings.GameStates.MainState.IntroState.rotationAxis;
-		rotationAngle 		= 1 * rotationSpeed;
+		rotationAngle 		= rotationSpeed/100;
 
-		this.cam.CameraRotatingAroundComponent.StartEndlessRotation(rotationCenter,rotationAxis,fieldCenter, cameraFirstPosition, rotationAngle);
+		this.cam.CameraRotatingAroundComponent.StartEndlessRotation(
+			rotationCenter,
+			rotationAxis,
+			fieldCenter,
+			cameraFirstPosition,
+			rotationAngle);
     }
 
-	public override void OnLeave()
-	{
+	public override void OnLeave(){
 		cam.CameraRotatingAroundComponent.StopRotation();
 		cam.setTarget(cam.game.Ball.Owner.transform);
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);

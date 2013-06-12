@@ -19,8 +19,11 @@ public class CameraZoom : MonoBehaviour {
 		this.enabled 		= true;
 	}
 	
-	void Start () {
+	void Awake(){
 		this.cameraManager = GameObject.Find("Managers").GetComponent<CameraManager>();
+	}
+	
+	void Start () {
 		this.enabled = false;
 	}
 	

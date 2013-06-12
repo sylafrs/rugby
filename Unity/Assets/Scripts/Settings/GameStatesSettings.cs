@@ -104,7 +104,8 @@ public class SuperCutsceneStateSettings
 {
 	public Vector3	rotationAxis;
 	public float 	duration,
-					finalAngle;
+					finalAngle,
+					smooth;
 }
 
 [System.Serializable]

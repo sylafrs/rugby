@@ -3,27 +3,34 @@ using System.Collections;
 
 public class CameraRotatingAround : MonoBehaviour {
 	
-	Transform 	center,
-				focus,
-				start;
-	Vector3	  	axis;
-	float		targetAngle,
-				lastAngle,
-				duration,
-				timeElapsed;
+	Transform 		center,
+					focus,
+					start;
+	Vector3	  		axis;
+	float			targetAngle,
+					lastAngle,
+					duration,
+					velocityFloat,
+					timeElapsed,
+					smooth;
+	CameraManager	cameraManager;
 	
 	///start a timed rotation, from 0 to Target Angle in Duraction sec
-	public void StartTimedRotation(Transform _center, Vector3 _axis, Transform _focus, Transform _start, float _angle, float _duration){
+	public void StartTimedRotation(Transform _center, Vector3 _axis, Transform _focus, Transform _start, float _angle, float _duration, float _smooth){
 		this.duration 		= _duration;
 		this.timeElapsed 	= 0f;
 		this.lastAngle		= 0f;
-		StartRotation(_center, _axis, _focus, _start, _angle);
+		this.smooth		    = _smooth;
+		this.targetAngle    = _angle * Mathf.Deg2Rad;
+		StartRotation(_center, _axis, _focus, _start);
 	}
 	
 	///start an endless rotation, each frame
 	public void StartEndlessRotation(Transform _center, Vector3 _axis, Transform _focus, Transform _start, float _angle){
 		this.duration	   = Mathf.Infinity;
-		StartRotation(_center, _axis, _focus, _start, _angle);
+		this.targetAngle   = _angle;
+		this.smooth		   = 0;
+		StartRotation(_center, _axis, _focus, _start);
 	}
 	
 	/// <summary>
@@ -33,14 +40,18 @@ public class CameraRotatingAround : MonoBehaviour {
 		this.enabled = false;
 	}
 	
-	void StartRotation(Transform _center, Vector3 _axis, Transform _focus, Transform _start, float _angle){
+	void StartRotation(Transform _center, Vector3 _axis, Transform _focus, Transform _start){
 		this.center 	 = _center;
 		this.axis		 = _axis;
 		this.focus		 = _focus;
 		this.start		 = _start;
-		this.targetAngle = _angle;
 		this.transform.position = this.start.position;
+		cameraManager.ChangeCameraState(CameraManager.CameraState.FREE);
 		this.enabled 	= true;
+	}
+	
+	void Awake(){
+		this.cameraManager = GameObject.Find("Managers").GetComponent<CameraManager>();
 	}
 	
 	void Start () {
@@ -53,9 +64,10 @@ public class CameraRotatingAround : MonoBehaviour {
 			if(this.timeElapsed <= this.duration){
 				this.timeElapsed        += Time.deltaTime;
 				Debug.Log("target : "+this.targetAngle);
-				float angleFromZero = Mathf.LerpAngle(0, this.targetAngle, this.timeElapsed/this.duration);
+				//float angleFromZero = Mathf.LerpAngle(0, this.targetAngle, this.timeElapsed/this.duration);
+				float angleFromZero = Mathf.SmoothDampAngle(this.lastAngle, this.targetAngle, ref this.velocityFloat,this.smooth);
 				Debug.Log("angle from zero : "+angleFromZero);
-				angle = angleFromZero - this.lastAngle;
+				angle = (angleFromZero - this.lastAngle) * Mathf.Rad2Deg;
 				this.lastAngle = angleFromZero;
 			}else{
 				this.StopRotation();
@@ -63,7 +75,7 @@ public class CameraRotatingAround : MonoBehaviour {
 		}else{
 			angle = this.targetAngle;	
 		}
-		this.transform.RotateAround(this.center.position,this.axis,angle * Mathf.Deg2Rad);
+		this.transform.RotateAround(this.center.position,this.axis,angle);
 		this.transform.LookAt(this.focus);
 	}
 }
