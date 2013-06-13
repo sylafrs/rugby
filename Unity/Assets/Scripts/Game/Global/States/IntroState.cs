@@ -28,13 +28,13 @@ public class IntroState : GameState
 		rotationSpeed 		= cam.game.settings.GameStates.MainState.IntroState.rotationSpeed;
 		rotationAxis 		= cam.game.settings.GameStates.MainState.IntroState.rotationAxis;
 		rotationAngle 		= rotationSpeed/100;
-
+		
 		this.cam.CameraRotatingAroundComponent.StartEndlessRotation(
 			rotationCenter,
 			rotationAxis,
 			fieldCenter,
 			cameraFirstPosition,
-			rotationAngle);
+			rotationAngle);	
     }
 
 	public override void OnLeave(){

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /**
   * @class SuperCutSceneState
@@ -9,6 +10,7 @@ using UnityEngine;
 public class SuperCutSceneState : GameState
 {	
 	Team 	team;
+	float   timeElapsed;
 	
 	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper): base(sm, cam, game){
 		this.team = TeamOnSuper;
@@ -29,10 +31,18 @@ public class SuperCutSceneState : GameState
 			settings.finalAngle,
 			settings.duration,
 			settings.smooth);
+		cam.CameraZoomComponent.StartZoomIn(20,0.3f,0.3f);
+		this.timeElapsed = 0;
+	}
+	
+	public override void OnUpdate(){
+		this.timeElapsed += Time.deltaTime;
+		
 	}
 	
 	public override void OnLeave ()
 	{
+		cam.CameraZoomComponent.ZoomToOrigin(0.3f,0.3f);
         team.Super.LaunchSuperEffects();
         team.PlaySuperGroundEffect();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);

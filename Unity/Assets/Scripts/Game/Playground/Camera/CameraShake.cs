@@ -21,6 +21,8 @@ public class CameraShake : MonoBehaviour{
 		StartCoroutine(EndShake(this.duration));
 	}
 	
+	
+	
 	IEnumerator EndShake(float duration) {
   		yield return new WaitForSeconds(duration);
 		this.enabled = false;

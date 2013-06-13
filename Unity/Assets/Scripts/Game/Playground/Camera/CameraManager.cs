@@ -93,10 +93,17 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	public CameraRotatingAround CameraRotatingAroundComponent;
 	
 	void Awake(){
+		Camera camera = Camera.mainCamera;
+		
+		//add components
+		camera.gameObject.AddComponent<CameraShake>();
+		camera.gameObject.AddComponent<CameraZoom>();
+		camera.gameObject.AddComponent<CameraRotatingAround>();
+		
 		//get Component
-		this.CameraShakeComponent 			= Camera.mainCamera.GetComponent<CameraShake>();
-		this.CameraZoomComponent  			= Camera.mainCamera.GetComponent<CameraZoom>();
-		this.CameraRotatingAroundComponent  = Camera.mainCamera.GetComponent<CameraRotatingAround>();
+		this.CameraShakeComponent 			= camera.GetComponent<CameraShake>();
+		this.CameraZoomComponent  			= camera.GetComponent<CameraZoom>();
+		this.CameraRotatingAroundComponent  = camera.GetComponent<CameraRotatingAround>();
 	}
 	
 	// Use this for initialization
@@ -127,7 +134,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		{
 			case CameraState.FREE:
 			{
-				//nothing ! Someone is moving the camera elsewhere !
+				//nothing ! Someone is moving the camera somewhere !
 				break;
 			}
 			case CameraState.FLIPPING:

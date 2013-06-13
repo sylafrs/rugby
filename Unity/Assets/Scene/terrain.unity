@@ -3495,8 +3495,6 @@ GameObject:
   - 114: {fileID: 381927173}
   - 114: {fileID: 381927181}
   - 114: {fileID: 381927182}
-  - 114: {fileID: 381927183}
-  - 114: {fileID: 381927184}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3807,28 +3805,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32529cb63d88e541b504df09ded2337, type: 3}
+  m_Script: {fileID: 11500000, guid: a70f7bcbb2cc9a74aa97ef01254ac608, type: 3}
   m_Name: 
---- !u!114 &381927183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 381927171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f255e151733034b92aa6e1df082c06, type: 3}
-  m_Name: 
---- !u!114 &381927184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 381927171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7dfb28b3001d6429028ffe9fd8cacc, type: 3}
-  m_Name: 
+  length: 3.29999995
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4427,7 +4406,7 @@ MonoBehaviour:
                 angleDropKick: 45
                 angleDropUpAndUnder: 70
                 BallDropCamSettings:
-                  zoom: .300000012
+                  zoom: 1
                   target: 0
                   nearClip: .300000012
                 GroundBallCamSettings:

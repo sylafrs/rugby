@@ -52,9 +52,6 @@ public class CameraRotatingAround : MonoBehaviour {
 	
 	void Awake(){
 		this.cameraManager = GameObject.Find("Managers").GetComponent<CameraManager>();
-	}
-	
-	void Start () {
 		this.enabled = false;
 	}
 	
@@ -63,10 +60,7 @@ public class CameraRotatingAround : MonoBehaviour {
 		if(duration != Mathf.Infinity){
 			if(this.timeElapsed <= this.duration){
 				this.timeElapsed        += Time.deltaTime;
-				Debug.Log("target : "+this.targetAngle);
-				//float angleFromZero = Mathf.LerpAngle(0, this.targetAngle, this.timeElapsed/this.duration);
 				float angleFromZero = Mathf.SmoothDampAngle(this.lastAngle, this.targetAngle, ref this.velocityFloat,this.smooth);
-				Debug.Log("angle from zero : "+angleFromZero);
 				angle = (angleFromZero - this.lastAngle) * Mathf.Rad2Deg;
 				this.lastAngle = angleFromZero;
 			}else{
