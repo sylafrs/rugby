@@ -93,19 +93,22 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	public CameraShake 			CameraShakeComponent;
 	public CameraZoom  			CameraZoomComponent;
 	public CameraRotatingAround CameraRotatingAroundComponent;
+	public SuperCutSceneScript	SuperCutSceneComponent;
 	
 	void Awake(){
-		Camera camera = Camera.mainCamera;
-		
+		Camera camera 			= Camera.mainCamera;
+		GameObject camObject	= camera.gameObject;
+			
 		//add components
-		camera.gameObject.AddComponent<CameraShake>();
-		camera.gameObject.AddComponent<CameraZoom>();
-		camera.gameObject.AddComponent<CameraRotatingAround>();
+		camObject.AddComponent<CameraShake>();
+		camObject.AddComponent<CameraZoom>();
+		camObject.AddComponent<CameraRotatingAround>();
 		
 		//get Component
 		this.CameraShakeComponent 			= camera.GetComponent<CameraShake>();
 		this.CameraZoomComponent  			= camera.GetComponent<CameraZoom>();
 		this.CameraRotatingAroundComponent  = camera.GetComponent<CameraRotatingAround>();
+		this.SuperCutSceneComponent			= camera.GetComponent<SuperCutSceneScript>();
 	}
 	
 	// Use this for initialization

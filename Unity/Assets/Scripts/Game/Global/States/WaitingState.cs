@@ -44,7 +44,7 @@ public class WaitingState : GameState
 		game.disableIA = true;
 		game.Referee.PauseIngameTime();
 		if(TeamOnSuper)
-			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper));
+			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper, this.remainingTime));
 	}
 
 	public override void OnUpdate()

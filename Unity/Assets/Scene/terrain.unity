@@ -3632,7 +3632,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 2000
+  far clip plane: 500
   field of view: 43
   orthographic: 0
   orthographic size: 100
@@ -3807,7 +3807,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a70f7bcbb2cc9a74aa97ef01254ac608, type: 3}
   m_Name: 
-  length: 3.29999995
+  cam: {fileID: 2004071852}
+  game: {fileID: 448441829}
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
@@ -20084,13 +20085,14 @@ MonoBehaviour:
   rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
-  MinfollowOffset: {x: 0, y: 1.20000005, z: -2.70000005}
+  MinfollowOffset: {x: 0, y: .25999999, z: -.600000024}
   flipDuration: 1
   flipDelay: .100000001
   CancelNextFlip: 0
   CameraShakeComponent: {fileID: 0}
   CameraZoomComponent: {fileID: 0}
   CameraRotatingAroundComponent: {fileID: 0}
+  SuperCutSceneComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0

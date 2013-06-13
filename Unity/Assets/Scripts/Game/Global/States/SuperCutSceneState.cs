@@ -10,10 +10,11 @@ using System.Collections;
 public class SuperCutSceneState : GameState
 {	
 	Team 	team;
-	float   timeElapsed;
+	float 	cutsceneDuration;
 	
-	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper): base(sm, cam, game){
+	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper, float _cutsceneDuration): base(sm, cam, game){
 		this.team = TeamOnSuper;
+		this.cutsceneDuration = _cutsceneDuration;
 	}
 
 	public override void OnEnter ()
@@ -22,7 +23,9 @@ public class SuperCutSceneState : GameState
         foreach (Unit u in team){
             u.unitAnimator.LaunchSuper();
         }
-		SuperCutsceneStateSettings settings = cam.game.settings.GameStates.MainState.PlayingState.WaintingState.superCutsceneState;
+		cam.SuperCutSceneComponent.StartCutScene(this.cutsceneDuration);
+		
+		/*
 		cam.CameraRotatingAroundComponent.StartTimedRotation(
 			game.Ball.Owner.transform, 
 			settings.rotationAxis, 
@@ -32,12 +35,7 @@ public class SuperCutSceneState : GameState
 			settings.duration,
 			settings.smooth);
 		cam.CameraZoomComponent.StartZoomIn(20,0.3f,0.3f);
-		this.timeElapsed = 0;
-	}
-	
-	public override void OnUpdate(){
-		this.timeElapsed += Time.deltaTime;
-		
+		*/
 	}
 	
 	public override void OnLeave ()
