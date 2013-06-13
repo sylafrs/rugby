@@ -31,6 +31,7 @@ public class CameraShake : MonoBehaviour{
 	        originRotation.y,
 	        originRotation.z,
 	        originRotation.w);
+		Debug.Log("End Shake");
 		this.enabled = false;
 	}
 	
