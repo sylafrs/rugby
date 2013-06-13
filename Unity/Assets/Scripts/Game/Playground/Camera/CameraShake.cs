@@ -3,8 +3,7 @@ using System.Collections;
 
 public class CameraShake : MonoBehaviour{
 	
-	float  
-					ShakeAmount, 
+	float  			ShakeAmount, 
 					duration;
 	System.Action	OnFinish;
 	Vector3 		originPosition;
@@ -40,8 +39,6 @@ public class CameraShake : MonoBehaviour{
 	}
 	
 	void Update(){
-		this.originPosition = this.transform.position;
-    	this.originRotation = this.transform.rotation;
     	transform.position = originPosition + Random.insideUnitSphere * ShakeAmount;
     	transform.rotation =  new Quaternion(
 	        originRotation.x + Random.Range(-ShakeAmount,ShakeAmount)*.02f,
