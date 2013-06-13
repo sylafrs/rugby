@@ -1,3 +1,5 @@
+#define USE_FIXEDUPDATE
+
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
