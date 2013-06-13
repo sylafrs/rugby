@@ -51,8 +51,6 @@ public class SuperCutSceneScript : MonoBehaviour {
 		StartCoroutine(Rotate2(this.length-0.5f));
 	}
 	
-	//Coroutine system
-	
 	IEnumerator Shake(float duration) {
   		yield return new WaitForSeconds(duration);
 		cam.CameraShakeComponent.Shake(0.6f,0.3f);
@@ -70,7 +68,6 @@ public class SuperCutSceneScript : MonoBehaviour {
 			0.3f,
 			0.1f);
 	}
-	
 	
 	void FixedUpdate () {
 		this.timeElapsed += Time.deltaTime;
