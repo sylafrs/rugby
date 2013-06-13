@@ -60,6 +60,7 @@ public class SuperCutSceneScript : MonoBehaviour {
 	
 	IEnumerator Rotate2(float duration) {
   		yield return new WaitForSeconds(duration);
+		cam.CameraZoomComponent.ZoomToOrigin(0.3f,0.3f);
 		cam.CameraRotatingAroundComponent.StartTimedRotation(
 			game.Ball.Owner.transform, 
 			settings.rotationAxis, 
