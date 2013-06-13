@@ -25,6 +25,12 @@ public class CameraShake : MonoBehaviour{
 	
 	IEnumerator EndShake(float duration) {
   		yield return new WaitForSeconds(duration);
+		transform.position = originPosition;
+		transform.rotation =  new Quaternion(
+	        originRotation.x,
+	        originRotation.y,
+	        originRotation.z,
+	        originRotation.w);
 		this.enabled = false;
 	}
 	

@@ -24,18 +24,6 @@ public class SuperCutSceneState : GameState
             u.unitAnimator.LaunchSuper();
         }
 		cam.SuperCutSceneComponent.StartCutScene(this.cutsceneDuration);
-		
-		/*
-		cam.CameraRotatingAroundComponent.StartTimedRotation(
-			game.Ball.Owner.transform, 
-			settings.rotationAxis, 
-			game.Ball.Owner.transform, 
-			Camera.mainCamera.transform,
-			settings.finalAngle,
-			settings.duration,
-			settings.smooth);
-		cam.CameraZoomComponent.StartZoomIn(20,0.3f,0.3f);
-		*/
 	}
 	
 	public override void OnLeave ()
