@@ -33,7 +33,7 @@ public class EndStateSettings
 public class PlayingStateSettings
 {
 	public MainGameStateSettings 	MainGameState;
-	public WaitingStateSettings  	WaintingState;
+	public WaitingStateSettings  	WaitingState;
 	public GameActionStateSettings	GameActionState;
 }
 

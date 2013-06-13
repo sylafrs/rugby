@@ -33,7 +33,7 @@ public class SuperCutSceneScript : MonoBehaviour {
 	}
 	
 	void Awake(){
-		settings = cam.game.settings.GameStates.MainState.PlayingState.WaintingState.superCutsceneState;
+		settings = cam.game.settings.GameStates.MainState.PlayingState.WaitingState.superCutsceneState;
 		this.enabled 		= false;
 	}
 	
