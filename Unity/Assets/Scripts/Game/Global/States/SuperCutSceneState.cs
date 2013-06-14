@@ -23,12 +23,19 @@ public class SuperCutSceneState : GameState
         foreach (Unit u in team){
             u.unitAnimator.LaunchSuper();
         }
-		cam.SuperCutSceneComponent.StartCutScene(this.cutsceneDuration);
+		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
+		if(game.Ball.Owner.Team == team){
+			if(ballOwnerNat == TeamNationality.JAPANESE){
+				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
+			}
+			if(ballOwnerNat == TeamNationality.MAORI){
+				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
+			}
+		}
 	}
 	
 	public override void OnLeave ()
 	{
-		cam.CameraZoomComponent.ZoomToOrigin(0.3f,0.3f);
         team.Super.LaunchSuperEffects();
         team.PlaySuperGroundEffect();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);

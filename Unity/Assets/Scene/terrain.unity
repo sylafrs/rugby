@@ -1360,6 +1360,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  nationality: 1
   hiddenPositionIndicator:
     rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
     centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
@@ -3494,6 +3495,7 @@ GameObject:
   - 114: {fileID: 381927180}
   - 114: {fileID: 381927173}
   - 114: {fileID: 381927181}
+  - 114: {fileID: 381927182}
   - 114: {fileID: 381927183}
   m_Layer: 0
   m_Name: Camera
@@ -3797,6 +3799,18 @@ MonoBehaviour:
   JapGoal:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &381927182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018ebb9a9f7c32c4b86f96e65a0bbbe0, type: 3}
+  m_Name: 
+  cam: {fileID: 2004071852}
+  game: {fileID: 448441829}
 --- !u!114 &381927183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3805,7 +3819,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5dd7035cbc5d146b07bca168b83a15, type: 3}
+  m_Script: {fileID: 11500000, guid: b8ea5e800779291428e3f693864d1536, type: 3}
   m_Name: 
   cam: {fileID: 2004071852}
   game: {fileID: 448441829}
@@ -6702,6 +6716,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  nationality: 0
   hiddenPositionIndicator:
     rotatedTexture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
     centerTexture: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
@@ -20092,7 +20107,8 @@ MonoBehaviour:
   CameraShakeComponent: {fileID: 0}
   CameraZoomComponent: {fileID: 0}
   CameraRotatingAroundComponent: {fileID: 0}
-  SuperCutSceneComponent: {fileID: 0}
+  SuperMaoriCutSceneComponent: {fileID: 0}
+  SuperJapaneseCutSceneComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class SuperCutSceneScript : MonoBehaviour {
+public class SuperMaoriCutSceneScript : MonoBehaviour {
 	
 	float 	length,
 			timeElapsed;

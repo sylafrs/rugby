@@ -93,7 +93,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	public CameraShake 			CameraShakeComponent;
 	public CameraZoom  			CameraZoomComponent;
 	public CameraRotatingAround CameraRotatingAroundComponent;
-	public SuperCutSceneScript	SuperCutSceneComponent;
+	
+	public SuperMaoriCutSceneScript	SuperMaoriCutSceneComponent;
+	public SuperJapaneseCutSceneScript SuperJapaneseCutSceneComponent;
 	
 	void Awake(){
 		Camera camera 			= Camera.mainCamera;
@@ -108,7 +110,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		this.CameraShakeComponent 			= camera.GetComponent<CameraShake>();
 		this.CameraZoomComponent  			= camera.GetComponent<CameraZoom>();
 		this.CameraRotatingAroundComponent  = camera.GetComponent<CameraRotatingAround>();
-		this.SuperCutSceneComponent			= camera.GetComponent<SuperCutSceneScript>();
+		this.SuperMaoriCutSceneComponent	= camera.GetComponent<SuperMaoriCutSceneScript>();
+		this.SuperJapaneseCutSceneComponent	= camera.GetComponent<SuperJapaneseCutSceneScript>();
 	}
 	
 	// Use this for initialization
@@ -123,9 +126,6 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		zMinForBlue	        = MinfollowOffset.z;
 		zMaxForBlue	  		= MaxfollowOffset.z;
 		currentCameraState  = CameraState.FREE;
-		
-		
-		
 	}
 	
 	public void ChangeCameraState(CameraState newState)
