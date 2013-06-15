@@ -65,8 +65,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
 	//private bool    isflipped;
-	private float 	zMinForBlue;
-	private float 	zMaxForBlue;
+	public float 	zMinForBlue;
+	public float 	zMaxForBlue;
     public  Team    flipedForTeam { get; private set; }
     public  Team 	TeamLooked { get { return flipedForTeam; } }
 	
@@ -144,8 +144,6 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			}
 			case CameraState.FLIPPING:
 			{
-				this.TranslateCam2();
-				this.flipUpdate();
 				break;	
 			}
 			case CameraState.FOLLOWING:
@@ -156,12 +154,10 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			}
 			case CameraState.ONLYZOOM:
 			{
-				this.TranslateCam2();
 				break;
 			}
 			case CameraState.SHAKING:
 			{
-				//this.ShakeUpdate();
 				break;
 			}
 			default :
