@@ -65,8 +65,6 @@ public partial class CameraManager{
 		//this.game.northTeam.Player.enableMove();
 	}
 	
-	
-	
 	void flipZ(){
 		this.MinfollowOffset.z *= -1;
 		this.MaxfollowOffset.z *= -1;
