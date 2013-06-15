@@ -3834,7 +3834,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44de829f2a46634498c79bd9a7256f52, type: 3}
   m_Name: 
-  testFloat: 10
+  testFloat: 15
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
