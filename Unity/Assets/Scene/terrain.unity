@@ -3497,6 +3497,7 @@ GameObject:
   - 114: {fileID: 381927181}
   - 114: {fileID: 381927182}
   - 114: {fileID: 381927183}
+  - 114: {fileID: 381927184}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3784,21 +3785,21 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381927171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4187fb18c3e8d7409119afa2d7a1484, type: 3}
+  m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
-  Fade: 1
-  TimeToFade: 1
-  NewShader: Transparent/Diffuse
-  NewAlphaJap: 128
-  NewAlphaMao: 128
+  Fade: 0
+  TimeToFade: 0
+  NewShader: 
+  NewAlphaJap: 0
+  NewAlphaMao: 0
   MaoGoal:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   JapGoal:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 0
 --- !u!114 &381927182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3807,7 +3808,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 018ebb9a9f7c32c4b86f96e65a0bbbe0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cf4ee6085c6905429bbb64895bf8e6a, type: 3}
   m_Name: 
   cam: {fileID: 2004071852}
   game: {fileID: 448441829}
@@ -3819,10 +3820,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ea5e800779291428e3f693864d1536, type: 3}
+  m_Script: {fileID: 11500000, guid: bec75d714048f834f9d380a0129b411d, type: 3}
   m_Name: 
   cam: {fileID: 2004071852}
   game: {fileID: 448441829}
+--- !u!114 &381927184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44de829f2a46634498c79bd9a7256f52, type: 3}
+  m_Name: 
+  testFloat: 10
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,23 @@ public partial class CameraManager{
 	
 	//flipping camera
 	private void flip (){
-		flipInit(new Vector3(0,1,0), 180);
-		this.ChangeCameraState(CameraState.FLIPPING);
+		//flipInit(new Vector3(0,1,0), 180);
+		//this.ChangeCameraState(CameraState.FLIPPING);
+		this.CameraRotatingAroundComponent.StartTimedRotation(
+			target,
+			new Vector3(0,1,0),
+			target,
+			Camera.mainCamera.transform,
+			180,
+			0.6f,
+			0.3f);
+		StartCoroutine(Callback(0.3f));
+	}
+	
+	IEnumerator Callback(float duration) {
+  		yield return new WaitForSeconds(duration);
+		this.flipZ();
+		this.ActionOnFlipFinish();
 	}
 	
 	public void flipForTeam(Team _t, Action _cb)
