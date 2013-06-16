@@ -6,6 +6,9 @@
   */
 public class WaitingState : GameState
 {
+	float remainingTime;
+	Team  TeamOnSuper;
+	
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time)
 		: base(sm, cam, game)
 	{
@@ -19,9 +22,6 @@ public class WaitingState : GameState
 		this.remainingTime = time;
 		this.TeamOnSuper = TeamOnSuper;
 	}
-
-	private float remainingTime;
-	private Team TeamOnSuper;
 
 	public override void OnEnter()
 	{
