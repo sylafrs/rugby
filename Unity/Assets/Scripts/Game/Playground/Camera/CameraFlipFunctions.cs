@@ -44,6 +44,7 @@ public partial class CameraManager{
 	
 	void flip (){
 		float length = 0.6f;
+		//this.ChangeCameraState(CameraState.FOLLOWING);
 		this.CameraRotatingAroundComponent.StartTimedRotation(
 			target,
 			new Vector3(0,1,0),
@@ -54,7 +55,7 @@ public partial class CameraManager{
 			0.3f);
 		//this.game.southTeam.Player.stopMove();
 		//this.game.northTeam.Player.stopMove();
-		StartCoroutine(Callback(length));
+		StartCoroutine(Callback(0.3f));
 	}
 	
 	IEnumerator Callback(float duration) {
