@@ -26,14 +26,15 @@ public class GameUI{
 			game.settings.UI.GameUI.scoreBoxWidthPercentage, game.settings.UI.GameUI.scoreBoxHeightPercentage);
 		
 		//super gauges
-		Rect blueGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
-			game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.blueGaugeBoxWidthPercentage, game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
-
-		Rect blueProgressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
-			game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.blueGaugeBoxWidthPercentage * blueProgress,
-			game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
+      
+		//Rect blueGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.blueGaugeBoxWidthPercentage, game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
+        //
+		//Rect blueProgressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.blueGaugeBoxWidthPercentage * blueProgress,
+		//	game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
 
         Rect redGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage / 2,
             game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage / 2,
@@ -46,9 +47,11 @@ public class GameUI{
 		
 		//superbars
 		//blue 
-		GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
-		GUI.DrawTexture(blueProgressGaugeBox, game.settings.UI.GameUI.blueBar);
-		if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
+        game.settings.UI.GameUI.blueSuper.percent = blueProgress;
+
+		//GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
+		//GUI.DrawTexture(blueProgressGaugeBox, game.settings.UI.GameUI.blueBar);
+		//if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
 		
 		//red
 		GUI.DrawTexture(redGaugeBox, game.settings.UI.GameUI.emptyBar);
