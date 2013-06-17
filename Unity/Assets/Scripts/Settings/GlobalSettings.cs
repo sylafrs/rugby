@@ -42,6 +42,17 @@ public class TeamSettings
 [System.Serializable]
 public class SuperSettings
 {
+    [System.Serializable]
+    public class SoundSettings
+    {
+        public float ThunderScreamDelay;
+        public float ThunderFxDelay;
+        public float RockScreamDelay;
+        public float RockFxDelay;
+    }
+
+    public SoundSettings sounds;
+
 	public int superGaugeOffensiveLimitBreak = 200;
 	public int superGaugeDefensiveLimitBreak = 200;
 	public int superGaugeMaximum = 200;

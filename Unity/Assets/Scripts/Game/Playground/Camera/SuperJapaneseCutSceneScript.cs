@@ -48,11 +48,7 @@ public class SuperJapaneseCutSceneScript : MonoBehaviour {
 			0.3f,
 			0.1f);
 		StartCoroutine(Shake(this.length/2));
-		StartCoroutine(Rotate2(this.length-0.5f));
-
-        AudioSource src = this.game.Ball.Owner.audio;
-        src.clip = this.game.refs.sounds.SuperSouth;
-        src.Play();
+        StartCoroutine(Rotate2(this.length - 0.5f));
 	}
 	
 	IEnumerator Shake(float duration) {
