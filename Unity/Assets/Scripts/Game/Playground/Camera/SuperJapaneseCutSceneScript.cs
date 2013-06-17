@@ -37,7 +37,7 @@ public class SuperJapaneseCutSceneScript : MonoBehaviour {
 		this.enabled 		= false;
 	}
 	
-	void Start () {
+	void OnEnable () {
 		cam.CameraZoomComponent.StartZoomIn(20,0.3f,0.3f);
 		cam.CameraRotatingAroundComponent.StartTimedRotation(
 			game.Ball.Owner.transform, 

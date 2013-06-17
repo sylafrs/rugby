@@ -8,12 +8,14 @@ public class WaitingState : GameState
 {
 	float remainingTime;
 	Team  TeamOnSuper;
+	bool  onWiningPoints;
 	
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time)
 		: base(sm, cam, game)
 	{
 		this.remainingTime = time;
 		this.TeamOnSuper = null;
+		this.onWiningPoints = false;
 	}
 
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time, Team TeamOnSuper)
@@ -21,11 +23,23 @@ public class WaitingState : GameState
 	{
 		this.remainingTime = time;
 		this.TeamOnSuper = TeamOnSuper;
+		this.onWiningPoints = false;
+	}
+	
+	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time, bool _onWiningPoints)
+		: base(sm, cam, game)
+	{
+		this.remainingTime 	= time;
+		this.TeamOnSuper 	= null;
+		this.onWiningPoints = true;
 	}
 
 	public override void OnEnter()
 	{
 		base.OnEnter();
+		if(this.onWiningPoints){
+			sm.state_change_son(this, new WiningPointCutSceneState(sm, cam, game));
+		}
         if (game.Ball.Owner)
         {
             cam.setTarget(game.Ball.Owner.transform);

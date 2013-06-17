@@ -132,12 +132,12 @@ MonoBehaviour:
   north: {fileID: 613712549}
   south: {fileID: 166411255}
   sounds:
-    SuperNorth: {fileID: 8300000, guid: ab50cc09a262d914892befd6fbb4fb46, type: 3}
-    SuperSouth: {fileID: 8300000, guid: 6aaa1228c181a8f47997e175be6103b2, type: 3}
+    SuperNorth: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
+    SuperSouth: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
     Ambiant: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
-    Ambiant2: {fileID: 8300000, guid: 2aa9f2b247800874daf5fc79cc568b40, type: 3}
-    ShootBall: {fileID: 8300000, guid: 4fd2e20c4cded7749a1289b633499325, type: 3}
-    BallGroundSound: {fileID: 8300000, guid: 0ec0a0edcabf30749bdf8a7d42ff1a2f, type: 3}
+    Ambiant2: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
+    ShootBall: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
+    BallGroundSound: {fileID: 8300000, guid: 795589389803fe94da38766ac9e6ed08, type: 3}
   managers:
     camera: {fileID: 2004071852}
     intro: {fileID: 2004071858}
@@ -3564,6 +3564,8 @@ GameObject:
   - 114: {fileID: 381927182}
   - 114: {fileID: 381927183}
   - 114: {fileID: 381927184}
+  - 114: {fileID: 381927185}
+  - 111: {fileID: 381927186}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3900,6 +3902,35 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5b1158ce9ddd24fb473962b1d2884c, type: 3}
   m_Name: 
+--- !u!114 &381927185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd25cdf72135e74fb9622b1ba888c8d, type: 3}
+  m_Name: 
+  game: {fileID: 448441829}
+--- !u!111 &381927186
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 4f615bf9c98295b4995e84a7c732b111, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+  m_UserAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0

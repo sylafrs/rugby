@@ -11,5 +11,8 @@ public class WiningPointCutSceneState : GameState {
 	
 	public WiningPointCutSceneState(StateMachine sm, CameraManager cam, Game game): base(sm, cam, game){
 	}
-
+	
+	public override void OnEnter(){
+		cam.WiningPointsCutSceneComponent.StartScene();
+	}
 }

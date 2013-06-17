@@ -29,12 +29,6 @@ public class ConversionFlyState : GameState
         return true; // Could call signal
     }
 
-    public override bool OnConversion(But but)
-    {
-        game.refs.managers.conversion.But();
-        return true; // Could call signal
-    }
-
     public override void OnEnter ()
     {
 		base.OnEnter();
@@ -46,7 +40,7 @@ public class ConversionFlyState : GameState
     {   			
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		
-	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,3.5f, 
+	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
