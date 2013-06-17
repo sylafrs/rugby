@@ -3,7 +3,6 @@
 
 @script ExecuteInEditMode
 @script RequireComponent (Camera)
-@script AddComponentMenu ("Image Effects/Post Effects Base")
 
 class PostEffectsBase extends MonoBehaviour {	
 	protected var supportHDRTextures : boolean = true;

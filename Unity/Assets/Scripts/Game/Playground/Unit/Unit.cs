@@ -599,7 +599,7 @@ public class Unit : TriggeringTriggered, Debugable
 	{
 		for (int i = 0; i < selectedIndicators.Length; i++)
 		{
-			selectedIndicators[i].renderer.enabled = enabled;
+            selectedIndicators[i].SetActive(enabled);
 		}
 	}
 
