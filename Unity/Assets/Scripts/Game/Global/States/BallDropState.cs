@@ -15,4 +15,20 @@ public class BallDropState : GameState {
 		base.OnEnter();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallDropCamSettings);
 	}
+	
+	public override bool OnBallOut()
+    {
+		Debug.Log("Drop fail");
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+            (/* OnFinish */) => {
+                //please, kill after usage x)
+                CameraFade.wannaDie();
+            }, (/* OnFade */) => {
+				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				cam.zoom = 1; //TODO cam settings
+                cam.game.Referee.StartPlacement();
+            }
+        );
+        return true;
+    }
 }
