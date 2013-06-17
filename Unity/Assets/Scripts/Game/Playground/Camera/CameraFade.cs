@@ -42,7 +42,11 @@ public class CameraFade : myMonoBehaviour
  
 	public float m_FadeDelay = 0;
 	public Action m_OnFadeFinish = null;
- 
+
+	void Start(){
+		//Debug.Log("Camera Fade creation");
+	}
+	
 	// Initialize the texture, background-style and initial color:
 	public void init()
 	{		
