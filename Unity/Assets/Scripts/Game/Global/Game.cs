@@ -21,6 +21,14 @@ public class Game : myMonoBehaviour
 	public GamePlaySettings settings;
 	public GameReferences refs;
 
+    public Camera cam
+    {
+        get
+        {
+            return this.refs.managers.camera.gameCamera;
+        }
+    }
+
 	private static Game _instance;
 	public static Game instance
 	{
@@ -119,9 +127,15 @@ public class Game : myMonoBehaviour
 		
         this.refs.managers.intro.OnFinish = () =>
         {
-            this._disableIA = true;                  
-            this.Referee.OnStart();
-			this.refs.stateMachine.event_OnStartSignal();
+            this.refs.managers.coin.callBack = (Team t) =>
+            {
+                this.Ball.Owner = t.Player.Controlled;
+                this._disableIA = true;
+                this.Referee.OnStart();
+                this.refs.stateMachine.event_OnStartSignal();
+            };
+
+            this.refs.managers.coin.enabled = true;
 		};
 
 		this.refs.stateMachine.SetFirstState(
@@ -134,6 +148,20 @@ public class Game : myMonoBehaviour
 		xSO = refs.positions.limiteTerrainSudOuest.transform.position.x;
 		largeurTerrain = Mathf.Abs(xNE - xSO);
 		section = largeurTerrain / 7f;
+
+        AudioSource src;
+
+        src = this.refs.CameraAudio["Ambiant"];
+        src.volume = 0.3f;
+        src.loop = true;
+        src.clip = this.refs.sounds.Ambiant;
+        src.Play();
+        
+        src = this.refs.CameraAudio["Ambiant2"];
+        src.volume = 0.3f;
+        src.loop = true;
+        src.clip = this.refs.sounds.Ambiant2;
+        src.Play();
 	}
 
 	void Update()

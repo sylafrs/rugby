@@ -22,6 +22,7 @@ public class UnitAnimator : myMonoBehaviour
     public const string lblTackled = "in_bool_tackled";
     public const string lblTackling = "in_bool_tackling";
     public const string lblTackleFail = "in_bool_tackleFail";
+    public const string lblBeingTackled = "in_bool_beingtackled";
     public const string lblBall = "in_bool_ball";
     public const string lblPass = "in_bool_pass";
     public const string lblTouch = "in_bool_touch";
@@ -78,6 +79,18 @@ public class UnitAnimator : myMonoBehaviour
         set
         {
             animator.SetBool(lblTackled, value);
+        }
+    }
+
+    public bool BeingTackled
+    {
+        get
+        {
+            return animator.GetBool(lblBeingTackled);
+        }
+        set
+        {
+            animator.SetBool(lblBeingTackled, value);
         }
     }
 
@@ -353,6 +366,11 @@ public class UnitAnimator : myMonoBehaviour
                 {
                     Dodge = false;  
                 }
+
+                if (BeingTackled)
+                {
+                    BeingTackled = false;
+                }
             }
 
             launchUpdate = false;
@@ -414,5 +432,11 @@ public class UnitAnimator : myMonoBehaviour
     {
         this.TackleFail = !success;
         this.Tackling = true;        
+    }
+
+    public void OnBeingTackled()
+    {
+        this.BeingTackled = true;
+        this.launchUpdate = true;
     }
 }

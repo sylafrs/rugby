@@ -74,7 +74,8 @@ public class Unit : TriggeringTriggered, Debugable
 			return _nma;
 		}
 	}
-	private Order currentOrder;
+   
+    private Order currentOrder;
 	private Team team;
 
 	public Game game { get; set; }

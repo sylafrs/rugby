@@ -10,7 +10,15 @@ public class CameraShake : MonoBehaviour{
 	Quaternion 		originRotation;
 	
 	
-	
+	/// <summary>
+	/// Shake the specified _shakeAmount and _duration.
+	/// </summary>
+	/// <param name='_shakeAmount'>
+	/// _shake amount.
+	/// </param>
+	/// <param name='_duration'>
+	/// _duration.
+	/// </param>
 	public void Shake(float _shakeAmount, float _duration){
 		this.originPosition = this.transform.position;
     	this.originRotation = this.transform.rotation;
