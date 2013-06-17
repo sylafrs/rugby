@@ -4352,17 +4352,17 @@ MonoBehaviour:
   settings:
     Global:
       Game:
-        points_drop: 2
+        points_drop: 3
         points_essai: 5
         points_transfo: 3
-        period_time: 120
+        period_time: 240
       Super:
         superGaugeOffensiveLimitBreak: 200
         superGaugeDefensiveLimitBreak: 200
         superGaugeMaximum: 200
-        SuperDashDurationTime: 10
+        SuperDashDurationTime: 1.5
         SuperStunDurationTime: 2
-        superSpeedScale: 1.5
+        superSpeedScale: 2.5
         superTackleBoxScale: 1.5
         superUnblockable: 1
         passInterceptSuperPoints: 20
@@ -4461,7 +4461,7 @@ MonoBehaviour:
               SuperMultiplicator: 5
               MalusValue: 2.5
               InvincibleCooldown: .5
-              offsetCamera: {x: 3, y: 1.20000005, z: 0}
+              offsetCamera: {x: .699999988, y: .200000003, z: 0}
             TouchingSgtate:
               ToucheRemiseAuCentre: 0
               TouchCamSettings:
