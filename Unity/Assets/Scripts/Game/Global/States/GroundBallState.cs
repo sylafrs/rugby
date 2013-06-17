@@ -15,5 +15,6 @@ public class GroundBallState : GameState {
     {  
 		base.OnEnter();
  		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.GroundBallCamSettings);
+        this.game.Ball.audio.PlayOneShot(game.refs.sounds.BallGroundSound);
     }
 }

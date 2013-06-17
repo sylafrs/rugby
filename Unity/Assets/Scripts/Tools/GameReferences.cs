@@ -59,6 +59,7 @@ public class GameReferences : myMonoBehaviour {
         public AudioClip Ambiant;
         public AudioClip Ambiant2;
         public AudioClip ShootBall;
+        public AudioClip BallGroundSound;
     }
 
     public Game game;

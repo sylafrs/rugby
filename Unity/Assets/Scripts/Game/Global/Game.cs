@@ -152,12 +152,14 @@ public class Game : myMonoBehaviour
         AudioSource src;
 
         src = this.refs.CameraAudio["Ambiant"];
-        src.volume = 0.5f;
+        src.volume = 0.3f;
+        src.loop = true;
         src.clip = this.refs.sounds.Ambiant;
         src.Play();
-
+        
         src = this.refs.CameraAudio["Ambiant2"];
-        src.volume = 0.5f;
+        src.volume = 0.3f;
+        src.loop = true;
         src.clip = this.refs.sounds.Ambiant2;
         src.Play();
 	}
