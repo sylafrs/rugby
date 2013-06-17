@@ -62,7 +62,7 @@ public partial class Referee : myMonoBehaviour {
 		
 		// Remise au centre, donne la balle aux perdants.
 		UnitToGiveBallTo = NewOwner;
-        this.StartPlacement();
+        //this.StartPlacement();
         //this.game.TimedDisableIA(3);
     }
 
