@@ -1,4 +1,4 @@
-@script AddComponentMenu ("Primitives/Triangles")
+
 #pragma strict
 
 static var meshes : Mesh[];

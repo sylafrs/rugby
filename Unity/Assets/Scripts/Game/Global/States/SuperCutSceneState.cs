@@ -22,50 +22,49 @@ public class SuperCutSceneState : GameState
 		this.teamOnSuper = TeamOnSuper;
 	}
 
-	public override void OnEnter (){         
-		Debug.Log("hello Super Scene !");
-       	base.OnEnter();
-        foreach (Unit u in teamOnSuper)
-        {
+	public override void OnEnter ()
+	{
+        var SoundSettings = game.settings.Global.Super.sounds;
+
+       	base.OnEnter();	
+        foreach (Unit u in team){
             u.unitAnimator.LaunchSuper();
         }
 
-		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
-			this.cam.zoom	= 0.5f;
-			this.angle  	= 360 * Mathf.Deg2Rad;
-			this.lastAngle	= 0;
-			this.period 	= 3.3f;
-			this.rotating	= true;
-			cam.ChangeCameraState(CameraManager.CameraState.FREE);
-		}else{
-			this.rotating	= false;
+		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
+		if(game.Ball.Owner.Team == team){
+			if(ballOwnerNat == TeamNationality.JAPANESE){
+				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
+			}
+			if(ballOwnerNat == TeamNationality.MAORI){
+				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
+			}
 		}
-	}
-	//Rotation spéciale capitaine
-	//Rotation normale
-	
-	public override void OnUpdate()
-	{
-		if(this.rotating)
-		{
-			time += Time.deltaTime;
-		
-			//smooth damp angle again
-			//float angleFromZero = Mathf.SmoothDampAngle(this.lastAngle, this.angle, ref this.velocity,0.3f);
-			
-			float angleFromZero = Mathf.LerpAngle(0, this.angle, this.time/this.period);
-						
-			//rotate Around
-			Camera.mainCamera.transform.RotateAround(game.Ball.Owner.transform.position,
-				new Vector3(0,1,0), 
-				Mathf.Rad2Deg * (angleFromZero - this.lastAngle));
-			
-			// This current state becomes the next previous one
-		    this.lastAngle = angleFromZero;
-			
-			//lookat
-		    Camera.mainCamera.transform.LookAt(game.Ball.Owner.transform.position);
-		}
+
+        if (ballOwnerNat == TeamNationality.MAORI)
+        {
+            Timer.AddTimer(SoundSettings.RockFxDelay, () => 
+            {
+                AudioSource src = this.game.Ball.Owner.audio;
+                src.clip = this.game.refs.sounds.SuperScreamNorth;
+                src.Play();
+                src = game.refs.CameraAudio["Super"];
+                src.clip = this.game.refs.sounds.SuperNorth;
+                src.Play();
+            });
+        }
+        if (ballOwnerNat == TeamNationality.JAPANESE)
+        {
+            Timer.AddTimer(SoundSettings.RockFxDelay, () =>
+            {
+                AudioSource src = this.game.Ball.Owner.audio;
+                src.clip = this.game.refs.sounds.SuperScreamSouth;
+                src.Play();
+                src = game.refs.CameraAudio["Super"];
+                src.clip = this.game.refs.sounds.SuperSouth;
+                src.Play();
+            });           
+        }
 	}
 	
 	public override void OnLeave ()
