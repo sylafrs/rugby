@@ -3785,7 +3785,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381927171}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
@@ -4404,7 +4404,7 @@ MonoBehaviour:
         IntroState:
           timeToSleepAfterIntro: 3
           rotationSpeed: 10
-          rotationAxis: {x: 0, y: 0, z: 0}
+          rotationAxis: {x: 0, y: 1, z: 0}
         PlayingState:
           MainGameState:
             RunningState:
@@ -4439,7 +4439,7 @@ MonoBehaviour:
               tackledTime: 3
           WaitingState:
             superCutsceneState:
-              rotationAxis: {x: 0, y: 0, z: 0}
+              rotationAxis: {x: 0, y: 1, z: 0}
               duration: 0
               finalAngle: 0
               smooth: 0
