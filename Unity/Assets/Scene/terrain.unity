@@ -3789,8 +3789,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
-<<<<<<< HEAD
-=======
   Fade: 1
   TimeToFade: 1
   NewShader: Transparent/Diffuse
@@ -3826,7 +3824,6 @@ MonoBehaviour:
   m_Name: 
   cam: {fileID: 2004071852}
   game: {fileID: 448441829}
->>>>>>> master
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
