@@ -33,6 +33,16 @@ public partial class Referee : myMonoBehaviour {
 		PauseIngameTime();
 	}
 	
+	public void StopPlayerMovement(){
+		this.game.southTeam.Player.stopMove();
+		this.game.northTeam.Player.stopMove();
+	}
+	
+	public void EnablePlayerMovement(){
+		this.game.southTeam.Player.enableMove();
+		this.game.northTeam.Player.enableMove();
+	}
+	
 	//when the game start after intro
     public void OnStart()
     {

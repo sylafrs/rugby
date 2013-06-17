@@ -18,11 +18,12 @@ public class BallDropState : GameState {
 	
 	public override bool OnBallOut()
     {
-		Debug.Log("Drop fail");
+		game.Referee.StopPlayerMovement();
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
+				cam.game.Referee.EnablePlayerMovement();
             }, (/* OnFade */) => {
 				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
 				cam.zoom = 1; //TODO cam settings
