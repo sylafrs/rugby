@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: PC_guiAtlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  material: {fileID: 2100000, guid: 15165fd4162f640338fecd68f55abc28, type: 2}
+  sprites:
+  - name: 55495f427574746f6e626c7565
+    outer:
+      x: 757
+      y: 645
+      width: 257
+      height: 47
+    inner:
+      x: 757
+      y: 645
+      width: 257
+      height: 47
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 55495f77696e646f7773626967
+    outer:
+      x: 378
+      y: 874
+      width: 530
+      height: 150
+    inner:
+      x: 378
+      y: 874
+      width: 530
+      height: 150
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 55495f77696e646f77736d616c6c
+    outer:
+      x: 757
+      y: 597
+      width: 257
+      height: 47
+    inner:
+      x: 757
+      y: 597
+      width: 257
+      height: 47
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 55495f6865616c7468
+    outer:
+      x: 378
+      y: 696
+      width: 152
+      height: 31
+    inner:
+      x: 378
+      y: 696
+      width: 152
+      height: 31
+    paddingLeft: .0197368413
+    paddingRight: .00657894742
+    paddingTop: .0645161271
+    paddingBottom: .0645161271
+  - name: 55495f6865616c746866756c6c
+    outer:
+      x: 531
+      y: 700
+      width: 147
+      height: 27
+    inner:
+      x: 531
+      y: 700
+      width: 147
+      height: 27
+    paddingLeft: .0408163257
+    paddingRight: .0204081628
+    paddingTop: .148148149
+    paddingBottom: .148148149
+  - name: 6368696e657365666f6e74
+    outer:
+      x: 378
+      y: 728
+      width: 505
+      height: 145
+    inner:
+      x: 378
+      y: 728
+      width: 505
+      height: 145
+    paddingLeft: .00396039616
+    paddingRight: .00990098994
+    paddingTop: .0137931034
+    paddingBottom: .751724124
+  - name: 62676d656e75
+    outer:
+      x: 0
+      y: 693
+      width: 377
+      height: 331
+    inner:
+      x: 0
+      y: 693
+      width: 377
+      height: 331
+    paddingLeft: .156498671
+    paddingRight: .16976127
+    paddingTop: .211480364
+    paddingBottom: .299093664
+  - name: 7370616365666f6e74
+    outer:
+      x: 0
+      y: 560
+      width: 507
+      height: 132
+    inner:
+      x: 0
+      y: 560
+      width: 507
+      height: 132
+    paddingLeft: .00394477323
+    paddingRight: .00591715984
+    paddingTop: .0151515156
+    paddingBottom: .924242437
+  - name: 666f6e743232
+    outer:
+      x: 508
+      y: 589
+      width: 248
+      height: 103
+    inner:
+      x: 508
+      y: 589
+      width: 248
+      height: 103
+    paddingLeft: .00806451589
+    paddingRight: .0241935477
+    paddingTop: .0194174759
+    paddingBottom: .223300964
+  mCoordinates: 0
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
