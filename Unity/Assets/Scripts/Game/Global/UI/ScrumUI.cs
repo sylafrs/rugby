@@ -3,13 +3,13 @@ using System.Collections;
 
 public class ScrumUI{
 	
-	private Game game;
+	//private Game game;
     private ScrumManager manager;
     private ScrumUISettings settings;
 	
 	public ScrumUI(Game _game)
 	{
-		game = _game;
+		//game = _game;
         manager = _game.refs.managers.scrum;
         settings = _game.settings.UI.ScrumUI;
         StartGUI();

@@ -49,6 +49,10 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 			0.1f);
 		StartCoroutine(Shake(this.length/2));
 		StartCoroutine(Rotate2(this.length-0.5f));
+
+        AudioSource src = this.game.Ball.Owner.audio;
+        src.clip = this.game.refs.sounds.SuperNorth;
+        src.Play();
 	}
 	
 	IEnumerator Shake(float duration) {

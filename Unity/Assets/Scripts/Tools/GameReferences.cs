@@ -51,12 +51,21 @@ public class GameReferences : myMonoBehaviour {
         public Renderer ScrumBloc;
     }
 
+    [System.Serializable]
+    public class Sounds
+    {
+        public AudioSource MainSounds;
+        public AudioClip SuperNorth;
+        public AudioClip SuperSouth;
+    }
+
     public Game game;
     public StateMachine stateMachine;
     public Referee Referee;
 
     public Team north, south;
 
+    public Sounds sounds;
     public Managers managers;
     public PlaceHolders placeHolders;
     public GameObjects gameObjects;

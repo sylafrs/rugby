@@ -15,7 +15,7 @@ public partial class CameraManager{
 	/// </param>
 	public void flipForTeam(Team _t, Action _cb)
 	{	
-		this.ActionOnFlipFinish = _cb;
+		//this.ActionOnFlipFinish = _cb;
 		if((isflipping == false) && (CancelNextFlip == false)){
 			//on lance le flip seulement si c'est un team différente
 			if(flipedForTeam != _t){
