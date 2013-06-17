@@ -1,43 +1,78 @@
 using UnityEngine;
-using System.Collections;
 
 /**
-  * @class SuperCutSceneState
-  * @brief State du jeu au moment de la cutscene pour les supers
-  * @author TEAM
+  * @class Waiting state
+  * @brief Etat de la caméra à la fin du jeu
+  * @author Sylvain Lafon
   * @see GameState
   */
 public class SuperCutSceneState : GameState
 {	
-	Team 	team;
-	float 	cutsceneDuration;
+	private Team 		teamOnSuper;
+	private float		angle;
+	private float		lastAngle;
+	private float 		time;
+	private float 		period;
+	private float 		velocity;
+	private bool		rotating;
 	
-	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper, float _cutsceneDuration): base(sm, cam, game){
-		this.team = TeamOnSuper;
-		this.cutsceneDuration = _cutsceneDuration;
+	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper)
+		: base(sm, cam, game)
+	{
+		this.teamOnSuper = TeamOnSuper;
 	}
 
-	public override void OnEnter ()
-	{
-       	base.OnEnter();	
-        foreach (Unit u in team){
+	public override void OnEnter (){         
+		Debug.Log("hello Super Scene !");
+       	base.OnEnter();
+        foreach (Unit u in teamOnSuper)
+        {
             u.unitAnimator.LaunchSuper();
         }
-		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
-		if(game.Ball.Owner.Team == team){
-			if(ballOwnerNat == TeamNationality.JAPANESE){
-				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
-			}
-			if(ballOwnerNat == TeamNationality.MAORI){
-				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
-			}
+
+		if( (game.Ball.Owner != null) && (teamOnSuper == game.Ball.Owner.Team) ){
+			this.cam.zoom	= 0.5f;
+			this.angle  	= 360 * Mathf.Deg2Rad;
+			this.lastAngle	= 0;
+			this.period 	= 3.3f;
+			this.rotating	= true;
+			cam.ChangeCameraState(CameraManager.CameraState.FREE);
+		}else{
+			this.rotating	= false;
+		}
+	}
+	//Rotation spéciale capitaine
+	//Rotation normale
+	
+	public override void OnUpdate()
+	{
+		if(this.rotating)
+		{
+			time += Time.deltaTime;
+		
+			//smooth damp angle again
+			//float angleFromZero = Mathf.SmoothDampAngle(this.lastAngle, this.angle, ref this.velocity,0.3f);
+			
+			float angleFromZero = Mathf.LerpAngle(0, this.angle, this.time/this.period);
+						
+			//rotate Around
+			Camera.mainCamera.transform.RotateAround(game.Ball.Owner.transform.position,
+				new Vector3(0,1,0), 
+				Mathf.Rad2Deg * (angleFromZero - this.lastAngle));
+			
+			// This current state becomes the next previous one
+		    this.lastAngle = angleFromZero;
+			
+			//lookat
+		    Camera.mainCamera.transform.LookAt(game.Ball.Owner.transform.position);
 		}
 	}
 	
 	public override void OnLeave ()
 	{
-        team.Super.LaunchSuperEffects();
-        team.PlaySuperGroundEffect();
+		//se remettre derrière
+        teamOnSuper.Super.LaunchSuperEffects();
+        teamOnSuper.PlaySuperGroundEffect();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 	}
 }

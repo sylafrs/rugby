@@ -3921,7 +3921,7 @@ Animation:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: 4f615bf9c98295b4995e84a7c732b111, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 4f615bf9c98295b4995e84a7c732b111, type: 2}
   m_WrapMode: 0
@@ -15066,6 +15066,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
+  Owner: {fileID: 0}
   transformationPoint: {fileID: 1380620484}
   model: {fileID: 303037527}
 --- !u!65 &1522212142
@@ -16208,6 +16209,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
+  Owner: {fileID: 0}
   transformationPoint: {fileID: 830239404}
   model: {fileID: 1795899138}
 --- !u!65 &1635297310
@@ -21087,6 +21089,7 @@ MonoBehaviour:
   CameraRotatingAroundComponent: {fileID: 0}
   SuperMaoriCutSceneComponent: {fileID: 0}
   SuperJapaneseCutSceneComponent: {fileID: 0}
+  WiningPointsCutSceneComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,15 +9,8 @@ using System.Collections;
 [AddComponentMenu("Triggers/Game/But")]
 public class But : TriggeringTrigger
 {
-    private Team _Owner;
-    public Team Owner {
-        get {
-            return _Owner;
-        }
-        set {
-            _Owner = value;
-        }
-    }
+	[HideInInspector]
+    public Team Owner;
 	
 	public Transform transformationPoint;
     public Renderer model;

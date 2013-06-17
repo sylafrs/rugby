@@ -74,9 +74,6 @@ public partial class Referee
 
             if (transformed == TransformationManager.Result.TRANSFORMED)
             {
-                MyDebug.Log("Transformation");
-                t.nbPoints += game.settings.Global.Game.points_transfo;
-
                 //transfo super
                 IncreaseSuper(game.settings.Global.Super.conversionWinSuperPoints, t);
             }
@@ -89,17 +86,21 @@ public partial class Referee
             IncreaseSuper(game.settings.Global.Super.conversionOpponentSuperPoints, t.opponent);
 
             //if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
-            {
+            //{
                 UnitToGiveBallTo = opponent[3];
                 this.StartPlacement();
-            }
+            //}
 
             this.game.OnResumeSignal(FreezeAfterConversion);
         };
 
         PlaceTransfoPlaceholders();
     }
-
+	
+	public void GivePoints(int _amount, Team _teamConcerned){
+		_teamConcerned.nbPoints += _amount;
+	}
+	
     public float FreezeAfterConversion = 5;
 
     public void OnDropTransformed(But but)

@@ -22,12 +22,14 @@ public class ConversionFlyState : GameState
         game.refs.managers.conversion.OnLimit();
         return true; // Could call signal
     }
-
+	
+	/*
     public override bool OnBallOut()
     {
         game.refs.managers.conversion.OnLimit();
         return true; // Could call signal
     }
+    */
 
     public override void OnEnter ()
     {
@@ -38,17 +40,34 @@ public class ConversionFlyState : GameState
 
     public override void OnLeave ()
     {   			
-		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		
-	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+//		cam.ChangeCameraState(CameraManager.CameraState.FREE);
+//	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+//           (/* OnFinish */) => {
+//               //please, kill after usage x)
+//               CameraFade.wannaDie();
+//           }, (/* OnFade */) => {
+//				cam.ChangeCameraState(CameraManager.CameraState.FREE);
+//				cam.zoom = 1; //TODO cam settings
+//               cam.game.Referee.StartPlacement();
+//           }
+//       );
+		
+    }
+	
+	public override bool OnBallOut(){
+		game.Referee.StopPlayerMovement();	
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
+				cam.game.Referee.EnablePlayerMovement();
             }, (/* OnFade */) => {
-				cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
 				cam.zoom = 1; //TODO cam settings
                 cam.game.Referee.StartPlacement();
             }
         );
-    }    
+        return true;
+    }
 }

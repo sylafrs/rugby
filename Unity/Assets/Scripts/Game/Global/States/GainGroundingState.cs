@@ -17,7 +17,6 @@ public class GainGroundingState : GameState {
 		cam.flipForTeam(this.game.Ball.Owner.Team, () => {
 			cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		});
-		//cam.ChangeCameraState(CameraManager.CameraState.FLIPPING);
     }
         
     public override bool OnDodge(Unit u)

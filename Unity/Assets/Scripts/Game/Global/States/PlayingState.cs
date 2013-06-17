@@ -70,8 +70,11 @@ public class PlayingState : GameState
 	
 	public override bool OnConversion(But but)
     {
-		sm.state_change_son(this, new WaitingState(sm,cam,game,6, true));	
+		Debug.Log(" -> playing");
+		sm.state_change_son(this, new WaitingState(sm,cam,game,6,but.Owner, true));	
         game.refs.managers.conversion.But();
         return true; // Could call signal
     }
+	
+	//conversion ratée dans le on limit
 }
