@@ -1360,6 +1360,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  nationality: 0
   hiddenPositionIndicator:
     rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
     centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
@@ -1396,7 +1397,7 @@ MonoBehaviour:
   captain: {fileID: 0}
   Prefab_model: {fileID: 100024, guid: 91399eeacaff9a44d878daeb70717522, type: 2}
   Prefab_capitaine: {fileID: 100020, guid: f4de280f8c1a3e347b29076d4b0e73e3, type: 2}
-  SuperGaugeValue: 0
+  SuperGaugeValue: 200
   nbUnits: 5
   fxSuper: {fileID: 100020, guid: ac37f60498f5b274796598998efbca6b, type: 2}
   lightSuper: {fileID: 1509721268}
@@ -3494,6 +3495,8 @@ GameObject:
   - 114: {fileID: 381927180}
   - 114: {fileID: 381927173}
   - 114: {fileID: 381927181}
+  - 114: {fileID: 381927182}
+  - 114: {fileID: 381927183}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3631,7 +3634,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 2000
+  far clip plane: 500
   field of view: 43
   orthographic: 0
   orthographic size: 100
@@ -3783,7 +3786,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 381927171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4187fb18c3e8d7409119afa2d7a1484, type: 3}
+  m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
   Fade: 1
   TimeToFade: 1
@@ -3796,6 +3799,30 @@ MonoBehaviour:
   JapGoal:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &381927182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf4ee6085c6905429bbb64895bf8e6a, type: 3}
+  m_Name: 
+  cam: {fileID: 2004071852}
+  game: {fileID: 448441829}
+--- !u!114 &381927183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec75d714048f834f9d380a0129b411d, type: 3}
+  m_Name: 
+  cam: {fileID: 2004071852}
+  game: {fileID: 448441829}
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4375,7 +4402,8 @@ MonoBehaviour:
       MainState:
         IntroState:
           timeToSleepAfterIntro: 3
-          rotationSpeed: 2000
+          rotationSpeed: 10
+          rotationAxis: {x: 0, y: 0, z: 0}
         PlayingState:
           MainGameState:
             RunningState:
@@ -4393,7 +4421,7 @@ MonoBehaviour:
                 angleDropKick: 45
                 angleDropUpAndUnder: 70
                 BallDropCamSettings:
-                  zoom: .300000012
+                  zoom: 1
                   target: 0
                   nearClip: .300000012
                 GroundBallCamSettings:
@@ -4408,6 +4436,12 @@ MonoBehaviour:
                 nearClip: .300000012
             TacklingState:
               tackledTime: 3
+          WaitingState:
+            superCutsceneState:
+              rotationAxis: {x: 0, y: 0, z: 0}
+              duration: 0
+              finalAngle: 0
+              smooth: 0
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
@@ -6682,6 +6716,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
+  nationality: 0
   hiddenPositionIndicator:
     rotatedTexture: {fileID: 2800000, guid: df01b068a459fc44eb770726a540c074, type: 3}
     centerTexture: {fileID: 2800000, guid: a5be0dadff7695442b42672b18139e15, type: 3}
@@ -6718,7 +6753,7 @@ MonoBehaviour:
   captain: {fileID: 0}
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
   Prefab_capitaine: {fileID: 0}
-  SuperGaugeValue: 0
+  SuperGaugeValue: 200
   nbUnits: 5
   fxSuper: {fileID: 100002, guid: db293cb59ef6066498060ab7b0e1f112, type: 2}
   lightSuper: {fileID: 0}
@@ -20053,9 +20088,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d0cb7fdfc4949419edf4538efe7b88, type: 3}
   m_Name: 
-  step: 0
   game: {fileID: 448441829}
   gameCamera: {fileID: 381927179}
+  publicTarget: {fileID: 0}
   rotationDelay: .300000012
   smoothTime: .300000012
   smoothAngle: {x: .300000012, y: .300000012, z: .300000012}
@@ -20064,10 +20099,17 @@ MonoBehaviour:
   rotationMagnitudeGap: .00999999978
   zoom: 1
   MaxfollowOffset: {x: 0, y: 0, z: 0}
-  MinfollowOffset: {x: 0, y: 1.20000005, z: -2.70000005}
+  MinfollowOffset: {x: 0, y: .25999999, z: -.600000024}
   flipDuration: 1
   flipDelay: .100000001
+  zMinForBlue: 0
+  zMaxForBlue: 0
   CancelNextFlip: 0
+  CameraShakeComponent: {fileID: 0}
+  CameraZoomComponent: {fileID: 0}
+  CameraRotatingAroundComponent: {fileID: 0}
+  SuperMaoriCutSceneComponent: {fileID: 0}
+  SuperJapaneseCutSceneComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
