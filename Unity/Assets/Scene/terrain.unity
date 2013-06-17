@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34a5d595f48b7ff46a71eb100f084b20, type: 3}
   m_Name: 
-  nationality: 1
+  nationality: 0
   hiddenPositionIndicator:
     rotatedTexture: {fileID: 2800000, guid: 7e4838410f354a8419a64fb599b3f91f, type: 3}
     centerTexture: {fileID: 2800000, guid: 7e367eac76d8c3542827070ada08a1cb, type: 3}
@@ -3788,17 +3788,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
-  Fade: 0
-  TimeToFade: 0
-  NewShader: 
-  NewAlphaJap: 0
-  NewAlphaMao: 0
+  Fade: 1
+  TimeToFade: 1
+  NewShader: Transparent/Diffuse
+  NewAlphaJap: 128
+  NewAlphaMao: 128
   MaoGoal:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   JapGoal:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
 --- !u!114 &381927182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4403,7 +4403,7 @@ MonoBehaviour:
         IntroState:
           timeToSleepAfterIntro: 3
           rotationSpeed: 10
-          rotationAxis: {x: 0, y: 1, z: 0}
+          rotationAxis: {x: 0, y: 0, z: 0}
         PlayingState:
           MainGameState:
             RunningState:
@@ -4438,10 +4438,10 @@ MonoBehaviour:
               tackledTime: 3
           WaitingState:
             superCutsceneState:
-              rotationAxis: {x: 0, y: 1, z: 0}
-              duration: 3.29999995
+              rotationAxis: {x: 0, y: 0, z: 0}
+              duration: 0
               finalAngle: 0
-              smooth: .100000001
+              smooth: 0
           GameActionState:
             ConvertingState:
               TransfoRemiseAuCentre: 0
