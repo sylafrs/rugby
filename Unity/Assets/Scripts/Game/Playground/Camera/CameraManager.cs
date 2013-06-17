@@ -30,6 +30,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
                         
         }
     }
+	public Transform publicTarget;
 	
 	private Vector3 	velocity = Vector3.zero;
 	private float		velocityFloat = 0f;
@@ -64,8 +65,8 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	private float 	flipLastAngle;
 	private float 	flipWaiting;
 	//private bool    isflipped;
-	private float 	zMinForBlue;
-	private float 	zMaxForBlue;
+	public float 	zMinForBlue;
+	public float 	zMaxForBlue;
     public  Team    flipedForTeam { get; private set; }
     public  Team 	TeamLooked { get { return flipedForTeam; } }
 	
@@ -88,6 +89,31 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	};
 	private CameraState currentCameraState;
 	
+	//Cam component
+	public CameraShake 			CameraShakeComponent;
+	public CameraZoom  			CameraZoomComponent;
+	public CameraRotatingAround CameraRotatingAroundComponent;
+	
+	public SuperMaoriCutSceneScript	SuperMaoriCutSceneComponent;
+	public SuperJapaneseCutSceneScript SuperJapaneseCutSceneComponent;
+	
+	void Awake(){
+		Camera camera 			= Camera.mainCamera;
+		GameObject camObject	= camera.gameObject;
+			
+		//add components
+		camObject.AddComponent<CameraShake>();
+		camObject.AddComponent<CameraZoom>();
+		camObject.AddComponent<CameraRotatingAround>();
+		
+		//get Component
+		this.CameraShakeComponent 			= camera.GetComponent<CameraShake>();
+		this.CameraZoomComponent  			= camera.GetComponent<CameraZoom>();
+		this.CameraRotatingAroundComponent  = camera.GetComponent<CameraRotatingAround>();
+		this.SuperMaoriCutSceneComponent	= camera.GetComponent<SuperMaoriCutSceneScript>();
+		this.SuperJapaneseCutSceneComponent	= camera.GetComponent<SuperJapaneseCutSceneScript>();
+	}
+	
 	// Use this for initialization
 	void Start () {
 		resetActualDelay();
@@ -107,22 +133,17 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		this.currentCameraState = newState;
 	}
 	
-#if USE_FIXEDUPDATE
 	void FixedUpdate(){
-#else
-    void Update() {
-#endif
+		this.publicTarget = this.target;
 		switch (currentCameraState)
 		{
 			case CameraState.FREE:
 			{
-				//nothing ! Someone is moving the camera elsewhere !
+				//nothing ! Someone is moving the camera somewhere !
 				break;
 			}
 			case CameraState.FLIPPING:
 			{
-				this.TranslateCam2();
-				this.flipUpdate();
 				break;	
 			}
 			case CameraState.FOLLOWING:
@@ -133,12 +154,10 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 			}
 			case CameraState.ONLYZOOM:
 			{
-				this.TranslateCam2();
 				break;
 			}
 			case CameraState.SHAKING:
 			{
-				this.ShakeUpdate();
 				break;
 			}
 			default :

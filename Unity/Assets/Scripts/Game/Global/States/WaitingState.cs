@@ -6,6 +6,9 @@
   */
 public class WaitingState : GameState
 {
+	float remainingTime;
+	Team  TeamOnSuper;
+	
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time)
 		: base(sm, cam, game)
 	{
@@ -19,9 +22,6 @@ public class WaitingState : GameState
 		this.remainingTime = time;
 		this.TeamOnSuper = TeamOnSuper;
 	}
-
-	private float remainingTime;
-	private Team TeamOnSuper;
 
 	public override void OnEnter()
 	{
@@ -44,7 +44,7 @@ public class WaitingState : GameState
 		game.disableIA = true;
 		game.Referee.PauseIngameTime();
 		if(TeamOnSuper)
-			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper));
+			sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper, this.remainingTime));
 	}
 
 	public override void OnUpdate()

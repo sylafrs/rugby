@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum TeamNationality{
+		MAORI,
+		JAPANESE
+	};
+
 /**
  * @class Team
  * @brief Une equipe (unite)
@@ -20,7 +25,9 @@ public class Team : myMonoBehaviour, IEnumerable
 		public float rotatedTextureScale;
 		public Rect centerTextureRect;
 	}
-
+	
+	public TeamNationality nationality;
+	
 	public HiddenPositionIndicator hiddenPositionIndicator;
 
 	public Team opponent { get; set; }
