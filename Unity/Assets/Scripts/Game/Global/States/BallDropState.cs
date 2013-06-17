@@ -14,5 +14,6 @@ public class BallDropState : GameState {
 	{
 		base.OnEnter();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallDropCamSettings);
+        game.Ball.audio.PlayOneShot(game.refs.sounds.ShootBall);
 	}
 }

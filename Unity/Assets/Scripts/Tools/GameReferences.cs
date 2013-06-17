@@ -54,9 +54,11 @@ public class GameReferences : myMonoBehaviour {
     [System.Serializable]
     public class Sounds
     {
-        public AudioSource MainSounds;
         public AudioClip SuperNorth;
         public AudioClip SuperSouth;
+        public AudioClip Ambiant;
+        public AudioClip Ambiant2;
+        public AudioClip ShootBall;
     }
 
     public Game game;
@@ -72,4 +74,5 @@ public class GameReferences : myMonoBehaviour {
     public Positions positions;
 
     public XboxInputs xboxInputs;
+    public AudioDictionnary CameraAudio;
 }
