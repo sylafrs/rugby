@@ -14479,7 +14479,7 @@ MonoBehaviour:
         superGaugeMaximum: 200
         SuperDashDurationTime: 1.5
         SuperStunDurationTime: 2
-        superSpeedScale: 2.5
+        superSpeedScale: 2
         superTackleBoxScale: 1.5
         superUnblockable: 1
         passInterceptSuperPoints: 20
