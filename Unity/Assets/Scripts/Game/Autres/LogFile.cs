@@ -37,10 +37,12 @@ public class LogFile {
 			if (line == "")
 				return;
 
-			if (!File.Exists(nameFile + ".txt"))
-				writer = File.CreateText(nameFile + ".txt");
-			else
-				writer.WriteLine(line);
+            if (!File.Exists(nameFile + ".txt"))
+                writer = File.CreateText(nameFile + ".txt");
+            else if (writer != null)
+                writer.WriteLine(line);
+            else
+                return;
 				
 			writer.Close();
 			
@@ -49,7 +51,7 @@ public class LogFile {
 		}
 		catch(System.Exception e) 
 		{
-			//Debug.LogWarning(e.Message); // Ex : Directory not found ;)
+			Debug.LogWarning(e.Message); // Ex : Directory not found ;)
 		}
 	}
 	

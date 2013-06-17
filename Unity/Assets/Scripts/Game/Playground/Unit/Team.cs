@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum TeamNationality{
-		MAORI,
-		JAPANESE
-	};
+	MAORI,
+	JAPANESE
+};
 
 /**
  * @class Team

@@ -384,6 +384,9 @@ public class Gamer
 			if (Controlled.unitAnimator)
 				Controlled.unitAnimator.OnTackleStart(tackled != null);
 
+            if (tackled && tackled.unitAnimator)            
+                tackled.unitAnimator.OnBeingTackled();
+            
 			Controlled.Order = Order.OrderPlaquer(tackled);
 		}
 	}
