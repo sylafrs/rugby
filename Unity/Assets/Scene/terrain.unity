@@ -4403,7 +4403,7 @@ MonoBehaviour:
         IntroState:
           timeToSleepAfterIntro: 3
           rotationSpeed: 10
-          rotationAxis: {x: 0, y: 0, z: 0}
+          rotationAxis: {x: 0, y: 1, z: 0}
         PlayingState:
           MainGameState:
             RunningState:
@@ -4438,7 +4438,7 @@ MonoBehaviour:
               tackledTime: 3
           WaitingState:
             superCutsceneState:
-              rotationAxis: {x: 0, y: 0, z: 0}
+              rotationAxis: {x: 0, y: 1, z: 0}
               duration: 0
               finalAngle: 0
               smooth: 0
