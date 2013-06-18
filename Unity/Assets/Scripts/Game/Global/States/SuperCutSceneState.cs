@@ -8,18 +8,14 @@ using UnityEngine;
   */
 public class SuperCutSceneState : GameState
 {	
-	private Team 		teamOnSuper;
-	private float		angle;
-	private float		lastAngle;
-	private float 		time;
-	private float 		period;
-	private float 		velocity;
-	private bool		rotating;
+	Team 	teamOnSuper;
+	float 	cutsceneDuration;
 	
-	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper)
+	public SuperCutSceneState(StateMachine sm, CameraManager cam, Game game, Team TeamOnSuper, float _cutsceneDuration)
 		: base(sm, cam, game)
 	{
-		this.teamOnSuper = TeamOnSuper;
+		this.teamOnSuper 		= TeamOnSuper;
+		this.cutsceneDuration 	= _cutsceneDuration;
 	}
 
 	public override void OnEnter ()
@@ -27,12 +23,12 @@ public class SuperCutSceneState : GameState
         var SoundSettings = game.settings.Global.Super.sounds;
 
        	base.OnEnter();	
-        foreach (Unit u in team){
+        foreach (Unit u in teamOnSuper){
             u.unitAnimator.LaunchSuper();
         }
 
 		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
-		if(game.Ball.Owner.Team == team){
+		if(game.Ball.Owner.Team == teamOnSuper){
 			if(ballOwnerNat == TeamNationality.JAPANESE){
 				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
 			}

@@ -16,16 +16,13 @@ public class WiningPointCutSceneState : GameState {
 	}
 	
 	public override void OnEnter(){
-		Debug.Log("hello Wining !");
 		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
            (/* OnFinish */) => {
                //please, kill after usage x)
 				game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
-				cam.WiningPointsCutSceneComponent.StartScene( () => {
-					Debug.Log("Anim finie");
-				}, team);
+				cam.WiningPointsCutSceneComponent.StartScene( () => { }, team);
                	CameraFade.wannaDie();
            }, (/* OnFade */) => {
 				cam.zoom = 1; //TODO cam settings

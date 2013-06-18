@@ -59,7 +59,7 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 1.75
+  - time: 2
     functionName: StopScene
     data: 
     objectReferenceParameter: {fileID: 0}

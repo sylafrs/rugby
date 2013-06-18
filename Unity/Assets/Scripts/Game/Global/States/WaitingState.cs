@@ -27,7 +27,6 @@ public class WaitingState : GameState
 		this.remainingTime = time;
 		this.TeamOnSuper = TeamOnSuper;
 		this.onWiningPoints = false;
-		Debug.Log(" -> super");
 	}
 	
 	public WaitingState(StateMachine sm, CameraManager cam, Game game, float time, Team team, bool _onWiningPoints)
@@ -36,7 +35,6 @@ public class WaitingState : GameState
 		this.remainingTime 	= time;
 		this.TeamOnSuper 	= team;
 		this.onWiningPoints = true;
-		Debug.Log(" -> conversion");
 	}
 
 	public override void OnEnter()
@@ -57,12 +55,10 @@ public class WaitingState : GameState
 	            else
 	                cam.setTarget(game.Ball.transform);
 	        }
-	        	
-	        //cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 			game.disableIA = true;
 			game.Referee.PauseIngameTime();
 			if(TeamOnSuper)
-				sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper));
+				sm.state_change_son(this, new SuperCutSceneState(sm, cam, game, TeamOnSuper,remainingTime));
 		}
 	}
 

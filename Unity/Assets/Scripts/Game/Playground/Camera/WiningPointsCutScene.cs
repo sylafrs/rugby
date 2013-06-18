@@ -15,7 +15,7 @@ public class WiningPointsCutScene : MonoBehaviour {
 	/// <param name='test'>
 	/// Test.
 	/// </param>
-	public void IncreaseOnePoint(float test){
+	public void IncreaseOnePoint(){
 		game.Referee.GivePoints(1,teamWining);
 	}
 	

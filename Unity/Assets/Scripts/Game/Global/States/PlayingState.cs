@@ -68,13 +68,9 @@ public class PlayingState : GameState
 		return true;
 	}
 	
-	public override bool OnConversion(But but)
-    {
-		Debug.Log(" -> playing");
-		sm.state_change_son(this, new WaitingState(sm,cam,game,6,but.Owner, true));	
+	public override bool OnConversion(But but){
+		sm.state_change_son(this, new WaitingState(sm,cam,game,6,but.Owner.opponent, true));	
         game.refs.managers.conversion.But();
-        return true; // Could call signal
+        return true;
     }
-	
-	//conversion ratée dans le on limit
 }
