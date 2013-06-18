@@ -38,13 +38,6 @@ AnimationClip:
   m_EditorCurves: []
   m_EulerEditorCurves: []
   m_Events:
-  - time: .5
-    functionName: IncreaseOnePoint
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 1
     functionName: IncreaseOnePoint
     data: 
