@@ -48,7 +48,7 @@ public class GameReferences : myMonoBehaviour {
     public class GameObjects
     {
         public Ball ball;
-        public Renderer ScrumBloc;
+        public GameObject ScrumBloc;
     }
 
     [System.Serializable]
