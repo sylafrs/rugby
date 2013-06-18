@@ -88,7 +88,7 @@ public partial class Referee
 
         ScrumManager sc = this.game.refs.managers.scrum;
         sc.InitialPosition = this.PlaceScrumBloc();
-        sc.ScrumBloc = bloc.transform;
+        sc.ScrumBloc = bloc;
 
         sc.callback = (Team t, Vector3 endPos) =>
         {

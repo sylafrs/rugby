@@ -12,7 +12,7 @@ using UnityEditor;
 [AddComponentMenu("Scripts/MiniGames/Scrum")]
 public class ScrumManager : myMonoBehaviour, Debugable {
 	
-    public Transform ScrumBloc                      { private get; set; }   // Object to move   (parameter)
+    public ScrumBloc ScrumBloc                      { private get; set; }   // Object to move   (parameter)
     public Vector3 InitialPosition                  { private get; set; }   // Unity unit       (parameter)
     public System.Action<Team, Vector3> callback    { private get; set; }   // At the end.      (parameter, optionnal)	
 
@@ -52,8 +52,11 @@ public class ScrumManager : myMonoBehaviour, Debugable {
             if(o == null)
                 o = new GameObject("SCRUM");
 
-            this.ScrumBloc = o.transform;
+            this.ScrumBloc = o.GetComponent<ScrumBloc>();
         }
+
+        ScrumBloc.transform.position = InitialPosition;
+        ScrumBloc.smoothPosition = true;
 
         this.currentPosition = 0;                                  		   // Current score.
         this.TimeRemaining = this.settings.MaximumDuration;                // Decreased by time after if chrono launched.
@@ -152,6 +155,17 @@ public class ScrumManager : myMonoBehaviour, Debugable {
                 this.InvincibleTime = settings.InvincibleCooldown;
                 this.SuperLoading = 0;
                 smash += super * this.settings.SuperMultiplicator * this.settings.SmashValue;
+
+                if (super != 0)
+                {
+                    Team t = game.southTeam;
+                    if (super != 1)
+                    {
+                        t = game.northTeam;
+                    }
+
+                    game.refs.gameObjects.ScrumBloc.PushFor(t);
+                }
             }
         }
         else 
@@ -192,7 +206,7 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         Vector3 pos = InitialPosition;
         pos.z += currentPosition * this.settings.MaximumDistance;
 
-        ScrumBloc.transform.position = pos;
+        ScrumBloc.idealPosition = pos;
     }
 
     private void UpdateWinner()

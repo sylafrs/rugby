@@ -6,7 +6,23 @@ AnimatorController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MaoriScrum
-  m_AnimatorEvents: []
+  m_AnimatorEvents:
+  - m_Name: in_bool_fail
+    m_Type: 4
+    m_Min: 1e+06
+    m_Max: -1e+06
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+  - m_Name: in_bool_push
+    m_Type: 4
+    m_Min: 1e+06
+    m_Max: -1e+06
+    m_DefaultVector: {x: 0, y: 0, z: 0}
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
   m_Layers:
   - serializedVersion: 2
     m_Name: MaoScrum
@@ -18,6 +34,94 @@ AnimatorController:
     m_SyncedLayerIndex: -1
     m_StateMachineMotionSetIndex: 0
     m_IKPass: 0
+--- !u!1101 &110100000
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110200000}
+  m_DstState: {fileID: 110212656}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: in_bool_fail
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 5
+    m_ConditionEvent: in_bool_fail
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+--- !u!1101 &110108695
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110233992}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: .300000012
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: in_bool_push
+    m_EventTreshold: 0
+    m_ExitTime: .699999988
+  - m_ConditionMode: 5
+    m_ConditionEvent: in_bool_push
+    m_EventTreshold: 0
+    m_ExitTime: .699999988
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+--- !u!1101 &110122365
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110212656}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: .300000012
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .699999988
+  - m_ConditionMode: 2
+    m_ConditionEvent: in_bool_fail
+    m_EventTreshold: 0
+    m_ExitTime: .699999988
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+--- !u!1101 &110127961
+Transition:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110200000}
+  m_DstState: {fileID: 110233992}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 1
+    m_ConditionEvent: in_bool_push
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
 --- !u!1102 &110200000
 State:
   m_ObjectHideFlags: 3
@@ -71,20 +175,37 @@ StateMachine:
   - {fileID: 110233992}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_LocalTransitions: {}
+  m_LocalTransitions:
+    data:
+      first: {fileID: 110200000}
+      second:
+      - {fileID: 110100000}
+      - {fileID: 110127961}
+    data:
+      first: {fileID: 110212656}
+      second:
+      - {fileID: 110122365}
+    data:
+      first: {fileID: 110233992}
+      second:
+      - {fileID: 110108695}
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
       second: []
     data:
       first: {fileID: 110200000}
-      second: []
+      second:
+      - {fileID: 110100000}
+      - {fileID: 110127961}
     data:
       first: {fileID: 110212656}
-      second: []
+      second:
+      - {fileID: 110122365}
     data:
       first: {fileID: 110233992}
-      second: []
+      second:
+      - {fileID: 110108695}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

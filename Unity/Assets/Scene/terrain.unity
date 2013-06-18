@@ -238,7 +238,7 @@ MonoBehaviour:
     conversionPlacement: {fileID: 1069563503}
   gameObjects:
     ball: {fileID: 308884795}
-    ScrumBloc: {fileID: 0}
+    ScrumBloc: {fileID: 1239785093}
   positions:
     limiteTerrainNordEst: {fileID: 908523407}
     limiteTerrainSudOuest: {fileID: 673607277}
@@ -19464,7 +19464,7 @@ MonoBehaviour:
               minPlayersEachTeamToTriggerScrum: 3
               FeedSuperPerSmash: .0500000007
               FeedSuperPerSecond: .0500000007
-              test: 5
+              test: 50
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
@@ -38122,11 +38122,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -.800010681
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.86859131
+      value: .799987793
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_IsActive
@@ -43347,6 +43347,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 101494, guid: 9db431bd644ebcb4d955fe69e7fae65a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9db431bd644ebcb4d955fe69e7fae65a, type: 2}
   m_RootGameObject: {fileID: 1239785091}
@@ -43670,7 +43674,7 @@ Transform:
   m_PrefabInternal: {fileID: 931411769}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86859131, z: 0}
+  m_LocalPosition: {x: -.800010681, y: .799987793, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
@@ -50823,6 +50827,7 @@ MonoBehaviour:
   m_Name: 
   north: {fileID: 521791116}
   south: {fileID: 1615602563}
+  nFrame: 0
 --- !u!1 &1239939162
 GameObject:
   m_ObjectHideFlags: 0
