@@ -374,6 +374,12 @@ ModelImporter:
     100736: Chara_Japan__2_:R_Toe_jnt
     100738: Chara_Japan__2_:R_Wrist_jnt
     100740: Chara_Japan__2_:SKELETON
+    100742: Chara_Japan__2_2:C_Armor_jnt
+    100744: Chara_Japan__2_2:L_Belt01_jnt
+    100746: Chara_Japan__2_2:L_Belt02_jnt
+    100748: Chara_Japan__2_2:L_Belt03_jnt
+    100750: Chara_Japan__2_2:R_Belt01_jnt
+    100752: Chara_Japan__2_2:R_Belt02_jnt
     400000: //RootNode
     400002: Chara_Japan__2_1:C_Chest_jnt
     400004: Chara_Japan__2_1:C_Head_End_jnt
@@ -745,12 +751,19 @@ ModelImporter:
     400736: Chara_Japan__2_:R_Toe_jnt
     400738: Chara_Japan__2_:R_Wrist_jnt
     400740: Chara_Japan__2_:SKELETON
+    400742: Chara_Japan__2_2:C_Armor_jnt
+    400744: Chara_Japan__2_2:L_Belt01_jnt
+    400746: Chara_Japan__2_2:L_Belt02_jnt
+    400748: Chara_Japan__2_2:L_Belt03_jnt
+    400750: Chara_Japan__2_2:R_Belt01_jnt
+    400752: Chara_Japan__2_2:R_Belt02_jnt
     4300000: Chara_Japan__2_:Jap_cap
     4300002: Chara_Japan__2_1:Jap_cap
     4300004: Chara_Japan__2_2:Jap_cap
     4300006: Chara_Japan__2_3:Jap_cap
     4300008: Chara_Japan__2_4:Jap_cap
     7400000: JapIdle
+    7400002: JapIdle
     9500000: //RootNode
     11100000: //RootNode
     13700000: Chara_Japan__2_1:Jap_cap
