@@ -55,7 +55,7 @@ public class SuperJapaneseCutSceneScript : MonoBehaviour {
 			*/
 		ActivateCameraPrefab(this.unit);
 		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
-		StartCoroutine(Shake(this.length/2 +0.5f));
+		StartCoroutine(Shake(1.4f));
         //StartCoroutine(Rotate2(this.length - 0.5f));
 	}
 	
@@ -64,7 +64,7 @@ public class SuperJapaneseCutSceneScript : MonoBehaviour {
 			Debug.Log("Miam");
 		this.unitObject.SetActive(true);
 		this.unitObject.GetComponent<Animation>().Play();
-		StartCoroutine(DesactivateGameObject(3.6f));
+		StartCoroutine(DesactivateGameObject(3.9f));
 	}
 	
 	IEnumerator DesactivateGameObject(float _duration){
