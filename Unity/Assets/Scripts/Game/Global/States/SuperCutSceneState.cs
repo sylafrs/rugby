@@ -30,10 +30,25 @@ public class SuperCutSceneState : GameState
 		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
 		if(game.Ball.Owner.Team == teamOnSuper){
 			if(ballOwnerNat == TeamNationality.JAPANESE){
-				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
+				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration, 
+					game.Ball.Owner.transform.gameObject,
+					game.Ball.Owner);
 			}
 			if(ballOwnerNat == TeamNationality.MAORI){
-				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
+				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration,
+					game.Ball.Owner.transform.gameObject,
+					game.Ball.Owner);
+			}
+		}else{
+			if(ballOwnerNat == TeamNationality.JAPANESE){
+				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration, 
+					game.southTeam.Player.Controlled.gameObject,
+					game.southTeam.Player.Controlled);
+			}
+			if(ballOwnerNat == TeamNationality.MAORI){
+				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration, 
+					game.southTeam.Player.Controlled.gameObject,
+					game.southTeam.Player.Controlled);
 			}
 		}
 
