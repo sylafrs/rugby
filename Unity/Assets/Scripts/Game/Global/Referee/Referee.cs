@@ -33,6 +33,16 @@ public partial class Referee : myMonoBehaviour {
 		PauseIngameTime();
 	}
 	
+	public void StopPlayerMovement(){
+		this.game.southTeam.Player.stopMove();
+		this.game.northTeam.Player.stopMove();
+	}
+	
+	public void EnablePlayerMovement(){
+		this.game.southTeam.Player.enableMove();
+		this.game.northTeam.Player.enableMove();
+	}
+	
 	//when the game start after intro
     public void OnStart()
     {
@@ -92,20 +102,17 @@ public partial class Referee : myMonoBehaviour {
 	
     public void Update()
     {		
-		//if(this.game.sm.st
-       		TimeEllapsedSinceIntro += Time.deltaTime;
-			if(TimeEllapsedSinceIntro > IntroDelayTime){			
-				if(TimePaused == false)IngameTime += Time.deltaTime;
-				if(IngameTime > GameTimeDuration){
-					IngameTime = GameTimeDuration;
-					this.game.OnGameEnd();
-				}
-			}
-        //}
-
         this.UpdateTackle(); // Referee_tackle.cs
     }
-
+	
+	public void UpdateChronometer(){
+		if(TimePaused == false)IngameTime += Time.deltaTime;
+		if(IngameTime > GameTimeDuration){
+			IngameTime = GameTimeDuration;
+			this.game.OnGameEnd();
+		}
+	}
+	
     public void OnPassFinished(Ball.PassResult res)
     {
         Team prev = this.game.Ball.PreviousOwner.Team;

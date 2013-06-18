@@ -74,7 +74,8 @@ public class Unit : TriggeringTriggered, Debugable
 			return _nma;
 		}
 	}
-	private Order currentOrder;
+   
+    private Order currentOrder;
 	private Team team;
 
 	public Game game { get; set; }
@@ -598,7 +599,7 @@ public class Unit : TriggeringTriggered, Debugable
 	{
 		for (int i = 0; i < selectedIndicators.Length; i++)
 		{
-			selectedIndicators[i].renderer.enabled = enabled;
+            selectedIndicators[i].SetActive(enabled);
 		}
 	}
 

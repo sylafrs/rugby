@@ -13,28 +13,14 @@ public class IntroState : GameState
 {
     public IntroState(StateMachine sm, CameraManager cam, Game game) : base(sm, cam, game) { }
 	
-	Transform 	cameraFirstPosition,
-	 			fieldCenter,
-	 			rotationCenter;
-	float		rotationSpeed,
-			 	rotationAngle;
-	Vector3		rotationAxis;
-	
 	public override void OnEnter(){  
-		base.OnEnter();
-		cameraFirstPosition = game.refs.positions.cameraFirstPosition;
-		fieldCenter			= game.refs.positions.fieldCenter;
-		rotationCenter		= game.refs.positions.rotationCenter;
-		rotationSpeed 		= cam.game.settings.GameStates.MainState.IntroState.rotationSpeed;
-		rotationAxis 		= cam.game.settings.GameStates.MainState.IntroState.rotationAxis;
-		rotationAngle 		= rotationSpeed/100;
-		
+		base.OnEnter();	
 		this.cam.CameraRotatingAroundComponent.StartEndlessRotation(
-			rotationCenter,
-			rotationAxis,
-			fieldCenter,
-			cameraFirstPosition,
-			rotationAngle);	
+			game.refs.positions.rotationCenter,
+			new Vector3(0,1,0),
+			game.refs.positions.fieldCenter,
+			game.refs.positions.cameraFirstPosition,
+			cam.game.settings.GameStates.MainState.IntroState.rotationSpeed/100);	
     }
 
 	public override void OnLeave(){

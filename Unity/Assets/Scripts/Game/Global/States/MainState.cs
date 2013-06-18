@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 /**
@@ -17,7 +19,7 @@ public class MainState : GameState {
     }
 
     public override bool OnEndSignal()
-    {
+    {			
         sm.state_change_son(this, new EndState(sm, cam, game));
         return true;
     }

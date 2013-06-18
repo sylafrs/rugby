@@ -19,10 +19,13 @@ public class SuperCutSceneState : GameState
 
 	public override void OnEnter ()
 	{
+        var SoundSettings = game.settings.Global.Super.sounds;
+
        	base.OnEnter();	
         foreach (Unit u in team){
             u.unitAnimator.LaunchSuper();
         }
+
 		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
 		if(game.Ball.Owner.Team == team){
 			if(ballOwnerNat == TeamNationality.JAPANESE){
@@ -32,6 +35,31 @@ public class SuperCutSceneState : GameState
 				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
 			}
 		}
+
+        if (ballOwnerNat == TeamNationality.MAORI)
+        {
+            Timer.AddTimer(SoundSettings.RockFxDelay, () => 
+            {
+                AudioSource src = this.game.Ball.Owner.audio;
+                src.clip = this.game.refs.sounds.SuperScreamNorth;
+                src.Play();
+                src = game.refs.CameraAudio["Super"];
+                src.clip = this.game.refs.sounds.SuperNorth;
+                src.Play();
+            });
+        }
+        if (ballOwnerNat == TeamNationality.JAPANESE)
+        {
+            Timer.AddTimer(SoundSettings.RockFxDelay, () =>
+            {
+                AudioSource src = this.game.Ball.Owner.audio;
+                src.clip = this.game.refs.sounds.SuperScreamSouth;
+                src.Play();
+                src = game.refs.CameraAudio["Super"];
+                src.clip = this.game.refs.sounds.SuperSouth;
+                src.Play();
+            });           
+        }
 	}
 	
 	public override void OnLeave ()

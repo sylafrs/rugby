@@ -20,6 +20,7 @@ public class GameReferences : myMonoBehaviour {
         public TransformationManager conversion;
         public ScrumManager scrum;
         public UIManager ui;
+        public CoinFlipManager coin;
     }
 
     [System.Serializable]
@@ -50,16 +51,31 @@ public class GameReferences : myMonoBehaviour {
         public Renderer ScrumBloc;
     }
 
+    [System.Serializable]
+    public class Sounds
+    {
+        public AudioClip SuperNorth;
+        public AudioClip SuperSouth;
+        public AudioClip SuperScreamNorth;
+        public AudioClip SuperScreamSouth;
+        public AudioClip Ambiant;
+        public AudioClip Ambiant2;
+        public AudioClip ShootBall;
+        public AudioClip BallGroundSound;
+    }
+
     public Game game;
     public StateMachine stateMachine;
     public Referee Referee;
 
     public Team north, south;
 
+    public Sounds sounds;
     public Managers managers;
     public PlaceHolders placeHolders;
     public GameObjects gameObjects;
     public Positions positions;
 
     public XboxInputs xboxInputs;
+    public AudioDictionnary CameraAudio;
 }

@@ -29,11 +29,13 @@ public class GameUISettings
 	public float timeBoxHeightPercentage  = 5;
 	public float timeBoxXPercentage		= 50;
 	public float timeBoxYPercentage		= 10;
-	
-	public float blueGaugeBoxWidthPercentage   = 25;
-	public float blueGaugeBoxHeightPercentage  = 10;
-	public float blueGaugeBoxXPercentage		= 22.5f;
-	public float blueGaugeBoxYPercentage		= 10;
+
+    public MySlider blueSuper;
+
+	//public float blueGaugeBoxWidthPercentage   = 25;
+	//public float blueGaugeBoxHeightPercentage  = 10;
+	//public float blueGaugeBoxXPercentage		= 22.5f;
+	//public float blueGaugeBoxYPercentage		= 10;
 	
 	public float redGaugeBoxWidthPercentage   = 25;
 	public float redGaugeBoxHeightPercentage  = 10;
