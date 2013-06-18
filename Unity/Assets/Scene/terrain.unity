@@ -29026,6 +29026,14 @@ Prefab:
       propertyPath: mMat
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.8595643
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
   m_RootGameObject: {fileID: 1252668265}
