@@ -9,16 +9,16 @@ AnimatorController:
   m_AnimatorEvents:
   - m_Name: in_bool_fail
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
   - m_Name: in_bool_push
     m_Type: 4
-    m_Min: 1e+06
-    m_Max: -1e+06
+    m_Min: -1
+    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -46,10 +46,6 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: in_bool_fail
-    m_EventTreshold: 0
-    m_ExitTime: .899999976
-  - m_ConditionMode: 5
     m_ConditionEvent: in_bool_fail
     m_EventTreshold: 0
     m_ExitTime: .899999976
@@ -111,10 +107,6 @@ Transition:
   m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
-    m_ExitTime: .899999976
   - m_ConditionMode: 1
     m_ConditionEvent: in_bool_push
     m_EventTreshold: 0
