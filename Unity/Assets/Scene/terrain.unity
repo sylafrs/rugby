@@ -19466,7 +19466,7 @@ MonoBehaviour:
               minPlayersEachTeamToTriggerScrum: 3
               FeedSuperPerSmash: .0500000007
               FeedSuperPerSecond: .0500000007
-              test: 50
+              test: 5
               MaximumDistance: 11.5
               SmashValue: .0500000007
               SuperMultiplicator: 5
@@ -33499,7 +33499,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &805976106
 MonoBehaviour:
@@ -38124,11 +38124,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.18453979
+      value: -.71408844
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.09089661
+      value: .713745117
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_IsActive
@@ -43676,7 +43676,7 @@ Transform:
   m_PrefabInternal: {fileID: 931411769}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.18453979, y: 1.09089661, z: 0}
+  m_LocalPosition: {x: -.71408844, y: .713745117, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
@@ -71078,7 +71078,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1696139533
 MonoBehaviour:
@@ -73687,7 +73687,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1749154047
 Transform:
@@ -84039,7 +84039,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1985047122
 MonoBehaviour:
@@ -89677,7 +89677,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2129030642
 Transform:

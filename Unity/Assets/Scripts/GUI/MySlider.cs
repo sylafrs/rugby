@@ -33,7 +33,7 @@ public class MySlider : MonoBehaviour
             {
                 bar.uvRect = new Rect(0, 0, p, 1);
             }
-            if (empty.pivot == UIWidget.Pivot.Right)
+            if (bar.pivot == UIWidget.Pivot.Right)
             {
                 bar.uvRect = new Rect(1 - p, 0, p, 1);
             }
