@@ -45,8 +45,8 @@ public class ScrumUI{
         rect = UIManager.screenRelativeRect(settings.ScrumSpecialRect);
         settings.ScrumSpecialRect = rect;
 
-        rect = UIManager.screenRelativeRect(settings.ScrumBarRect);
-        settings.ScrumBarRect = rect;
+        //rect = UIManager.screenRelativeRect(settings.ScrumBarRect);
+        //settings.ScrumBarRect = rect;
 
         rect = UIManager.screenRelativeRect(settings.ScrumLeftSpecialFailedButtonRect);
         settings.ScrumLeftSpecialFailedButtonRect = rect;
@@ -56,19 +56,21 @@ public class ScrumUI{
     }   
 
     void DrawBar()
-    {       
+    {
         float leftPercent = (1 + manager.currentPosition) / 2;
-        float leftWidth = leftPercent * settings.ScrumBarRect.width;
+        settings.sliderScrum.percent = leftPercent;
 
-        Rect rightRect = settings.ScrumBarRect;
-        Rect leftRect  = settings.ScrumBarRect;
-
-        leftRect.width = leftWidth;
-        rightRect.width -= leftWidth;
-        rightRect.x += leftWidth;
-        
-        GUI.DrawTexture(rightRect, settings.ScrumRightBar);
-        GUI.DrawTexture(leftRect,  settings.ScrumLeftBar);
+        //float leftWidth = leftPercent * settings.ScrumBarRect.width;
+        //
+        //Rect rightRect = settings.ScrumBarRect;
+        //Rect leftRect  = settings.ScrumBarRect;
+        //
+        //leftRect.width = leftWidth;
+        //rightRect.width -= leftWidth;
+        //rightRect.x += leftWidth;
+        //
+        //GUI.DrawTexture(rightRect, settings.ScrumRightBar);
+        //GUI.DrawTexture(leftRect,  settings.ScrumLeftBar);
     }
 
     void ManageMalus()

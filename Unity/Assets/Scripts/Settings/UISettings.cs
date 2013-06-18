@@ -69,12 +69,15 @@ public class GameUISettings
 [System.Serializable]
 public class ScrumUISettings
 {
+    public UIPanel ScrumPanel;
+    public MySlider sliderScrum;
+
 	public Rect ScrumSpecialRect;
     public Texture2D ScrumSpecialButton;
-    public Rect ScrumBarRect;
-    public Texture2D ScrumRightBar;
-    public Texture2D ScrumLeftBar;
-    public Texture2D ScrumEmptyBar;
+    //public Rect ScrumBarRect;
+    //public Texture2D ScrumRightBar;
+    //public Texture2D ScrumLeftBar;
+    //public Texture2D ScrumEmptyBar;
     public Texture2D ScrumSpecialFailedButton;
     public Rect ScrumLeftSpecialFailedButtonRect;
     public Rect ScrumRightSpecialFailedButtonRect;

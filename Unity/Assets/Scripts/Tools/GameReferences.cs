@@ -12,15 +12,15 @@ public class GameReferences : myMonoBehaviour {
     [System.Serializable]
     public class Managers
     {
-        public CameraManager camera;
-        public DropManager drop;
-        public IntroManager intro;
-        public TackleManager tackle;
-        public TouchManager touch;
-        public TransformationManager conversion;
-        public ScrumManager scrum;
-        public UIManager ui;
-        public CoinFlipManager coin;
+        public CameraManager            camera;
+        public DropManager              drop;
+        public IntroManager             intro;
+        public TackleManager            tackle;
+        public TouchManager             touch;
+        public TransformationManager    conversion;
+        public ScrumManager             scrum;
+        public UIManager                ui;
+        public CoinFlipManager          coin;
     }
 
     [System.Serializable]
@@ -47,8 +47,8 @@ public class GameReferences : myMonoBehaviour {
     [System.Serializable]
     public class GameObjects
     {
-        public Ball ball;
-        public ScrumBloc ScrumBloc;
+        public Ball         ball;
+        public ScrumBloc    ScrumBloc;
     }
 
     [System.Serializable]
@@ -72,19 +72,20 @@ public class GameReferences : myMonoBehaviour {
         public GameObject timeOut;
     }
 
-    public Game game;
+    public Game         game;
     public StateMachine stateMachine;
-    public Referee Referee;
+    public Referee      Referee;
 
-    public Team north, south;
+    public Team         north, 
+                        south;
 
-    public Sounds sounds;
-    public Managers managers;
-    public PlaceHolders placeHolders;
-    public GameObjects gameObjects;
-    public Positions positions;
-    public TransitionTexts transitionsTexts;
+    public Sounds           sounds;
+    public Managers         managers;
+    public PlaceHolders     placeHolders;
+    public GameObjects      gameObjects;
+    public Positions        positions;
+    public TransitionTexts  transitionsTexts;
 
-    public XboxInputs xboxInputs;
+    public XboxInputs       xboxInputs;
     public AudioDictionnary CameraAudio;
 }

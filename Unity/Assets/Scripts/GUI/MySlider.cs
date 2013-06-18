@@ -63,11 +63,11 @@ public class MySlider : MonoBehaviour
 
             if (empty.pivot == UIWidget.Pivot.Left)
             {
-                empty.uvRect = new Rect(0, 0, p, 1);
+                empty.uvRect = new Rect(0, 0, (1 - p), 1);
             }
             if (empty.pivot == UIWidget.Pivot.Right)
             {
-                empty.uvRect = new Rect(1 - p, 0, p, 1);
+                empty.uvRect = new Rect(p, 0, (1 - p), 1);
             }
         }
     }
