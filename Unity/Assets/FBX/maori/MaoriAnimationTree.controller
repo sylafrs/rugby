@@ -136,12 +136,11 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
   m_Layers:
-  - serializedVersion: 2
+  - serializedVersion: 3
     m_Name: Maori
     m_Type: 0
     m_StateMachine: {fileID: 110700000}
-    m_HumanMask: {fileID: 0}
-    m_SkeletonMask: {fileID: 0}
+    m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_StateMachineMotionSetIndex: 0
@@ -1027,12 +1026,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Super
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: fe7a5f532ce59944c9680ed95247c28d, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110734055}
   m_Position: {x: 432, y: -12, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110207306
 State:
@@ -1041,12 +1042,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Touche_Idle
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 0de057d78a3cb82428e99021fb6ba0c8, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110771919}
   m_Position: {x: -108, y: 216, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110207590
 State:
@@ -1055,12 +1058,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tackled
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400002, guid: 280db6e6df5fef34c97a8203095f1b24, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 396, y: 312, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110212502
 State:
@@ -1069,12 +1074,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: FallingDown
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: a51f77a9cec99d54dbb141588f9aefc2, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 396, y: 372, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110213140
 State:
@@ -1083,12 +1090,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tackle_Fail
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 280db6e6df5fef34c97a8203095f1b24, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 180, y: 192, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110224055
 State:
@@ -1097,11 +1106,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Touchdown
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 86683c981eadad743a90735b5a310d59, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -156, y: 120, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110224347
 State:
@@ -1110,12 +1121,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 396, y: 432, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110228587
 State:
@@ -1124,12 +1137,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Dodge
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 1f486faf76155b04aae70a19ef65cf3b, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110780803}
   m_Position: {x: 12, y: 24, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110228660
 State:
@@ -1138,12 +1153,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: PassRight
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110782116}
   m_Position: {x: 108, y: -144, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110233779
 State:
@@ -1152,12 +1169,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Waiting_super
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110734055}
   m_Position: {x: 432, y: -84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110235217
 State:
@@ -1166,12 +1185,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: RunBall
   m_Speed: .699999988
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 507839f094d0b594093b7bafde6210cd, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110780803}
   m_Position: {x: -228, y: -72, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110242428
 State:
@@ -1180,12 +1201,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: PassLeft
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400002, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110782116}
   m_Position: {x: -180, y: -144, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110243506
 State:
@@ -1194,12 +1217,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleBall
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 3ff0c07bbabe41347be4ac6e69e4f408, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110780803}
   m_Position: {x: -228, y: 120, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110243934
 State:
@@ -1208,12 +1233,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tackle_Sucess
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: f710c7921faf77b4b92d6d8ddddf440d, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 612, y: 192, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110250913
 State:
@@ -1222,11 +1249,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Drop
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d14917aec4ef2df46b4f044dc37448aa, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: -156, y: 72, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110257369
 State:
@@ -1235,12 +1264,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Maori_Run
   m_Speed: .899999976
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: dae1f63e4b163c346b44d3b038951e9e, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110789661}
   m_Position: {x: -24, y: 36, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110264369
 State:
@@ -1249,12 +1280,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Touche_Action
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: a92c6b0f5295585408a47ac03fa0d9e2, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110771919}
   m_Position: {x: 156, y: 216, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110273375
 State:
@@ -1263,11 +1296,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Maori_Run
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 5015965ab7d56f841a0fa8147c182c77, type: 3}
   m_ParentStateMachine: {fileID: 0}
   m_Position: {x: 36, y: -60, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110273769
 State:
@@ -1276,12 +1311,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: PassRight
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: c4856ce9a33fc3843832da40f8c78812, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 0}
   m_Position: {x: 96, y: -216, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110277105
 State:
@@ -1290,12 +1327,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 1a335b894c8adc348b1a20a026ac53a3, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110789661}
   m_Position: {x: -24, y: 156, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110280936
 State:
@@ -1304,12 +1343,14 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tackle_Jump
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 353383466c92b5d4ea365dcd888487bd, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110796897}
   m_Position: {x: 396, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
