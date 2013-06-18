@@ -56,6 +56,8 @@ public class GameReferences : myMonoBehaviour {
     {
         public AudioClip SuperNorth;
         public AudioClip SuperSouth;
+        public AudioClip SuperScreamNorth;
+        public AudioClip SuperScreamSouth;
         public AudioClip Ambiant;
         public AudioClip Ambiant2;
         public AudioClip ShootBall;
