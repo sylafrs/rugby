@@ -37,7 +37,7 @@ public class SuperCutSceneState : GameState
 			}
 		}
 
-        if (team.nationality == TeamNationality.MAORI)
+        if (teamOnSuper.nationality == TeamNationality.MAORI)
         {
             Timer.AddTimer(SoundSettings.RockFxDelay, () => 
             {
@@ -50,7 +50,7 @@ public class SuperCutSceneState : GameState
                 src.Play();
             });
         }
-        if (team.nationality == TeamNationality.JAPANESE)
+        if (teamOnSuper.nationality == TeamNationality.JAPANESE)
         {
             Timer.AddTimer(SoundSettings.ThunderFxDelay, () =>
             {
