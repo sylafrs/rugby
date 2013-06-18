@@ -27,15 +27,21 @@ public class SuperCutSceneState : GameState
             u.unitAnimator.LaunchSuper();
         }
 
-		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
-		if(game.Ball.Owner.Team == teamOnSuper){
-			if(ballOwnerNat == TeamNationality.JAPANESE){
-				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
-			}
-			if(ballOwnerNat == TeamNationality.MAORI){
-				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
-			}
-		}
+        if (game.Ball.Owner)
+        {
+            TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
+            if (game.Ball.Owner.Team == teamOnSuper)
+            {
+                if (ballOwnerNat == TeamNationality.JAPANESE)
+                {
+                    cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration);
+                }
+                if (ballOwnerNat == TeamNationality.MAORI)
+                {
+                    cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration);
+                }
+            }
+        }
 
         if (teamOnSuper.nationality == TeamNationality.MAORI)
         {
