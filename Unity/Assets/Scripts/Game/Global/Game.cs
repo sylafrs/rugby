@@ -127,14 +127,15 @@ public class Game : myMonoBehaviour
 		
         this.refs.managers.intro.OnFinish = () =>
         {
-            this.refs.managers.coin.callBack = (Team t) =>
+           	this.refs.managers.coin.callBack = (Team t) =>
             {
                 this.Ball.Owner = t.Player.Controlled;
                 this._disableIA = true;
                 this.Referee.OnStart();
                 this.refs.stateMachine.event_OnStartSignal();
             };
-
+			
+			this.refs.managers.coin.timeFlipping = 0;
             this.refs.managers.coin.enabled = true;
 		};
 

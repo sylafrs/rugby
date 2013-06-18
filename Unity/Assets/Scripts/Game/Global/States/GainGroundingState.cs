@@ -12,6 +12,7 @@ public class GainGroundingState : GameState {
     public override void OnEnter()
     {  
 		base.OnEnter();
+		game.Ball.StopTrail();
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallHandlingState.GainingGrounCamSettings);
 		cam.flipForTeam(this.game.Ball.Owner.Team, () => {

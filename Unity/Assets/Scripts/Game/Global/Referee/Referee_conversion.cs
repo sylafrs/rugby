@@ -88,7 +88,7 @@ public partial class Referee
             //if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             //{
                 UnitToGiveBallTo = opponent[3];
-                this.StartPlacement();
+              //  this.StartPlacement();
             //}
 
             this.game.OnResumeSignal(FreezeAfterConversion);
@@ -105,7 +105,8 @@ public partial class Referee
 
     public void OnDropTransformed(But but)
     {
-
+		Debug.Log("La");
+		
         // On donne les points
         but.Owner.opponent.nbPoints += this.game.settings.Global.Game.points_drop;
 

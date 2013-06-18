@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 /**
   * @class PassGameState
-  * @brief Etat de la caméra lorsque l'on fait une passe
+  * @brief Etat de la camÃ©ra lorsque l'on fait une passe
   * @author Sylvain Lafon
   * @see GameState
   */
@@ -14,6 +14,7 @@ public class PassingState : GameState {
     public override void OnEnter()
     {
 		base.OnEnter();
+		game.Ball.ActivateFairyTrail();
 		cam.LoadParameters(cam.game.settings.GameStates.MainState.PlayingState.MainGameState.PassingState.PassingCamSettings);
     }
 

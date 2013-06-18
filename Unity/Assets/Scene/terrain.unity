@@ -13327,6 +13327,8 @@ MonoBehaviour:
   lastTackle: -1
   timeOnDrop: -1
   timeOnPass: -1
+  fairyMaterial: {fileID: 2100000, guid: 74bcba72c2286ce429281c86d5928418, type: 2}
+  fireMaterial: {fileID: 2100000, guid: 7a4ff14c1863a0541a40f1469714cf96, type: 2}
   PreviousOwner: {fileID: 0}
   scrumFieldUnits: []
 --- !u!136 &308884796
@@ -26775,9 +26777,7 @@ MonoBehaviour:
   bar: {fileID: 277181257}
   empty: {fileID: 1760279504}
   full: {fileID: 2147408637}
-  fullIndicators:
-  - {fileID: 1696139533}
-  - {fileID: 1749154049}
+  fullIndicators: []
   fullScaleZ: 398
   emptyScaleZ: 398
   percent: 0
@@ -33918,19 +33918,19 @@ TrailRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 2045490163}
   m_GameObject: {fileID: 817501124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 7a4ff14c1863a0541a40f1469714cf96, type: 2}
+  - {fileID: 2100000, guid: 74f4a47fc3b034e2d963491f4e514174, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_Time: .200000003
+  m_Time: .379999995
   m_StartWidth: 1
   m_EndWidth: 0
   m_Colors:
@@ -38190,11 +38190,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -.800010681
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.86861312
+      value: .799987793
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
@@ -43686,7 +43686,7 @@ Transform:
   m_PrefabInternal: {fileID: 931411769}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86861312, z: 0}
+  m_LocalPosition: {x: -.800010681, y: .799987793, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
@@ -53116,9 +53116,7 @@ MonoBehaviour:
   bar: {fileID: 2005814827}
   empty: {fileID: 924355881}
   full: {fileID: 879174274}
-  fullIndicators:
-  - {fileID: 805976106}
-  - {fileID: 1985047122}
+  fullIndicators: []
   fullScaleZ: 397.5
   emptyScaleZ: 397
   percent: 0
@@ -86190,11 +86188,19 @@ Prefab:
     - target: {fileID: 9600000, guid: 4d1107c72f541804884d3a0002994771, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7a4ff14c1863a0541a40f1469714cf96, type: 2}
+      objectReference: {fileID: 2100000, guid: 74f4a47fc3b034e2d963491f4e514174, type: 2}
     - target: {fileID: 2300000, guid: 4d1107c72f541804884d3a0002994771, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bcc2dcdae288dc148954ba1598945d4f, type: 2}
+    - target: {fileID: 9600000, guid: 4d1107c72f541804884d3a0002994771, type: 2}
+      propertyPath: m_Time
+      value: .379999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 9600000, guid: 4d1107c72f541804884d3a0002994771, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d1107c72f541804884d3a0002994771, type: 2}
   m_RootGameObject: {fileID: 817501124}

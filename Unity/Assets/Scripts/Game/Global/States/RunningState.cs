@@ -56,6 +56,7 @@ public class RunningState : GameState
 
 	public override bool OnConversion(But but)
 	{
+		Debug.Log("Conversion");
 		
 		//Camera Time
 		cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2f, 
