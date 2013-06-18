@@ -60,23 +60,23 @@ public partial class Referee
 
     public void ScrumSwitchToBloc()
     {
-        GameObject bloc = this.game.refs.gameObjects.ScrumBloc;
+        ScrumBloc bloc = this.game.refs.gameObjects.ScrumBloc;
         bloc.transform.position = this.PlaceScrumBloc();
 
         this.game.southTeam.ShowPlayers(false);
         this.game.northTeam.ShowPlayers(false);
         this.game.Ball.Model.enabled = false;
-        bloc.SetActive(true);
+        bloc.gameObject.SetActive(true);
     }
 
     private void ScrumSwitchToPlayers()
     {
-        GameObject bloc = this.game.refs.gameObjects.ScrumBloc;
+        ScrumBloc bloc = this.game.refs.gameObjects.ScrumBloc;
         
         this.game.Ball.Model.enabled = true;
         this.game.southTeam.ShowPlayers(true);
         this.game.northTeam.ShowPlayers(true);
-        bloc.SetActive(false);
+        bloc.gameObject.SetActive(false);
     }
 
     private Team scrumWinners;
@@ -84,11 +84,11 @@ public partial class Referee
     public float FreezeAfterScrum = 5;
     public void NowScrum()
     {
-        GameObject bloc = this.game.refs.gameObjects.ScrumBloc;
+        ScrumBloc bloc = this.game.refs.gameObjects.ScrumBloc;
 
         ScrumManager sc = this.game.refs.managers.scrum;
         sc.InitialPosition = this.PlaceScrumBloc();
-        sc.ScrumBloc = bloc.transform;
+        sc.ScrumBloc = bloc;
 
         sc.callback = (Team t, Vector3 endPos) =>
         {

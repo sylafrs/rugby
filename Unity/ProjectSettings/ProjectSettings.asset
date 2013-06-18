@@ -142,7 +142,7 @@ PlayerSettings:
   ps3TrialMode: 0
   flashStrippingLevel: 2
   scriptingDefineSymbols: {}
-  metroPackageName: 
+  metroPackageName: Unity
   metroPackageLogo: 
   metroPackageVersion: 
   metroCertificatePath: 
@@ -150,7 +150,7 @@ PlayerSettings:
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: 
+  metroApplicationDescription: Unity
   metroTileLogo: 
   metroTileWideLogo: 
   metroTileSmallLogo: 
