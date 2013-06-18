@@ -12,6 +12,8 @@ public class UISettings
 [System.Serializable]
 public class GameUISettings
 {
+    public UIPanel MainPanel;
+
 	//for super bar
 	public Texture2D emptyBar;
 	public Texture2D blueBar;
