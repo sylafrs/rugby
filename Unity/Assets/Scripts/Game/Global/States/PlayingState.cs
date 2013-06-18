@@ -64,13 +64,13 @@ public class PlayingState : GameState
 	
 	public override bool OnSuper(Team t, SuperList super)
 	{
-		//freeze les gens
-		sm.state_change_son(this, new WaitingState(sm,cam,game,4,t));
-		
-		//cam stuff
-		
-		
-		
+		sm.state_change_son(this, new WaitingState(sm,cam,game,4,t));	
 		return true;
 	}
+	
+	public override bool OnConversion(But but){
+		sm.state_change_son(this, new WaitingState(sm,cam,game,6,but.Owner.opponent, true));	
+        game.refs.managers.conversion.But();
+        return true;
+    }
 }

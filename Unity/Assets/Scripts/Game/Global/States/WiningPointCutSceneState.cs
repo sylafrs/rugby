@@ -9,7 +9,41 @@ using System.Collections;
   */
 public class WiningPointCutSceneState : GameState {
 	
-	public WiningPointCutSceneState(StateMachine sm, CameraManager cam, Game game): base(sm, cam, game){
+	Team team;
+	
+	public WiningPointCutSceneState(StateMachine sm, CameraManager cam, Game game, Team _team): base(sm, cam, game){
+		team = _team;
 	}
-
+	
+	public override void OnEnter(){
+		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
+		cam.ChangeCameraState(CameraManager.CameraState.FREE);
+	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+           (/* OnFinish */) => {
+               //please, kill after usage x)
+				game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
+				cam.WiningPointsCutSceneComponent.StartScene( () => { }, team);
+               	CameraFade.wannaDie();
+           }, (/* OnFade */) => {
+				cam.zoom = 1; //TODO cam settings
+				cam.game.Referee.StartPlacement();
+				this.cam.CameraRotatingAroundComponent.StartEndlessRotation(
+					game.refs.positions.rotationCenter,
+					new Vector3(0,1,0),
+					game.refs.positions.fieldCenter,
+					game.refs.positions.cameraFirstPosition,
+					cam.game.settings.GameStates.MainState.IntroState.rotationSpeed/100);	
+           }
+       	);
+	}
+	
+	public override void OnLeave(){
+		cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+           (/* OnFinish */) => {
+               //please, kill after usage
+               	CameraFade.wannaDie();
+           }, (/* OnFade */) => {
+           }
+       	);
+	}
 }

@@ -55,16 +55,18 @@ public class superController : myMonoBehaviour {
 	}
 	
 	public void endSuper(){
-		MyDebug.Log("Super Over");
-        superActive = false;
-        SuperTimeLeft = 0;
-		team.speedFactor 	= 1f;
-		team.tackleFactor 	= 1f;
-		team.ChangePlayersColor(colorSave);
-
-        StopFeedBack(SuperList.superDash);
-        StopFeedBack(SuperList.superTackle);
-        team.setSpeed();
+		if(this.superActive){
+			MyDebug.Log("Super Over");
+	        superActive = false;
+	        SuperTimeLeft = 0;
+			team.speedFactor 	= 1f;
+			team.tackleFactor 	= 1f;
+			team.ChangePlayersColor(colorSave);
+	
+	        StopFeedBack(SuperList.superDash);
+	        StopFeedBack(SuperList.superTackle);
+	        team.setSpeed();
+		}
 	}
 
     public void launchSuper()

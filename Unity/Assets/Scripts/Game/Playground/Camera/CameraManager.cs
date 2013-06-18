@@ -96,6 +96,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	
 	public SuperMaoriCutSceneScript	SuperMaoriCutSceneComponent;
 	public SuperJapaneseCutSceneScript SuperJapaneseCutSceneComponent;
+	public WiningPointsCutScene WiningPointsCutSceneComponent;
 	
 	void Awake(){
 		Camera camera 			= Camera.mainCamera;
@@ -112,6 +113,7 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 		this.CameraRotatingAroundComponent  = camera.GetComponent<CameraRotatingAround>();
 		this.SuperMaoriCutSceneComponent	= camera.GetComponent<SuperMaoriCutSceneScript>();
 		this.SuperJapaneseCutSceneComponent	= camera.GetComponent<SuperJapaneseCutSceneScript>();
+		this.WiningPointsCutSceneComponent	= camera.GetComponent<WiningPointsCutScene>();
 	}
 	
 	// Use this for initialization

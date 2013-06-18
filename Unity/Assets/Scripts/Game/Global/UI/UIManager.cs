@@ -80,9 +80,42 @@ public class UIManager : myMonoBehaviour, Debugable {
     {
         return screenRelativeRect(r.x, r.y, r.width, r.height);
     }
+
+    UIState previousState = UIState.NULL;
+
+    void OnBeginGUI(UIState state)
+    {
+        if (state == UIState.GameUI)
+        {
+            game.settings.UI.GameUI.MainPanel.gameObject.SetActive(true);
+        }
+    }
+    
+    void OnEndGUI(UIState state)
+    {
+        if (state == UIState.GameUI)
+        {
+            game.settings.UI.GameUI.MainPanel.gameObject.SetActive(false);
+        }
+    }
 	
 	void OnGUI()
     {
+        if (previousState != currentState)
+        {
+            if (previousState != UIState.NULL)
+            {
+                OnEndGUI(previousState);
+            }
+            
+            if (currentState != UIState.NULL)
+            {
+                OnBeginGUI(currentState);
+            }
+
+            previousState = currentState;
+        }
+
         switch(currentState)
 		{
 			case UIState.GameUI:
