@@ -55,6 +55,8 @@ public partial class Referee
             }
         }
 
+        pos.y = 0;
+
         return pos;
     }
 

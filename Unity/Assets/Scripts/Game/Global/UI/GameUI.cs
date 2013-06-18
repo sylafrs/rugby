@@ -71,25 +71,25 @@ public class GameUI{
 
     public void ShowOutsideScreenUnit()
     {
-        try
-        {
-            Unit[] units = new Unit[2];
-            units[0] = game.southTeam.Player.Controlled;
-            units[1] = game.northTeam.Player.Controlled;            
-            
-            foreach (Unit u in units)
-            {
-                ShowOutsideScreenUnit(u);
-            }            
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.Log(e.Message);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
+        //try
+        //{
+        //    Unit[] units = new Unit[2];
+        //    units[0] = game.southTeam.Player.Controlled;
+        //    units[1] = game.northTeam.Player.Controlled;            
+        //    
+        //    foreach (Unit u in units)
+        //    {
+        //        ShowOutsideScreenUnit(u);
+        //    }            
+        //}
+        //catch (NullReferenceException e)
+        //{
+        //    Debug.Log(e.Message);
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.LogError(e.Message);
+        //}
     }
 
     private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)

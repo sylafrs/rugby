@@ -389,7 +389,7 @@ public class Team : myMonoBehaviour, IEnumerable
 		{
 			a = game.southTeam.Player.Controlled;
 		}
-		else if (game.northTeam.Player != null && game.northTeam.Player.Controlled.Team == this)
+		else if (game.northTeam.Player.Controlled != null && game.northTeam.Player.Controlled.Team == this)
 		{
 			a = game.northTeam.Player.Controlled;
 		}

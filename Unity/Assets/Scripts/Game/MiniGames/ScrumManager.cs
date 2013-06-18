@@ -124,13 +124,15 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         if (smashSouth)
         {
             smash += this.settings.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);            
+            this.ScrumBloc.FeedBackSmash(game.southTeam);
         }
 
         if (smashNorth)
         {
             smash -= this.settings.SmashValue;
-            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);
+            this.SuperLoading = Mathf.Min(1, this.SuperLoading + this.settings.FeedSuperPerSmash);            
+            this.ScrumBloc.FeedBackSmash(game.northTeam);
         }
 
         if (this.SuperLoading == 1)
