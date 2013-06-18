@@ -36,14 +36,14 @@ public class GameUI{
 		//	game.settings.UI.GameUI.blueGaugeBoxWidthPercentage * blueProgress,
 		//	game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
 
-        Rect redGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage / 2,
-            game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage / 2,
-            game.settings.UI.GameUI.redGaugeBoxWidthPercentage, game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
-
-		Rect redprogressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage/2,
-			game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.redGaugeBoxWidthPercentage * redProgress, 
-			game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
+        //Rect redGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage / 2,
+        //    game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage / 2,
+        //    game.settings.UI.GameUI.redGaugeBoxWidthPercentage, game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
+        //
+		//Rect redprogressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage/2,
+		//	game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.redGaugeBoxWidthPercentage * redProgress, 
+		//	game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
 		
 		//superbars
 		//blue 
@@ -54,9 +54,11 @@ public class GameUI{
 		//if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
 		
 		//red
-		GUI.DrawTexture(redGaugeBox, game.settings.UI.GameUI.emptyBar);
-		GUI.DrawTexture(redprogressGaugeBox, game.settings.UI.GameUI.redBar);
-		if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
+        game.settings.UI.GameUI.redSuper.percent = redProgress;
+
+		//GUI.DrawTexture(redGaugeBox, game.settings.UI.GameUI.emptyBar);
+		//GUI.DrawTexture(redprogressGaugeBox, game.settings.UI.GameUI.redBar);
+		//if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
 		
 		//score
 		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);

@@ -6,6 +6,8 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 	float 	length,
 			timeElapsed;
 	SuperCutsceneStateSettings settings;
+	GameObject	unitObject;
+	Unit		unit;
 	
 	public CameraManager 	cam;
 	public Game				game;
@@ -16,7 +18,9 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 	/// <param name='_length'>
 	/// _length.
 	/// </param>
-	public void StartCutScene(float _length){
+	public void StartCutScene(float _length, GameObject _go, Unit _unit){
+		this.unit			= _unit;
+		this.unitObject 	= _go.transform.Find("SuperCamera").gameObject;
 		this.length			= _length;
 		this.timeElapsed 	= 0f;
 		this.enabled		= true;
@@ -37,7 +41,8 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 		this.enabled 		= false;
 	}
 	
-	void OnEnable() {
+	void OnEnable () {
+		/*
 		cam.CameraZoomComponent.StartZoomIn(20,0.3f,0.3f);
 		cam.CameraRotatingAroundComponent.StartTimedRotation(
 			game.Ball.Owner.transform, 
@@ -47,13 +52,29 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 			180,
 			0.3f,
 			0.1f);
-		StartCoroutine(Shake(this.length/2));
-		StartCoroutine(Rotate2(this.length-0.5f));
+			*/
+		ActivateCameraPrefab(this.unit);
+		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
+		StartCoroutine(Shake(2.5f));
+        //StartCoroutine(Rotate2(this.length - 0.5f));
+	}
+	
+	void ActivateCameraPrefab(Unit _u){
+		this.unitObject.SetActive(true);
+		this.unitObject.GetComponent<Animation>().Play();
+		StartCoroutine(DesactivateGameObject(3.9f));
+	}
+	
+	IEnumerator DesactivateGameObject(float _duration){
+		yield return new WaitForSeconds(_duration);
+		game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
+		this.unitObject.SetActive(false);
 	}
 	
 	IEnumerator Shake(float duration) {
   		yield return new WaitForSeconds(duration);
-		cam.CameraShakeComponent.Shake(0.6f,0.3f);
+		//cam.CameraShakeComponent.Shake(0.6f,0.3f);
+		this.unitObject.GetComponent<CameraShake>().Shake(0.6f,0.3f);
 	}
 	
 	IEnumerator Rotate2(float duration) {
