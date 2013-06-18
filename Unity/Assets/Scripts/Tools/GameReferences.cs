@@ -64,6 +64,14 @@ public class GameReferences : myMonoBehaviour {
         public AudioClip BallGroundSound;
     }
 
+    [System.Serializable]
+    public class TransitionTexts
+    {
+        public GameObject scrum;
+        public GameObject ballOut;
+        public GameObject timeOut;
+    }
+
     public Game game;
     public StateMachine stateMachine;
     public Referee Referee;
@@ -75,6 +83,7 @@ public class GameReferences : myMonoBehaviour {
     public PlaceHolders placeHolders;
     public GameObjects gameObjects;
     public Positions positions;
+    public TransitionTexts transitionsTexts;
 
     public XboxInputs xboxInputs;
     public AudioDictionnary CameraAudio;
