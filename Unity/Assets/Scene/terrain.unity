@@ -12415,6 +12415,8 @@ GameObject:
   - 114: {fileID: 381927183}
   - 114: {fileID: 381927184}
   - 114: {fileID: 381927173}
+  - 111: {fileID: 381927180}
+  - 114: {fileID: 381927185}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -12673,13 +12675,31 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
+--- !u!111 &381927180
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4f615bf9c98295b4995e84a7c732b111, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4f615bf9c98295b4995e84a7c732b111, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+  m_UserAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!114 &381927181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381927171}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9282a072d3543f47a22f9d9d0f81db6, type: 3}
   m_Name: 
@@ -12728,6 +12748,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5b1158ce9ddd24fb473962b1d2884c, type: 3}
   m_Name: 
+--- !u!114 &381927185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381927171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd25cdf72135e74fb9622b1ba888c8d, type: 3}
+  m_Name: 
+  game: {fileID: 448441829}
 --- !u!1 &385681878
 GameObject:
   m_ObjectHideFlags: 0
@@ -33108,7 +33139,7 @@ Transform:
   m_PrefabInternal: {fileID: 1976154574}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7571857, y: 1.75743699, z: 0}
+  m_LocalPosition: {x: -.666666627, y: .666666687, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
@@ -48779,6 +48810,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
+  Owner: {fileID: 0}
   transformationPoint: {fileID: 1380620484}
   model: {fileID: 303037527}
 --- !u!65 &1522212142
@@ -52177,6 +52209,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad84eaec568a6f14dbcc0327c914fc5b, type: 3}
   m_Name: 
+  Owner: {fileID: 0}
   transformationPoint: {fileID: 830239404}
   model: {fileID: 1795899138}
 --- !u!65 &1635297310
@@ -63483,11 +63516,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.7571857
+      value: -.666666627
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.75743699
+      value: .666666687
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_IsActive
@@ -64023,6 +64056,7 @@ MonoBehaviour:
   CameraRotatingAroundComponent: {fileID: 0}
   SuperMaoriCutSceneComponent: {fileID: 0}
   SuperJapaneseCutSceneComponent: {fileID: 0}
+  WiningPointsCutSceneComponent: {fileID: 0}
 --- !u!114 &2004071853
 MonoBehaviour:
   m_ObjectHideFlags: 0
