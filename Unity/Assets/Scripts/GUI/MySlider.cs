@@ -11,7 +11,7 @@ public class MySlider : MonoBehaviour {
     public UITexture bar;
     public UITexture empty;
     public UITexture full;
-    public UITexture fullIndicator;
+    public UITexture [] fullIndicators;
 
     public float fullScaleZ;
     public float emptyScaleZ;
@@ -32,9 +32,15 @@ public class MySlider : MonoBehaviour {
             full.gameObject.SetActive(Mathf.Clamp01(percent) == 1);
         }
 
-        if (fullIndicator != null)
+        if (fullIndicators != null)
         {
-            fullIndicator.gameObject.SetActive(Mathf.Clamp01(percent) == 1);
+            foreach (UITexture fullIndicator in fullIndicators)
+            {
+                if (fullIndicator != null)
+                {
+                    fullIndicator.gameObject.SetActive(Mathf.Clamp01(percent) == 1);
+                }
+            }
         }
 
         if (empty != null)
