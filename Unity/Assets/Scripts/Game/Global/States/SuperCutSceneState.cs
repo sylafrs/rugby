@@ -48,8 +48,8 @@ public class SuperCutSceneState : GameState
             AudioSource src;
 
             Timer.AddTimer(SoundSettings.RockScreamDelay, () => 
-            { 
-                src = this.game.Ball.Owner.audio;
+            {
+                src = game.refs.CameraAudio["SuperScream"];
                 src.clip = this.game.refs.sounds.SuperScreamNorth;
                 src.Play();
             });
@@ -66,7 +66,7 @@ public class SuperCutSceneState : GameState
 
             Timer.AddTimer(SoundSettings.ThunderScreamDelay, () =>
             {
-                src = this.game.Ball.Owner.audio;
+                src = game.refs.CameraAudio["SuperScream"];
                 src.clip = this.game.refs.sounds.SuperScreamSouth;
                 src.Play();
             });
