@@ -16,6 +16,7 @@ public class TouchState : GameState
 	{
 		base.OnEnter();
 		cam.setTarget(null);
+		game.Ball.ActivateFairyTrail();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.TouchingSgtate.TouchCamSettings);
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 		

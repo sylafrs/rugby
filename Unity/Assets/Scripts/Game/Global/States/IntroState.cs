@@ -26,10 +26,15 @@ public class IntroState : GameState
 	public override void OnLeave(){
 		cam.CameraRotatingAroundComponent.StopRotation();
 		cam.setTarget(cam.game.Ball.Owner.transform);
-		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
-		CameraFade.StartAlphaFade(Color.black, true, 2f, 2f, () =>
-		{
-			CameraFade.wannaDie();
-		});
+		cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+            (/* OnFinish */) => {
+                CameraFade.wannaDie();
+            }, (/* OnFade */) => {
+				cam.flipForTeam(this.game.Ball.Owner.Team, () => {
+					cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+				});
+				cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+            }
+        );
 	}
 }

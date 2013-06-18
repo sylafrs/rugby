@@ -13,6 +13,7 @@ public class BallDropState : GameState {
 	public override void OnEnter ()
 	{
 		base.OnEnter();
+		game.Ball.ActivateFireTrail();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.BallDropCamSettings);
         game.Ball.audio.PlayOneShot(game.refs.sounds.ShootBall);
 	}

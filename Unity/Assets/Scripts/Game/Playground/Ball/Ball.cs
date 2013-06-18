@@ -73,6 +73,46 @@ public class Ball : TriggeringTriggered, Debugable
 		CONTROLLED
 	};
 	
+	TrailRenderer trailRenderer;
+	
+	void Awake(){
+		this.trailRenderer = this.GetComponentInChildren<TrailRenderer>();
+	}
+	
+	/// <summary>
+	/// Activates the trail.
+	/// </summary>
+	public void ActivateTrail(){
+		this.trailRenderer.enabled = true;
+	}
+	
+	/// <summary>
+	/// Stops the trail.
+	/// </summary>
+	public void StopTrail(){
+		this.trailRenderer.enabled = false;
+	}
+	
+	public Material fairyMaterial;
+	
+	/// <summary>
+	/// The state of the current.
+	/// </summary>
+	public void ActivateFairyTrail(){
+		this.trailRenderer.material = fairyMaterial;
+		this.ActivateTrail();
+	}
+	
+	public Material fireMaterial;
+	
+	/// <summary>
+	/// Activates the fire trail.
+	/// </summary>
+	public void ActivateFireTrail(){
+		this.trailRenderer.material = fireMaterial;
+		this.ActivateTrail();
+	}
+	
 	private ballState currentState;
 	
 	public void changeBallState(ballState newState){

@@ -62,7 +62,7 @@ public class SuperMaoriCutSceneScript : MonoBehaviour {
 	void ActivateCameraPrefab(Unit _u){
 		this.unitObject.SetActive(true);
 		this.unitObject.GetComponent<Animation>().Play();
-		StartCoroutine(DesactivateGameObject(3.9f));
+		StartCoroutine(DesactivateGameObject(3.3f));
 	}
 	
 	IEnumerator DesactivateGameObject(float _duration){

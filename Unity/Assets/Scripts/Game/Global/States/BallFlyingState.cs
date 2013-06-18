@@ -13,6 +13,7 @@ public class BallFlyingState : GameState {
 	public override void OnEnter ()
 	{
 		base.OnEnter();
+		game.Ball.ActivateTrail();
 		sm.state_change_son(this, new BallDropState(sm, cam, game));
 	}
 }

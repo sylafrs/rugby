@@ -34,30 +34,30 @@ public class ConversionFlyState : GameState
     public override void OnEnter ()
     {
 		base.OnEnter();
+		game.Ball.ActivateFireTrail();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
     }
 
-    public override void OnLeave ()
-    {   			
+    public override void OnLeave (){  
 		
 //		cam.ChangeCameraState(CameraManager.CameraState.FREE);
-//	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
-//           (/* OnFinish */) => {
+//	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
+//		(/* OnFinish */) => {
 //               //please, kill after usage x)
 //               CameraFade.wannaDie();
 //           }, (/* OnFade */) => {
-//				cam.ChangeCameraState(CameraManager.CameraState.FREE);
+//				cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 //				cam.zoom = 1; //TODO cam settings
-//               cam.game.Referee.StartPlacement();
+//                cam.game.Referee.StartPlacement();
 //           }
 //       );
-		
     }
 	
 	public override bool OnBallOut(){
+		Debug.Log("ballout");
 		game.Referee.StopPlayerMovement();	
-        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
