@@ -77,11 +77,15 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         }
         else
         {
-            float smash = this.GetSmashResult();
+            bool superUsed;
+            float smash = this.GetSmashResult(out superUsed);
             if (smash != 0)
             {
                 this.ChronoLaunched = true;
                 this.MoveForSmash(smash);
+                if (superUsed)
+                    ScrumBloc.transform.position = ScrumBloc.idealPosition;
+
                 this.UpdateWinner();
 
                 if (currentPosition >= 1 || currentPosition <= -1)
@@ -107,9 +111,10 @@ public class ScrumManager : myMonoBehaviour, Debugable {
         return false;
     }
         
-    private float GetSmashResult()
+    private float GetSmashResult(out bool used)
     {
         float smash = 0;
+        used = false; 
 
         InputSettings inputs = game.settings.Inputs;
         XboxInputs.Controller southCtrl = game.southTeam.Player.XboxController;
@@ -137,8 +142,7 @@ public class ScrumManager : myMonoBehaviour, Debugable {
 
         if (this.SuperLoading == 1)
         {
-            int super = 0;
-            bool used = false;        
+            int super = 0;       
 
             if (superSouth)
             {
