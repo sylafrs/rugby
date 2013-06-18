@@ -36,25 +36,27 @@ public class SuperCutSceneState : GameState
 			}
 		}
 
-        if (ballOwnerNat == TeamNationality.MAORI)
+        if (team.nationality == TeamNationality.MAORI)
         {
             Timer.AddTimer(SoundSettings.RockFxDelay, () => 
             {
                 AudioSource src = this.game.Ball.Owner.audio;
                 src.clip = this.game.refs.sounds.SuperScreamNorth;
                 src.Play();
+
                 src = game.refs.CameraAudio["Super"];
                 src.clip = this.game.refs.sounds.SuperNorth;
                 src.Play();
             });
         }
-        if (ballOwnerNat == TeamNationality.JAPANESE)
+        if (team.nationality == TeamNationality.JAPANESE)
         {
-            Timer.AddTimer(SoundSettings.RockFxDelay, () =>
+            Timer.AddTimer(SoundSettings.ThunderFxDelay, () =>
             {
                 AudioSource src = this.game.Ball.Owner.audio;
                 src.clip = this.game.refs.sounds.SuperScreamSouth;
                 src.Play();
+
                 src = game.refs.CameraAudio["Super"];
                 src.clip = this.game.refs.sounds.SuperSouth;
                 src.Play();

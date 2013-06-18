@@ -14678,6 +14678,7 @@ MonoBehaviour:
         xbox: 2
     UI:
       GameUI:
+        MainPanel: {fileID: 1018062874}
         emptyBar: {fileID: 2800000, guid: 750aa2713437af64098472477db0aa12, type: 3}
         blueBar: {fileID: 2800000, guid: f9649f8db4c60ef4ebb5b51b07117c87, type: 3}
         redBar: {fileID: 2800000, guid: 686c076ce0c825e4bb6d93a8cf10c985, type: 3}
@@ -32069,7 +32070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1018062873
 Transform:
   m_ObjectHideFlags: 0
@@ -61180,7 +61181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1890549646
 Transform:
   m_ObjectHideFlags: 0
@@ -63479,6 +63480,26 @@ Prefab:
     - target: {fileID: 11400010, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: mMat
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.01674032
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
