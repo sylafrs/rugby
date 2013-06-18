@@ -40,15 +40,15 @@ public class SuperCutSceneState : GameState
 					game.Ball.Owner);
 			}
 		}else{
-			if(ballOwnerNat == TeamNationality.JAPANESE){
+			if(teamOnSuper.nationality == TeamNationality.JAPANESE){
 				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration, 
 					game.southTeam.Player.Controlled.gameObject,
 					game.southTeam.Player.Controlled);
 			}
-			if(ballOwnerNat == TeamNationality.MAORI){
+			if(teamOnSuper.nationality == TeamNationality.MAORI){
 				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration, 
-					game.southTeam.Player.Controlled.gameObject,
-					game.southTeam.Player.Controlled);
+					game.northTeam.Player.Controlled.gameObject,
+					game.northTeam.Player.Controlled);
 			}
 		}
 
