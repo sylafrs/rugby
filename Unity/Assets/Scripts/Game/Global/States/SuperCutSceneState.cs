@@ -39,12 +39,16 @@ public class SuperCutSceneState : GameState
 
         if (teamOnSuper.nationality == TeamNationality.MAORI)
         {
-            Timer.AddTimer(SoundSettings.RockFxDelay, () => 
-            {
-                AudioSource src = this.game.Ball.Owner.audio;
+            AudioSource src;
+
+            Timer.AddTimer(SoundSettings.RockScreamDelay, () => 
+            { 
+                src = this.game.Ball.Owner.audio;
                 src.clip = this.game.refs.sounds.SuperScreamNorth;
                 src.Play();
-
+            });
+            Timer.AddTimer(SoundSettings.RockFxDelay, () => 
+            {  
                 src = game.refs.CameraAudio["Super"];
                 src.clip = this.game.refs.sounds.SuperNorth;
                 src.Play();
@@ -52,12 +56,16 @@ public class SuperCutSceneState : GameState
         }
         if (teamOnSuper.nationality == TeamNationality.JAPANESE)
         {
-            Timer.AddTimer(SoundSettings.ThunderFxDelay, () =>
+            AudioSource src;
+
+            Timer.AddTimer(SoundSettings.ThunderScreamDelay, () =>
             {
-                AudioSource src = this.game.Ball.Owner.audio;
+                src = this.game.Ball.Owner.audio;
                 src.clip = this.game.refs.sounds.SuperScreamSouth;
                 src.Play();
-
+            });
+            Timer.AddTimer(SoundSettings.ThunderFxDelay, () =>
+            {
                 src = game.refs.CameraAudio["Super"];
                 src.clip = this.game.refs.sounds.SuperSouth;
                 src.Play();
