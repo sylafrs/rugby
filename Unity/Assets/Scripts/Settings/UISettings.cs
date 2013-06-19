@@ -105,4 +105,5 @@ public class EndUISettings
     public NumberManager NorthScore;
     public NumberManager SouthScore;
     public UIPanel EndPanel;
+    public GameObject Abtn;
 }

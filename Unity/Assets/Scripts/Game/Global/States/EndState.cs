@@ -26,13 +26,6 @@ public class EndState : GameState
 		         (/* OnFinish */) => {
 	    	        CameraFade.wannaDie();				
 				    game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
-
-
-                    Timer.AddTimer(5, () =>
-                    {
-
-                    });
-
 	     	    }, (/* OnFade */) => {
                     game.refs.transitionsTexts.timeOut.SetActive(false);
 				    cam.zoom = 1;
