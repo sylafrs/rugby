@@ -17,6 +17,9 @@ public class ScrumBloc : MonoBehaviour
     private Dictionary<ParticleSystem, float> smokeDurations;
     private List<ParticleSystem> activeSmokes;
 
+    public GameObject prefabHit;
+    public Transform hitParent;
+
     public float minDurationSmoke;
     public float maxDurationSmoke;
 
@@ -34,6 +37,16 @@ public class ScrumBloc : MonoBehaviour
 
     public void PushFor(Team t)
     {
+        GameObject g = GameObject.Instantiate(prefabHit) as GameObject;
+        g.transform.parent = hitParent;
+        g.transform.localPosition = Vector3.zero;
+        g.SetActive(true);
+
+        Timer.AddTimer(1.5f, () =>
+        {
+            GameObject.Destroy(g);
+        });
+
         if (t == t.game.northTeam)
         {
             north.SetBool("in_bool_push", true);

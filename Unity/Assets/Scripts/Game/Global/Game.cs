@@ -121,9 +121,12 @@ public class Game : myMonoBehaviour
         this.Ball.transform.parent = p1.Controlled.BallPlaceHolderRight.transform;
         this.Ball.transform.localPosition = Vector3.zero;
         this.Ball.Owner = p1.Controlled;
-		
-		if(alwaysScrum)
-        	((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
+
+        if (alwaysScrum)
+        {
+            ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
+            settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.test = 200;
+        }
 		
         this.refs.managers.intro.OnFinish = () =>
         {

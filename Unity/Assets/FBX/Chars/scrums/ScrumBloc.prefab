@@ -11365,6 +11365,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &101512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 401512}
+  m_Layer: 0
+  m_Name: PosHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -20339,6 +20354,7 @@ Transform:
   m_Children:
   - {fileID: 401492}
   - {fileID: 400750}
+  - {fileID: 401512}
   - {fileID: 401504}
   - {fileID: 401502}
   m_Father: {fileID: 0}
@@ -20360,7 +20376,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101498}
   m_LocalRotation: {x: -.943399787, y: 0, z: 0, w: .331657916}
-  m_LocalPosition: {x: 3.41271925, y: -.892429709, z: -1.24628139}
+  m_LocalPosition: {x: 4.26480007, y: -.892429709, z: -.00515259942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 401502}
@@ -20421,7 +20437,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101508}
   m_LocalRotation: {x: -.943399787, y: 0, z: 0, w: .331657916}
-  m_LocalPosition: {x: 3.41271925, y: -.892429709, z: -1.24628139}
+  m_LocalPosition: {x: 4.11909533, y: -.892429709, z: 2.07590723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 401504}
@@ -20432,10 +20448,21 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101510}
   m_LocalRotation: {x: -.943399668, y: 0, z: 0, w: .331658095}
-  m_LocalPosition: {x: -.663319707, y: -.892429709, z: .918377638}
+  m_LocalPosition: {x: -1.38945782, y: -.892429709, z: 1.36822438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 401504}
+--- !u!4 &401512
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1582526, y: 2.27333927, z: -.549272954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 401494}
 --- !u!95 &9500000
 Animator:
   m_ObjectHideFlags: 1
@@ -20480,6 +20507,8 @@ MonoBehaviour:
   - {fileID: 19800010}
   - {fileID: 19800008}
   - {fileID: 19800006}
+  prefabHit: {fileID: 100006, guid: 96e248380bf53de49975e17ef0d576d3, type: 2}
+  hitParent: {fileID: 401512}
   minDurationSmoke: .5
   maxDurationSmoke: 1.5
   idealPosition: {x: 0, y: 0, z: 0}
