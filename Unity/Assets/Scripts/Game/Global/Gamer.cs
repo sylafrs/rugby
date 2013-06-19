@@ -115,14 +115,16 @@ public class Gamer
 			UpdateDODGE();
 
 			if (!Controlled.Dodge && !Controlled.isTackled)
-			{
+			{                
 				UpdateStickDirection();
 				UpdateSUPER();
 				UpdateMOVE();
-				UpdateTACKLE();
-				UpdatePASS();
+				UpdateTACKLE();				
 				UpdateDROP();
-				UpdateESSAI();
+                if (!UpdateESSAI())
+                {
+                    UpdatePASS();
+                }
 			}
 		}
 
@@ -167,7 +169,7 @@ public class Gamer
 
 	void UpdatePASS()
 	{
-		if (game.Ball.Owner == Controlled && game.Ball.inZone == null)
+		if (game.Ball.Owner == Controlled/* && game.Ball.inZone == null*/)
 		{
 			int side = 0;
 
@@ -661,7 +663,7 @@ public class Gamer
 		}
 	}
 
-	void UpdateESSAI()
+	bool UpdateESSAI()
 	{
 		if (Input.GetKeyDown(Inputs.put.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.put.xbox))
 		{
@@ -680,8 +682,12 @@ public class Gamer
 						this.Controlled.unitAnimator.OnPut();
 					}
 					this.game.OnTry(this.game.Ball.Owner.Team.opponent.Zone);
+
+                    return true;
 				}
 			}
 		}
-	}
+
+        return false;
+	}    
 }
