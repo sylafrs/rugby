@@ -27,5 +27,23 @@ public class EndUI{
 
         settings.NorthScore.number = _game.northTeam.nbPoints;
         settings.SouthScore.number = _game.southTeam.nbPoints;
+
+        if (_game.northTeam.Player.XboxController.GetButtonDown(_game.settings.Inputs.shortPass.xbox) ||
+           _game.southTeam.Player.XboxController.GetButtonDown(_game.settings.Inputs.shortPass.xbox) ||
+           Input.GetKeyDown(_game.settings.Inputs.shortPass.keyboardP1) ||
+           Input.GetKeyDown(_game.settings.Inputs.shortPass.keyboardP2))
+        {
+            settings.Abtn.SetActive(false);
+            //settings.fade.Inverse();
+            //Timer.AddTimer(2, () =>
+            //{
+                Application.LoadLevel("credits");
+            //});
+        }
+
+        Timer.AddTimer(2, () =>
+        {
+            Application.LoadLevel("menu");
+        });
 	}
 }
