@@ -72,7 +72,7 @@ public class MainTitle : MonoBehaviour {
                 validation.Play();
             }
         }
-        else
+        else if(state == Status.CONTROLS)
         {
             bool ok = false;
             foreach (var c in inputs.controllers)
@@ -94,24 +94,16 @@ public class MainTitle : MonoBehaviour {
 
             if (ok)
             {
-                GoOut();
+                AButton.SetActive(false);
+                fade.Inverse();
+
+                Timer.AddTimer(timeBeforeLoading, () =>
+                {
+                    Application.LoadLevel("terrain");
+                });
+
+                state = Status.GOOUT;
             }
-        }
-    }
-
-    void GoOut()
-    {
-        if (state != Status.GOOUT)
-        {
-            AButton.SetActive(false);
-            fade.Inverse();
-
-            Timer.AddTimer(timeBeforeLoading, () =>
-            {
-                Application.LoadLevel("terrain");
-            });
-
-            state = Status.GOOUT;
         }
     }
 }
