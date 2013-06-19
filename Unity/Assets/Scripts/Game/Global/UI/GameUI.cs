@@ -15,60 +15,14 @@ public class GameUI{
 	{
         GameUISettings settings = game.settings.UI.GameUI;
 
-		//int offset = 200;
-		
-		//time box
-		//Rect timeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.timeBoxXPercentage-game.settings.UI.GameUI.timeBoxWidthPercentage/2, 
-		//	game.settings.UI.GameUI.timeBoxYPercentage - game.settings.UI.GameUI.timeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.timeBoxWidthPercentage, game.settings.UI.GameUI.timeBoxHeightPercentage);
-		
-		//score box
-		Rect scoreBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scoreBoxXPercentage - game.settings.UI.GameUI.scoreBoxWidthPercentage/2,
-			game.settings.UI.GameUI.scoreBoxYPercentage - game.settings.UI.GameUI.scoreBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.scoreBoxWidthPercentage, game.settings.UI.GameUI.scoreBoxHeightPercentage);
-		
-		//super gauges
-      
-		//Rect blueGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.blueGaugeBoxWidthPercentage, game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
-        //
-		//Rect blueProgressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.blueGaugeBoxXPercentage - game.settings.UI.GameUI.blueGaugeBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.blueGaugeBoxYPercentage - game.settings.UI.GameUI.blueGaugeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.blueGaugeBoxWidthPercentage * blueProgress,
-		//	game.settings.UI.GameUI.blueGaugeBoxHeightPercentage);
-
-        //Rect redGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage / 2,
-        //    game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage / 2,
-        //    game.settings.UI.GameUI.redGaugeBoxWidthPercentage, game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
-        //
-		//Rect redprogressGaugeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.redGaugeBoxXPercentage - game.settings.UI.GameUI.redGaugeBoxWidthPercentage/2,
-		//	game.settings.UI.GameUI.redGaugeBoxYPercentage - game.settings.UI.GameUI.redGaugeBoxHeightPercentage/2, 
-		//	game.settings.UI.GameUI.redGaugeBoxWidthPercentage * redProgress, 
-		//	game.settings.UI.GameUI.redGaugeBoxHeightPercentage);
-		
-		//superbars
-		//blue 
         settings.blueSuper.percent = blueProgress;
-
-		//GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
-		//GUI.DrawTexture(blueProgressGaugeBox, game.settings.UI.GameUI.blueBar);
-		//if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
+		settings.redSuper.percent = redProgress;
 		
-		//red
-        settings.redSuper.percent = redProgress;
+        settings.blueScore.number = game.southTeam.nbPoints;
+        settings.redScore.number = game.northTeam.nbPoints;
 
-		//GUI.DrawTexture(redGaugeBox, game.settings.UI.GameUI.emptyBar);
-		//GUI.DrawTexture(redprogressGaugeBox, game.settings.UI.GameUI.redBar);
-		//if(redProgress == 1f)GUI.Label(redGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
+		int reverseTime = (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime);
 		
-		//score
-		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
-		
-		//time
-        int reverseTime = (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime);
-		//GUI.Label(timeBox,  "Time : "+ reverseTime, game.settings.UI.GameUI.gameTimeTextStyle);
-
         settings.timeNumber.number = reverseTime;
 
         ShowOutsideScreenUnit();

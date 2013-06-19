@@ -18,6 +18,9 @@ public class GameUISettings
     public MySlider redSuper;
     public NumberManager timeNumber;
 
+    public NumberManager redScore;
+    public NumberManager blueScore;
+
 	//for super bar
 	//public Texture2D emptyBar;
 	//public Texture2D blueBar;
@@ -46,10 +49,10 @@ public class GameUISettings
 	//public float redGaugeBoxXPercentage		= 77.5f;
 	//public float redGaugeBoxYPercentage		= 10;
 	
-	public float scoreBoxWidthPercentage  = 20;
-	public float scoreBoxHeightPercentage = 15;
-	public float scoreBoxXPercentage = 50;
-	public float scoreBoxYPercentage = 10;
+	//public float scoreBoxWidthPercentage  = 20;
+	//public float scoreBoxHeightPercentage = 15;
+	//public float scoreBoxXPercentage = 50;
+	//public float scoreBoxYPercentage = 10;
 	
 	public float scrumBarBoxWidthPercentage = 50;
 	public float scrumBarBoxHeightPercentage = 16;
