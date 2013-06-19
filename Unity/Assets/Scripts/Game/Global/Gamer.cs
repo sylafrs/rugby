@@ -654,19 +654,21 @@ public class Gamer
 	{
 		if (Input.GetKeyDown(Inputs.put.keyboard(this.Team)) || XboxController.GetButtonDown(Inputs.put.xbox))
 		{
-			Debug.Log("Try !");
 			if (this.game.Ball.Owner == this.Controlled)
 			{
 				Zone z = this.game.Ball.inZone;
-				if(z != null)Debug.Log("La balle est dans la zone "+z.name);
-				if (z == this.Team.opponent.Zone && game.Ball.Owner.isInTryZone == true)
+				//if(z != null)Debug.Log("La balle est dans la zone "+z.name);
+				if (
+					(this.game.Ball.Owner.Team == this.game.southTeam && this.game.Ball.transform.position.z >= this.game.northTeam.But.transform.position.z )
+					||
+					(this.game.Ball.Owner.Team == this.game.northTeam && this.game.Ball.transform.position.z <= this.game.southTeam.But.transform.position.z )
+					)
 				{
-					Debug.Log("Try ok !");
 					if (this.Controlled.unitAnimator)
 					{
 						this.Controlled.unitAnimator.OnPut();
 					}
-					this.game.OnTry(z);
+					this.game.OnTry(this.game.Ball.Owner.Team.opponent.Zone);
 				}
 			}
 		}
