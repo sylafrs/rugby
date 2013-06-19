@@ -57,8 +57,10 @@ public class Zone : TriggeringTrigger {
 		
         if (b != null)
         {
-			b.Owner.ShowButton("A");
-			b.inZone = this; 
+			if(b.Owner != null){
+				b.Owner.ShowButton("A");
+				b.inZone = this; 
+			}
 		}
 	}
 	
