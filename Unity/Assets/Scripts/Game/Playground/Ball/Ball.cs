@@ -438,6 +438,7 @@ public class Ball : TriggeringTriggered, Debugable
 	}
 
 	public List<Unit> scrumFieldUnits = new List<Unit>();
+	
 	public override void Entered(Triggered o, Trigger t)
 	{
 		if (t.GetType() == typeof(NearBall))
@@ -461,6 +462,7 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public override void Left(Triggered o, Trigger t)
 	{
+		
 		if (t.GetType() == typeof(ScrumField))
 		{
 			Unit u = o.GetComponent<Unit>();

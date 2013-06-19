@@ -33,6 +33,8 @@ public class Unit : TriggeringTriggered, Debugable
 	public GameObject BallPlaceHolderDrop;
 
 	public TextureCollectionner buttonIndicator;
+	
+	public bool isInTryZone = false;
 
 	public bool isOwner()
 	{
