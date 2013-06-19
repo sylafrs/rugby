@@ -25,91 +25,100 @@ public class GameUI{
 		
         settings.timeNumber.number = reverseTime;
 
-        ShowOutsideScreenUnit();
+    //    ShowOutsideScreenUnit();
     }
 
-    public void ShowOutsideScreenUnit()
-    {
-        //try
-        //{
-        //    Unit[] units = new Unit[2];
-        //    units[0] = game.southTeam.Player.Controlled;
-        //    units[1] = game.northTeam.Player.Controlled;            
-        //    
-        //    foreach (Unit u in units)
-        //    {
-        //        ShowOutsideScreenUnit(u);
-        //    }            
-        //}
-        //catch (NullReferenceException e)
-        //{
-        //    Debug.Log(e.Message);
-        //}
-        //catch (Exception e)
-        //{
-        //    Debug.LogError(e.Message);
-        //}
-    }
-
-    private Vector2 GetOutsideIndicationPosition(Vector3 position, Vector2 offset)
-    {
-        float w = Screen.width;
-        float h = Screen.height;
-               
-        Camera cam = game.refs.managers.camera.gameCamera.camera;
-
-        Vector3 screenPoint = cam.WorldToScreenPoint(position);
-        screenPoint.y = h - screenPoint.y;
-        
-        bool inside = true;
-
-        if (screenPoint.x > w)
-        {
-            inside = false;
-            screenPoint.x = w - offset.x;
-        }
-        else if (screenPoint.x < 0)
-        {
-            inside = false;
-            screenPoint.x = 0;
-        }
-
-        if (screenPoint.y > h)
-        {
-            inside = false;
-            screenPoint.y = h - offset.y;
-        }
-        else if (screenPoint.y < 0)
-        {
-            inside = false;
-            screenPoint.y = 0;
-        }
-
-        if (screenPoint.z < 0)
-        {
-            inside = false;
-            screenPoint.y = h - offset.y;
-            screenPoint.x = w - screenPoint.x - offset.x;
-        }
-
-        screenPoint.z = 0;
-
-        if (inside)
-        {
-            return Vector2.zero;
-        }
-
-        return screenPoint;
-    }
-
-    private void ShowOutsideScreenUnit(Unit u) {
-       
-        Vector2 pos = this.GetOutsideIndicationPosition(u.transform.position, Vector2.one*20);
-        if (pos != Vector2.zero)
-        {
-            GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
-            //Debug.Log(u + " est hors vision !\n" + test);
-        }
-    }
+   // public void ShowOutsideScreenUnit()
+   // {
+   //     ShowOutsideScreenUnit(game.southTeam.Player.Controlled);
+   //     ShowOutsideScreenUnit(game.northTeam.Player.Controlled);
+   // }
+   //
+   // private Vector2 GetOutsideScreenUnit(Transform position)
+   // {
+   //     float w = Screen.width;
+   //     float h = Screen.height;
+   //
+   //     Camera cam = game.refs.managers.camera.gameCamera.camera;
+   //
+   //     Vector3 screenPoint = cam.WorldToScreenPoint(position);
+   //     screenPoint.y = h - screenPoint.y;
+   //
+   //     bool inside = true;
+   //
+   //     if (screenPoint.x > w)
+   //     {
+   //         inside = false;
+   //         screenPoint.x = w;
+   //     }
+   //     else if (screenPoint.x < 0)
+   //     {
+   //         inside = false;
+   //         screenPoint.x = 0;
+   //     }
+   //
+   //     if (screenPoint.y > h)
+   //     {
+   //         inside = false;
+   //         screenPoint.y = h;
+   //     }
+   //     else if (screenPoint.y < 0)
+   //     {
+   //         inside = false;
+   //         screenPoint.y = 0;
+   //     }
+   //
+   //     if (screenPoint.z < 0)
+   //     {
+   //         inside = false;
+   //         screenPoint.y = h;
+   //         screenPoint.x = w - screenPoint.x;
+   //     }
+   //
+   //     screenPoint.z = 0;
+   //
+   //     if (inside)
+   //     {
+   //         return Vector2.zero;
+   //     }
+   //
+   //     return screenPoint;
+   // }
+   // 
+   // private void ShowOutsideScreenUnit(Unit u) {
+   //
+   //     Vector2 pos = this.GetOutsideScreenUnit(u.transform);
+   //     if (pos != Vector2.zero)
+   //     {
+   //         const float xMin = -684;
+   //         const float xMax = 684;
+   //         const float yMin = -382;
+   //         const float yMax = 382;
+   //
+   //         Vector2 v = new Vector2();
+   //
+   //         if (pos.x == 0)
+   //         {
+   //             v.x = xMin;
+   //
+   //
+   //         }
+   //         else if (pos.y == 0)
+   //         {
+   //             v.y = yMin;
+   //         }
+   //         else if (pos.x == Screen.width)
+   //         {
+   //             v.x = xMax;
+   //         }
+   //         else if (pos.y == Screen.height)
+   //         {
+   //             v.y = yMax;
+   //         }
+   //
+   //         //GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
+   //         //Debug.Log(u + " est hors vision !\n" + test);
+   //     }
+   // }
 
 }

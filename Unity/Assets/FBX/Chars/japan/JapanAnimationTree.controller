@@ -1182,7 +1182,7 @@ State:
   m_Name: Dodge Right
   m_Speed: 1
   m_Motions:
-  - {fileID: 0}
+  - {fileID: 7400002, guid: 1f486faf76155b04aae70a19ef65cf3b, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110780803}
   m_Position: {x: 24, y: 168, z: 0}
@@ -1265,7 +1265,7 @@ State:
   m_Name: Dodge Left
   m_Speed: 1
   m_Motions:
-  - {fileID: 0}
+  - {fileID: 7400000, guid: 1f486faf76155b04aae70a19ef65cf3b, type: 3}
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110780803}
   m_Position: {x: 24, y: 108, z: 0}

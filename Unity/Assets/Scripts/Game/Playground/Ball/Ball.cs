@@ -190,6 +190,7 @@ public class Ball : TriggeringTriggered, Debugable
     public void TeleportOnGround()
     {
         Vector3 pos = this.transform.position;
+        pos.x+=2;
         pos.y = 0;
         this.transform.position = pos;
     }
@@ -206,6 +207,7 @@ public class Ball : TriggeringTriggered, Debugable
         if (Owner != null)
         {
             this.transform.localRotation = Quaternion.identity;
+            CircleDrop.SetActive(false);
         }
        
 		if (this.isOnGround())
@@ -218,7 +220,9 @@ public class Ball : TriggeringTriggered, Debugable
 			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround - 0.1f, this.transform.position.z);
 
 			this.onGroundFired = true;
-			CircleDrop.SetActive(false);
+
+            CircleDrop.transform.position = this.transform.position;
+			CircleDrop.SetActive(true);
 		}
 		else
 		{
