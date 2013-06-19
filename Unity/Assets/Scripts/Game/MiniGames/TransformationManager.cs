@@ -194,8 +194,8 @@ public class TransformationManager : myMonoBehaviour {
 		GameObject.Destroy(myArrow);
 					
 		ball.AttachToRoot();
-        ball.rigidbody.useGravity = false;
-		ball.rigidbody.isKinematic = false;
+        //ball.rigidbody.useGravity = false;
+		//ball.rigidbody.isKinematic = false;
         
 		ball.Owner.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
 				

@@ -22008,7 +22008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e52041e51e093e419046f41d6df539b, type: 3}
   m_Name: 
   UseFlorianIA: 1
-  alwaysScrum: 1
+  alwaysScrum: 0
   settings:
     Global:
       Game:

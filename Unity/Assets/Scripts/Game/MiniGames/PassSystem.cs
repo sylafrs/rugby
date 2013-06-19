@@ -142,8 +142,8 @@ public class PassSystem
 #endif
 
             ball.AttachToRoot();
-            ball.rigidbody.isKinematic = false;
-            ball.rigidbody.useGravity = false;
+            //ball.rigidbody.isKinematic = false;
+            //ball.rigidbody.useGravity = false;
             ball.Owner = null;
 
             this.magnitude = calculateMagnitude(from.transform.position, relativePosition);

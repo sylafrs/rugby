@@ -169,6 +169,19 @@ public class Game : myMonoBehaviour
 	{
 		p1.newFrame();
 		p2.newFrame();
+
+#if UNITY_EDITOR
+        if (p1.XboxController.GetButtonDown(XBOX_BUTTONS.Start) || p2.XboxController.GetButtonDown(XBOX_BUTTONS.Start))
+        {
+            UnityEditor.EditorApplication.isPaused = true;
+        }
+        if (p1.XboxController.GetButtonDown(XBOX_BUTTONS.RightStick) || p2.XboxController.GetButtonDown(XBOX_BUTTONS.RightStick))
+        {
+            XboxInputs.Controller c = p1.XboxController;
+            p1.XboxController = p2.XboxController;
+            p2.XboxController = c;
+        }
+#endif
 	}
 
 	public void OnGameEnd()
