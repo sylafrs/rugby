@@ -201,6 +201,8 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public void Update()
 	{
+        this.rigidbody.isKinematic = (this.passManager == null || this.passManager.oPassState != PassSystem.passState.ONPASS);
+
         if (Owner != null)
         {
             this.transform.localRotation = Quaternion.identity;
