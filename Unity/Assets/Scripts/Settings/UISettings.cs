@@ -16,24 +16,25 @@ public class GameUISettings
 
     public MySlider blueSuper;
     public MySlider redSuper;
+    public NumberManager timeNumber;
 
 	//for super bar
-	public Texture2D emptyBar;
-	public Texture2D blueBar;
-	public Texture2D redBar;
+	//public Texture2D emptyBar;
+	//public Texture2D blueBar;
+	//public Texture2D redBar;
 	
 	//GUI custom
 	public GUIStyle superOkTextStyle;
-	public GUIStyle gameTimeTextStyle;
+	//public GUIStyle gameTimeTextStyle;
 	public GUIStyle gameScoreTextStyle;
-	public GUIStyle timeBeforeScrumStyle;
+	//public GUIStyle timeBeforeScrumStyle;
 	
 	public float ScrumBarMaxDelta = 1.5f;
 	
-	public float timeBoxWidthPercentage   = 10;
-	public float timeBoxHeightPercentage  = 5;
-	public float timeBoxXPercentage		= 50;
-	public float timeBoxYPercentage		= 10;
+	//public float timeBoxWidthPercentage   = 10;
+	//public float timeBoxHeightPercentage  = 5;
+	//public float timeBoxXPercentage		= 50;
+	//public float timeBoxYPercentage		= 10;
     
 	//public float blueGaugeBoxWidthPercentage   = 25;
 	//public float blueGaugeBoxHeightPercentage  = 10;

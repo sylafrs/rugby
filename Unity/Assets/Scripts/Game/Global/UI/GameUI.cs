@@ -13,12 +13,14 @@ public class GameUI{
 
 	public void DrawUI(float blueProgress, float redProgress)
 	{
+        GameUISettings settings = game.settings.UI.GameUI;
+
 		//int offset = 200;
 		
 		//time box
-		Rect timeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.timeBoxXPercentage-game.settings.UI.GameUI.timeBoxWidthPercentage/2, 
-			game.settings.UI.GameUI.timeBoxYPercentage - game.settings.UI.GameUI.timeBoxHeightPercentage/2, 
-			game.settings.UI.GameUI.timeBoxWidthPercentage, game.settings.UI.GameUI.timeBoxHeightPercentage);
+		//Rect timeBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.timeBoxXPercentage-game.settings.UI.GameUI.timeBoxWidthPercentage/2, 
+		//	game.settings.UI.GameUI.timeBoxYPercentage - game.settings.UI.GameUI.timeBoxHeightPercentage/2, 
+		//	game.settings.UI.GameUI.timeBoxWidthPercentage, game.settings.UI.GameUI.timeBoxHeightPercentage);
 		
 		//score box
 		Rect scoreBox = UIManager.screenRelativeRect(game.settings.UI.GameUI.scoreBoxXPercentage - game.settings.UI.GameUI.scoreBoxWidthPercentage/2,
@@ -47,14 +49,14 @@ public class GameUI{
 		
 		//superbars
 		//blue 
-        game.settings.UI.GameUI.blueSuper.percent = blueProgress;
+        settings.blueSuper.percent = blueProgress;
 
 		//GUI.DrawTexture(blueGaugeBox, game.settings.UI.GameUI.emptyBar);
 		//GUI.DrawTexture(blueProgressGaugeBox, game.settings.UI.GameUI.blueBar);
 		//if(blueProgress == 1f)GUI.Label(blueGaugeBox, "SUPER READY !",game.settings.UI.GameUI.superOkTextStyle);
 		
 		//red
-        game.settings.UI.GameUI.redSuper.percent = redProgress;
+        settings.redSuper.percent = redProgress;
 
 		//GUI.DrawTexture(redGaugeBox, game.settings.UI.GameUI.emptyBar);
 		//GUI.DrawTexture(redprogressGaugeBox, game.settings.UI.GameUI.redBar);
@@ -64,7 +66,10 @@ public class GameUI{
 		GUI.Label(scoreBox, game.southTeam.nbPoints+"  -  "+ game.northTeam.nbPoints,game.settings.UI.GameUI.gameScoreTextStyle);
 		
 		//time
-		GUI.Label(timeBox,  "Time : "+   (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime), game.settings.UI.GameUI.gameTimeTextStyle);
+        int reverseTime = (int)(game.settings.Global.Game.period_time - game.Referee.IngameTime);
+		//GUI.Label(timeBox,  "Time : "+ reverseTime, game.settings.UI.GameUI.gameTimeTextStyle);
+
+        settings.timeNumber.number = reverseTime;
 
         ShowOutsideScreenUnit();
     }
