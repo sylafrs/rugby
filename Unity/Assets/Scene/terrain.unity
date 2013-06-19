@@ -22744,8 +22744,8 @@ MonoBehaviour:
         ScrumPanel: {fileID: 1890549647}
         sliderScrum: {fileID: 823537668}
         ScrumSpecial: {fileID: 907126974}
-        ScrumLeftSpecialFailed: {fileID: 2146636439}
-        ScrumRightSpecialFailed: {fileID: 1700733428}
+        ScrumLeftSpecialFailed: {fileID: 1700733428}
+        ScrumRightSpecialFailed: {fileID: 2146636439}
         MalusDuration: 2
       EndUI:
         MaoriWins: {fileID: 1676179620}
