@@ -21,15 +21,17 @@ public class GameUISettings
     public NumberManager redScore;
     public NumberManager blueScore;
 
+    public UITexture j1, j2;
+
 	//for super bar
 	//public Texture2D emptyBar;
 	//public Texture2D blueBar;
 	//public Texture2D redBar;
 	
 	//GUI custom
-	public GUIStyle superOkTextStyle;
+	//public GUIStyle superOkTextStyle;
 	//public GUIStyle gameTimeTextStyle;
-	public GUIStyle gameScoreTextStyle;
+	//public GUIStyle gameScoreTextStyle;
 	//public GUIStyle timeBeforeScrumStyle;
 	
 	public float ScrumBarMaxDelta = 1.5f;
@@ -54,20 +56,20 @@ public class GameUISettings
 	//public float scoreBoxXPercentage = 50;
 	//public float scoreBoxYPercentage = 10;
 	
-	public float scrumBarBoxWidthPercentage = 50;
-	public float scrumBarBoxHeightPercentage = 16;
-	public float scrumBarBoxXPercentage = 50;
-	public float scrumBarBoxYPercentage = 50;
-	
-	public float scrumSpecialBoxWidthPercentage = 50;
-	public float scrumSpecialBoxHeightPercentage = 16;
-	public float scrumSpecialBoxXPercentage = 50;
-	public float scrumSpecialBoxYPercentage = 66;
-	
-	public float scrumTimeBoxWidthPercentage = 50;
-	public float scrumTimeBoxHeightPercentage = 16;
-	public float scrumTimeBoxXPercentage = 50;
-	public float scrumTimeBoxYPercentage = 34;
+	//public float scrumBarBoxWidthPercentage = 50;
+	//public float scrumBarBoxHeightPercentage = 16;
+	//public float scrumBarBoxXPercentage = 50;
+	//public float scrumBarBoxYPercentage = 50;
+	//
+	//public float scrumSpecialBoxWidthPercentage = 50;
+	//public float scrumSpecialBoxHeightPercentage = 16;
+	//public float scrumSpecialBoxXPercentage = 50;
+	//public float scrumSpecialBoxYPercentage = 66;
+	//
+	//public float scrumTimeBoxWidthPercentage = 50;
+	//public float scrumTimeBoxHeightPercentage = 16;
+	//public float scrumTimeBoxXPercentage = 50;
+	//public float scrumTimeBoxYPercentage = 34;
 }
 
 [System.Serializable]

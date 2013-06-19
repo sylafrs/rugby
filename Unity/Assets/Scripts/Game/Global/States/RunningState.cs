@@ -57,14 +57,18 @@ public class RunningState : GameState
 	public override bool OnConversion(But but)
 	{
 		Debug.Log("Conversion");
+
+        game.Ball.collider.enabled = false;
+
 		//Camera Time
-		cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,0.5f, 
+		cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
 				cam.setTarget(game.Ball.Team[2].transform);
                 game.Referee.OnDropTransformed(but);
+                game.Ball.collider.enabled = true;
             }
         );
 

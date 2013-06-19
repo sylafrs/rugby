@@ -25,100 +25,32 @@ public class GameUI{
 		
         settings.timeNumber.number = reverseTime;
 
-    //    ShowOutsideScreenUnit();
+  //      ShowOutsideScreenUnit();
     }
 
    // public void ShowOutsideScreenUnit()
    // {
-   //     ShowOutsideScreenUnit(game.southTeam.Player.Controlled);
-   //     ShowOutsideScreenUnit(game.northTeam.Player.Controlled);
-   // }
+   //     GameUISettings settings = game.settings.UI.GameUI;
    //
-   // private Vector2 GetOutsideScreenUnit(Transform position)
-   // {
-   //     float w = Screen.width;
-   //     float h = Screen.height;
+   //     Vector3 v = ShowOutsideScreenUnit(game.southTeam.Player.Controlled);
+   //     settings.j1.transform.position = v;
    //
-   //     Camera cam = game.refs.managers.camera.gameCamera.camera;
-   //
-   //     Vector3 screenPoint = cam.WorldToScreenPoint(position);
-   //     screenPoint.y = h - screenPoint.y;
-   //
-   //     bool inside = true;
-   //
-   //     if (screenPoint.x > w)
-   //     {
-   //         inside = false;
-   //         screenPoint.x = w;
-   //     }
-   //     else if (screenPoint.x < 0)
-   //     {
-   //         inside = false;
-   //         screenPoint.x = 0;
-   //     }
-   //
-   //     if (screenPoint.y > h)
-   //     {
-   //         inside = false;
-   //         screenPoint.y = h;
-   //     }
-   //     else if (screenPoint.y < 0)
-   //     {
-   //         inside = false;
-   //         screenPoint.y = 0;
-   //     }
-   //
-   //     if (screenPoint.z < 0)
-   //     {
-   //         inside = false;
-   //         screenPoint.y = h;
-   //         screenPoint.x = w - screenPoint.x;
-   //     }
-   //
-   //     screenPoint.z = 0;
-   //
-   //     if (inside)
-   //     {
-   //         return Vector2.zero;
-   //     }
-   //
-   //     return screenPoint;
-   // }
+   //     v = ShowOutsideScreenUnit(game.northTeam.Player.Controlled);
    // 
-   // private void ShowOutsideScreenUnit(Unit u) {
+   // 
+   // }
+   //    
+   // private Vector3 ShowOutsideScreenUnit(Unit u) {
    //
-   //     Vector2 pos = this.GetOutsideScreenUnit(u.transform);
-   //     if (pos != Vector2.zero)
-   //     {
-   //         const float xMin = -684;
-   //         const float xMax = 684;
-   //         const float yMin = -382;
-   //         const float yMax = 382;
+   //     Camera perpCam = Camera.main;
+   //     Camera orthoCam = GameObject.FindGameObjectWithTag("UICamera").camera;
    //
-   //         Vector2 v = new Vector2();
+   //     Vector3 pos = perpCam.WorldToViewportPoint(u.transform.position);
    //
-   //         if (pos.x == 0)
-   //         {
-   //             v.x = xMin;
+   //     pos.x = Mathf.Clamp01(pos.x);
+   //     pos.y = Mathf.Clamp01(pos.y);
    //
-   //
-   //         }
-   //         else if (pos.y == 0)
-   //         {
-   //             v.y = yMin;
-   //         }
-   //         else if (pos.x == Screen.width)
-   //         {
-   //             v.x = xMax;
-   //         }
-   //         else if (pos.y == Screen.height)
-   //         {
-   //             v.y = yMax;
-   //         }
-   //
-   //         //GUI.Box(new Rect(pos.x, pos.y, 20, 20), u.name);
-   //         //Debug.Log(u + " est hors vision !\n" + test);
-   //     }
+   //     return orthoCam.ViewportToWorldPoint(pos);
    // }
 
 }
