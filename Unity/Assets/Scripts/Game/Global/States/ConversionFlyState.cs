@@ -33,13 +33,16 @@ public class ConversionFlyState : GameState
 
     public override void OnEnter ()
     {
+        cam.gameCamera.animation.Play("SpeedFxOnCam");
 		base.OnEnter();
 		game.Ball.ActivateFireTrail();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
 		cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
     }
 
-    public override void OnLeave (){  
+    public override void OnLeave (){
+
+        cam.gameCamera.animation.Stop("SpeedFxOnCam");
 		
 //		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 //	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
