@@ -18,8 +18,7 @@ public class But : TriggeringTrigger
     public override void Left(Triggered t)
     {
         Ball b = t.GetComponent<Ball>();
-        if (b != null)
-        {			
+        if (b != null){			
 			b.Game.OnConversion(this);
         }
     }
