@@ -22542,7 +22542,7 @@ MonoBehaviour:
       superOff:
         keyboardP1: 32
         keyboardP2: 13
-        xbox: 4
+        xbox: 6
       conversionTouch:
         keyboardP1: 49
         keyboardP2: 55
