@@ -28,31 +28,33 @@ public class ScrumUI{
 
         this.DrawBar();
 
-        if (manager.SuperLoading == 1)
-        {
-            GUI.DrawTexture(settings.ScrumSpecialRect,
-                settings.ScrumSpecialButton, 
-				ScaleMode.ScaleToFit);
-        }
+        settings.ScrumSpecial.gameObject.SetActive(manager.SuperLoading == 1);
+
+        //if (manager.SuperLoading == 1)
+        //{
+        //    GUI.DrawTexture(settings.ScrumSpecialRect,
+        //        settings.ScrumSpecialButton, 
+		//		ScaleMode.ScaleToFit);
+        //}
 
         ManageMalus();       
 	}
 	
 	void StartGUI()
     {
-        Rect rect;
+        //Rect rect;
 
-        rect = UIManager.screenRelativeRect(settings.ScrumSpecialRect);
-        settings.ScrumSpecialRect = rect;
+        //rect = UIManager.screenRelativeRect(settings.ScrumSpecialRect);
+        //settings.ScrumSpecialRect = rect;
 
         //rect = UIManager.screenRelativeRect(settings.ScrumBarRect);
         //settings.ScrumBarRect = rect;
 
-        rect = UIManager.screenRelativeRect(settings.ScrumLeftSpecialFailedButtonRect);
-        settings.ScrumLeftSpecialFailedButtonRect = rect;
-
-        rect = UIManager.screenRelativeRect(settings.ScrumRightSpecialFailedButtonRect);
-        settings.ScrumRightSpecialFailedButtonRect = rect;
+        //rect = UIManager.screenRelativeRect(settings.ScrumLeftSpecialFailedButtonRect);
+        //settings.ScrumLeftSpecialFailedButtonRect = rect;
+        
+        //rect = UIManager.screenRelativeRect(settings.ScrumRightSpecialFailedButtonRect);
+        //settings.ScrumRightSpecialFailedButtonRect = rect;
     }   
 
     void DrawBar()
@@ -77,12 +79,17 @@ public class ScrumUI{
     {
         float t = Time.time;
 
+        settings.ScrumRightSpecialFailed.gameObject.SetActive(false);
+        settings.ScrumLeftSpecialFailed.gameObject.SetActive(false);
+
         if(manager.MalusSouth != -1 && (t - manager.MalusSouth < settings.MalusDuration)) {
-            GUI.DrawTexture(settings.ScrumRightSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+            //GUI.DrawTexture(settings.ScrumRightSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+            settings.ScrumRightSpecialFailed.gameObject.SetActive(true);
         }
 
         if(manager.MalusNorth != -1 && (t - manager.MalusNorth < settings.MalusDuration) ){
-            GUI.DrawTexture(settings.ScrumLeftSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+            //GUI.DrawTexture(settings.ScrumLeftSpecialFailedButtonRect, settings.ScrumSpecialFailedButton);
+            settings.ScrumLeftSpecialFailed.gameObject.SetActive(true);
         }
     }
 }
