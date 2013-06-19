@@ -439,7 +439,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - time: 1.83333337
-        value: .257501602
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -896,7 +896,7 @@ AnimationClip:
         outSlope: 0
         tangentMode: 0
       - time: 1.83333337
-        value: .257501602
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
