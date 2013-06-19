@@ -54,7 +54,8 @@ public class DigitSprite : MonoBehaviour {
 
     public void Update()
     {
-        if(oldN != n) {
+        //if(oldN != n) 
+        {
             ChangeTo(n);
         }
     }
