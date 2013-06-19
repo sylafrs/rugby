@@ -12,10 +12,14 @@ public class MySlider : MonoBehaviour
     public UITexture bar;
     public UITexture empty;
     public UITexture full;
+    public UITexture separator;
     public UITexture[] fullIndicators;
 
     public float fullScaleZ;
     public float emptyScaleZ;
+
+    public float sepMinX;
+    public float sepMaxX;
 
     public float percent;
 
@@ -37,6 +41,13 @@ public class MySlider : MonoBehaviour
             {
                 bar.uvRect = new Rect(1 - p, 0, p, 1);
             }
+        }
+
+        if (separator != null)
+        {
+            Vector3 pos = separator.transform.localPosition;
+            pos.x = sepMinX + (percent * (sepMaxX - sepMinX));
+            separator.transform.localPosition = pos;
         }
 
         if (full != null)

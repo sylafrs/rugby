@@ -68,7 +68,7 @@ public partial class Referee
         game.Ball.Owner = touchTeam[0];
         game.refs.managers.camera.setTarget(null);
     }
-
+    
     public void OnTouch(Touche t)
     {
         if (t == null || t.a == null || t.b == null)
@@ -113,22 +113,36 @@ public partial class Referee
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
         {
-            // On donne la balle à la bonne personne
+            this.game.northTeam.OnTouchAction();
+            this.game.southTeam.OnTouchAction();
+
             if (result == TouchManager.Result.INTERCEPTION)
             {
-                game.Ball.Owner = interceptTeam[id];
+                //this.game.Ball.Pass(interceptTeam[id]);
                 //super
                 this.IncreaseSuper(game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
                 this.IncreaseSuper(game.settings.Global.Super.touchLooseSuperPoints, touchTeam);
             }
             else
             {
-                game.Ball.Owner = touchTeam[id + 1];
+                //this.game.Ball.Pass(touchTeam[id + 1]);
                 //super
                 this.IncreaseSuper(game.settings.Global.Super.touchWinSuperPoints, touchTeam);
-            }
+            }            
 
-            game.OnResumeSignal(freezeAfterTouch);
+            Timer.AddTimer(1, () =>
+            {
+                if (result == TouchManager.Result.INTERCEPTION)
+                {
+                    this.game.Ball.Owner = (interceptTeam[id]);
+                }
+                else
+                {
+                    this.game.Ball.Owner = (touchTeam[id + 1]);
+                } 
+
+                game.OnResumeSignal(freezeAfterTouch);
+            });
         };
 
         tm.enabled = true;

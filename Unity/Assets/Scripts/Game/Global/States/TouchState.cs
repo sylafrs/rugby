@@ -30,6 +30,9 @@ public class TouchState : GameState
                 cam.game.Referee.PlacePlayersForTouch();
             }
         );
+
+        this.game.northTeam.OnTouch();
+        this.game.southTeam.OnTouch();
 	}
 	
 	public override void OnLeave ()
@@ -41,6 +44,6 @@ public class TouchState : GameState
             u.buttonIndicator.target.renderer.enabled = false;
 
         cam.setTarget(cam.game.Ball.transform);
-		cam.ChangeCameraState(CameraManager.CameraState.FREE);
+		cam.ChangeCameraState(CameraManager.CameraState.FREE);        
 	}
 }

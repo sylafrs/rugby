@@ -87,14 +87,15 @@ public partial class Referee
 
             //if (game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.TransfoRemiseAuCentre || transformed != TransformationManager.Result.GROUND)
             //{
-                UnitToGiveBallTo = opponent[3];
+                //UnitToGiveBallTo = opponent[3];
               //  this.StartPlacement();
             //}
 
-            this.game.OnResumeSignal(FreezeAfterConversion);
+            //this.game.OnResumeSignal(FreezeAfterConversion);
         };
-
+                
         PlaceTransfoPlaceholders();
+        UnitToGiveBallTo = opponent[3];
     }
 	
 	public void GivePoints(int _amount, Team _teamConcerned){

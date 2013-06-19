@@ -56751,12 +56751,12 @@ GameObject:
   - 4: {fileID: 1281005645}
   - 114: {fileID: 1281005646}
   m_Layer: 0
-  m_Name: TEST
+  m_Name: Tests
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1281005645
 Transform:
   m_ObjectHideFlags: 0
@@ -56767,7 +56767,7 @@ Transform:
   m_LocalPosition: {x: 10.3803082, y: 2.6450634, z: -.346737623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1718826727}
+  m_Father: {fileID: 1419876916}
 --- !u!114 &1281005646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64604,6 +64604,7 @@ Transform:
   - {fileID: 198748046}
   - {fileID: 2004071850}
   - {fileID: 3678737}
+  - {fileID: 1281005645}
   - {fileID: 1017857853}
   - {fileID: 528087310}
   - {fileID: 219502519}
@@ -78745,7 +78746,6 @@ Transform:
   - {fileID: 448441828}
   - {fileID: 1848159387}
   - {fileID: 1419876916}
-  - {fileID: 1281005645}
   m_Father: {fileID: 0}
 --- !u!1 &1721776699
 GameObject:

@@ -56,6 +56,8 @@ public class ConversionFlyState : GameState
 	
 	public override bool OnBallOut(){
 		Debug.Log("ballout");
+        //game.refs.managers.conversion.OnLimit();
+
 		game.Referee.StopPlayerMovement();	
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
             (/* OnFinish */) => {
