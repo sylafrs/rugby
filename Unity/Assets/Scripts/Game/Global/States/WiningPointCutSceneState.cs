@@ -18,15 +18,19 @@ public class WiningPointCutSceneState : GameState {
 	public override void OnEnter(){
 		game.refs.managers.ui.currentState = UIManager.UIState.NULL;
 		cam.ChangeCameraState(CameraManager.CameraState.FREE);
+		game.Referee.StopPlayerMovement();
 	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
            (/* OnFinish */) => {
                //please, kill after usage x)
 				game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 				cam.WiningPointsCutSceneComponent.StartScene( () => { }, team);
+				cam.game.Referee.EnablePlayerMovement();
+				//cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+				//cam.game.Referee.StartPlacement();
                	CameraFade.wannaDie();
            }, (/* OnFade */) => {
 				cam.zoom = 1; //TODO cam settings
-				cam.game.Referee.StartPlacement();
+              	cam.game.Referee.StartPlacement();
 				this.cam.CameraRotatingAroundComponent.StartEndlessRotation(
 					game.refs.positions.rotationCenter,
 					new Vector3(0,1,0),
@@ -43,6 +47,8 @@ public class WiningPointCutSceneState : GameState {
                //please, kill after usage
                	CameraFade.wannaDie();
            }, (/* OnFade */) => {
+				cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+				cam.game.Referee.StartPlacement();
            }
        	);
 	}

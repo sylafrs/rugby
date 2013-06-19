@@ -65,7 +65,8 @@ public partial class Referee
 
         tm.ball = game.Ball;
         tm.gamer = t.Player;
-
+		
+		//Debug.Log("Fire Event");
         tm.OnLaunch = this.game.OnConversionShot;
 
         // After the transformation is done, according to the result :

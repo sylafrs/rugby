@@ -10,30 +10,29 @@ using System.Collections.Generic;
 public class ConversionFlyState : GameState
 {
     public ConversionFlyState(StateMachine sm, CameraManager cam, Game game, Zone z)
-        : base(sm, cam, game)
-    {
-        //this.zone = z;
-    }
+        : base(sm, cam, game) { }
 
-    //private Zone zone;
-
-    public override bool OnTouch(Touche t)
-    {
-        game.refs.managers.conversion.OnLimit();
-        return true; // Could call signal
+    public override bool OnTouch(Touche t){
+		game.Referee.StopPlayerMovement();	
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
+            (/* OnFinish */) => {
+                //please, kill after usage x)
+                CameraFade.wannaDie();
+				cam.game.Referee.EnablePlayerMovement();
+				this.game.OnResumeSignal(game.Referee.FreezeAfterConversion);
+            }, (/* OnFade */) => {
+				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				cam.zoom = 1; //TODO cam settings
+				game.refs.managers.conversion.OnLimit();
+                cam.game.Referee.StartPlacement();
+            }
+        );
+        return true;
     }
-	
-	/*
-    public override bool OnBallOut()
-    {
-        game.refs.managers.conversion.OnLimit();
-        return true; // Could call signal
-    }
-    */
 
     public override void OnEnter ()
     {
-        cam.gameCamera.animation.Play("SpeedFxOnCam");
+        cam.gameCamera.animation.Play("SpeedFxOnCam", PlayMode.StopAll);
 		base.OnEnter();
 		game.Ball.ActivateFireTrail();
 		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.GameActionState.ConvertingState.ConversionFly.ConversionFlyCam);
@@ -41,9 +40,9 @@ public class ConversionFlyState : GameState
     }
 
     public override void OnLeave (){
-
-        cam.gameCamera.animation.Stop("SpeedFxOnCam");
 		
+		Debug.Log("Leave conversion fly");
+        
 //		cam.ChangeCameraState(CameraManager.CameraState.FREE);
 //	    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
 //		(/* OnFinish */) => {
@@ -57,19 +56,38 @@ public class ConversionFlyState : GameState
 //       );
     }
 	
-	public override bool OnBallOut(){
-		Debug.Log("ballout");
-        //game.refs.managers.conversion.OnLimit();
-
+	public override bool OnBallOnGround (bool onGround)
+	{
 		game.Referee.StopPlayerMovement();	
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
 				cam.game.Referee.EnablePlayerMovement();
+				
+            }, (/* OnFade */) => {
+				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				this.game.OnResumeSignal(game.Referee.FreezeAfterConversion);
+				cam.zoom = 1; //TODO cam settings
+				game.refs.managers.conversion.OnLimit();
+                cam.game.Referee.StartPlacement();
+            }
+        );
+		return true;
+	}
+	
+	public override bool OnBallOut(){
+		game.Referee.StopPlayerMovement();	
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
+            (/* OnFinish */) => {
+                //please, kill after usage x)
+                CameraFade.wannaDie();
+				cam.game.Referee.EnablePlayerMovement();
+				this.game.OnResumeSignal(game.Referee.FreezeAfterConversion);
             }, (/* OnFade */) => {
 				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
 				cam.zoom = 1; //TODO cam settings
+				game.refs.managers.conversion.OnLimit();
                 cam.game.Referee.StartPlacement();
             }
         );
