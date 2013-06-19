@@ -46,7 +46,7 @@ public class MySlider : MonoBehaviour
         if (separator != null)
         {
             Vector3 pos = separator.transform.localPosition;
-            pos.x = sepMinX + (percent * (sepMaxX - sepMinX));
+            pos.x = sepMinX + (p * (sepMaxX - sepMinX));
             separator.transform.localPosition = pos;
         }
 

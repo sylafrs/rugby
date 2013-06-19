@@ -581,6 +581,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100070
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400070}
+  - 114: {fileID: 11400110}
+  - 114: {fileID: 11400108}
+  m_Layer: 16
+  m_Name: Thunder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -698,6 +715,7 @@ Transform:
   - {fileID: 400040}
   - {fileID: 400044}
   - {fileID: 400042}
+  - {fileID: 400070}
   m_Father: {fileID: 400008}
 --- !u!4 &400018
 Transform:
@@ -1000,6 +1018,17 @@ Transform:
   - {fileID: 400058}
   - {fileID: 400060}
   m_Father: {fileID: 400056}
+--- !u!4 &400070
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -228.259415, z: -101.006744}
+  m_LocalScale: {x: 338, y: 287, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400016}
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -1242,12 +1271,12 @@ MonoBehaviour:
   bar: {fileID: 11400058}
   empty: {fileID: 11400056}
   full: {fileID: 0}
-  separator: {fileID: 0}
+  separator: {fileID: 11400110}
   fullIndicators: []
   fullScaleZ: 969
   emptyScaleZ: 969
-  sepMinX: 0
-  sepMaxX: 0
+  sepMinX: -480
+  sepMaxX: 485
   percent: 0
 --- !u!114 &11400020
 MonoBehaviour:
@@ -2080,6 +2109,42 @@ MonoBehaviour:
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 0, w: 0}
   mClipSoftness: {x: 40, y: 40}
+--- !u!114 &11400108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5038708f99c934694174b3ad4fcc4b, type: 3}
+  m_Name: 
+  timeToChange: .100000001
+  cols: 3
+  rows: 1
+--- !u!114 &11400110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527023cf9e06dc747942aae774856d91, type: 3}
+  m_Name: 
+  mMat: {fileID: 0}
+  mTex: {fileID: 0}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mDepth: 4
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: .330000013
+    height: 1
+  mShader: {fileID: 4800000, guid: 08a5a3670bba05c4c93d85aba75c750f, type: 3}
+  mTexture: {fileID: 2800000, guid: 836739e2721cb6242a00715503fc14a2, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
