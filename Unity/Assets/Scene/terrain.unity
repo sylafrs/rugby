@@ -22753,7 +22753,7 @@ MonoBehaviour:
         Draw: {fileID: 1300940343}
         NorthScore: {fileID: 1702796692}
         SouthScore: {fileID: 1061604064}
-        EndPanel: {fileID: 0}
+        EndPanel: {fileID: 1615147606}
   refs: {fileID: 3678738}
   largeurTerrain: 0
   section: 0
