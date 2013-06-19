@@ -12,11 +12,10 @@ public class MainTitle : MonoBehaviour {
     public InputTouch skip;
 
     public float timeBeforeLoading;
-    public float timeBeforeFading;
     public UITexture background;
     public UITexture pushStart;
     public MyFade fade;
-    public MySprite AButton;
+    public GameObject AButton;
 
     public AudioSource validation;
 
@@ -69,16 +68,11 @@ public class MainTitle : MonoBehaviour {
                 pushStart.gameObject.SetActive(false);
                 state = Status.CONTROLS;
 
-                AButton.gameObject.SetActive(true);
+                AButton.SetActive(true);
                 validation.Play();
-
-                Timer.AddTimer(timeBeforeFading, () =>
-                {
-                    GoOut();
-                });
             }
         }
-        else
+        else if(state == Status.CONTROLS)
         {
             bool ok = false;
             foreach (var c in inputs.controllers)
@@ -100,24 +94,16 @@ public class MainTitle : MonoBehaviour {
 
             if (ok)
             {
-                GoOut();
+                AButton.SetActive(false);
+                fade.Inverse();
+
+                Timer.AddTimer(timeBeforeLoading, () =>
+                {
+                    Application.LoadLevel("terrain");
+                });
+
+                state = Status.GOOUT;
             }
-        }
-    }
-
-    void GoOut()
-    {
-        if (state != Status.GOOUT)
-        {
-            AButton.gameObject.SetActive(false);
-            fade.Inverse();
-
-            Timer.AddTimer(timeBeforeLoading, () =>
-            {
-                Application.LoadLevel("terrain");
-            });
-
-            state = Status.GOOUT;
         }
     }
 }

@@ -74,6 +74,56 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &131751907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 131751908}
+  - 114: {fileID: 131751909}
+  m_Layer: 16
+  m_Name: Skip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131751908
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131751907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -507.627991, y: -317.369995, z: 0}
+  m_LocalScale: {x: 128, y: 64, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1601161525}
+--- !u!114 &131751909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131751907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527023cf9e06dc747942aae774856d91, type: 3}
+  m_Name: 
+  mMat: {fileID: 0}
+  mTex: {fileID: 0}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mDepth: 5
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mShader: {fileID: 4800000, guid: e83c2f831bb0fd14b92751cdcbe823ec, type: 3}
+  mTexture: {fileID: 2800000, guid: b19f1e8be99f64540bcb2e301d2121e7, type: 3}
 --- !u!1 &276461907
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,11 +170,10 @@ MonoBehaviour:
     keyboardP2: 55
     xbox: 1
   timeBeforeLoading: 2.5
-  timeBeforeFading: 5.5
   background: {fileID: 1529333086}
   pushStart: {fileID: 1100054428}
   fade: {fileID: 1870305066}
-  AButton: {fileID: 890474919}
+  AButton: {fileID: 1601161524}
   validation: {fileID: 1564675749}
   controlBackground: {fileID: 2800000, guid: 5edb0b473fa5bf342abccca02f82a65f, type: 3}
 --- !u!1 &890474916
@@ -143,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &890474917
 Transform:
   m_ObjectHideFlags: 0
@@ -152,9 +201,9 @@ Transform:
   m_GameObject: {fileID: 890474916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -622.379456, y: -323.541504, z: -253}
-  m_LocalScale: {x: 123.925636, y: 121.430473, z: 1}
+  m_LocalScale: {x: 123.925644, y: 121.430481, z: 1}
   m_Children: []
-  m_Father: {fileID: 1413278469}
+  m_Father: {fileID: 1601161525}
 --- !u!114 &890474918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +221,7 @@ MonoBehaviour:
   mDepth: 4
   mRect:
     serializedVersion: 2
-    x: 0
+    x: .5
     y: 0
     width: .5
     height: 1
@@ -359,7 +408,7 @@ Transform:
   - {fileID: 1100054427}
   - {fileID: 1529333085}
   - {fileID: 1870305064}
-  - {fileID: 890474917}
+  - {fileID: 1601161525}
   m_Father: {fileID: 1418573328}
 --- !u!1 &1418573327
 GameObject:
@@ -611,6 +660,53 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1601161524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1601161525}
+  - 114: {fileID: 1601161526}
+  m_Layer: 16
+  m_Name: SkipA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1601161525
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601161524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 890474917}
+  - {fileID: 131751908}
+  m_Father: {fileID: 1413278469}
+--- !u!114 &1601161526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601161524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8e9bbad46c7b84caac2352acdff1a9, type: 3}
+  m_Name: 
+  showInPanelTool: 1
+  generateNormals: 0
+  depthPass: 0
+  widgetsAreStatic: 0
+  mDebugInfo: 1
+  mClipping: 0
+  mClipRange: {x: 0, y: 0, z: 0, w: 0}
+  mClipSoftness: {x: 40, y: 40}
 --- !u!1 &1870305063
 GameObject:
   m_ObjectHideFlags: 0

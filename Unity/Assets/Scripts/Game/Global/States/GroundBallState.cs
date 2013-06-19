@@ -17,4 +17,11 @@ public class GroundBallState : GameState {
  		cam.LoadParameters(game.settings.GameStates.MainState.PlayingState.MainGameState.RunningState.BallFreeState.GroundBallCamSettings);
         this.game.Ball.audio.PlayOneShot(game.refs.sounds.BallGroundSound);
     }
+
+    public override void OnUpdate()
+    {
+        Vector3 pos = game.Ball.transform.position;
+        pos.y = Ball.epsilonOnGround - 0.1f;
+        game.Ball.transform.position = pos;
+    }
 }

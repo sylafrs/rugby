@@ -33,8 +33,8 @@ public class PassSystem
 	//float timeToShortPass = 1.5f;
 	//float timeToLongPass = 3f;
 
-	public passState oPassState = passState.NONE;
-
+    public passState oPassState = passState.NONE;
+   
 	public enum passState
 	{
 		SETUP,
@@ -142,8 +142,8 @@ public class PassSystem
 #endif
 
             ball.AttachToRoot();
-            ball.rigidbody.isKinematic = false;
-            ball.rigidbody.useGravity = false;
+            //ball.rigidbody.isKinematic = false;
+            //ball.rigidbody.useGravity = false;
             ball.Owner = null;
 
             this.magnitude = calculateMagnitude(from.transform.position, relativePosition);

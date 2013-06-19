@@ -185,7 +185,7 @@ public class Ball : TriggeringTriggered, Debugable
 		this.transform.parent = root;
 	}
 
-	const float epsilonOnGround = 0.4f;
+	public const float epsilonOnGround = 0.4f;
 
     public void TeleportOnGround()
     {
@@ -201,11 +201,13 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public void Update()
 	{
-		if (Owner != null)
-		{
-			this.transform.localRotation = Quaternion.identity;
-		}
+        this.rigidbody.isKinematic = (this.passManager == null || this.passManager.oPassState != PassSystem.passState.ONPASS);
 
+        if (Owner != null)
+        {
+            this.transform.localRotation = Quaternion.identity;
+        }
+       
 		if (this.isOnGround())
 		{
 			if (!this.onGroundFired)
@@ -282,7 +284,7 @@ public class Ball : TriggeringTriggered, Debugable
 			else
 			{
 				timeOnDrop = -1;
-				this.rigidbody.isKinematic = true;
+				//this.rigidbody.isKinematic = true;
 				this.Game.BallOnGround(true);
 				drop.afterCollision = false;
 				drop.timeOffset = 0.0f;
@@ -344,7 +346,7 @@ public class Ball : TriggeringTriggered, Debugable
 				timeOnPass += Time.deltaTime;
 			}
 			else
-			{
+			{    
 				if (passManager.oPassState == PassSystem.passState.ONPASS)
 				{
 					passManager.oPassState = PassSystem.passState.ONGROUND;
@@ -410,24 +412,19 @@ public class Ball : TriggeringTriggered, Debugable
 
 		this.AttachToRoot();
 		this.transform.position = v;
-		this.rigidbody.useGravity = true;
-		this.rigidbody.isKinematic = false;
-		this.rigidbody.velocity = Vector3.zero;
+		//this.rigidbody.useGravity = true;
+		//this.rigidbody.isKinematic = false;
+		//this.rigidbody.velocity = Vector3.zero;
 		this.transform.rotation = Quaternion.identity;
 		this.Owner = null;
 	}
 
 	private void Taken(Unit u)
 	{
-
-
-
-		this.rigidbody.useGravity = false;
-		this.rigidbody.isKinematic = true;
+        //this.rigidbody.useGravity = false;
+		//this.rigidbody.isKinematic = true;
 		this.transform.parent = u.BallPlaceHolderRight.transform;
 		this.transform.localPosition = Vector3.zero;
-
-
 	}
 
 	public bool RightSide()
@@ -516,7 +513,7 @@ public class Ball : TriggeringTriggered, Debugable
 		EditorGUILayout.Toggle("On ground", isOnGround());
 		if (this.passManager != null)
 		{
-			EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
+			EditorGUILayout.EnumPopup("Pass state", this.passManager.oPassState);
 		}
 		else
 		{
