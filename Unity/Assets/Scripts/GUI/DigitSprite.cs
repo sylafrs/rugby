@@ -40,20 +40,21 @@ public class DigitSprite : MonoBehaviour {
         }
 
         n = i;
-
+        oldN = n;
+            
         int row = i / cols;
         int col = i % cols;
 
         r.x = r.width * col;
         r.y = r.height * row;
 
-        uiTexture.uvRect = r;
+        if(uiTexture)
+            uiTexture.uvRect = r;
     }
 
     public void Update()
     {
         if(oldN != n) {
-            oldN = n;
             ChangeTo(n);
         }
     }

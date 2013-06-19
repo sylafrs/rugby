@@ -22,53 +22,34 @@ public class NumberManager : MonoBehaviour
         int l = digits.Length;
         int i = 0;
 
-        if (number == 0)
-        {
-            if (hideZero)
-            {
-                digits[i++].gameObject.SetActive(true);
-            }
-
-            digits[i].n = 0;
-
-
-            while (i < l)
-            {
-                if (hideZero)
-                {
-                    digits[i++].gameObject.SetActive(false);
-                }
-                else
-                {
-                    digits[i++].n = 0;
-                }
-            }
-            return;
-        }
-
         int current = number;
-
-        while (current > 0)
-        {
-            int d = current % 10;
-            current = current / 10;
-            if (hideZero)
-            {
-                digits[i].gameObject.SetActive(true);
-            }
-            digits[i++].n = d;
-        }
 
         while (i < l)
         {
-            if (hideZero)
+            digits[i].gameObject.SetActive(true);
+
+            if (current <= 0)
             {
-                digits[i++].gameObject.SetActive(false);
+                if (hideZero)
+                {
+                    if (i != 0)
+                    {
+                        digits[i].gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    digits[i].n = 0;
+                }
             }
             else
             {
-                digits[i++].n = 0;
+                int d = current % 10;
+                current = current / 10;
+                digits[i].n = d;
             }
+
+            i++;
         }
     }
 
