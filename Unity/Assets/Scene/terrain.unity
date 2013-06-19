@@ -22458,7 +22458,7 @@ MonoBehaviour:
         points_drop: 3
         points_essai: 5
         points_transfo: 2
-        period_time: 5
+        period_time: 240
       Super:
         sounds:
           ThunderScreamDelay: 1
@@ -22614,9 +22614,9 @@ MonoBehaviour:
         keyboardP2: 55
         xbox: 1
       reset:
-        keyboardP1: 8
-        keyboardP2: 8
-        xbox: 3
+        keyboardP1: 0
+        keyboardP2: 0
+        xbox: 0
       enableIA:
         keyboardP1: 0
         keyboardP2: 0
