@@ -60,7 +60,7 @@ public class NumberManager : MonoBehaviour
 
     public void Update()
     {
-        if (oldNumber != number)
+        //if (oldNumber != number)
         {
             Change();
         }
