@@ -388,6 +388,17 @@ public class Gamer
                 tackled.unitAnimator.OnBeingTackled();
             
 			Controlled.Order = Order.OrderPlaquer(tackled);
+			
+			if (
+			(this.game.Ball.Owner.Team == this.game.southTeam && this.game.Ball.transform.position.z >= this.game.northTeam.But.transform.position.z )
+			||
+			(this.game.Ball.Owner.Team == this.game.northTeam && this.game.Ball.transform.position.z <= this.game.southTeam.But.transform.position.z )
+			)
+			{
+				canTackle = false;
+				Debug.Log("cant tackle");
+			}
+			
 		}
 	}
 

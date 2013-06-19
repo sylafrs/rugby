@@ -23,9 +23,7 @@ public class Zone : TriggeringTrigger {
     }
 
     public override void Inside(Triggered o)
-    {
-		//Debug.Log("Inside "+this.name+" "+o.name);
-		
+    {	
         Ball b = o.GetComponent<Ball>();
         if (b != null && b.Owner != null && b.Owner.Team != this.Owner){
             if (b.Owner.Team.Player == null){				
@@ -62,6 +60,35 @@ public class Zone : TriggeringTrigger {
 			b.Owner.ShowButton("A");
 			b.inZone = this; 
 		}
+	}
+	
+	void Update() {
+		
+		if(owner.opponent.Player.Controlled && owner.opponent.Player.Controlled == owner.game.Ball.Owner) {
+			if(owner == owner.game.southTeam)
+			{
+				if(owner.But.transform.position.z <= owner.game.Ball.transform.position.z){
+					owner.game.Ball.Owner.HideButton();
+				}
+			}
+			else 
+			{
+				if(owner.But.transform.position.z >= owner.game.Ball.transform.position.z){
+					owner.game.Ball.Owner.HideButton();
+				}
+			}
+		}
+		
+		/*
+		if (
+		(this.game.Ball.Owner.Team == this.game.southTeam && this.game.Ball.transform.position.z >= this.game.northTeam.But.transform.position.z )
+		||
+		(this.game.Ball.Owner.Team == this.game.northTeam && this.game.Ball.transform.position.z <= this.game.southTeam.But.transform.position.z )
+		)
+		{
+			 ;
+		}
+		*/
 	}
 	
 	public override void Left (Triggered o)
