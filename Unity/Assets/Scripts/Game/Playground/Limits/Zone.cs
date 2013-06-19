@@ -25,7 +25,7 @@ public class Zone : TriggeringTrigger {
     public override void Inside(Triggered o)
     {
 		//Debug.Log("Inside "+this.name+" "+o.name);
-		/*
+		
         Ball b = o.GetComponent<Ball>();
         if (b != null && b.Owner != null && b.Owner.Team != this.Owner){
             if (b.Owner.Team.Player == null){				
@@ -44,7 +44,6 @@ public class Zone : TriggeringTrigger {
 				b.Owner.HideButton();
 			}
         }
-        */
     }
 	
 	public override void Entered (Triggered o)
