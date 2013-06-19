@@ -364,7 +364,7 @@ public class UnitAnimator : myMonoBehaviour
 
                 if (Dodge)
                 {
-                    Dodge = false;  
+                    Dodge = false;                    
                 }
 
                 if (BeingTackled)
@@ -408,8 +408,17 @@ public class UnitAnimator : myMonoBehaviour
 
     public void OnDodge()
     {
+        this.unit.transform.forward = this.unit.Team.transform.forward;
+        this.unit.nma.angularSpeed = 0;
+        Timer.AddTimer(1, () =>
+        {            
+            this.unit.nma.angularSpeed = 5000;
+        });
+
         launchUpdate = true;
         Dodge = true;
+
+
     }
 
 	public void PrepareSuper() {

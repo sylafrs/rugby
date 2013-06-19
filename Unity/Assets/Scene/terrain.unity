@@ -10227,6 +10227,7 @@ MonoBehaviour:
   - {fileID: 1441828088}
   - {fileID: 1463946529}
   number: 0
+  hideZero: 0
 --- !u!114 &219088200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21990,7 +21991,7 @@ MonoBehaviour:
         points_drop: 3
         points_essai: 5
         points_transfo: 2
-        period_time: 240
+        period_time: 110
       Super:
         sounds:
           ThunderScreamDelay: 1
@@ -28971,7 +28972,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400056, guid: 8270225a641f2934b8948aa3749c6e7a, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 613712546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 10.1923447}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
