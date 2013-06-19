@@ -308,6 +308,11 @@ public class Ball : TriggeringTriggered, Debugable
             return;
         }
 
+        if (!to.canCatchTheBall)
+        {
+            return;
+        }
+
 		Game.OnPass(this.Owner, to);
 		int index = (this.Owner.Team == Game.instance.southTeam ? 0 : 1);
 #if UNITY_EDITOR
@@ -385,15 +390,15 @@ public class Ball : TriggeringTriggered, Debugable
 			timeOnPass = -1;
 		}
 
-		if (timeOnPass == -1 && passManager != null && passManager.oPassState != PassSystem.passState.NONE)
+		/*if (timeOnPass == -1 && passManager != null && passManager.oPassState != PassSystem.passState.NONE)
 		{
 			Time.timeScale = 1f;
-			passManager.oPassState = PassSystem.passState.NONE;
+			//passManager.oPassState = PassSystem.passState.NONE;
 #if UNITY_EDITOR
 			Game.instance.logTeam[index].WriteLine("Pass State : " + passManager.oPassState + "\n");
 #endif
 			//Game.instance.logTeam[index].CloseFile();
-		}
+		}*/
 
 	}
 

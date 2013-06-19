@@ -19,11 +19,15 @@ public class ScrumState : GameState
 
         game.Referee.ScrumCinematicMovement();
 
+        game.refs.transitionsTexts.scrum.SetActive(true);
+
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 2, 1, 1, 1, 
         (/* OnFinish*/) => {
             game.refs.managers.ui.currentState = UIManager.UIState.ScrumUI;
             game.Referee.NowScrum();
         }, (/*OnFade*/) => {
+
+            game.refs.transitionsTexts.scrum.SetActive(false);
 
             offset = cam.MinfollowOffset;
 		    cam.setTarget(this.game.refs.gameObjects.ScrumBloc.transform);

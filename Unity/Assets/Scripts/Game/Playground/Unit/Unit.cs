@@ -871,6 +871,8 @@ public class Unit : TriggeringTriggered, Debugable
 	public void ForDebugWindow()
 	{
 #if UNITY_EDITOR
+        EditorGUILayout.EnumPopup("Type of player", this.typeOfPlayer);
+
 		Order o = this.Order;
 		EditorGUILayout.LabelField("Ordre : " + o.type.ToString());
 		switch (o.type)
@@ -880,7 +882,7 @@ public class Unit : TriggeringTriggered, Debugable
 				break;
 
 			case Order.TYPE.FOLLOW:
-				EditorGUILayout.LabelField("Cible : " + o.target.name);
+				EditorGUILayout.LabelField("Cible : " + (o.target ? o.target.name : "null"));
 				break;
 
 			case Order.TYPE.LANE:

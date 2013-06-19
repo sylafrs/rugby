@@ -20,18 +20,25 @@ public class BallDropState : GameState {
 	
 	public override bool OnBallOut()
     {
-		game.Referee.StopPlayerMovement();
-        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
-            (/* OnFinish */) => {
-                //please, kill after usage x)
-                CameraFade.wannaDie();
-				cam.game.Referee.EnablePlayerMovement();
-            }, (/* OnFade */) => {
-				//cam.ChangeCameraState(CameraManager.CameraState.FREE);
-				cam.zoom = 1; //TODO cam settings
-                cam.game.Referee.StartPlacement();
-            }
-        );
+        game.refs.transitionsTexts.ballOut.SetActive(true);
+
+        Timer.AddTimer(2, () =>
+        {
+            game.Referee.StopPlayerMovement();
+            cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
+                (/* OnFinish */) => {
+                    //please, kill after usage x)
+                    CameraFade.wannaDie();
+				    cam.game.Referee.EnablePlayerMovement();
+                }, (/* OnFade */) => {
+				    //cam.ChangeCameraState(CameraManager.CameraState.FREE);
+				    cam.zoom = 1; //TODO cam settings
+                    game.refs.transitionsTexts.ballOut.SetActive(false);
+                    cam.game.Referee.StartPlacement();
+                }
+            );
+        });
+		
         return true;
     }
 }

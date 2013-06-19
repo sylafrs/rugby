@@ -38,13 +38,20 @@ public class LogFile {
 				return;
 
             if (!File.Exists(nameFile + ".txt"))
+            {
                 writer = File.CreateText(nameFile + ".txt");
+            }
+
             else if (writer != null)
+            {
                 writer.WriteLine(line);
-            else
-                return;
-				
-			writer.Close();
+            }
+
+            if (writer != null)
+            {
+                writer.Close();
+                writer = null;
+            }
 			
 			FileInfo info = new FileInfo(nameFile + ".txt");
 			length = info.Length;

@@ -18,8 +18,13 @@ public class BallFreeState : GameState {
 
     public override bool OnBallOnGround(bool onGround)
     {
-		sm.state_change_son(this, new GroundBallState(sm, cam, game));
-        return true;
+        if (onGround)
+        {
+            sm.state_change_son(this, new GroundBallState(sm, cam, game));
+            return true;
+        }
+
+        return false;
     }
 
     public void decide()

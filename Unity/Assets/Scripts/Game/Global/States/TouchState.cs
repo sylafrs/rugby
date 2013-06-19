@@ -22,17 +22,22 @@ public class TouchState : GameState
 		
 		Transform cameraPlaceHolder = game.refs.placeHolders.touchPlacement.FindChild("CameraPlaceHolder");
 
-        cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
-            (/* OnFinish */) => {               
-                CameraFade.wannaDie();
-            }, (/* OnFade */) => { 
-				cam.CancelNextFlip = true;
-                cam.game.Referee.PlacePlayersForTouch();
-            }
-        );
+        game.refs.transitionsTexts.ballOut.SetActive(true);
 
-        this.game.northTeam.OnTouch();
-        this.game.southTeam.OnTouch();
+        Timer.AddTimer(2, () => {
+            cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
+                (/* OnFinish */) => {               
+                    CameraFade.wannaDie();
+                }, (/* OnFade */) => {
+                    game.refs.transitionsTexts.ballOut.SetActive(false);
+				    cam.CancelNextFlip = true;
+                    cam.game.Referee.PlacePlayersForTouch();
+                }
+            );
+
+            this.game.northTeam.OnTouch();
+            this.game.southTeam.OnTouch();
+        });
 	}
 	
 	public override void OnLeave ()

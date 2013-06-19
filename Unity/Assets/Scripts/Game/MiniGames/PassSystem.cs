@@ -103,6 +103,7 @@ public class PassSystem
 		{
 			return;
 		}
+
 		oPassState = passState.SETUP;
 		if (from && target && ball)
         {
