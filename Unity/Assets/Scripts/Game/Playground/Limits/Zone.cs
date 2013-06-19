@@ -55,11 +55,12 @@ public class Zone : TriggeringTrigger {
 		if(o.GetType() == typeof(Unit)){
 			Unit u = (Unit)o;
 			u.isInTryZone = true;		
-			u.ShowButton("A");	
+			//u.ShowButton("A");	
 		}
 		
         if (b != null)
         {
+			b.Owner.ShowButton("A");
 			b.inZone = this; 
 		}
 	}
