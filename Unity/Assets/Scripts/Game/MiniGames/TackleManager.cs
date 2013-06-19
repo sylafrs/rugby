@@ -98,7 +98,7 @@ public class TackleManager: myMonoBehaviour {
     {
         if (result == RESULT.QTE)
         {
-            GUILayout.Label("Temps pour passer la balle : " + remainingTime.ToString("F2"));
+         //   GUILayout.Label("Temps pour passer la balle : " + remainingTime.ToString("F2"));
         }
     }
 	

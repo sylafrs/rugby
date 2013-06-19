@@ -77,8 +77,9 @@ public class ConversionFlyState : GameState
 	}
 	
 	public override bool OnBallOut(){
-		game.Referee.StopPlayerMovement();	
-        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
+		game.Referee.StopPlayerMovement();
+		Debug.Log("out");
+        cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
             (/* OnFinish */) => {
                 //please, kill after usage x)
                 CameraFade.wannaDie();
