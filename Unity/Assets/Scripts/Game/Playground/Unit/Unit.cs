@@ -183,6 +183,12 @@ public class Unit : TriggeringTriggered, Debugable
 			this.typeOfPlayer = TYPEOFPLAYER.OFFENSIVE;
 			invariantMove = false;
 		}
+
+        // QUICK FIX
+        if (team.GetNumberOffensivePlayer() >= 4)
+        {
+            this.typeOfPlayer = TYPEOFPLAYER.DEFENSE;
+        }
 	}
 
 	public void UpdatePlacement()

@@ -201,11 +201,11 @@ public class Ball : TriggeringTriggered, Debugable
 
 	public void Update()
 	{
-		if (Owner != null)
-		{
-			this.transform.localRotation = Quaternion.identity;
-		}
-
+        if (Owner != null)
+        {
+            this.transform.localRotation = Quaternion.identity;
+        }
+       
 		if (this.isOnGround())
 		{
 			if (!this.onGroundFired)
@@ -509,7 +509,7 @@ public class Ball : TriggeringTriggered, Debugable
 		EditorGUILayout.Toggle("On ground", isOnGround());
 		if (this.passManager != null)
 		{
-			EditorGUILayout.EnumMaskField("Pass state", this.passManager.oPassState);
+			EditorGUILayout.EnumPopup("Pass state", this.passManager.oPassState);
 		}
 		else
 		{
