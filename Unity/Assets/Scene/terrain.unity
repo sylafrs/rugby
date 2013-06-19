@@ -19619,13 +19619,13 @@ MonoBehaviour:
   quality: 1
   resolution: 2
   simpleTweakMode: 1
-  focalPoint: 19
-  smoothness: 6.1500001
+  focalPoint: 16
+  smoothness: 4.23999977
   focalZDistance: .300000012
   focalZStartCurve: 1
   focalZEndCurve: 1
   objectFocus: {fileID: 0}
-  focalSize: 0
+  focalSize: 98
   bluriness: 4
   maxBlurSpread: .0399999991
   foregroundBlurExtrude: 1.14999998
@@ -47601,7 +47601,7 @@ Transform:
   m_PrefabInternal: {fileID: 1624873157}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.430435181, y: .430480957, z: 0}
+  m_LocalPosition: {x: -.992248535, y: 1.98449707, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
@@ -74857,11 +74857,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.430435181
+      value: -.992248535
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .430480957
+      value: 1.98449707
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
