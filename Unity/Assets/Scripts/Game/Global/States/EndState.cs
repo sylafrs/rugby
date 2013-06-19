@@ -27,10 +27,11 @@ public class EndState : GameState
 	    	        CameraFade.wannaDie();				
 				    game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
 
-                     // ICI : Mettre le truc de charles.
 
+                    Timer.AddTimer(5, () =>
+                    {
 
-
+                    });
 
 	     	    }, (/* OnFade */) => {
                     game.refs.transitionsTexts.timeOut.SetActive(false);

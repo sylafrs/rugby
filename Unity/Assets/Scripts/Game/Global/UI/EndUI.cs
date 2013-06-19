@@ -8,31 +8,24 @@ public class EndUI{
         Game _game = Game.instance;
         EndUISettings settings = _game.settings.UI.EndUI;
 
-        Rect resultRect = UIManager.screenRelativeRect(settings.ResultRect);
-        Rect resultButtonRect = UIManager.screenRelativeRect(settings.ResultButtonRect);
-        Rect resultScoreRect = UIManager.screenRelativeRect(settings.ResultScoreRect);
+        settings.Draw.gameObject.SetActive(false);
+        settings.JapanWins.gameObject.SetActive(false);
+        settings.MaoriWins.gameObject.SetActive(false);
 
-        string result = "";
         if (_game.southTeam.nbPoints < _game.northTeam.nbPoints)
         {
-            result = _game.northTeam.Name + " win !";
+            settings.MaoriWins.gameObject.SetActive(true);
         }
         else if (_game.northTeam.nbPoints < _game.southTeam.nbPoints)
         {
-            result = _game.southTeam.Name + " win !";
+            settings.JapanWins.gameObject.SetActive(true);
         }
         else
         {
-            result = "Draw !";
+            settings.Draw.gameObject.SetActive(true);
         }
 
-        GUI.Label(resultRect, result, settings.ResultStyle);
-        GUI.Label(resultScoreRect, _game.southTeam.nbPoints + "  -  " + _game.northTeam.nbPoints, settings.ResultScoreStyle);
-
-        GUIStyle btnStyle = GUI.skin.button;
-        btnStyle.fontSize = settings.btnFontSize;
-
-        if (GUI.Button(resultButtonRect, "restart", btnStyle))
-            _game.Reset();
+        settings.NorthScore.number = _game.northTeam.nbPoints;
+        settings.SouthScore.number = _game.southTeam.nbPoints;
 	}
 }

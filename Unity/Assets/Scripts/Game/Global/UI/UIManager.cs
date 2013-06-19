@@ -93,6 +93,10 @@ public class UIManager : myMonoBehaviour, Debugable {
         {
             game.settings.UI.ScrumUI.ScrumPanel.gameObject.SetActive(true);
         }
+        if (state == UIState.EndUI)
+        {
+            game.settings.UI.EndUI.EndPanel.gameObject.SetActive(true);
+        }
     }
     
     void OnEndGUI(UIState state)
@@ -104,6 +108,10 @@ public class UIManager : myMonoBehaviour, Debugable {
         if (state == UIState.ScrumUI)
         {
             game.settings.UI.ScrumUI.ScrumPanel.gameObject.SetActive(false);
+        }
+        if (state == UIState.EndUI)
+        {
+            game.settings.UI.EndUI.EndPanel.gameObject.SetActive(false);
         }
     }
 	
