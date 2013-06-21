@@ -11,6 +11,7 @@ public class EndUI{
         settings.Draw.gameObject.SetActive(false);
         settings.JapanWins.gameObject.SetActive(false);
         settings.MaoriWins.gameObject.SetActive(false);
+        settings.DegradeCam.SetActive(true);
 
         if (_game.southTeam.nbPoints < _game.northTeam.nbPoints)
         {
@@ -39,11 +40,6 @@ public class EndUI{
             //{
                 Application.LoadLevel("credits");
             //});
-        }
-
-        Timer.AddTimer(2, () =>
-        {
-            Application.LoadLevel("menu");
-        });
+        }       
 	}
 }

@@ -25,7 +25,6 @@ public class EndState : GameState
 		    cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0, 1f, 1f, 1.5f, 
 		         (/* OnFinish */) => {
 	    	        CameraFade.wannaDie();				
-				    game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
 	     	    }, (/* OnFade */) => {
                     game.refs.transitionsTexts.timeOut.SetActive(false);
 				    cam.zoom = 1;
@@ -35,7 +34,9 @@ public class EndState : GameState
 				        game.refs.positions.fieldCenter,
 				        game.refs.positions.cameraFirstPosition,
 				        cam.game.settings.GameStates.MainState.IntroState.rotationSpeed/100
-                    );	
+                    );
+
+                    game.refs.managers.ui.currentState = UIManager.UIState.EndUI;
 		     	}
 		     );
         });

@@ -108,4 +108,5 @@ public class EndUISettings
     public NumberManager SouthScore;
     public UIPanel EndPanel;
     public GameObject Abtn;
+    public GameObject DegradeCam;
 }
