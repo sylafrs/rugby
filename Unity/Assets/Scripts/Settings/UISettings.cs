@@ -21,7 +21,7 @@ public class GameUISettings
     public NumberManager redScore;
     public NumberManager blueScore;
 
-    public UITexture j1, j2;
+    public GameObject j1, j2;
 	
 	public float ScrumBarMaxDelta = 1.5f;
 }
