@@ -24,6 +24,7 @@ public class GameUISettings
     public GameObject j1, j2;
 	
 	public float ScrumBarMaxDelta = 1.5f;
+    public float OffsetSideIndicator = 1;
 }
 
 [System.Serializable]

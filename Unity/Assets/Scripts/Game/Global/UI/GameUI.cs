@@ -41,6 +41,8 @@ public class GameUI{
 
     public void ShowUnit(Unit u, GameObject indic)
     {
+        GameUISettings settings = game.settings.UI.GameUI;
+
         if (u == null)
             return;
 
@@ -62,12 +64,31 @@ public class GameUI{
         if (pos.y == 0)
         {
             rot = 0;
+
+            if (pos.x < settings.OffsetSideIndicator)
+            {
+                pos.x = settings.OffsetSideIndicator;
+            }
+            else if (pos.x > 1 - settings.OffsetSideIndicator)
+            {
+                pos.x = 1 - settings.OffsetSideIndicator;
+            }
         }
         // Haut
         else if (pos.y == 1)
         {
             rot = 180;
+
+            if (pos.x < settings.OffsetSideIndicator)
+            {
+                pos.x = settings.OffsetSideIndicator;
+            }
+            else if (pos.x > 1 - settings.OffsetSideIndicator)
+            {
+                pos.x = 1 - settings.OffsetSideIndicator;
+            }
         }
+
         // Gauche
         else if (pos.x == 0)
         {
