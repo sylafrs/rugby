@@ -24,7 +24,7 @@ public class WiningPointCutSceneState : GameState {
                //please, kill after usage x)
 				game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
 				cam.WiningPointsCutSceneComponent.StartScene( () => { }, team);
-				cam.game.Referee.EnablePlayerMovement();
+				//cam.game.Referee.EnablePlayerMovement();
 				//cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 				//cam.game.Referee.StartPlacement();
                	CameraFade.wannaDie();

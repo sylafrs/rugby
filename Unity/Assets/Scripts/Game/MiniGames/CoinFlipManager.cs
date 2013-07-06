@@ -21,7 +21,7 @@ public class CoinFlipManager : MonoBehaviour {
     {
         float r = Random.value;
 
-        MyDebug.Log("Flip began. Value : " + r);
+        //MyDebug.Log("Flip began. Value : " + r);
 
         if (r >= 0.5f)
         {
@@ -33,7 +33,7 @@ public class CoinFlipManager : MonoBehaviour {
         }
 
         Timer.AddTimer(timeFlipping, () => {
-            MyDebug.Log("Flip finised. Winner : " + winner);
+            //MyDebug.Log("Flip finised. Winner : " + winner);
             this.enabled = false;
             if(callBack != null) {
                 callBack(winner);

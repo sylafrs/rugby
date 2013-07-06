@@ -84,6 +84,7 @@ public class Gamer
 	 */
 	public void enableMove()
 	{
+		Debug.Log("Enable movement");
 		canMove = true;
 	}
 

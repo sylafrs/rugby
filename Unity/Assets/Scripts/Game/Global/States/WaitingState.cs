@@ -75,34 +75,24 @@ public class WaitingState : GameState
 	{
 		game.Referee.ResumeIngameTime();
 		game.disableIA = false;
-         
         Team[] teams = new Team[2];
         teams[0] = game.southTeam;
         teams[1] = game.northTeam;
 
-        foreach (Team t in teams)
-        {
-            foreach (Unit u in t)
-            {
-                u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-            }
-        }
-
-        foreach (Team t in teams)
-        {            
-            foreach (Unit u in t)
-            {
-                if (t.Player.Controlled && game.Ball.NextOwner != u)
-                {
+        foreach (Team t in teams){            
+            foreach (Unit u in t){
+                if (t.Player.Controlled && game.Ball.NextOwner != u){
+					u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
                     u.UpdateTypeOfPlay();
                     u.UpdatePlacement();                        
                 }
-
                 u.buttonIndicator.target.renderer.enabled = false;
             }
-
             t.fixUnits = false;
-            t.Player.enableMove();
-        }        
+        }
+			
+		Timer.AddTimer(3f, () => {
+			cam.game.Referee.EnablePlayerMovement();
+        });
 	}
 }
