@@ -96,6 +96,17 @@ public class UIManager : myMonoBehaviour, Debugable {
         if (state == UIState.EndUI)
         {
             game.settings.UI.EndUI.EndPanel.gameObject.SetActive(true);
+
+            EndUISettings settings = game.settings.UI.EndUI;
+
+            settings.Draw.gameObject.SetActive(false);
+            settings.JapanWins.gameObject.SetActive(false);
+            settings.MaoriWins.gameObject.SetActive(false);
+            settings.FlagMaori.SetActive(false);
+            settings.FlagJap.SetActive(false);
+            settings.MaoriWin.SetActive(false);
+            settings.JapanWin.SetActive(false);
+            settings.DegradeCam.SetActive(true);
         }
     }
     
@@ -108,6 +119,10 @@ public class UIManager : myMonoBehaviour, Debugable {
         if (state == UIState.ScrumUI)
         {
             game.settings.UI.ScrumUI.ScrumPanel.gameObject.SetActive(false);
+        }
+        if (state == UIState.EndUI)
+        {
+            Application.LoadLevel("credits");
         }
     }
 	

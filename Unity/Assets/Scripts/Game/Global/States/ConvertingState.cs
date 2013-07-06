@@ -32,7 +32,7 @@ public class ConvertingState : GameState {
     bool camera_edited;
     public override void OnUpdate()
     {
-        if (!camera_edited)
+        if (!camera_edited && this.game.Ball.Owner != null)
         {
             UnitAnimator ua = this.game.Ball.Owner.unitAnimator;
             if (ua == null || ua.isInState(UnitAnimator.BallIdleState))
