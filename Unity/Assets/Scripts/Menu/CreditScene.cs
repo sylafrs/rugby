@@ -16,6 +16,8 @@ public class CreditScene : MonoBehaviour {
 
     public void Start()
     {
+        Resources.UnloadUnusedAssets();
+
         this.gameObject.AddComponent<Timer>();
         inputs = this.gameObject.AddComponent<XboxInputs>();
         inputs.CheckAll();

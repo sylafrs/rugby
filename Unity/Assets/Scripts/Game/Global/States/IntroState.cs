@@ -34,6 +34,7 @@ public class IntroState : GameState
 					cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
 				});
 				cam.ChangeCameraState(CameraManager.CameraState.FOLLOWING);
+                game.refs.managers.ui.currentState = UIManager.UIState.GameUI;
             }
         );
 	}

@@ -83,7 +83,7 @@ public class Game : myMonoBehaviour
 		logTeam[1].SetName("Assets/Scripts/Game/Autres/LOG/NorthTeam");
 #endif
         this.refs.xboxInputs.CheckNone();
-
+                
         this.northTeam.game = this;
         this.southTeam.game = this;
         this.northTeam.south = false;

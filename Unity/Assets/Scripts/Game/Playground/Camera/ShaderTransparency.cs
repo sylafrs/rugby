@@ -202,15 +202,21 @@ public class ShaderTransparency : MonoBehaviour {
 			{
 				dir = u.transform.position - this.transform.position;
 				//a player is behind Maori goal
-				if (Physics.Raycast(this.transform.position, dir, dir.magnitude, MaoGoal))
-				{
-					bMaoGoal = true;
-				}
-				//a player cannot be behind Maori goal and Jap goal
-				else if (Physics.Raycast(this.transform.position, dir, dir.magnitude, JapGoal))
-				{
-					bJapGoal = true;;
-				}
+                if (MaoGoal != 0)
+                {
+                    if (Physics.Raycast(this.transform.position, dir, dir.magnitude, MaoGoal))
+                    {
+                        bMaoGoal = true;
+                    }
+                }
+                //a player cannot be behind Maori goal and Jap goal
+                if (JapGoal != 0)
+                {
+                    if (Physics.Raycast(this.transform.position, dir, dir.magnitude, JapGoal))
+                    {
+                        bJapGoal = true; ;
+                    }
+                }
 			}
 		}
 		
