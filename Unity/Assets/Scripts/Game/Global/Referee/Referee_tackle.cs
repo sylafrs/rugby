@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class Referee
@@ -37,12 +38,68 @@ public partial class Referee
 
                 // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
                 case TackleManager.RESULT.PASS:
-                    Unit target = tackled.GetNearestAlly();
-                    if (tackled.unitAnimator)
+
+                    List<Unit> listToCheck = null;
+                    Unit unitTo = null;
+
+                    listToCheck = tackled.Team.GetRight(tackled);
+
+                    if (listToCheck.Count == 0)
                     {
-                        tackled.unitAnimator.OnTacklePass();
+                        listToCheck = tackled.Team.GetLeft(tackled);
                     }
-                    game.Ball.Pass(target);
+                    if (listToCheck.Count > 0)
+                    {
+                        foreach (Unit u in listToCheck)
+                        {
+                            if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+                            {
+                                if (tackled.Team == game.southTeam)
+                                {
+                                    if (u.transform.position.z < tackled.transform.position.z && u.canCatchTheBall)
+                                    {
+                                        //Debug.Log("try to pass to " + u);
+                                        unitTo = u;
+                                        break;
+                                    }
+                                    else
+                                        unitTo = null;
+                                }
+                                else if (tackled.Team == game.northTeam)
+                                {
+                                    if (u.transform.position.z > tackled.transform.position.z && u.canCatchTheBall)
+                                    {
+                                        //Debug.Log("try to pass to " + u);
+                                        unitTo = u;
+                                        break;
+                                    }
+                                    else
+                                        unitTo = null;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        unitTo = null;
+                        return;
+                    }
+
+                    if (unitTo != null && unitTo != game.Ball.Owner)
+                    {
+                        if (tackled.unitAnimator)
+                        {
+                            tackled.unitAnimator.OnTacklePass();
+                        }
+                        game.Ball.Pass(unitTo);
+                    }
+
+                    //Unit target = tackled.GetNearestAlly();
+                    //if (tackled.unitAnimator)
+                    //{
+                    //    tackled.unitAnimator.OnTacklePass();
+                    //}
+                    //game.Ball.Pass(target);
 
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
@@ -87,7 +144,7 @@ public partial class Referee
     {
         tackler.transform.forward = Vector3.forward;
     }
-	
+
     public void UpdateTackle()
     {
         if (LastTackle != -1)
