@@ -187,7 +187,7 @@ public class Unit : TriggeringTriggered, Debugable
 		}
 
         // QUICK FIX
-        if (team.GetNumberOffensivePlayer() >= 4)
+        if (this!= team.Player.Controlled &&  team.GetNumberOffensivePlayer() > this.oTS.nbOffensivePlayer + 1 )
         {
             this.typeOfPlayer = TYPEOFPLAYER.DEFENSE;
         }
