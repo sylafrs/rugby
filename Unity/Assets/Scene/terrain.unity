@@ -29282,11 +29282,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.85346222
+      value: -1.05727386
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .927520752
+      value: 2.11569214
       objectReference: {fileID: 0}
     - target: {fileID: 100126, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_IsActive
@@ -32718,7 +32718,7 @@ MonoBehaviour:
   nbOffensivePlayer: 0
   captain: {fileID: 0}
   Prefab_model: {fileID: 100018, guid: aad68cbf3ce086f499be8fc2859200ae, type: 2}
-  Prefab_capitaine: {fileID: 0}
+  Prefab_capitaine: {fileID: 100294, guid: 2e3c30fbba48aeb47981d2cf6c150c21, type: 2}
   SuperGaugeValue: 0
   nbUnits: 5
   fxSuper: {fileID: 100002, guid: db293cb59ef6066498060ab7b0e1f112, type: 2}
@@ -53343,7 +53343,7 @@ Transform:
   m_PrefabInternal: {fileID: 545480992}
   m_GameObject: {fileID: 1049321222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85346222, y: .927520752, z: 0}
+  m_LocalPosition: {x: -1.05727386, y: 2.11569214, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018062873}
