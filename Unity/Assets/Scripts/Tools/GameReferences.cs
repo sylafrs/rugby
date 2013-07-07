@@ -63,6 +63,12 @@ public class GameReferences : myMonoBehaviour {
         public AudioClip ShootBall;
         public AudioClip BallGroundSound;
         public AudioClip TimesUp;
+        public AudioClip ButSound;
+        public AudioClip TrySound;
+        public AudioClip SuperLoaded;
+        public AudioClip SuperScrum;
+        public AudioClip SuperScrumSuccess;
+        public AudioClip SuperScrumFail;
     }
 
     [System.Serializable]

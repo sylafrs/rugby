@@ -171,6 +171,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	
 	private void TranslateCam()
 	{
+        if (target == null)
+            return;
+
 		Vector3 targetPosition  = target.TransformPoint(MaxfollowOffset);
 		Vector3 offset 			= Camera.mainCamera.transform.position+(MinfollowOffset)*zoom;
 		
@@ -223,6 +226,9 @@ public partial class CameraManager : myMonoBehaviour, Debugable {
 	
 	private void RotateCam()
 	{
+        if (target == null)
+            return;
+
 		//rotation
 		targetRotation = Quaternion.LookRotation(target.position - Camera.mainCamera.transform.position, Vector3.up);
 		

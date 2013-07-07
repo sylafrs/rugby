@@ -39,6 +39,8 @@ public class RunningState : GameState
  
         if (p1 != null) p1.myUpdate();
         if (p2 != null) p2.myUpdate();
+
+        game.Referee.OnUpdate();
 	}
 
 	public override void OnLeave()
@@ -59,6 +61,7 @@ public class RunningState : GameState
 		Debug.Log("Conversion");
 
         game.Ball.collider.enabled = false;
+        game.Ball.OnConversion(true);
 
 		//Camera Time
 		cam.transalateToWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 
@@ -66,6 +69,7 @@ public class RunningState : GameState
                 //please, kill after usage x)
                 CameraFade.wannaDie();
             }, (/* OnFade */) => {
+                game.Ball.OnConversion(false);
 				cam.setTarget(game.Ball.Team[2].transform);
                 game.Referee.OnDropTransformed(but);
                 game.Ball.collider.enabled = true;

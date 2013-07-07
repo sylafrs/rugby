@@ -33,6 +33,7 @@ public class UnitAnimator : myMonoBehaviour
     public const string lblSuper = "in_bool_super";
     public const string lblFxTime = "out_float_fxSuperTime";
     public const string lblDodge = "in_bool_dodge";
+	public const string lblDodgeRight = "in_bool_dodge_right";
 
     public bool Tackling
     {
@@ -163,6 +164,18 @@ public class UnitAnimator : myMonoBehaviour
         set
         {
             animator.SetBool(lblDodge, value);
+        }
+    }
+	
+	public bool DodgeRight
+    {
+        get
+        {
+            return animator.GetBool(lblDodgeRight);
+        }
+        set
+        {
+            animator.SetBool(lblDodgeRight, value);
         }
     }
 
@@ -417,8 +430,11 @@ public class UnitAnimator : myMonoBehaviour
 
         launchUpdate = true;
         Dodge = true;
-
-
+		
+		if(this.unit.game.northTeam == this.unit.Team)
+			DodgeRight = unit.Order.point.x < 0;
+		else
+			DodgeRight = unit.Order.point.x > 0;
     }
 
 	public void PrepareSuper() {

@@ -24,7 +24,8 @@ public class MainGameState : GameState
         Team [] teams = new Team[2];
         teams[0] = game.southTeam;
         teams[1] = game.northTeam;
-		
+
+        game.Referee.UpdateMaxPoints();
 		game.Referee.UpdateChronometer();
 
         foreach (Team t in teams)

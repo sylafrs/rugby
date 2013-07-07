@@ -17,6 +17,7 @@ public class GameActionState : GameState {
         game.northTeam.Super.endSuper();
         game.southTeam.Super.endSuper();
         game.Referee.PauseIngameTime();
+        game.Referee.ResetScrumTimer();
     }
 
     public override bool OnTouch(Touche t)

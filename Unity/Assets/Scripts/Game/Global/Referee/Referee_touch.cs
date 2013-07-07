@@ -11,33 +11,7 @@ public partial class Referee
         if (interceptTeam.Player != null) interceptTeam.Player.stopMove();
         if (touchTeam.Player != null) touchTeam.Player.stopMove();
         interceptTeam.fixUnits = touchTeam.fixUnits = true;
-		
-        // Bouttons pour la touche.			
-        interceptTeam[0].buttonIndicator.ApplyTexture("A");
-        interceptTeam[1].buttonIndicator.ApplyTexture("B");
-        interceptTeam[2].buttonIndicator.ApplyTexture("X");
 
-        touchTeam[1].buttonIndicator.ApplyTexture("A");
-        touchTeam[2].buttonIndicator.ApplyTexture("B");
-        touchTeam[3].buttonIndicator.ApplyTexture("X");
-
-        interceptTeam[0].buttonIndicator.target.renderer.enabled = true;
-        interceptTeam[1].buttonIndicator.target.renderer.enabled = true;
-        interceptTeam[2].buttonIndicator.target.renderer.enabled = true;
-
-        touchTeam[1].buttonIndicator.target.renderer.enabled = true;
-        touchTeam[2].buttonIndicator.target.renderer.enabled = true;
-        touchTeam[3].buttonIndicator.target.renderer.enabled = true;
-		
-		interceptTeam[0].ShowButton("A");
-        interceptTeam[1].ShowButton("B");
-        interceptTeam[2].ShowButton("X");
-		
-		touchTeam[1].ShowButton("A");
-        touchTeam[2].ShowButton("B");
-        touchTeam[3].ShowButton("X");
-
-        // Touche à droite ?
         bool right = (this.game.refs.placeHolders.touchPlacement.position.x > 0);
 
         // Place les unités

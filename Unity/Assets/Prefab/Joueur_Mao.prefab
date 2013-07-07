@@ -4426,6 +4426,7 @@ MonoBehaviour:
   BallPlaceHolderTransformation: {fileID: 100284}
   BallPlaceHolderDrop: {fileID: 100282}
   buttonIndicator: {fileID: 11400008}
+  isInTryZone: 0
   selectedIndicators:
   - {fileID: 100022}
   superDashParticles: {fileID: 19800000}
@@ -4782,7 +4783,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoRepath: 0
   m_Height: 97
-  m_BaseOffset: 0
+  m_BaseOffset: -4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &19800000

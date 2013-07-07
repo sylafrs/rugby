@@ -22,6 +22,8 @@ public class BallDropState : GameState {
 
         Debug.Log("OUT");
 
+        game.Ball.collider.enabled = false;
+
         //game.refs.transitionsTexts.ballOut.SetActive(true);
         Timer.AddTimer(1, () =>
         {
@@ -35,7 +37,9 @@ public class BallDropState : GameState {
 	    		    //cam.ChangeCameraState(CameraManager.CameraState.FREE);
 	    		    cam.zoom = 1; //TODO cam settings
                     //game.refs.transitionsTexts.ballOut.SetActive(false);
+                    cam.game.Referee.UnitToGiveBallTo = game.Ball.Team.opponent[2];
                     cam.game.Referee.StartPlacement();
+                    game.Ball.collider.enabled = true;
                 }
             );
         });

@@ -108,6 +108,10 @@ public class UIManager : myMonoBehaviour, Debugable {
             settings.JapanWin.SetActive(false);
             settings.DegradeCam.SetActive(true);
         }
+        if (state == UIState.TouchUI)
+        {
+            touchUi.StartUI();
+        }
     }
     
     void OnEndGUI(UIState state)
@@ -123,6 +127,10 @@ public class UIManager : myMonoBehaviour, Debugable {
         if (state == UIState.EndUI)
         {
             Application.LoadLevel("credits");
+        }
+        if (state == UIState.TouchUI)
+        {
+            touchUi.EndUI();
         }
     }
 	

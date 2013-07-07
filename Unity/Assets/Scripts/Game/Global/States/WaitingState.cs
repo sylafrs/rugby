@@ -40,9 +40,13 @@ public class WaitingState : GameState
 	public override void OnEnter()
 	{
 		base.OnEnter();
-		if(this.onWiningPoints){
+
+		if(this.onWiningPoints)
+        {
 			sm.state_change_son(this, new WiningPointCutSceneState(sm, cam, game, TeamOnSuper));
-		}else{
+		}
+        else
+        {
 			if (game.Ball.Owner)
 	        {
 	            cam.setTarget(game.Ball.Owner.transform);
@@ -55,6 +59,7 @@ public class WaitingState : GameState
 	            else
 	                cam.setTarget(game.Ball.transform);
 	        }
+
 			game.disableIA = true;
 			game.Referee.PauseIngameTime();
 			if(TeamOnSuper)
@@ -73,6 +78,8 @@ public class WaitingState : GameState
 
 	public override void OnLeave()
 	{
+        game.Ball.OnConversion(false);
+
 		game.Referee.ResumeIngameTime();
 		game.disableIA = false;
         Team[] teams = new Team[2];

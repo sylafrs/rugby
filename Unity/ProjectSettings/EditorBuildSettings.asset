@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scene/reloadScene.unity
   - enabled: 1
     path: Assets/Scene/credits.unity
+  - enabled: 1
+    path: Assets/Scene/tuto.unity

@@ -144,9 +144,8 @@ public class ScrumingStateSettings
     public int	 minPlayersEachTeamToTriggerScrum = 3;
 	public float FeedSuperPerSmash;    // 0 to 1           (tweak)
     public float FeedSuperPerSecond;   // 0 to 1           (tweak)
-    public float test;
+    public float MaximumDuration;      // Seconds          (tweak)  
     public float MaximumDistance;      // Unity Distance   (tweak)
-    public float MaximumDuration { get { return test; } set { MyDebug.Log(value); test = value; } }       // Seconds          (tweak)                                                        
     public float SmashValue;           // 0 to 1           (tweak)
     public float SuperMultiplicator;   // Mult             (tweak)
     public float MalusValue;           // Mult            (tweak)

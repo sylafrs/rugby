@@ -18,6 +18,8 @@ public partial class Referee : myMonoBehaviour {
     private float TimeEllapsedSinceIntro;
 	private bool  TimePaused;
 
+    public int pointsToWin = -1;
+
     private float LastTackle = -1;
     public Unit UnitToGiveBallTo { get; set; }
 	
@@ -102,11 +104,29 @@ public partial class Referee : myMonoBehaviour {
 	
 	//plus d'update pour le monsieur
 	
-    public void Update()
+
+    public void OnUpdate()
     {		
         this.UpdateTackle(); // Referee_tackle.cs
     }
-	
+
+    public void UpdateMaxPoints()
+    {
+        if (pointsToWin > 0)
+        {
+            if (this.game.northTeam.nbPoints >= pointsToWin)
+            {
+                this.game.OnGameEnd();
+                return;
+            }
+            if (this.game.southTeam.nbPoints >= pointsToWin)
+            {
+                this.game.OnGameEnd();
+                return;
+            }
+        }
+    }
+
 	public void UpdateChronometer(){
 		if(TimePaused == false)IngameTime += Time.deltaTime;
 		if(IngameTime > GameTimeDuration){

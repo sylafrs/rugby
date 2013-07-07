@@ -162,6 +162,14 @@ public class ScrumManager : myMonoBehaviour, Debugable {
                 this.SuperLoading = 0;
                 smash += super * this.settings.SuperMultiplicator * this.settings.SmashValue;
 
+                var audio = this.game.refs.CameraAudio["SuperScrum"];
+                audio.volume = 1;
+                audio.PlayOneShot(game.refs.sounds.SuperScrum);
+
+                audio = this.game.refs.CameraAudio["SuperScrumSuccess"];
+                audio.volume = 1;
+                audio.PlayOneShot(game.refs.sounds.SuperScrumSuccess);
+
                 if (super != 0)
                 {
                     Team t = game.southTeam;
@@ -182,11 +190,14 @@ public class ScrumManager : myMonoBehaviour, Debugable {
             }
             else 
             {
+                bool fail = false;
+
                 if (superSouth)
                 {
                     this.MalusSouth = Time.time;
                     smash -= this.settings.SmashValue * this.settings.MalusValue;
                     southCtrl.SetLeftVibration(0.8f, 0.4f);
+                    fail = true;
                 }
 
                 if (superNorth)
@@ -194,6 +205,18 @@ public class ScrumManager : myMonoBehaviour, Debugable {
                     this.MalusNorth = Time.time;
                     smash += this.settings.SmashValue * this.settings.MalusValue;
                     northCtrl.SetLeftVibration(0.8f, 0.4f);
+                    fail = true;
+                }
+
+                if (fail)
+                {
+                    var audio = this.game.refs.CameraAudio["SuperScrum"];
+                    audio.volume = 1;
+                    audio.PlayOneShot(game.refs.sounds.SuperScrum);
+
+                    audio = this.game.refs.CameraAudio["SuperScrumFail"];
+                    audio.volume = 1;
+                    audio.PlayOneShot(game.refs.sounds.SuperScrumFail);
                 }
             }
         }
