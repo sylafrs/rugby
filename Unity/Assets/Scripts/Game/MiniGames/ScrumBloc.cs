@@ -18,7 +18,7 @@ public class ScrumBloc : MonoBehaviour
     private List<ParticleSystem> activeSmokes;
 
     public GameObject prefabHit;
-    public Transform hitParent;
+    public Transform [] hitParents;
 
     public float minDurationSmoke;
     public float maxDurationSmoke;
@@ -35,17 +35,32 @@ public class ScrumBloc : MonoBehaviour
         smokeDurations = new Dictionary<ParticleSystem, float>();
     }
 
-    public void PushFor(Team t)
+    public void HitFeedbackRecursively(int i = 0)
     {
+        int l = this.hitParents.Length;
+        
         GameObject g = GameObject.Instantiate(prefabHit) as GameObject;
-        g.transform.parent = hitParent;
+        g.transform.parent = this.hitParents[i];
         g.transform.localPosition = Vector3.zero;
         g.SetActive(true);
 
         Timer.AddTimer(1.5f, () =>
         {
-            GameObject.Destroy(g);
+            GameObject.Destroy(g);            
         });
+
+        if (i + 1 < l)
+        {
+            Timer.AddTimer(0.2f, () =>
+            {
+                HitFeedbackRecursively(i + 1);
+            });
+        }        
+    }
+
+    public void PushFor(Team t)
+    {
+        this.HitFeedbackRecursively();
 
         if (t == t.game.northTeam)
         {

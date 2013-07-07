@@ -19,21 +19,37 @@ public class CoinFlipManager : MonoBehaviour {
 
     public void OnEnable()
     {
+        GameSettings.CoinFlip settings = Game.instance.settings.Global.Game.flipSettings;
+
         float r = Random.value;
 
-        MyDebug.Log("Flip began. Value : " + r);
+        //MyDebug.Log("Flip began. Value : " + r);
 
-        if (r >= 0.5f)
+        if (settings == GameSettings.CoinFlip.RAND)
         {
-            winner = face;
+            if (r >= 0.5f)
+            {
+                winner = face;
+            }
+            else
+            {
+                winner = pile;
+            }
         }
         else
         {
-            winner = pile;
+            if (settings == GameSettings.CoinFlip.JAPAN)
+            {
+                winner = Game.instance.southTeam;
+            }
+            else
+            {
+                winner = Game.instance.northTeam;
+            }
         }
 
         Timer.AddTimer(timeFlipping, () => {
-            MyDebug.Log("Flip finised. Winner : " + winner);
+            //MyDebug.Log("Flip finised. Winner : " + winner);
             this.enabled = false;
             if(callBack != null) {
                 callBack(winner);

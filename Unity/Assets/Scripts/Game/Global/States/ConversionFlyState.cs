@@ -13,6 +13,8 @@ public class ConversionFlyState : GameState
         : base(sm, cam, game) { }
 
     public override bool OnTouch(Touche t){
+        Debug.Log("ConversionFly::OnTouch");
+
 		game.Referee.StopPlayerMovement();	
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
             (/* OnFinish */) => {
@@ -58,6 +60,11 @@ public class ConversionFlyState : GameState
 	
 	public override bool OnBallOnGround (bool onGround)
 	{
+        if (!onGround)
+            return false;
+
+        Debug.Log("ConversionFly::OnBallOnGround");
+
 		game.Referee.StopPlayerMovement();	
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,2.5f, 
             (/* OnFinish */) => {
@@ -77,6 +84,9 @@ public class ConversionFlyState : GameState
 	}
 	
 	public override bool OnBallOut(){
+
+        Debug.Log("ConversionFly::OnBallOut");
+
 		game.Referee.StopPlayerMovement();
 		Debug.Log("out");
         cam.transalateWithFade(Vector3.zero, Quaternion.identity, 0f, 1f, 1f,1.5f, 

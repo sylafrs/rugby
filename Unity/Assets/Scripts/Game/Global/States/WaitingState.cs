@@ -40,9 +40,13 @@ public class WaitingState : GameState
 	public override void OnEnter()
 	{
 		base.OnEnter();
-		if(this.onWiningPoints){
+
+		if(this.onWiningPoints)
+        {
 			sm.state_change_son(this, new WiningPointCutSceneState(sm, cam, game, TeamOnSuper));
-		}else{
+		}
+        else
+        {
 			if (game.Ball.Owner)
 	        {
 	            cam.setTarget(game.Ball.Owner.transform);
@@ -55,6 +59,7 @@ public class WaitingState : GameState
 	            else
 	                cam.setTarget(game.Ball.transform);
 	        }
+
 			game.disableIA = true;
 			game.Referee.PauseIngameTime();
 			if(TeamOnSuper)
@@ -73,36 +78,28 @@ public class WaitingState : GameState
 
 	public override void OnLeave()
 	{
+        game.Ball.OnConversion(false);
+
 		game.Referee.ResumeIngameTime();
 		game.disableIA = false;
-         
         Team[] teams = new Team[2];
         teams[0] = game.southTeam;
         teams[1] = game.northTeam;
 
-        foreach (Team t in teams)
-        {
-            foreach (Unit u in t)
-            {
-                u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
-            }
-        }
-
-        foreach (Team t in teams)
-        {            
-            foreach (Unit u in t)
-            {
-                if (t.Player.Controlled && game.Ball.NextOwner != u)
-                {
+        foreach (Team t in teams){            
+            foreach (Unit u in t){
+                if (t.Player.Controlled && game.Ball.NextOwner != u){
+					u.typeOfPlayer = Unit.TYPEOFPLAYER.DEFENSE;
                     u.UpdateTypeOfPlay();
                     u.UpdatePlacement();                        
                 }
-
                 u.buttonIndicator.target.renderer.enabled = false;
             }
-
             t.fixUnits = false;
-            t.Player.enableMove();
-        }        
+        }
+			
+		Timer.AddTimer(3f, () => {
+			cam.game.Referee.EnablePlayerMovement();
+        });
 	}
 }

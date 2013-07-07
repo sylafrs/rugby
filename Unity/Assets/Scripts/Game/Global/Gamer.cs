@@ -84,6 +84,7 @@ public class Gamer
 	 */
 	public void enableMove()
 	{
+		Debug.Log("Enable movement");
 		canMove = true;
 	}
 
@@ -677,6 +678,11 @@ public class Gamer
 					(this.game.Ball.Owner.Team == this.game.northTeam && this.game.Ball.transform.position.z <= this.game.southTeam.But.transform.position.z )
 					)
 				{
+                    var audio = this.game.refs.CameraAudio["TrySound"];
+                    audio.volume = 1f;
+                    audio.loop = false;
+                    audio.PlayOneShot(this.game.refs.sounds.TrySound);
+
 					if (this.Controlled.unitAnimator)
 					{
 						this.Controlled.unitAnimator.OnPut();

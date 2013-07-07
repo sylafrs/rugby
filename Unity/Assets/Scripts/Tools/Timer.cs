@@ -37,8 +37,12 @@ public class Timer : myMonoBehaviour {
 			list = new List<myTimer>();
 		
 		bool delete = false;
-		
-        foreach (myTimer t in list)
+
+        // Copies the current list to another one to allows the timers 
+        // to modify the tasks list (for instance : adding new tasks)
+        List<myTimer> currentList = new List<myTimer>(list);
+
+        foreach (myTimer t in currentList)
             delete = delete || UpdateTimer(t);
 		
 		if(delete) {

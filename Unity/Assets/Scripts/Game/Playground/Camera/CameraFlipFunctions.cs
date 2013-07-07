@@ -50,7 +50,7 @@ public partial class CameraManager{
 			new Vector3(0,1,0),
 			target,
 			Camera.mainCamera.transform,
-			180,
+			170,
 			length,
 			0.3f);
 		//this.game.southTeam.Player.stopMove();

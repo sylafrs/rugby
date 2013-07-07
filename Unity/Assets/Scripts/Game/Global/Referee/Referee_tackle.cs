@@ -5,7 +5,6 @@ public partial class Referee
 {
     public void OnTackle(Unit tackler, Unit tackled)
     {
-
         if (tackler != null && tackled == null)
         {
             tackler.sm.event_Tackle();
@@ -34,56 +33,13 @@ public partial class Referee
                 // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
                 case TackleManager.RESULT.CRITIC:
                     this.game.Ball.Owner = tackler;
+                    tackled.sm.event_Tackle();
                     break;
 
                 // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
                 case TackleManager.RESULT.PASS:
 
-                    List<Unit> listToCheck = null;
-                    Unit unitTo = null;
-
-                    listToCheck = tackled.Team.GetRight(tackled);
-
-                    if (listToCheck.Count == 0)
-                    {
-                        listToCheck = tackled.Team.GetLeft(tackled);
-                    }
-                    if (listToCheck.Count > 0)
-                    {
-                        foreach (Unit u in listToCheck)
-                        {
-                            if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
-                            {
-                                if (tackled.Team == game.southTeam)
-                                {
-                                    if (u.transform.position.z < tackled.transform.position.z && u.canCatchTheBall)
-                                    {
-                                        //Debug.Log("try to pass to " + u);
-                                        unitTo = u;
-                                        break;
-                                    }
-                                    else
-                                        unitTo = null;
-                                }
-                                else if (tackled.Team == game.northTeam)
-                                {
-                                    if (u.transform.position.z > tackled.transform.position.z && u.canCatchTheBall)
-                                    {
-                                        //Debug.Log("try to pass to " + u);
-                                        unitTo = u;
-                                        break;
-                                    }
-                                    else
-                                        unitTo = null;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        unitTo = null;
-                        return;
-                    }
+                    Unit unitTo = this.ComputeUnitToPassOnTackle(tackled);                                       
 
                     if (unitTo != null && unitTo != game.Ball.Owner)
                     {
@@ -94,15 +50,9 @@ public partial class Referee
                         game.Ball.Pass(unitTo);
                     }
 
-                    //Unit target = tackled.GetNearestAlly();
-                    //if (tackled.unitAnimator)
-                    //{
-                    //    tackled.unitAnimator.OnTacklePass();
-                    //}
-                    //game.Ball.Pass(target);
-
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
+                    LastTackle = Time.time;
                     break;
 
                 // Normal : les deux sont knock-out et la balle est par terre 
@@ -110,23 +60,62 @@ public partial class Referee
                 case TackleManager.RESULT.NORMAL:
 
                     //super			
-                    game.Ball.TeleportOnGround();
                     IncreaseSuper(game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
+                    game.Ball.TeleportOnGround();
+                    LastTackle = Time.time;
                     break;
             }
 
             tackler.Team.Player.UpdateControlled();
-            tackled.Team.Player.UpdateControlled();
-
-            LastTackle = Time.time;
+            tackled.Team.Player.UpdateControlled();            
         };
 
         this.TacklePlaceUnitsAtStart(tackler, tackled);
         tm.atUpdate = TacklePlaceUnitsAtUpdate;
-
         tm.Tackle();
+    }
+
+    private Unit ComputeUnitToPassOnTackle(Unit tackled)
+    {
+        List<Unit> listToCheck = tackled.Team.GetRight(tackled);
+        Unit unitTo = null;                    
+        
+        if (listToCheck.Count == 0)
+        {
+            listToCheck = tackled.Team.GetLeft(tackled);
+        }
+
+        if (listToCheck.Count == 0)
+        {
+            return null;
+        }
+
+        var e = listToCheck.GetEnumerator();
+        while (unitTo == null && e.MoveNext())
+        {
+            Unit u = e.Current;
+            if (u.typeOfPlayer == Unit.TYPEOFPLAYER.OFFENSIVE)
+            {
+                if (tackled.Team == game.southTeam)
+                {
+                    if (u.transform.position.z < tackled.transform.position.z && u.canCatchTheBall)
+                    {
+                        unitTo = u;
+                    }                    
+                }
+                else if (tackled.Team == game.northTeam)
+                {
+                    if (u.transform.position.z > tackled.transform.position.z && u.canCatchTheBall)
+                    {
+                        unitTo = u;
+                    }                    
+                }
+            }
+        }       
+
+        return unitTo;
     }
 
     private void TacklePlaceUnitsAtStart(Unit tackler, Unit tackled)
@@ -145,12 +134,17 @@ public partial class Referee
         tackler.transform.forward = Vector3.forward;
     }
 
+    public void ResetScrumTimer()
+    {
+        LastTackle = -1;
+    }
+
     public void UpdateTackle()
     {
+        var settings = game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState;
         if (LastTackle != -1)
         {
-            // TODO cte : 2 -> temps pour checker
-            if (Time.time - LastTackle > game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.timeToGetOutTackleAreaBeforeScrum)
+            if (Time.time - LastTackle > settings.timeToGetOutTackleAreaBeforeScrum)
             {
                 LastTackle = -1;
                 int right = 0, left = 0;
@@ -162,15 +156,31 @@ public partial class Referee
                         left++;
                 }
 
-                // TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-                if (right >= game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.minPlayersEachTeamToTriggerScrum &&
-                    left >= game.settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.minPlayersEachTeamToTriggerScrum)
+                if (right >= settings.minPlayersEachTeamToTriggerScrum &&
+                    left >= settings.minPlayersEachTeamToTriggerScrum)
                 {
-                    game.OnScrum();
-                    //goScrum = true;
-                    //
+                    if(InScrumZone())
+                        game.OnScrum();
                 }
             }
         }
+    }
+
+    public bool InScrumZone()
+    {
+        Vector3 pos = this.game.Ball.transform.position;
+
+        Transform ne = this.game.refs.positions.scrumFieldNE;
+        Transform sw = this.game.refs.positions.scrumFieldSW;
+
+        float e = Mathf.Min(ne.position.x, sw.position.x);
+        float w = Mathf.Max(ne.position.x, sw.position.x);
+        float n = Mathf.Max(ne.position.z, sw.position.z);
+        float s = Mathf.Min(ne.position.z, sw.position.z);
+
+        Rect r = Rect.MinMaxRect(w, n, e, s);
+
+        pos.y = pos.z;
+        return r.Contains(pos);
     }
 }

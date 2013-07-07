@@ -220,8 +220,16 @@ public class Team : myMonoBehaviour, IEnumerable
 
     public void increaseSuperGauge(int value)
     {
-        if ((SuperGaugeValue += value) > game.settings.Global.Super.superGaugeMaximum)
-            SuperGaugeValue = game.settings.Global.Super.superGaugeMaximum;
+        int max = game.settings.Global.Super.superGaugeMaximum;
+        if(SuperGaugeValue < max) {
+            SuperGaugeValue += value;
+            if (SuperGaugeValue >= max)
+            {
+                SuperGaugeValue = max;
+                this.game.OnSuperLoaded(this);
+            }
+        }
+
     }
 
 	//Retourne le nombre de joueur de type offensif sans le controllé

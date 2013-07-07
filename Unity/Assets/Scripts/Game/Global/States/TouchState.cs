@@ -24,14 +24,19 @@ public class TouchState : GameState
 
         game.refs.transitionsTexts.ballOut.SetActive(true);
 
+        game.Ball.collider.enabled = false;
         Timer.AddTimer(2, () => {
             cam.transalateToWithFade(cameraPlaceHolder.position, cameraPlaceHolder.rotation, 0f, 1f, 1f, 0.3f, 
                 (/* OnFinish */) => {               
                     CameraFade.wannaDie();
                 }, (/* OnFade */) => {
+
+                    game.refs.managers.ui.currentState = UIManager.UIState.TouchUI;
+
                     game.refs.transitionsTexts.ballOut.SetActive(false);
 				    cam.CancelNextFlip = true;
-                    cam.game.Referee.PlacePlayersForTouch();
+                    game.Referee.PlacePlayersForTouch();
+                    game.Ball.collider.enabled = true;
                 }
             );
 

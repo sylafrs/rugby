@@ -13,21 +13,21 @@ public partial class Referee
         interceptTeam.fixUnits = touchTeam.fixUnits = true;
 
         // Bouttons pour la touche.			
-        interceptTeam[0].buttonIndicator.ApplyTexture("A");
-        interceptTeam[1].buttonIndicator.ApplyTexture("B");
-        interceptTeam[2].buttonIndicator.ApplyTexture("X");
-
-        touchTeam[1].buttonIndicator.ApplyTexture("A");
-        touchTeam[2].buttonIndicator.ApplyTexture("B");
-        touchTeam[3].buttonIndicator.ApplyTexture("X");
-
-        interceptTeam[0].buttonIndicator.target.renderer.enabled = true;
-        interceptTeam[1].buttonIndicator.target.renderer.enabled = true;
-        interceptTeam[2].buttonIndicator.target.renderer.enabled = true;
-
-        touchTeam[1].buttonIndicator.target.renderer.enabled = true;
-        touchTeam[2].buttonIndicator.target.renderer.enabled = true;
-        touchTeam[3].buttonIndicator.target.renderer.enabled = true;
+        //interceptTeam[0].buttonIndicator.ApplyTexture("A");
+        //interceptTeam[1].buttonIndicator.ApplyTexture("B");
+        //interceptTeam[2].buttonIndicator.ApplyTexture("X");
+        //
+        //touchTeam[1].buttonIndicator.ApplyTexture("A");
+        //touchTeam[2].buttonIndicator.ApplyTexture("B");
+        //touchTeam[3].buttonIndicator.ApplyTexture("X");
+        //
+        //interceptTeam[0].buttonIndicator.target.renderer.enabled = true;
+        //interceptTeam[1].buttonIndicator.target.renderer.enabled = true;
+        //interceptTeam[2].buttonIndicator.target.renderer.enabled = true;
+        //
+        //touchTeam[1].buttonIndicator.target.renderer.enabled = true;
+        //touchTeam[2].buttonIndicator.target.renderer.enabled = true;
+        //touchTeam[3].buttonIndicator.target.renderer.enabled = true;
 
         // Touche à droite ?
         bool right = (this.game.refs.placeHolders.touchPlacement.position.x > 0);

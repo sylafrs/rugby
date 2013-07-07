@@ -125,7 +125,7 @@ public class Game : myMonoBehaviour
         if (alwaysScrum)
         {
             ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
-            settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.test = 200;
+            settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDuration = 200;
         }
 		
         this.refs.managers.intro.OnFinish = () =>
@@ -235,6 +235,10 @@ public class Game : myMonoBehaviour
 
 	public void OnConversion(But but)
 	{
+        var src = this.refs.CameraAudio["But"];
+        src.volume = 1f;
+        src.PlayOneShot(this.refs.sounds.ButSound);
+
 		this.refs.stateMachine.event_Conversion(but);
 	}
 
@@ -336,6 +340,14 @@ public class Game : myMonoBehaviour
     public void OnResumeSignal(float time)
     {
         this.refs.stateMachine.event_OnResumeSignal(time);
+    }
+
+    public void OnSuperLoaded(Team team)
+    {
+        var audio = refs.CameraAudio["SuperLoaded"];
+        audio.volume = 1;
+        audio.loop = false;
+        audio.PlayOneShot(refs.sounds.SuperLoaded);
     }
 
 	/*

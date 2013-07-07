@@ -27,30 +27,40 @@ public class SuperCutSceneState : GameState
             u.unitAnimator.LaunchSuper();
         }
 
-		TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
-		if(game.Ball.Owner.Team == teamOnSuper){
-			if(ballOwnerNat == TeamNationality.JAPANESE){
-				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration, 
-					game.Ball.Owner.transform.gameObject,
-					game.Ball.Owner);
-			}
-			if(ballOwnerNat == TeamNationality.MAORI){
-				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration,
-					game.Ball.Owner.transform.gameObject,
-					game.Ball.Owner);
-			}
-		}else{
-			if(teamOnSuper.nationality == TeamNationality.JAPANESE){
-				cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration, 
-					game.southTeam.Player.Controlled.gameObject,
-					game.southTeam.Player.Controlled);
-			}
-			if(teamOnSuper.nationality == TeamNationality.MAORI){
-				cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration, 
-					game.northTeam.Player.Controlled.gameObject,
-					game.northTeam.Player.Controlled);
-			}
-		}
+        if (game.Ball.Owner != null)
+        {
+            TeamNationality ballOwnerNat = game.Ball.Owner.Team.nationality;
+            if (game.Ball.Owner.Team == teamOnSuper)
+            {
+                if (ballOwnerNat == TeamNationality.JAPANESE)
+                {
+                    cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration,
+                        game.Ball.Owner.transform.gameObject,
+                        game.Ball.Owner);
+                }
+                if (ballOwnerNat == TeamNationality.MAORI)
+                {
+                    cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration,
+                        game.Ball.Owner.transform.gameObject,
+                        game.Ball.Owner);
+                }
+            }
+            else
+            {
+                if (teamOnSuper.nationality == TeamNationality.JAPANESE)
+                {
+                    cam.SuperJapaneseCutSceneComponent.StartCutScene(this.cutsceneDuration,
+                        game.southTeam.Player.Controlled.gameObject,
+                        game.southTeam.Player.Controlled);
+                }
+                if (teamOnSuper.nationality == TeamNationality.MAORI)
+                {
+                    cam.SuperMaoriCutSceneComponent.StartCutScene(this.cutsceneDuration,
+                        game.northTeam.Player.Controlled.gameObject,
+                        game.northTeam.Player.Controlled);
+                }
+            }
+        }
 
         if (teamOnSuper.nationality == TeamNationality.MAORI)
         {

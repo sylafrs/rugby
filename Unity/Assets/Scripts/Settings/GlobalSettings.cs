@@ -16,6 +16,13 @@ public class GameSettings
 	public int points_essai = 5;
 	public int points_transfo = 3;
 	public float period_time = 120f;
+
+    public enum CoinFlip
+    {
+        JAPAN, MAORI, RAND
+    }
+
+    public CoinFlip flipSettings = CoinFlip.RAND;
 }
 
 [System.Serializable]

@@ -35,7 +35,7 @@ public class TransformationManager : myMonoBehaviour {
 	
 	private Vector3 pos;
 	private Vector3 dir;
-	private float timeInAir = 0f;
+	private float timeInAir;
 	
 	private float remainingTime = 0;
 	
@@ -56,9 +56,10 @@ public class TransformationManager : myMonoBehaviour {
 	private Result transformed;	
 	private State state;
 	
-	public GameObject arrow;
-	private GameObject myArrow;
-    private GameObject myArrowPower;
+	//public GameObject arrow;
+    public MySlider2 arrow;
+    private MySlider2 myArrow;
+    //private GameObject myArrowPower;
 		
 	public void OnEnable() {
 		angle = 0;
@@ -68,34 +69,38 @@ public class TransformationManager : myMonoBehaviour {
 		this.remainingTime = timeAngle;
 		this.state = State.ANGLE;
 		
-		myArrow = GameObject.Instantiate(arrow) as GameObject;
-		if(!myArrow)
+		GameObject myArrowGO = GameObject.Instantiate(arrow.gameObject) as GameObject;
+        if (!myArrowGO)
 			throw new UnityException("Error : missing arrow");
+        myArrow = myArrowGO.GetComponent<MySlider2>();
+        if (!myArrowGO)
+            throw new UnityException("Error : missing slider comp");
 		
 		myArrow.transform.parent = ball.Owner.transform;
-		myArrow.transform.localPosition = Vector3.zero;
-		myArrow.transform.localRotation = Quaternion.identity;
+		myArrow.transform.localPosition = new Vector3(0, 2, 0);
+		//myArrow.transform.localRotation = Quaternion.EulerAngles(85 * Mathf.Deg2Rad, 0, 0);
+        myArrow.transform.localEulerAngles = Vector3.right * (85 * Mathf.Deg2Rad);
 
-        Transform jaugePower = myArrow.transform.FindChild("Power");
-        if (!jaugePower)
-            throw new UnityException("Error : missing arrow -> power");
-
-        myArrowPower = jaugePower.gameObject;
+        //Transform jaugePower = myArrow.transform.FindChild("Power");
+        //if (!jaugePower)
+        //    throw new UnityException("Error : missing arrow -> power");
+        //
+        //myArrowPower = jaugePower.gameObject;
 	}
 
     public GUIStyle timeStyle;
     public Rect timeRect;
 
-    public void OnGUI()
-    {
-        if (this.state == State.ANGLE || this.state == State.POWER)
-        {
-            Rect rect = UIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
-
-            if (!infiniteTime)
-                GUI.Label(rect, "Time : " + (int)remainingTime, timeStyle);
-        }
-    }
+    //public void OnGUI()
+    //{
+    //    if (this.state == State.ANGLE || this.state == State.POWER)
+    //    {
+    //        Rect rect = UIManager.screenRelativeRect(timeRect.x, timeRect.y, timeRect.width, timeRect.height);
+    //
+    //        if (!infiniteTime)
+    //            GUI.Label(rect, "Time : " + (int)remainingTime, timeStyle);
+    //    }
+    //}
 	
 	public void Update() {
 		
@@ -118,8 +123,8 @@ public class TransformationManager : myMonoBehaviour {
 				remainingTime = timePower;
 				state = State.POWER;	
 			}
-			
-			ball.Owner.transform.FindChild("Fleche(Clone)").rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
+
+            myArrow.transform.rotation = initialRotation * Quaternion.Euler(new Vector3(0, angle, 0));
 		}
 		
 		else if(state == State.POWER) {
@@ -134,10 +139,12 @@ public class TransformationManager : myMonoBehaviour {
 				powerSpeed *= -1;
 			}
 
-            Vector3 scale = myArrowPower.transform.localScale;
-            scale.z = power;
-            myArrowPower.transform.localScale = scale;
-			
+            //Vector3 scale = myArrowPower.transform.localScale;
+            //scale.z = power;
+            //myArrowPower.transform.localScale = scale;
+
+            myArrow.percent = power;
+
 			if(!infiniteTime) 
             {
 				remainingTime -= Time.deltaTime;	
@@ -190,8 +197,9 @@ public class TransformationManager : myMonoBehaviour {
 		
 		state = State.WAITING;
         transformed = Result.NONE;
+        timeInAir = 0;
 		
-		GameObject.Destroy(myArrow);
+		GameObject.Destroy(myArrow.gameObject);
 					
 		ball.AttachToRoot();
         //ball.rigidbody.useGravity = false;
@@ -219,7 +227,6 @@ public class TransformationManager : myMonoBehaviour {
 	
 	public void Finish() {
 		state = State.FINISHED;
-		timeInAir = 0f;
 		this.enabled = false;
 		if(CallBack != null) CallBack(transformed);
 	}

@@ -34,11 +34,13 @@ public partial class Referee : myMonoBehaviour {
 	}
 	
 	public void StopPlayerMovement(){
+		Debug.Log("Stop Player movement");
 		this.game.southTeam.Player.stopMove();
 		this.game.northTeam.Player.stopMove();
 	}
 	
 	public void EnablePlayerMovement(){
+		Debug.Log("Enable Player movement");
 		this.game.southTeam.Player.enableMove();
 		this.game.northTeam.Player.enableMove();
 	}
@@ -100,7 +102,7 @@ public partial class Referee : myMonoBehaviour {
 	
 	//plus d'update pour le monsieur
 	
-    public void Update()
+    public void OnUpdate()
     {		
         this.UpdateTackle(); // Referee_tackle.cs
     }

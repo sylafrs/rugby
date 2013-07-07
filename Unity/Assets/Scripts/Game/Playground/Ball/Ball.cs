@@ -55,7 +55,7 @@ public class Ball : TriggeringTriggered, Debugable
 	private Unit _nextOwner;
 	private Unit _owner;
 
-	public float lastTackle = -1;
+	//public float lastTackle = -1;
 	public float timeOnDrop = -1;
 	public float timeOnPass = -1;
 	public PassSystem passManager;
@@ -190,7 +190,7 @@ public class Ball : TriggeringTriggered, Debugable
     public void TeleportOnGround()
     {
         Vector3 pos = this.transform.position;
-        pos.x+=2;
+        pos.x += 2;
         pos.y = 0;
         this.transform.position = pos;
     }
@@ -234,10 +234,34 @@ public class Ball : TriggeringTriggered, Debugable
 			this.onGroundFired = false;
 		}
 
-
 		UpdatePass();
 		UpdateDrop();
 	}
+
+    public GameObject ConversionFX;
+    private GameObject ConversionFXInst;
+    public void OnConversion(bool state)
+    {
+        if (ConversionFXInst != null)
+        {
+            GameObject.Destroy(ConversionFXInst);
+        }
+
+        if (state)
+        {
+            ConversionFXInst = GameObject.Instantiate(ConversionFX) as GameObject;
+
+            ConversionFXInst.transform.parent = this.transform;
+            ConversionFXInst.transform.localPosition = Vector3.zero;
+            ConversionFXInst.transform.localRotation = Quaternion.identity;
+
+            ConversionFXInst.SetActive(true);
+            Timer.AddTimer(4, () =>
+            {
+                OnConversion(false);
+            });
+        }
+    }
 
 	public void Drop(DropManager.TYPEOFDROP t)
 	{
@@ -474,44 +498,6 @@ public class Ball : TriggeringTriggered, Debugable
 			{
 				if (scrumFieldUnits.Contains(u))
 					scrumFieldUnits.Remove(u);
-			}
-		}
-	}
-
-	public void OnTackle(Unit tackler, Unit tackled)
-	{
-		if (lastTackle == -1)
-			lastTackle = Time.time;
-	}
-
-	public void UpdateTackle()
-	{
-		if (lastTackle != -1)
-		{
-			// TODO cte : 2 -> temps pour checker
-			if (Time.time - lastTackle > 2)
-			{
-				lastTackle = -1;
-				int right = 0, left = 0;
-				for (int i = 0; i < scrumFieldUnits.Count; i++)
-				{
-					if (scrumFieldUnits[i].Team == Game.southTeam)
-						right++;
-					else
-						left++;
-				}
-
-				// TODO cte : 3 --> nb de joueurs de chaque equipe qui doivent etre dans la zone
-				if (right >= 3 && left >= 3)
-				{
-					Game.OnScrum();
-					//goScrum = true;
-					//
-				}
-				else
-				{
-					//goScrum = false;
-				}
 			}
 		}
 	}

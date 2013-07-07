@@ -6,7 +6,8 @@ public class UISettings
 {
 	public GameUISettings  GameUI;
 	public ScrumUISettings ScrumUI;
-	public EndUISettings   EndUI;	
+	public EndUISettings   EndUI;
+    public TouchUISettings TouchUI;
 }
 
 [System.Serializable]
@@ -25,6 +26,14 @@ public class GameUISettings
 	
 	public float ScrumBarMaxDelta = 1.5f;
     public float OffsetSideIndicator = 1;
+}
+
+[System.Serializable]
+public class TouchUISettings
+{
+    public UIPanel MainPanel;
+    public UITexture [] north, south;
+    public UITexture croix, rond;
 }
 
 [System.Serializable]

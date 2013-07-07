@@ -46,7 +46,7 @@ public class Zone : TriggeringTrigger {
 	
 	public override void Entered (Triggered o)
 	{
-		Debug.Log("Entrée dans la zone de "+o.name);
+		//Debug.Log("Entrée dans la zone de "+o.name);
 		Ball b = o.GetComponent<Ball>();
 		
 		if(o.GetType() == typeof(Unit)){
@@ -95,7 +95,7 @@ public class Zone : TriggeringTrigger {
 	
 	public override void Left (Triggered o)
 	{
-		Debug.Log("Sortie de la zone "+this.name+" par "+o.name);
+		//Debug.Log("Sortie de la zone "+this.name+" par "+o.name);
 		Ball b = o.GetComponent<Ball>();
 		
 		if(o.GetType() == typeof(Unit)){
@@ -107,7 +107,7 @@ public class Zone : TriggeringTrigger {
         if (b != null)
         {
 			b.inZone = null;
-			Debug.Log("ball zone : "+b.inZone);
+			//Debug.Log("ball zone : "+b.inZone);
             foreach(Unit u in b.Team) {
 				u.HideButton();
 			}
