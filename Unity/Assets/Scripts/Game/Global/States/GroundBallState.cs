@@ -21,7 +21,8 @@ public class GroundBallState : GameState {
     public override void OnUpdate()
     {
         Vector3 pos = game.Ball.transform.position;
-        pos.y = Ball.epsilonOnGround - 0.1f;
+        if (game.Ball.nbRebond == -1)
+            pos.y = Ball.epsilonOnGround - 0.1f;
         game.Ball.transform.position = pos;
     }
 }

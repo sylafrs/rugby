@@ -55,8 +55,11 @@ public class Ball : TriggeringTriggered, Debugable
 	private Unit _nextOwner;
 	private Unit _owner;
 
+    public int nbRebond = -1;
+
 	public float lastTackle = -1;
 	public float timeOnDrop = -1;
+    public float timeOnRebond = -1;
 	public float timeOnPass = -1;
 	public PassSystem passManager;
 	public DropManager drop;
@@ -217,7 +220,7 @@ public class Ball : TriggeringTriggered, Debugable
 				this.Game.BallOnGround(true);
 			}
 
-			this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround - 0.1f, this.transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x, epsilonOnGround - 0.1f, this.transform.position.z);
 
 			this.onGroundFired = true;
 
@@ -245,6 +248,7 @@ public class Ball : TriggeringTriggered, Debugable
 		drop.setupDrop();
 		timeOnDrop = 0;
 		onGroundFired = false;
+        nbRebond = 0;
 
 		Game.OnDrop();
 	}
@@ -287,12 +291,39 @@ public class Ball : TriggeringTriggered, Debugable
 			}
 			else
 			{
-				timeOnDrop = -1;
-				//this.rigidbody.isKinematic = true;
-				this.Game.BallOnGround(true);
-				drop.afterCollision = false;
-				drop.timeOffset = 0.0f;
-                this.Game.OnDropFinished(DropResult.GROUND);
+                if (nbRebond == 0)
+                {
+                    if (timeOnRebond < 0f)
+                    {
+                        timeOnRebond = 0f;
+                        drop.setupRebond();
+                    }
+
+                    if (timeOnRebond >= 0f)
+                    {
+                        Vector3 oldPos = this.transform.position;
+                        drop.DoRebond(timeOnRebond);
+                        
+                        timeOnRebond += Time.deltaTime;
+                    }
+
+                    if (timeOnRebond > 0f && this.isOnGround())
+                    {
+                        nbRebond++;
+                    }
+                    
+                }
+                else
+                {
+                    nbRebond = -1;
+                    timeOnDrop = -1;
+                    timeOnRebond = -1;
+                    //this.rigidbody.isKinematic = true;
+                    this.Game.BallOnGround(true);
+                    drop.afterCollision = false;
+                    drop.timeOffset = 0.0f;
+                    this.Game.OnDropFinished(DropResult.GROUND);
+                }
 			}
 		}
 
