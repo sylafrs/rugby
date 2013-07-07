@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   audio: {fileID: 1302648809}
   movie: {fileID: 15200000, guid: 6f8a633f85ddbfb448397fa3f789dbb4, type: 3}
+  clip: {fileID: 8300000, guid: 5f8674711ecad3c4e9f3cb0d6c84f830, type: 3}
   touch:
     keyboardP1: 13
     keyboardP2: 32

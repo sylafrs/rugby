@@ -10,6 +10,7 @@ using System.Collections.Generic;
 public class Video : MonoBehaviour {
     public AudioSource audio;
     public MovieTexture movie;
+    public AudioClip clip;
 
     private XboxInputs inputs;
     public InputTouch touch;
@@ -21,8 +22,12 @@ public class Video : MonoBehaviour {
 
         //QualitySettings.
         this.movie.loop = true;
-        this.audio.loop = true;
-        this.audio.clip = movie.audioClip;
+        if (this.audio)
+        {
+            this.audio.loop = true;
+            this.audio.clip = this.clip == null ? movie.audioClip : this.clip;
+        }
+
         this.Play();
     }
 
