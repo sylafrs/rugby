@@ -118,7 +118,7 @@ public class Gamer
 			if (!Controlled.Dodge && !Controlled.isTackled)
 			{                
 				UpdateStickDirection();
-				UpdateSUPER();
+				//UpdateSUPER();
 				UpdateMOVE();
 				UpdateTACKLE();				
 				UpdateDROP();

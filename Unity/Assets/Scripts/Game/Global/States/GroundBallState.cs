@@ -23,5 +23,11 @@ public class GroundBallState : GameState {
         Vector3 pos = game.Ball.transform.position;
         pos.y = Ball.epsilonOnGround - 0.1f;
         game.Ball.transform.position = pos;
+
+        var p1 = this.game.southTeam.Player;
+        var p2 = this.game.northTeam.Player;
+
+        if (p1 != null) p1.UpdateSUPER();
+        if (p2 != null) p2.UpdateSUPER();
     }
 }

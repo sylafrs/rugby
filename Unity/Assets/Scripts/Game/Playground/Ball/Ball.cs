@@ -154,6 +154,7 @@ public class Ball : TriggeringTriggered, Debugable
 
              	_owner = value;
 				if (value) this.Taken(value);
+                else this.AttachToRoot();
 				Game.OnOwnerChanged(PreviousOwner, value);
 			}
 		}
@@ -189,6 +190,8 @@ public class Ball : TriggeringTriggered, Debugable
 
     public void TeleportOnGround()
     {
+        this.Owner = null;        
+        
         Vector3 pos = this.transform.position;
         pos.x += 2;
         pos.y = 0;

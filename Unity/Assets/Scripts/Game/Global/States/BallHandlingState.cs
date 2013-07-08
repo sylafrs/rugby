@@ -31,6 +31,12 @@ public class BallHandlingState : GameState
 
     public override void OnUpdate()
     {
+        var p1 = this.game.southTeam.Player;
+        var p2 = this.game.northTeam.Player;
+
+        if (p1 != null) p1.UpdateSUPER();
+        if (p2 != null) p2.UpdateSUPER();
+
         if (game.Ball.Owner)
         {
             game.Ball.transform.position = game.Ball.Owner.BallPlaceHolderRight.transform.position;

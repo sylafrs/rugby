@@ -315,7 +315,7 @@ public class UnitAnimator : myMonoBehaviour
             MyEvent e = events[i];
             AnimatorStateInfo infos = (AnimatorStateInfo)this.GetStateInfo();
             
-            if (Mathf.Abs(infos.normalizedTime - e.time) < 0.05 && infos.IsName(e.state))
+            if (Mathf.Abs(infos.normalizedTime - e.time) < 0.08 && infos.IsName(e.state))
             {
                 if (e.callback())
                 {

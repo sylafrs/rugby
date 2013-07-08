@@ -17,6 +17,7 @@ public class Game : myMonoBehaviour
 
 	public bool UseFlorianIA = true;
 	public bool alwaysScrum = false;
+    public bool fillBars = false;
 
 	public GamePlaySettings settings;
 	public GameReferences refs;
@@ -126,7 +127,7 @@ public class Game : myMonoBehaviour
         {
             ((GameObject.FindObjectOfType(typeof(ScrumField)) as ScrumField).collider as SphereCollider).radius = 100;
             settings.GameStates.MainState.PlayingState.GameActionState.ScrumingState.MaximumDuration = 200;
-        }
+        }                
 		
         this.refs.managers.intro.OnFinish = () =>
         {
@@ -185,6 +186,12 @@ public class Game : myMonoBehaviour
             p2.XboxController = c;
         }
 #endif
+
+        if (fillBars)
+        {
+            this.southTeam.SuperGaugeValue = 200;
+            this.northTeam.SuperGaugeValue = 200;
+        }
 	}
 
 	public void OnGameEnd()
