@@ -69,6 +69,7 @@ public class GameReferences : myMonoBehaviour {
         public AudioClip SuperScrum;
         public AudioClip SuperScrumSuccess;
         public AudioClip SuperScrumFail;
+        public AudioClip DodgeSound;
     }
 
     [System.Serializable]

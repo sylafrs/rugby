@@ -322,6 +322,10 @@ public class Game : myMonoBehaviour
 
     public void OnDodge(Unit u)
     {
+        AudioSource audio = this.refs.CameraAudio["Dodge"];
+        audio.volume = 0.5f;
+        audio.PlayOneShot(this.refs.sounds.DodgeSound);
+
         u.unitAnimator.OnDodge();
         this.refs.stateMachine.event_Dodge(u);
     }

@@ -229,6 +229,7 @@ MonoBehaviour:
     SuperScrum: {fileID: 8300000, guid: 22ef42fd93b8f844193428685831731f, type: 3}
     SuperScrumSuccess: {fileID: 8300000, guid: 46600cfdbbd705647900fda258139233, type: 3}
     SuperScrumFail: {fileID: 8300000, guid: e8ebe4f1cb9f4c6478293cb87c1d76d4, type: 3}
+    DodgeSound: {fileID: 8300000, guid: 7b9634c3650104b409da37a84cf81615, type: 3}
   managers:
     camera: {fileID: 2004071852}
     intro: {fileID: 2004071858}
@@ -25390,14 +25391,14 @@ MonoBehaviour:
         MaoriWin: {fileID: 1490340790}
       TouchUI:
         MainPanel: {fileID: 577626001}
-        north:
-        - {fileID: 1808020465}
-        - {fileID: 21404291}
-        - {fileID: 1762439003}
-        south:
+        left:
         - {fileID: 308743444}
         - {fileID: 1105312794}
         - {fileID: 1905743778}
+        right:
+        - {fileID: 1808020465}
+        - {fileID: 21404291}
+        - {fileID: 1762439003}
         croix: {fileID: 146370705}
         rond: {fileID: 794177196}
   refs: {fileID: 3678738}
@@ -29350,6 +29351,14 @@ Prefab:
     - target: {fileID: 400128, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
       propertyPath: m_LocalPosition.y
       value: 239.703873
+      objectReference: {fileID: 0}
+    - target: {fileID: 100112, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_Name
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 100104, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
+      propertyPath: m_Name
+      value: Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17e439adf47aead489a49c6ded7e8126, type: 2}
@@ -65677,7 +65686,7 @@ GameObject:
   - 4: {fileID: 1302050075}
   - 114: {fileID: 1302050076}
   m_Layer: 16
-  m_Name: South
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88219,7 +88228,7 @@ GameObject:
   - 4: {fileID: 1684381862}
   - 114: {fileID: 1684381863}
   m_Layer: 16
-  m_Name: North
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

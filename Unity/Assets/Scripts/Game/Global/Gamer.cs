@@ -454,24 +454,26 @@ public class Gamer
                 nextControlled = GetUnitNear(false);
             }
 
-			if (Controlled)
-			{
-				Controlled.Order = Order.OrderNothing();
-				Controlled.IndicateSelected(false);
-			}
-            
-			if (nextControlled)
-				Controlled = nextControlled;
+            ChangeControlled(nextControlled);
 
-			//Unit nearFromBall = GetUnitNear(false);
-			//if (nearFromBall)
-			//	Controlled = nearFromBall;
-
-			if (Controlled)
-			{
-				Controlled.Order = Order.OrderNothing();
-				Controlled.IndicateSelected(true);
-			}
+			//if (Controlled)
+			//{
+			//	Controlled.Order = Order.OrderNothing();
+			//	Controlled.IndicateSelected(false);
+			//}
+            //
+			//if (nextControlled)
+			//	Controlled = nextControlled;
+            //
+			////Unit nearFromBall = GetUnitNear(false);
+			////if (nearFromBall)
+			////	Controlled = nearFromBall;
+            //
+			//if (Controlled)
+			//{
+			//	Controlled.Order = Order.OrderNothing();
+			//	Controlled.IndicateSelected(true);
+			//}
 		}
 
 		if (Controlled && !game.UseFlorianIA)
@@ -511,6 +513,28 @@ public class Gamer
 			}
 		}
 	}
+
+    public void ChangeControlled(Unit u)
+    {
+        if (Controlled)
+        {
+            Controlled.Order = Order.OrderNothing();
+            Controlled.IndicateSelected(false);
+        }
+
+        if (u)
+            Controlled = u;
+
+        //Unit nearFromBall = GetUnitNear(false);
+        //if (nearFromBall)
+        //	Controlled = nearFromBall;
+
+        if (Controlled)
+        {
+            Controlled.Order = Order.OrderNothing();
+            Controlled.IndicateSelected(true);
+        }
+    }
 
 	public bool BallSkipOurOffensive()
 	{

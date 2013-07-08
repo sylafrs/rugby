@@ -2,6 +2,11 @@ using UnityEngine;
 
 public partial class Referee
 {
+    public bool IsTouchRight()
+    {
+        return (this.game.refs.placeHolders.touchPlacement.position.x > 0);
+    }
+
     public void PlacePlayersForTouch()
     {
         Team interceptTeam = game.Ball.Team;
@@ -12,7 +17,7 @@ public partial class Referee
         if (touchTeam.Player != null) touchTeam.Player.stopMove();
         interceptTeam.fixUnits = touchTeam.fixUnits = true;
 
-        bool right = (this.game.refs.placeHolders.touchPlacement.position.x > 0);
+        bool right = this.IsTouchRight();
 
         // Place les unités
         Transform southTeam, northTeam, rightTeam, leftTeam, interTeam, passTeam;
@@ -46,6 +51,9 @@ public partial class Referee
 
         Transform passUnitPosition = this.game.refs.placeHolders.touchPlacement.FindChild("TouchPlayer");
         touchTeam.placeUnit(passUnitPosition, 0, true);
+
+        interceptTeam.Player.ChangeControlled(null);
+        touchTeam.Player.ChangeControlled(touchTeam[0]);
 
         game.Ball.Owner = touchTeam[0];
         game.refs.managers.camera.setTarget(null);
@@ -95,22 +103,31 @@ public partial class Referee
         // Fonction à appeller à la fin de la touche
         tm.CallBack = delegate(TouchManager.Result result, int id)
         {
-            // On donne la balle à la bonne personne
-            if (result == TouchManager.Result.INTERCEPTION)
-            {
-                game.Ball.Owner = interceptTeam[id];
-                //super
-                this.IncreaseSuper(game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
-                this.IncreaseSuper(game.settings.Global.Super.touchLooseSuperPoints, touchTeam);
-            }
-            else
-            {
-                game.Ball.Owner = touchTeam[id + 1];
-                //super
-                this.IncreaseSuper(game.settings.Global.Super.touchWinSuperPoints, touchTeam);
-            }
+            game.southTeam.OnTouchAction();
+            game.northTeam.OnTouchAction();
 
-            game.OnResumeSignal(freezeAfterTouch);
+            Timer.AddTimer(1, () =>
+            {
+                // On donne la balle à la bonne personne
+                if (result == TouchManager.Result.INTERCEPTION)
+                {
+                    game.Ball.Owner = interceptTeam[id];
+
+                    //super
+                    this.IncreaseSuper(game.settings.Global.Super.touchInterceptSuperPoints, interceptTeam);
+                    this.IncreaseSuper(game.settings.Global.Super.touchLooseSuperPoints, touchTeam);
+                }
+                else
+                {
+                    game.Ball.Owner = touchTeam[id + 1];
+                    interceptTeam.Player.ChangeControlled(interceptTeam[id]);
+
+                    //super
+                    this.IncreaseSuper(game.settings.Global.Super.touchWinSuperPoints, touchTeam);
+                }
+
+                game.OnResumeSignal(freezeAfterTouch);
+            });
         };
 
         tm.enabled = true;

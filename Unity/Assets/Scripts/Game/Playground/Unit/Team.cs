@@ -141,6 +141,12 @@ public class Team : myMonoBehaviour, IEnumerable
 	{
 		foreach (Unit u in units)
 		{
+            if (u == game.Ball.Owner)
+            {
+                game.Ball.Owner = null;
+                game.Ball.TeleportOnGround();
+            }
+
 			u.sm.event_stun(stunDuration);
 		}
 	}

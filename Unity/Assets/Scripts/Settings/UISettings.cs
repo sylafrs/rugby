@@ -32,7 +32,7 @@ public class GameUISettings
 public class TouchUISettings
 {
     public UIPanel MainPanel;
-    public UITexture [] north, south;
+    public UITexture [] left, right;
     public UITexture croix, rond;
 }
 
