@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14323525ea91fe24b80fb4ed8f717b8f, type: 3}
   m_Name: 
   audio: {fileID: 1302648809}
-  movie: {fileID: 15200000, guid: 6f8a633f85ddbfb448397fa3f789dbb4, type: 3}
+  movie: {fileID: 15200000, guid: b597d4c0125e807448a72f75ed5fcfc2, type: 3}
   clip: {fileID: 8300000, guid: 5f8674711ecad3c4e9f3cb0d6c84f830, type: 3}
   touch:
     keyboardP1: 13
@@ -121,7 +121,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 8959f3c2b122c9849981001e6119d8ce, type: 2}
+  - {fileID: 2100000, guid: dd2c99018d5643f4f88a1849735afb3b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

@@ -27,47 +27,47 @@ public partial class Referee
         tm.callback = (TackleManager.RESULT res) =>
         {
             TacklePlaceUnitsAtEnd(tackler, tackled);
-
-            switch (res)
-            {
-                // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
-                case TackleManager.RESULT.CRITIC:
-                    this.game.Ball.Owner = tackler;
-                    tackled.sm.event_Tackle();
-                    break;
-
-                // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
-                case TackleManager.RESULT.PASS:
-
-                    Unit unitTo = this.ComputeUnitToPassOnTackle(tackled);                                       
-
-                    if (unitTo != null && unitTo != game.Ball.Owner)
-                    {
-                        if (tackled.unitAnimator)
-                        {
-                            tackled.unitAnimator.OnTacklePass();
-                        }
-                        game.Ball.Pass(unitTo);
-                    }
-
-                    tackled.sm.event_Tackle();
-                    tackler.sm.event_Tackle();
-                    LastTackle = Time.time;
-                    break;
-
-                // Normal : les deux sont knock-out et la balle est par terre 
-                // /!\ Mêlée possible /!\
-                case TackleManager.RESULT.NORMAL:
-
-                    //super			
+            //
+            //switch (res)
+            //{
+            //    // Plaquage critique, le plaqueur recupère la balle, le plaqué est knockout
+            //    case TackleManager.RESULT.CRITIC:
+            //        this.game.Ball.Owner = tackler;
+            //        tackled.sm.event_Tackle();
+            //        break;
+            //
+            //    // Passe : les deux sont knock-out mais la balle a pu être donnée à un allié
+            //    case TackleManager.RESULT.PASS:
+            //
+            //        Unit unitTo = this.ComputeUnitToPassOnTackle(tackled);                                       
+            //
+            //        if (unitTo != null && unitTo != game.Ball.Owner)
+            //        {
+            //            if (tackled.unitAnimator)
+            //            {
+            //                tackled.unitAnimator.OnTacklePass();
+            //            }
+            //            game.Ball.Pass(unitTo);
+            //        }
+            //
+            //        tackled.sm.event_Tackle();
+            //        tackler.sm.event_Tackle();
+            //        LastTackle = Time.time;
+            //        break;
+            //
+            //    // Normal : les deux sont knock-out et la balle est par terre 
+            //    // /!\ Mêlée possible /!\
+            //    case TackleManager.RESULT.NORMAL:
+            //
+            //        //super			
                     IncreaseSuper(game.settings.Global.Super.tackleWinSuperPoints, tackler.Team);
                     tackled.sm.event_Tackle();
                     tackler.sm.event_Tackle();
                     game.Ball.TeleportOnGround();
                     LastTackle = Time.time;
-                    break;
-            }
-
+            //        break;
+            //}
+            //
             tackler.Team.Player.UpdateControlled();
             tackled.Team.Player.UpdateControlled();            
         };
